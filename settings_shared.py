@@ -51,6 +51,7 @@ TEMPLATE_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     # Put application templates before these fallback ones:
+    os.path.join(os.path.dirname(__file__),"collection_tool/templates"),
     "/var/www/smilekit/templates/",
     os.path.join(os.path.dirname(__file__),"templates"),
 )
@@ -70,6 +71,7 @@ INSTALLED_APPS = (
     'typogrify',
     'survey',
     'tinymce',
+    'collection_tool',
 )
 
 THUMBNAIL_SUBDIR = "thumbs"
