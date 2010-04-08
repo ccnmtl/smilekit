@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+    
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<title>
+		{% block title %}SmileKit{% endblock %}
+	</title>
+
+	{% block css %}		
+		<link type="text/css" rel="stylesheet" media="screen" href="site_media/js/jqtouch/jqtouch.css" />
+		<link type="text/css" rel="stylesheet" media="screen" href="site_media/js/jqtouch/themes/apple/theme.css" />
+	{% endblock %}
+		
+	{% block extras %}
+	{% endblock %}
+        
+</head>
+	
+<body>
+
+	{% block content %}
+        {% endblock %}
+
+	{% block footer %}
+	{% endblock %}
+
+	{% block js %}
+		<script type="text/javascript" src="site_media/js/jqtouch/jquery.1.3.2.min.js"></script> 
+		<script type="text/javascript" src="site_media/js/jqtouch/jqtouch.js"></script> 
+		<script type="application/x-javascript" src="site_media/js/jqtouch/extensions/jqt.floaty.js"></script>		
+	{% endblock %}
+
+</body>	
+</html>

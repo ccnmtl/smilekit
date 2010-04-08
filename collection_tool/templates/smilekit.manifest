@@ -26,6 +26,7 @@ themes/apple/img/toggleOn.png
 themes/apple/img/toolbar.png
 themes/apple/img/toolButton.png
 themes/apple/img/whiteButton.png
+images/icon_scale.png
 images/icon_aboutsmilekit.png
 images/icon_bottledwater.png
 images/icon_formula.png
@@ -41,3 +42,4 @@ images/icon_toothpaste.png
 images/smilekit_icon.png
 images/smilekit_icon2.png
 images/smilekit_loading.png
+video/stest.mov
