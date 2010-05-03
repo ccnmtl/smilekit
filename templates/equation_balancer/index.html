@@ -1,9 +1,23 @@
-<html>
-<head>
-	<title>SmileKit Equation Balancer</title>
-</head>
+{% extends "equation_balancer/base.html" %}
 
-<body>
-	<p>I exist.</p>
-</body>
-</html>
+{% block content %}
+  <h2>Welcome</h2>
+  <p>You are logged in as {{user.username}}.</p>
+
+  <h3>Create a New Model</h3>
+  <form action="create" method="POST">
+  Name:
+    <input type="text" name="name" />
+    <input type="submit" value="Create" />
+  </form>
+
+  {% if configs %}
+  <h3>Open an Existing Model:</h3>
+  <ul>
+    {% for config in configs %}
+      <li><a href="configuration/{{config.id}}">{{config.name}}</a></li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+
+{% endblock %}
