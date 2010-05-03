@@ -1,0 +1,56 @@
+{% extends "equation_balancer/base.html" %}
+
+{% block js %}
+  {{ block.super }}
+  <script type="text/javascript" src="/site_media/js/equation_balancer.js"></script>
+{% endblock %}
+
+{% block content %}
+  <p>You are logged in as {{user.username}}.</p>
+
+<div id='left'>
+
+Model: {{ config.name }}
+
+<form action="save" method="POST">
+  <input type="hidden" name="config" value="{{config.id}}" />
+<table id='weights' style="border:1px black solid;">
+{% for question in questions %}
+  <tr>
+    <td>{{ question.module }}</td>
+    <td>{{ question.row }}.</td>
+    <td>
+      {{ question.text }}
+    </td>
+    <td>
+       <input type="text" size="3" name="weight-{{question.row}}" id="weight-{{question.row}}" value="0"></input>
+    </td>
+  </tr>
+{% endfor %}
+</table>
+
+<input type="submit" value="Save Changes"></input>
+</form>
+
+<script type="text/javascript">
+  {% for weight in weights %}
+    $(window).load(function() {
+      set_weight({{ weight.question.row }},{{ weight.weight }});
+    });
+  {% endfor %}
+</script>
+
+
+</div>
+
+<div id='right'>
+  <fieldset>
+  <form action="load_patient_data" method="POST">
+    Load patient data:
+    <input type="file"></input>
+    <input type="submit" value="Load CSV"></input>
+  </form>
+  </fieldset>
+</div>
+
+{% endblock %}

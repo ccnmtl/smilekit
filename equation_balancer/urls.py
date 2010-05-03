@@ -9,5 +9,6 @@ urlpatterns = patterns('',
                        (r'media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': media_root}),
                         (r'configuration/(?P<config_id>\d+)', 'equation_balancer.views.view_config'),
                         (r'create', 'equation_balancer.views.new_config'),
+                        (r'save', 'equation_balancer.views.save_config'),
                         (r'', 'equation_balancer.views.index'),
 )
