@@ -115,10 +115,10 @@ def load_questions(request):
     answers = question[id_answers].split(",")
     weights = question[id_weights].split(",")
 
-    for (a,w) in zip(answers, weights):
+    for (ans,wt) in zip(answers, weights):
       a = Answer(question = q,
-                 text = a,
-                 weight = w or 1)
+                 text = ans,
+                 weight = wt.strip() or 1)
       a.save()
 
   return HttpResponseRedirect("/admin/equation_balancer/question/")
