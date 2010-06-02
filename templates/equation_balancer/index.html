@@ -1,23 +1,52 @@
 {% extends "equation_balancer/base.html" %}
 
+{% block title %}MySmileBuddy{% endblock %}
+		
+{% block css %}
+
+	{{ block.super }}
+	
+	<link type="text/css" rel="stylesheet" media="screen" href="/equation_balancer/media/css/equation_balancer.css" />
+	
+{% endblock %}
+		
 {% block content %}
-  <h2>Welcome</h2>
-  <p>You are logged in as {{user.username}}.</p>
 
-  <h3>Create a New Model</h3>
-  <form action="create" method="POST">
-  Name:
-    <input type="text" name="name" />
-    <input type="submit" value="Create" />
-  </form>
+<h1><img src="equation_balancer/media/images/logo.png" alt="MySmileBuddy Equation Balancer" /></h1>
+	
+	<p style="position: absolute; top: 30px; right: 20px;">You are logged in as {{user.username}}.</p>
+	
+	<h2>Welcome</h2>
+	
+	<p>Instructions: Start here. You can create a new model profile or open an edit an existing one.</p>
+	
+	
+	<fieldset style="border: 1px solid #ccc;margin-bottom: 30px; padding: 20px;font-weight: bold;">
+	
+		<legend style="border: 1px solid #ccc; padding: 5px;background-color: #eee;">Create a New Model</legend>
+		
+		<form action="create" method="post">
+			<label>Model Name:</label>
+			<input type="text" name="name" />
+			<input type="submit" value="Create" />
+		</form>
+	
+	</fieldset>
+	
+	{% if configs %}
+	
+	<fieldset style="border: 1px solid #ccc;margin-bottom: 30px; padding: 20px;font-weight: bold;">
+	
+		<legend style="border: 1px solid #ccc; padding: 5px;background-color: #eee;">Open an Existing Model</legend>
+		
+		<ol>
+			{% for config in configs %}
+			<li><a href="configuration/{{config.id}}">{{config.name}}</a></li>
+			{% endfor %}
+		</ol>
+	
+	</fieldset>
+	
+	{% endif %}
 
-  {% if configs %}
-  <h3>Open an Existing Model:</h3>
-  <ul>
-    {% for config in configs %}
-      <li><a href="configuration/{{config.id}}">{{config.name}}</a></li>
-    {% endfor %}
-  </ul>
-  {% endif %}
-  
 {% endblock %}

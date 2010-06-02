@@ -1,20 +1,38 @@
 {% extends "collection_tool/base.html" %}
 
-{% block title %}SmileKit{% endblock %}
+{% block title %}MySmileBuddy{% endblock %}
 		
 {% block css %}
+
 	{{ block.super }}
+	
 	<link type="text/css" rel="stylesheet" media="screen" href="/collection_tool/media/css/smilekit.css" />
+	
+	<style type="text/css" media="all and (orientation:portrait)">
+		body {background-color: red;}
+	</style>
+	
+	<style type="text/css" media="all and (orientation:landscape)">
+		body {background-color: orange;}
+	</style>
+	
 {% endblock %}
 		
 {% block extras %}
 	{{ block.super }}
-	<link rel="apple-touch-icon" href="collection_tool/media/images/smilekit_icon.png" />
-	<link rel="apple-touch-startup-image" href="collection_tool/media/images/smilekit_loading.png" />
+	<link rel="apple-touch-icon" href="collection_tool/media/images/mysmilebuddy_icon.png" />
+	<meta name="viewport" content="width=device-width" />
+
 {% endblock %}
         
 {% block content %}
-	<!-- START - HOME -->
+
+<div style="position: absolute;background-image: url(/collection_tool/media/images/splash_logo.jpg);width:640px;height:480px;background-position: center center;border: 1px solid #000;">
+<div>
+
+
+<!-- 
+	<!~~ START - HOME ~~>
 		<div id="home">
 			<div class="toolbar">
 				<h1>
@@ -53,7 +71,7 @@
 					</a>
 				</li>
 			</ul>
-			<!--
+			<!~~
 			<h2>
 				Resources 
 			</h2>
@@ -74,7 +92,7 @@
 					</a>
 				</li>
 			</ul>
-			-->
+			~~>
 		<div class="info">
 			<p><strong>Please be kind.  This is a work in progress.</strong></p>
 		</div>
@@ -97,9 +115,9 @@
 				</p>
 			</div>
 		</div>
-		<!-- STOP - HOME -->
+		<!~~ STOP - HOME ~~>
 		
-		<!-- START - ABOUT -->
+		<!~~ START - ABOUT ~~>
 		<div id="aboutsmilekit">
 			<div class="toolbar">
 				<h1>
@@ -126,9 +144,9 @@
 				</p>
 			</div>
 		</div>
-		<!-- STOP - ABOUT -->
+		<!~~ STOP - ABOUT ~~>
 		
-		<!-- START - LIBRARY -->
+		<!~~ START - LIBRARY ~~>
 		<div id="library">
 			<div class="toolbar">
 				<h1>
@@ -137,17 +155,17 @@
 				<a class="button goback" href="#library_about">
 					Close
 				</a>
-				<!--
+				<!~~
 				<a href="#" class="back">
 					Home
 				</a>
-				-->
+				~~>
 			</div>
-			<!--
+			<!~~
 			<h2>
 				
 			</h2>
-			-->
+			~~>
 			<ul class="edgetoedge">
 				<li class="sep">
 					F
@@ -238,9 +256,9 @@
 				</p>
 			</div>
 		</div>
-		<!-- STOP - LIBRARY -->
+		<!~~ STOP - LIBRARY ~~>
 		
-		<!-- START - LANGUAGE -->
+		<!~~ START - LANGUAGE ~~>
 		<div id="pref">
 			<div class="toolbar">
 				<h1>
@@ -264,11 +282,11 @@
 				</ul>
 			</form>
 		</div>
-		<!-- STOP - LANGUAGE -->
+		<!~~ STOP - LANGUAGE ~~>
 		
-		<!-- START - MODULES -->
+		<!~~ START - MODULES ~~>
 				
-		<!-- START - MODULE: FLUORIDE -->
+		<!~~ START - MODULE: FLUORIDE ~~>
 		<div id="module_fluoride">
 			<div class="toolbar">
 				<h1>
@@ -330,9 +348,9 @@
 				</p>
 			</div>
 		</div>
-		<!-- STOP - MODULE: FLUORIDE -->
+		<!~~ STOP - MODULE: FLUORIDE ~~>
 		
-		<!-- START - MODULE: FLUORIDE: DRINKING WATER -->
+		<!~~ START - MODULE: FLUORIDE: DRINKING WATER ~~>
 		<div id="module_fluoride_drinkingwater">
 			<div class="toolbar">
 				<h1>
@@ -374,9 +392,9 @@
 				</p>
 			</div>
 		</div>
-		<!-- STOP - MODULE: FLUORIDE: DRINKING WATER -->
+		<!~~ STOP - MODULE: FLUORIDE: DRINKING WATER ~~>
 		
-		<!-- START - MODULE: FLUORIDE: DRINKING WATER: TYPES -->
+		<!~~ START - MODULE: FLUORIDE: DRINKING WATER: TYPES ~~>
 		<div id="module_fluoride_drinkingwater_types">
 			<div class="toolbar">
 				<h1>
@@ -389,11 +407,11 @@
 					? 
 				</a>
 			</div>
-			<!--
+			<!~~
 			<h2>
 				
 			</h2>
-			-->
+			~~>
 			<div class="content">
 				<p class="lyle">
 					"What kind of water does your family usually drink?"
@@ -435,9 +453,9 @@
 				</p>
 			</div>
 		</div>
-		<!-- STOP - MODULE: FLUORIDE: DRINKING WATER: TYPES SCREEN -->
+		<!~~ STOP - MODULE: FLUORIDE: DRINKING WATER: TYPES SCREEN ~~>
 				
-		<!-- START - MODULE: FLUORIDE: FORMULA -->
+		<!~~ START - MODULE: FLUORIDE: FORMULA ~~>
 		<div id="module_fluoride_usingformula">
 			<div class="toolbar">
 				<h1>
@@ -479,9 +497,9 @@
 				</p>
 			</div>
 		</div>
-		<!-- STOP - MODULE: FLUORIDE: FORMULA -->
+		<!~~ STOP - MODULE: FLUORIDE: FORMULA ~~>
 		
-		<!-- START - MODULE: FLUORIDE: FORMULA: TYPES -->
+		<!~~ START - MODULE: FLUORIDE: FORMULA: TYPES ~~>
 		<div id="module_fluoride_usingformula_types">
 			<div class="toolbar">
 				<h1>
@@ -494,11 +512,11 @@
 					? 
 				</a>
 			</div>
-			<!--
+			<!~~
 			<h2>
 
 			</h2>
-			-->
+			~~>
 			<div class="content">
 				<p class="lyle">
 					"Which type of formula do you feed your baby?" 
@@ -552,9 +570,9 @@
 				</p>
 			</div>
 		</div>
-		<!-- STOP - MODULE: FLUORIDE: FORMULA: TYPES -->
+		<!~~ STOP - MODULE: FLUORIDE: FORMULA: TYPES ~~>
 		
-		<!-- START - MODULE: FLUORIDE: BRUSHING TEETH -->
+		<!~~ START - MODULE: FLUORIDE: BRUSHING TEETH ~~>
 		<div id="module_fluoride_brushingteeth">
 			<div class="toolbar">
 				<h1>
@@ -611,9 +629,9 @@
 				</p>
 			</div>
 		</div>
-		<!-- STOP - MODULE: FLUORIDE: BRUSHING TEETH -->
+		<!~~ STOP - MODULE: FLUORIDE: BRUSHING TEETH ~~>
 		
-		<!-- START - MODULE: FLUORIDE: BRUSHING TEETH: 01 -->
+		<!~~ START - MODULE: FLUORIDE: BRUSHING TEETH: 01 ~~>
 		<div id="module_fluoride_brushingteeth_01">
 			<div class="toolbar">
 				<h1>
@@ -626,11 +644,11 @@
 					? 
 				</a>
 			</div>
-			<!--
+			<!~~
 			<h2>
 
 			</h2>
-			-->
+			~~>
 			<div class="content">
 				<p class="lyle">
 					"Who brushes your child's teeth: you or your child?" 
@@ -667,9 +685,9 @@
 				</p>
 			</div>
 		</div>
-		<!-- STOP - MODULE: FLUORIDE: BRUSHING TEETH: 01 -->
+		<!~~ STOP - MODULE: FLUORIDE: BRUSHING TEETH: 01 ~~>
 		
-		<!-- START - MODULE: FLUORIDE: BRUSHING TEETH: 02 -->
+		<!~~ START - MODULE: FLUORIDE: BRUSHING TEETH: 02 ~~>
 		<div id="module_fluoride_brushingteeth_02">
 			<div class="toolbar">
 				<h1>
@@ -682,11 +700,11 @@
 					? 
 				</a>
 			</div>
-			<!--
+			<!~~
 			<h2>
 
 			</h2>
-			-->
+			~~>
 			<div class="content">
 				<p class="lyle">
 					"Which brands of these toothpastes do you use?" 
@@ -750,9 +768,9 @@
 				</p>
 			</div>
 		</div>
-		<!-- STOP - MODULE: FLUORIDE: BRUSHING TEETH: 02 -->
+		<!~~ STOP - MODULE: FLUORIDE: BRUSHING TEETH: 02 ~~>
 		
-		<!-- START - MODULE: FLUORIDE: BRUSHING TEETH: 03 -->
+		<!~~ START - MODULE: FLUORIDE: BRUSHING TEETH: 03 ~~>
 		<div id="module_fluoride_brushingteeth_03">
 			<div class="toolbar">
 				<h1>
@@ -765,11 +783,11 @@
 					? 
 				</a>
 			</div>
-			<!--
+			<!~~
 			<h2>
 
 			</h2>
-			-->
+			~~>
 			<div class="content">
 				<p class="lyle">
 					"Does your child eat, drink, or rinse mouth with water within 30 minutes of toothbrushing?"
@@ -807,9 +825,9 @@
 				</p>
 			</div>
 		</div>
-		<!-- STOP - MODULE: FLUORIDE: BRUSHING TEETH: 03 -->
+		<!~~ STOP - MODULE: FLUORIDE: BRUSHING TEETH: 03 ~~>
 		
-		<!-- START - MODULE: FLUORIDE: BRUSHING TEETH: 04 -->
+		<!~~ START - MODULE: FLUORIDE: BRUSHING TEETH: 04 ~~>
 		<div id="module_fluoride_brushingteeth_04">
 			<div class="toolbar">
 				<h1>
@@ -822,11 +840,11 @@
 					? 
 				</a>
 			</div>
-			<!--
+			<!~~
 			<h2>
 
 			</h2>
-			-->
+			~~>
 			<div class="content">
 				<p class="lyle">
 					"Which of these pictures looks like the amount of toothpaste you use?" 
@@ -880,9 +898,9 @@
 				</p>
 			</div>
 		</div>
-		<!-- STOP - MODULE: FLUORIDE: BRUSHING TEETH: 04 -->
+		<!~~ STOP - MODULE: FLUORIDE: BRUSHING TEETH: 04 ~~>
 		
-		<!-- START - MODULE: FLUORIDE: RINSING -->
+		<!~~ START - MODULE: FLUORIDE: RINSING ~~>
 		<div id="module_fluoride_rinsing">
 			<div class="toolbar">
 				<h1>
@@ -924,9 +942,9 @@
 				</p>
 			</div>
 		</div>
-		<!-- STOP - MODULE: FLUORIDE: RINSING -->
+		<!~~ STOP - MODULE: FLUORIDE: RINSING ~~>
 		
-		<!-- START - MODULE: FLUORIDE: RINSING: 01 -->
+		<!~~ START - MODULE: FLUORIDE: RINSING: 01 ~~>
 		<div id="module_fluoride_rinsing_01">
 			<div class="toolbar">
 				<h1>
@@ -939,11 +957,11 @@
 					? 
 				</a>
 			</div>
-			<!--
+			<!~~
 			<h2>
 
 			</h2>
-			-->
+			~~>
 			<div class="content">
 				<p class="lyle">
 					"Do you use fluoride rinses?" 
@@ -980,9 +998,9 @@
 				</p>
 			</div>
 		</div>
-		<!-- STOP - MODULE: FLUORIDE: RINSING: 01 -->
+		<!~~ STOP - MODULE: FLUORIDE: RINSING: 01 ~~>
 		
-		<!-- START - MODULE: FLUORIDE: USING TOOTHPASTE -->
+		<!~~ START - MODULE: FLUORIDE: USING TOOTHPASTE ~~>
 		<div id="module_fluoride_usingtoothpaste">
 			<div class="toolbar">
 				<h1>
@@ -1024,9 +1042,9 @@
 				</p>
 			</div>
 		</div>
-		<!-- START - MODULE: FLUORIDE: USING TOOTHPASTE -->
+		<!~~ START - MODULE: FLUORIDE: USING TOOTHPASTE ~~>
 		
-		<!-- START - MODULE: FLUORIDE: USING TOOTHPASTE: 01 -->
+		<!~~ START - MODULE: FLUORIDE: USING TOOTHPASTE: 01 ~~>
 		<div id="module_fluoride_usingtoothpaste_01">
 			<div class="toolbar">
 				<h1>
@@ -1039,11 +1057,11 @@
 					? 
 				</a>
 			</div>
-			<!--
+			<!~~
 			<h2>
 
 			</h2>
-			-->
+			~~>
 			<div class="content">
 				<p class="lyle">
 					"Have you had a toothpaste prescribed for your child by a dentist?" 
@@ -1080,9 +1098,9 @@
 				</p>
 			</div>
 		</div>
-		<!-- STOP - MODULE: FLUORIDE: USING TOOTHPASTE: 01 -->
+		<!~~ STOP - MODULE: FLUORIDE: USING TOOTHPASTE: 01 ~~>
 		
-		<!-- START - MODULE: FLUORIDE: USING TOOTHPASTE: 02 -->
+		<!~~ START - MODULE: FLUORIDE: USING TOOTHPASTE: 02 ~~>
 		<div id="module_fluoride_usingtoothpaste_02">
 			<div class="toolbar">
 				<h1>
@@ -1095,11 +1113,11 @@
 					? 
 				</a>
 			</div>
-			<!--
+			<!~~
 			<h2>
 
 			</h2>
-			-->
+			~~>
 			<div class="content">
 				<p>
 					Do you only use this toothpaste? 
@@ -1136,12 +1154,14 @@
 				</p>
 			</div>
 		</div>
-		<!-- STOP - MODULE: FLUORIDE: USING TOOTHPASTE: 02 -->
+		<!~~ STOP - MODULE: FLUORIDE: USING TOOTHPASTE: 02 ~~>
 		
-		<!-- STOP - MODULES -->
+		<!~~ STOP - MODULES ~~>
+ -->
 {% endblock %}
 
 {% block footer %}
+	<!--
 	<div class="floaty">
 		<ul class="toolbarnav">
 			<li><a class="goback" href="#home">Home</a></li>
@@ -1151,10 +1171,12 @@
 			<li><a class="" href="#">Log Out</a></li>
 		</ul>
 	</div>
+	-->
 {% endblock %}
 
 {% block js %}
 	{{ block.super }}
+	<!--
 	<script type="text/javascript">
 
 		var jQT = $.jQTouch({
@@ -1173,4 +1195,5 @@
 		  });
             
 	</script> 
+	-->
 {% endblock %}
