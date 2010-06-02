@@ -2,6 +2,7 @@
 
 {% block js %}
   {{ block.super }}
+  <script type="text/javascript" src="/site_media/js/ajaxupload.js"></script>
   <script type="text/javascript" src="/site_media/js/equation_balancer.js"></script>
 {% endblock %}
 
@@ -15,29 +16,40 @@ Model: {{ config.name }}
 <form action="save" method="POST">
   <input type="hidden" name="config" value="{{config.id}}" />
 <table id='weights' style="border:1px black solid;">
-{% for question in questions %}
+{% regroup questions by module as question_list %}
+{% for question in question_list %}
   <tr>
-    <td>{{ question.module }}</td>
-    <td>{{ question.row }}.</td>
+    <td>&gt;</td>
+    <td>Module: {{ question.grouper.name }}</td>
+    <td><input type="text" size="3" name="moduleweight-{{ question.grouper.id }}" id="moduleweight-{{ question.grouper.id }}" value="0" /></td>
+  </tr>
+  {% for item in question.list %}
+  <tr>
+    <td></td>
+    <td>{{ item.number }}. {{ item.text }}</td>
     <td>
-      {{ question.text }}
-    </td>
-    <td>
-       <input type="text" size="3" name="weight-{{question.row}}" id="weight-{{question.row}}" value="0"></input>
+       <input type="text" size="3" name="weight-{{item.number}}" id="weight-{{item.number}}" value="0" />
     </td>
   </tr>
+  {% endfor %}
 {% endfor %}
 </table>
 
-<input type="submit" value="Save Changes"></input>
+
+<input type="submit" value="Save Changes" />
 </form>
 
 <script type="text/javascript">
   {% for weight in weights %}
     $(window).load(function() {
-      set_weight({{ weight.question.row }},{{ weight.weight }});
+      setWeight("weight-{{ weight.question.number }}",{{ weight.weight }});
     });
   {% endfor %}
+  {% for weight in moduleweights %}
+    $(window).load(function() {
+      setWeight("moduleweight-{{ weight.module.id }}",{{ weight.weight }});
+    });
+  {% endfor %}  
 </script>
 
 
@@ -45,12 +57,11 @@ Model: {{ config.name }}
 
 <div id='right'>
   <fieldset>
-  <form action="load_patient_data" method="POST">
-    Load patient data:
-    <input type="file"></input>
-    <input type="submit" value="Load CSV"></input>
-  </form>
+  <div id="upload_button">Load patient data</div>
   </fieldset>
+  
+  <div id="patient-data">
+  </div>
 </div>
 
 {% endblock %}

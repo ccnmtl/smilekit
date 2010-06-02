@@ -26,11 +26,15 @@ def index(request):
 @login_required
 def view_config(request, config_id):
   config = Configuration.objects.get(id=config_id)
-  questions = Question.objects.all()
+  modules = Module.objects.all()
+  questions = Question.objects.order_by('module', 'number')
   weights = config.weight_set.all()
+  module_weights = config.moduleweight_set.all()
   return render_to_response("equation_balancer/configuration.html",
-                           {'config':config, 'questions':questions, 'weights':weights},
-                             context_instance=RequestContext(request))
+                            {'modules':modules, 'questions':questions,
+                             'config':config, 'weights':weights,
+                             'moduleweights':module_weights},
+                            context_instance=RequestContext(request))
 @login_required
 def new_config(request):
   name = request.POST['name']
@@ -43,18 +47,26 @@ def new_config(request):
 def save_config(request):
   config_id = request.POST['config']
   config = Configuration.objects.get(id=config_id)
+  # save module weights
+  for module in Module.objects.all():
+    new_value = request.POST['moduleweight-%s' % module.id]
+    if new_value == "": new_value = 0 # set to 0 if cleared
+    # TODO handle NaN
+    weight, created = ModuleWeight.objects.get_or_create(module=module, config=config, weight=new_value)
+    weight.save()
+  
+  # save question weights
   for question in Question.objects.all():
   #  try:
-      new_id = 'weight-%s' % question.number
       new_value = request.POST['weight-%s' % question.number]
       if new_value == "": new_value = 0  # set to 0 if cleared
-      weight, created = Weight.objects.get_or_create(question=question, config=config)
-      weight.weight = new_value
+      weight, created = Weight.objects.get_or_create(question=question, config=config, weight=new_value)
       weight.save()
   #  except:
   #    pass  # question not in the form -- this probably won't happen?
   return HttpResponseRedirect("/weights/configuration/%s" % config_id)
 
+@login_required
 def load_questions(request):
   # if csv file provided, load
   if request.method == 'POST':
@@ -107,24 +119,9 @@ def load_questions(request):
       a = Answer(question = q,
                  text = a,
                  weight = w or 1)
-      print a
       a.save()
 
-  return HttpResponse("")
-
-  for row in table:
-
-    for i in range(len(row)):
-      if i==0: header = row[i]
-      questions[i] = [header] = row[i]
-
-    print patient_data
-    patients[patient_number] = patient_data
-
-  #json = '{"total": %s}' % round(total_mol,2)
-  json = '{"data": %s}' % patient_data
-  return HttpResponse(json, mimetype="application/javascript")
-
+  return HttpResponseRedirect("/admin/equation_balancer/question/")
 
 def load_patient_data(request):
   # if csv file provided, load
@@ -148,11 +145,11 @@ def load_patient_data(request):
     for i in range(len(row)):
       if i==0: pass
       patient_data[headers[i]] = row[i]
-    print patient_data
     patients[patient_number] = patient_data
 
   #json = '{"total": %s}' % round(total_mol,2)
-  json = '{"data": %s}' % patient_data
+  print patients
+  json = '{"data": %s}' % patients
   return HttpResponse(json, mimetype="application/javascript")
 
 
