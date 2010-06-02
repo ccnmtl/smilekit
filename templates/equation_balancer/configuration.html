@@ -17,12 +17,16 @@
 <div id="left" style="width: 40%; float: left;">
 	
 	<form action="save" method="POST">
-	
+		
+			<div align="center" style="padding: 5px;">
+
 		<input type="button" value="&#171; Back to Open/Create" onClick="history.back();">
 		
 		<input type="submit" value="Save {{ config.name }}" />
 		
 		<input type="hidden" name="config" value="{{config.id}}" />
+		
+		</div>
 		
 		<table cellspacing="0" id="weights">
 			{% regroup questions by module as question_list %}
@@ -65,9 +69,71 @@
 
 <div id="right" style="margin-left: 40%;">
 
+	<div align="center" style="padding: 5px;">
 	<input type="button" id="upload_button" value="Load Patient Data for {{ config.name }}" />
+	</div>
 	
 	<div id="patient-data" style="background-color: #efefef;"></div>
+	
+		<table cellspacing="0" id="patientdata" style="width: 100%;">
+	
+	<tr>
+	<td colspan="9" style="border-bottom: 1px solid #ccc; border-collapse: collapse; background-color: #ccc; font-weight: bold;">Multiple Records</td>
+	</tr>
+	
+	<tr>
+	<td colspan="9" style="text-align: center; background-color: #000; color: #fff;">Distribution of Records (Total: 20)</td>
+	</tr>
+	
+	<tr>
+	<td colspan="3" style="text-align: center;background-color: red;">High</td>
+	<td colspan="3" style="text-align: center;background-color: yellow;">Medium</td>
+	<td colspan="3" style="text-align: center;background-color: green;">Low</td>
+	</tr>
+	
+	<tr>
+	<td colspan="3" style="text-align: center;background-color: #f66;">9</td>
+	<td colspan="3" style="text-align: center;background-color: #ff9;">10</td>
+	<td colspan="3" style="text-align: center;background-color: #cf9;">1</td>
+	</tr>
+	
+	<tr>
+	<td style="text-align: center;background-color: #eee;">Patient Number</td>
+	<td style="text-align: center;background-color: #eee;">Designated Risk</td>
+	<td style="text-align: center;background-color: #eee;">Calculated Risk</td>
+	<td style="text-align: center;background-color: #eee;">Patient Number</td>
+	<td style="text-align: center;background-color: #eee;">Designated Risk</td>
+	<td style="text-align: center;background-color: #eee;">Calculated Risk</td>
+	<td style="text-align: center;background-color: #eee;">Patient Number</td>
+	<td style="text-align: center;background-color: #eee;">Designated Risk</td>
+	<td style="text-align: center;background-color: #eee;">Calculated Risk</td>
+	</tr>
+	
+	<tr>
+	<td style="text-align: center;">1</td>
+	<td style="text-align: center;">High</td>
+	<td style="text-align: center;">High</td>
+	<td style="text-align: center;">2</td>
+	<td style="text-align: center;">High</td>
+	<td style="text-align: center;">High</td>
+	<td style="text-align: center;">20</td>
+	<td style="text-align: center; background-color:#ffc;">Medium</td>
+	<td style="text-align: center; background-color:#ffc;">Low</td>
+	</tr>
+	
+	<tr>
+	<td style="text-align: center;">1</td>
+	<td style="text-align: center;">High</td>
+	<td style="text-align: center;">High</td>
+	<td style="text-align: center;">2</td>
+	<td style="text-align: center; background-color:#ffc;">Medium</td>
+	<td style="text-align: center; background-color:#ffc;">High</td>
+	<td style="text-align: center;">20</td>
+	<td style="text-align: center;">Low</td>
+	<td style="text-align: center;">Low</td>
+	</tr>
+	
+	</table>
 
 </div>
 
