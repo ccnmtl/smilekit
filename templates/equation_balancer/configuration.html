@@ -6,144 +6,185 @@
 	<script type="text/javascript" src="/site_media/js/equation_balancer.js"></script>
 {% endblock %}
 
+{% block css %}
+	{{ block.super }}
+	<link type="text/css" rel="stylesheet" media="screen" href="/weights/collection_tool/media/css/equation_balancer.css" />
+{% endblock %}
+
 {% block content %}
 
-<h1><img src="equation_balancer/media/images/logo.png" alt="MySmileBuddy Equation Balancer" /></h1>
+	<h1 id="logo">MySmileBuddy Equation Balancer</h1>
 
-	<p style="position: absolute; top: 30px; right: 20px;">You are logged in as {{user.username}}.</p>
+	<p id="username">You are logged in as {{user.username}}.</p>
 
-<h2>Model: {{ config.name }}</h2>
-
-<div id="left" style="width: 40%; float: left;">
+	<h2>Model: {{ config.name }}</h2>
 	
 	<form action="save" method="POST">
+	
+	<div id="actionbuttons">
+	
+		<div id="leftbuttons">
+						
+			<input type="button" value="&#171; Back" onClick="history.back();">
+						
+			<input type="submit" value="Save &#34;{{ config.name }}&#34;" />
+					
+			<input type="hidden" name="config" value="{{config.id}}" />
+					
+		</div>
+					
+		<div id="rightbuttons">
 		
-			<div style="padding: 5px;text-align:left;">
-
-		<input type="button" value="&#171; Back to Open/Create" onClick="history.back();">
-		
-		<input type="submit" value="Save {{ config.name }}" />
-		
-		<input type="hidden" name="config" value="{{config.id}}" />
-		
+			<input type="button" id="upload_button" value="Load Data File" />
+			
+			<input type="button" value="Toggle View">
+			
 		</div>
 		
-		<table cellspacing="0" id="weights">
-			{% regroup questions by module as question_list %}
-			{% for question in question_list %}
-			<tr>
-				<td style="border-bottom: 1px solid #ccc; border-collapse: collapse; background-color: #ccc; font-weight: bold;"><img src="equation_balancer/media/images/collapse.png" /></td>
-				<td colspan="2" style="border-bottom: 1px solid #ccc; border-collapse: collapse; background-color: #ccc; font-weight: bold;">Module: {{ question.grouper.name }}</td>
-				<td style="border-bottom: 1px solid #ccc; border-collapse: collapse; background-color: #ccc; font-weight: bold;"><input type="text" size="3" name="moduleweight-{{ question.grouper.id }}" id="moduleweight-{{ question.grouper.id }}" value="0" /></td>
-			</tr>
-			{% for item in question.list %}
-			<tr>
-				<td style="border-bottom: 1px solid #ccc; border-collapse: collapse; background-color: #efefef;">&#160;</td>
-				<td style="color: #666; vertical-align: top; padding-right: 7px; border-bottom: 1px solid #ccc; border-collapse: collapse; background-color: #efefef;">{{ item.number }}</td>
-				<td style="border-bottom: 1px solid #ccc; border-collapse: collapse; background-color: #efefef;">{{ item.text }}</td>
-				<td style="vertical-align: top;border-bottom: 1px solid #ccc; border-collapse: collapse; background-color: #efefef;">
-				<input type="text" size="3" name="weight-{{item.number}}" id="weight-{{item.number}}" value="0" />
-				</td>
-			</tr>
-			{% endfor %}
-			{% endfor %}
-		</table>
-		
-	
-	</form>
-	
-	<script type="text/javascript">
-		{% for weight in weights %}
-		$(window).load(function() {
-		setWeight("weight-{{ weight.question.number }}",{{ weight.weight }});
-		});
-		{% endfor %}
-		{% for weight in moduleweights %}
-		$(window).load(function() {
-		setWeight("moduleweight-{{ weight.module.id }}",{{ weight.weight }});
-		});
-		{% endfor %}  
-	</script>
-	
-</div>
-
-<div id="right" style="margin-left: 40%;">
-
-	<div style="padding: 5px; text-align: right;">
-	<input type="button" id="upload_button" value="Load Patient Data for {{ config.name }}" />
 	</div>
 	
-	<div id="patient-data" style="background-color: #efefef;"></div>
+	<div id="view-multiple">
 	
-		<!-- START - MULTIPLE VIEWS -->
+		<div id="left">
+			
+				<table cellspacing="0" id="weights">
+					<tr>
+						<th class="label" colspan="5">Model: {{ config.name }}</td>
+					</tr>
+					{% regroup questions by module as question_list %}
+					{% for question in question_list %}
+					
+					
+					
+					<tr>
+						<th><img src="equation_balancer/media/images/collapse.png" /></td>
+						<th colspan="2">{{ question.grouper.name }}</td>
+						<th><input type="text" size="3" name="moduleweight-{{ question.grouper.id }}" id="moduleweight-{{ question.grouper.id }}" value="0" /></th>
+					</tr>
+					
+					{% for item in question.list %}
+					<tr>
+						<td>&#160;</td>
+						<td class="modulenumber">{{ item.number }}</td>
+						<td>{{ item.text }}</td>
+						<td><input type="text" size="3" name="weight-{{item.number}}" id="weight-{{item.number}}" value="0" /></td>
+					</tr>
+					
+					{% endfor %}
+					{% endfor %}
+				</table>
+				
+			
+			
+			<script type="text/javascript">
+				{% for weight in weights %}
+				$(window).load(function() {
+				setWeight("weight-{{ weight.question.number }}",{{ weight.weight }});
+				});
+				{% endfor %}
+				{% for weight in moduleweights %}
+				$(window).load(function() {
+				setWeight("moduleweight-{{ weight.module.id }}",{{ weight.weight }});
+				});
+				{% endfor %}  
+			</script>
+			
+		</div>
 		
-		<table cellspacing="0" id="multipleview" style="width: 100%;">
+		<div id="right">
+		
+		
+			<!-- START - MULTIPLE VIEWS -->
+			
+			<table cellspacing="0" id="records">
+		
+				<tr>
+				<th colspan="2">Multiple Records</th>
+				</tr>
+				
+				<tr>
+				<td colspan="2" id="distribution">Distribution of Records (Total: 20)</td>
+				</tr>
+				
+				
+				<tr>
+				<td style="text-align: center;background-color: #eee;">Patient Number</td>
+				<td style="text-align: center;background-color: #eee;">Raw Score</td>
+				</tr>
+				
 	
-			<tr>
-			<td colspan="2" style="border-bottom: 1px solid #ccc; border-collapse: collapse; background-color: #ccc; font-weight: bold;">Multiple Records</td>
-			</tr>
-			
-			<tr>
-			<td colspan="2" style="text-align: center; background-color: #000; color: #fff;">Distribution of Records (Total: 20)</td>
-			</tr>
-			
-			
-			<tr>
-			<td style="text-align: center;background-color: #eee;">Patient Number</td>
-			<td style="text-align: center;background-color: #eee;">Raw Score</td>
-			</tr>
-			
+				
+				<tr>
+				<td style="text-align: center;background-color: #eee;">1</td>
+				<td style="text-align: center;background-color: #eee;">1</td>
+				</tr>
+				
+	
+				
+			</table>
+	
+			<!-- END - MULTIPLE VIEWS -->
 
-			
-			<tr>
-			<td style="text-align: center;background-color: #eee;">1</td>
-			<td style="text-align: center;background-color: #eee;">1</td>
-			</tr>
-			
-
-			
-		</table>
-
-		<!-- END - MULTIPLE VIEWS -->
+		</div>
+	
+	</div>
+	
+	<br clear="all" />
+	<br clear="all" />
+	
+	<div id="view-single">
 		
-		<!-- START - SINGLE VIEW -->
-		<table cellspacing="0" id="singleview">
-			<tr>
-			<td colspan="4" style="border-bottom: 1px solid #ccc; border-collapse: collapse; background-color: #ccc; font-weight: bold;">Single Record</td>
-			<td style="text-align: center;border-bottom: 1px solid #ccc; border-collapse: collapse; background-color: #ccc; font-weight: bold;">Score: Patient 16</td>
-			</tr>
-			{% regroup questions by module as question_list %}
-			{% for question in question_list %}
-			<tr>
-				<td colspan="3"style="border-bottom: 1px solid #ccc; border-collapse: collapse; background-color: #ccc; font-weight: bold;">Module: {{ question.grouper.name }}</td>
-				<td style="border-bottom: 1px solid #ccc; border-collapse: collapse; background-color: #ccc; font-weight: bold;"><input type="text" size="3" name="moduleweight-{{ question.grouper.id }}" id="moduleweight-{{ question.grouper.id }}" value="0" /></td>
-				<td style="text-align: center;border-bottom: 1px solid #ccc; border-collapse: collapse; background-color: #ccc; font-weight: bold;"><input type="text" size="3" name="moduleweight-{{ question.grouper.id }}" id="moduleweight-{{ question.grouper.id }}" value="0" /></td>
-			</tr>
-			{% for item in question.list %}
-			<tr>
-				<td style="border-bottom: 1px solid #ccc; border-collapse: collapse; background-color: #efefef;">&#160;</td>
-				<td style="color: #666; vertical-align: top; padding-right: 7px; border-bottom: 1px solid #ccc; border-collapse: collapse; background-color: #efefef;">{{ item.number }}</td>
-				<td style="border-bottom: 1px solid #ccc; border-collapse: collapse; background-color: #efefef;">{{ item.text }}</td>
-				<td style="vertical-align: top;border-bottom: 1px solid #ccc; border-collapse: collapse; background-color: #efefef;">
-				<input type="text" size="3" name="weight-{{item.number}}" id="weight-{{item.number}}" value="0" />
-				</td>
-				<td style="text-align: center;vertical-align: top;border-bottom: 1px solid #ccc; border-collapse: collapse; background-color: #efefef;">
-				<input type="text" size="3" name="weight-{{item.number}}" id="weight-{{item.number}}" value="0" />
-				</td>
-			</tr>
-			{% endfor %}
-			{% endfor %}
-			<tr>
-			<td colspan="4" style="border-bottom: 1px solid #ccc; border-collapse: collapse; background-color: #ccc; font-weight: bold; text-align: right">Total Score</td>
-			<td style="text-align: center;border-bottom: 1px solid #ccc; border-collapse: collapse; background-color: #ccc; font-weight: bold;"><input type="text" size="3" name="weight-{{item.number}}" id="weight-{{item.number}}" value="0" /></td>
-			</tr>
-			<tr>
-			<td colspan="5" style="text-align: center; background-color: #000; color: #fff;">Designated Risk = High / Calculated Risk = High</td>
-			</tr>
-		</table>
+			<table cellspacing="0" id="weights">
+			
+				<tr>
+					<th class="label" colspan="4">Model: {{ config.name }}</td>
+					<th class="label" >Single Patient (filename.csv)</td>
+					<th class="label" >Score: Patient 16</td>
+				</tr>
+					
+				{% regroup questions by module as question_list %}
+				{% for question in question_list %}
+				
+				<tr>
+					<th><img src="equation_balancer/media/images/collapse.png" /></td>
+					<th colspan="2">{{ question.grouper.name }}</td>
+					<th><input type="text" size="3" name="moduleweight-{{ question.grouper.id }}" id="moduleweight-{{ question.grouper.id }}" value="0" /></th>
+					<th><input type="text" size="3" name="moduleweight-{{ question.grouper.id }}" id="moduleweight-{{ question.grouper.id }}" value="0" /></th>
+					<th><input type="text" size="3" name="moduleweight-{{ question.grouper.id }}" id="moduleweight-{{ question.grouper.id }}" value="0" /></th>
+				</tr>
+				
+				{% for item in question.list %}
+				<tr>
+					<td>&#160;</td>
+					<td class="modulenumber">{{ item.number }}</td>
+					<td>{{ item.text }}</td>
+					<td><input type="text" size="3" name="weight-{{item.number}}" id="weight-{{item.number}}" value="0" /></td>
+					<td><input type="text" size="3" name="weight-{{item.number}}" id="weight-{{item.number}}" value="0" /></td>
+					<td><input type="text" size="3" name="weight-{{item.number}}" id="weight-{{item.number}}" value="0" /></td>
+				</tr>
+				
+				{% endfor %}
+				{% endfor %}
+			</table>
+			
 		
-		<!-- END - SINGLE VIEW -->
+		
+		<script type="text/javascript">
+			{% for weight in weights %}
+			$(window).load(function() {
+			setWeight("weight-{{ weight.question.number }}",{{ weight.weight }});
+			});
+			{% endfor %}
+			{% for weight in moduleweights %}
+			$(window).load(function() {
+			setWeight("moduleweight-{{ weight.module.id }}",{{ weight.weight }});
+			});
+			{% endfor %}  
+		</script>
+			
+	</div>
+	
+	</form>
 
-</div>
-
+	
 {% endblock %}
