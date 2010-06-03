@@ -28,8 +28,9 @@ function calculate() {
 }
 
 function display_csv(file, response) {
-  alert("called");
   results = response['data'];
+  scores = response['scores'];
+  console.log(scores);
   for(var i=0; i <= results.length; i++) {
     console.log(results[i]);
   }
@@ -39,7 +40,6 @@ function display_csv(file, response) {
     inner += "<td>" + index + "</td>";
     inner += "<td>" + value + "</td>";
     inner += "</tr>";
-    console.log(value);
   });
   $('#multipleview-inner').html(inner);
 }
@@ -51,8 +51,10 @@ function init_ajax_upload() {
                   responseType: 'json',
                   onSubmit: function() {
                     var data = {};
-                    $("input[name^='weight']").each(function () {
-                      console.log($(this).val());
+                    $("input.weight").each(function () {
+                      data[this.id] = $(this).val();
+                    });
+                    $("input.moduleweight").each(function () {
                       data[this.id] = $(this).val();
                     });
                     this.setData(data);

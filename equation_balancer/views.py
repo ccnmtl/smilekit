@@ -125,7 +125,6 @@ def load_questions(request):
 
 def load_patient_data(request):
   # if csv file provided, load
-  print request.POST
   if request.method == 'POST':
     try:
       fh = request.FILES['csvfile']
@@ -140,23 +139,35 @@ def load_patient_data(request):
   headers = table.next()
   
   # get current set of weights from webpage (not database, in case they have modified but not saved yet)
-  #weights = request.POST['weights']
+  weights = {}
+  for question in Question.objects.all():
+    weights[question.number] = int(request.POST['weight-%s' % question.number])
 
+  moduleweights = {}
+  for module in Module.objects.all():
+    moduleweights[module.id] = int(request.POST['moduleweight-%s' % module.id])
+    
   patients = {}
+  scores = {}
   for row in table:
     patient_number = row[0]
     patient_data = {}
     for i in range(len(row)):
       if i==0: pass
-      patient_data[headers[i]] = row[i]
+      patient_data[int(headers[i])] = row[i]
     #patients[patient_number]["answers"] = patient_data
     patients[patient_number] = patient_data
+    patient_score = calculate_score(moduleweights, weights, patient_data)
+    scores[patient_number] = patient_score
     #patients[patient_number]["score"] = 
 
   #json = '{"total": %s}' % round(total_mol,2)
-  print patients
-  json = '{"data": %s}' % patients
-  return HttpResponse(json, mimetype="application/javascript")
+  #json = '{"data": %s, "scores": %s}' % (patients, scores)
+  result = {}
+  result['data'] = patient_data
+  result['scores'] = scores
+  test = json.dumps(result)
+  return HttpResponse(json.dumps(result), mimetype="application/javascript")
 
 
 def calculate_patient_score(request):
@@ -178,17 +189,28 @@ def calculate_patient_score(request):
 def calculate_score(moduleweights, weights, answers):
   scores = {}
   totalscore = 0
-
+  
   for module in Module.objects.all():
     modulescore = 0
     moduleweight = moduleweights[module.id]
-    for question in module.question__set.all():
+    for question in module.question_set.all():
       weight = weights[question.number]
       answer = answers[question.number]
-      scores['question-%s' % question.number] = weight * answer
-      modulescore += weight * answer
-    scores['module-%s' % module.id] = modulescore
+      
+      print "calculating score for answer %s" % answer
+      print question.answer_set.all()
+      try:
+        db_answer = question.answer_set.get(text = answer)
+        answer_wt = db_answer.weight
+        print "using weight %s" % answer_wt
+      except:
+        print "no weight found.. zeroing answer"
+        answer_wt = 0
+
+      scores['question-%s' % question.number] = "%d" % (weight * answer_wt)
+      modulescore += weight * answer_wt
+    scores['module-%s' % module.id] = "%d" % modulescore
     totalscore += moduleweight * modulescore
 
-  scores['total'] = totalscore
+  scores['total'] = "%d" % totalscore
   return scores
