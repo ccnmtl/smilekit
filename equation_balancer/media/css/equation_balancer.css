@@ -108,21 +108,24 @@ td.modulenumber { color: #666; }
 
 
 /* START - SINGLE VIEW */
-#view-single { /*display: none;*/ }
+.view-single {
+}
 
 /* STOP - SINGLE VIEW */
 
 /* START - MULTIPLE VIEWS */
 /* START - LEFT */
-#view-multiple { /*display: none;*/ }
-
-#view-multiple #left
+.view-multiple
 {
 	width: 40%;
 	float: left;
 }
 
-#view-multiple #left #leftbuttons
+.view-multiple .single {
+   display: none;
+}
+
+.view-multiple #leftbuttons
 {
 	text-align: left;
 	padding-bottom: 10px;
@@ -131,18 +134,18 @@ td.modulenumber { color: #666; }
 
 /* STOP - LEFT */
 /* START - RIGHT */
-#view-multiple #right { margin-left: 42%; }
+#right { margin-left: 42%; }
 
-#view-multiple #right #rightbuttons
+#right #rightbuttons
 {
 	text-align: right;
 	padding-bottom: 10px;
 }
 
-#view-multiple #right table#records { width: 100%; }
-#view-multiple #right table#records td { text-align: center; }
+#right table#records { width: 100%; }
+#right table#records td { text-align: center; }
 
-#view-multiple #right table#records td#distribution
+#right table#records td#distribution
 {
 	background-color: #690;
 	color: #fff;

@@ -125,6 +125,7 @@ def load_questions(request):
 
 def load_patient_data(request):
   # if csv file provided, load
+  print request.POST
   if request.method == 'POST':
     try:
       fh = request.FILES['csvfile']
@@ -137,6 +138,9 @@ def load_patient_data(request):
 
   table = csv.reader(fh)
   headers = table.next()
+  
+  # get current set of weights from webpage (not database, in case they have modified but not saved yet)
+  #weights = request.POST['weights']
 
   patients = {}
   for row in table:
@@ -145,7 +149,9 @@ def load_patient_data(request):
     for i in range(len(row)):
       if i==0: pass
       patient_data[headers[i]] = row[i]
+    #patients[patient_number]["answers"] = patient_data
     patients[patient_number] = patient_data
+    #patients[patient_number]["score"] = 
 
   #json = '{"total": %s}' % round(total_mol,2)
   print patients
@@ -154,8 +160,35 @@ def load_patient_data(request):
 
 
 def calculate_patient_score(request):
-  patient_data = request.POST['patient_data']
-  weights = request.POST['weights']
+  patient = request.POST['patient']
+  moduleweights = {}
+  weights = {}
   
+  for module in Module.objects.all():
+    moduleweights[module.id] = request.POST['moduleweight-%s' % module.id]
+    
   for question in Question.objects.all():
-    pass
+    weights[question.number] = request.POST['weight-%s' % question.number]
+    answers[question.number] = request.POST['patient-%s-answer-%s' % (patient, question.number)]
+    
+  scores = calculate_score(moduleweights, weights, answers)
+  json = '{"data": %s}' % scores
+  return HttpResponse(json, mimetype="application/javascript")    
+  
+def calculate_score(moduleweights, weights, answers):
+  scores = {}
+  totalscore = 0
+
+  for module in Module.objects.all():
+    modulescore = 0
+    moduleweight = moduleweights[module.id]
+    for question in module.question__set.all():
+      weight = weights[question.number]
+      answer = answers[question.number]
+      scores['question-%s' % question.number] = weight * answer
+      modulescore += weight * answer
+    scores['module-%s' % module.id] = modulescore
+    totalscore += moduleweight * modulescore
+
+  scores['total'] = totalscore
+  return scores

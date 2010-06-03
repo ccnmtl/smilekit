@@ -37,29 +37,31 @@
 		
 			<input type="button" id="upload_button" value="Load Data File" />
 			
-			<input type="button" value="Toggle View">
+			<input type="button" id="toggle_button" value="Toggle View">
 			
 		</div>
 		
 	</div>
 	
-	<div id="view-multiple">
-	
-		<div id="left">
+		<div id="tableview" class="view-multiple">
 			
+
 				<table cellspacing="0" id="weights">
 					<tr>
-						<th class="label" colspan="5">Model: {{ config.name }}</td>
+						<th class="label" colspan="4">Model: {{ config.name }}</td>
+					   <th class="label single" >Single Patient (filename.csv)</td>
+					   <th class="label single" >Score: Patient 16</td>
 					</tr>
 					{% regroup questions by module as question_list %}
 					{% for question in question_list %}
-					
 					
 					
 					<tr>
 						<th><img src="equation_balancer/media/images/collapse.png" /></td>
 						<th colspan="2">{{ question.grouper.name }}</td>
 						<th><input type="text" size="3" name="moduleweight-{{ question.grouper.id }}" id="moduleweight-{{ question.grouper.id }}" value="0" /></th>
+					   <th class="single">--</th>
+					   <th class="single"><input type="text" size="3" id="modulescore-{{ question.grouper.id }}" value="0" /></th>
 					</tr>
 					
 					{% for item in question.list %}
@@ -68,6 +70,8 @@
 						<td class="modulenumber">{{ item.number }}</td>
 						<td>{{ item.text }}</td>
 						<td><input type="text" size="3" name="weight-{{item.number}}" id="weight-{{item.number}}" value="0" /></td>
+					   <td class="single"><input type="text" size="3" name="weight-{{item.number}}" id="weight-{{item.number}}" value="0" /></td>
+					   <td class="single"><input type="text" size="3" name="weight-{{item.number}}" id="weight-{{item.number}}" value="0" /></td>
 					</tr>
 					
 					{% endfor %}
@@ -127,62 +131,8 @@
 
 		</div>
 	
-	</div>
-	
 	<br clear="all" />
 	<br clear="all" />
-	
-	<div id="view-single">
-		
-			<table cellspacing="0" id="weights">
-			
-				<tr>
-					<th class="label" colspan="4">Model: {{ config.name }}</td>
-					<th class="label" >Single Patient (filename.csv)</td>
-					<th class="label" >Score: Patient 16</td>
-				</tr>
-					
-				{% regroup questions by module as question_list %}
-				{% for question in question_list %}
-				
-				<tr>
-					<th><img src="equation_balancer/media/images/collapse.png" /></td>
-					<th colspan="2">{{ question.grouper.name }}</td>
-					<th><input type="text" size="3" name="moduleweight-{{ question.grouper.id }}" id="moduleweight-{{ question.grouper.id }}" value="0" /></th>
-					<th><input type="text" size="3" name="moduleweight-{{ question.grouper.id }}" id="moduleweight-{{ question.grouper.id }}" value="0" /></th>
-					<th><input type="text" size="3" name="moduleweight-{{ question.grouper.id }}" id="moduleweight-{{ question.grouper.id }}" value="0" /></th>
-				</tr>
-				
-				{% for item in question.list %}
-				<tr>
-					<td>&#160;</td>
-					<td class="modulenumber">{{ item.number }}</td>
-					<td>{{ item.text }}</td>
-					<td><input type="text" size="3" name="weight-{{item.number}}" id="weight-{{item.number}}" value="0" /></td>
-					<td><input type="text" size="3" name="weight-{{item.number}}" id="weight-{{item.number}}" value="0" /></td>
-					<td><input type="text" size="3" name="weight-{{item.number}}" id="weight-{{item.number}}" value="0" /></td>
-				</tr>
-				
-				{% endfor %}
-				{% endfor %}
-			</table>
-			
-		
-		
-		<script type="text/javascript">
-			{% for weight in weights %}
-			$(window).load(function() {
-			setWeight("weight-{{ weight.question.number }}",{{ weight.weight }});
-			});
-			{% endfor %}
-			{% for weight in moduleweights %}
-			$(window).load(function() {
-			setWeight("moduleweight-{{ weight.module.id }}",{{ weight.weight }});
-			});
-			{% endfor %}  
-		</script>
-			
-	</div>
 	
 	</form>
 

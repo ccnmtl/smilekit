@@ -28,17 +28,20 @@ function calculate() {
 }
 
 function display_csv(file, response) {
+  alert("called");
   results = response['data'];
-  var inner = "<table>";
   for(var i=0; i <= results.length; i++) {
     console.log(results[i]);
   }
+  var inner = "";
   $.each(results, function(index, value) {
-    inner += index;
+    inner += "<tr>";
+    inner += "<td>" + index + "</td>";
+    inner += "<td>" + value + "</td>";
+    inner += "</tr>";
     console.log(value);
   });
-  inner += "</table>";
-  $('#patient-data').html(inner);
+  $('#multipleview-inner').html(inner);
 }
 
 function init_ajax_upload() {
@@ -46,8 +49,33 @@ function init_ajax_upload() {
                  {action: '/weights/load',
                   name: 'csvfile',
                   responseType: 'json',
+                  onSubmit: function() {
+                    var data = {};
+                    $("input[name^='weight']").each(function () {
+                      console.log($(this).val());
+                      data[this.id] = $(this).val();
+                    });
+                    this.setData(data);
+                  },
                   onComplete: display_csv
   });
 }
 
+function multipleView() {
+  $("#right").show();
+  $("#tableview").toggleClass("view-multiple");
+  $("#tableview").toggleClass("view-single");
+}
+
+function singleView() {
+  $("#right").hide();
+  $("#tableview").toggleClass("view-multiple");
+  $("#tableview").toggleClass("view-single");
+}
+
+function init_toggle() {
+  $("#toggle_button").toggle(singleView, multipleView);
+}
+
 $(document).ready(init_ajax_upload);
+$(document).ready(init_toggle);
