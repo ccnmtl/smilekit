@@ -1,0 +1,152 @@
+body
+{
+	background-color: #fff;
+	font-family: "lucida grande",arial, helvetica, sans-serif;
+	padding: 20px;
+}
+
+h1#logo
+{
+	background-image: url(/weights/collection_tool/media/images/logo.png);
+	width: 296px;
+	height: 100px;
+	background-repeat: no-repeat;
+	text-indent: -1000px;
+	margin: 0;
+	padding: 0;
+}
+
+h2 { color: #1b75bc; }
+
+p#username
+{
+	position: absolute;
+	top: 30px;
+	right: 20px;
+	color: #00a651;
+}
+
+fieldset
+{
+	border: 1px solid #ccc;
+	margin-bottom: 30px;
+	padding: 20px;
+	font-weight: bold;
+	background: ;
+}
+
+legend
+{
+	border: 1px solid #ccc;
+	padding: 5px;
+	background-color: #eee;
+}
+
+a:link
+{
+	color: #1b75bc;
+	text-decoration: none;
+}
+
+a:hover
+{
+	color: #1b75bc;
+	text-decoration: underline;
+}
+
+a:visited
+{
+	color: #666;
+	text-decoration: none;
+}
+
+table
+{
+	font-size: 12px;
+	border-top: 1px solid #666;
+	border-right: 1px solid #666;
+	border-left: 1px solid #666;
+}
+
+td, th
+{
+	padding: 5px;
+	border-collapse: collapse;
+}
+
+th.label
+{
+	border-bottom: 1px solid #666;
+	background-color: #1b75bc;
+	color: #fff;
+	text-align: left;
+}
+
+th
+{
+	border-bottom: 1px solid #666;
+	background-color: #ccc;
+	text-align: left;
+}
+
+td
+{
+	border-bottom: 1px solid #999;
+	background-color: #efefef;
+	vertical-align: top;
+}
+
+td.modulenumber { color: #666; }
+
+#actionbuttons
+{
+	text-align: right;
+	padding-bottom: 10px;
+}
+
+#leftbuttons { float: left; }
+
+
+/* START - SINGLE VIEW */
+#view-single { /*display: none;*/ }
+
+/* STOP - SINGLE VIEW */
+
+/* START - MULTIPLE VIEWS */
+/* START - LEFT */
+#view-multiple { /*display: none;*/ }
+
+#view-multiple #left
+{
+	width: 40%;
+	float: left;
+}
+
+#view-multiple #left #leftbuttons
+{
+	text-align: left;
+	padding-bottom: 10px;
+}
+
+
+/* STOP - LEFT */
+/* START - RIGHT */
+#view-multiple #right { margin-left: 42%; }
+
+#view-multiple #right #rightbuttons
+{
+	text-align: right;
+	padding-bottom: 10px;
+}
+
+#view-multiple #right table#records { width: 100%; }
+#view-multiple #right table#records td { text-align: center; }
+
+#view-multiple #right table#records td#distribution
+{
+	background-color: #690;
+	color: #fff;
+}
+
+/* STOP - RIGHT */
+/* STOP - MULTIPLE VIEWS */
