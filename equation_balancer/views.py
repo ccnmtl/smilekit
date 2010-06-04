@@ -205,7 +205,7 @@ def calculate_score(moduleweights, weights, answers):
 
       scores['question-%s' % question.number] = "%d" % (weight * answer_wt)
       modulescore += weight * answer_wt
-    scores['module-%s' % module.id] = "%d" % modulescore
+    scores['module-%s' % module.id] = "%d" % (moduleweight * modulescore)
     totalscore += moduleweight * modulescore
 
   scores['total'] = "%d" % totalscore
