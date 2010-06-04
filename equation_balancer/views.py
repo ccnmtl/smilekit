@@ -100,7 +100,7 @@ def load_questions(request):
     elif header.lower().strip() == "answers": id_answers = i
     elif header.lower().strip() == "numerical equivalent": id_weights = i
     elif header.lower().strip() == "module": id_module = i
-    else: print "invalid header detected: %s" % header
+    #else: print "invalid header detected: %s" % header
 
   for question in questions:
     (m, created) = Module.objects.get_or_create(name = question[id_module])
@@ -200,7 +200,7 @@ def calculate_score(moduleweights, weights, answers):
         answer_wt = db_answer.weight
         #print "using weight %s" % answer_wt
       except:
-        print "no weight found for %s of the choices in %s.. zeroing answer" % (answer, question.answer_set.all()) 
+        #print "no weight found for %s of the choices in %s.. zeroing answer" % (answer, question.answer_set.all()) 
         answer_wt = 0
 
       scores['question-%s' % question.number] = "%d" % (weight * answer_wt)
