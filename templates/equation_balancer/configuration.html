@@ -49,8 +49,8 @@
 				<table cellspacing="0" id="weights">
 					<tr>
 						<th class="label" colspan="4">Model: {{ config.name }}</td>
-					   <th class="label single" >Single Patient (<span id="filename">(none)</span>)</td>
-					   <th class="label single" >Score: Patient <span id="patient-number">(none)</span></td>
+						<th class="label single"></th>
+					   <th class="label single">Score: Patient <span id="patient-number">(none)</span></td>
 					</tr>
 					{% regroup questions by module as question_list %}
 					{% for question in question_list %}
@@ -107,7 +107,8 @@
 				</tr>
 				
 				<tr>
-				<td colspan="2" id="distribution">Distribution of Records (Total: <span id="num-patients">0</span>)</td>
+				  <td class="distribution">File: <span id="filename">no file uploaded</span></td>
+ 				  <td class="distribution" colspan="2">Total Records: <span id="num-patients">0</span></td>
 				</tr>
 				
 				
