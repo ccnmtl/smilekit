@@ -49,8 +49,8 @@
 				<table cellspacing="0" id="weights">
 					<tr>
 						<th class="label" colspan="4">Model: {{ config.name }}</td>
-					   <th class="label single" >Single Patient (filename.csv)</td>
-					   <th class="label single" >Score: Patient 16</td>
+					   <th class="label single" >Single Patient (<span id="filename">(none)</span>)</td>
+					   <th class="label single" >Score: Patient <span id="patient-number">(none)</span></td>
 					</tr>
 					{% regroup questions by module as question_list %}
 					{% for question in question_list %}
@@ -70,7 +70,7 @@
 						<td class="modulenumber">{{ item.number }}</td>
 						<td>{{ item.text }}</td>
 						<td><input type="text" size="3" class="weight" name="weight-{{item.number}}" id="weight-{{item.number}}" value="0" /></td>
-					   <td class="single"><input type="text" disabled size="3" id="answer-{{item.number}}" value="0" /></td>
+					   <td class="single"><input type="text" disabled size="10" id="answer-{{item.number}}" value="0" /></td>
 					   <td class="single"><input type="text" disabled size="3" id="score-{{item.number}}" value="0" /></td>
 					</tr>
 					
@@ -107,7 +107,7 @@
 				</tr>
 				
 				<tr>
-				<td colspan="2" id="distribution">Distribution of Records (Total: 20)</td>
+				<td colspan="2" id="distribution">Distribution of Records (Total: <span id="num-patients">0</span>)</td>
 				</tr>
 				
 				
@@ -116,14 +116,13 @@
 				<td style="text-align: center;background-color: #eee;">Raw Score</td>
 				</tr>
 				
-	
+	         <tbody id="multipleview-inner">
 				
 				<tr>
-				<td style="text-align: center;background-color: #eee;">1</td>
-				<td style="text-align: center;background-color: #eee;">1</td>
+				  <td colspan='2'>Press "Load Data File" to upload data for analysis.</td>
 				</tr>
 				
-	
+            </tbody>	
 				
 			</table>
 	

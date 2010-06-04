@@ -1,4 +1,5 @@
-var results;
+var answers;
+var scores;
 
 function setWeight(id, value){
   $('#'+id).val(value);
@@ -27,21 +28,45 @@ function calculate() {
   //global_http_request.addErrback(showError);
 }
 
+function show_patient_data(patientNumber) {
+  $("#patient-number").html(patientNumber);
+
+  ans = answers[patientNumber];
+  sc = scores[patientNumber];
+  // TODO module scores
+  $("input.moduleweight").each(function() {
+    var num = this.id.substring(13);
+    $("#modulescore-"+num).val(sc["module-"+num]);
+  });
+  
+  $("input.weight").each(function() {
+    var qnum = this.id.substring(7);
+    $("#answer-"+qnum).val(ans[qnum]); 
+    $("#score-"+qnum).val(sc["question-"+qnum]); 
+  });
+}
+
 function display_csv(file, response) {
-  results = response['data'];
+  answers = response['data'];
   scores = response['scores'];
-  console.log(scores);
-  for(var i=0; i <= results.length; i++) {
-    console.log(results[i]);
-  }
   var inner = "";
-  $.each(results, function(index, value) {
+  var numPatients = 0;
+  $.each(answers, function(index, value) {
     inner += "<tr>";
-    inner += "<td>" + index + "</td>";
-    inner += "<td>" + value + "</td>";
+    inner += "<td class='patient-id' id='patient-" + index + "'>" + index + "</td>";
+    inner += "<td>" + scores[index]["total"] + "</td>";
     inner += "</tr>";
+    numPatients++;
   });
   $('#multipleview-inner').html(inner);
+  $('#num-patients').html(numPatients);
+  
+  $('td.patient-id').each(function() {
+    $(this).click(function() {
+      show_patient_data(this.id.substring(8));
+      singleView();
+    });
+  });
 }
 
 function init_ajax_upload() {
@@ -75,8 +100,17 @@ function singleView() {
   $("#tableview").toggleClass("view-single");
 }
 
+function toggleViews() {
+  if( $("#right").is(":visible") ) {
+    singleView();
+  }
+  else {
+    multipleView();
+  }
+}
+
 function init_toggle() {
-  $("#toggle_button").toggle(singleView, multipleView);
+  $("#toggle_button").click(toggleViews);
 }
 
 $(document).ready(init_ajax_upload);

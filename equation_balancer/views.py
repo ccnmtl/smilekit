@@ -19,10 +19,6 @@ def index(request):
 
 
 
-# TODO admin only
-# def loadcsv(request, csvfile):
-#   load questions from CSV
-
 @login_required
 def view_config(request, config_id):
   config = Configuration.objects.get(id=config_id)
@@ -161,10 +157,8 @@ def load_patient_data(request):
     scores[patient_number] = patient_score
     #patients[patient_number]["score"] = 
 
-  #json = '{"total": %s}' % round(total_mol,2)
-  #json = '{"data": %s, "scores": %s}' % (patients, scores)
   result = {}
-  result['data'] = patient_data
+  result['data'] = patients
   result['scores'] = scores
   test = json.dumps(result)
   return HttpResponse(json.dumps(result), mimetype="application/javascript")
@@ -204,8 +198,13 @@ def calculate_score(moduleweights, weights, answers):
         answer_wt = db_answer.weight
         print "using weight %s" % answer_wt
       except:
-        print "no weight found.. zeroing answer"
-        answer_wt = 0
+        try:
+          db_answer = question.answer_set.get(text = answer.lower())
+          answer_wt = db_answer.weight
+          print "using weight %s" % answer_wt
+        except:
+          print "no weight found.. zeroing answer"
+          answer_wt = 0
 
       scores['question-%s' % question.number] = "%d" % (weight * answer_wt)
       modulescore += weight * answer_wt

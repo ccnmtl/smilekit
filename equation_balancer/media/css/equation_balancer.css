@@ -143,7 +143,10 @@ td.modulenumber { color: #666; }
 }
 
 #right table#records { width: 100%; }
-#right table#records td { text-align: center; }
+#right table#records td {
+  text-align: center;
+  background-color: #eee;
+}
 
 #right table#records td#distribution
 {
