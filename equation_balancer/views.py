@@ -9,6 +9,8 @@ from smilekit.equation_balancer.models import Configuration, ModuleWeight, Weigh
 import csv
 import simplejson as json
 
+from decimal import *
+
 @login_required
 def index(request):
   user = request.user
@@ -93,18 +95,18 @@ def load_questions(request):
   # parse headers (so they can be in any order)
   for i in range(len(headers)):
     header = headers[i]
-    if header.lower() == "question text": id_text = i
-    elif header.lower() == "question number": id_number = i
-    elif header.lower() == "answers": id_answers = i
-    elif header.lower() == "numerical equivalent": id_weights = i
-    elif header.lower() == "module": id_module = i
+    if header.lower().strip() == "question text": id_text = i
+    elif header.lower().strip() == "question number": id_number = i
+    elif header.lower().strip() == "answers": id_answers = i
+    elif header.lower().strip() == "numerical equivalent": id_weights = i
+    elif header.lower().strip() == "module": id_module = i
     else: print "invalid header detected: %s" % header
 
   for question in questions:
     (m, created) = Module.objects.get_or_create(name = question[id_module])
     m.save()
     q = Question(number = question[id_number],
-                 text = question[id_text],
+                 text = question[id_text].strip(),
                  module = m)
     q.save()
 
@@ -113,7 +115,7 @@ def load_questions(request):
 
     for (ans,wt) in zip(answers, weights):
       a = Answer(question = q,
-                 text = ans,
+                 text = ans.lower().strip(),
                  weight = wt.strip() or 1)
       a.save()
 
@@ -137,11 +139,11 @@ def load_patient_data(request):
   # get current set of weights from webpage (not database, in case they have modified but not saved yet)
   weights = {}
   for question in Question.objects.all():
-    weights[question.number] = int(request.POST['weight-%s' % question.number])
+    weights[question.number] = Decimal(request.POST['weight-%s' % question.number])
 
   moduleweights = {}
   for module in Module.objects.all():
-    moduleweights[module.id] = int(request.POST['moduleweight-%s' % module.id])
+    moduleweights[module.id] = Decimal(request.POST['moduleweight-%s' % module.id])
     
   patients = {}
   scores = {}
@@ -191,20 +193,15 @@ def calculate_score(moduleweights, weights, answers):
       weight = weights[question.number]
       answer = answers[question.number]
       
-      print "calculating score for answer %s" % answer
-      print question.answer_set.all()
+      #print "calculating score for answer %s" % answer
+      #print question.answer_set.all()
       try:
-        db_answer = question.answer_set.get(text = answer)
+        db_answer = question.answer_set.get(text = answer.lower().strip())
         answer_wt = db_answer.weight
-        print "using weight %s" % answer_wt
+        #print "using weight %s" % answer_wt
       except:
-        try:
-          db_answer = question.answer_set.get(text = answer.lower())
-          answer_wt = db_answer.weight
-          print "using weight %s" % answer_wt
-        except:
-          print "no weight found.. zeroing answer"
-          answer_wt = 0
+        print "no weight found for %s of the choices in %s.. zeroing answer" % (answer, question.answer_set.all()) 
+        answer_wt = 0
 
       scores['question-%s' % question.number] = "%d" % (weight * answer_wt)
       modulescore += weight * answer_wt
