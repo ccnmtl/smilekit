@@ -33,7 +33,6 @@ function show_patient_data(patientNumber) {
 
   ans = answers[patientNumber];
   sc = scores[patientNumber];
-  // TODO module scores
   $("input.moduleweight").each(function() {
     var num = this.id.substring(13);
     $("#modulescore-"+num).val(sc["module-"+num]);
@@ -52,8 +51,8 @@ function display_csv(file, response) {
   var inner = "";
   var numPatients = 0;
   $.each(answers, function(index, value) {
-    inner += "<tr>";
-    inner += "<td class='patient-id' id='patient-" + index + "'>" + index + "</td>";
+    inner += "<tr class='patient-row' id='patient-" + index + "'>";
+    inner += "<td>" + index + "</td>";
     inner += "<td>" + scores[index]["total"] + "</td>";
     inner += "</tr>";
     numPatients++;
@@ -61,7 +60,7 @@ function display_csv(file, response) {
   $('#multipleview-inner').html(inner);
   $('#num-patients').html(numPatients);
   
-  $('td.patient-id').each(function() {
+  $('tr.patient-row').each(function() {
     $(this).click(function() {
       show_patient_data(this.id.substring(8));
       singleView();
@@ -74,7 +73,8 @@ function init_ajax_upload() {
                  {action: '/weights/load',
                   name: 'csvfile',
                   responseType: 'json',
-                  onSubmit: function() {
+                  onSubmit: function(file, extension) {
+                    $("#filename").html(file);
                     var data = {};
                     $("input.weight").each(function () {
                       data[this.id] = $(this).val();
@@ -83,6 +83,7 @@ function init_ajax_upload() {
                       data[this.id] = $(this).val();
                     });
                     this.setData(data);
+                    multipleView();
                   },
                   onComplete: display_csv
   });
@@ -90,14 +91,14 @@ function init_ajax_upload() {
 
 function multipleView() {
   $("#right").show();
-  $("#tableview").toggleClass("view-multiple");
-  $("#tableview").toggleClass("view-single");
+  $("#tableview").addClass("view-multiple");
+  $("#tableview").removeClass("view-single");
 }
 
 function singleView() {
   $("#right").hide();
-  $("#tableview").toggleClass("view-multiple");
-  $("#tableview").toggleClass("view-single");
+  $("#tableview").addClass("view-single");
+  $("#tableview").removeClass("view-multiple");
 }
 
 function toggleViews() {
