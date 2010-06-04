@@ -148,7 +148,15 @@ td.modulenumber { color: #666; }
   background-color: #eee;
 }
 
-#right table#records td#distribution
+#right table#records tr.patient-row {
+  cursor: pointer;
+}
+
+#right table#records tr.patient-row:hover > td {
+  background-color: #fff;
+}
+
+#right table#records td.distribution
 {
 	background-color: #690;
 	color: #fff;
