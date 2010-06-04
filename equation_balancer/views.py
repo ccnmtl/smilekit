@@ -82,7 +82,7 @@ def load_questions(request):
   Module.objects.all().delete()
   Answer.objects.all().delete()
 
-  table = csv.reader(fh, "rU")
+  table = csv.reader(fh)
 
   headers = ""
   questions = []
@@ -133,7 +133,7 @@ def load_patient_data(request):
       # TODO: error checking (correct file type, etc.)
       return HttpResponseRedirect("/weights/")
 
-  table = csv.reader(fh, "rU")
+  table = csv.reader(fh)
   headers = table.next()
   
   # get current set of weights from webpage (not database, in case they have modified but not saved yet)
