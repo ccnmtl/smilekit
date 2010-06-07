@@ -28,6 +28,17 @@ function calculate() {
   //global_http_request.addErrback(showError);
 }
 
+function save_model() {
+  var data = $('#model-form').serialize();
+  data += "&ajax=1";
+  jQuery.post("save", data);
+  return false;
+}
+
+function init_ajax_save() {
+  $('#model-submit').click(save_model);
+}
+
 function show_patient_data(patientNumber) {
   $("#patient-number").html(patientNumber);
 
@@ -116,3 +127,4 @@ function init_toggle() {
 
 $(document).ready(init_ajax_upload);
 $(document).ready(init_toggle);
+$(document).ready(init_ajax_save);

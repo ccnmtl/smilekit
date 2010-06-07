@@ -44,6 +44,11 @@ def new_config(request):
 @login_required
 def save_config(request):
   config_id = request.POST['config']
+
+  ajax_submitted = False
+  try: ajax_submitted = request.POST['ajax']
+  except: pass
+  
   config = Configuration.objects.get(id=config_id)
   # save module weights
   for module in Module.objects.all():
@@ -58,10 +63,16 @@ def save_config(request):
   #  try:
       new_value = request.POST['weight-%s' % question.number]
       if new_value == "": new_value = 0  # set to 0 if cleared
-      weight, created = Weight.objects.get_or_create(question=question, config=config, weight=new_value)
+      try:
+        weight = Weight.objects.get(question=question, config=config)
+        weight.weight = new_value
+      except:
+        weight, created = Weight.objects.get_or_create(question=question, config=config, weight=new_value)
       weight.save()
   #  except:
   #    pass  # question not in the form -- this probably won't happen?
+  if ajax_submitted:
+    return HttpResponse("")
   return HttpResponseRedirect("/weights/configuration/%s" % config_id)
 
 @login_required
