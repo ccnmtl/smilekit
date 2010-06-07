@@ -133,7 +133,16 @@ def load_patient_data(request):
       # TODO: error checking (correct file type, etc.)
       return HttpResponseRedirect("/weights/")
 
-  table = csv.reader(fh)
+  # save to disk and re-open to fix line ending bug
+  destination = open('temp.csv', 'wb')
+  for chunk in fh.chunks():
+    destination.write(chunk)
+  destination.close()
+
+
+  destination = open('temp.csv', 'rU')
+
+  table = csv.reader(destination)
   headers = table.next()
   
   # get current set of weights from webpage (not database, in case they have modified but not saved yet)
