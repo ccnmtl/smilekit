@@ -29,10 +29,17 @@ function calculate() {
 }
 
 function save_model() {
+  $('#model-submit').attr('disabled', 'disabled');
+  $('#status').html("Saving...");
   var data = $('#model-form').serialize();
   data += "&ajax=1";
-  jQuery.post("save", data);
+  jQuery.post("save", data, updateStatus);
   return false;
+}
+
+function updateStatus() {
+  $('#status').html("Saved.");
+  $('#model-submit').attr('disabled', '');
 }
 
 function init_ajax_save() {
