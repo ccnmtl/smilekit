@@ -125,6 +125,8 @@ function init_toggle() {
   $("#toggle_button").click(toggleViews);
 }
 
+$(document).ready(function() { $("#back-button").click(function() { window.location="/weights/"; }); });
+
 $(document).ready(init_ajax_upload);
 $(document).ready(init_toggle);
 $(document).ready(init_ajax_save);
