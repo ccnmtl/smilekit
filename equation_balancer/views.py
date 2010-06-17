@@ -225,7 +225,8 @@ def calculate_score(moduleweights, weights, answers):
         #print "using weight %s" % answer_wt
       except:
         #print "no weight found for %s of the choices in %s.. zeroing answer" % (answer, question.answer_set.all()) 
-        answer_wt = 0
+        answer_wt = int("%s" % answer)
+        #answer_wt = 0
 
       scores['question-%s' % question.number] = "%d" % (weight * answer_wt)
       modulescore += weight * answer_wt
