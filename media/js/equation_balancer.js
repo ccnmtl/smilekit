@@ -28,24 +28,8 @@ function calculate() {
   //global_http_request.addErrback(showError);
 }
 
-function save_model() {
-  $('#model-submit').attr('disabled', 'disabled');
-  $('#status').html("Saving...");
-  var data = $('#model-form').serialize();
-  data += "&ajax=1";
-  jQuery.post("save", data, updateStatus);
-  return false;
-}
 
-function updateStatus() {
-  $('#status').html("Saved.");
-  $('#model-submit').attr('disabled', '');
-}
-
-function init_ajax_save() {
-  $('#model-submit').click(save_model);
-}
-
+/* AJAX file upload */
 function show_patient_data(patientNumber) {
   $("#patient-number").html(patientNumber);
 
@@ -107,6 +91,45 @@ function init_ajax_upload() {
   });
 }
 
+$(document).ready(init_ajax_upload);
+
+/* AJAX (background) save */
+function save_model() {
+  $('#model-submit').attr('disabled', 'disabled');
+  $('#status').html("Saving...");
+  var data = $('#model-form').serialize();
+  data += "&ajax=1";
+  jQuery.post("save", data, updateStatus);
+  return false;
+}
+
+function updateStatus() {
+  $('#status').html("Saved.");
+  $('#model-submit').attr('disabled', '');
+}
+
+function init_ajax_save() {
+  $('#model-submit').click(save_model);
+}
+
+$(document).ready(init_ajax_save);
+
+
+/* module toggle arrows */
+function toggleModule(elem) {
+  $(elem.target).toggleClass("toggle-closed");
+  $(elem.target).toggleClass("toggle-open");
+  var modulenumber = elem.target.id.substr(14);
+  $(".module-child-" + modulenumber).toggle();
+}
+
+function initToggleModule() {
+  $(".module-toggle").click(toggleModule);
+}
+
+$(document).ready(initToggleModule);
+
+/* toggle from single patient to multiple patient view */
 function multipleView() {
   $("#right").show();
   $("#tableview").addClass("view-multiple");
@@ -128,12 +151,11 @@ function toggleViews() {
   }
 }
 
-function init_toggle() {
+function initToggleViews() {
   $("#toggle_button").click(toggleViews);
 }
 
-$(document).ready(function() { $("#back-button").click(function() { window.location="/weights/"; }); });
+$(document).ready(initToggleViews);
 
-$(document).ready(init_ajax_upload);
-$(document).ready(init_toggle);
-$(document).ready(init_ajax_save);
+/* make "back" button go */
+$(document).ready(function() { $("#back-button").click(function() { window.location="/weights/"; }); });

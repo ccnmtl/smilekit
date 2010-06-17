@@ -59,7 +59,7 @@
 					
 					
 					<tr>
-						<th><img src="equation_balancer/media/images/collapse.png" /></td>
+						<th><div class="module-toggle toggle-open" id="module-toggle-{{question.grouper.id}}" /></td>
 						<th colspan="2">{{ question.grouper.name }}</td>
 						<th><input type="text" size="3" class="moduleweight" name="moduleweight-{{ question.grouper.id }}" id="moduleweight-{{ question.grouper.id }}" value="0" /></th>
 					   <th class="single">--</th>
@@ -67,7 +67,7 @@
 					</tr>
 					
 					{% for item in question.list %}
-					<tr>
+					<tr class="module-child-{{question.grouper.id}}">
 						<td>&#160;</td>
 						<td class="modulenumber">{{ item.number }}</td>
 						<td>{{ item.text }}</td>
