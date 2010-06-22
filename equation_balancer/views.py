@@ -14,7 +14,8 @@ from decimal import *
 @login_required
 def index(request):
   user = request.user
-  configs = user.configuration_set.all()
+  #configs = user.configuration_set.all()
+  configs = Configuration.objects.all()
   return render_to_response("equation_balancer/index.html",
                              {'configs':configs},
                              context_instance=RequestContext(request))
