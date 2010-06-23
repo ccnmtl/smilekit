@@ -43,6 +43,15 @@ def new_config(request):
   return HttpResponseRedirect("/weights/")
 
 @login_required
+def delete_config(request, config_id):
+  #config_id = request.POST['config']
+  try:
+    Configuration.objects.get(id=config_id).delete()
+  except:
+    pass
+  return HttpResponseRedirect("/weights/")
+
+@login_required
 def save_config(request):
   config_id = request.POST['config']
 
