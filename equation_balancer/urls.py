@@ -12,6 +12,7 @@ urlpatterns = patterns('',
                         (r'save', 'equation_balancer.views.save_config'),
                         (r'delete/(?P<config_id>\d+)', 'equation_balancer.views.delete_config'),
                         (r'load$', 'equation_balancer.views.load_patient_data'),
+                        (r'recalculate$', 'equation_balancer.views.recalculate'),
                         (r'loadquestions', 'equation_balancer.views.load_questions'),       
                         (r'', 'equation_balancer.views.index'),
 )

@@ -196,8 +196,37 @@ def load_patient_data(request):
   result = {}
   result['data'] = patients
   result['scores'] = scores
-  test = json.dumps(result)
   return HttpResponse(json.dumps(result), mimetype="application/javascript")
+
+def recalculate(request):
+  # unpack patient answers
+  answers = {}
+  weights = {}
+  moduleweights = {}
+
+  for variable in request.POST:
+    if variable.startswith("patient-"):
+      (prefix, patient_number, question_number) = variable.split("-", 2)
+      answer = request.POST[variable]
+      try:
+        answers[int(patient_number)][int(question_number)] = answer
+      except KeyError:
+        answers[int(patient_number)] = {int(question_number):answer}
+    elif variable.startswith("weight-"):
+      (prefix, question_number) = variable.split("-", 1)
+      weight = request.POST[variable]
+      weights[int(question_number)] = weight
+    elif variable.startswith("moduleweight-"):
+      (prefix, module_id) = variable.split("-", 1)
+      moduleweight = request.POST[variable]
+      moduleweights[int(module_id)] = moduleweight
+
+  scores = {}
+
+  for patient in answers:
+    scores[patient] = calculate_score(moduleweights, weights, answers[patient])
+  
+  return HttpResponse(json.dumps(scores), mimetype="application/javascript")  
 
 
 def calculate_patient_score(request):
@@ -222,20 +251,20 @@ def calculate_score(moduleweights, weights, answers):
   
   for module in Module.objects.all():
     modulescore = 0
-    moduleweight = moduleweights[module.id]
+    moduleweight = float(moduleweights[module.id])
     for question in module.question_set.all():
-      weight = weights[question.number]
+      weight = float(weights[question.number])
       answer = answers[question.number]
       
       #print "calculating score for answer %s" % answer
       #print question.answer_set.all()
       try:
         db_answer = question.answer_set.get(text = answer.lower().strip())
-        answer_wt = db_answer.weight
+        answer_wt = float(db_answer.weight)
         #print "using weight %s" % answer_wt
       except:
         #print "no weight found for %s of the choices in %s.. zeroing answer" % (answer, question.answer_set.all()) 
-        answer_wt = int("%s" % answer)
+        answer_wt = float("%s" % answer)
         #answer_wt = 0
 
       scores['question-%s' % question.number] = "%d" % (weight * answer_wt)

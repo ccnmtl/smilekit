@@ -71,11 +71,12 @@ function display_csv(file, response) {
 }
 
 function init_ajax_upload() {
-  new AjaxUpload('upload_button',
+  new AjaxUpload('upload-button',
                  {action: '/weights/load',
                   name: 'csvfile',
                   responseType: 'json',
                   onSubmit: function(file, extension) {
+                    $("#recalc-button").removeAttr('disabled');
                     $("#filename").html(file);
                     var data = {};
                     $("input.weight").each(function () {
@@ -92,6 +93,61 @@ function init_ajax_upload() {
 }
 
 $(document).ready(init_ajax_upload);
+
+/* recalculate */
+function update_scores(data) {
+  scores = jQuery.parseJSON(data);
+
+  var inner = "";
+  var numPatients = 0;
+  $.each(answers, function(index, value) {
+    inner += "<tr class='patient-row' id='patient-" + index + "'>";
+    inner += "<td>" + index + "</td>";
+    inner += "<td>" + scores[index]["total"] + "</td>";
+    inner += "</tr>";
+    numPatients++;
+  });
+  $('#multipleview-inner').html(inner);
+  $('#num-patients').html(numPatients);
+  
+  $('tr.patient-row').each(function() {
+    $(this).click(function() {
+      show_patient_data(this.id.substring(8));
+      singleView();
+    });
+  });
+
+  // update the patient information too
+  var currentPatient =  $("#patient-number").html();
+  show_patient_data(currentPatient);
+}
+
+function recalculate() {
+  var data = {};
+  // get current weights from form
+  $("input.weight").each(function () {
+    data[this.id] = $(this).val();
+  });
+  $("input.moduleweight").each(function () {
+    data[this.id] = $(this).val();
+  });
+
+  // we have the answers already
+  $.each(answers, function(index, value) {
+    //data['patient-' + index] = value;
+    $.each(value, function(index2, value2) {
+      data['patient-' + index + '-' + index2] = value2;
+    });
+  });
+  //data[answers] = answers.serialize();
+  jQuery.post("/weights/recalculate", data, update_scores);
+}
+
+function init_recalculate() {
+  $('#recalc-button').click(recalculate);
+}
+
+$(document).ready(init_recalculate);
 
 /* AJAX (background) save */
 function save_model() {
@@ -152,7 +208,7 @@ function toggleViews() {
 }
 
 function initToggleViews() {
-  $("#toggle_button").click(toggleViews);
+  $("#toggle-button").click(toggleViews);
 }
 
 $(document).ready(initToggleViews);
