@@ -52,85 +52,6 @@ def delete_config(request, config_id):
   return HttpResponseRedirect("/weights/")
 
 @login_required
-def export_config(request, config_id):
-  config = Configuration.objects.get(id=config_id)
-  
-  response = HttpResponse(mimetype='text/csv')
-  response['Content-Disposition'] = 'attachment; filename="%s.csv"' % config.name
-  writer = csv.writer(response)
-
-  # write headers
-  headers = ['id', 'weight']
-  writer.writerow(headers)
-
-  # write module weights
-  moduleweights = config.moduleweight_set.order_by("module")
-  for wt in moduleweights:
-    row = ["Module %s" % wt.module.name, wt.weight]
-    writer.writerow(row)
-
-  # write question weights
-  weights = config.weight_set.order_by("question")
-  for wt in weights:
-    row = ["Question %s" % wt.question.number, wt.weight]
-    writer.writerow(row)
-  
-  return response
-  
-@login_required
-def import_config(request):
-  # if csv file provided, load
-  if request.method == 'POST':
-    
-    if 'csvfile' not in request.FILES:
-      return HttpResponseRedirect("/weights/")
-
-    fh = request.FILES['csvfile']
-
-    # config name is the filename
-    config_name = ("%s" % fh)[:-4]
-    # anyone can edit any configuration, regardless of ownership, so we don't want to
-    # allow the creation of multiple configs with the same name and different owners.
-    # thus we do the try/except block instead of the get_or_create.
-    #config = Configuration.objects.get_or_create(name=config_name, owner=request.user)
-    try:
-      config = Configuration.objects.get(name=config_name)
-    except: # MultipleObjectsReturned or no config that matches query
-      (config, created) = Configuration.objects.get_or_create(name=config_name, owner=request.user)
-
-    # TODO: error checking (correct file type, etc.)
-    table = csv.reader(fh)
-
-    headers = table.next()
-    
-    for row in table:
-       #print "processing %s" % row
-       id = row[0]
-       weight = row[1]
-
-       if id.startswith("Module "):
-         modulename = id[7:]
-         module = Module.objects.get(name=modulename)
-         try:
-           wt = ModuleWeight.objects.get(config=config, module=module)
-           wt.weight = weight
-         except:
-           wt = ModuleWeight.objects.create(config=config, module=module, weight=weight)
-         wt.save()
-         
-       else:
-         question_number = id[9:]
-         question = Question.objects.get(number=question_number)
-         try:
-           wt = Weight.objects.get(config=config, question=question)
-           wt.weight = weight
-         except:
-           wt = Weight.objects.create(config=config, question=question, weight=weight)
-         wt.save() 
-         
-  return HttpResponseRedirect("/weights/")
-
-@login_required
 def save_config(request):
   config_id = request.POST['config']
 
@@ -350,10 +271,11 @@ def calculate_score(moduleweights, weights, answers):
         db_answer = question.answer_set.get(text = answer.lower().strip())
         answer_wt = float(db_answer.weight)
       except:
-        #this won't work: casting the text of the answer, e.g. "twice or more" to a float.
-        #let's make it zero after all.
-        #answer_wt = float("%s" % answer)
-        answer_wt = 0
+        try:
+          answer_wt = float("%s" % answer)
+        except ValueError:
+          answer_wt = 0
+
       scores['question-%s' % question.number] = "%d" % (weight * answer_wt)
       modulescore += weight * answer_wt
     scores['module-%s' % module.id] = "%d" % (moduleweight * modulescore)
