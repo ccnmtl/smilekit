@@ -159,7 +159,12 @@ def load_patient_data(request):
   for chunk in fh.chunks():
     destination.write(chunk)
   destination.close()
-
+  
+  #for debugging row by row:
+  patient_number_min = None
+  patient_number_max = None
+  #patient_number_min = 12356
+  #patient_number_max = 12359
 
   destination = open('temp.csv', 'rU')
 
@@ -174,7 +179,8 @@ def load_patient_data(request):
   moduleweights = {}
   for module in Module.objects.all():
     moduleweights[module.id] = Decimal(request.POST['moduleweight-%s' % module.id])
-    
+  #import pdb
+  #pdb.set_trace()
   patients = {}
   scores = {}
   i = 0
@@ -183,15 +189,21 @@ def load_patient_data(request):
       i += 1
       continue
     patient_number = row[0]
+    if patient_number_min and int(patient_number) < patient_number_min:
+      print "skipping because smaller than %d " % patient_number_min
+      continue
+    if patient_number_max and int(patient_number) > patient_number_max:
+      print "skipping because greater than %d " % patient_number_max
+      continue
+    
     patient_data = {}
     for i in range(len(row)):
       if i==0: continue
       patient_data[int(headers[i])] = row[i]
     #patients[patient_number]["answers"] = patient_data
     patients[patient_number] = patient_data
-    patient_score = calculate_score(moduleweights, weights, patient_data)
+    patient_score = calculate_score(moduleweights, weights, patient_data)    
     scores[patient_number] = patient_score
-    #patients[patient_number]["score"] = 
 
   result = {}
   result['data'] = patients
@@ -248,29 +260,24 @@ def calculate_patient_score(request):
 def calculate_score(moduleweights, weights, answers):
   scores = {}
   totalscore = 0
-  
   for module in Module.objects.all():
+    #print "Starting with module %s" + module
     modulescore = 0
     moduleweight = float(moduleweights[module.id])
     for question in module.question_set.all():
       weight = float(weights[question.number])
       answer = answers[question.number]
-      
-      #print "calculating score for answer %s" % answer
-      #print question.answer_set.all()
       try:
         db_answer = question.answer_set.get(text = answer.lower().strip())
         answer_wt = float(db_answer.weight)
-        #print "using weight %s" % answer_wt
       except:
-        #print "no weight found for %s of the choices in %s.. zeroing answer" % (answer, question.answer_set.all()) 
-        answer_wt = float("%s" % answer)
-        #answer_wt = 0
-
+        #this won't work: casting the text of the answer, e.g. "twice or more" to a float.
+        #let's make it zero after all.
+        #answer_wt = float("%s" % answer)
+        answer_wt = 0
       scores['question-%s' % question.number] = "%d" % (weight * answer_wt)
       modulescore += weight * answer_wt
     scores['module-%s' % module.id] = "%d" % (moduleweight * modulescore)
     totalscore += moduleweight * modulescore
-
   scores['total'] = "%d" % totalscore
   return scores

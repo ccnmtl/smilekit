@@ -602,8 +602,18 @@
                         // we need to pull the original text content from the text node's
                         // nodeValue property to retrieve the unmangled content.
                         // Note that IE6 only understands text/html
+                        //goat = 123;
                         if (doc.body.firstChild && doc.body.firstChild.nodeName.toUpperCase() == 'PRE') {
-                            response = doc.body.firstChild.firstChild.nodeValue;
+                            if (doc.body.firstChild.firstChild.length == 4096) {
+                              //found a bug.
+                              console.log("Truncated at 4096 bytes.")
+                              console.log(typeof(doc.body.firstChild.firstChild.nodeValue))
+                              
+                              
+                            }
+                            //response = doc.body.firstChild.firstChild.nodeValue; // this gets truncated to 4096
+                            response = doc.body.firstChild.innerHTML; // this doesn't.
+                            console.log(typeof(response))
                         }
                         
                         if (response) {
