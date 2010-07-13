@@ -606,14 +606,14 @@
                         if (doc.body.firstChild && doc.body.firstChild.nodeName.toUpperCase() == 'PRE') {
                             if (doc.body.firstChild.firstChild.length == 4096) {
                               //found a bug.
-                              console.log("Truncated at 4096 bytes.")
-                              console.log(typeof(doc.body.firstChild.firstChild.nodeValue))
+                              //console.log("Truncated at 4096 bytes.")
+                              //console.log(typeof(doc.body.firstChild.firstChild.nodeValue))
                               
                               
                             }
                             //response = doc.body.firstChild.firstChild.nodeValue; // this gets truncated to 4096
                             response = doc.body.firstChild.innerHTML; // this doesn't.
-                            console.log(typeof(response))
+                            //console.log(typeof(response))
                         }
                         
                         if (response) {
