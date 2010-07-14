@@ -55,19 +55,7 @@ function display_csv(file, response) {
   var inner = "";
   var numPatients = 0;
   
-  /*
-  $.each(answers, function(index, value) {
-    
-    inner += "<tr class='patient-row' id='patient-" + index + "'>";
-    inner += "<td>" + index + "</td>";
-    inner += "<td>" + scores[index]["total"] + "</td>";
-    inner += "</tr>";
-    numPatients++;
-    
-  });
-  */
-  
-    $.each(order, function(bogus, index) {
+  $.each(order, function(bogus, index) {
     inner += "<tr class='patient-row' id='patient-" + index + "'>";
     inner += "<td>" + index + "</td>";
     inner += "<td>" + scores[index]["total"] + "</td>";
