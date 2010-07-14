@@ -50,18 +50,12 @@ function show_patient_data(patientNumber) {
 function display_csv(file, response) {
   answers = response['data'];
   scores = response['scores'];
-  /*order = [
-    "12350",
-    "12351",
-    "12352",
-    "12353",
-    "12354",
-    "12355"
-  ];
-  */
+  order = response['order'];
+  
   var inner = "";
   var numPatients = 0;
   
+  /*
   $.each(answers, function(index, value) {
     
     inner += "<tr class='patient-row' id='patient-" + index + "'>";
@@ -71,7 +65,8 @@ function display_csv(file, response) {
     numPatients++;
     
   });
-  /*
+  */
+  
     $.each(order, function(bogus, index) {
     inner += "<tr class='patient-row' id='patient-" + index + "'>";
     inner += "<td>" + index + "</td>";
@@ -79,7 +74,7 @@ function display_csv(file, response) {
     inner += "</tr>";
     numPatients++; 
   });
-  */
+  
   
   
   $('#multipleview-inner').html(inner);

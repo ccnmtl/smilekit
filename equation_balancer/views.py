@@ -183,14 +183,14 @@ def load_patient_data(request):
   #pdb.set_trace()
   patients = {}
   scores = {}
-  #order = []
+  order = []
   i = 0
   for row in table:
     if i < 4:
       i += 1
       continue
     patient_number = row[0]
-    #order.push [patient_number]
+    order.append(patient_number)
     if patient_number_min and int(patient_number) < patient_number_min:
       #print "skipping because smaller than %d " % patient_number_min
       continue
@@ -213,7 +213,7 @@ def load_patient_data(request):
   result = {}
   result['data'] = patients
   result['scores'] = scores
-  #result['order'] = order
+  result['order'] = order
   return HttpResponse(json.dumps(result), mimetype="application/javascript")
 
 def recalculate(request):
