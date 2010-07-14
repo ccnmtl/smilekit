@@ -201,7 +201,10 @@ def load_patient_data(request):
     patient_data = {}
     for i in range(len(row)):
       if i==0: continue
-      patient_data[int(headers[i])] = row[i]
+      try:
+        patient_data[int(headers[i])] = row[i]
+      except ValueError:
+        pass
     #patients[patient_number]["answers"] = patient_data
     patients[patient_number] = patient_data
     patient_score = calculate_score(moduleweights, weights, patient_data)    
