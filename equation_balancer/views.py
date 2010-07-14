@@ -163,8 +163,8 @@ def load_patient_data(request):
   #for debugging row by row:
   patient_number_min = None
   patient_number_max = None
-  #patient_number_min = 12356
-  #patient_number_max = 12359
+  #patient_number_min = 12350
+  #patient_number_max = 12355
 
   destination = open('temp.csv', 'rU')
 
@@ -183,17 +183,19 @@ def load_patient_data(request):
   #pdb.set_trace()
   patients = {}
   scores = {}
+  #order = []
   i = 0
   for row in table:
     if i < 4:
       i += 1
       continue
     patient_number = row[0]
+    #order.push [patient_number]
     if patient_number_min and int(patient_number) < patient_number_min:
-      print "skipping because smaller than %d " % patient_number_min
+      #print "skipping because smaller than %d " % patient_number_min
       continue
     if patient_number_max and int(patient_number) > patient_number_max:
-      print "skipping because greater than %d " % patient_number_max
+      #print "skipping because greater than %d " % patient_number_max
       continue
     
     patient_data = {}
@@ -208,6 +210,7 @@ def load_patient_data(request):
   result = {}
   result['data'] = patients
   result['scores'] = scores
+  #result['order'] = order
   return HttpResponse(json.dumps(result), mimetype="application/javascript")
 
 def recalculate(request):
