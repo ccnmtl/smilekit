@@ -50,15 +50,21 @@ function show_patient_data(patientNumber) {
 function display_csv(file, response) {
   answers = response['data'];
   scores = response['scores'];
+  order = response['order'];
+  
   var inner = "";
   var numPatients = 0;
-  $.each(answers, function(index, value) {
+  
+  $.each(order, function(bogus, index) {
     inner += "<tr class='patient-row' id='patient-" + index + "'>";
     inner += "<td>" + index + "</td>";
     inner += "<td>" + scores[index]["total"] + "</td>";
     inner += "</tr>";
-    numPatients++;
+    numPatients++; 
   });
+  
+  
+  
   $('#multipleview-inner').html(inner);
   $('#num-patients').html(numPatients);
   
