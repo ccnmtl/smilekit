@@ -11,6 +11,24 @@ import simplejson as json
 
 from decimal import *
 
+
+#from optparse import make_option
+#from countryx.sim.models import *
+#try:
+#  from xml.etree import ElementTree
+#except ImportError:
+#  from elementtree import ElementTree
+#import gdata.spreadsheet.service
+#import gdata.service
+#import atom.service
+#import gdata.spreadsheet
+#import atom
+#import getopt
+#import sys
+#import string
+#import re
+
+
 @login_required
 def index(request):
   user = request.user
@@ -311,8 +329,10 @@ def recalculate(request):
       answer = request.POST[variable]
       try:
         answers[int(patient_number)][int(question_number)] = answer
-      except KeyError:
-        answers[int(patient_number)] = {int(question_number):answer}
+      except KeyError, ValueError:
+        pass # most likely: invalid literal for int() with base 10: 'No Cavity 22'
+
+
     elif variable.startswith("weight-"):
       (prefix, question_number) = variable.split("-", 1)
       weight = request.POST[variable]

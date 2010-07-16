@@ -18,7 +18,13 @@ class Question(models.Model):
 
   number = models.IntegerField()
   text = models.CharField(max_length=500)
-
+  
+  english_wording = models.TextField()
+  spanish_wording = models.TextField()
+  
+  image = models.ImageField(upload_to='intervention_images',blank=True,null=True)
+  
+  
   class Meta:
     ordering = ['number']
 
@@ -36,6 +42,11 @@ class Answer(models.Model):
 
   # this weight defines relative values of answers for each question
   weight = models.DecimalField(decimal_places=3, max_digits=10)
+
+  english_wording = models.TextField()
+  spanish_wording = models.TextField()
+  
+  image = models.ImageField(upload_to='intervention_images',blank=True,null=True)
 
   #order = models.IntegerField()  # the order it displays within the question
   class Meta:
