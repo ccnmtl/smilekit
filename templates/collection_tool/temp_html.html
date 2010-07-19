@@ -8,8 +8,7 @@
 	
 	<title>mySmileBuddy</title>
 	
-	<link rel="apple-touch-icon" href="mysmilebuddy_icon.png" />
-	<link rel="apple-touch-startup-image" href="mysmilebuddy_load.png" />
+	<link rel="apple-touch-icon" href="/collection_tool/media/images/mysmilebuddy_icon.png" />
 	
 	<meta name="viewport" content="width=720, maximum-scale=1.0" />
 	<meta name="apple-mobile-web-app-capable" content="yes" /> 
@@ -45,7 +44,7 @@
 			position: absolute;
 			top: -22px;
 			left: -20px;
-			background-image: url(logo_mysmilebuddy.png);
+			background-image: url(/collection_tool/media/images/logo_mysmilebuddy.png);
 		}		
 		
 		#masthead h1 a
@@ -63,6 +62,7 @@
 			height: 60px;
 			right: 0;
 			top: 0;
+			font-size: 12px;
 		}
 		
 		#mastheadnav a
@@ -72,7 +72,6 @@
 			border-left: 1px solid #bbb;
 			text-align: center;
 			padding: 21px 15px 21px 15px;
-			width: 50px;
 			text-decoration: none;
 			color: #3172bb;
 			text-shadow: #fff 1px 1px 1px;
@@ -133,8 +132,6 @@
 			font-weight: bold;
 			text-shadow: none;
 			color: #fff;
-			border-top: 1px solid #222;
-			border-bottom: 8px solid #1076bc;
 			}
 				
 		#mainnav a#risktab
@@ -160,10 +157,8 @@
 			font-weight: bold;
 			text-shadow: none;
 			color: #fff;
-			border-top: 1px solid #222 !important;
-			border-bottom: 8px solid #1eaf65 !important;
-			-moz-border-radius-bottomright: 0px !important;
-			-webkit-border-bottom-right-radius: 0px !important;
+			-moz-border-radius-bottomright: 10px !important;
+			-webkit-border-bottom-right-radius: 10px !important;
 		}
 				
 		.mainfirsttab
@@ -187,12 +182,11 @@
 		#assessmentnav
 		{
 			height: 60px;
-			-moz-border-radius-topleft: 10px;
-			-moz-border-radius-topright: 10px;
-			-webkit-border-top-left-radius: 10px;
-			-webkit-border-top-right-radius: 10px;
+			-moz-border-radius: 10px;
+			-webkit-border-radius: 10px;
 			background: -webkit-gradient(linear, left top, left bottom, from(#1076bc), to(#91bad6)); /* for webkit browsers */
 			background: -moz-linear-gradient(top,  #1076bc,  #91bad6); /* for firefox 3.6+ */
+			margin-bottom: 10px;
 		}
 		
 		#assessmentnav a
@@ -219,10 +213,11 @@
 		{
 			background-color: #ccc;
 			height: 60px;
-			-moz-border-radius-topleft: 10px;
-			-webkit-border-top-left-radius: 10px;
+			-moz-border-radius: 10px;
+			-webkit-border-radius: 10px;
 			background: -webkit-gradient(linear, left top, left bottom, from(#1eaf65), to(#eeeeee)); /* for webkit browsers */
 			background: -moz-linear-gradient(top,  #1eaf65,  #eeeeee); /* for firefox 3.6+ */
+			margin-bottom: 10px;
 		}
 		
 		/* two links */
@@ -245,28 +240,30 @@
 			border-left: 0px !important;
 			-moz-border-radius-topleft: 10px;
 			-webkit-border-top-left-radius: 10px;
+			-moz-border-radius-bottomleft: 10px;
+			-webkit-border-bottom-left-radius: 10px;
 		}
 
 		.lasttab
 		{
 			-moz-border-radius-topright: 10px;
 			-webkit-border-top-right-radius: 10px;
+			-moz-border-radius-bottomright: 10px;
+			-webkit-border-bottom-right-radius: 10px;
 		}
 		
 		#container
 		{
 			background-color: #fff;
 			padding: 20px;
-			-moz-border-radius-bottomleft: 10px;
-			-moz-border-radius-bottomright: 10px;
-			-webkit-border-bottom-left-radius: 10px;
-			-webkit-border-bottom-right-radius: 10px;
+			-moz-border-radius: 10px;
+			-webkit-border-radius: 10px;
 			position: relative;
 		}
 		
-		#contentnav { text-align: center; }
+		#contentnav { text-align: center; height: 70px;}
 		
-		#contentnav a#left,#contentnav a#right
+		#contentnav a#left,#contentnav a#right, #contentnav a#help
 		{
 			position: absolute;
 			padding: 20px;
@@ -279,6 +276,12 @@
 			background: -webkit-gradient(linear, left top, left bottom, from(#f5f5f7), to(#c1c4c3)); /* for webkit browsers */
 			background: -moz-linear-gradient(top,  #f5f5f7,  #c1c4c3); /* for firefox 3.6+ */
 			text-shadow: #fff 1px 1px 1px;
+		}
+		
+		#contentnav a#help
+		{
+		left:50%;
+		margin-left:-69px;
 		}
 		
 		#contentnav a#left
@@ -416,13 +419,6 @@
 
 		}
 		
-		.noradius
-		
-		{
-			-moz-border-radius-topright: 0px !important;
-			-webkit-border-top-right-radius: 0px !important;
-		}
-		
 	</style>
 	<style type="text/css" media="all and (orientation:portrait)">
 	
@@ -448,35 +444,34 @@
 		<h1 id="logo"><a href="#">MySmileBuddy</a></h1>
 		
 		<div id="mastheadnav">
-			<a href="#">Link</a>
-			<a href="#">Link</a>
-			<a href="#">Link</a>
-			<a href="#">Link</a>
+			<a href="#">Cambiar a Espa&#241;ol</a>
+			<a href="#">End This Visit</a>
+			<a href="#">Library</a>
+			<a href="#">About</a>
 		</div>
 		
 	</div>
 
-	<!--
 	<div id="mainnav">
 		<a id="introductiontab" class="mainfirsttab introductiontabactive" href="#">Introduction</a>
 		<a id="assessmenttab" class="" href="#">Assessment</a>
 		<a id="risktab" class="" href="#">Risk</a>
 		<a id="planningtab" class="mainlasttab" href="#">Planning</a>
 	</div>
-	-->
 	
+
 	<div id="mainnav">
 		<a id="introductiontab" class="mainfirsttab" href="#">Introduction</a>
-		<a id="assessmenttab" class="" href="#">Assessment</a>
+		<a id="assessmenttab" class="assessmenttabactive" href="#">Assessment</a>
 		<a id="risktab" class="" href="#">Risk</a>
-		<a id="planningtab" class="mainlasttab planningtabactive" href="#">Planning</a>
+		<a id="planningtab" class="mainlasttab" href="#">Planning</a>
 	</div>
 	
-	<!--
+
 	<div id="assessmentnav">
-		<a class="firsttab" href="#">Diet</a>
+		<a class="firsttab activetab" href="#">Diet</a>
 		<a class="" href="#">Feeding Practices</a>
-		<a class="activetab" href="#">Family History</a>
+		<a class="" href="#">Family History</a>
 		<a class="lasttab" href="#">Fluoride</a>
 	</div>
 	
@@ -519,10 +514,10 @@
 		<a class="firsttab activetab" href="#">Link</a>
 		<a class="lasttab" href="#">Link</a>
 	</div>
-	-->
+
 	<div id="planningnav">
 		<a class="firsttab" href="#">Link</a>
-		<a class="lasttab activetab noradius" href="#">Link</a>
+		<a class="lasttab activetab" href="#">Link</a>
 	</div>
 	
 	<div id="container">
@@ -530,8 +525,10 @@
 		<div id="contentnav">
 		
 			<a id="left" href="#">&#8592; Back</a>
+			
+			<a id="help" href="#">Help</a>
 		
-			<a id="right" href="#">Crib Notes</a>
+			<a id="right" href="#">Next &#8594;</a>
 		
 		</div>
 		
@@ -547,7 +544,8 @@
 		
 		</h3>
 		
-		<div id="content">
+		<div id="content"><!-- 
+
 		
 			<p>
 			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus placerat volutpat lacus a pulvinar. Maecenas magna tellus, adipiscing quis blandit ut, congue bibendum lectus. Aliquam euismod elementum nunc; id dapibus orci congue et. Ut non lorem enim. Ut pretium libero sit amet turpis ullamcorper tempor. Maecenas sed risus augue. Fusce tincidunt enim vel metus lacinia euismod? Proin dui tellus; commodo at porta in; fermentum non turpis. Aliquam neque magna, faucibus sit amet luctus ut, luctus aliquam turpis. Donec adipiscing mi at ipsum ultricies blandit. Aliquam euismod mattis euismod. Duis aliquam sollicitudin quam at rutrum. Ut purus neque, dignissim ac semper vitae, condimentum vitae lectus. Praesent eleifend aliquet elit. Donec ultricies; justo ut venenatis elementum, quam massa euismod magna, ac imperdiet elit risus ut sapien.
@@ -565,7 +563,7 @@
 			Mauris iaculis imperdiet lorem, sed mattis eros pharetra id. In pellentesque pharetra tellus non consectetur. Curabitur urna arcu, tempor in convallis in; eleifend volutpat neque. Quisque vitae tellus nisl, sed iaculis lorem. Nulla in leo metus. Suspendisse placerat ipsum et eros pharetra euismod. Nam quis nunc quis dui adipiscing mattis. Donec cursus volutpat nunc; eu tempor odio fermentum non! Nunc semper, odio vitae vulputate porta; lacus orci eleifend purus, nec congue felis tellus id dui. Aliquam erat volutpat.
 			</p>
 			
-			<!-- start -->
+			<!~~ start ~~>
 			<div id="planner">
 			
 				<div id="plannerright">
@@ -857,7 +855,7 @@
 			
 			</div>
 			<div clear="all" />
-			<!-- stop -->
+			<!~~ stop ~~>
 			
 			<p>
 			Phasellus rutrum nunc ac ligula faucibus viverra. Integer posuere velit nec metus adipiscing convallis. Fusce a ultricies ligula. Integer venenatis nisl euismod erat elementum posuere? Proin pharetra, est eget vulputate condimentum, libero nisl sollicitudin nunc, vitae fermentum nulla eros auctor mauris. Pellentesque mauris diam, venenatis eu fringilla ut, fermentum at ligula! Nam enim augue, varius ut sodales id, imperdiet id lectus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Quisque bibendum, ligula ac lobortis mattis, tellus enim mollis lacus, non luctus orci nibh eget tellus. Praesent vel tincidunt urna. Ut commodo, risus in convallis ultricies, lectus libero vestibulum odio, et fermentum turpis libero et justo. Suspendisse scelerisque neque id arcu interdum congue! Phasellus nec nibh odio. Cras id ante est.
@@ -929,7 +927,8 @@
 						
 					</div>
 
-		</div>
+		
+ --></div>
 	
 	</div>
 	
