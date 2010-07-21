@@ -276,6 +276,7 @@
 			background: -webkit-gradient(linear, left top, left bottom, from(#f5f5f7), to(#c1c4c3)); /* for webkit browsers */
 			background: -moz-linear-gradient(top,  #f5f5f7,  #c1c4c3); /* for firefox 3.6+ */
 			text-shadow: #fff 1px 1px 1px;
+			font-weight: bold;
 		}
 		
 		#contentnav a#help
@@ -419,6 +420,41 @@
 
 		}
 		
+			
+		.actionbuttons {text-align: center;}
+		
+		
+		.actionbutton {
+			-moz-border-radius: 10px;
+			-webkit-border-radius: 10px;
+			height: 60px;
+			width: 340px;
+			border: 0px;
+			font-family: helvetica, sans-serif;
+			color: #333;
+			text-shadow: #fff 1px 1px 1px;
+			font-weight: bold;
+			font-size: 14px;
+			margin-top: 10px;
+		} 
+			
+		.gray {
+			background: -webkit-gradient(linear, left top, left bottom, from(#f5f5f7), to(#c1c4c3)); /* for webkit browsers */
+			background: -moz-linear-gradient(top,  #f5f5f7,  #c1c4c3); /* for firefox 3.6+ */
+		} 
+		
+		.red {
+			background: -webkit-gradient(linear, left top, left bottom, from(#ff7575), to(#ff0101)); /* for webkit browsers */
+			background: -moz-linear-gradient(top,  #ff7575,  #ff0101); /* for firefox 3.6+ */
+			color: #333;
+
+		} 
+		
+		.green {
+			background: -webkit-gradient(linear, left top, left bottom, from(#9bdbbb), to(#1eaf65)); /* for webkit browsers */
+			background: -moz-linear-gradient(top,  #9bdbbb,  #1eaf65); /* for firefox 3.6+ */
+		} 
+			
 	</style>
 	<style type="text/css" media="all and (orientation:portrait)">
 	
@@ -544,7 +580,24 @@
 		
 		</h3>
 		
-		<div id="content"><!-- 
+		<div id="content">
+		
+		
+		<form action="#" method="post">
+		
+		<div class="actionbuttons">
+		
+		<input class="actionbutton gray" type="button" value="Question 1" /> 
+			
+		<input class="actionbutton green" type="button" value="Add" /> 
+			
+		<input class="actionbutton red" type="button" value="Cancel" /> 
+		
+		</div>
+		
+		</form>
+		
+		<!-- 
 
 		
 			<p>
