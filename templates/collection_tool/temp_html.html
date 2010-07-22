@@ -8,14 +8,11 @@
 	
 	<title>mySmileBuddy</title>
 	
-	<link rel="apple-touch-icon" href="/collection_tool/media/images/mysmilebuddy_icon.png" />
-	
-	<link rel="stylesheet" href="/collection_tool/media/css/collection_tool.css" />
+	<link type="image/png" rel="apple-touch-icon" href="/collection_tool/media/images/mysmilebuddy_icon.png" />
+	<link type="text/css" rel="stylesheet" href="/collection_tool/media/css/collection_tool.css" />
 	
 	<meta name="apple-mobile-web-app-capable" content="yes" /> 
-	
 	<meta name="apple-mobile-web-app-status-bar-style" content="black" />	
-	
 	<meta name="viewport" content="width=720, maximum-scale=1.0" />
 		
 </head>
@@ -177,6 +174,11 @@
 				Phasellus rutrum nunc ac ligula faucibus viverra. Integer posuere velit nec metus adipiscing convallis. Fusce a ultricies ligula. Integer venenatis nisl euismod erat elementum posuere? Proin pharetra, est eget vulputate condimentum, libero nisl sollicitudin nunc, vitae fermentum nulla eros auctor mauris. Pellentesque mauris diam, venenatis eu fringilla ut, fermentum at ligula! Nam enim augue, varius ut sodales id, imperdiet id lectus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Quisque bibendum, ligula ac lobortis mattis, tellus enim mollis lacus, non luctus orci nibh eget tellus. Praesent vel tincidunt urna. Ut commodo, risus in convallis ultricies, lectus libero vestibulum odio, et fermentum turpis libero et justo. Suspendisse scelerisque neque id arcu interdum congue! Phasellus nec nibh odio. Cras id ante est.
 				</p>
 				
+				<!-- fallback to HTML5 video playback Mobile Safari / Chrome / iPhone video /iPad FIREFOX UNSUPPORTED -->
+				<div class="videowrapper">
+				<video width="670" height="380" poster="http://ccnmtl.columbia.edu/broadcast/posters/vidthumb_480x272.jpg" src="http://ccnmtl.columbia.edu/broadcast/test/fallpremiere.mp4" type="video/mov" controls="controls">				
+				</div>
+				
 				<p>
 				Mauris iaculis imperdiet lorem, sed mattis eros pharetra id. In pellentesque pharetra tellus non consectetur. Curabitur urna arcu, tempor in convallis in; eleifend volutpat neque. Quisque vitae tellus nisl, sed iaculis lorem. Nulla in leo metus. Suspendisse placerat ipsum et eros pharetra euismod. Nam quis nunc quis dui adipiscing mattis. Donec cursus volutpat nunc; eu tempor odio fermentum non! Nunc semper, odio vitae vulputate porta; lacus orci eleifend purus, nec congue felis tellus id dui. Aliquam erat volutpat.
 				</p>
@@ -307,17 +309,10 @@
 								
 							</div>
 							<br clear="all" />
-							
+
 						</div>
 						
 						
-						<div class="photoboxaction">
-						
-						<form action="#" method="post">
-						<input name="action" type="submit" value="Done" style="width:100%;font-size:20px;" />
-						</form>
-						
-						</div>
 						
 					</div>
 				
@@ -469,10 +464,23 @@
 						</table>
 					
 					</div>
-				
-				
+					
+					<form action="#" method="post">
+					
+					<div class="formbuttons">
+							
+						<input class="formbutton green" type="button" value="Done" /> 
+						
+						<br /> 
+							
+						<input class="formbutton red" type="button" value="Cancel" /> 
+
+					</div>
+					
+					</form>
+			
 				</div>
-				<div clear="all" />
+				<br clear="all" />
 				<!-- stop -->
 				
 				<p>
