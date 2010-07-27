@@ -19,10 +19,6 @@ class Question(models.Model):
   number = models.IntegerField()
   text = models.CharField(max_length=500)
   
-  english_wording = models.TextField()
-  spanish_wording = models.TextField()
-  
-  image = models.ImageField(upload_to='intervention_images',blank=True,null=True)
   
   
   class Meta:
@@ -35,18 +31,13 @@ class Question(models.Model):
   #  {'always':2, 'sometimes':1, 'never':-1}  # same idea
 
 class Answer(models.Model):
-  def __unicode__(self): return "%s: %s (%s)" % (self.question.number, self.text, self.weight)
+  def __unicode__(self): return "%s: %s (%s)" % (self.question.text, self.text, self.weight)
 
   question = models.ForeignKey(Question)
   text = models.CharField(max_length=500)
 
   # this weight defines relative values of answers for each question
   weight = models.DecimalField(decimal_places=3, max_digits=10)
-
-  english_wording = models.TextField()
-  spanish_wording = models.TextField()
-  
-  image = models.ImageField(upload_to='intervention_images',blank=True,null=True)
 
   #order = models.IntegerField()  # the order it displays within the question
   class Meta:
