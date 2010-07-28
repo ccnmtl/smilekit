@@ -5,6 +5,7 @@ TEMPLATE_DIRS = (
 )
 
 MEDIA_ROOT = '/var/www/smilekit/uploads/'
+ADMIN_MEDIA_PREFIX = '/site_media/admin/'
 
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
