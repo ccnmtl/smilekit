@@ -1,40 +1,113 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-    
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+        
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-	<title>
-		{% block title %}MySmileBuddy{% endblock %}
-	</title>
-
-	{% block css %}
-		<!-- 
-		<link type="text/css" rel="stylesheet" media="screen" href="/site_media/js/jqtouch/jqtouch.css" />
-		<link type="text/css" rel="stylesheet" media="screen" href="/site_media/js/jqtouch/themes/apple/theme.css" />
-		-->
-	{% endblock %}
-		
-	{% block extras %}
-	{% endblock %}
-        
-</head>
+	<title>mySmileBuddy</title>
 	
+	<link type="image/png" rel="apple-touch-icon" href="/collection_tool/media/images/mysmilebuddy_icon.png" />
+	<link type="text/css" rel="stylesheet" href="/collection_tool/media/css/collection_tool.css" />
+	
+	<meta name="apple-mobile-web-app-capable" content="yes" /> 
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />	
+	<meta name="viewport" content="width=720, maximum-scale=1.0" />
+		
+</head>
+
 <body>
 
-	{% block content %}
-        {% endblock %}
+<div id="wrapper">
 
-	{% block footer %}
-	{% endblock %}
+	<div id="masthead">
+	
+		<h1 id="logo"><a href="#">MySmileBuddy</a></h1>
+		
+		<div id="mastheadnav">
+			<a href="#">En Espa&#241;ol</a>
+			<a href="#">Stop Visit</a>
+			<a href="#">Library</a>
+			<a href="#">About</a>
+		</div>
+		
+	</div>
 
-	{% block js %}
-		<!--
-		<script type="text/javascript" src="/site_media/js/jqtouch/jquery.1.3.2.min.js"></script> 
-		<script type="text/javascript" src="/site_media/js/jqtouch/jqtouch.js"></script> 
-		<script type="application/x-javascript" src="/site_media/js/jqtouch/extensions/jqt.floaty.js"></script>	
-		-->
-	{% endblock %}
+	<!--
+	<div id="mainnav">
+		<a id="introductiontab" class="mainfirsttab introductiontabactive" href="#">Introduction</a>
+		<a id="assessmenttab" class="" href="#">Assessment</a>
+		<a id="risktab" class="" href="#">Risk</a>
+		<a id="planningtab" class="mainlasttab" href="#">Planning</a>
+	</div>
+	-->
 
-</body>	
+	<div id="mainnav">
+		<a id="introductiontab" class="mainfirsttab" href="#">Introduction</a>
+		<a id="assessmenttab" class="assessmenttabactive" href="#">Assessment</a>
+		<a id="risktab" class="" href="#">Risk</a>
+		<a id="planningtab" class="mainlasttab" href="#">Planning</a>
+	</div>
+	
+
+	<div id="assessmentnav">
+		<a class="firsttab activetab" href="#">Diet</a>
+		<a class="" href="#">Feeding Practices</a>
+		<a class="" href="#">Family History</a>
+		<a class="lasttab" href="#">Fluoride</a>
+	</div>
+	
+	<!--
+	<div id="assessmentnav">
+		<a class="firsttab" href="#">Diet</a>
+		<a class="activetab" href="#">Feeding Practices</a>
+		<a class="" href="#">Family History</a>
+		<a class="lasttab" href="#">Fluoride</a>
+	</div>
+	
+	<div id="assessmentnav">
+		<a class="firsttab" href="#">Diet</a>
+		<a class="" href="#">Feeding Practices</a>
+		<a class="activetab" href="#">Family History</a>
+		<a class="lasttab" href="#">Fluoride</a>
+	</div>
+	
+	<div id="assessmentnav">
+		<a class="firsttab" href="#">Diet</a>
+		<a class="" href="#">Feeding Practices</a>
+		<a class="" href="#">Family History</a>
+		<a class="lasttab activetab" href="#">Fluoride</a>
+	</div>
+	
+	<div id="mainnav">
+		<a id="introductiontab" class="mainfirsttab" href="#">Introduction</a>
+		<a id="assessmenttab" class="" href="#">Assessment</a>
+		<a id="risktab" class="risktabactive" href="#">Risk</a>
+		<a id="planningtab" class="mainlasttab" href="#">Planning</a>
+	</div>
+
+	<div id="mainnav">
+		<a id="introductiontab" class="mainfirsttab" href="#">Introduction</a>
+		<a id="assessmenttab" class="" href="#">Assessment</a>
+		<a id="risktab" class="" href="#">Risk</a>
+		<a id="planningtab" class="mainlasttab planningtabactive" href="#">Planning</a>
+	</div>
+	
+	<div id="planningnav">
+		<a class="firsttab activetab" href="#">Link</a>
+		<a class="lasttab" href="#">Link</a>
+	</div>
+
+	<div id="planningnav">
+		<a class="firsttab" href="#">Link</a>
+		<a class="lasttab activetab" href="#">Link</a>
+	</div>
+	-->
+	
+	<div id="contentcontainer">
+
+{% block collection_tool_content %}
+{% endblock collection_tool_content %}
+
+</body>
+
 </html>
