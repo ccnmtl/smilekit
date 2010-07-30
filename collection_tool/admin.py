@@ -38,16 +38,13 @@ if 1 == 0:
 class TranslationInline(admin.TabularInline):
   model = Translation
   fields = [ 'language', 'text' ]
-  extra = 2
   verbose_name = 'Question wording'
   verbose_name_plural = 'Question wordings'
-
-
-
+  extra = 2
 
 class DisplayQuestionAdmin(TinyMceAdmin):
   search_fields=[ 'question', ]
-  list_display=('question',)
+  list_display=('question', '__unicode__')
   fields = [ 'question', 'image']
   inlines = [TranslationInline]
   verbose_name = 'Display Question'
@@ -63,7 +60,6 @@ class AnswerTranslationInline(admin.TabularInline):
   verbose_name = 'Answer wording'
   verbose_name_plural = 'Answer wordings'
 
-
 class DisplayAnswerAdmin(TinyMceAdmin):
   #search_fields=[ 'question', 'topic']
   list_display=('question_text', 'answer_text')
@@ -73,12 +69,7 @@ class DisplayAnswerAdmin(TinyMceAdmin):
   verbose_name = 'Display Answer'
   verbose_name_plural = 'Display Answers'
 
-
-
 admin.site.register(DisplayAnswer,   DisplayAnswerAdmin)
-
-#admin.site.register(Topic, TopicAdmin)
-
 
   
 if 1 == 0:

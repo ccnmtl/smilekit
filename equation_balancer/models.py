@@ -41,8 +41,10 @@ class Answer(models.Model):
 
   #order = models.IntegerField()  # the order it displays within the question
   class Meta:
+    pass
     #ordering = ['question.number']
-    order_with_respect_to = 'question'
+    #ordering = ['']
+    #order_with_respect_to = 'question'
 
 
 
@@ -75,3 +77,5 @@ class Weight(models.Model):
   def __unicode__(self): return "%s: %s" % (self.question.number, self.weight)
 
   weight = models.DecimalField(decimal_places=3, max_digits=10)
+  
+  # 11.5 + 1
