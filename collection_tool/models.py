@@ -71,7 +71,7 @@ class AnswerTranslation(models.Model):
 
 
 def post_save_ordering_string_update(sender, **kwargs):
-  print "OK updating."
+  #print "OK updating."
   answer_translation = kwargs['instance']
   #import pdb
   #pdb.set_trace()
