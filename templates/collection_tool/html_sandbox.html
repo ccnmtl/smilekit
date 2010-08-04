@@ -1,0 +1,119 @@
+{% extends "collection_tool/base.html" %}
+	
+		{% block collection_tool_content %}
+		<div id="contentnav">
+		
+			<a id="left" href="#">&#8592; Back</a>
+			
+			<a id="help" href="javascript:void(0)" onclick="document.getElementById('helpon').style.display='block';document.getElementById('helpoff').style.display='block'">Help!</a>
+		
+		
+			{% include "collection_tool/help.html" %}
+		
+			<a id="right" href="#">Next &#8594;</a>
+			
+		</div>
+		
+		<h2 id="contenttitle">
+		
+			Title
+		
+		</h2>
+		
+		<h3 id="contentsubtitle">
+		
+			Subtitle
+		
+		</h3>
+		
+		<div id="content">
+		
+			<p>
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus placerat volutpat lacus a pulvinar. Maecenas magna tellus, adipiscing quis blandit ut, congue bibendum lectus. Aliquam euismod elementum nunc; id dapibus orci congue et. Ut non lorem enim. Ut pretium libero sit amet turpis ullamcorper tempor. Maecenas sed risus augue. Fusce tincidunt enim vel metus lacinia euismod? Proin dui tellus; commodo at porta in; fermentum non turpis. Aliquam neque magna, faucibus sit amet luctus ut, luctus aliquam turpis. Donec adipiscing mi at ipsum ultricies blandit. Aliquam euismod mattis euismod. Duis aliquam sollicitudin quam at rutrum. Ut purus neque, dignissim ac semper vitae, condimentum vitae lectus. Praesent eleifend aliquet elit. Donec ultricies; justo ut venenatis elementum, quam massa euismod magna, ac imperdiet elit risus ut sapien.
+			</p>
+			
+			<div class="contentbuttons">
+			
+				<a href="#" class="contentbutton contentbuttoncomplete">Question 1</a>
+				
+				<a href="#" class="contentbutton">Question 2</a>
+					
+				<a href="#" class="contentbutton">Question 3</a>
+				
+			</div>
+			
+			<p>
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus placerat volutpat lacus a pulvinar. Maecenas magna tellus, adipiscing quis blandit ut, congue bibendum lectus. Aliquam euismod elementum nunc; id dapibus orci congue et. Ut non lorem enim. Ut pretium libero sit amet turpis ullamcorper tempor. Maecenas sed risus augue. Fusce tincidunt enim vel metus lacinia euismod? Proin dui tellus; commodo at porta in; fermentum non turpis. Aliquam neque magna, faucibus sit amet luctus ut, luctus aliquam turpis. Donec adipiscing mi at ipsum ultricies blandit. Aliquam euismod mattis euismod. Duis aliquam sollicitudin quam at rutrum. Ut purus neque, dignissim ac semper vitae, condimentum vitae lectus. Praesent eleifend aliquet elit. Donec ultricies; justo ut venenatis elementum, quam massa euismod magna, ac imperdiet elit risus ut sapien.
+			</p>
+			
+			<form action="#" method="post">
+			
+			<div class="formbuttons">
+					
+				<input class="formbutton green" type="button" value="Add" /> 
+				
+				<br /> 
+					
+				<input class="formbutton red" type="button" value="Cancel" /> 
+			
+			</div>
+			
+			</form>
+	
+			<p>
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus placerat volutpat lacus a pulvinar. Maecenas magna tellus, adipiscing quis blandit ut, congue bibendum lectus. Aliquam euismod elementum nunc; id dapibus orci congue et. Ut non lorem enim. Ut pretium libero sit amet turpis ullamcorper tempor. Maecenas sed risus augue. Fusce tincidunt enim vel metus lacinia euismod? Proin dui tellus; commodo at porta in; fermentum non turpis. Aliquam neque magna, faucibus sit amet luctus ut, luctus aliquam turpis. Donec adipiscing mi at ipsum ultricies blandit. Aliquam euismod mattis euismod. Duis aliquam sollicitudin quam at rutrum. Ut purus neque, dignissim ac semper vitae, condimentum vitae lectus. Praesent eleifend aliquet elit. Donec ultricies; justo ut venenatis elementum, quam massa euismod magna, ac imperdiet elit risus ut sapien.
+			</p>
+			
+			
+			<p>
+			Phasellus rutrum nunc ac ligula faucibus viverra. Integer posuere velit nec metus adipiscing convallis. Fusce a ultricies ligula. Integer venenatis nisl euismod erat elementum posuere? Proin pharetra, est eget vulputate condimentum, libero nisl sollicitudin nunc, vitae fermentum nulla eros auctor mauris. Pellentesque mauris diam, venenatis eu fringilla ut, fermentum at ligula! Nam enim augue, varius ut sodales id, imperdiet id lectus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Quisque bibendum, ligula ac lobortis mattis, tellus enim mollis lacus, non luctus orci nibh eget tellus. Praesent vel tincidunt urna. Ut commodo, risus in convallis ultricies, lectus libero vestibulum odio, et fermentum turpis libero et justo. Suspendisse scelerisque neque id arcu interdum congue! Phasellus nec nibh odio. Cras id ante est.
+			</p>
+			
+			
+			{% include "collection_tool/video.html" %}
+
+			
+			<p>
+			Mauris iaculis imperdiet lorem, sed mattis eros pharetra id. In pellentesque pharetra tellus non consectetur. Curabitur urna arcu, tempor in convallis in; eleifend volutpat neque. Quisque vitae tellus nisl, sed iaculis lorem. Nulla in leo metus. Suspendisse placerat ipsum et eros pharetra euismod. Nam quis nunc quis dui adipiscing mattis. Donec cursus volutpat nunc; eu tempor odio fermentum non! Nunc semper, odio vitae vulputate porta; lacus orci eleifend purus, nec congue felis tellus id dui. Aliquam erat volutpat.
+			</p>
+			
+			
+			{% include "collection_tool/planner.html" %}
+
+			
+			<p>
+			Phasellus rutrum nunc ac ligula faucibus viverra. Integer posuere velit nec metus adipiscing convallis. Fusce a ultricies ligula. Integer venenatis nisl euismod erat elementum posuere? Proin pharetra, est eget vulputate condimentum, libero nisl sollicitudin nunc, vitae fermentum nulla eros auctor mauris. Pellentesque mauris diam, venenatis eu fringilla ut, fermentum at ligula! Nam enim augue, varius ut sodales id, imperdiet id lectus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Quisque bibendum, ligula ac lobortis mattis, tellus enim mollis lacus, non luctus orci nibh eget tellus. Praesent vel tincidunt urna. Ut commodo, risus in convallis ultricies, lectus libero vestibulum odio, et fermentum turpis libero et justo. Suspendisse scelerisque neque id arcu interdum congue! Phasellus nec nibh odio. Cras id ante est.
+			</p>
+			
+			
+			{% include "collection_tool/photo.html" %}
+			
+			<p>
+			Mauris iaculis imperdiet lorem, sed mattis eros pharetra id. In pellentesque pharetra tellus non consectetur. Curabitur urna arcu, tempor in convallis in; eleifend volutpat neque. Quisque vitae tellus nisl, sed iaculis lorem. Nulla in leo metus. Suspendisse placerat ipsum et eros pharetra euismod. Nam quis nunc quis dui adipiscing mattis. Donec cursus volutpat nunc; eu tempor odio fermentum non! Nunc semper, odio vitae vulputate porta; lacus orci eleifend purus, nec congue felis tellus id dui. Aliquam erat volutpat.
+			</p>
+			
+			{% include "collection_tool/photobox.html" %}
+			
+			<div class="riskscore high">10</div>
+			
+			<div class="riskscore medium">5</div>
+			
+			<div class="riskscore low">1</div>
+			
+			
+			<div class="riskbuttons">
+			
+				<a href="#" class="riskbutton riskbuttonselected">Question 1</a>
+				
+				<a href="#" class="riskbutton">Question 2</a>
+					
+				<a href="#" class="riskbutton">Question 3</a>
+				
+			</div>
+			
+		</div>
+	
+	</div>
+	
+</div>
+{% endblock collection_tool_content %}
