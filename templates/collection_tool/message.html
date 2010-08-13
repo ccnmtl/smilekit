@@ -1,0 +1,19 @@
+{% extends "collection_tool/base.html" %}
+
+
+
+{% block language_toggle %}
+{%endblock%}
+
+{% block collection_tool_content %}
+    <h2 id="contenttitle">{{message}}</h2>    
+    <div>
+    <a href="#" onclick="javascript:applicationCache.update()">Download files!</a>
+		</div>
+    <div>
+    <a href="/collection_tool/yes/">Available offline.</a>
+		</div>
+    <div>
+    <a href="/collection_tool/no/">Unavailable while offline.</a>
+		</div>
+{% endblock collection_tool_content %}

@@ -1,0 +1,38 @@
+CACHE MANIFEST
+
+# Version 20 (change this to re-download cache)
+
+CACHE:
+#questions:
+{% for id in question_ids %}
+/collection_tool/question/{{id}}/language/en/
+/collection_tool/question/{{id}}/language/es/
+{% endfor %}
+
+
+#static files:
+/collection_tool/media/images/icon_planner_up.png
+/collection_tool/media/images/icon_planner_up.png
+/collection_tool/media/images/icon_planner_down.png
+/collection_tool/media/images/icon_planner_edit.png
+/collection_tool/media/images/icon_planner_delete.png
+/collection_tool/media/images/logo_mysmilebuddy.png
+/collection_tool/media/css/collection_tool.css
+
+
+#other urls we need:
+/collection_tool/yes/
+
+FALLBACK:
+#
+
+NETWORK:
+
+*
+
+# meaning, anything that isn’t in the appcache
+# can still be downloaded from the original web address,
+# as long as you have an internet connection.
+
+
+

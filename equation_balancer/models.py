@@ -20,7 +20,6 @@ class Question(models.Model):
   text = models.CharField(max_length=500)
   
   
-  
   class Meta:
     ordering = ['number']
 
