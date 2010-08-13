@@ -69,7 +69,7 @@ def available_offline(request):
 
 def not_available_offline(request):
   t = loader.get_template('collection_tool/message.html')
-  print "NOT AVAILABLE OFFLINE"
+  #print "NOT AVAILABLE OFFLINE"
   c = RequestContext(request,{
       'message': "This page should NOT be available offline."
   })

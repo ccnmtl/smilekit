@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-{% ifequal 1 0 %}
+{% ifequal 1 1 %}
 <html manifest="/collection_tool/manifest.cache">
 {% else %}
 <html>
@@ -8,6 +8,9 @@
 
 <head>
 	<title>mySmileBuddy</title>
+	
+{% block collection_tool_js %}
+{% endblock collection_tool_js %}
 	
 	<link type="image/png" rel="apple-touch-icon" href="/collection_tool/media/images/mysmilebuddy_icon.png" />
 	<link type="text/css" rel="stylesheet" href="/collection_tool/media/css/collection_tool.css" />
@@ -51,15 +54,16 @@ var cacheStatusValues = [];
      }
      log(''+message);
 }
-
+/*
 function log(s) {
+    if (console != null && typeof (console) != "undefined") {
+      console.log(s);
+    }
+    else {
     
-    //if (console) {
-    //console.log(s);
-    //}
-
+    }
 }
-
+*/
  function isOnline() {
      return navigator.onLine;
  }
@@ -82,13 +86,6 @@ function log(s) {
  function autoCheckForUpdates(){
      setInterval(function(){cache.update()}, 10000);
  }
-/*
- return {
-     isOnline: isOnline,
-     checkForUpdates: checkForUpdates,
-     autoCheckForUpdates: autoCheckForUpdates
- }
-*/
      
   
  </script>
