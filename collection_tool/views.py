@@ -3,6 +3,7 @@ from django.shortcuts import render_to_response
 from smilekit.collection_tool.models import *
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext, loader
+import random
 
 #def index(request):
 #    return render_to_response("collection_tool/index.html")
@@ -42,14 +43,14 @@ def question(request, displayquestion_id, language_code):
   wording = displayquestion.wording(language_code)
   
   
-  answer_wordings = [d.wording(language_code) for d in displayquestion.display_answers]
+  answers = [{'wording': d.wording(language_code), 'image': d.image} for d in displayquestion.display_answers]
   
   #return render_to_response("collection_tool/question.html")
   t = loader.get_template('collection_tool/question.html')
   c = RequestContext(request,{
       'displayquestion': displayquestion,
       'wording' : wording,
-      'answer_wordings': answer_wordings,
+      'answers': answers,
       'language_code': language_code
       #'answers': None
   })
@@ -89,7 +90,8 @@ def manifest(request):
   response = HttpResponse(mimetype='text/cache-manifest')
   t = loader.get_template('collection_tool/manifest')
   c = RequestContext(request,{
-    'question_ids': [d.id for d in DisplayQuestion.objects.all()]
+    'question_ids': [d.id for d in DisplayQuestion.objects.all()], 
+    'randomnumber' : random.randint(0, 9999999999)
   })
   response.write(t.render(c))
   return response

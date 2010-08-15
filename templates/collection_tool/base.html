@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-
-{% ifequal 1 1 %}
+{%ifequal 1 1 %}
 <html manifest="/collection_tool/manifest.cache">
 {% else %}
 <html>
@@ -54,16 +53,17 @@ var cacheStatusValues = [];
      }
      log(''+message);
 }
-/*
+
 function log(s) {
-    if (console != null && typeof (console) != "undefined") {
+/*    if (console != null && typeof (console) != "undefined") {
       console.log(s);
     }
     else {
     
     }
+    */
 }
-*/
+
  function isOnline() {
      return navigator.onLine;
  }
