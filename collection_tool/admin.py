@@ -29,9 +29,57 @@ class TinyMceAdmin(admin.ModelAdmin):
             '/site_media/js/tinymce/jscripts/tiny_mce/tiny_mce.js', 
             '/site_media/js/simple_tinymce.js',
         )
+
+class HelpDefinitionInline(admin.TabularInline):
+  model = HelpDefinition
+  extra = 2
+
+
+class HelpBulletPointInline(admin.TabularInline):
+  model = HelpBulletPoint
+  #fields = [ 'language', 'text' ]
+  verbose_name = 'Bullet Point'
+  verbose_name_plural = 'Bullet Points'
+  extra = 2
+        
+
+
+class HelpUrlInline(admin.TabularInline):
+  model = HelpUrl
+  #fields = [ 'language', 'text' ]
+  verbose_name = 'Associated URL for this help item'
+  verbose_name_plural = 'Associated URLs for this help item'
+  extra = 2
+        
+class HelpItemAdmin(TinyMceAdmin):
+  #search_fields=[ 'question', ]
+  #list_display=('question', '__unicode__')
+  #fields = [ 'question', 'image']
+  inlines = [HelpUrlInline, HelpBulletPointInline, HelpDefinitionInline]
+  verbose_name = 'Help Item'
+  verbose_name_plural = 'Help Items'
+
+admin.site.register(HelpItem, HelpItemAdmin)
+
+
+class GoalInline(admin.TabularInline):
+  model = Goal
+
+class TopicAdmin(TinyMceAdmin):
+  #search_fields=[ 'question', ]
+  #list_display=('question', '__unicode__')
+  #fields = [ 'question', 'image']
+  inlines = [GoalInline]
+  
+  
+admin.site.register(Topic, TopicAdmin)
+
+        
+        
 if 1 == 0:
   class TopicAdmin (TinyMceAdmin):
     verbose_name = 'Help Topic'
+
 
 
 

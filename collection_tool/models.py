@@ -10,19 +10,109 @@ LANGUAGE_CHOICES = (
 
 Question = models.get_model('equation_balancer', 'question')
 Answer = models.get_model('equation_balancer', 'answer')
+
+##################HELP AND TOPICS####
+""" 
+collection_tool_goal           
+collection_tool_helpbulletpoint
+collection_tool_helpdefinition 
+collection_tool_helpitem       
+collection_tool_helpurl        
+collection_tool_topic          
+collection_tool_translation    
+
+drop table collection_tool_goal            ;
+drop table collection_tool_helpbulletpoint ;
+drop table collection_tool_helpdefinition  ;
+drop table collection_tool_helpurl         ;
+drop table collection_tool_helpitem        ;
+drop table collection_tool_topic           ;
+
+
+"""
+
+
+
+class HelpItem(models.Model):
+  title = models.CharField(max_length=1024, null = True, blank = True)
+  english_script_instructions = models.TextField(null=True, blank =True)
+  english_script = models.TextField(null=True, blank =True)
+  spanish_script_instructions = models.TextField(null=True, blank =True)
+  spanish_script = models.TextField(null=True, blank =True)
+  # ADD SPANISH
+  def __unicode__(self): return self.objective
+
+class HelpUrl(models.Model):
+  """Associates a help item with an arbitrary URL."""
+  url = models.CharField(max_length=1024, null = True, blank = True)
+  help_item = models.ForeignKey(HelpItem)
+  def __unicode__(self): return self.url
+
+class HelpBulletPoint(models.Model):
+  """Displayed as a bullet-point list, these give a summary / what to watch for each page."""
+  english_text =  models.TextField(null=True, blank =True)
+  spanish_text =  models.TextField(null=True, blank =True)
+  help_item = models.ForeignKey(HelpItem)
+
+  ordering_rank = models.IntegerField()
+  class Meta:
+    ordering = ('ordering_rank',)
+
+
+class HelpDefinition(models.Model):
+  """Definitions."""
+  english_title = models.CharField(max_length=1024, null = True, blank = True)
+  english_body = models.TextField(null=True, blank =True)
+  spanish_title = models.CharField(max_length=1024, null = True, blank = True)
+  spanish_body = models.TextField(null=True, blank =True)
+  help_item = models.ForeignKey(HelpItem)
+  
+  ordering_rank = models.IntegerField()
+  class Meta:
+    ordering = ('ordering_rank',)
+
+    
+class Topic(models.Model):    
+  """an aspect of the patient's health that can be improved"""
+  def __unicode__(self): return self.name  
+  english_title  = models.CharField(max_length=1024, null = True, blank = True)
+  spanish_title  = models.CharField(max_length=1024, null = True, blank = True)
+  
+  ordering_rank = models.IntegerField()
+  class Meta:
+    ordering = ('ordering_rank',)
+
+  
+class Goal (models.Model):
+  """ one concrete step in the direction of a topic"""
+  english_title  = models.CharField(max_length=1024, null = True, blank = True)
+  spanish_title  = models.CharField(max_length=1024, null = True, blank = True)
+  topic = models.ForeignKey(Topic)
+  #is this associated with the planner JS game?
+  show_in_planner = models.BooleanField()
+  
+  ordering_rank = models.IntegerField()
+  class Meta:
+    ordering = ('ordering_rank',)
+
+##################END HELP AND TOPICS#######
+
+
   
 class DisplayQuestion(models.Model):
   """associates questions with translations, images, help topics, etc."""
   part_of_score =  models.CharField(max_length=1, null=False)
   question = models.ForeignKey(Question, null=True, blank=True)
-  #topic = models.ForeignKey(Topic, blank=True, null=True)
+  
+  topic = models.ForeignKey(Topic, null=True, blank=True)
+  
   image = models.ImageField(upload_to='question_images',blank=True,null=True)
   
   @models.permalink
   def get_absolute_url(self):
     return ('smilekit.views.question', [str(self.id), 'en'])
 
-  
+
   @property
   def display_answers (self):
     return DisplayAnswer.objects.filter(answer__in= self.question.answer_set.all())
@@ -108,8 +198,10 @@ class DisplayAnswer(models.Model):
   answer = models.ForeignKey(Answer)  # better to link to DB answer or DisplayQuestion?
   
   image = models.ImageField(upload_to='answer_images',blank=True,null=True)
-  # order -- how to display within question
   
+  ordering_rank = models.IntegerField()
+  class Meta:
+    ordering = ('ordering_rank',)
   
   
   def question_text (self):
@@ -159,40 +251,15 @@ class AnswerTranslation(models.Model):
 
   class Meta:
     ordering = ['ordering_string']
-  
-  
-  #@property
-  #def orderfunction(self):
-  #  return answer.text#
-
-  #def __unicode__(self):
-  #  return self.orderfunction  
 
 
 def post_save_ordering_string_update(sender, **kwargs):
-  #print "OK updating."
   answer_translation = kwargs['instance']
-  #import pdb
-  #pdb.set_trace()
   answer_translation.ordering_string = answer_translation.answer.question_text()
   
-  #person = person_name.person
-  #if person.ordering_string != unicode(person)[0:254]:
-  #    person.ordering_string = unicode(person)[0:254]
-  #    super(Person, person).save()
+
 
 post_save.connect(post_save_ordering_string_update, sender=AnswerTranslation)
 
 
-    
-    
-    
-if 1 == 0:
-  class Topic(models.Model):
-    #a help topic
-    
-    def __unicode__(self): return self.name  
-    name = models.CharField(max_length=30, unique=True)
-    help_text = models.TextField(null=True, blank =True)
-    # order?
-    # associated text? -- i.e. landing page?
+  
