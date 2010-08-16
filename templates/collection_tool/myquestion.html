@@ -1,0 +1,51 @@
+{% extends "collection_tool/base.html" %}
+
+{%load smartif%}
+
+{% block language_toggle %}
+
+		{%ifequal language_code 'en'%}
+			<a href="/collection_tool/question/2/language/es/">espa&#241;ol</a>
+		{%endifequal%}
+
+		{%ifequal language_code 'es'%}
+			<a href="/collection_tool/question/2/language/en/">english</a>
+		{%endifequal%}
+		
+{% endblock %}
+
+		{% block collection_tool_content %}
+		
+		<div id="contentnav">
+		
+		
+		  {% if displayquestion.prev%}
+			  <a id="left" href="#">&#8592; Back</a>
+			{%endif%}
+			
+			<a id="help" href="javascript:void(0)" onclick="document.getElementById('helpon').style.display='block';document.getElementById('helpoff').style.display='block'">Guide</a>
+			
+			{% include "collection_tool/help.html" %}
+		
+			{% if displayquestion.next%}
+			  <a id="right" href="/collection_tool/question/{{display_question.i}}/language/">Next &#8594;</a>
+			{%endif%}
+			
+		</div>
+		
+		<h2 id="contenttitle">{{wording}}</h2>
+		
+			
+			<div class="contentbuttons">
+			{%for a in answer_wordings%}
+				<a href="#" class="contentbutton">{{a}}</a>
+				asdas
+			{%endfor%}	
+			</div>
+			
+		</div>
+	
+	</div>
+	
+</div>
+{% endblock collection_tool_content %}
