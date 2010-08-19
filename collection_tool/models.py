@@ -41,12 +41,21 @@ class HelpItem(models.Model):
   spanish_script = models.TextField(null=True, blank =True)
   # ADD SPANISH
   def __unicode__(self): return self.objective
+  
+  @property
+  def dir(self):
+    return dir(self)
+
 
 class HelpUrl(models.Model):
   """Associates a help item with an arbitrary URL."""
   url = models.CharField(max_length=1024, null = True, blank = True)
   help_item = models.ForeignKey(HelpItem)
   def __unicode__(self): return self.url
+    
+  @property
+  def dir(self):
+      return dir(self)
 
 class HelpBulletPoint(models.Model):
   """Displayed as a bullet-point list, these give a summary / what to watch for each page."""
@@ -57,6 +66,10 @@ class HelpBulletPoint(models.Model):
   ordering_rank = models.IntegerField()
   class Meta:
     ordering = ('ordering_rank',)
+    
+  @property
+  def dir(self):
+    return dir(self)
 
 
 class HelpDefinition(models.Model):
@@ -70,7 +83,10 @@ class HelpDefinition(models.Model):
   ordering_rank = models.IntegerField()
   class Meta:
     ordering = ('ordering_rank',)
-
+    
+  @property
+  def dir(self):
+    return dir(self)
     
 class Topic(models.Model):    
   """an aspect of the patient's health that can be improved"""
@@ -81,7 +97,10 @@ class Topic(models.Model):
   ordering_rank = models.IntegerField()
   class Meta:
     ordering = ('ordering_rank',)
-
+    
+  @property
+  def dir(self):
+    return dir(self)
   
 class Goal (models.Model):
   """ one concrete step in the direction of a topic"""
@@ -95,6 +114,9 @@ class Goal (models.Model):
   class Meta:
     ordering = ('ordering_rank',)
 
+  @property
+  def dir(self):
+    return dir(self)
 ##################END HELP AND TOPICS#######
 
 
@@ -120,32 +142,74 @@ class DisplayQuestion(models.Model):
   
   @property
   def answers(self):
-      return self.question.answer_set.all()
-  
+    return self.question.answer_set.all()
   
   @property
+  def dir(self):
+    return dir(self)
+  
+  
+
+  @property
   def next(self):
-    all_numbers = [q.number for q in Question.objects.all()]
-    my_number = self.question.number
+    """ return the next DISPLAYQUESTION in order by id"""
+    all_numbers = [q.id for q in DisplayQuestion.objects.all()]
+    all_numbers.sort()
+    my_number = self.id
     next_index = all_numbers.index(my_number) + 1
+    if next_index == len(all_numbers):
+      return None
+    
+    #import pdb
+    #pdb.set_trace()
+    
     try:
-      next_question = Question.objects.get(number=all_numbers[next_index])
-      return next_question.displayquestion_set.all()[0]
+      return DisplayQuestion.objects.get(id=all_numbers[next_index])
     except:
       return None
+      
+      
+    if 1 == 0:
+              """ This returns the next QUESTION in order"""
+              all_numbers = [q.number for q in Question.objects.all()]
+              my_number = self.question.number
+              next_index = all_numbers.index(my_number) + 1
+              try:
+                next_question = Question.objects.get(number=all_numbers[next_index])
+                return next_question.displayquestion_set.all()[0]
+              except:
+                return None
   
   
   @property
   def prev(self):
-    all_numbers = [q.number for q in Question.objects.all()]
-    my_number = self.question.number
+    
+    """ return the previous DISPLAYQUESTION in order by id, please."""
+    all_numbers = [q.id for q in DisplayQuestion.objects.all()]
+    all_numbers.sort()
+    my_number = self.id
     prev_index = all_numbers.index(my_number) - 1
+    if prev_index == -1:
+      return None
     try:
-      prev_question = Question.objects.get(number=all_numbers[prev_index])
-      return prev_question.displayquestion_set.all()[0]
+      #import pdb
+      #pdb.set_trace()
+      return DisplayQuestion.objects.get(id=all_numbers[prev_index])
     except:
       return None
-  
+    
+    if 1 == 0:
+          """ This returns the previous QUESTION in order"""
+          all_numbers = [q.number for q in Question.objects.all()]
+          my_number = self.question.number
+          prev_index = all_numbers.index(my_number) - 1
+          try:
+            prev_question = Question.objects.get(number=all_numbers[prev_index])
+            return prev_question.displayquestion_set.all()[0]
+          except:
+            return None
+      
+
 
   @property
   def english(self):
@@ -239,7 +303,10 @@ class DisplayAnswer(models.Model):
       pass    
     
     return "Sorry, no wordings provided in either language. Enter wordings at /admin/collection_tool/displayanswer/%d/" % self.id
-    
+  
+  @property
+  def dir(self):
+    return dir(self)
   
 class AnswerTranslation(models.Model):
   """ a question wording in a particular language"""
@@ -253,6 +320,11 @@ class AnswerTranslation(models.Model):
     ordering = ['ordering_string']
 
 
+  @property
+  def dir(self):
+    return dir(self)
+    
+    
 def post_save_ordering_string_update(sender, **kwargs):
   answer_translation = kwargs['instance']
   answer_translation.ordering_string = answer_translation.answer.question_text()

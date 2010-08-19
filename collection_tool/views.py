@@ -43,7 +43,9 @@ def question(request, displayquestion_id, language_code):
   wording = displayquestion.wording(language_code)
   
   
-  answers = [{'wording': d.wording(language_code), 'image': d.image} for d in displayquestion.display_answers]
+  answers = [{'wording': d.wording(language_code),
+              'image': d.image,
+              'id': d.answer.id} for d in displayquestion.display_answers]
   
   #return render_to_response("collection_tool/question.html")
   t = loader.get_template('collection_tool/question.html')
@@ -56,6 +58,33 @@ def question(request, displayquestion_id, language_code):
   })
   return HttpResponse(t.render(c))
     
+nothing = """
+      (r'interview_management_login$',                    'collection_tool.views.interview_management_login'), 
+      (r'interview_management_participants$',             'collection_tool.views.interview_management_participants'), 
+      (r'interview_management_family_assessment$',        'collection_tool.views.interview_family_assessment'),
+      (r'interview_management_family_information$',       'collection_tool.views.interview_management_family_information'), 
+      (r'interview_management_health_worker_information$','collection_tool.views.interview_management_health_worker_information'), 
+      (r'interview_management_sync$',                     'collection_tool.views.interview_management_sync'),
+
+"""
+
+def interview_management_login(request):
+  return render_to_response("collection_tool/interview_management_login.html")
+def interview_management_participants(request):
+  return render_to_response("collection_tool/interview_management_participants.html")
+def interview_management_family_assessment(request):
+  return render_to_response("collection_tool/interview_management_family_assessment.html")
+def interview_management_family_information(request):
+  return render_to_response("collection_tool/interview_management_family_information.html")
+def interview_management_health_worker_information(request):
+  return render_to_response("collection_tool/interview_management_health_worker_information.html")
+def interview_management_sync(request):
+  return render_to_response("collection_tool/interview_management_sync.html")
+  
+
+  
+
+
 
 def html_sandbox(request):
   return render_to_response("collection_tool/html_sandbox.html")

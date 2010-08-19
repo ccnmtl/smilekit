@@ -1,27 +1,5 @@
-#from smilekit.equation_balancer.models import Module, Question, Answer
-#from smilekit.equation_balancer.models import Configuration, ModuleWeight, Weight
 from smilekit.collection_tool.models import *
-
 from django.contrib import admin
-
-#admin.site.register(Topic)
-#admin.site.register(Translation)
-#admin.site.register(DisplayAnswer)
-#admin.site.register(AnswerTranslation)
-
-if 1 == 0:
-  """
-  psql smilekit;
-  drop table collection_tool_translation;
-  drop table collection_tool_answertranslation;
-  drop table collection_tool_displayanswer ;
-  drop table collection_tool_displayquestion;
-  drop table collection_tool_topic;
-  """
-  
-#NOTE: Topic as displayed here is a help topic that can relate to one or more questions, answers, etc.
-#NOTE: THis is not dealing as yet with the weighted "modules" that the questionsa re part of.
-#NOTE: This is not dealing as yet with how we're dealing with questions that are not associated with a module.
 
 class TinyMceAdmin(admin.ModelAdmin):
     class Media:
@@ -73,13 +51,6 @@ class TopicAdmin(TinyMceAdmin):
   
   
 admin.site.register(Topic, TopicAdmin)
-
-        
-        
-if 1 == 0:
-  class TopicAdmin (TinyMceAdmin):
-    verbose_name = 'Help Topic'
-
 
 
 
