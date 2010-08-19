@@ -5,8 +5,8 @@ CACHE MANIFEST
 CACHE:
 #questions:
 {% for id in question_ids %}
-/collection_tool/question/{{id}}/language/en/
-/collection_tool/question/{{id}}/language/es/
+ /collection_tool/question/{{id}}/language/en/
+ /collection_tool/question/{{id}}/language/es/
 {% endfor %}
 
 

@@ -1,4 +1,4 @@
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse, Http404, HttpResponseNotFound
 from django.shortcuts import render_to_response
 from smilekit.collection_tool.models import *
 from django.shortcuts import get_object_or_404, render_to_response
@@ -116,6 +116,8 @@ def manifest(request):
   http://stackoverflow.com/questions/1715568/how-to-properly-invalidate-an-html5-cache-manifest-for-online-offline-web-apps
   http://www.webreference.com/authoring/languages/html/HTML5-Application-Caching/
   """
+  
+  
   response = HttpResponse(mimetype='text/cache-manifest')
   t = loader.get_template('collection_tool/manifest')
   c = RequestContext(request,{
@@ -124,3 +126,11 @@ def manifest(request):
   })
   response.write(t.render(c))
   return response
+  
+    
+
+if 1 == 0:
+
+  def manifest(request):
+    return HttpResponseNotFound()  
+  
