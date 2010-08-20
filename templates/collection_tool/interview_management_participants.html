@@ -1,24 +1,174 @@
 {% extends "collection_tool/interview_management_base.html" %}
+
 {%load smartif%}
 
-
 {% block collection_tool_js %}
+
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js" type="text/javascript"></script>
 
 {% endblock collection_tool_js %}
 
-
-
-
-	
-		{% block collection_tool_content %}
-		  <div id="contentnav">
-		    testing
-			</div>
+{% block collection_tool_content %}
+		
+		
+		<h2 id="contenttitle">
+		
+			Participants
+		
+		</h2>
+		
 			
-		</div>
-	
-	</div>
-	
-</div>
+				
+				<form action="#">
+					
+					<fieldset>
+					
+						<legend>Families</legend>
+					
+							<table>
+							
+							<tr>
+							<td>Green Family (Henry)</td>
+							<td><input type="submit" value="Check In"></td>
+							<td><input type="button" value="Pull Data to iPad" onclick="parent.location='http://kodos.ccnmtl.columbia.edu:2010/collection_tool/interview_management_sync'"></td>
+							<td><input type="button" value="View Answers" onclick="parent.location='http://kodos.ccnmtl.columbia.edu:2010/collection_tool/interview_management_family_assessment'"></td>
+							<td><input type="button" value="Edit" onclick="parent.location='http://kodos.ccnmtl.columbia.edu:2010/collection_tool/interview_management_family_information'"></td>
+							</tr>
+							
+							<tr>
+							<td>Green Family (Henry)</td>
+							<td><input type="submit" value="Check In"></td>
+							<td><input type="button" value="Pull Data to iPad" onclick="parent.location='http://kodos.ccnmtl.columbia.edu:2010/collection_tool/interview_management_sync'"></td>
+							<td><input type="button" value="View Answers" onclick="parent.location='http://kodos.ccnmtl.columbia.edu:2010/collection_tool/interview_management_family_assessment'"></td>
+							<td><input type="button" value="Edit" onclick="parent.location='http://kodos.ccnmtl.columbia.edu:2010/collection_tool/interview_management_family_information'"></td>
+							</tr>
+							
+							<tr>
+							<td>Green Family (Henry)</td>
+							<td><input type="submit" value="Check In"></td>
+							<td><input type="button" value="Pull Data to iPad" onclick="parent.location='http://kodos.ccnmtl.columbia.edu:2010/collection_tool/interview_management_sync'"></td>
+							<td><input type="button" value="View Answers" onclick="parent.location='http://kodos.ccnmtl.columbia.edu:2010/collection_tool/interview_management_family_assessment'"></td>
+							<td><input type="button" value="Edit" onclick="parent.location='http://kodos.ccnmtl.columbia.edu:2010/collection_tool/interview_management_family_information'"></td>
+							</tr>
+							
+							</table>
+					
+					</fieldset>
+					
+				</form>
+			
+				<form action="#">
+					
+					<fieldset>
+					
+						<legend>Create a New Family Account</legend>
+						
+						
+							<table>
+							
+							<tr>
+							<td>Family's Last Name:</td>
+							<td><input type="text" /></td>
+							</tr>
+							
+							<tr>
+							<td>Child's Last Name:</td>
+							<td><input type="text" /></td>
+							</tr>
+							
+							<tr>
+							<td>Child's First Name:</td>
+							<td><input type="text" /></td>
+							</tr>
+							
+							<tr>
+							<td>Child's Age:</td>
+							<td><input type="text" /></td>
+							</tr>
+							
+							<tr>
+							<td colspan="2"><input type="submit" value="Save"></td>
+							</tr>
+							
+							</table>
+						
+					</fieldset>
+					
+				</form>
+			
+			
+				<form action="#">
+					
+					<fieldset>
+					
+						<legend>Health Workers</legend>
+					
+							<table>
+							
+							<tr>
+							<td>Brown, Tony</td>
+							<td><input type="button" value="Edit" onclick="parent.location='http://kodos.ccnmtl.columbia.edu:2010/collection_tool/interview_management_health_worker_information'"></td>
+							</tr>
+							
+							<tr>
+							<td>Brown, Tony</td>
+							<td><input type="button" value="Edit" onclick="parent.location='http://kodos.ccnmtl.columbia.edu:2010/collection_tool/interview_management_health_worker_information'"></td>
+							</tr>
+							
+							<tr>
+							<td>Brown, Tony</td>
+							<td><input type="button" value="Edit" onclick="parent.location='http://kodos.ccnmtl.columbia.edu:2010/collection_tool/interview_management_health_worker_information'"></td>
+							</tr>
+							
+							
+							</table>
+					
+					</fieldset>
+					
+				</form>
+			
+				<form action="#">
+					
+					<fieldset>
+					
+						<legend>Create a New Health Worker Account</legend>
+					
+							<table>
+							
+							<tr>
+							<td>First Name:</td>
+							<td><input type="text" /></td>
+							</tr>
+							
+							<tr>
+							<td>Last Name:</td>
+							<td><input type="text" /></td>
+							</tr>
+							
+							<tr>
+							<td>User Name:</td>
+							<td><input type="text" /></td>
+							</tr>
+							
+							<tr>
+							<td>Password:</td>
+							<td><input type="password" /></td>
+							</tr>
+							
+							<tr>
+							<td>Re-Type Password:</td>
+							<td><input type="password" /></td>
+							</tr>
+							
+							<tr>
+							<td colspan="2"><input type="submit" value="Save"></td>
+							</tr>
+							
+							</table>
+					
+					</fieldset>
+					
+				</form>
+			
+
 {% endblock collection_tool_content %}

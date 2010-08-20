@@ -1,24 +1,48 @@
 {% extends "collection_tool/interview_management_base.html" %}
+
 {%load smartif%}
 
-
 {% block collection_tool_js %}
+
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js" type="text/javascript"></script>
 
 {% endblock collection_tool_js %}
 
-
-
-
-	
-		{% block collection_tool_content %}
-		  <div id="contentnav">
-		    testing
-			</div>
+{% block collection_tool_content %}
+		
+		<h2 id="contenttitle">
+		
+			Log In
+		
+		</h2>
+		
 			
-		</div>
-	
-	</div>
-	
-</div>
+				<form action="http://kodos.ccnmtl.columbia.edu:2010/collection_tool/interview_management_participants">
+					
+					<fieldset>
+					
+						<legend>User Information</legend>
+					
+							<table>
+							
+							<tr>
+							<td>User Name:</td>
+							<td><input type="text" /></td>
+							</tr>
+							
+							<tr>
+							<td>Password:</td>
+							<td><input type="password" /></td>
+							</tr>
+							
+							<tr>
+							<td colspan="2"><input type="submit" value="Log In"></td>
+							</tr>
+							
+							</table>
+					
+					</fieldset>
+					
+				</form>
+			
 {% endblock collection_tool_content %}

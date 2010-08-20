@@ -12,13 +12,27 @@
 
 	
 		{% block collection_tool_content %}
-		  <div id="contentnav">
-		    testing
-			</div>
-			
-		</div>
-	
-	</div>
-	
+
+		<h2 id="contenttitle">
+		
+			Pull Data to iPad
+		
+		</h2>
+		
+		<h3>Account: Green Family</h3>
+		
+		<p>
+		You have chosen to pull the data from the Green family account to this iPad.  When you click the button below, t
+		he information will be downloaded and the account will be locked until the next time you sync this mobile device.
+		</p>
+		
+		<p>
+		Are you sure?
+		</p>
+		
+		<p>
+		<input type="button" value="Yes. Pull the data." onclick="parent.location='http://kodos.ccnmtl.columbia.edu:2010/collection_tool/interview_management_participants'">
+		<input type="button" value="Cancel" onclick="parent.location='http://kodos.ccnmtl.columbia.edu:2010/collection_tool/interview_management_participants'">
+		</p>
 </div>
 {% endblock collection_tool_content %}
