@@ -14,12 +14,17 @@ urlpatterns = patterns('',
       (r'manifest\.cache$',     'collection_tool.views.manifest'),
       
       (r'yes/$', 'collection_tool.views.available_offline'),
+  
+      (r'online_check$', 'collection_tool.views.online_check'),
+  
       
       (r'no/$', 'collection_tool.views.not_available_offline'),
 
       (r'question/(?P<displayquestion_id>\d+)/language/(?P<language_code>\w+)/$', 'collection_tool.views.question'), 
       
       
+ 
+
       
       (r'interview_management_login$',                    'collection_tool.views.interview_management_login'), 
       (r'interview_management_participants$',             'collection_tool.views.interview_management_participants'), 

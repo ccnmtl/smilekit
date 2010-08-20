@@ -106,6 +106,10 @@ def not_available_offline(request):
   return HttpResponse(t.render(c))
 
 
+def online_check(request):
+  return HttpResponse(random.randint(0, 9999999999))
+
+
 def manifest(request):
   """ This is the list of files that Smilekit needs to save locally on the ipad, so that researchers can access them offline while interviewing.
   The url is:

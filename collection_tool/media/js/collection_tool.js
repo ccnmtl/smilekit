@@ -96,6 +96,34 @@ function glog(s) {
      
 
 
+var online_check_number = 0;     
+     
+function check_if_we_are_online() {
+  jQuery.get('/collection_tool/online_check', online_check_callback);
+  jQuery.get('/collection_tool/online_check', online_check_callback);
+}
+
+function online_check_callback(data) {
+  //console.log('checking');
+  //alert(data);
+  if (online_check_number == 0) {
+    online_check_number = parseInt(data);
+  }
+  else {
+    if (online_check_number == parseInt(data)) {
+        // cached
+        //console.log('cached');
+        $('#online_or_not')[0].src = "/collection_tool/media/images/icon_offline.jpg"
+        
+    }else {
+        //fresh
+        //console.log('fresh');
+        $('#online_or_not')[0].src = "/collection_tool/media/images/icon_online.jpg"
+        
+    }
+  }
+}
+
 function localstorage_set ( key1, key2, value ) {
   temp_state = JSON.parse(  localStorage [key1] )
   temp_state [key2] = value;
@@ -116,6 +144,14 @@ function init_answer_clicked() {
   $('a.contentbutton').click(answer_clicked);
 }
 
+$('#online_or_not').ajaxError(function(e, xhr, settings, exception) {
+  //if (settings.url == 'ajax/missing.html') {
+  //  $(this).text('Triggered ajaxError handler.');
+  //}
+  console.log('ERROR');
+});
+
+
 function update_debug_localstorage() {
   document.getElementById('debug_localstorage').innerHTML = localStorage [LOCAL_STORAGE_KEY];
 }
@@ -127,6 +163,7 @@ function init() {
   }
   update_debug_localstorage();
   init_answer_clicked();
+  check_if_we_are_online();
 }
 
 $(document).ready(init);
