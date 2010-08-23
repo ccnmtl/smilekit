@@ -12,13 +12,48 @@
 
 	
 		{% block collection_tool_content %}
-		  <div id="contentnav">
-		    testing
-			</div>
-			
-		</div>
-	
-	</div>
-	
-</div>
+		<h2 id="contenttitle">
+		
+			Health Worker Information
+		
+		</h2>
+		
+		<table>
+		
+		<tr>
+		<td>First Name:</td>
+		<td><input type="text" value="Tony" /></td>
+		</tr>
+		
+		<tr>
+		<td>Last Name:</td>
+		<td><input type="text" value="Brown" /></td>
+		</tr>
+		
+		<tr>
+		<td>User Name:</td>
+		<td><input type="text" value="tb666" /></td>
+		</tr>
+		
+		<tr>
+		<td>Password:</td>
+		<td><input type="password" value="tb666" /></td>
+		</tr>
+		
+		<tr>
+		<td>Re-Type Password:</td>
+		<td><input type="password" value="tb666" /></td>
+		</tr>
+		
+		<tr>
+		<td colspan="2">
+		<input type="button" value="Save" onclick="parent.location='http://kodos.ccnmtl.columbia.edu:2010/collection_tool/interview_management_participants'">
+		<input type="button" value="Delete Account" onclick="parent.location='http://kodos.ccnmtl.columbia.edu:2010/collection_tool/interview_management_participants'">
+		</td>
+		</tr>
+		
+		</table>
+							
 {% endblock collection_tool_content %}
+
+

@@ -46,13 +46,14 @@
 			
 		</div>
 		
-		
 		<div id ="question_id_div">{{displayquestion.id}}</div>
 		
 		
-		<!--
-		{{displayquestion.topic}}
-		-->
+		<div>
+		{% if displayquestion.topic %}
+		  TOPIC: {{displayquestion.topic}}
+		{% endif %}
+		</div>
 		<h2 id="contenttitle">{{wording}}</h2>
 			<img src="/uploads/{{displayquestion.image}}" />
 			<div class="contentbuttons">

@@ -7,13 +7,12 @@ body
 
 
 
+
 /*always hidden: */
 
 #question_id_div {
  display:none;
 }
-
-
 
 
 /********/
@@ -483,13 +482,18 @@ div#timetable .timerowfilled .timeactiondelete
 
 /********/
 
-.photobox
+.photobox, .answerphotobox
 {
 	margin: 0px auto;
 	text-align: left;
 }
 
-.photoboxcontainer
+.answerphotobox
+{
+	width: 690px;
+}
+
+.photoboxcontainer, .answerphotoboxcontainer
 {
 	background-color: #000;
 	-moz-border-radius: 5px;
@@ -500,7 +504,7 @@ div#timetable .timerowfilled .timeactiondelete
 	padding: 10px;
 }
 
-.photoboxlabel
+.photoboxlabel, .answerphotoboxlabel
 {
 	font-weight: bold;
 	text-transform: uppercase;
@@ -509,14 +513,13 @@ div#timetable .timerowfilled .timeactiondelete
 	text-align: center;
 }
 
-.thumbnails {}
+.thumbnails, .answerthumbnails {}
 
-.thumbnail
+.thumbnail, .answerthumbnail
 {
 	display: block;
 	float: left;
 	background-color: #ccc;
-	width: 100px;
 	margin-left: 8px;
 	margin-bottom: 8px;
 	border: 3px solid #000;
@@ -524,21 +527,40 @@ div#timetable .timerowfilled .timeactiondelete
 	-webkit-border-radius: 5px;
 }
 
-.thumbnailselected { border: 3px solid #3c3; }
+.thumbnail
+{
+	width: 100px;
+}
 
-a.thumbnailimage { text-decoration: none; }
+.answerthumbnail
+{
+	width: 200px;
+}
 
-span.thumbnaillabel
+.thumbnailselected,.answerthumbnailselected { border: 3px solid #3c3; }
+
+a.thumbnailimage,a.answerthumbnailimage { text-decoration: none; }
+
+span.thumbnaillabel, span.answerthumbnaillabel
 {
 	display: block;
 	color: #fff;
 	background-color: #000;
 	text-align: center;
-	width: 100px;
 	border: 1px solid #000000;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
+}
+
+span.thumbnaillabel
+{
+	width: 100px;
+}
+
+span.answerthumbnaillabel
+{
+	width: 200px;
 }
 
 /********/
@@ -553,7 +575,7 @@ span.thumbnaillabel
 {
 	width: 670px;
 	margin: 0px auto;
-	text-align: left;
+	text-align: center;
 }
 
 /********/
@@ -773,6 +795,40 @@ a.contentbutton
 }
 
 /********/
+
+
+/********/
+
+/*interview management*/
+
+fieldset, legend {
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border: 1px solid #4c4c4c;
+	color: #333;
+
+}
+
+fieldset {
+	margin: 20px 0px 0px 0px;
+	background: -webkit-gradient(linear, left top, left bottom, from(#eee), to(#fff));
+	background: -moz-linear-gradient(top, #eee, #fff);
+	padding: 20px;
+}
+
+legend {
+	padding: 5px 10px 5px 10px;
+	font-weight: bold;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f5f5f7), to(#c1c4c3));
+	background: -moz-linear-gradient(top, #f5f5f7, #c1c4c3);
+	color: #333;
+	text-shadow: #fff 1px 1px 1px;
+	font-weight: bold;
+}
+
+td, legend, input {font-size: 16px;}
+/********/
+
 
 
 
