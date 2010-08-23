@@ -2,53 +2,54 @@
 
 	<div class="help_content">
 		
-		<h4>Help!</h4>
+		{% with displayquestion.help_item.help_item as h_i %}
+		  <h4>Help!</h4>
+		  <h5>Objective:</h5>
+		  
+		  <p>
+		  {%ifequal language_code 'es'%}{{h_i.spanish_title}}{%endifequal %}
+		  {%ifequal language_code 'en'%}{{h_i.english_title}}{%endifequal %}
+		  </p> 
 		
-		<h5>Objective:</h5>
+		  <h5>Watch for:</h5>
 		
-		<p>Lorem ipsuaam dolor sit amet, consectetur adipiscing elit. Curabitur sed lorem urna, ut placerat odio.</p> 
+		  <ul>
+		  {% for b in h_i.helpbulletpoint_set.all %}
+		  <li>
+		  {%ifequal language_code 'es'%}{{b.spanish_text}}{%endifequal %}
+		  {%ifequal language_code 'en'%}{{b.english_text}}{%endifequal %}
+      </li>
+		  {% endfor %}
+		  </ul>
 		
-		<h5>Watch for:</h5>
+		  <h5>Instructions</h5>
 		
-		<ul>
-		<li>This</li>
-		<li>This and</li>
-		<li>That</li>
-		</ul>
+		  <p>
+		  {%ifequal language_code 'es'%}{{h_i.spanish_script_instructions}}{%endifequal %}
+		  {%ifequal language_code 'en'%}{{h_i.english_script_instructions}}{%endifequal %}
+		  <h5>Script</h5>
 		
-		<h5>Instructions</h5>
+		  <p>
+		  {%ifequal language_code 'es'%}{{h_i.spanish_script}}{%endifequal %}
+		  {%ifequal language_code 'en'%}{{h_i.english_script}}{%endifequal %}
+		  </p>
 		
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sed lorem urna, ut placerat odio.</p> 
+		  <h5>Important Terms</h5>
 		
-		<h5>Script</h5>
-		
-		<p>
-		GARY: (holding umbrella) Lorem ipsum dolor sit amet, consectetur adipiscing elit? 
-		</p>
-		
-		<p>
-		GARY: (holding PEZ dispenser) Phasellus sit amet nisi id augue pharetra ullamcorper vel fermentum risus. Maecenas at diam a lorem varius ullamcorper at eu sapien! 
-		</p>
-		
-		<p>
-		CUT TO: GARY and DENNIS laughing maniacally.
-		</p>
-		
-		<p>
-		END
-		</p>
-		
-		<h5>Important Terms</h5>
-		
-		<p>
-		<b>Definition</b> - definition body.
-		</p>
-
-		<p>
-		<b>Definition</b> - definition body.
-		</p>
+		  {% for d in h_i.helpdefinition_set.all %}
+		  <p>
+		    {%ifequal language_code 'es'%}
+    		  <b>{{d.spanish_title}}</b> - {{d.spanish_body}}
+		    {%endifequal %}
+		    {%ifequal language_code 'en'%}
+	    	  <b>{{d.english_title}}</b> - {{d.english_body}}
+		    {%endifequal %}
+		  </p>
+		{% endfor %}
 
 		<a id="help_close" href="javascript:void(0)" onclick="document.getElementById('helpon').style.display='none';document.getElementById('helpoff').style.display='none'">X</a>
+		
+		{% endwith %}
 	</div>
 	
 </div>

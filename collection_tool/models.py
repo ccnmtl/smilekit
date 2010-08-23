@@ -31,19 +31,40 @@ drop table collection_tool_topic           ;
 
 """
 
+#alter table public.collection_tool_helpitem add column "english_title" varchar(1024) NULL;
+#alter table public.collection_tool_helpitem add column "spanish_title" varchar(1024) NULL;
+#alter table public.collection_tool_helpitem drop column "title";
+
+    
+#CREATE TABLE "collection_tool_helpitem" (
+#    "id" serial NOT NULL PRIMARY KEY,
+#    "english_title" varchar(1024) NULL,
+#    "spanish_title" varchar(1024) NULL,
+#    "english_script_instructions" text NULL,
+#    "english_script" text NULL,
+#    "spanish_script_instructions" text NULL,
+#    "spanish_script" text NULL
+#)
+
 
 
 class HelpItem(models.Model):
-  title = models.CharField(max_length=1024, null = True, blank = True)
+  english_title = models.CharField(max_length=1024, null = True, blank = True)
+  spanish_title = models.CharField(max_length=1024, null = True, blank = True)
   english_script_instructions = models.TextField(null=True, blank =True)
   english_script = models.TextField(null=True, blank =True)
   spanish_script_instructions = models.TextField(null=True, blank =True)
   spanish_script = models.TextField(null=True, blank =True)
-  # ADD SPANISH
-  def __unicode__(self): return self.objective
   
+  
+  def __unicode__(self):
+    if self.english_title:
+      return self.english_title
+    return "(no title)"
+    
   @property
   def dir(self):
+    print self
     return dir(self)
 
 
@@ -90,7 +111,7 @@ class HelpDefinition(models.Model):
     
 class Topic(models.Model):    
   """an aspect of the patient's health that can be improved"""
-  def __unicode__(self): return self.name  
+  def __unicode__(self): return self.english_title  
   english_title  = models.CharField(max_length=1024, null = True, blank = True)
   spanish_title  = models.CharField(max_length=1024, null = True, blank = True)
   
@@ -134,7 +155,22 @@ class DisplayQuestion(models.Model):
   def get_absolute_url(self):
     return ('smilekit.views.question', [str(self.id), 'en'])
 
-
+  
+  #this violates DRY but I'm fine with that for now.
+  @property
+  def help_item(self):
+    #import pdb
+    #pdb.set_trace()
+    try:
+      #print HelpUrl.objects.filter (url__contains = 'question/%d' % self.id )[0]
+      return HelpUrl.objects.filter (url__contains = 'question/%d' % self.id )[0]
+    except:
+      #print "exception thrown"
+      return None
+    #print "no exception thrown"
+    return None
+    
+    
   @property
   def display_answers (self):
     return DisplayAnswer.objects.filter(answer__in= self.question.answer_set.all())
@@ -183,7 +219,6 @@ class DisplayQuestion(models.Model):
   
   @property
   def prev(self):
-    
     """ return the previous DISPLAYQUESTION in order by id, please."""
     all_numbers = [q.id for q in DisplayQuestion.objects.all()]
     all_numbers.sort()

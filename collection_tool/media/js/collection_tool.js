@@ -54,21 +54,13 @@ var cacheStatusValues = [];
      message+= ', event: ' + type;
      message+= ', status: ' + status;
      if (type == 'error' && navigator.onLine) {
-         message+= ' There was an unknown error, check your Cache Manifest.';
+         message+= ' (ERROR)';
      }
      glog(''+message);
 }
 
 function glog(s) {
-  $('logo').title = s;
-
-/*    if (console != null && typeof (console) != "undefined") {
-      console.log(s);
-    }
-    else {
-    
-    }
-    */
+  $('#debug_cache_status')[0].innerHTML = s;
 }
 
  function isOnline() {
@@ -91,7 +83,7 @@ function glog(s) {
      cache.update();
  }
  function autoCheckForUpdates(){
-     setInterval(function(){cache.update()}, 10000);
+     setInterval(function(){cache.update()}, 50000);
  }
      
 
@@ -164,6 +156,7 @@ function init() {
   update_debug_localstorage();
   init_answer_clicked();
   check_if_we_are_online();
+  autoCheckForUpdates();
 }
 
 $(document).ready(init);

@@ -26,12 +26,17 @@
 		{% block collection_tool_content %}
 		<div id="contentnav">
 		  
-		<img id="online_or_not" src="/collection_tool/media/images/icon_offline.jpg" >
 		  {% if displayquestion.prev%}
 			  <a id="left" href="/collection_tool/question/{{displayquestion.prev.id}}/language/{{language_code}}/">&#8592; Back</a>
 			{%endif%}
 			
+			
+			
+  		{%if displayquestion.help_item %}
+  		
 			<a id="help" href="javascript:void(0)" onclick="document.getElementById('helpon').style.display='block';document.getElementById('helpoff').style.display='block'">Help!</a>
+  		{%endif %}
+
 			
 			{% include "collection_tool/help.html" %}
 		
@@ -40,10 +45,14 @@
 			{%endif%}
 			
 		</div>
-		<div id ="debug_localstorage"></div>
+		
 		
 		<div id ="question_id_div">{{displayquestion.id}}</div>
 		
+		
+		<!--
+		{{displayquestion.topic}}
+		-->
 		<h2 id="contenttitle">{{wording}}</h2>
 			<img src="/uploads/{{displayquestion.image}}" />
 			<div class="contentbuttons">
@@ -55,6 +64,10 @@
 			    {%endif%}    
 			
 			{%endfor%}	
+			
+		<div id ="debug_localstorage"></div>
+		<div id ="debug_cache_status"></div>
+		<div><img id="online_or_not" src="/collection_tool/media/images/icon_offline.jpg" ></div>	
 			</div>
 			
 		</div>
@@ -62,4 +75,6 @@
 	</div>
 	
 </div>
+
+
 {% endblock collection_tool_content %}

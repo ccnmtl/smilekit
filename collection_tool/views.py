@@ -15,10 +15,10 @@ import random
 
 def question(request, displayquestion_id, language_code):
   """ Look up a DisplayQuestion object and display it in the data collection tool. Note that question_id refers to a displayquestion object, not a question object; some displayquestions are not associated with any question."""
-  #print displayquestion_id
-  #print language_code
-  #print DisplayQuestion.objects.get(id=displayquestion_id)
-  #if language_
+  
+  #import pdb
+  #pdb.set_trace()
+  
   
   displayquestion = get_object_or_404(DisplayQuestion, pk=displayquestion_id)
   
@@ -30,6 +30,9 @@ def question(request, displayquestion_id, language_code):
     wording = displayquestion.english
   if language_code == 'es':
     wording = displayquestion.spanish
+  
+  
+  
   
   #import pdb
   #pdb.set_trace()

@@ -5,8 +5,13 @@ CACHE MANIFEST
 CACHE:
 #questions:
 {% for id in question_ids %}
- /collection_tool/question/{{id}}/language/en/
- /collection_tool/question/{{id}}/language/es/
+# question {{id}}
+/collection_tool/question/{{id}}/language/en/
+/collection_tool/question/{{id}}/language/es/
+#question images
+
+#answer images
+
 {% endfor %}
 
 
@@ -18,12 +23,12 @@ CACHE:
 /collection_tool/media/images/icon_planner_delete.png
 /collection_tool/media/images/logo_mysmilebuddy.png
 /collection_tool/media/images/icon_offline.jpg
-
+/collection_tool/media/images/icon_online.jpg
 /collection_tool/media/css/collection_tool.css
 
 
 #other urls we need:
-/collection_tool/yes/
+#/collection_tool/yes/
 
 FALLBACK:
 
@@ -31,7 +36,6 @@ FALLBACK:
 
 NETWORK:
 /collection_tool/online_check
-#/collection_tool/media/images/icon_online.jpg
 
 
 
