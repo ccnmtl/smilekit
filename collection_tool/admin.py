@@ -53,6 +53,7 @@ class TopicAdmin(TinyMceAdmin):
 admin.site.register(Topic, TopicAdmin)
 
 
+admin.site.register(AssessmentSection)
 
 class TranslationInline(admin.TabularInline):
   model = Translation
@@ -61,10 +62,12 @@ class TranslationInline(admin.TabularInline):
   verbose_name_plural = 'Question wordings'
   extra = 2
 
+
+  
 class DisplayQuestionAdmin(TinyMceAdmin):
   search_fields=[ 'question', ]
   list_display=('question', '__unicode__')
-  fields = [ 'question', 'image', 'topic']
+  fields = [ 'question',  'nav_section', 'image', 'topic', 'stock_answers', 'part_of_score', ]
   inlines = [TranslationInline]
   verbose_name = 'Display Question'
   verbose_name_plural = 'Display Questions'

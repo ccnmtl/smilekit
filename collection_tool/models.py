@@ -31,24 +31,12 @@ drop table collection_tool_topic           ;
 
 """
 
-#alter table public.collection_tool_helpitem add column "english_title" varchar(1024) NULL;
-#alter table public.collection_tool_helpitem add column "spanish_title" varchar(1024) NULL;
-#alter table public.collection_tool_helpitem drop column "title";
-
-    
-#CREATE TABLE "collection_tool_helpitem" (
-#    "id" serial NOT NULL PRIMARY KEY,
-#    "english_title" varchar(1024) NULL,
-#    "spanish_title" varchar(1024) NULL,
-#    "english_script_instructions" text NULL,
-#    "english_script" text NULL,
-#    "spanish_script_instructions" text NULL,
-#    "spanish_script" text NULL
-#)
-
-
 
 class HelpItem(models.Model):
+
+
+  english_objective = models.CharField(max_length=1024, null = True, blank = True)
+  spanish_objective = models.CharField(max_length=1024, null = True, blank = True)
   english_title = models.CharField(max_length=1024, null = True, blank = True)
   spanish_title = models.CharField(max_length=1024, null = True, blank = True)
   english_script_instructions = models.TextField(null=True, blank =True)
@@ -141,20 +129,62 @@ class Goal (models.Model):
 ##################END HELP AND TOPICS#######
 
 
+        
+  name =  models.CharField(max_length=256, null=False)
+  description  = models.CharField(max_length=1024, null = True, blank = True)
+  
+class AssessmentSection(models.Model):
+  """nav section that each question belongs to."""
+  title =  models.TextField(null=True, blank =True)
+  ordering_rank = models.IntegerField()
+  class Meta:
+    ordering = ('ordering_rank',)
+
+  
+  def __unicode__(self):
+    return self.title
+
+  #TODO:     """additionally, you may want to think about how force the system to differentiate between multiple choice questions that allow multiple answer selections (example: what are some of your favorite foods?) and ones that require a single answers (example: what is your child's main source of drinking water? bottled, tap, both)"""
+  # This implies a json object stored in a field, itself in a question that has a text value."
+  #TODO: How would we score these???
+  
+    
+  
   
 class DisplayQuestion(models.Model):
   """associates questions with translations, images, help topics, etc."""
-  part_of_score =  models.CharField(max_length=1, null=False)
+      
+  STOCK_ANSWER_CHOICES = (
+      ('yesno', 'Yes / No'),
+      ('number_of_times', 'None / Once / Twice / More than Twice'),
+      ('relative_frequency', 'Never / Sometimes / Often / Always'),
+      ('agree_disagree', 'Agree / Unsure / Disagree'),
+  )
+
+  stock_answers = models.CharField(max_length=30, choices=STOCK_ANSWER_CHOICES, blank =True, null=True) 
+  part_of_score =  models.BooleanField()
   question = models.ForeignKey(Question, null=True, blank=True)
-  
+  nav_section = models.ForeignKey(AssessmentSection, null=True, blank=True)
   topic = models.ForeignKey(Topic, null=True, blank=True)
-  
   image = models.ImageField(upload_to='question_images',blank=True,null=True)
   
-  @models.permalink
-  def get_absolute_url(self):
-    return ('smilekit.views.question', [str(self.id), 'en'])
+  
+  if 1 == 1:
+    #@models.permalink
+    def get_absolute_url(self):
+      #import pdb
+      #pdb.set_trace()
+      
+      #return ('smilekit.collection_tool.views.question', [str(self.id), 'en'])
+      print '/collection_tool/question/%d/language/en/' % self.id
+      return '/collection_tool/question/%d/language/en/' % self.id
 
+
+
+  @property
+  def question_type(self):
+    return self.question.type
+  
   
   #this violates DRY but I'm fine with that for now.
   @property
