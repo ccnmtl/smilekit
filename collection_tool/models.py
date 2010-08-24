@@ -168,16 +168,12 @@ class DisplayQuestion(models.Model):
   topic = models.ForeignKey(Topic, null=True, blank=True)
   image = models.ImageField(upload_to='question_images',blank=True,null=True)
   
-  
-  if 1 == 1:
-    #@models.permalink
-    def get_absolute_url(self):
-      #import pdb
-      #pdb.set_trace()
-      
-      #return ('smilekit.collection_tool.views.question', [str(self.id), 'en'])
-      print '/collection_tool/question/%d/language/en/' % self.id
-      return '/collection_tool/question/%d/language/en/' % self.id
+
+  #I LOATHE YOU,  @models.permalink !
+  #@models.permalink
+  def get_absolute_url(self):
+    #return ('smilekit.collection_tool.views.question', [str(self.id), 'en'])
+    return '/collection_tool/question/%d/language/en/' % self.id
 
 
 
