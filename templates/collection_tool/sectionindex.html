@@ -38,10 +38,17 @@
 			 {% for q in section.displayquestion_set.all%}
 			 
 			   <!--  'contentbuttoncomplete' is added by javascript -->
-				  <a href="/collection_tool/question/{{q.id}}/language/{{language_code}}" class="contentbutton" id = "question_{{q.id}}">
+				  <a href="/collection_tool/question/{{q.id}}/language/{{language_code}}" class="contentbutton" id = "question_{{q.id}}" title = "rank: {{q.ordering_rank}}; prev: {{q.prev}}; next: {{q.next}}">
 				  {%ifequal language_code 'en'%}{{q.english}}{%endifequal%}
 		      {%ifequal language_code 'es'%}{{q.spanish}}{%endifequal%}
 		      </a>
+		      <!--
+		      <div>
+		      {{q.dir}}
+		      
+		      
+		      </div>
+		      -->
 				{%endfor %}
 			
 			

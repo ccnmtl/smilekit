@@ -139,6 +139,19 @@ class AssessmentSection(models.Model):
   # This implies a json object stored in a field, itself in a question that has a text value."
   #TODO: How would we score these???
   
+  def display_question_ids(self):
+    """ used for ordering"""
+    return [q.id for q in self.displayquestion_set.all()] 
+  
+
+
+def all_display_question_ids_in_order():
+  result = []
+  #order all questions, first by nav section, then by rank within that section:
+  sections = [a for a in AssessmentSection.objects.all()]
+  for a in [s.display_question_ids() for s in sections]:
+    result.extend (a)
+  return result
     
   
   
@@ -159,6 +172,10 @@ class DisplayQuestion(models.Model):
   topic = models.ForeignKey(Topic, null=True, blank=True)
   image = models.ImageField(upload_to='question_images',blank=True,null=True)
   
+  ordering_rank = models.IntegerField(help_text = "Use this to determine the order in which the questions are asked within each nav section.")
+  class Meta:
+    ordering = ('ordering_rank',)
+  
 
   #I LOATHE YOU,  @models.permalink !
   #@models.permalink
@@ -176,8 +193,6 @@ class DisplayQuestion(models.Model):
   #this violates DRY but I'm fine with that for now.
   @property
   def help_item(self):
-    #import pdb
-    #pdb.set_trace()
     try:
       #print HelpUrl.objects.filter (url__contains = 'question/%d' % self.id )[0]
       return HelpUrl.objects.filter (url__contains = 'question/%d' % self.id )[0]
@@ -205,62 +220,28 @@ class DisplayQuestion(models.Model):
 
   @property
   def next(self):
-    """ return the next DISPLAYQUESTION in order by id"""
-    all_numbers = [q.id for q in DisplayQuestion.objects.all()]
-    all_numbers.sort()
-    my_number = self.id
-    next_index = all_numbers.index(my_number) + 1
+    """ return the next question in order by nav section, then rank."""
+    all_numbers = all_display_question_ids_in_order()
+    next_index = all_numbers.index(self.id) + 1
     if next_index == len(all_numbers):
       return None
-    
-    #import pdb
-    #pdb.set_trace()
     
     try:
       return DisplayQuestion.objects.get(id=all_numbers[next_index])
     except:
       return None
-      
-      
-    if 1 == 0:
-              """ This returns the next QUESTION in order"""
-              all_numbers = [q.number for q in Question.objects.all()]
-              my_number = self.question.number
-              next_index = all_numbers.index(my_number) + 1
-              try:
-                next_question = Question.objects.get(number=all_numbers[next_index])
-                return next_question.displayquestion_set.all()[0]
-              except:
-                return None
-  
-  
+
   @property
   def prev(self):
-    """ return the previous DISPLAYQUESTION in order by id, please."""
-    all_numbers = [q.id for q in DisplayQuestion.objects.all()]
-    all_numbers.sort()
-    my_number = self.id
-    prev_index = all_numbers.index(my_number) - 1
+    """ return the previous question in order by nav section, then rank."""
+    all_numbers = all_display_question_ids_in_order()
+    prev_index = all_numbers.index(self.id) - 1
     if prev_index == -1:
       return None
     try:
-      #import pdb
-      #pdb.set_trace()
       return DisplayQuestion.objects.get(id=all_numbers[prev_index])
     except:
       return None
-    
-    if 1 == 0:
-          """ This returns the previous QUESTION in order"""
-          all_numbers = [q.number for q in Question.objects.all()]
-          my_number = self.question.number
-          prev_index = all_numbers.index(my_number) - 1
-          try:
-            prev_question = Question.objects.get(number=all_numbers[prev_index])
-            return prev_question.displayquestion_set.all()[0]
-          except:
-            return None
-      
 
 
   @property

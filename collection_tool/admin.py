@@ -67,7 +67,7 @@ class TranslationInline(admin.TabularInline):
 class DisplayQuestionAdmin(TinyMceAdmin):
   search_fields=[ 'question', ]
   list_display=('question', '__unicode__')
-  fields = [ 'question',  'nav_section', 'image', 'topic', 'stock_answers', 'part_of_score', ]
+  fields = [ 'question', 'ordering_rank', 'nav_section', 'image', 'topic', 'stock_answers', 'part_of_score', ]
   inlines = [TranslationInline]
   verbose_name = 'Display Question'
   verbose_name_plural = 'Display Questions'
