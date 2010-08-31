@@ -13,63 +13,42 @@ import random
 #    return render_to_response("collection_tool/temp_html.html")
     
 
-def question(request, displayquestion_id, language_code):
-  """ Look up a DisplayQuestion object and display it in the data collection tool. Note that question_id refers to a displayquestion object, not a question object; some displayquestions are not associated with any question."""
-  
+def section(request, section_id, language_code):
   #import pdb
   #pdb.set_trace()
-  
-  
-  displayquestion = get_object_or_404(DisplayQuestion, pk=displayquestion_id)
+  section = get_object_or_404(AssessmentSection, pk=section_id)
   
   if language_code not in ['en', 'es']:
     raise Http404
+    
+  t = loader.get_template('collection_tool/sectionindex.html')
+  c = RequestContext(request,{
+      'section': section,
+      'language_code': language_code
+  })
+  return HttpResponse(t.render(c))    
   
-  wording = None
-  if language_code == 'en':
-    wording = displayquestion.english
-  if language_code == 'es':
-    wording = displayquestion.spanish
-  
-  
-  
-  
-  #import pdb
-  #pdb.set_trace()
-  
-  #if wording == None:
-  #  raise Http404
-  #  #TODO: use backup wording in the other language if only one is available.
-  
-  
-  #TODO: how the hell do we store attach answers to display_questions that have a null question?
+
+
+def question(request, displayquestion_id, language_code):
+  """ Look up a DisplayQuestion object and display it in the data collection tool. Note that question_id refers to a displayquestion object, not a question object; some displayquestions are not associated with any question."""
+  displayquestion = get_object_or_404(DisplayQuestion, pk=displayquestion_id)
+  if language_code not in ['en', 'es']:
+    raise Http404
   wording = displayquestion.wording(language_code)
-  
-  
   answers = [{'wording': d.wording(language_code),
               'image': d.image,
               'id': d.answer.id} for d in displayquestion.display_answers]
   
-  #return render_to_response("collection_tool/question.html")
   t = loader.get_template('collection_tool/question.html')
   c = RequestContext(request,{
       'displayquestion': displayquestion,
       'wording' : wording,
       'answers': answers,
       'language_code': language_code
-      #'answers': None
   })
   return HttpResponse(t.render(c))
     
-nothing = """
-      (r'interview_management_login$',                    'collection_tool.views.interview_management_login'), 
-      (r'interview_management_participants$',             'collection_tool.views.interview_management_participants'), 
-      (r'interview_management_family_assessment$',        'collection_tool.views.interview_family_assessment'),
-      (r'interview_management_family_information$',       'collection_tool.views.interview_management_family_information'), 
-      (r'interview_management_health_worker_information$','collection_tool.views.interview_management_health_worker_information'), 
-      (r'interview_management_sync$',                     'collection_tool.views.interview_management_sync'),
-
-"""
 
 def interview_management_login(request):
   return render_to_response("collection_tool/interview_management_login.html")

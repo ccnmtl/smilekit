@@ -12,6 +12,26 @@
 
 
 
+{% block mainnav %}
+	<div id="mainnav">
+		<a id="introductiontab" class="mainfirsttab" href="#">Introduction</a>
+		<a id="assessmenttab" class="assessmenttabactive" href="#">Assessment</a>
+		<a id="risktab" class="" href="#">Risk</a>
+		<a id="planningtab" class="mainlasttab" href="#">Planning</a>
+	</div>
+{% endblock %}
+	
+<!-- TODO: generate this server-side -->
+{% block assessmentnav %}
+	<div id="assessmentnav">
+		<a class="firsttab {%ifequal displayquestion.nav_section.title "Diet" %}activetab{%endifequal%}" href="/collection_tool/section/1/language/{{language_code}}/">Diet</a>
+		<a class="{%ifequal displayquestion.nav_section.title "Feeding Practices" %}activetab{%endifequal%}" href="/collection_tool/section/2/language/{{language_code}}/">Feeding Practices</a>
+		<a class="{%ifequal displayquestion.nav_section.title "Family History" %}activetab{%endifequal%}" href="/collection_tool/section/3/language/{{language_code}}/">Family History</a>
+		<a class="lasttab {%ifequal displayquestion.nav_section.title "Fluoride" %}activetab{%endifequal%}" href="/collection_tool/section/4/language/{{language_code}}/">Fluoride</a>
+	</div>
+{% endblock %}
+
+
 {% block language_toggle %}
 		{%ifequal language_code 'en'%}
 		<a href="/collection_tool/question/{{displayquestion.id}}/language/es/">espa&#241;ol</a>
@@ -22,15 +42,12 @@
 		{%endifequal%}
 {% endblock %}
 
-	
 		{% block collection_tool_content %}
+		
 		<div id="contentnav">
-		  
 		  {% if displayquestion.prev%}
 			  <a id="left" href="/collection_tool/question/{{displayquestion.prev.id}}/language/{{language_code}}/">&#8592; Back</a>
 			{%endif%}
-			
-			
 			
   		{%if displayquestion.help_item %}
   		
@@ -59,11 +76,7 @@
 			<div class="contentbuttons">
 			{%for a in answers%}
 				<a href="#"  id ="answer_{{a.id}}" class="contentbutton">{{a.wording}}</a>
-				
-				{% if a.image %}
-				this answer has an image: <img src="/uploads/{{a.image}}"/>
-			    {%endif%}    
-			
+				{% if a.image %}<img src="/uploads/{{a.image}}"/>{%endif%}
 			{%endfor%}	
 			
 		<div id ="debug_localstorage"></div>

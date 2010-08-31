@@ -1,13 +1,31 @@
-LOCAL_STORAGE_KEY = 'la_llave_encantada';
+var LOCAL_STORAGE_KEY;
 
-/*
 // just for testing:
 
+ $.extend({
+   keys: function(obj){
+     var a = [];
+     $.each(obj, function(k){ a.push(k) });
+     return a;
+   }
+ })
+  
+
+/*
 function local_storage_write () {
   v = document.getElementById('the_value_to_write').value;
   localStorage [LOCAL_STORAGE_KEY] = v;
   alert ('Wrote "' + v + '" to local storage.');
 }
+*/
+function local_storage_set ( namespace, key, value ) {
+  temp_state = JSON.parse(  localStorage [namespace] )
+  temp_state [key] = value;
+  localStorage [namespace] = JSON.stringify(temp_state);
+  temp_state = null;
+}
+
+
 function local_storage_read () {
   v = localStorage[LOCAL_STORAGE_KEY];
   if ( v == null) {
@@ -17,12 +35,16 @@ function local_storage_read () {
     alert ('Found "' + v + '" in local storage.');
   }  
 }
+
+function local_storage_keys () {
+
+}
+
 function local_storage_clear () {
   localStorage.clear();
   alert ('Wiped local storage.');
 }
 
-*/
 
 // Convenience array of status values
 var cacheStatusValues = [];
@@ -116,20 +138,25 @@ function online_check_callback(data) {
   }
 }
 
-function localstorage_set ( key1, key2, value ) {
-  temp_state = JSON.parse(  localStorage [key1] )
-  temp_state [key2] = value;
-  localStorage [key1] = JSON.stringify(temp_state);
-  temp_state = null;
-}
 
 function answer_clicked(event) {
   event.preventDefault();
   //console.log(event.target.id.split('_')[1]);  
   answer_id = event.target.id.split('_')[1];
   question_id = $('#question_id_div')[0].innerHTML;
-  localstorage_set (LOCAL_STORAGE_KEY, question_id, answer_id);
+  local_storage_set (LOCAL_STORAGE_KEY, question_id, answer_id);
   update_debug_localstorage(); 
+  highlight_answer (answer_id);
+}
+
+/* haven't figured out how else to do this in jquery yet: */
+function unhighlight_answer (a, b) {
+  $('#' + b.id).removeClass('contentbuttonchosen')
+}
+
+function highlight_answer (answer_id) {
+  $.each ( $('.contentbuttonchosen'), unhighlight_answer);
+  $('#answer_' + answer_id).addClass('contentbuttonchosen')
 }
 
 function init_answer_clicked() {
@@ -145,22 +172,48 @@ $('#online_or_not').ajaxError(function(e, xhr, settings, exception) {
 
 
 function update_debug_localstorage() {
-  document.getElementById('debug_localstorage').innerHTML = localStorage [LOCAL_STORAGE_KEY];
+  if ($('#debug_localstorage')[0]) {
+    document.getElementById('debug_localstorage').innerHTML = localStorage [LOCAL_STORAGE_KEY];
+  }
 }
 
 function init() {
+
+  //console.log ('hi');
   LOCAL_STORAGE_KEY = 'la_llave_encantada';
   if (localStorage [LOCAL_STORAGE_KEY] == null) {
     localStorage [LOCAL_STORAGE_KEY] = '{}';
   }
   update_debug_localstorage();
-  init_answer_clicked();
-  check_if_we_are_online();
-  autoCheckForUpdates();
+  if ( window.location.href.match (/question/)) {
+    init_answer_clicked();
+  }
+  //check_if_we_are_online();
+  //autoCheckForUpdates();
+  
+  
+  
+  //console.log(JSON.parse( localStorage [LOCAL_STORAGE_KEY])[question_id]);
+  
+  
+  if ( window.location.href.match (/question/)) {
+    // highlight the chosen answer on the question page:
+    question_id = $('#question_id_div')[0].innerHTML;
+    answer_id = JSON.parse( localStorage [LOCAL_STORAGE_KEY])[question_id];
+    highlight_answer (answer_id);
+  } else {
+    // highlight all answered questions on the section page:
+    answered_questions = $.keys(JSON.parse(localStorage [LOCAL_STORAGE_KEY]))
+    $.each( $.keys( JSON.parse( localStorage [LOCAL_STORAGE_KEY])), function (a, question_id) {
+        $('#question_' + question_id).addClass('contentbuttoncomplete');
+      }
+    )
+  }
 }
 
-$(document).ready(init);
 
+
+$(document).ready(init);
 
 
 

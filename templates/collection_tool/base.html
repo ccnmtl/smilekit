@@ -53,21 +53,24 @@
 	</div>
 	-->
 
+{% block mainnav %}
 	<div id="mainnav">
 		<a id="introductiontab" class="mainfirsttab" href="#">Introduction</a>
 		<a id="assessmenttab" class="assessmenttabactive" href="#">Assessment</a>
 		<a id="risktab" class="" href="#">Risk</a>
 		<a id="planningtab" class="mainlasttab" href="#">Planning</a>
 	</div>
+{% endblock %}
 	
 
+{% block assessmentnav %}
 	<div id="assessmentnav">
 		<a class="firsttab activetab" href="#">Diet</a>
 		<a class="" href="#">Feeding Practices</a>
 		<a class="" href="#">Family History</a>
 		<a class="lasttab" href="#">Fluoride</a>
 	</div>
-	
+{% endblock %}
 	<!--
 	<div id="assessmentnav">
 		<a class="firsttab" href="#">Diet</a>

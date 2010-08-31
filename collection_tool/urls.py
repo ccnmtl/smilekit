@@ -22,9 +22,7 @@ urlpatterns = patterns('',
 
       (r'question/(?P<displayquestion_id>\d+)/language/(?P<language_code>\w+)/$', 'collection_tool.views.question'), 
       
-      
- 
-
+      (r'section/(?P<section_id>\d+)/language/(?P<language_code>\w+)/$', 'collection_tool.views.section'), 
       
       (r'interview_management_login$',                    'collection_tool.views.interview_management_login'), 
       (r'interview_management_participants$',             'collection_tool.views.interview_management_participants'), 

@@ -12,29 +12,10 @@ Question = models.get_model('equation_balancer', 'question')
 Answer = models.get_model('equation_balancer', 'answer')
 
 ##################HELP AND TOPICS####
-""" 
-collection_tool_goal           
-collection_tool_helpbulletpoint
-collection_tool_helpdefinition 
-collection_tool_helpitem       
-collection_tool_helpurl        
-collection_tool_topic          
-collection_tool_translation    
 
-drop table collection_tool_goal            ;
-drop table collection_tool_helpbulletpoint ;
-drop table collection_tool_helpdefinition  ;
-drop table collection_tool_helpurl         ;
-drop table collection_tool_helpitem        ;
-drop table collection_tool_topic           ;
-
-
-"""
 
 
 class HelpItem(models.Model):
-
-
   english_objective = models.CharField(max_length=1024, null = True, blank = True)
   spanish_objective = models.CharField(max_length=1024, null = True, blank = True)
   english_title = models.CharField(max_length=1024, null = True, blank = True)
@@ -100,8 +81,12 @@ class HelpDefinition(models.Model):
 class Topic(models.Model):    
   """an aspect of the patient's health that can be improved"""
   def __unicode__(self): return self.english_title  
+  
   english_title  = models.CharField(max_length=1024, null = True, blank = True)
   spanish_title  = models.CharField(max_length=1024, null = True, blank = True)
+  
+  english_description = models.TextField(null=True, blank =True)
+  spanish_description = models.TextField(null=True, blank =True)
   
   ordering_rank = models.IntegerField()
   class Meta:
@@ -113,11 +98,16 @@ class Topic(models.Model):
   
 class Goal (models.Model):
   """ one concrete step in the direction of a topic"""
+  
   english_title  = models.CharField(max_length=1024, null = True, blank = True)
   spanish_title  = models.CharField(max_length=1024, null = True, blank = True)
+  
+  english_description = models.TextField(null=True, blank =True)
+  spanish_description = models.TextField(null=True, blank =True)
+  
   topic = models.ForeignKey(Topic)
-  #is this associated with the planner JS game?
-  show_in_planner = models.BooleanField()
+  
+  show_in_planner = models.BooleanField( help_text = "i.e. does picking this goal mean the next button takes you to the planner JS game?")
   
   ordering_rank = models.IntegerField()
   class Meta:
@@ -130,9 +120,6 @@ class Goal (models.Model):
 
 
         
-  name =  models.CharField(max_length=256, null=False)
-  description  = models.CharField(max_length=1024, null = True, blank = True)
-  
 class AssessmentSection(models.Model):
   """nav section that each question belongs to."""
   title =  models.TextField(null=True, blank =True)
@@ -141,6 +128,10 @@ class AssessmentSection(models.Model):
     ordering = ('ordering_rank',)
 
   
+  @property
+  def dir(self):
+    return dir(self)
+    
   def __unicode__(self):
     return self.title
 
