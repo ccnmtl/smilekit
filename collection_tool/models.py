@@ -123,7 +123,12 @@ class Goal (models.Model):
 class AssessmentSection(models.Model):
   """nav section that each question belongs to."""
   title =  models.TextField(null=True, blank =True)
+
+  english_title = models.CharField(max_length=1024, null = True, blank = True)
+  spanish_title = models.CharField(max_length=1024, null = True, blank = True)
+
   ordering_rank = models.IntegerField()
+    
   class Meta:
     ordering = ('ordering_rank',)
 

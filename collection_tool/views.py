@@ -22,7 +22,8 @@ def section(request, section_id, language_code):
   t = loader.get_template('collection_tool/sectionindex.html')
   c = RequestContext(request,{
       'section': section,
-      'language_code': language_code
+      'language_code': language_code,
+      'all_sections': AssessmentSection.objects.all()
   })
   return HttpResponse(t.render(c))    
   
@@ -60,7 +61,8 @@ def question(request, displayquestion_id, language_code):
       'displayquestion': displayquestion,
       'wording' : wording,
       'answers': answers,
-      'language_code': language_code
+      'language_code': language_code,
+      'all_sections': AssessmentSection.objects.all()
   })
   return HttpResponse(t.render(c))
     

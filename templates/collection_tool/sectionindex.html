@@ -3,14 +3,27 @@
 
 {% block assessmentnav %}
 	<div id="assessmentnav">
+<!--
 		<a class="firsttab {%ifequal section.title "Diet" %}activetab{%endifequal%}" href="/collection_tool/section/1/language/{{language_code}}">Diet</a>
 		<a class="{%ifequal section.title "Feeding Practices" %}activetab{%endifequal%}" href="/collection_tool/section/2/language/{{language_code}}">Feeding Practices</a>
 		<a class="{%ifequal section.title "Family History" %}activetab{%endifequal%}" href="/collection_tool/section/3/language/{{language_code}}">Family History</a>
 		<a class="lasttab {%ifequal section.title "Fluoride" %}activetab{%endifequal%}" href="/collection_tool/section/4/language/{{language_code}}">Fluoride</a>
+	-->
+	{% for s in all_sections %}
+	 <a class="{%ifequal section.title s.title %}activetab{%endifequal%}" href="/collection_tool/section/{{s.id}}/language/{{language_code}}">
+	  {%ifequal language_code 'en'%}
+		      {{s.english_title}}
+		{%endifequal%}
+		{%ifequal language_code 'es'%}
+			    {{s.spanish_title}}
+		{%endifequal%}
+		</a>
+	{% endfor %}
 	</div>
+	
 {% endblock %}
 
-/collection_tool/section/3/language/en/
+
 
 
 {% block language_toggle %}
