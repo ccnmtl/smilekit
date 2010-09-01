@@ -75,8 +75,20 @@
 			<img src="/uploads/{{displayquestion.image}}" />
 			<div class="contentbuttons">
 			{%for a in answers%}
-				<a href="#"  id ="answer_{{a.id}}" class="contentbutton">{{a.wording}}</a>
-				{% if a.image %}<img src="/uploads/{{a.image}}"/>{%endif%}
+			  {% if a.stock_answer %}
+			    {% ifequal language_code 'en'%}
+			      {% include "collection_tool/stock_answers_en.html" %}
+			    {% endifequal %}
+			    {% ifequal language_code 'es'%}
+			      {% include "collection_tool/stock_answers_es.html" %}
+			    {% endifequal %}
+			    
+			    
+			  {% else %}
+				      <a href="#"  id ="answer_{{a.id}}" class="contentbutton">{{a.wording}}</a>
+				      {% if a.image %}<img src="/uploads/{{a.image}}"/>{%endif%}
+        {%endif%}			
+			
 			{%endfor%}	
 			
 		<div id ="debug_localstorage"></div>

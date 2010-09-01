@@ -14,8 +14,6 @@ import random
     
 
 def section(request, section_id, language_code):
-  #import pdb
-  #pdb.set_trace()
   section = get_object_or_404(AssessmentSection, pk=section_id)
   
   if language_code not in ['en', 'es']:
@@ -36,9 +34,26 @@ def question(request, displayquestion_id, language_code):
   if language_code not in ['en', 'es']:
     raise Http404
   wording = displayquestion.wording(language_code)
-  answers = [{'wording': d.wording(language_code),
-              'image': d.image,
-              'id': d.answer.id} for d in displayquestion.display_answers]
+  
+  
+  answers = []
+  
+  if displayquestion.display_answers:
+    for d in displayquestion.display_answers:
+      answers.append ( {
+                        'stock_answer' : False,
+                        'wording': d.wording(language_code),
+                        'image': d.image,
+                        'id': d.answer.id
+                        } )
+                        
+  else:
+    for a in displayquestion.question.answer_set.all():
+      answers.append ( {
+                    'stock_answer' : True,
+                    'text': a.text,
+                    'id': a.id
+                      })
   
   t = loader.get_template('collection_tool/question.html')
   c = RequestContext(request,{

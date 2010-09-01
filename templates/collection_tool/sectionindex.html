@@ -10,7 +10,18 @@
 	</div>
 {% endblock %}
 
+/collection_tool/section/3/language/en/
 
+
+{% block language_toggle %}
+		{%ifequal language_code 'en'%}
+		<a href="/collection_tool/section/{{section.id}}/language/es/">espa&#241;ol</a>
+		{%endifequal%}
+					
+		{%ifequal language_code 'es'%}
+			<a href="/collection_tool/section/{{section.id}}/language/en/">english</a>
+		{%endifequal%}
+{% endblock %}
 
 
 {% block collection_tool_js %}

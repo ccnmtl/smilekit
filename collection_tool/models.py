@@ -135,16 +135,14 @@ class AssessmentSection(models.Model):
   def __unicode__(self):
     return self.title
 
-  #TODO:     """additionally, you may want to think about how force the system to differentiate between multiple choice questions that allow multiple answer selections (example: what are some of your favorite foods?) and ones that require a single answers (example: what is your child's main source of drinking water? bottled, tap, both)"""
-  # This implies a json object stored in a field, itself in a question that has a text value."
-  #TODO: How would we score these???
   
   def display_question_ids(self):
     """ used for ordering"""
     return [q.id for q in self.displayquestion_set.all()] 
   
 
-
+#TODO: refactor this to take into account a configuration.
+#TODO: use caching for this.
 def all_display_question_ids_in_order():
   result = []
   #order all questions, first by nav section, then by rank within that section:
@@ -157,16 +155,10 @@ def all_display_question_ids_in_order():
   
 class DisplayQuestion(models.Model):
   """associates questions with translations, images, help topics, etc."""
-      
-  STOCK_ANSWER_CHOICES = (
-      ('yesno', 'Yes / No'),
-      ('number_of_times', 'None / Once / Twice / More than Twice'),
-      ('relative_frequency', 'Never / Sometimes / Often / Always'),
-      ('agree_disagree', 'Agree / Unsure / Disagree'),
-  )
 
-  stock_answers = models.CharField(max_length=30, choices=STOCK_ANSWER_CHOICES, blank =True, null=True) 
-  part_of_score =  models.BooleanField()
+  display_regardless_of_weight =  models.BooleanField( help_text = "Check this to display this question (and store answers to it) for all configurations, regardless of the weight assigned to it.", default = False)
+
+
   question = models.ForeignKey(Question, null=True, blank=True)
   nav_section = models.ForeignKey(AssessmentSection, null=True, blank=True)
   topic = models.ForeignKey(Topic, null=True, blank=True)
@@ -177,10 +169,7 @@ class DisplayQuestion(models.Model):
     ordering = ('ordering_rank',)
   
 
-  #I LOATHE YOU,  @models.permalink !
-  #@models.permalink
   def get_absolute_url(self):
-    #return ('smilekit.collection_tool.views.question', [str(self.id), 'en'])
     return '/collection_tool/question/%d/language/en/' % self.id
 
 
@@ -194,7 +183,6 @@ class DisplayQuestion(models.Model):
   @property
   def help_item(self):
     try:
-      #print HelpUrl.objects.filter (url__contains = 'question/%d' % self.id )[0]
       return HelpUrl.objects.filter (url__contains = 'question/%d' % self.id )[0]
     except:
       #print "exception thrown"
@@ -282,11 +270,17 @@ class DisplayQuestion(models.Model):
     except:   
       return None
 
+
+
+
 class Translation(models.Model):
   """ a question wording in a particular language"""
   question = models.ForeignKey(DisplayQuestion)
   language = models.CharField(max_length=2, choices=LANGUAGE_CHOICES, null=False)  # code for language (i.e. "EN", "ES")
   text =  models.TextField(null=True, blank =True)
+  
+  
+  
   
 class DisplayAnswer(models.Model):
   """associates answers with images, help topics, etc."""
@@ -340,9 +334,10 @@ class DisplayAnswer(models.Model):
   @property
   def dir(self):
     return dir(self)
+
   
 class AnswerTranslation(models.Model):
-  """ a question wording in a particular language"""
+  """ an answer wording in a particular language."""
   answer = models.ForeignKey(DisplayAnswer)
   language = models.CharField(max_length=2,  choices=LANGUAGE_CHOICES, null=False)
   text =  models.TextField(null=True, blank =True)
