@@ -56,35 +56,80 @@
 		
 		<div id ="question_id_div">{{displayquestion.id}}</div>
 		
-		
 		<div>
 		{% if displayquestion.topic %}
 		  TOPIC: {{displayquestion.topic}}
 		{% endif %}
 		</div>
+		
 		<h2 id="contenttitle">{{wording}}</h2>
-			<img src="/uploads/{{displayquestion.image}}" />
+		
+		{%comment%}
+		
+			<div class="photowrapper">
+			<img alt="Question Image" src="/uploads/{{displayquestion.image}}" />
+			</div>
+			
 			<div class="contentbuttons">
+			<!-- this is what eddie will use for a question with a picture attached to it. -->
+			
 			{%for a in answers%}
-			  {% if a.stock_answer %}
-			    {% ifequal language_code 'en'%}
-			      {% include "collection_tool/stock_answers_en.html" %}
-			    {% endifequal %}
-			    {% ifequal language_code 'es'%}
-			      {% include "collection_tool/stock_answers_es.html" %}
-			    {% endifequal %}
-			    
-			    
-			  {% else %}
-				      <a href="#"  id ="answer_{{a.id}}" class="contentbutton">{{a.wording}}</a>
-				      {% if a.image %}<img src="/uploads/{{a.image}}"/>{%endif%}
-        {%endif%}			
 			
-			{%endfor%}	
+			{% if a.stock_answer %}
 			
-		<div id ="debug_localstorage"></div>
-		<div id ="debug_cache_status"></div>
-		<div><img id="online_or_not" src="/collection_tool/media/images/icon_offline.jpg" ></div>	
+			{% ifequal language_code 'en'%}
+			{% include "collection_tool/stock_answers_en.html" %}
+			{% endifequal %}
+			
+			{% ifequal language_code 'es'%}
+			{% include "collection_tool/stock_answers_es.html" %}
+			{% endifequal %}
+			
+			{% else %}
+				
+			<a href="#" id="answer_{{a.id}}" class="contentbutton">{{a.wording}}</a>
+			
+			{% if a.image %}<img src="/uploads/{{a.image}}"/>{%endif%}
+			
+			{%endif%}	
+			
+			{%endfor%}
+			
+			</div>
+		
+		{%endcomment%}
+		
+		<!-- this is what eddie will use for a question with pictures attached to its answers. -->
+			<div class="answerphotobox">
+			
+				<div class="answerphotoboxcontainer">
+				
+					<div class="answerphotoboxlabel">
+					Your Choices
+					</div>
+				
+					<div class="answerthumbnails">
+					{%for a in answers%}
+		
+						<div class="answerthumbnail">
+							<a href="#" id="answer_{{a.id}}" class="answerthumbnailimage">{% if a.image %}<img width=200 height=200 src="/uploads/{{a.image}}"/>{%endif%}</a>
+							<span class="answerthumbnaillabel">{{a.wording}}</span>
+						</div>
+		
+					{%endfor%}	
+					</div>
+					
+					<br clear="all" />
+					
+				</div>
+				
+			</div>
+
+			<div id="debugstuff" style="border: 1px solid #000; margin-top: 20px; text-align: center;">
+				<div>Debug Stuff</div>
+				<div id="debug_localstorage"></div>
+				<div id="debug_cache_status"></div>
+				<div><img id="online_or_not" src="/collection_tool/media/images/icon_offline.jpg" ></div>
 			</div>
 			
 		</div>
