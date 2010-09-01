@@ -220,10 +220,8 @@ body
 
 
 /********/
-
 #planningnav
 {
-	background-color: #ccc;
 	height: 60px;
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
@@ -232,14 +230,14 @@ body
 	margin-bottom: 10px;
 }
 
-/* two links */
 #planningnav a
 {
 	display: block;
 	float: left;
+	/*border-left: 1px solid #000;*/
 	text-align: center;
 	padding: 21px 0px 21px 0px;
-	width: 50%;
+	width: 25%;
 	text-decoration: none;
 	color: #000;
 	text-shadow: #fff 1px 1px 1px;
@@ -251,6 +249,10 @@ body
 	color: #000;
 	font-weight: bold;
 }
+
+
+
+
 
 
 .firsttab
@@ -721,9 +723,9 @@ a.contentbutton
 	overflow: auto;
 	-moz-box-shadow: 0px 0px 20px #000;
 	-webkit-box-shadow: 0px 0px 20px #000;
-	top: -50px;
+	top: -200px;
 	left: 50%;
-	width: 600px;
+	width: 800px;
 	margin-left: -315px;
 	padding: 15px;
 	text-align: left;
