@@ -176,7 +176,10 @@ class DisplayQuestion(models.Model):
 
   question = models.ForeignKey(Question, null=True, blank=True)
   nav_section = models.ForeignKey(AssessmentSection, null=True, blank=True)
-  topic = models.ForeignKey(Topic, null=True, blank=True)
+  #topic = models.ForeignKey(Topic, null=True, blank=True, help_text = "DO NOT USE THIS FIELD PLEASE")
+  
+  topics = models.ManyToManyField(Topic, help_text =  "One or more topics this question is associated woth.")
+
   image = models.ImageField(upload_to='question_images',blank=True,null=True)
   
   ordering_rank = models.IntegerField(help_text = "Use this to determine the order in which the questions are asked within each nav section.")
