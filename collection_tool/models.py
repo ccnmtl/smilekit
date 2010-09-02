@@ -20,10 +20,12 @@ class HelpItem(models.Model):
   spanish_objective = models.CharField(max_length=1024, null = True, blank = True)
   english_title = models.CharField(max_length=1024, null = True, blank = True)
   spanish_title = models.CharField(max_length=1024, null = True, blank = True)
-  english_script_instructions = models.TextField(null=True, blank =True)
-  english_script = models.TextField(null=True, blank =True)
-  spanish_script_instructions = models.TextField(null=True, blank =True)
-  spanish_script = models.TextField(null=True, blank =True)
+  
+  english_script = models.TextField(null=True, blank =True,  help_text = "Basic script to follow")
+  english_script_instructions = models.TextField(null=True, blank =True,  help_text = "More details about this subject")
+  
+  spanish_script = models.TextField(null=True, blank =True ,  help_text = "Basic script to follow")
+  spanish_script_instructions = models.TextField(null=True, blank =True, help_text = "More details about this question")
   
   
   def __unicode__(self):
@@ -156,13 +158,21 @@ def all_display_question_ids_in_order():
     result.extend (a)
   return result
     
-  
+
+def has_image(image_field_file):
+  try:
+    if image_field_file.url != "":
+      return True
+    else:
+      return False
+  except:
+    return False
+  return False
   
 class DisplayQuestion(models.Model):
   """associates questions with translations, images, help topics, etc."""
 
   display_regardless_of_weight =  models.BooleanField( help_text = "Check this to display this question (and store answers to it) for all configurations, regardless of the weight assigned to it.", default = False)
-
 
   question = models.ForeignKey(Question, null=True, blank=True)
   nav_section = models.ForeignKey(AssessmentSection, null=True, blank=True)
@@ -172,17 +182,13 @@ class DisplayQuestion(models.Model):
   ordering_rank = models.IntegerField(help_text = "Use this to determine the order in which the questions are asked within each nav section.")
   class Meta:
     ordering = ('ordering_rank',)
-  
 
   def get_absolute_url(self):
     return '/collection_tool/question/%d/language/en/' % self.id
 
-
-
   @property
   def question_type(self):
     return self.question.type
-  
   
   #this violates DRY but I'm fine with that for now.
   @property
@@ -194,6 +200,29 @@ class DisplayQuestion(models.Model):
       return None
     #print "no exception thrown"
     return None
+    
+  @property
+  def has_question_picture(self):
+    return has_image(self.image)
+    
+  @property
+  def has_answer_pictures(self):
+    #import pdb
+    #pdb.set_trace()
+    if len (self.display_answers) == 0:
+      return False
+    
+    if len( [a.image for a in self.display_answers if has_image(a.image)]) == 0:
+      return False  
+      
+    return True
+    
+
+  #http://kodos.ccnmtl.columbia.edu:7112/collection_tool/question/2/language/en/
+
+  @property
+  def no_pictures(self):
+    return self.has_question_picture is False and self.has_answer_pictures is False
     
     
   @property
