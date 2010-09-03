@@ -6,6 +6,8 @@ class Module(models.Model):
   def __unicode__(self): return self.name  
   name = models.CharField(max_length=30, unique=True)
 
+  
+
 class Question(models.Model):
   def __unicode__(self): return "%s: %s" % (self.number, self.text)
 

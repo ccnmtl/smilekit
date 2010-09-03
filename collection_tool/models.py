@@ -168,6 +168,26 @@ def has_image(image_field_file):
   except:
     return False
   return False
+
+
+class Resource(models.Model):
+  """just a wrapper for a URL (e.g. video, internal or external link)"""
+  
+  name = models.CharField(max_length=500)
+  url = models.CharField(max_length=500)
+  resource_type =  models.CharField(max_length=64, help_text = "Ignore this for now.")
+  
+  ordering_rank = models.IntegerField(help_text = "Ignore this for now.")
+  class Meta:
+    ordering = ('ordering_rank',)
+    
+  @property
+  def dir(self):
+    return dir(self)
+
+  def __unicode__(self):
+    return self.name
+
   
 class DisplayQuestion(models.Model):
   """associates questions with translations, images, help topics, etc."""
@@ -176,9 +196,11 @@ class DisplayQuestion(models.Model):
 
   question = models.ForeignKey(Question, null=True, blank=True)
   nav_section = models.ForeignKey(AssessmentSection, null=True, blank=True)
-  #topic = models.ForeignKey(Topic, null=True, blank=True, help_text = "DO NOT USE THIS FIELD PLEASE")
   
-  topics = models.ManyToManyField(Topic, help_text =  "One or more topics this question is associated woth.")
+  topics = models.ManyToManyField(Topic, help_text =  "One or more topics this question is associated with.")
+
+  resources = models.ManyToManyField(Resource, help_text =  "Links to other pages that are relevant to this question.")
+
 
   image = models.ImageField(upload_to='question_images',blank=True,null=True)
   
