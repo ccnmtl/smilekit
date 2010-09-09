@@ -30,53 +30,40 @@
 		{%endifequal%}
 {% endblock %}
 
-
 {% block collection_tool_js %}
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js" type="text/javascript"></script>
-  <script src="/collection_tool/media/js/json2.js" type="text/javascript"></script>
-  <script src="/collection_tool/media/js/collection_tool.js" type="text/javascript"></script>
+<script src="/collection_tool/media/js/jquery.js" type="text/javascript"></script>
+<script src="/collection_tool/media/js/json2.js" type="text/javascript"></script>
+<script src="/collection_tool/media/js/collection_tool.js" type="text/javascript"></script>
 {% endblock collection_tool_js %}
 
 
 
 		{% block collection_tool_content %}
 		<div id="content">
-		<!--
-			<p>
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus placerat volutpat lacus a pulvinar. Maecenas magna tellus, adipiscing quis blandit ut, congue bibendum lectus. Aliquam euismod elementum nunc; id dapibus orci congue et. Ut non lorem enim. Ut pretium libero sit amet turpis ullamcorper tempor. Maecenas sed risus augue. Fusce tincidunt enim vel metus lacinia euismod? Proin dui tellus; commodo at porta in; fermentum non turpis. Aliquam neque magna, faucibus sit amet luctus ut, luctus aliquam turpis. Donec adipiscing mi at ipsum ultricies blandit. Aliquam euismod mattis euismod. Duis aliquam sollicitudin quam at rutrum. Ut purus neque, dignissim ac semper vitae, condimentum vitae lectus. Praesent eleifend aliquet elit. Donec ultricies; justo ut venenatis elementum, quam massa euismod magna, ac imperdiet elit risus ut sapien.
-			</p>
-			-->
-
-
 			
 			{% spaceless %}
 			
 			<div class="contentbuttons">
-
 			 {% for q in section.displayquestion_set.all%}
-			 
 			   <!--  'contentbuttoncomplete' is added by javascript -->
 				  <a href="/collection_tool/question/{{q.id}}/language/{{language_code}}" class="contentbutton" id = "question_{{q.id}}" title = "rank: {{q.ordering_rank}}; prev: {{q.prev}}; next: {{q.next}}">
 				  {%ifequal language_code 'en'%}{{q.english}}{%endifequal%}
 		      {%ifequal language_code 'es'%}{{q.spanish}}{%endifequal%}
 		      </a>
-		      <!--
-		      <div>
-		      {{q.dir}}
-		      
-		      
-		      </div>
-		      -->
 				{%endfor %}
-			
-			
-			
-					{% endspaceless %}
-				<!--
-				<a href="#" class="contentbutton">Question 2</a>
+		{% endspaceless %}
 					
-				<a href="#" class="contentbutton">Question 3</a>
-				-->
+					
+
+			<div id="debugstuff" style="border: 1px solid #000; margin-top: 20px; text-align: center;">
+				<div>Debug Stuff</div>
+				<div id="debug_localstorage"></div>
+				<div id="debug_cache_status"></div>
+				<div><img id="online_or_not" src="/collection_tool/media/images/icon_offline.jpg" ></div>
+			</div>
+			
+					
+					
 			</div>
 			
 		</div>

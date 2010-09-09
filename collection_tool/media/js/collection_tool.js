@@ -95,7 +95,7 @@ function glog(s) {
          // Don't perform "swap" if this is the first cache
          if (cacheStatusValues[cache.status] != 'idle') {
              cache.swapCache();
-             log('Swapped/updated the Cache Manifest.');
+             console.log('Swapped/updated the Cache Manifest.');
          }
      }
  , false);

@@ -1,17 +1,29 @@
 CACHE MANIFEST
 # http://kodos.ccnmtl.columbia.edu:7112/collection_tool/manifest.cache
-# Random number:  {{randomnumber}}
+
 
 CACHE:
 #questions:
 {% for id in question_ids %}
-# question {{id}}
 /collection_tool/question/{{id}}/language/en/
 /collection_tool/question/{{id}}/language/es/
-#question images
+{% endfor %}
+
+#question images: 
+{% for path in paths_to_question_images%}
+    {{path}}
+{% endfor %}
+
 
 #answer images
+{% for path in paths_to_answer_images%}
+    {{path}}
+{% endfor %}
 
+
+#section pages:
+{% for id in nav_section_ids %}
+    /collection_tool/section/{{id}}/language/en/
 {% endfor %}
 
 
@@ -24,18 +36,18 @@ CACHE:
 /collection_tool/media/images/logo_mysmilebuddy.png
 /collection_tool/media/images/icon_offline.jpg
 /collection_tool/media/images/icon_online.jpg
+
 /collection_tool/media/css/collection_tool.css
 
+/collection_tool/media/js/collection_tool.js
+/collection_tool/media/js/json2.js
+/collection_tool/media/js/jquery.js
 
-#other urls we need:
-#/collection_tool/yes/
+
+#Videos:
 
 FALLBACK:
 
-#
 
 NETWORK:
-/collection_tool/online_check
-
-
 

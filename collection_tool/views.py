@@ -120,12 +120,30 @@ def manifest(request):
   http://www.webreference.com/authoring/languages/html/HTML5-Application-Caching/
   """
   
+  #import pdb
+  #pdb.set_trace()
+  
+  
+  paths_to_question_images = [d.image.url for d in DisplayQuestion.objects.all() if has_image(d.image)]
+  
+  paths_to_answer_images = [d.image.url for d in DisplayAnswer.objects.all() if has_image(d.image)]
+  
+  nav_section_ids = [p.id for p in AssessmentSection.objects.all()]
+
+  #THIS WORKS:::::
   
   response = HttpResponse(mimetype='text/cache-manifest')
   t = loader.get_template('collection_tool/manifest')
   c = RequestContext(request,{
-    'question_ids': [d.id for d in DisplayQuestion.objects.all()], 
-    'randomnumber' : random.randint(0, 9999999999)
+    'paths_to_question_images' :  paths_to_question_images,
+    'paths_to_answer_images' :    paths_to_answer_images,
+    'nav_section_ids' :           nav_section_ids,
+    # this was breaking on questions that weren't part of the nav:
+    # 'question_ids':              [d.id for d in DisplayQuestion.objects.all()],
+    'question_ids':               all_display_question_ids_in_order(),
+    'randomnumber' :              random.randint(0, 9999999999)
+
+    
   })
   response.write(t.render(c))
   return response
