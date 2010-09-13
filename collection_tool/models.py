@@ -197,9 +197,9 @@ class DisplayQuestion(models.Model):
   question = models.ForeignKey(Question, null=True, blank=True)
   nav_section = models.ForeignKey(AssessmentSection, null=True, blank=True)
   
-  topics = models.ManyToManyField(Topic, help_text =  "One or more topics this question is associated with.")
+  topics = models.ManyToManyField(Topic, help_text =  "One or more topics this question is associated with.", null=True, blank=True)
 
-  resources = models.ManyToManyField(Resource, help_text =  "Links to other pages that are relevant to this question.")
+  resources = models.ManyToManyField(Resource, help_text =  "Links to other pages that are relevant to this question.", null=True, blank=True)
 
 
   image = models.ImageField(upload_to='question_images',blank=True,null=True)
