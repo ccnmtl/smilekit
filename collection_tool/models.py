@@ -197,9 +197,9 @@ class DisplayQuestion(models.Model):
   question = models.ForeignKey(Question, null=True, blank=True)
   nav_section = models.ForeignKey(AssessmentSection, null=True, blank=True)
   
-  topics = models.ManyToManyField(Topic, help_text =  "One or more topics this question is associated with.")
+  topics = models.ManyToManyField(Topic, help_text =  "One or more topics this question is associated with.", null=True, blank=True)
 
-  resources = models.ManyToManyField(Resource, help_text =  "Links to other pages that are relevant to this question.")
+  resources = models.ManyToManyField(Resource, help_text =  "Links to other pages that are relevant to this question.", null=True, blank=True)
 
 
   image = models.ImageField(upload_to='question_images',blank=True,null=True)
@@ -269,7 +269,13 @@ class DisplayQuestion(models.Model):
   def next(self):
     """ return the next question in order by nav section, then rank."""
     all_numbers = all_display_question_ids_in_order()
+    
+    
+    if self.id not in all_numbers:
+      return None
+    
     next_index = all_numbers.index(self.id) + 1
+    
     if next_index == len(all_numbers):
       return None
     
@@ -282,13 +288,25 @@ class DisplayQuestion(models.Model):
   def prev(self):
     """ return the previous question in order by nav section, then rank."""
     all_numbers = all_display_question_ids_in_order()
+    #
+    #import pdb
+    #pdb.set_trace()
+    #
+    # if this question hasn't been assigned a section, i can't assign it an order
+    # in the collection tool, so just return none.
+    if self.id not in all_numbers:
+      return None
+    
     prev_index = all_numbers.index(self.id) - 1
+    
+    
     if prev_index == -1:
       return None
     try:
       return DisplayQuestion.objects.get(id=all_numbers[prev_index])
     except:
       return None
+    
 
 
   @property

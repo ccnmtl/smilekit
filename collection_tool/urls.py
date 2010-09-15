@@ -33,3 +33,4 @@ urlpatterns = patterns('',
       (r'interview_management_sync$',                     'collection_tool.views.interview_management_sync'),
       
 )
+

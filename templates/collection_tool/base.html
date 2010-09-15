@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{%ifequal 1 0%}
+{%ifequal 1 1%}
 <html manifest="/collection_tool/manifest.cache">
 {% else %}
 <html>
@@ -39,7 +39,6 @@
 			<a href="">En Espa&#241;ol</a>
 			<a href="">English</a>
 {% endblock %}
-			<a href="/collection_tool/yes/">cache</a>
 			<a href="#">Stop Visit</a>
 			<a href="#">Library</a>
 			<a href="#">About</a>
@@ -51,7 +50,7 @@
 
 {% block mainnav %}
 	<div id="mainnav">
-		<a id="introductiontab" class="mainfirsttab" href="#">Introduction</a>
+		<a id="introductiontab" class="mainfirsttab" href="/intro/">Introduction</a>
 		<a id="assessmenttab" class="assessmenttabactive" href="#">Assessment</a>
 		<a id="risktab" class="" href="#">Risk</a>
 		<a id="planningtab" class="mainlasttab" href="#">Planning</a>
