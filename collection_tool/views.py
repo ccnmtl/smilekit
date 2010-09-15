@@ -88,6 +88,9 @@ def interview_management_sync(request):
 def html_sandbox(request):
   return render_to_response("collection_tool/html_sandbox.html")
 
+def widget_test(request):
+  return render_to_response("collection_tool/widget_test.html")
+
 # for testing:
 def available_offline(request):
   t = loader.get_template('collection_tool/message.html')

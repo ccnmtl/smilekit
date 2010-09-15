@@ -10,6 +10,7 @@ urlpatterns = patterns('',
       (r'media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': media_root}),
        
       (r'html_sandbox$', 'collection_tool.views.html_sandbox'), 
+      (r'widget_test$', 'collection_tool.views.widget_test'), 
       
       (r'manifest\.cache$',     'collection_tool.views.manifest'),
       
