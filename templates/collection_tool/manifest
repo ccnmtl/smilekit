@@ -5,26 +5,28 @@ CACHE:
 #questions:
 {% for id in question_ids %}
   /collection_tool/question/{{id}}/language/en/
-  /collection_tool/question/{{id}}/language/es/
+# just to speed things up for right now turning off spanish
+#  /collection_tool/question/{{id}}/language/es/
 {% endfor %}
 
 #section pages:
 {% for id in nav_section_ids %}
     /collection_tool/section/{{id}}/language/en/
-    /collection_tool/section/{{id}}/language/es/
+# just to speed things up for right now turning off spanish
+#    /collection_tool/section/{{id}}/language/es/
 {% endfor %}
 
 
 
 #question images: 
 {% for path in paths_to_question_images%}
-    {{path}}
+#    {{path}}
 {% endfor %}
 
 
 #answer images
 {% for path in paths_to_answer_images%}
-    {{path}}
+#    {{path}}
 {% endfor %}
 
 #static files:
