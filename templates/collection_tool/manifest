@@ -43,11 +43,9 @@ CACHE:
 
 
 
-
 #Videos:
+/uploads/bubbles.m4v
 
-http://www.robwalshonline.com//demos/html5_video_demo/bubbles/bubbles.m4v
-http://kodos.ccnmtl.columbia.edu:7112/intro/
 
 FALLBACK:
 
