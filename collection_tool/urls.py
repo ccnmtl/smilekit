@@ -24,6 +24,11 @@ urlpatterns = patterns('',
       
       (r'section/(?P<section_id>\d+)/language/(?P<language_code>\w+)/$', 'collection_tool.views.section'), 
       
+      
+      (r'video/(?P<video_filename>\w+)/$', 'collection_tool.views.video'), 
+      
+      
+      
       (r'interview_management_login$',                    'collection_tool.views.interview_management_login'), 
       (r'interview_management_participants$',             'collection_tool.views.interview_management_participants'), 
       (r'interview_management_family_assessment$',        'collection_tool.views.interview_management_family_assessment'),

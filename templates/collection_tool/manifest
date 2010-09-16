@@ -46,7 +46,9 @@ CACHE:
 
 
 #Videos:
-/intro/
+#/intro/
+
+/collection_tool/video/bubbles/
 /uploads/bubbles.m4v
 
 
