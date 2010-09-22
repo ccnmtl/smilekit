@@ -1,0 +1,44 @@
+{% extends "collection_tool/base.html" %}
+
+{% block css %}
+
+  {{ block.super }}
+  
+<style type="text/css">
+
+div#left {
+  width: 100px;
+  height: 800px;
+  float: left;
+  text-align: center;
+  border: 1px black solid;
+  padding-bottom: 25px;
+}
+
+div#left .time {
+  height: 30px;
+  line-height: 30px;
+  border-bottom: 1px black solid;
+}
+
+div#right {
+  height: 750px;
+}
+
+</style>
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js" type="text/javascript"></script>
+  <script src="collection_tool/media/js/planner.js" type="text/javascript"></script>
+{% endblock css %}
+
+{% block js %}
+  {{ block.super }}
+
+
+{% endblock %}
+
+{% block collection_tool_content %}
+
+			{% include "collection_tool/planner.html" %}
+
+{% endblock collection_tool_content %}

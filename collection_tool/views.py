@@ -4,6 +4,7 @@ from smilekit.collection_tool.models import *
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext, loader
 import random
+from datetime import datetime, timedelta
 
 #def index(request):
 #    return render_to_response("collection_tool/index.html")
@@ -96,10 +97,16 @@ def interview_management_sync(request):
 
 
 def html_sandbox(request):
-  return render_to_response("collection_tool/html_sandbox.html")
+  starttime = datetime(1984,1,1,7)
+  times = [(starttime + timedelta(minutes=30) * i).strftime("%I:%M%p")
+           for i in range(34)]
+  return render_to_response("collection_tool/html_sandbox.html", {"times":times})
 
 def widget_test(request):
-  return render_to_response("collection_tool/widget_test.html")
+  starttime = datetime(1984,1,1,7)
+  times = [(starttime + timedelta(minutes=30) * i).strftime("%I:%M%p")
+           for i in range(34)]
+  return render_to_response("collection_tool/widget_test.html", {"times":times})
 
 # for testing:
 def available_offline(request):
