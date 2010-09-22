@@ -437,6 +437,11 @@ div#timetable .timerowfilled .timebutton
 	background-repeat: no-repeat;
 	background-position: 15px 10px;
 }
+
+div#timetable .timerow .time {
+  cursor: pointer;
+}
+
 div#timetable .timerow .timebutton
 {
 	display: none;

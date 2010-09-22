@@ -1,4 +1,5 @@
 // meal planner widget
+var mode = "planner";
 
 function initPlanner() {
   $('.thumbnail').click(function () {
@@ -10,23 +11,27 @@ function initPlanner() {
   $('.timeactionup').click(moveUp);
   $('.timeactiondown').click(moveDown);
   $('.timeactionedit').click(editMeal);
+  
+  if(mode == "planner") {
+    $('#photobox-fluoride').hide();
+  }
 }
 
 function saveMeal() {
-  // TODO: check to see if any thumbnails are selected
-  $(this).parent().removeClass('timerow');
-  $(this).parent().addClass('timerowfilled');
-  
   var items = "";
   $('.thumbnailselected').each(function() {
     var label = $('.thumbnaillabel', this).html();
     items += label + ", ";
   });
-  if(items != "") {
-    items = items.slice(0, -2);
-  }
+  if(items == "") { return; }  // nothing was selected
+
+  items = items.slice(0, -2);
+
   $('.mealorsnack', $(this).parent()).html("Meal");
   $('.activityitems', $(this).parent()).html(items);
+
+  $(this).parent().removeClass('timerow');
+  $(this).parent().addClass('timerowfilled');
 }
 
 function deleteMeal() {

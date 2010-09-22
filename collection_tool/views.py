@@ -106,7 +106,8 @@ def widget_test(request):
   starttime = datetime(1984,1,1,7)
   times = [(starttime + timedelta(minutes=30) * i).strftime("%I:%M%p")
            for i in range(34)]
-  return render_to_response("collection_tool/widget_test.html", {"times":times})
+  items = PlannerItem.objects.all().order_by('type')
+  return render_to_response("collection_tool/widget_test.html", {"times":times, "items":items})
 
 # for testing:
 def available_offline(request):

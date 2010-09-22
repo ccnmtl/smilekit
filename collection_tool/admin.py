@@ -95,3 +95,4 @@ class DisplayAnswerAdmin(TinyMceAdmin):
 admin.site.register(DisplayAnswer,   DisplayAnswerAdmin)
 
 
+admin.site.register(PlannerItem)

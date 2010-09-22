@@ -2,100 +2,32 @@
 
 	<div id="plannerright">
 	
-		<div class="photobox">
-			<div class="photoboxcontainer">
-				<div class="photoboxlabel">
-			Food
-			</div>
-				<div class="thumbnails">
-			
-				<div class="thumbnail thumbnailselected">
-					<div class="thumbnailimage"><img alt="" src="http://dummyimage.com/100x100" /></div>
-					<span class="thumbnaillabel">Label</span>
-				</div>
-				
-				<div class="thumbnail">
-					<div class="thumbnailimage"><img alt="" src="http://dummyimage.com/100x100" /></div>
-					<span class="thumbnaillabel">Label</span>
-				</div>
-				
-				
-				<div class="thumbnail">
-					<div class="thumbnailimage"><img alt="" src="http://dummyimage.com/100x100" /></div>
-					<span class="thumbnaillabel">Label</span>
-				</div>
-				
-				<div class="thumbnail">
-					<div class="thumbnailimage"><img alt="" src="http://dummyimage.com/100x100" /></div>
-					<span class="thumbnaillabel">Label</span>
-				</div>
-				<div class="thumbnail">
-					<div class="thumbnailimage"><img alt="" src="http://dummyimage.com/100x100" /></div>
-					<span class="thumbnaillabel">Label</span>
-				</div>
-				<div class="thumbnail">
-					<div class="thumbnailimage"><img alt="" src="http://dummyimage.com/100x100" /></div>
-					<span class="thumbnaillabel">Label</span>
-				</div>
-				<div class="thumbnail">
-					<div class="thumbnailimage"><img alt="" src="http://dummyimage.com/100x100" /></div>
-					<span class="thumbnaillabel">Label</span>
-				</div>
-				<div class="thumbnail">
-					<div class="thumbnailimage"><img alt="" src="http://dummyimage.com/100x100" /></div>
-					<span class="thumbnaillabel">Label</span>
-				</div>
-				
-			</div>
-				<br clear="all" />
-			</div>
-		</div>
-		
-		<div class="photobox">
-			<div class="photoboxcontainer">
-				<div class="photoboxlabel">
-			Beverage
-			</div>
-				<div class="thumbnails">
-				<div class="thumbnail">
-					<div class="thumbnailimage"><img alt="" src="http://dummyimage.com/100x100" /></div>
-					<span class="thumbnaillabel">Label</span>
-				</div>
-				<div class="thumbnail">
-					<div class="thumbnailimage"><img alt="" src="http://dummyimage.com/100x100" /></div>
-					<span class="thumbnaillabel">Label</span>
-				</div>
-				<div class="thumbnail">
-					<div class="thumbnailimage"><img alt="" src="http://dummyimage.com/100x100" /></div>
-					<span class="thumbnaillabel">Label</span>
-				</div>
-				<div class="thumbnail">
-					<div class="thumbnailimage"><img alt="" src="http://dummyimage.com/100x100" /></div>
-					<span class="thumbnaillabel">Label</span>
-				</div>
-				<div class="thumbnail">
-					<div class="thumbnailimage"><img alt="" src="http://dummyimage.com/100x100" /></div>
-					<span class="thumbnaillabel">Label</span>
-				</div>
-				<div class="thumbnail">
-					<div class="thumbnailimage"><img alt="" src="http://dummyimage.com/100x100" /></div>
-					<span class="thumbnaillabel">Label</span>
-				</div>
-				<div class="thumbnail">
-					<div class="thumbnailimage"><img alt="" src="http://dummyimage.com/100x100" /></div>
-					<span class="thumbnaillabel">Label</span>
-				</div>
-				<div class="thumbnail">
-					<div class="thumbnailimage"><img alt="" src="http://dummyimage.com/100x100" /></div>
-					<span class="thumbnaillabel">Label</span>
-				</div>
-			
-				
-			</div>
-				<br clear="all" />
-			</div>
-		</div>
+        {% regroup items by get_type_display as item_list %}
+        
+          {% for type in item_list %}
 
+		    <div class="photobox" id="photobox-{{type.grouper|lower}}">
+			  <div class="photoboxcontainer">
+			    <div class="photoboxlabel">
+			      {{ type.grouper }}
+			    </div>
+
+				 <div class="thumbnails">
+				 
+				   {% for item in type.list %}
+		    	   <div class="thumbnail">
+					  <div class="thumbnailimage"><img alt="" src="/collection_tool/media/images/planner/{{item.label|slugify}}.jpg" /></div>
+					  <span class="thumbnaillabel">{{ item.label }}</span>
+				   </div>
+				   {% endfor %}
+				
+				</div><!-- end thumbnails -->
+				<br clear="all" />
+				
+		    </div><!-- end photoboxcontainer -->
+		    </div><!-- end photobox -->
+				
+		    {% endfor %}
 	</div>
 
 	<div id="plannerleft">
