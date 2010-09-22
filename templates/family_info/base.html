@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+{%ifequal 1 0%}
+<html manifest="/collection_tool/manifest.cache">
+{% else %}
+<html>
+{%endifequal%}
+
+<head>
+	<title>mySmileBuddy</title>
+	
+{% block collection_tool_js %}
+{% endblock collection_tool_js %}
+	
+	<link type="image/png" rel="apple-touch-icon" href="/collection_tool/media/images/mysmilebuddy_icon.png" />
+	<link type="text/css" rel="stylesheet" href="/collection_tool/media/css/collection_tool.css" />
+	
+	<meta name="apple-mobile-web-app-capable" content="yes" /> 
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />	
+	<meta name="viewport" content="width=720, maximum-scale=1.0" />
+		
+		
+</head>
+
+<body>
+
+<div id="wrapper">
+
+	<div id="masthead">
+	
+		<h1 id="logo"><a href="/">MySmileBuddy</a></h1>
+		
+		<div id="mastheadnav">
+		  
+{% block language_toggle %}
+<!-- not needed - family info solamente en ingles-->
+{% endblock %}
+			<a href="/logout">Log Out</a>
+			<a href="/library">Library</a>
+			<a href="/about">About</a>
+		  
+		</div>
+		
+	</div>
+
+	
+	<div id="contentcontainer">
+
+{% block collection_tool_content %}
+{% endblock collection_tool_content %}
+
+</body>
+
+</html>

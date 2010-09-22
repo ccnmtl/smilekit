@@ -1,0 +1,38 @@
+{% extends "family_info/base.html" %}
+{%load smartif%}
+
+
+{% block collection_tool_js %}
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js" type="text/javascript"></script>
+
+{% endblock collection_tool_js %}
+
+
+
+
+	
+		{% block collection_tool_content %}
+
+		<h2 id="contenttitle">
+		
+			Pull Data to iPad
+		
+		</h2>
+		
+		<h3>Account: Green Family</h3>
+		
+		<p>
+		You have chosen to pull the data from the Green family account to this iPad.  When you click the button below, t
+		he information will be downloaded and the account will be locked until the next time you sync this mobile device.
+		</p>
+		
+		<p>
+		Are you sure?
+		</p>
+		
+		<p>
+		<input type="button" value="Yes. Pull the data." onclick="parent.location='/family_info/participants'">
+		<input type="button" value="Cancel" onclick="parent.location='/family_info/participants'">
+		</p>
+</div>
+{% endblock collection_tool_content %}
