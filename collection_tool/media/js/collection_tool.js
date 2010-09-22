@@ -11,13 +11,6 @@ var LOCAL_STORAGE_KEY;
  })
   
 
-/*
-function local_storage_write () {
-  v = document.getElementById('the_value_to_write').value;
-  localStorage [LOCAL_STORAGE_KEY] = v;
-  alert ('Wrote "' + v + '" to local storage.');
-}
-*/
 function local_storage_set ( namespace, key, value ) {
   temp_state = JSON.parse(  localStorage [namespace] )
   temp_state [key] = value;
@@ -25,6 +18,13 @@ function local_storage_set ( namespace, key, value ) {
   temp_state = null;
 }
 
+
+/*
+function local_storage_write () {
+  v = document.getElementById('the_value_to_write').value;
+  localStorage [LOCAL_STORAGE_KEY] = v;
+  alert ('Wrote "' + v + '" to local storage.');
+}
 
 function local_storage_read () {
   v = localStorage[LOCAL_STORAGE_KEY];
@@ -35,15 +35,12 @@ function local_storage_read () {
     alert ('Found "' + v + '" in local storage.');
   }  
 }
-
-function local_storage_keys () {
-
-}
-
 function local_storage_clear () {
   localStorage.clear();
   alert ('Wiped local storage.');
 }
+
+*/
 
 
 // Convenience array of status values
@@ -94,8 +91,9 @@ function glog(s) {
  cache.addEventListener('updateready', function(e){
          // Don't perform "swap" if this is the first cache
          if (cacheStatusValues[cache.status] != 'idle') {
+             glog('About to try swapping / updating the cache.');
              cache.swapCache();
-             console.log('Swapped/updated the Cache Manifest.');
+             glog('Swapped/updated the cache.');
          }
      }
  , false);
@@ -108,7 +106,7 @@ function glog(s) {
      setInterval(function(){cache.update()}, 50000);
  }
      
-
+/*
 
 var online_check_number = 0;     
      
@@ -138,6 +136,7 @@ function online_check_callback(data) {
   }
 }
 
+*/
 
 function answer_clicked(event) {
   event.preventDefault();
@@ -178,33 +177,33 @@ function update_debug_localstorage() {
 }
 
 function init() {
-        LOCAL_STORAGE_KEY = 'la_llave_encantada';
-        if (localStorage [LOCAL_STORAGE_KEY] == null) {
-          localStorage [LOCAL_STORAGE_KEY] = '{}';
-        }
-        update_debug_localstorage();
-        if ( window.location.href.match (/question/)) {
-          init_answer_clicked();
-        }
-        //check_if_we_are_online();
-        //autoCheckForUpdates();
-        
-        
-        if ( window.location.href.match (/question/)) {
-          // highlight the chosen answer on the question page:
-          question_id = $('#question_id_div')[0].innerHTML;
-          answer_id = JSON.parse( localStorage [LOCAL_STORAGE_KEY])[question_id];
-          highlight_answer (answer_id);
-        } else {
-            // highlight all answered questions on the section page:
-            answered_questions = $.keys( JSON.parse( localStorage [LOCAL_STORAGE_KEY]))
-            $.each(
-                answered_questions,
-                function (a, question_id) {
-                      $('#question_' + question_id).addClass('contentbuttoncomplete');
-               }
-            )
-        }
+    LOCAL_STORAGE_KEY = 'la_llave_encantada';
+    if (localStorage [LOCAL_STORAGE_KEY] == null) {
+      localStorage [LOCAL_STORAGE_KEY] = '{}';
+    }
+    update_debug_localstorage();
+    if ( window.location.href.match (/question/)) {
+      init_answer_clicked();
+    }
+    //check_if_we_are_online();
+    //autoCheckForUpdates();
+    
+    
+    if ( window.location.href.match (/question/)) {
+      // highlight the chosen answer on the question page:
+      question_id = $('#question_id_div')[0].innerHTML;
+      answer_id = JSON.parse( localStorage [LOCAL_STORAGE_KEY])[question_id];
+      highlight_answer (answer_id);
+    } else {
+        // highlight all answered questions on the section page:
+        answered_questions = $.keys( JSON.parse( localStorage [LOCAL_STORAGE_KEY]))
+        $.each(
+            answered_questions,
+            function (a, question_id) {
+                  $('#question_' + question_id).addClass('contentbuttoncomplete');
+           }
+        )
+    }
 }
 
 

@@ -5,12 +5,14 @@ CACHE:
 #questions:
 {% for id in question_ids %}
   /collection_tool/question/{{id}}/language/en/
+# just to speed things up for right now turning off spanish
   /collection_tool/question/{{id}}/language/es/
 {% endfor %}
 
 #section pages:
 {% for id in nav_section_ids %}
     /collection_tool/section/{{id}}/language/en/
+# just to speed things up for right now turning off spanish
     /collection_tool/section/{{id}}/language/es/
 {% endfor %}
 
@@ -43,11 +45,10 @@ CACHE:
 
 
 
-
 #Videos:
+/collection_tool/video/bubbles/
+/uploads/bubbles.m4v
 
-http://www.robwalshonline.com//demos/html5_video_demo/bubbles/bubbles.m4v
-http://kodos.ccnmtl.columbia.edu:7112/intro/
 
 FALLBACK:
 
