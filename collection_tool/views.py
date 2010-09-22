@@ -77,19 +77,6 @@ def question(request, displayquestion_id, language_code):
   return HttpResponse(t.render(c))
     
 
-def interview_management_login(request):
-  return render_to_response("collection_tool/interview_management_login.html")
-def interview_management_participants(request):
-  return render_to_response("collection_tool/interview_management_participants.html")
-def interview_management_family_assessment(request):
-  return render_to_response("collection_tool/interview_management_family_assessment.html")
-def interview_management_family_information(request):
-  return render_to_response("collection_tool/interview_management_family_information.html")
-def interview_management_health_worker_information(request):
-  return render_to_response("collection_tool/interview_management_health_worker_information.html")
-def interview_management_sync(request):
-  return render_to_response("collection_tool/interview_management_sync.html")
-  
 
   
 

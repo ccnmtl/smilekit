@@ -11,6 +11,28 @@ import random
 
 #def temp_html(request):
 #    return render_to_response("collection_tool/temp_html.html")
+
+
+def login(request):
+  return render_to_response("family_info/login.html")
+  
+def participants(request):
+  return render_to_response("family_info/participants.html")
+  
+def family_assessment(request):
+  return render_to_response("family_info/family_assessment.html")
+  
+def family_information(request):
+  return render_to_response("family_info/family_information.html")
+  
+def health_worker_information(request):
+  return render_to_response("family_info/health_worker_information.html")
+  
+def sync(request):
+  return render_to_response("family_info/sync.html")
+  
+
+
     
 if 1 == 0:
       def section(request, section_id, language_code):

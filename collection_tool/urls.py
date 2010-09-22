@@ -26,15 +26,6 @@ urlpatterns = patterns('',
       
       
       (r'video/(?P<video_filename>\w+)/$', 'collection_tool.views.video'), 
-      
-      
-      
-      (r'interview_management_login$',                    'collection_tool.views.interview_management_login'), 
-      (r'interview_management_participants$',             'collection_tool.views.interview_management_participants'), 
-      (r'interview_management_family_assessment$',        'collection_tool.views.interview_management_family_assessment'),
-      (r'interview_management_family_information$',       'collection_tool.views.interview_management_family_information'), 
-      (r'interview_management_health_worker_information$','collection_tool.views.interview_management_health_worker_information'), 
-      (r'interview_management_sync$',                     'collection_tool.views.interview_management_sync'),
-      
+
 )
 

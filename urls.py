@@ -17,5 +17,5 @@ urlpatterns = patterns('',
                        (r'^uploads/(?P<path>.*)$','django.views.static.serve',{'document_root' : settings.MEDIA_ROOT}),
                        (r'^weights/', include('equation_balancer.urls')),
                        (r'^collection_tool/', include('collection_tool.urls')),
-		       (r'',include('collection_tool.urls')),
+                       (r'^family_info/', include('family_info.urls')),
 )
