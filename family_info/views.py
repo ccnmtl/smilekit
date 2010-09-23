@@ -3,6 +3,7 @@ from django.shortcuts import render_to_response
 from smilekit.collection_tool.models import *
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext, loader
+from django.contrib.auth.decorators import login_required
 import random
 
 #def index(request):
@@ -13,21 +14,27 @@ import random
 #    return render_to_response("collection_tool/temp_html.html")
 
 
+@login_required
 def login(request):
   return render_to_response("family_info/login.html")
-  
+
+@login_required
 def participants(request):
   return render_to_response("family_info/participants.html")
   
+@login_required
 def family_assessment(request):
   return render_to_response("family_info/family_assessment.html")
   
+@login_required
 def family_information(request):
   return render_to_response("family_info/family_information.html")
   
+@login_required
 def health_worker_information(request):
   return render_to_response("family_info/health_worker_information.html")
   
+@login_required
 def sync(request):
   return render_to_response("family_info/sync.html")
   
