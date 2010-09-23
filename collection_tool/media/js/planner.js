@@ -45,6 +45,31 @@ function initPlanner() {
     });
 }
 
+function findNearestEmpty(elem) {
+  if( ! $(elem).hasClass("timerowfilled") ) {
+    return elem;
+  }
+
+  var next = $(elem).next(".timerow");
+  var prev = $(elem).prev(".timerow");
+
+  var found = false;
+  while( !found && ( (next.length > 0) || (prev.length > 0) ) ) {
+    if( (next.length > 0) && (! $(next).hasClass("timerowfilled"))) {
+      found = next;
+    }
+    else if( (prev.length > 0) && (! $(prev).hasClass("timerowfilled"))) {
+      found = prev;
+    }
+    else {
+      next = $(next).next(".timerow");
+      prev = $(prev).prev(".timerow");
+    }
+  }
+  
+  return found;
+}
+
 function saveMeal() {
   var items = "";
   $('.thumbnailselected').each(function() {
@@ -55,11 +80,13 @@ function saveMeal() {
   if(items == "") { return; }  // nothing was selected
 
   items = items.slice(0, -2);
+  
+  var goodrow = findNearestEmpty($(this).parent());
 
-  $('.mealorsnack', $(this).parent()).html("Meal");
-  $('.activityitems', $(this).parent()).html(items);
+  $('.mealorsnack', $(goodrow)).html("Meal");
+  $('.activityitems', $(goodrow)).html(items);
 
-  $(this).parent().addClass('timerowfilled');
+  $(goodrow).addClass('timerowfilled');
 }
 
 function deleteMeal() {
@@ -71,7 +98,7 @@ function deleteMeal() {
 function moveUp() {
   var items = $('.timeactivity', $(this).parent()).html();
 
-  var prevElement = $(this).parent().prev();
+  var prevElement = $(this).parent().prevAll(".timerow:not(.timerowfilled)").first();
   if(prevElement.length > 0) {
     $('.timeactivity', prevElement).html(items);
     $(prevElement).addClass('timerowfilled');
@@ -83,7 +110,7 @@ function moveUp() {
 function moveDown() {
   var items = $('.timeactivity', $(this).parent()).html();
 
-  var nextElement = $(this).parent().next();
+  var nextElement = $(this).parent().nextAll(".timerow:not(.timerowfilled)").first();
   console.log(nextElement);
   if(nextElement.length > 0) {
     $('.timeactivity', nextElement).html(items);
