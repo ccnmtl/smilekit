@@ -42,7 +42,12 @@ CACHE:
 /collection_tool/media/js/collection_tool.js
 /collection_tool/media/js/json2.js
 /collection_tool/media/js/jquery.js
+/collection_tool/media/js/planner.js
 
+# planner images
+{% for label in planneritem_labels %}
+  /collection_tool/media/images/planner/{{label|slugify}}.jpg
+{% endfor %}
 
 
 #Videos:
