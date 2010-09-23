@@ -446,9 +446,10 @@ post_save.connect(post_save_ordering_string_update, sender=AnswerTranslation)
 
 class PlannerItem(models.Model):
   def __unicode__(self):
-    return "%s: %s" % (self.type, self.label)
+    return "%s: %s" % (self.get_type_display(), self.label)
 
   TYPE_CHOICES = ( ('A', 'Fluoride'), ('B', 'Foods'), ('C', 'Drinks'))
   type = models.CharField(max_length=1, choices=TYPE_CHOICES)
   label = models.TextField()
+  risk_level = models.IntegerField()
   #image = models.ImageField(upload_to='answer_images',blank=True,null=True)

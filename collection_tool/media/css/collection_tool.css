@@ -371,6 +371,8 @@ h2#contenttitle, #contentsubtitle { text-align: center; }
 
 div#timetable { width: 100%; }
 
+div#timelinearrow { cursor: pointer; }
+
 div#timetable .timetext {padding: 10px; display: block; text-align: center;}
 
 div#timetable .timerow 
@@ -405,15 +407,32 @@ div#timetable .time
 
 div#timetable .timerowfilled .timeactivity
 {
+   display: block !important;
 	font-weight: bold;
 	position: absolute;
 	top: 0px;
 	left: 100px;
 }
 
+div#timetable .timerowcollapsed {
+  width: 100px;
+}
+
+div#timetable .timerowfilled .timebutton {
+  display: block !important;
+}
+
+div#timetable .timerowcollapsed .timeactivity, div#timetable .timerowcollapsed .timebutton {
+  display: none !important;
+}
+
 div#timetable .timerow  .timeactivity
 {
 	display: none;
+}
+
+div#timetable .timerowfilled .time {
+	background: -moz-linear-gradient(top, #fff, #9bd);
 }
 
 div#timetable .timerowfilled .timebutton
@@ -483,6 +502,14 @@ div#timetable .timerowfilled .timeactiondelete
 {
 	margin: 0px auto;
 	text-align: left;
+}
+
+.photobox .photoboxhideshow {
+  float: right;
+  border: 3px black solid;
+  background: #fff;
+  cursor: pointer;
+  color: #000;
 }
 
 .answerphotobox

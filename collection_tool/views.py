@@ -137,6 +137,8 @@ def manifest(request):
   paths_to_answer_images = [d.image.url for d in DisplayAnswer.objects.all() if has_image(d.image)]
   
   nav_section_ids = [p.id for p in AssessmentSection.objects.all()]
+  
+  planner_labels = [i.label for i in PlannerItem.objects.all()]
 
   #THIS WORKS:::::
   
@@ -146,6 +148,7 @@ def manifest(request):
     'paths_to_question_images' :  paths_to_question_images,
     'paths_to_answer_images' :    paths_to_answer_images,
     'nav_section_ids' :           nav_section_ids,
+    'planner_labels' :            planner_labels,
     # this was breaking on questions that weren't part of the nav:
     # 'question_ids':              [d.id for d in DisplayQuestion.objects.all()],
     'question_ids':               all_display_question_ids_in_order(),
