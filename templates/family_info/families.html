@@ -1,0 +1,78 @@
+{% extends "family_info/base.html" %}
+{%load smartif%}
+{% block collection_tool_content %}
+		
+		
+		<h2 id="contenttitle">
+		
+			Participants
+		
+		</h2>
+
+
+				<form action="#">
+					
+					<fieldset>
+					
+						<legend>Families</legend>
+					
+							<table>
+	
+	          <tr>
+	          <td>Green Family (Henry)</td>
+	          <td><input type="button" title="Lock this family and prepare for interview." value="Start"></td>
+	          <td><input type="button" value="Edit"></td>
+	          </tr>
+	
+
+	<tr>
+	<!-- TODO wtf is up with javascript on this page??-->
+	<td colspan = "5"><input type="button" value="New Family" onclick="alert ('a');  "></td>
+	</tr>
+	
+		<tr>
+	<td colspan = "5"><a href = "/family_info/new_family" >New Family</a></td>
+	</tr>
+	
+	</table>
+					</fieldset>
+				</form>
+				<form action="#">
+					
+					<fieldset>
+					
+						<legend>Health Workers</legend>
+					
+							<table>
+							
+							<tr>
+							<td>Brown, Tony</td>
+							<td><input type="button" value="Edit" ></td>
+							</tr>
+							
+							<tr>
+							<td>Brown, Tony</td>
+							<td><input type="button" value="Edit" ></td>
+							</tr>
+							
+							<tr>
+							<td>Brown, Tony</td>
+							<td><input type="button" value="Edit" ></td>
+							</tr>
+							
+
+	<tr>
+	<td colspan = "2"><input type="button" value="New Health Worker"></td>
+	</tr>
+	
+
+							
+							</table>
+					
+					</fieldset>
+					
+				</form>
+			
+			
+
+{% endblock collection_tool_content %}

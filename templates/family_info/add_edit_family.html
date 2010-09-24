@@ -1,0 +1,113 @@
+{% extends "family_info/base.html" %}
+{%load smartif%}
+
+
+{% block collection_tool_js %}
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js" type="text/javascript"></script>
+{% endblock collection_tool_js %}
+{% block collection_tool_content %}
+		<h2 id="contenttitle">
+			Family Information		
+		</h2>
+		<table>
+
+    {% if family %}
+        <form id="edit_family" action="/family_info/edit_family/{{family.id}}" method="post">
+    {% else %}
+        <form id="add_family" action="/family_info/insert_family" method="post">
+      {% endif %}   
+      
+		  <tr>
+		  <td>Study ID number:</td>
+		  <td><input type="text"  name="study_id_number"  value="{{family.study_id_number}}" /></td>
+		  </tr>
+		
+      
+    {% if family %}
+      <tr>
+        <th>Status:</th>
+          <td>
+            <input type="radio" name="active" value="True"  {% if family.active %}checked{%endif %}>Active
+            <input type="radio" name="active" value="False" {% if not family.active%}checked{%endif %}> Inactive
+          </td>
+      </tr>
+      {% endif %}
+		
+		
+		<tr>
+		<td>Family's last name:</td>
+		<td><input type="text" name="family_last_name" value="{{family.family_last_name}}" /></td>
+		</tr>
+		
+		<tr>
+		<td>Child's last name:</td>
+		<td><input type="text"  name="child_last_name" value="{{family.child_last_name}}" /></td>
+		</tr>
+		
+		<tr>
+		<td>Child's first name:</td>
+		<td><input type="text"  name="child_first_name" value="{{family.child_first_name}}" /></td>
+		</tr>
+		
+		
+		
+		<tr>
+		<td>Child's approximate year of birth:</td>
+		<td><input type="text"   name="child_year_of_birth" value="{{family.child_year_of_birth}}" /></td>
+		</tr>
+		
+  
+		</table>
+		
+		<h3>
+		Demographic Data
+		</h3>
+		
+		<table>
+		
+		<tr>
+		<td>Race/Ethnicity:</td>
+		<td><input type="text"  name="race_ethnicity" value="{{family.race_ethnicity}}" /></td>
+		</tr>
+		<tr>
+		<td>Mother born in US:</td>
+		<td><input type="text"   name="mother_born_in_us" value="{{family.mother_born_in_us}}" /></td>
+		</tr>
+
+		<tr>
+		<td>Food Stamps in Last Year:</td>
+		<td><input type="text"   name="food_stamps_in_last_year" value="{{family.food_stamps_in_last_year}}" /></td>
+		</tr>
+		
+		<tr>
+		<td>Highest level of parent education:</td>
+		<td><input type="text"  name="highest_level_of_parent_education" value="{{family.highest_level_of_parent_education}}" /></td>
+		</tr>
+		
+		<tr>
+        <td class="actioncell" colspan = "2" align="center">
+            <input type="submit"
+              value="{{ participant|yesno:"Save Changes,Save"}}"
+             />
+        </tr>	
+        </form>	  
+		</table>
+		
+		
+		<h3>
+  		Interviews:
+		</h3>
+		
+		<table>
+		  <tr>
+		  <th>Date</th>
+		  <td>Click for summary</td>
+		  </tr>
+		  <tr>
+		  <th>Date</th>
+		  <td>Click for summary</td>
+		  </tr>
+		  
+		</table>
+
+{% endblock collection_tool_content %}

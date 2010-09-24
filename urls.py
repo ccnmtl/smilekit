@@ -33,7 +33,7 @@ urlpatterns = patterns(
 
 
   #GENERIC WELCOME URL:
-  (r'', 'family_info.views.participants')
+  (r'', 'family_info.views.families')
 
   #LEAVE THIS AT THE END. Otherwise it leads to redirect loops.
   

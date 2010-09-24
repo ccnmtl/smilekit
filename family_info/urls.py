@@ -4,30 +4,19 @@ import os.path
 
 
 urlpatterns = patterns('',
-  (r'login$',                    'family_info.views.login'), 
-  (r'participants$',             'family_info.views.participants'), 
-  (r'family_assessment$',        'family_info.views.family_assessment'),
-  (r'family_information$',       'family_info.views.family_information'), 
-  (r'health_worker_information$','family_info.views.health_worker_information'), 
-  (r'sync$',                     'family_info.views.sync')  
+  #(r'login$',                    'family_info.views.login'), 
+  #(r'participants$',             'family_info.views.participants'), 
+  #(r'family_assessment$',        'family_info.views.family_assessment'),
+  #(r'family_information$',       'family_info.views.family_information'), 
+  #(r'health_worker_information$','family_info.views.health_worker_information'), 
+  
+  
+  (r'^families$',                             'family_info.views.families'),
+  (r'sync$',                                  'family_info.views.sync'),
+  (r'^new_family$',                           'family_info.views.new_family'),
+  (r'^insert_family$',                        'family_info.views.insert_family'),
+  (r'^edit_family/(?P<family_id>\d+)$',       'family_info.views.edit_family'),
+  (r'^new_user$',                             'family_info.views.new_user'),
+  (r'^insert_user$',                          'family_info.views.insert_user'),
+  (r'^edit_user/(?P<user_id>\d+)$',           'family_info.views.edit_user'),
 )
-
-
-if 1 == 0:
-  instructions = """
-        	
-
-      where researchers can:
-      1. add health worker user accounts
-      2. add families
-      3. lock families for local storage
-      4. go to client facing tool
-
-      note - some activities can only be done on computer/some on mobile device
-
-
-	
-"""
-
-
-

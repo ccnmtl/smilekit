@@ -4,193 +4,250 @@ from smilekit.collection_tool.models import *
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext, loader
 from django.contrib.auth.decorators import login_required
-import random
+from family_info.models import Family, User
+import datetime
 
-#def index(request):
-#    return render_to_response("collection_tool/index.html")
-
-
-#def temp_html(request):
-#    return render_to_response("collection_tool/temp_html.html")
-
-
+#TODO: rename this "families"
 @login_required
-def login(request):
-  return render_to_response("family_info/login.html")
-
-@login_required
-def participants(request):
-  return render_to_response("family_info/participants.html")
+def families(request):
+  return render_to_response("family_info/families.html")
+  
+  
+  
   
 @login_required
 def family_assessment(request):
   return render_to_response("family_info/family_assessment.html")
   
+  
+##THIS WILL BE REPLACED BY FAMILY CRUD:  
 @login_required
 def family_information(request):
   return render_to_response("family_info/family_information.html")
   
-@login_required
-def health_worker_information(request):
-  return render_to_response("family_info/health_worker_information.html")
-  
+
 @login_required
 def sync(request):
   return render_to_response("family_info/sync.html")
   
 
 
-    
-if 1 == 0:
-      def section(request, section_id, language_code):
-        section = get_object_or_404(AssessmentSection, pk=section_id)
-        
-        if language_code not in ['en', 'es']:
-          raise Http404
-          
-        t = loader.get_template('collection_tool/sectionindex.html')
-        c = RequestContext(request,{
-            'section': section,
-            'language_code': language_code,
-            'all_sections': AssessmentSection.objects.all()
-        })
-        return HttpResponse(t.render(c))    
-        
-
-      #      (r'video/(?P<video_path>\w+)/$', 'collection_tool.views.video'), 
-
-      def video (request, video_filename):
-        """Show a video."""
-        
-        t = loader.get_template('collection_tool/video.html')
-        c = RequestContext(request,{
-            'video_filename' : video_filename
-        })
-        return HttpResponse(t.render(c))
-
-      def question(request, displayquestion_id, language_code):
-        """ Look up a DisplayQuestion object and display it in the data collection tool. Note that question_id refers to a displayquestion object, not a question object; some displayquestions are not associated with any question."""
-        displayquestion = get_object_or_404(DisplayQuestion, pk=displayquestion_id)
-        if language_code not in ['en', 'es']:
-          raise Http404
-        wording = displayquestion.wording(language_code)
-        
-        
-        answers = []
-        
-        if displayquestion.display_answers:
-          for d in displayquestion.display_answers:
-            answers.append ( {
-                              'stock_answer' : False,
-                              'wording': d.wording(language_code),
-                              'image': d.image,
-                              'id': d.answer.id
-                              } )
-                              
-        else:
-          for a in displayquestion.question.answer_set.all():
-            answers.append ( {
-                          'stock_answer' : True,
-                          'text': a.text,
-                          'id': a.id
-                            })
-        
-        t = loader.get_template('collection_tool/question.html')
-        c = RequestContext(request,{
-            'displayquestion': displayquestion,
-            'wording' : wording,
-            'answers': answers,
-            'language_code': language_code,
-            'all_sections': AssessmentSection.objects.all()
-        })
-        return HttpResponse(t.render(c))
-          
-
-      def interview_management_login(request):
-        return render_to_response("collection_tool/interview_management_login.html")
-      def interview_management_participants(request):
-        return render_to_response("collection_tool/interview_management_participants.html")
-      def interview_management_family_assessment(request):
-        return render_to_response("collection_tool/interview_management_family_assessment.html")
-      def interview_management_family_information(request):
-        return render_to_response("collection_tool/interview_management_family_information.html")
-      def interview_management_health_worker_information(request):
-        return render_to_response("collection_tool/interview_management_health_worker_information.html")
-      def interview_management_sync(request):
-        return render_to_response("collection_tool/interview_management_sync.html")
-        
-
-        
-
-
-
-      def html_sandbox(request):
-        return render_to_response("collection_tool/html_sandbox.html")
-
-      # for testing:
-      def available_offline(request):
-        t = loader.get_template('collection_tool/message.html')
-        c = RequestContext(request,{
-            'message': "This page should be available offline."
-        })
-        return HttpResponse(t.render(c))
-
-      def not_available_offline(request):
-        t = loader.get_template('collection_tool/message.html')
-        #print "NOT AVAILABLE OFFLINE"
-        c = RequestContext(request,{
-            'message': "This page should NOT be available offline."
-        })
-        return HttpResponse(t.render(c))
-
-
-      def online_check(request):
-        return HttpResponse(random.randint(0, 9999999999))
-
-
-      def manifest(request):
-        """ This is the list of files that Smilekit needs to save locally on the ipad, so that researchers can access them offline while interviewing.
-        The url is:
-        /collection_tool/manifest.cache
-        Relevant research:
-        https://developer.mozilla.org/en/Offline_resources_in_Firefox
-        http://docs.djangoproject.com/en/dev/ref/request-response/
-        http://stackoverflow.com/questions/1715568/how-to-properly-invalidate-an-html5-cache-manifest-for-online-offline-web-apps
-        http://www.webreference.com/authoring/languages/html/HTML5-Application-Caching/
-        """
-        
-        #import pdb
-        #pdb.set_trace()
-        
-        
-        paths_to_question_images = [d.image.url for d in DisplayQuestion.objects.all() if has_image(d.image)]
-        
-        paths_to_answer_images = [d.image.url for d in DisplayAnswer.objects.all() if has_image(d.image)]
-        
-        nav_section_ids = [p.id for p in AssessmentSection.objects.all()]
-
-        #THIS WORKS:::::
-        
-        response = HttpResponse(mimetype='text/cache-manifest')
-        t = loader.get_template('collection_tool/manifest')
-        c = RequestContext(request,{
-          'paths_to_question_images' :  paths_to_question_images,
-          'paths_to_answer_images' :    paths_to_answer_images,
-          'nav_section_ids' :           nav_section_ids,
-          # this was breaking on questions that weren't part of the nav:
-          # 'question_ids':              [d.id for d in DisplayQuestion.objects.all()],
-          'question_ids':               all_display_question_ids_in_order(),
-          'randomnumber' :              random.randint(0, 9999999999)
-
-          
-        })
-        response.write(t.render(c))
-        return response
-        
-          
-
-if 1 == 0:
-
-  def manifest(request):
-    return HttpResponseNotFound()  
+##THIS WILL BE REPLACED BY USER CRUD:
+@login_required
+def health_worker_information(request):
+  return render_to_response("family_info/health_worker_information.html")
   
+
+
+#**************************
+#USER CRUD:
+@login_required
+def new_user(request, **kwargs):
+    """ this displays a blank new user form"""
+    t = loader.get_template('family_info/add_edit_user.html')
+    c = RequestContext(request, {})
+    return HttpResponse(t.render(c))
+
+
+@login_required
+def back_to_new_user (request, **kwargs):
+    #pdb.set_trace()
+    c = RequestContext(request,{
+        'error_message' :  kwargs.get('error_message', '')
+    })
+    t = loader.get_template('family_info/add_edit_user.html')
+    return HttpResponse(t.render(c))
+
+@login_required
+def insert_user(request, **kwargs):
+    """ this validates the user form and inserts the user."""
+    rp = request.POST;
+    
+    the_new_user = User(\
+        username = request.POST['username'], \
+        password= password, \
+        first_name = rp['first_name'],\
+        last_name =  rp['last_name']\
+    )
+    
+    if len (User.objects.filter(username=rp['username'])) > 0:
+        error_message = 'Sorry, %s is already in use. Please try another name.' % rp['username']
+        return back_to_new_user ( request, first_name = rp['first_name'], \
+            last_name = rp['last_name'], username= '', error_message = error_message)
+        
+    the_new_user.save()
+    error_message = 'Health worker user  %s was created.' % rp['username']
+    
+    if rp.get('destination', '') == 'new':
+        return back_to_new_user ( request, error_message = error_message)
+    else:
+        return back_to_edit_user  ( request, ag, new_user, error_message)
+    
+
+@login_required
+def edit_user(request, **kwargs):
+    rp = request.POST
+    user_id = kwargs['user_id']
+    
+    """ edit the user"""
+    #pdb.set_trace()
+    user = get_object_or_404(User, pk=user_id)
+    if request.POST != {}:
+        try:
+            if " " in  rp['username']:
+                error_message = 'User ID cannot contain spaces.'
+                return back_to_edit_user  ( request, user, error_message)
+            
+            if  rp['username'] !=  rp['username'].lower():
+                error_message = 'User ID cannot contain uppercase letters.'
+                return back_to_edit_user  ( request, user, error_message)
+            
+            if user.username != rp['username'] and len (User.objects.filter(username=rp['username'])) > 0:
+                error_message = 'Sorry, %s is already in use. Please try another name.' % rp['username']
+                return back_to_edit_user  ( request, user, error_message)
+        
+            user.first_name = request.POST['first_name']
+            user.username = request.POST['username']
+            user.last_name = request.POST['last_name']
+            user.is_active = (request.POST['is_active'] == 'True')
+            user.save()
+            
+        except:
+            return back_to_edit_user (request, user, "Error: %s" % sys.exc_info()[1])
+   
+    error_message = 'Your changes were saved.'
+    return back_to_edit_user  ( request, user, error_message)
+
+
+@login_required
+def back_to_edit_user (request, **kwargs):
+    #pdb.set_trace()
+    c = RequestContext(request,{
+        'error_message' :  kwargs.get('error_message', ''),
+        'user_id' :  kwargs.get('user_id', '')
+    })
+    t = loader.get_template('family_info/add_edit_user.html')
+    return HttpResponse(t.render(c))
+
+
+
+
+#**************************
+#FAMILY CRUD:
+#@login_required
+def new_family(request, **kwargs):
+    """ this displays a blank new family form"""
+    t = loader.get_template('family_info/add_edit_family.html')
+    c = RequestContext(request, {})
+    return HttpResponse(t.render(c))
+
+
+#@login_required
+def back_to_new_family (request,  **kwargs ):
+    #pdb.set_trace()
+    c = RequestContext(request,{
+        'first_name' : first_name,
+        'last_name' : last_name,
+        'username' : username,
+        'error_message' : error_message
+    })
+    t = loader.get_template('family_info/add_edit_user.html')
+    return HttpResponse(t.render(c))
+
+
+if 1 == 0:
+
+    goat = """
+     
+      
+       Family (study_id_number=12, family_last_name='asd', child_last_name='asd', date_created = datetime.datetime.now(), date_modified = datetime.datetime.now(), child_year_of_birth=1992)
+
+      
+      """
+
+
+#@login_required
+def insert_family(request, **kwargs):
+    """ this validates the family form and inserts the family."""
+    rp = request.POST;
+    study_id_number = int( rp['study_id_number'])
+    
+    
+    #TODO check unique study id number    
+    #TODO check integer for year #
+    #TODO 
+    if 1 == 0:
+      if len (User.objects.filter(username=rp['username'])) > 0:
+          error_message = 'Sorry, %s is already in use. Please try another name.' % rp['username']
+          return back_to_new_user ( request, first_name = rp['first_name'], \
+              last_name = rp['last_name'], username= '', error_message = error_message)
+      
+    
+    the_new_family = Family (
+      study_id_number= study_id_number,
+      family_last_name= rp['family_last_name'],
+      child_last_name= rp['child_last_name'],
+      date_created = datetime.datetime.now(),
+      date_modified = datetime.datetime.now(),
+      child_year_of_birth = int( rp['child_year_of_birth']),
+    )
+    
+        
+    new_family.save()
+    error_message = 'Family   %s was created.' % family
+    
+    import pdb
+    pdb.set_trace()
+    
+    
+    return back_to_edit_family  ( request, the_new_family, error_message)
+    
+
+@login_required
+def edit_family(request, **kwargs):
+    rp = request.POST
+    family_id = kwargs['family_id']
+    
+    """ edit the family"""
+    #pdb.set_trace()
+    family = get_object_or_404(Family, pk=family_id)
+    if request.POST != {}:
+        try:
+            pass
+            #if " " in  rp['username']:
+            #    error_message = 'User ID cannot contain spaces.'
+            #    return back_to_edit_user  ( request, user, error_message)
+            #
+            #if  rp['username'] !=  rp['username'].lower():
+            #    error_message = 'User ID cannot contain uppercase letters.'
+            #    return back_to_edit_user  ( request, user, error_message)
+            #
+            #if user.username != rp['username'] and len (User.objects.filter(username=rp['username'])) > 0:
+            #    error_message = 'Sorry, %s is already in use. Please try another name.' % rp['username']
+            #    return back_to_edit_user  ( request, user, error_message)
+        
+            #family.first_name = request.POST['first_name']
+            #family.username = request.POST['username']
+            #family.last_name = request.POST['last_name']
+            family.is_active = (request.POST['is_active'] == 'True')
+            family.save()
+            
+        except:
+            return back_to_edit_user (request, user, "Error: %s" % sys.exc_info()[1])
+   
+    error_message = 'Your changes were saved.'
+    return back_to_edit_user  ( request, user, error_message)
+
+@login_required
+def back_to_edit_family (request, **kwargs):
+    c = RequestContext(request,{
+        'family' :  kwargs['family'],
+        'error_message' : kwargs['error_message']
+    })
+    t = loader.get_template('family_info/add_edit_family.html')
+    return HttpResponse(t.render(c))
+
+
+#**************************
+#**************************
+
