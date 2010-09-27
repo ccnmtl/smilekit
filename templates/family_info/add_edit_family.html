@@ -11,6 +11,11 @@
 		</h2>
 		<table>
 
+
+    <div>
+        {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+    </div>
+
     {% if family %}
         <form id="edit_family" action="/family_info/edit_family/{{family.id}}" method="post">
     {% else %}
@@ -21,19 +26,7 @@
 		  <td>Study ID number:</td>
 		  <td><input type="text"  name="study_id_number"  value="{{family.study_id_number}}" /></td>
 		  </tr>
-		
-      
-    {% if family %}
-      <tr>
-        <th>Status:</th>
-          <td>
-            <input type="radio" name="active" value="True"  {% if family.active %}checked{%endif %}>Active
-            <input type="radio" name="active" value="False" {% if not family.active%}checked{%endif %}> Inactive
-          </td>
-      </tr>
-      {% endif %}
-		
-		
+		<!--
 		<tr>
 		<td>Family's last name:</td>
 		<td><input type="text" name="family_last_name" value="{{family.family_last_name}}" /></td>
@@ -48,13 +41,27 @@
 		<td>Child's first name:</td>
 		<td><input type="text"  name="child_first_name" value="{{family.child_first_name}}" /></td>
 		</tr>
-		
+		-->
 		
 		
 		<tr>
 		<td>Child's approximate year of birth:</td>
 		<td><input type="text"   name="child_year_of_birth" value="{{family.child_year_of_birth}}" /></td>
 		</tr>
+
+    {% if family %}
+      <tr>
+        <td>Status:</td>
+          <td>
+            <input type="radio" name="active" value="True"  {% if family.active %}checked{%endif %}>Active
+            <input type="radio" name="active" value="False" {% if not family.active%}checked{%endif %}> Inactive
+          </td>
+      </tr>
+      <tr>
+        <td colspan = "2">(Set status to "inactive" to "delete" a family.)</td>
+      </tr>
+      
+      {% endif %}
 		
   
 		</table>
@@ -66,22 +73,47 @@
 		<table>
 		
 		<tr>
-		<td>Race/Ethnicity:</td>
-		<td><input type="text"  name="race_ethnicity" value="{{family.race_ethnicity}}" /></td>
+		<td>Race or Ethnicity of child:</td>
+				  <td>
+          <select name = "race_ethnicity">
+            {% for r_e_choice_k, r_e_choice_v in r_e_choices %}
+                <option value = "{{r_e_choice_k}}"
+                {%if family.race_ethnicity == r_e_choice_k%} selected {%endif%}
+                >{{r_e_choice_v}}</option>
+            {% endfor %}
+          </select>
+      </td>
 		</tr>
+		
+		
 		<tr>
-		<td>Mother born in US:</td>
-		<td><input type="text"   name="mother_born_in_us" value="{{family.mother_born_in_us}}" /></td>
+		<td>Was the mother born in the USA?</td>
+		<td>
+        <input type="radio" name="mother_born_in_us" value="True"  {% if family.mother_born_in_us %}checked{%endif %}>Yes
+        <input type="radio" name="mother_born_in_us" value="False" {% if not family.mother_born_in_us%}checked{%endif %}> No
+      </td>
 		</tr>
 
 		<tr>
-		<td>Food Stamps in Last Year:</td>
-		<td><input type="text"   name="food_stamps_in_last_year" value="{{family.food_stamps_in_last_year}}" /></td>
+		<td>Did the family use food stamps in the past year?</td>
+		  <td>
+          <input type="radio" name="food_stamps_in_last_year" value="True"  {% if family.food_stamps_in_last_year %}checked{%endif %}>Yes
+          <input type="radio" name="food_stamps_in_last_year" value="False" {% if not family.food_stamps_in_last_year%}checked{%endif %}> No
+      </td>
 		</tr>
 		
 		<tr>
 		<td>Highest level of parent education:</td>
-		<td><input type="text"  name="highest_level_of_parent_education" value="{{family.highest_level_of_parent_education}}" /></td>
+		<td>
+          <select name = "highest_level_of_parent_education">
+            {% for e_l_choice_k, e_l_choice_v in e_l_choices %}
+                <option value = "{{e_l_choice_k}}"
+                {%if family.highest_level_of_parent_education == e_l_choice_k%} selected {%endif%}
+                >{{e_l_choice_v}}</option>
+            {% endfor %}
+          </select>
+      </td>
+		
 		</tr>
 		
 		<tr>

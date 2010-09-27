@@ -8,8 +8,10 @@ assert User != None
 
 Configuration = models.get_model('equation_balancer', 'configuration')
 assert Configuration != None
+#TODO: add 'no data' option to these and make them mandatory. Make "no data" the default.
 
 RACE_ETHNICITY_CHOICES = (
+  ('nd', 'No data'),
   ('aa', 'African-American'),
   ('ca', 'Caucasian'),
   ('la', 'Hispanic'),
@@ -19,6 +21,7 @@ RACE_ETHNICITY_CHOICES = (
 )
 
 EDUCATION_LEVEL_CHOICES = (
+  ('nd', 'No data'),
   ('lt', 'Did not complete high school'),
   ('hi', 'Earned a a high-school degree.'),
   ('co', 'More than a high-school degree.'),
@@ -47,9 +50,18 @@ class Family(models.Model):
   #demographic info:
   mother_born_in_us = models.BooleanField( help_text = "Was the mother born in the United States?", null=True, blank = True)
   food_stamps_in_last_year = models.BooleanField( help_text = "Has the family used food stamps in the past year?" , null=True, blank = True)
-  highest_level_of_parent_education = models.CharField( max_length=2, choices=EDUCATION_LEVEL_CHOICES,  help_text = "Highest level of parents' education" , null=True, blank = True)
-  race_ethnicity = models.CharField(max_length=2, choices=RACE_ETHNICITY_CHOICES, null=True, blank = True)  # 
-  
+  highest_level_of_parent_education = models.CharField(
+    max_length=2,
+    choices=EDUCATION_LEVEL_CHOICES, 
+    help_text = "Highest level of parents' education" , 
+    default = 'nd'
+  )
+  race_ethnicity = models.CharField(
+    max_length=2,
+    choices=RACE_ETHNICITY_CHOICES,
+    default = 'nd'
+  )
+    
   #any extra interview state aside from basic questions and answers:
   interview_state = models.TextField(blank=True, default = '{}')
 
