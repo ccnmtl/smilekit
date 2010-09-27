@@ -5,11 +5,19 @@ from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext, loader
 from django.contrib.auth.decorators import login_required
 from family_info.models import Family, User, RACE_ETHNICITY_CHOICES, EDUCATION_LEVEL_CHOICES
+from equation_balancer.models import Configuration as equation_balancer_configuration
 import datetime, sys, pdb
 
 @login_required
 def families(request):
-  return render_to_response("family_info/families.html")
+    t = loader.get_template('family_info/families.html')
+   
+    c = RequestContext(request, {
+      'families': Family.objects.filter(active = True),
+      'health_workers': User.objects.all()
+      #TODO narrow this down
+    })
+    return HttpResponse(t.render(c))
   
 @login_required
 def family_assessment(request):
@@ -37,11 +45,15 @@ def health_worker_information(request):
 
 #**************************
 #USER CRUD:
+
+
 @login_required
 def new_user(request, **kwargs):
     """ this displays a blank new user form"""
+    varz = {}
+    varz.update (kwargs)
+    c = RequestContext(request,  varz)
     t = loader.get_template('family_info/add_edit_user.html')
-    c = RequestContext(request, {})
     return HttpResponse(t.render(c))
 
 
@@ -61,7 +73,8 @@ def insert_user(request, **kwargs):
     
     the_new_user = User(\
         username = request.POST['username'], \
-        password= password, \
+        #TODO do password validation
+        password= 'testing', \
         first_name = rp['first_name'],\
         last_name =  rp['last_name']\
     )
@@ -73,71 +86,66 @@ def insert_user(request, **kwargs):
         
     the_new_user.save()
     error_message = 'Health worker user  %s was created.' % rp['username']
-    
-    if rp.get('destination', '') == 'new':
-        return back_to_new_user ( request, error_message = error_message)
-    else:
-        return back_to_edit_user  ( request, ag, new_user, error_message)
+    return back_to_edit_user  ( request, the_user= the_new_user, error_message = error_message)
     
 
 @login_required
 def edit_user(request, **kwargs):
     rp = request.POST
     user_id = kwargs['user_id']
-    
     """ edit the user"""
-    #pdb.set_trace()
-    user = get_object_or_404(User, pk=user_id)
+    error_message = ''
+    the_user = get_object_or_404(User, pk=user_id)
     if request.POST != {}:
         try:
             if " " in  rp['username']:
-                error_message = 'User ID cannot contain spaces.'
-                return back_to_edit_user  ( request, user, error_message)
+                error_message = 'User name cannot contain spaces.'
+                return back_to_edit_user  ( request, the_user = the_user, error_message = error_message)
             
             if  rp['username'] !=  rp['username'].lower():
-                error_message = 'User ID cannot contain uppercase letters.'
-                return back_to_edit_user  ( request, user, error_message)
+                error_message = 'User name cannot contain uppercase letters.'
+                return back_to_edit_user  ( request, the_user = the_user, error_message = error_message)
             
             if user.username != rp['username'] and len (User.objects.filter(username=rp['username'])) > 0:
                 error_message = 'Sorry, %s is already in use. Please try another name.' % rp['username']
-                return back_to_edit_user  ( request, user, error_message)
+                return back_to_edit_user  ( request, the_user = the_user, error_message = error_message)
         
-            user.first_name = request.POST['first_name']
-            user.username = request.POST['username']
-            user.last_name = request.POST['last_name']
-            user.is_active = (request.POST['is_active'] == 'True')
-            user.save()
+            the_user.first_name = request.POST['first_name']
+            the_user.username = request.POST['username']
+            the_user.last_name = request.POST['last_name']
+            the_user.is_active = (request.POST['is_active'] == 'True')
+            the_user.save()
+            error_message = 'Your changes were saved.'
             
         except:
-            return back_to_edit_user (request, user, "Error: %s" % sys.exc_info()[1])
-   
-    error_message = 'Your changes were saved.'
-    return back_to_edit_user  ( request, user, error_message)
-
+            #pdb.set_trace()        
+            return back_to_edit_user (request, the_user = the_user, error_message =  "Error: %s" % sys.exc_info()[1])
+    return back_to_edit_user  ( request, the_user = the_user, error_message= error_message)
 
 @login_required
 def back_to_edit_user (request, **kwargs):
-    #pdb.set_trace()
-    c = RequestContext(request,{
-        'error_message' :  kwargs.get('error_message', ''),
-        'user_id' :  kwargs.get('user_id', '')
-    })
+    assert kwargs.has_key ('the_user')
+    varz ={}
+    varz.update(kwargs)
+    c = RequestContext(request, varz)
     t = loader.get_template('family_info/add_edit_user.html')
     return HttpResponse(t.render(c))
 
 
-
-
 #**************************
 #FAMILY CRUD:
-#@login_required
+
+def default_family_form_vars():
+  return {
+    'r_e_choices' : RACE_ETHNICITY_CHOICES,
+    'e_l_choices' : EDUCATION_LEVEL_CHOICES,
+    'equation_balancer_configs': equation_balancer_configuration.objects.all()
+  }
+
+@login_required
 def new_family(request, **kwargs):
     """ this displays a new family form. You can pass in kv pairs from previous attempts to fill out the form via kwargs."""
-    
-    varz = {
-        'r_e_choices' : RACE_ETHNICITY_CHOICES,
-        'e_l_choices' : EDUCATION_LEVEL_CHOICES
-    }
+    varz = default_family_form_vars()
     varz.update (kwargs)
     c = RequestContext(request,  varz)
     t = loader.get_template('family_info/add_edit_family.html')
@@ -145,7 +153,7 @@ def new_family(request, **kwargs):
 
 
 
-#@login_required
+@login_required
 def insert_family(request, **kwargs):
     """ this validates the family form and inserts the family."""
     rp = request.POST;
@@ -174,13 +182,16 @@ def insert_family(request, **kwargs):
       return new_family (request,**kwargs )
     
     
+    the_config = equation_balancer_configuration.objects.get(pk = rp['config_id'])
+    assert the_config != None
+    
     the_new_family = Family (
       active = True,
       study_id_number= study_id,
       date_created = datetime.datetime.now(),
       date_modified = datetime.datetime.now(),
       child_year_of_birth = int( rp['child_year_of_birth']),
-      config_id = 8 #TODO: get this from the form.
+      config_id = the_config.id
     )
     
     #not collected at the moment due to HIPAA concerns
@@ -210,11 +221,7 @@ def insert_family(request, **kwargs):
 @login_required
 def back_to_edit_family (request, **kwargs):
     assert kwargs.has_key ('family')
-    
-    varz = {
-      'r_e_choices' : RACE_ETHNICITY_CHOICES,
-      'e_l_choices' : EDUCATION_LEVEL_CHOICES
-    }
+    varz = default_family_form_vars()
     varz.update(kwargs)
     c = RequestContext(request, varz)
     t = loader.get_template('family_info/add_edit_family.html')

@@ -17,21 +17,18 @@
 						<legend>Families</legend>
 					
 							<table>
-	
+	        {%for family in families %}
 	          <tr>
-	          <td>Green Family (Henry)</td>
-	          <td><input type="button" title="Lock this family and prepare for interview." value="Start"></td>
-	          <td><input type="button" value="Edit"></td>
+	            <td>Family # {{family.study_id_number}}</td>
+	            <td><a title="Lock this family and prepare for interview.">Start visit</td>
+	            <td><a href="/family_info/edit_family/{{family.id}}">Details </a></td>
 	          </tr>
+	        {%endfor %}
 	
 
-	<tr>
-	<!-- TODO wtf is up with javascript on this page??-->
-	<td colspan = "5"><input type="button" value="New Family" onclick="alert ('a');  "></td>
-	</tr>
 	
-		<tr>
-	<td colspan = "5"><a href = "/family_info/new_family" >New Family</a></td>
+  <tr>
+  	<td colspan = "5"><a href = "/family_info/new_family" >New Family</a></td>
 	</tr>
 	
 	</table>
@@ -44,26 +41,16 @@
 						<legend>Health Workers</legend>
 					
 							<table>
-							
+							{% for worker in health_workers %}
 							<tr>
-							<td>Brown, Tony</td>
-							<td><input type="button" value="Edit" ></td>
+							<td>{{worker }}</td>
+							<td><a href = "/family_info/edit_user/{{worker.id}}">Edit</a></td>
 							</tr>
-							
-							<tr>
-							<td>Brown, Tony</td>
-							<td><input type="button" value="Edit" ></td>
-							</tr>
-							
-							<tr>
-							<td>Brown, Tony</td>
-							<td><input type="button" value="Edit" ></td>
-							</tr>
-							
+							{%endfor%}
 
-	<tr>
-	<td colspan = "2"><input type="button" value="New Health Worker"></td>
-	</tr>
+	            <tr>
+  	            <td colspan = "2"><a href="/family_info/new_user" >New Health Worker</td>
+	            </tr>
 	
 
 							

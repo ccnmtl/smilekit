@@ -7,9 +7,12 @@
 
 {% endblock collection_tool_js %}
 
-
-
-
+<!--
+            user.first_name = request.POST['first_name']
+            user.username = request.POST['username']
+            user.last_name = request.POST['last_name']
+            user.is_active = (request.POST['is_active'] == 'True')
+-->
 	
 		{% block collection_tool_content %}
 		<h2 id="contenttitle">
@@ -17,38 +20,65 @@
 			Health Worker Information
 		
 		</h2>
+		<a href ="/family_info/families"> Back to main page </a>
 		
+		<!--TODO add active / inactive -->
 		<table>
+		
+    {% if the_user %}
+        <form id="edit_user" action="/family_info/edit_user/{{the_user.id}}" method="post">
+    {% else %}
+        <form id="add_user" action="/family_info/insert_user" method="post">
+      {% endif %}   
 		
 		<tr>
 		<td>First Name:</td>
-		<td><input type="text" value="Tony" /></td>
+		<td><input type="text" name="first_name" value="{{the_user.first_name}}" /></td>
 		</tr>
 		
 		<tr>
 		<td>Last Name:</td>
-		<td><input type="text" value="Brown" /></td>
+		<td><input type="text" name="last_name" value="{{the_user.last_name}}" /></td>
 		</tr>
 		
 		<tr>
 		<td>User Name:</td>
-		<td><input type="text" value="tb666" /></td>
+		<td><input type="text" name="username" value="{{the_user.username}}" /></td>
 		</tr>
 		
 		<tr>
 		<td>Password:</td>
-		<td><input type="password" value="tb666" /></td>
+		<td> <input type="password"  name="password" value =""></input>  (To keep existing password, just leave blank.)
+            </td>
 		</tr>
 		
 		<tr>
 		<td>Re-Type Password:</td>
-		<td><input type="password" value="tb666" /></td>
+		<td><input type="password" name="password_2" value = ""></input>  (To keep existing password, just leave blank.)</td>
 		</tr>
+		{% if the_user %}
+    <tr>
+      <th>Status:</th>
+        <td>
+          <input type="radio" name="is_active" value="True"  {% if facilitator.is_active %}checked{%endif %}>Active
+          <input type="radio" name="is_active" value="False" {% if not facilitator.is_active%}checked{%endif %}> Inactive
+        </td>
+    </tr>
+    {% endif %}
 		
 		<tr>
+        <td  colspan = "2" align="center">
+            <input type="submit"
+              value="{{ the_user|yesno:"Save Changes,Save"}}"
+             />
+         </td>
+    </tr>	
+    <tr>
 		<td colspan="2">
+		<!--
 		<input type="button" value="Save" onclick="parent.location='http://kodos.ccnmtl.columbia.edu:2010/collection_tool/interview_management_participants'">
-		<input type="button" value="Delete Account" onclick="parent.location='http://kodos.ccnmtl.columbia.edu:2010/collection_tool/interview_management_participants'">
+		-->
+		
 		</td>
 		</tr>
 		

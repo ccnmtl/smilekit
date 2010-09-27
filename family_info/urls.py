@@ -12,7 +12,7 @@ urlpatterns = patterns('',
   
   
   (r'^families$',                             'family_info.views.families'),
-  (r'sync$',                                  'family_info.views.sync'),
+  (r'^sync$',                                 'family_info.views.sync'),
   (r'^new_family$',                           'family_info.views.new_family'),
   (r'^insert_family$',                        'family_info.views.insert_family'),
   (r'^edit_family/(?P<family_id>\d+)$',       'family_info.views.edit_family'),

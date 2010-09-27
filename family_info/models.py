@@ -27,6 +27,8 @@ EDUCATION_LEVEL_CHOICES = (
   ('co', 'More than a high-school degree.'),
 )
 
+#TODO: make table linking families with answers!!!
+
     
 class Family(models.Model):
   active = models.BooleanField( help_text = "Uncheck to mostly-delete this family" , default = True)
@@ -101,23 +103,18 @@ class Family(models.Model):
   notes_3 = models.TextField(null=True, blank =True,  help_text = "Notes (3).")
   
 
-#note: "interviewers" are just standard-issue django users.
-class Interview (models.Model):
+class Visit (models.Model):
   @property
   def dir(self):
     return dir(self)
     
-  family = models.ForeignKey('family') #can't be blank.
-  interviewer = models.ForeignKey(User)
+  family = models.ForeignKey(Family)
+  
   start_timestamp = models.DateTimeField()
   end_timestamp = models.DateTimeField()
-  
-  notes = models.TextField(null=True, blank =True,  help_text = "Notes.")
-
-  def __unicode__(self):
-    return "Interview with family %d " + self.family.study_id_number
-    
-
+  #note: "interviewers" are just standard-issue django users.
+  interviewer = config = models.ForeignKey(User)
+  analytics_info =  models.TextField(null=True, blank =True)
 
 
   
