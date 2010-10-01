@@ -1,26 +1,18 @@
 {% extends "family_info/base.html" %}
 {%load smartif%}
 
-
-{% block collection_tool_js %}
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js" type="text/javascript"></script>
-
-{% endblock collection_tool_js %}
-
-<!--
-            user.first_name = request.POST['first_name']
-            user.username = request.POST['username']
-            user.last_name = request.POST['last_name']
-            user.is_active = (request.POST['is_active'] == 'True')
--->
 	
-		{% block collection_tool_content %}
+		{% block family_info_content %}
 		<h2 id="contenttitle">
 		
 			Health Worker Information
 		
 		</h2>
 		<a href ="/family_info/families"> Back to main page </a>
+		
+		
+    
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 		
 		<!--TODO add active / inactive -->
 		<table>
@@ -60,8 +52,8 @@
     <tr>
       <th>Status:</th>
         <td>
-          <input type="radio" name="is_active" value="True"  {% if facilitator.is_active %}checked{%endif %}>Active
-          <input type="radio" name="is_active" value="False" {% if not facilitator.is_active%}checked{%endif %}> Inactive
+          <input type="radio" name="is_active" value="True"  {% if the_user.is_active %}checked{%endif %}>Active
+          <input type="radio" name="is_active" value="False" {% if not the_user.is_active%}checked{%endif %}> Inactive
         </td>
     </tr>
     {% endif %}
@@ -84,6 +76,6 @@
 		
 		</table>
 							
-{% endblock collection_tool_content %}
+{% endblock family_info_content %}
 
 

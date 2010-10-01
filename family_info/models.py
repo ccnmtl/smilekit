@@ -1,5 +1,6 @@
 from django.db import models
 from django.db.models.signals import post_save
+import datetime
 #from equation_balancer.models import *
 
 
@@ -7,6 +8,9 @@ User          = models.get_model('auth','user')
 assert User != None
 
 Configuration = models.get_model('equation_balancer', 'configuration')
+Question = models.get_model('equation_balancer', 'question')
+Answer = models.get_model('equation_balancer', 'answer')
+
 assert Configuration != None
 #TODO: add 'no data' option to these and make them mandatory. Make "no data" the default.
 
@@ -88,6 +92,9 @@ class Family(models.Model):
           return {'error': 'Error loading interview state info.'}
 
   
+  def responses (self):
+    return Response.objects.filter (family= self)
+  
   
   #this is the set of weights to assign to the questions asked:
   config = models.ForeignKey(Configuration)
@@ -107,14 +114,76 @@ class Visit (models.Model):
   @property
   def dir(self):
     return dir(self)
-    
-  family = models.ForeignKey(Family)
-  
-  start_timestamp = models.DateTimeField()
+   
+  families = models.ManyToManyField(Family)
+  start_timestamp = models.DateTimeField(auto_now_add=True)
   end_timestamp = models.DateTimeField()
-  #note: "interviewers" are just standard-issue django users.
-  interviewer = config = models.ForeignKey(User)
+  interviewer = models.ForeignKey(User)
   analytics_info =  models.TextField(null=True, blank =True)
 
+
+  def is_happening(self):
+    if start_timestamp == None:
+      return False
+    if end_timestamp != None:
+      return False
+    return True
+  
+
+  
+  #Optional extra auth, maybe:
+  token =  models.TextField(null=True, blank =True)
+
+
+  def store_responses(data):
+    """Ends this visit, takes json record of interview and stores all the responses."""
+    end_timestamp = datetime.now()
+    data = json.parse (data)
+    print data
+    for family in data:
+      pass
+      #extract family_id
+      for response in family:
+        pass 
+        #extract response.question
+        #extract response.answer
+        self.store_answer(family_id, question_id, answer_id)
+        
+    
+    # loop through data
+
+  def store_answer (family_id, question_id, answer_id):
+    family = Family.objects.get(pk=family_id)
+    question = Question.objects.get(pk=question_id)
+    answer = Answer.objects.get(pk=answer_id)
+    
+    assert family   != None
+    assert question != None
+    assert answer   != None
+    
+    new_response = Response(
+      {
+        during_visit: self,
+        family: family,
+        question: question,
+        answer: answer,
+      }
+    )
+    new_response.save()
+
+
+class Response (models.Model):
+  @property
+  def dir(self):
+    return dir(self)
+    
+  during_visit = models.ForeignKey (Visit)
+  family = models.ForeignKey (Family)
+  question = models.ForeignKey (Question)
+  answer = models.ForeignKey (Answer)
+
+  
+    
+  
 
   

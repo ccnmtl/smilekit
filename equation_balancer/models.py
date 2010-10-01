@@ -56,6 +56,12 @@ class Configuration(models.Model):
 
   def __unicode__(self): return self.name
 
+  def weights_greater_than_zero(self):
+    return self.weight_set.filter(weight__gt=0)
+  
+  def questions_with_weights_greater_than_zero(self):
+    return [w.question for w in self.weights_greater_than_zero()]
+  
   #high_risk = models.IntegerField()
   #medium_risk = models.IntegerField()
   #low_risk = models.IntegerField()

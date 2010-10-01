@@ -1,11 +1,13 @@
 <!DOCTYPE html>
+{% block html_element %}
 <html>
-
+{% endblock html_element %}
   <head>
 	  <title>mySmileBuddy</title>
 	
-  {% block collection_tool_js %}
-  {% endblock collection_tool_js %}
+  {% block family_info_js %}
+  {% endblock family_info_js %}
+
 	
 	  <link type="image/png" rel="apple-touch-icon" href="/collection_tool/media/images/mysmilebuddy_icon.png" />
 	  <link type="text/css" rel="stylesheet" href="/collection_tool/media/css/collection_tool.css" />
@@ -26,8 +28,8 @@
 		  </div>
 	  </div>
 	  <div id="contentcontainer">
-    {% block collection_tool_content %}
-    {% endblock collection_tool_content %}
+    {% block family_info_content %}
+    {% endblock family_info_content %}
   </body>
 
 </html>

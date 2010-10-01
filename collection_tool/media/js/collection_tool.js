@@ -9,144 +9,80 @@ var LOCAL_STORAGE_KEY;
      return a;
    }
  })
-  
 
+
+
+//value can be any object that can be turned into a json object.
 function local_storage_set ( namespace, key, value ) {
   temp_state = JSON.parse(  localStorage [namespace] )
+  
+  if (temp_state == null) {
+    temp_state = {};
+  }
+  
   temp_state [key] = value;
   localStorage [namespace] = JSON.stringify(temp_state);
   temp_state = null;
 }
 
-
-/*
-function local_storage_write () {
-  v = document.getElementById('the_value_to_write').value;
-  localStorage [LOCAL_STORAGE_KEY] = v;
-  alert ('Wrote "' + v + '" to local storage.');
-}
-
-function local_storage_read () {
-  v = localStorage[LOCAL_STORAGE_KEY];
-  if ( v == null) {
-    alert ('Local storage is empty.');
+function local_storage_get ( namespace, key, value ) {
+  temp_state = JSON.parse(  localStorage [namespace] )
+  if (temp_state == null) {
+    return null;
   }
-  else {
-    alert ('Found "' + v + '" in local storage.');
-  }  
-}
-function local_storage_clear () {
-  localStorage.clear();
-  alert ('Wiped local storage.');
-}
-
-*/
-
-
-// Convenience array of status values
-var cacheStatusValues = [];
- cacheStatusValues[0] = 'uncached';
- cacheStatusValues[1] = 'idle';
- cacheStatusValues[2] = 'checking';
- cacheStatusValues[3] = 'downloading';
- cacheStatusValues[4] = 'updateready';
- cacheStatusValues[5] = 'obsolete';
-
- // Listeners for all possible events
- var cache = window.applicationCache;
- cache.addEventListener('cached', logEvent, false);
- cache.addEventListener('checking', logEvent, false);
- cache.addEventListener('downloading', logEvent, false);
- cache.addEventListener('error', logEvent, false);
- cache.addEventListener('noupdate', logEvent, false);
- cache.addEventListener('obsolete', logEvent, false);
- cache.addEventListener('progress', logEvent, false);
- cache.addEventListener('updateready', logEvent, false);
-
- // Log every event to the console
- function logEvent(e) {
-     var online, status, type, message;
-     online = (isOnline()) ? 'yes' : 'no';
-     status = cacheStatusValues[cache.status];
-     type = e.type;
-     message = 'online: ' + online;
-     message+= ', event: ' + type;
-     message+= ', status: ' + status;
-     if (type == 'error' && navigator.onLine) {
-         message+= ' (ERROR)';
-     }
-     glog(''+message);
-}
-
-function glog(s) {
-  $('#debug_cache_status')[0].innerHTML = s;
-}
-
- function isOnline() {
-     return navigator.onLine;
- }
-
-
- // Swap in newly download files when update is ready
- cache.addEventListener('updateready', function(e){
-         // Don't perform "swap" if this is the first cache
-         if (cacheStatusValues[cache.status] != 'idle') {
-             glog('About to try swapping / updating the cache.');
-             cache.swapCache();
-             glog('Swapped/updated the cache.');
-         }
-     }
- , false);
-
- // These two functions check for updates to the manifest file
- function checkForUpdates(){
-     cache.update();
- }
- function autoCheckForUpdates(){
-     setInterval(function(){cache.update()}, 50000);
- }
-     
-/*
-
-var online_check_number = 0;     
-     
-function check_if_we_are_online() {
-  jQuery.get('/collection_tool/online_check', online_check_callback);
-  jQuery.get('/collection_tool/online_check', online_check_callback);
-}
-
-function online_check_callback(data) {
-  //console.log('checking');
-  //alert(data);
-  if (online_check_number == 0) {
-    online_check_number = parseInt(data);
+  if (temp_state[key] == null) {
+    return null;
   }
-  else {
-    if (online_check_number == parseInt(data)) {
-        // cached
-        //console.log('cached');
-        $('#online_or_not')[0].src = "/collection_tool/media/images/icon_offline.jpg"
-        
-    }else {
-        //fresh
-        //console.log('fresh');
-        $('#online_or_not')[0].src = "/collection_tool/media/images/icon_online.jpg"
-        
+  return temp_state[key];
+}
+
+
+function next_question () {
+  
+
+}
+
+function prev_question() {
+
+}
+
+function family_answers () {
+    family_id = local_storage_get (LOCAL_STORAGE_KEY, 'family_id');
+    family_key = family_id + '_answers'
+    result = local_storage_get (LOCAL_STORAGE_KEY, family_key);
+    if (result == null) {
+      result = {}
     }
-  }
+    return result;
 }
 
-*/
+
+
+function store_answer(question_id, answer_id) {
+    answers = family_answers ();
+    answers [question_id] = answer_id;
+    local_storage_set (LOCAL_STORAGE_KEY, family_key, answers);
+    update_debug_localstorage(); 
+}
 
 function answer_clicked(event) {
   event.preventDefault();
   //console.log(event.target.id.split('_')[1]);  
   answer_id = event.target.id.split('_')[1];
   question_id = $('#question_id_div')[0].innerHTML;
-  local_storage_set (LOCAL_STORAGE_KEY, question_id, answer_id);
+  //local_storage_set (LOCAL_STORAGE_KEY, question_id, answer_id);
+  
+  
+  //console.log("Answered " + answer_id + " to question " + question_id);
+  
+  store_answer (question_id, answer_id); 
+  
+  
   update_debug_localstorage(); 
   highlight_answer (answer_id);
 }
+
+
 
 /* haven't figured out how else to do this in jquery yet: */
 function unhighlight_answer (a, b) {
@@ -159,15 +95,10 @@ function highlight_answer (answer_id) {
 }
 
 function init_answer_clicked() {
+  $('a.answerthumbnailimage').click(answer_clicked);
   $('a.contentbutton').click(answer_clicked);
-}
 
-$('#online_or_not').ajaxError(function(e, xhr, settings, exception) {
-  //if (settings.url == 'ajax/missing.html') {
-  //  $(this).text('Triggered ajaxError handler.');
-  //}
-  console.log('ERROR');
-});
+}
 
 
 function update_debug_localstorage() {
@@ -178,25 +109,52 @@ function update_debug_localstorage() {
 
 function init() {
     LOCAL_STORAGE_KEY = 'la_llave_encantada';
-    if (localStorage [LOCAL_STORAGE_KEY] == null) {
-      localStorage [LOCAL_STORAGE_KEY] = '{}';
-    }
     update_debug_localstorage();
+    answers = family_answers();
     if ( window.location.href.match (/question/)) {
-      init_answer_clicked();
-    }
-    //check_if_we_are_online();
-    //autoCheckForUpdates();
     
-    
-    if ( window.location.href.match (/question/)) {
+      display_question_id = parseInt($('#display_question_id_div')[0].innerHTML);
+      question_id = parseInt($('#question_id_div')[0].innerHTML);
+      
+      // set up next and previous:
+      language_code = $('#language_code_div')[0].innerHTML
+      // /collection_tool/question/{{displayquestion.prev.id}}/language/{{language_code}}/
+      // /collection_tool/question/{{displayquestion.next.id}}/language/{{language_code}}/
+      questions = local_storage_get (LOCAL_STORAGE_KEY, 'list_of_questions');
+      position_of_next_question = questions.indexOf(display_question_id) + 1;
+      position_of_prev_question = questions.indexOf(display_question_id) -1;
+      
+      
+      if (position_of_prev_question < 0) {
+        $('#left').hide()  
+      } else {
+        prev_question_id = questions[position_of_prev_question];
+        prev_url = '/collection_tool/question/' + prev_question_id + '/language/' + language_code + '/'
+        $('#left')[0].href = prev_url
+      }
+      
+      
+      
+      if (position_of_next_question >= questions.length) {
+        $('#right').hide()  
+      }
+      else {
+        next_question_id = questions[position_of_next_question];
+        next_url = '/collection_tool/question/' + next_question_id + '/language/' + language_code + '/'
+        $('#right')[0].href = next_url
+      }
+      
+      
+      
+      
       // highlight the chosen answer on the question page:
-      question_id = $('#question_id_div')[0].innerHTML;
-      answer_id = JSON.parse( localStorage [LOCAL_STORAGE_KEY])[question_id];
+      init_answer_clicked();
+      answer_id = answers[question_id];
       highlight_answer (answer_id);
     } else {
         // highlight all answered questions on the section page:
-        answered_questions = $.keys( JSON.parse( localStorage [LOCAL_STORAGE_KEY]))
+        // TODO refactor using standard functions above:
+        answered_questions = $.keys( answers)
         $.each(
             answered_questions,
             function (a, question_id) {

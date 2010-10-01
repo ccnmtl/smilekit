@@ -9,44 +9,20 @@ from equation_balancer.models import Configuration as equation_balancer_configur
 import datetime, sys, pdb
 
 @login_required
-def families(request):
+def families(request, **kwargs):
     t = loader.get_template('family_info/families.html')
    
+   
     c = RequestContext(request, {
+      'error_message': kwargs.get ('error_message', ''),
       'families': Family.objects.filter(active = True),
       'health_workers': User.objects.all()
       #TODO narrow this down
     })
     return HttpResponse(t.render(c))
-  
-@login_required
-def family_assessment(request):
-  return render_to_response("family_info/family_assessment.html")
-  
-#TODO delete this:
-##THIS has been rendered obsolete BY edit_family:  
-@login_required
-def family_information(request):
-  return render_to_response("family_info/family_information.html")
-  
-
-@login_required
-def sync(request):
-  return render_to_response("family_info/sync.html")
-  
-
-
-##THIS WILL BE REPLACED BY USER CRUD:
-@login_required
-def health_worker_information(request):
-  return render_to_response("family_info/health_worker_information.html")
-  
-
 
 #**************************
 #USER CRUD:
-
-
 @login_required
 def new_user(request, **kwargs):
     """ this displays a blank new user form"""
@@ -79,12 +55,21 @@ def insert_user(request, **kwargs):
         last_name =  rp['last_name']\
     )
     
+    if rp['password'] == '' or  rp['password_2'] == "" or rp['password'] != rp['password_2']:
+        kwargs ['error_message'] =  'Please type the new user\'s password twice.'
+        return back_to_new_user (request,**kwargs )
+    
+    
     if len (User.objects.filter(username=rp['username'])) > 0:
         error_message = 'Sorry, %s is already in use. Please try another name.' % rp['username']
         return back_to_new_user ( request, first_name = rp['first_name'], \
             last_name = rp['last_name'], username= '', error_message = error_message)
+    
+    
+    the_new_user.set_password(rp['password'])
         
     the_new_user.save()
+    
     error_message = 'Health worker user  %s was created.' % rp['username']
     return back_to_edit_user  ( request, the_user= the_new_user, error_message = error_message)
     
@@ -97,28 +82,46 @@ def edit_user(request, **kwargs):
     error_message = ''
     the_user = get_object_or_404(User, pk=user_id)
     if request.POST != {}:
+    
+        #password prep:
+        new_password = None
+        if rp.has_key ('password') and rp['password'] != '':
+            if rp['password'] != rp['password_2']:
+                kwargs['error_message'] = 'Please type the new password twice.'
+                return back_to_edit_user  ( request, **kwargs)
+            
+            elif " " in rp['password']:
+                kwargs['error_message'] = 'Passwords cannot contain spaces.'
+                return back_to_edit_user  ( request, **kwargs)
+                
+            else:
+                new_password = rp['password']
+    
         try:
             if " " in  rp['username']:
-                error_message = 'User name cannot contain spaces.'
-                return back_to_edit_user  ( request, the_user = the_user, error_message = error_message)
+                kwargs['error_message'] = 'User name cannot contain spaces.'
+                return back_to_edit_user  ( request, **kwargs)
             
             if  rp['username'] !=  rp['username'].lower():
-                error_message = 'User name cannot contain uppercase letters.'
-                return back_to_edit_user  ( request, the_user = the_user, error_message = error_message)
+                kwargs['error_message'] = 'User name cannot contain uppercase letters.'
+                return back_to_edit_user  ( request, **kwargs)
             
-            if user.username != rp['username'] and len (User.objects.filter(username=rp['username'])) > 0:
-                error_message = 'Sorry, %s is already in use. Please try another name.' % rp['username']
-                return back_to_edit_user  ( request, the_user = the_user, error_message = error_message)
+            if the_user.username != rp['username'] and len (User.objects.filter(username=rp['username'])) > 0:
+                kwargs['error_message'] = 'Sorry, %s is already in use. Please try another name.' % rp['username']
+                return back_to_edit_user  ( request, **kwargs)
         
-            the_user.first_name = request.POST['first_name']
-            the_user.username = request.POST['username']
-            the_user.last_name = request.POST['last_name']
-            the_user.is_active = (request.POST['is_active'] == 'True')
+        
+        
+            the_user.first_name = rp['first_name']
+            the_user.username = rp['username']
+            the_user.last_name = rp['last_name']
+            the_user.is_active = (rp['is_active'] == 'True')
+            if new_password != None:
+              the_user.set_password (new_password)
             the_user.save()
             error_message = 'Your changes were saved.'
             
         except:
-            #pdb.set_trace()        
             return back_to_edit_user (request, the_user = the_user, error_message =  "Error: %s" % sys.exc_info()[1])
     return back_to_edit_user  ( request, the_user = the_user, error_message= error_message)
 
@@ -204,9 +207,7 @@ def insert_family(request, **kwargs):
     
     the_new_family.mother_born_in_us =        (rp['mother_born_in_us'] == 'True')
     the_new_family.food_stamps_in_last_year = (rp['food_stamps_in_last_year'] == 'True')
-    
     the_new_family.study_id_number                    = rp['study_id_number']
-    
     the_new_family.study_id_number                    = study_id
     the_new_family.child_year_of_birth                = int(rp['child_year_of_birth'])
     the_new_family.race_ethnicity                     = rp['race_ethnicity']
@@ -270,19 +271,15 @@ def edit_family(request, **kwargs):
                 
                 return back_to_edit_user  ( request, user, error_message)
         
-            the_family.active =                   (rp['active'] == 'True')
-            the_family.mother_born_in_us =        (rp['mother_born_in_us'] == 'True')
-            the_family.food_stamps_in_last_year = (rp['food_stamps_in_last_year'] == 'True')
-            
-            the_family.study_id_number                    = rp['study_id_number'] 
-            
+            the_family.active                             = (rp['active'] == 'True')
+            the_family.mother_born_in_us                  = (rp['mother_born_in_us'] == 'True')
+            the_family.food_stamps_in_last_year           = (rp['food_stamps_in_last_year'] == 'True')
+            the_family.study_id_number                    = rp['study_id_number']
             the_family.study_id_number                    = study_id
             the_family.child_year_of_birth                = child_year_of_birth
             the_family.race_ethnicity                     = rp['race_ethnicity']
             the_family.highest_level_of_parent_education  = rp['highest_level_of_parent_education']
-            
             the_family.date_modified = datetime.datetime.now(),
-      
             the_family.save()
             
             error_message = 'Your changes were saved.'
@@ -297,6 +294,29 @@ def edit_family(request, **kwargs):
         family=the_family,
         error_message=error_message
       )
-#**************************
-#**************************
 
+
+#**************************
+#**************************
+@login_required
+def start_interview(request, **kwargs):
+    c = RequestContext(request,  {'the_family': get_object_or_404(Family, pk=kwargs['family_id'])})
+    t = loader.get_template('family_info/start_interview.html')
+    return HttpResponse(t.render(c))
+   
+      
+@login_required
+def wrap_up_interivew(request):
+    """ Show a list of responses for each family, and construct a form that will submit to end_interview_and_go_back_online:"""
+    c = RequestContext(request,  {})
+    t = loader.get_template('family_info/end_interview.html')
+    return HttpResponse(t.render(c))
+    
+@login_required
+def end_interview(request):
+    """Attempt to store the responses posted and, on success, redirect to the list of families."""
+    argz = {error_message: 'All answers successfully stored' }
+    return families(request, **args)
+    
+    
+    

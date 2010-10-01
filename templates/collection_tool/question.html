@@ -1,7 +1,6 @@
 {% extends "collection_tool/base.html" %}
 {%load smartif%}
 
-
 {% block collection_tool_js %}
 <script src="/collection_tool/media/js/jquery.js" type="text/javascript"></script>
 <script src="/collection_tool/media/js/json2.js" type="text/javascript"></script>
@@ -37,9 +36,8 @@
 
 		
 		<div id="contentnav">
-		  {% if displayquestion.prev%}
-			  <a id="left" href="/collection_tool/question/{{displayquestion.prev.id}}/language/{{language_code}}/">&#8592; Back</a>
-			{%endif%}
+			  <a id="left" href="">&#8592; Back</a>
+			
 			
   		{%if displayquestion.help_item %}
   		
@@ -49,13 +47,17 @@
 			
 			{% include "collection_tool/help.html" %}
 		
-			{% if displayquestion.next%}
-			  <a id="right" href="/collection_tool/question/{{displayquestion.next.id}}/language/{{language_code}}/">Next &#8594;</a>
-			{%endif%}
+			  <a id="right" href="">Next &#8594;</a>
 			
 		</div>
 		
-		<div id ="question_id_div">{{displayquestion.id}}</div>
+		<div id ="question_id_div">{{displayquestion.question.id}}</div>
+
+		<div id ="display_question_id_div">{{displayquestion.id}}</div>
+		
+
+		<div id ="language_code_div">{{language_code}}</div>
+		
 		
 		<div>
 		{% if displayquestion.topic %}
