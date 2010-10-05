@@ -14,7 +14,13 @@ body
  display:none;
 }
 
+#display_question_id_div {
+ display:none;
+}
 
+#language_code_div {
+ display:none;
+}
 /********/
 
 #masthead
