@@ -42,10 +42,16 @@ CACHE:
 /collection_tool/media/js/jquery.js
 /collection_tool/media/js/planner.js
 
+
+# commenting out just for now, as
+# http://mysmilebuddy.ccnmtl.columbia.edu/collection_tool/media/images/planner/floss.jpg
+# was causing a glitch and subsequently halting the download:
+
+
 # planner images
-{% for label in planner_labels %}
-  /collection_tool/media/images/planner/{{label|slugify}}.jpg
-{% endfor %}
+#{% for label in planner_labels %}
+#  /collection_tool/media/images/planner/{{label|slugify}}.jpg
+#{% endfor %}
 
 
 FALLBACK:
