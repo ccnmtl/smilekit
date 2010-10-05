@@ -340,8 +340,8 @@ def end_interview(request, **args):
   
   rp = request.POST
   
-  print "family id is "
-  print (rp['family_id'])
+  #print "family id is "
+  #print (rp['family_id'])
   
   family_id = int(rp['family_id'])
   
@@ -386,7 +386,7 @@ def end_interview(request, **args):
       
     except:
       assert 1 == 0
-  print my_visit.response_set.all()
+  #print my_visit.response_set.all()
   
   #close the visit
   my_visit.close_now()   
