@@ -117,59 +117,47 @@ class Visit (models.Model):
    
   families = models.ManyToManyField(Family)
   start_timestamp = models.DateTimeField(auto_now_add=True)
-  end_timestamp = models.DateTimeField()
+  end_timestamp = models.DateTimeField(null=True, blank =True)
   interviewer = models.ForeignKey(User)
   analytics_info =  models.TextField(null=True, blank =True)
-
-
-  def is_happening(self):
-    if start_timestamp == None:
-      return False
-    if end_timestamp != None:
-      return False
-    return True
-  
-
   
   #Optional extra auth, maybe:
   token =  models.TextField(null=True, blank =True)
 
+  @property
+  def is_happening(self):
+    if self.start_timestamp == None:
+      return False
+    if self.end_timestamp != None:
+      return False
+    return True
+  
+  def close_now(self):
+    self.end_timestamp = datetime.datetime.now()
+    self.save()
 
-  def store_responses(data):
-    """Ends this visit, takes json record of interview and stores all the responses."""
-    end_timestamp = datetime.now()
-    data = json.parse (data)
-    print data
-    for family in data:
-      pass
-      #extract family_id
-      for response in family:
-        pass 
-        #extract response.question
-        #extract response.answer
-        self.store_answer(family_id, question_id, answer_id)
-        
-    
-    # loop through data
-
-  def store_answer (family_id, question_id, answer_id):
+  def store_answer (self, family_id, question_id, answer_id):
     family = Family.objects.get(pk=family_id)
     question = Question.objects.get(pk=question_id)
     answer = Answer.objects.get(pk=answer_id)
+    
     
     assert family   != None
     assert question != None
     assert answer   != None
     
-    new_response = Response(
-      {
-        during_visit: self,
-        family: family,
-        question: question,
-        answer: answer,
-      }
-    )
+    new_response = Response()
+    
+    new_response.during_visit  = self
+    new_response.family        = family
+    new_response.question      = question
+    new_response.answer        = answer
+    
     new_response.save()
+    self.save()
+    
+    
+
 
 
 class Response (models.Model):

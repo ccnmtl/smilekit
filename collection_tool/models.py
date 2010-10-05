@@ -149,8 +149,8 @@ class AssessmentSection(models.Model):
   
 
 #TODO comment this out: it should be rendered obsolete by configuration_display_questions
-
-#TODO: use caching for this.
+#if 1 == 0:
+#this is still used for the cache manifest.
 def all_display_question_ids_in_order():
   result = []
   #order all questions, first by nav section, then by rank within that section:
@@ -168,9 +168,6 @@ def configuration_display_questions(self):
   nonzero_weight_questions = self.questions_with_weights_greater_than_zero()
   result = []
   all_questions = []
-  
-  #import pdb
-  #pdb.set_trace()
   
   #order all questions, first by nav section, then by rank within that section:
   for s in  AssessmentSection.objects.all():
@@ -192,7 +189,15 @@ def configuration_display_questions(self):
 # the code itself has more to do with display questions than with
 # equation balancing, so it belongs here.
 
+
+def configuration_first_display_question(self):
+  them = self.display_questions()
+  return them[0]
+
+
+
 Configuration.display_questions = configuration_display_questions
+Configuration.first_display_question = configuration_first_display_question
 
 
 
@@ -473,12 +478,8 @@ def post_save_ordering_string_update(sender, **kwargs):
   answer_translation.ordering_string = answer_translation.answer.question_text()
   
 
-
 post_save.connect(post_save_ordering_string_update, sender=AnswerTranslation)
 
-
-  
-  
   
 # planner widget items
 

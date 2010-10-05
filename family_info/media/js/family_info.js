@@ -47,17 +47,29 @@ var cacheStatusValues = [];
  cache.addEventListener('checking', logEvent, false);
  cache.addEventListener('downloading', logEvent, false);
  cache.addEventListener('error', logEvent, false);
- cache.addEventListener('noupdate', logEvent, false);
+// cache.addEventListener('noupdate', logEvent, false);
  cache.addEventListener('obsolete', logEvent, false);
  cache.addEventListener('progress', logEvent, false);
 // cache.addEventListener('updateready', logEvent, false);
 
  cache.addEventListener('updateready', announce_ready_for_interview, false);
 
+ cache.addEventListener('noupdate', blarg, false);
+
+
+ function blarg(e) {
+   status = cacheStatusValues[cache.status];
+  if (e.type == "noupdate" && status == "idle") {
+    announce_ready_for_interview(e)
+  }
+ }
+
+
+
  function announce_ready_for_interview(e) {
    $('#downloading').hide()
    $('#done_downloading').show()
-  // show the 
+    logEvent(e);
  
  }
 
@@ -128,17 +140,11 @@ function start_interview() {
   glog ('Setting family key');
   local_storage_set ( LOCAL_STORAGE_KEY, 'family_id', parseInt($('#family_id')[0].innerHTML));
   
-  
   glog('Setting list of questions for this configuration in localstorage.');
   local_storage_set ( LOCAL_STORAGE_KEY, 'list_of_questions', list_of_questions );
   
-  glog('Leaving page to go to the first page in this configuration:');
+  alert ('Starting visit.');
   
-  first_question_path = '/collection_tool/question/' + first_question + '/language/en/';
-  
-  glog (first_question_path);
-  
-  location.href = first_question_path;
 }
 
 
@@ -146,9 +152,15 @@ function init_family_info() {
    $('#done_downloading').hide()
 
    LOCAL_STORAGE_KEY = 'la_llave_encantada';
- 
+   //$('#insert_visit_form')[0].onsubmit = start_interview
+
+    $('#insert_visit_form').submit( start_interview);
+     
 }
 
 
 $(document).ready(init_family_info);
+
+if ($ == null) { alert ('Jquery not found.'); } 
+
 

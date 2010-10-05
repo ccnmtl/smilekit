@@ -12,8 +12,6 @@
 {% endblock html_element %}
 
 
-
-
 {% block family_info_js %}
 <script src="/collection_tool/media/js/jquery.js" type="text/javascript"></script>
 <script src="/family_info/media/js/family_info.js" type="text/javascript"></script>
@@ -25,6 +23,7 @@
 			Interview launch page
 		</h2>
 		
+		
 		<h3>Account: Family #{{the_family.study_id_number}}</h3>
 		
 		<p> Here are the questions in the <b>{{ the_family.config }}</b> model: </p>
@@ -32,8 +31,8 @@
 		{%for display_question in the_family.config.display_questions %}
 		   <li> {{display_question.english}}</li>
 		{%endfor%}
+
 		</ul>
-		
 		<p id ="list_of_questions">
 		[ {%for display_question in the_family.config.display_questions %}
 		    {{display_question.id}} {% if not forloop.last %},{% endif%}
@@ -58,9 +57,12 @@
 		    Are you sure?
 		    </p>
 		
-		    <p onclick="start_interview()">
-		      <u>Yes, start the visit with Family #{{the_family.study_id_number}}</u>
-		    </p>
+		    <form id="insert_visit_form" action = "/family_info/insert_visit" method="post">		    
+		      <input name= "first_display_question_id" type="hidden" value="{{the_family.config.first_display_question.id}}">
+		      
+		      <input name="family_id" type = "hidden" value = "{{the_family.id}}">
+		      <input type="submit" value="Yes, start the visit with Family #{{the_family.study_id_number}}" />
+		    </form>
 		   <p>
 		      <a href = "/family_info/families">Cancel</a>
        </p>
@@ -69,6 +71,24 @@
     <div >
     <textarea id = "debug_cache_status" rows="10" cols="80" > </textarea>
     </div>
+<script>
+  if (typeof(init_family_info) == "undefined") {
+    alert ("Unable to start interview at this time. (Unable to load init_family_info).");
+    $('#downloading').hide();
+    $('#done_downloading').hide();
+    $('#debug_cache_status').hide();
+    
+  }
+  if (typeof($) == "undefined") {
+    alert ("Unable to start interview at this time. (Unable to load jQuery).");
+    $('#downloading').hide();
+    $('#done_downloading').hide();
+    $('#debug_cache_status').hide();
+    
+  }
+  
+  
+</script>
 
 {% endblock family_info_content %}
 

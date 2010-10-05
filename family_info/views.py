@@ -4,8 +4,9 @@ from smilekit.collection_tool.models import *
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext, loader
 from django.contrib.auth.decorators import login_required
-from family_info.models import Family, User, RACE_ETHNICITY_CHOICES, EDUCATION_LEVEL_CHOICES
+from family_info.models import Visit, Family, User, RACE_ETHNICITY_CHOICES, EDUCATION_LEVEL_CHOICES
 from equation_balancer.models import Configuration as equation_balancer_configuration
+from collection_tool.views import question as collection_tool_question_view
 import datetime, sys, pdb
 
 @login_required
@@ -304,19 +305,94 @@ def start_interview(request, **kwargs):
     t = loader.get_template('family_info/start_interview.html')
     return HttpResponse(t.render(c))
    
+def insert_visit(request, **kwargs):
+  """Creates the visit in the DB and redirects to the first question of the interview"""
+  rp = request.POST
+  interviewer = request.user
+  first_display_question_id = rp['first_display_question_id']
+  family_id = rp['family_id']
+  #get family
+  the_family = Family.objects.get (pk = family_id)
+  assert the_family != None
+  
+  #pdb.set_trace()
+  
+  new_visit = Visit(interviewer=request.user)
+  new_visit.save()
+  
+  #now set families
+  new_visit.families =  [the_family]
+  
+  return collection_tool_question_view(request, first_display_question_id,'en')
+
       
 @login_required
-def wrap_up_interivew(request):
+def wrap_up_interivew(request, **args):
     """ Show a list of responses for each family, and construct a form that will submit to end_interview_and_go_back_online:"""
     c = RequestContext(request,  {})
     t = loader.get_template('family_info/end_interview.html')
     return HttpResponse(t.render(c))
     
 @login_required
-def end_interview(request):
-    """Attempt to store the responses posted and, on success, redirect to the list of families."""
-    argz = {error_message: 'All answers successfully stored' }
-    return families(request, **args)
+def end_interview(request, **args):
+  
+  """Attempt to store the responses posted and, on success, redirect to the list of families."""
+  
+  rp = request.POST
+  
+  print "family id is "
+  print (rp['family_id'])
+  
+  family_id = int(rp['family_id'])
+  
+  #this isn't technically necessary:
+  the_family = Family.objects.get (pk = family_id)
+  #get the_family_id
+  assert the_family != None
+  
+  #get the visit - the one one that is open associated with the family
+  current_visits = [v for v in Visit.objects.all() if v.is_happening]
+  current_family_visits = [v for v in current_visits if the_family in v.families.all()]
+  
+  if len(current_family_visits) == 0:
+    pass
+    #probably just hit the back button by mistake.
+    return families(request)
+  
+  
+  if  len(current_family_visits) != 0:
+    #TODO remove this case.
+    #pdb.set_trace()
+    [ v.close_now() for v in current_family_visits[0::-1]]
+  
+  #TODO remove this code. This should break horribly if there is more than one open visit.
+  #Validation should be in the front end - you can't start a visit if one is arleady open with
+  #this family.  
+  current_family_visits = [current_family_visits[-1]]
+  
+  
+  assert len(current_family_visits) == 1
+  
+  my_visit = current_family_visits[0]
+  assert my_visit != None
+  
+  for question_id, answer_id in rp.iteritems():
+    try:
+      question_id_int = int(question_id)
+      my_visit.store_answer (family_id, question_id_int, answer_id)
     
+    except ValueError:
+      pass # only deal with int - int key-value pairs
+      
+    except:
+      assert 1 == 0
+  print my_visit.response_set.all()
+  
+  #close the visit
+  my_visit.close_now()   
+  assert not my_visit.is_happening
     
-    
+  #TODO basic validation. If the thing fails to submit the answers, go back to interview submit page.
+
+  return families(request)
+  

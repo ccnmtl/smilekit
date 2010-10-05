@@ -37,15 +37,6 @@ function local_storage_get ( namespace, key, value ) {
 }
 
 
-function next_question () {
-  
-
-}
-
-function prev_question() {
-
-}
-
 function family_answers () {
     family_id = local_storage_get (LOCAL_STORAGE_KEY, 'family_id');
     family_key = family_id + '_answers'
@@ -76,7 +67,6 @@ function answer_clicked(event) {
   //console.log("Answered " + answer_id + " to question " + question_id);
   
   store_answer (question_id, answer_id); 
-  
   
   update_debug_localstorage(); 
   highlight_answer (answer_id);
@@ -111,7 +101,13 @@ function init() {
     LOCAL_STORAGE_KEY = 'la_llave_encantada';
     update_debug_localstorage();
     answers = family_answers();
-    if ( window.location.href.match (/question/)) {
+    
+    
+    questions = local_storage_get (LOCAL_STORAGE_KEY, 'list_of_questions');
+    
+    if ( window.location.href.match (/question/) ||
+         window.location.href.match (/insert_visit/)
+    ) {
     
       display_question_id = parseInt($('#display_question_id_div')[0].innerHTML);
       question_id = parseInt($('#question_id_div')[0].innerHTML);
@@ -120,7 +116,14 @@ function init() {
       language_code = $('#language_code_div')[0].innerHTML
       // /collection_tool/question/{{displayquestion.prev.id}}/language/{{language_code}}/
       // /collection_tool/question/{{displayquestion.next.id}}/language/{{language_code}}/
-      questions = local_storage_get (LOCAL_STORAGE_KEY, 'list_of_questions');
+      
+      if (questions == null) {
+        alert ("Can't find list of questions.");
+        $('#left').hide();
+        $('#right').hide();
+        return;
+      }
+      
       position_of_next_question = questions.indexOf(display_question_id) + 1;
       position_of_prev_question = questions.indexOf(display_question_id) -1;
       
@@ -129,7 +132,7 @@ function init() {
         $('#left').hide()  
       } else {
         prev_question_id = questions[position_of_prev_question];
-        prev_url = '/collection_tool/question/' + prev_question_id + '/language/' + language_code + '/'
+        prev_url = '/collection_tool/question/' + prev_question_id + '/language/' + language_code 
         $('#left')[0].href = prev_url
       }
       
@@ -140,7 +143,7 @@ function init() {
       }
       else {
         next_question_id = questions[position_of_next_question];
-        next_url = '/collection_tool/question/' + next_question_id + '/language/' + language_code + '/'
+        next_url = '/collection_tool/question/' + next_question_id + '/language/' + language_code 
         $('#right')[0].href = next_url
       }
       
@@ -152,8 +155,6 @@ function init() {
       answer_id = answers[question_id];
       highlight_answer (answer_id);
     } else {
-        // highlight all answered questions on the section page:
-        // TODO refactor using standard functions above:
         answered_questions = $.keys( answers)
         $.each(
             answered_questions,
@@ -161,6 +162,10 @@ function init() {
                   $('#question_' + question_id).addClass('contentbuttoncomplete');
            }
         )
+        $('a.contentbutton').hide()
+        $.each(questions, function (a, question_id) {$('#question_' + question_id).show() })
+        
+        
     }
 }
 

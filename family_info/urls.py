@@ -17,6 +17,9 @@ urlpatterns = patterns('',
   
   
   (r'^start_interview/(?P<family_id>\d+)$',   'family_info.views.start_interview'),
+  (r'^insert_visit$',                         'family_info.views.insert_visit'),
+  
+  
   (r'^wrap_up_interview$',                    'family_info.views.wrap_up_interivew'),
   (r'^end_interview$',                        'family_info.views.end_interview'),
   
