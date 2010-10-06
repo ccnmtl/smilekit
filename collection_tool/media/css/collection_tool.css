@@ -478,10 +478,10 @@ div#timetable .timerowfilled .timeactiondown
 	background-image: url(/collection_tool/media/images/icon_planner_down.png);
 }
 
-div#timetable .timerowfilled .timeactionedit
+div#timetable .timerowfilled .timeactionswap
 {
 	right: 100px;
-	background-image: url(/collection_tool/media/images/icon_planner_edit.png);
+	background-image: url(/collection_tool/media/images/icon_planner_swap.png);
 }
 
 div#timetable .timerowfilled .timeactiondelete
