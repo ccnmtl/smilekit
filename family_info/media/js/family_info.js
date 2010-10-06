@@ -46,7 +46,9 @@ var cacheStatusValues = [];
  cache.addEventListener('cached', logEvent, false);
  cache.addEventListener('checking', logEvent, false);
  cache.addEventListener('downloading', logEvent, false);
- cache.addEventListener('error', logEvent, false);
+ 
+ 
+ //cache.addEventListener('error', logEvent, false);
 // cache.addEventListener('noupdate', logEvent, false);
  cache.addEventListener('obsolete', logEvent, false);
  cache.addEventListener('progress', logEvent, false);
@@ -54,11 +56,19 @@ var cacheStatusValues = [];
 
  cache.addEventListener('updateready', announce_ready_for_interview, false);
 
- cache.addEventListener('noupdate', blarg, false);
+cache.addEventListener('noupdate', blarg, false);
+cache.addEventListener('error', blarg, false);
 
 
  function blarg(e) {
    status = cacheStatusValues[cache.status];
+  
+  
+  if (e.type == "error" ) {
+    alert ("There was an error downloading one of the files, but you can try starting the interview anyway.");
+    announce_ready_for_interview(e)
+  }
+   
   if (e.type == "noupdate" && status == "idle") {
     announce_ready_for_interview(e)
   }
