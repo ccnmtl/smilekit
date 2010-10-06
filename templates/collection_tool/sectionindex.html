@@ -22,13 +22,14 @@
 
 {% block language_toggle %}
 		{%ifequal language_code 'en'%}
-		<a href="/collection_tool/section/{{section.id}}/language/es/">espa&#241;ol</a>
+		<a href="/collection_tool/section/{{section.id}}/language/es">espa&#241;ol</a>
 		{%endifequal%}
 					
 		{%ifequal language_code 'es'%}
-			<a href="/collection_tool/section/{{section.id}}/language/en/">english</a>
+			<a href="/collection_tool/section/{{section.id}}/language/en">english</a>
 		{%endifequal%}
 {% endblock %}
+
 
 {% block collection_tool_js %}
 <script src="/collection_tool/media/js/jquery.js" type="text/javascript"></script>
@@ -46,7 +47,7 @@
 			<div class="contentbuttons">
 			 {% for q in section.displayquestion_set.all%}
 			   <!--  'contentbuttoncomplete' is added by javascript -->
-				  <a href="/collection_tool/question/{{q.id}}/language/{{language_code}}/" class="contentbutton" id = "question_{{q.id}}" title = "rank: {{q.ordering_rank}}; prev: {{q.prev}}; next: {{q.next}}">
+				  <a href="/collection_tool/question/{{q.id}}/language/{{language_code}}" class="contentbutton" id = "question_{{q.id}}" title = "rank: {{q.ordering_rank}}; prev: {{q.prev}}; next: {{q.next}}">
 				  {%ifequal language_code 'en'%}{{q.english}}{%endifequal%}
 		      {%ifequal language_code 'es'%}{{q.spanish}}{%endifequal%}
 		      </a>

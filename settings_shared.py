@@ -70,6 +70,7 @@ INSTALLED_APPS = (
     'typogrify',
     'survey',
     'tinymce',
+    'family_info',
     'collection_tool',
     'equation_balancer',
 )
