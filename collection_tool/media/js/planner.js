@@ -17,7 +17,7 @@ function initPlanner() {
   $('.timeactiondelete').click(deleteMeal);
   $('.timeactionup').click(moveUp);
   $('.timeactiondown').click(moveDown);
-  $('.timeactionedit').click(editMeal);
+  $('.timeactionswap').click(editMeal);
   
   if(mode == "tracking") {
     $('#photobox-fluoride').hide();
