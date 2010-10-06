@@ -26,11 +26,11 @@ function initPlanner() {
   // hide/show item boxes
   $('.photoboxhideshow').toggle(
     function() {
-      $(this).html("+ Show");
+      $(this).html("+");
       $(this).nextAll(".thumbnails").hide();
     },
     function() {
-      $(this).html("- Hide");
+      $(this).html("-");
       $(this).nextAll(".thumbnails").show();
     }
   );
