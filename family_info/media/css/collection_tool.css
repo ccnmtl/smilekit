@@ -14,13 +14,7 @@ body
  display:none;
 }
 
-#display_question_id_div {
- display:none;
-}
 
-#language_code_div {
- display:none;
-}
 /********/
 
 #masthead
@@ -350,7 +344,8 @@ h2#contenttitle, #contentsubtitle { text-align: center; }
 
 #planner
 {
-	background-color: #99e1f0; 
+	background: -webkit-gradient(linear, left top, left bottom, from(#ccc), to(#eee));
+	background: -moz-linear-gradient(top, #ccc, #eee);
 	overflow: auto;
 }
 
@@ -358,12 +353,12 @@ h2#contenttitle, #contentsubtitle { text-align: center; }
 
 { 
 	float: right; 
-	background-color: #99e1f0; 
+	background-color: #9db; 
 }
 
 #plannerleft 
 { 
-position: relative;
+
 }
 
 /********/
@@ -375,22 +370,6 @@ position: relative;
 /********/
 
 div#timetable { width: 100%; }
-
-div#timelinearrow
-{
-	cursor: pointer;
-	position: absolute;
-	top: 20%;
-	height: 220px;
-	width: 20px;
-	-moz-border-radius-topright: 5px;
-	-webkit-border-top-right-radius: 5px;
-	-moz-border-radius-bottomright: 5px;
-	-webkit-border-bottom-right-radius: 5px;
-	background-position: center center;
-	background-repeat: no-repeat;
-}
-
 
 div#timetable .timetext {padding: 10px; display: block; text-align: center;}
 
@@ -412,6 +391,7 @@ div#timetable .timerowfilled
 
 div#timetable .time
 {
+	width: 100px;
 	height: 40px;
 	text-align: center;
 	font-weight: bold;
@@ -425,23 +405,10 @@ div#timetable .time
 
 div#timetable .timerowfilled .timeactivity
 {
-   display: block !important;
 	font-weight: bold;
 	position: absolute;
 	top: 0px;
 	left: 100px;
-}
-
-div#timetable .timerowcollapsed {
-  width: 100px;
-}
-
-div#timetable .timerowfilled .timebutton {
-  display: block !important;
-}
-
-div#timetable .timerowcollapsed .timeactivity, div#timetable .timerowcollapsed .timebutton {
-  display: none !important;
 }
 
 div#timetable .timerow  .timeactivity
@@ -449,11 +416,7 @@ div#timetable .timerow  .timeactivity
 	display: none;
 }
 
-div#timetable .timerowfilled .time {
-	background: -moz-linear-gradient(top, #fff, #9bd);
-}
-
-div#timetable .timerowfilled .timebutton
+div#timetable .timerowfilled  a
 {
 	text-align: center;
 	font-weight: bold;
@@ -467,44 +430,50 @@ div#timetable .timerowfilled .timebutton
 	width: 50px;
 	padding-top: 4px;
 	text-indent: -3000px;
-	cursor: pointer;
-	position: absolute;
-	top: 0px;
-	background-repeat: no-repeat;
-	background-position: 15px 10px;
 }
-
-div#timetable .timerow .time {
-  cursor: pointer;
-}
-
-div#timetable .timerow .timebutton
+div#timetable .timerow  a
 {
 	display: none;
 }
 
 div#timetable .timerowfilled .timeactionup
 {
+	position: absolute;
 	right: 0px;
+	top: 0px;
 	background-image: url(/collection_tool/media/images/icon_planner_up.png);
+	background-repeat: no-repeat;
+	background-position: 15px 10px;
 }
 
 div#timetable .timerowfilled .timeactiondown
 {
+	position: absolute;
 	right: 50px;
+	top: 0px;
 	background-image: url(/collection_tool/media/images/icon_planner_down.png);
+	background-repeat: no-repeat;
+	background-position: 15px 10px;
 }
 
-div#timetable .timerowfilled .timeactionswap
+div#timetable .timerowfilled .timeactionedit
 {
+	position: absolute;
 	right: 100px;
-	background-image: url(/collection_tool/media/images/icon_planner_swap.png);
+	top: 0px;
+	background-image: url(/collection_tool/media/images/icon_planner_edit.png);
+	background-repeat: no-repeat;
+	background-position: 15px 10px;
 }
 
 div#timetable .timerowfilled .timeactiondelete
 {
+	position: absolute;
 	right: 150px;
+	top: 0px;
 	background-image: url(/collection_tool/media/images/icon_planner_delete.png);
+	background-repeat: no-repeat;
+	background-position: 15px 10px;
 }
 
 /********/
@@ -521,25 +490,6 @@ div#timetable .timerowfilled .timeactiondelete
 	text-align: left;
 }
 
-.photobox .photoboxhideshow {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  width: 20px;
-  text-align: center;
-  font-weight: bold;
-  background: #fff;
-  cursor: pointer;
-  color: #fff;
-  padding: 0px 6px 0px 6px;
-  font-size: 24px;
-	background: -webkit-gradient(linear, left top, left bottom, from(#666), to(#000));
-	background: -moz-linear-gradient(top, #666, #000);
-	text-shadow: #666 1px 1px 1px;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-}
-
 .answerphotobox
 {
 	width: 682px;
@@ -554,7 +504,6 @@ div#timetable .timerowfilled .timeactiondelete
 	background: -moz-linear-gradient(top, #000, #666);
 	margin:10px;
 	padding: 10px;
-	position: relative;
 }
 
 .photoboxlabel, .answerphotoboxlabel
@@ -908,32 +857,15 @@ td, legend, input {font-size: 16px;}
 
 @media all and (orientation:portrait)
 {
-	/*#planner {height: 850px;}*/
-	div#timetable .time
-	{
-		width: 170px;
-	}
-	.arrowopen
-	{
-		background-image: url(/collection_tool/media/images/toggle_arrow_open.png);
-		left: 170px;
-	}
-	
-	.arrowclose
-	{
-		background-image: url(/collection_tool/media/images/toggle_arrow_close.png);
-		right: -20px;
-	}
-	#plannerright { width: 500px !important; }
-	#plannerleft { margin-right: 20px !important; }
-	/*div#timetable .timerowfilled .timeactivity .timetext
+	#planner {height: 850px;}
+	#plannerright { width: 272px !important; }
+	#plannerleft { margin-right: 272px !important; }
+	div#timetable .timerowfilled .timeactivity .timetext
 	{ 	
 		text-overflow: ellipsis !important;
 		overflow: hidden;
 		white-space: nowrap;
-		width: 80px;	
-	}
-	*/
+		width: 80px;	}
 	.photobox
 	{
 		max-width: 620px;
@@ -942,24 +874,9 @@ td, legend, input {font-size: 16px;}
 
 @media all and (orientation:landscape)
 {
-	/*#planner {height: 600px;}*/
-	div#timetable .time
-	{
-		width: 190px;
-	}
-	.arrowopen
-	{
-		background-image: url(/collection_tool/media/images/toggle_arrow_open.png);
-		left: 190px;
-	}
-	
-	.arrowclose
-	{
-		background-image: url(/collection_tool/media/images/toggle_arrow_close.png);
-		right: -20px;
-	}
-	#plannerright { width: 730px !important; }
-	#plannerleft { margin-right: 20px !important; }
+	#planner {height: 600px;}
+	#plannerright { width: 390px !important; }
+	#plannerleft { margin-right: 390px !important; }
 	.photobox
 	{
 		max-width: 840px;

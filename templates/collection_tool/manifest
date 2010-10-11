@@ -4,16 +4,14 @@ CACHE MANIFEST
 CACHE:
 #questions:
 {% for id in question_ids %}
-  /collection_tool/question/{{id}}/language/en/
-# just to speed things up for right now turning off spanish
-  /collection_tool/question/{{id}}/language/es/
+  /collection_tool/question/{{id}}/language/en
+  /collection_tool/question/{{id}}/language/es
 {% endfor %}
 
 #section pages:
 {% for id in nav_section_ids %}
-    /collection_tool/section/{{id}}/language/en/
-# just to speed things up for right now turning off spanish
-    /collection_tool/section/{{id}}/language/es/
+    /collection_tool/section/{{id}}/language/en
+    /collection_tool/section/{{id}}/language/es
 {% endfor %}
 
 
@@ -44,15 +42,16 @@ CACHE:
 /collection_tool/media/js/jquery.js
 /collection_tool/media/js/planner.js
 
+
+# commenting out just for now, as
+# http://mysmilebuddy.ccnmtl.columbia.edu/collection_tool/media/images/planner/floss.jpg
+# was causing a glitch and subsequently halting the download:
+
+
 # planner images
-{% for label in planner_labels %}
-  /collection_tool/media/images/planner/{{label|slugify}}.jpg
-{% endfor %}
-
-
-#Videos:
-/collection_tool/video/bubbles/
-/uploads/bubbles.m4v
+#{% for label in planner_labels %}
+#  /collection_tool/media/images/planner/{{label|slugify}}.jpg
+#{% endfor %}
 
 
 FALLBACK:

@@ -6,14 +6,12 @@ LANGUAGE_CHOICES = (
     ('es', 'Spanish'),
 )
 
-#User = models.get_model('auth','user')
 
 Question = models.get_model('equation_balancer', 'question')
 Answer = models.get_model('equation_balancer', 'answer')
+Configuration = models.get_model('equation_balancer', 'configuration')
 
 ##################HELP AND TOPICS####
-
-
 
 class HelpItem(models.Model):
   english_objective = models.CharField(max_length=1024, null = True, blank = True)
@@ -147,9 +145,12 @@ class AssessmentSection(models.Model):
     """ used for ordering"""
     return [q.id for q in self.displayquestion_set.all()] 
   
+    
+  
 
-#TODO: refactor this to take into account a configuration.
-#TODO: use caching for this.
+#TODO comment this out: it should be rendered obsolete by configuration_display_questions
+#if 1 == 0:
+#this is still used for the cache manifest.
 def all_display_question_ids_in_order():
   result = []
   #order all questions, first by nav section, then by rank within that section:
@@ -157,7 +158,49 @@ def all_display_question_ids_in_order():
   for a in [s.display_question_ids() for s in sections]:
     result.extend (a)
   return result
-    
+  
+
+
+
+def configuration_display_questions(self):
+  """This is the recipe for determining which display questions will be asked if a configuration is chosen."""
+  
+  nonzero_weight_questions = self.questions_with_weights_greater_than_zero()
+  result = []
+  all_questions = []
+  
+  #order all questions, first by nav section, then by rank within that section:
+  for s in  AssessmentSection.objects.all():
+    all_questions.extend (s.displayquestion_set.all())
+  
+  
+  #now filter out the ones with weight zero, except if they're special.    
+  for display_question in all_questions:
+    if display_question.display_regardless_of_weight:
+      result.append(display_question)
+    else:
+      if display_question.question in nonzero_weight_questions:
+        result.append(display_question)
+       
+  return result
+
+# Duck-tape this method into the configuration model;
+# although the method belongs that model,
+# the code itself has more to do with display questions than with
+# equation balancing, so it belongs here.
+
+
+def configuration_first_display_question(self):
+  them = self.display_questions()
+  return them[0]
+
+
+
+Configuration.display_questions = configuration_display_questions
+Configuration.first_display_question = configuration_first_display_question
+
+
+
 
 def has_image(image_field_file):
   try:
@@ -209,7 +252,7 @@ class DisplayQuestion(models.Model):
     ordering = ('ordering_rank',)
 
   def get_absolute_url(self):
-    return '/collection_tool/question/%d/language/en/' % self.id
+    return '/collection_tool/question/%d/language/en' % self.id
 
   @property
   def question_type(self):
@@ -435,12 +478,8 @@ def post_save_ordering_string_update(sender, **kwargs):
   answer_translation.ordering_string = answer_translation.answer.question_text()
   
 
-
 post_save.connect(post_save_ordering_string_update, sender=AnswerTranslation)
 
-
-  
-  
   
 # planner widget items
 

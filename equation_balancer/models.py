@@ -3,12 +3,20 @@ from django.db import models
 User = models.get_model('auth','user')
 
 class Module(models.Model):
+  @property
+  def dir(self):
+    return dir(self)
+    
   def __unicode__(self): return self.name  
   name = models.CharField(max_length=30, unique=True)
 
   
 
 class Question(models.Model):
+  @property
+  def dir(self):
+    return dir(self)
+    
   def __unicode__(self): return "%s: %s" % (self.number, self.text)
 
   TYPE_CHOICES = (
@@ -32,6 +40,10 @@ class Question(models.Model):
   #  {'always':2, 'sometimes':1, 'never':-1}  # same idea
 
 class Answer(models.Model):
+  @property
+  def dir(self):
+    return dir(self)
+    
   def __unicode__(self): return "%s: %s (%s)" % (self.question.text, self.text, self.weight)
 
   question = models.ForeignKey(Question)
@@ -51,16 +63,30 @@ class Answer(models.Model):
 
 # configurations
 class Configuration(models.Model):
+  @property
+  def dir(self):
+    return dir(self)
+    
   owner = models.ForeignKey(User)
   name = models.CharField(max_length=100)
 
   def __unicode__(self): return self.name
 
+  def weights_greater_than_zero(self):
+    return self.weight_set.filter(weight__gt=0)
+  
+  def questions_with_weights_greater_than_zero(self):
+    return [w.question for w in self.weights_greater_than_zero()]
+  
   #high_risk = models.IntegerField()
   #medium_risk = models.IntegerField()
   #low_risk = models.IntegerField()
 
 class ModuleWeight(models.Model):
+  @property
+  def dir(self):
+    return dir(self)
+    
   config = models.ForeignKey(Configuration)
   module = models.ForeignKey(Module)
   unique_together = (("config", "module"),)
@@ -71,6 +97,10 @@ class ModuleWeight(models.Model):
 
   
 class Weight(models.Model):
+  @property
+  def dir(self):
+    return dir(self)
+    
   config = models.ForeignKey(Configuration)
   question = models.ForeignKey(Question)
   unique_together = (("config", "question"),)
@@ -78,5 +108,4 @@ class Weight(models.Model):
   def __unicode__(self): return "%s: %s" % (self.question.number, self.weight)
 
   weight = models.DecimalField(decimal_places=3, max_digits=10)
-  
-  # 11.5 + 1
+

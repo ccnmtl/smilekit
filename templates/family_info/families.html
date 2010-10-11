@@ -1,0 +1,61 @@
+{% extends "family_info/base.html" %}
+{%load smartif%}
+{% block family_info_content %}
+		
+		
+		<h2 id="contenttitle">
+		
+			Participants
+		
+		</h2>
+
+
+					
+					<fieldset>
+						<legend>Families</legend>
+							<table>
+	        {%for family in families %}
+	          <tr>
+	            <td>Family # {{family.study_id_number}}</td>
+	            <td><a title="Lock this family and prepare for interview." href="/family_info/start_interview/{{family.id}}">Start visit</td>
+	            <td><a href="/family_info/edit_family/{{family.id}}">Details </a></td>
+	          </tr>
+	        {%endfor %}
+	
+
+	
+  <tr>
+  	<td colspan = "5"><a href = "/family_info/new_family" >New Family</a></td>
+	</tr>
+	
+	</table>
+					</fieldset>
+					
+					<fieldset>
+					
+						<legend>Health Workers</legend>
+					
+							<table>
+							{% for worker in health_workers %}
+							<tr>
+							<td>{{worker }}</td>
+							<td><a href = "/family_info/edit_user/{{worker.id}}">Edit</a></td>
+							</tr>
+							{%endfor%}
+
+	            <tr>
+  	            <td colspan = "2"><a href="/family_info/new_user" >New Health Worker</td>
+	            </tr>
+	
+
+							
+							</table>
+					
+					</fieldset>
+					
+			<script language ="javascript" >
+			   localStorage.clear();
+			</script>
+			
+
+{% endblock family_info_content %}
