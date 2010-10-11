@@ -380,18 +380,17 @@ div#timelinearrow
 {
 	cursor: pointer;
 	position: absolute;
-	right: -20px;
-	top: 49%;
+	top: 20%;
 	height: 220px;
 	width: 20px;
 	-moz-border-radius-topright: 5px;
 	-webkit-border-top-right-radius: 5px;
 	-moz-border-radius-bottomright: 5px;
 	-webkit-border-bottom-right-radius: 5px;
-	background-image: url(/collection_tool/media/images/toggle_arrow.png);
 	background-position: center center;
 	background-repeat: no-repeat;
 }
+
 
 div#timetable .timetext {padding: 10px; display: block; text-align: center;}
 
@@ -413,7 +412,6 @@ div#timetable .timerowfilled
 
 div#timetable .time
 {
-	width: 100px;
 	height: 40px;
 	text-align: center;
 	font-weight: bold;
@@ -911,14 +909,31 @@ td, legend, input {font-size: 16px;}
 @media all and (orientation:portrait)
 {
 	/*#planner {height: 850px;}*/
-	#plannerright { width: 272px !important; }
-	#plannerleft { margin-right: 272px !important; }
-	div#timetable .timerowfilled .timeactivity .timetext
+	div#timetable .time
+	{
+		width: 170px;
+	}
+	.arrowopen
+	{
+		background-image: url(/collection_tool/media/images/toggle_arrow_open.png);
+		left: 170px;
+	}
+	
+	.arrowclose
+	{
+		background-image: url(/collection_tool/media/images/toggle_arrow_close.png);
+		right: -20px;
+	}
+	#plannerright { width: 500px !important; }
+	#plannerleft { margin-right: 20px !important; }
+	/*div#timetable .timerowfilled .timeactivity .timetext
 	{ 	
 		text-overflow: ellipsis !important;
 		overflow: hidden;
 		white-space: nowrap;
-		width: 80px;	}
+		width: 80px;	
+	}
+	*/
 	.photobox
 	{
 		max-width: 620px;
@@ -928,8 +943,23 @@ td, legend, input {font-size: 16px;}
 @media all and (orientation:landscape)
 {
 	/*#planner {height: 600px;}*/
-	#plannerright { width: 390px !important; }
-	#plannerleft { margin-right: 390px !important; }
+	div#timetable .time
+	{
+		width: 190px;
+	}
+	.arrowopen
+	{
+		background-image: url(/collection_tool/media/images/toggle_arrow_open.png);
+		left: 190px;
+	}
+	
+	.arrowclose
+	{
+		background-image: url(/collection_tool/media/images/toggle_arrow_close.png);
+		right: -20px;
+	}
+	#plannerright { width: 730px !important; }
+	#plannerleft { margin-right: 20px !important; }
 	.photobox
 	{
 		max-width: 840px;
