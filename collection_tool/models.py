@@ -252,7 +252,7 @@ class DisplayQuestion(models.Model):
     ordering = ('ordering_rank',)
 
   def get_absolute_url(self):
-    return '/collection_tool/question/%d/language/en/' % self.id
+    return '/collection_tool/question/%d/language/en' % self.id
 
   @property
   def question_type(self):
