@@ -17,7 +17,7 @@ function initPlanner() {
   $('.timeactiondelete').click(deleteMeal);
   $('.timeactionup').click(moveUp);
   $('.timeactiondown').click(moveDown);
-  $('.timeactionedit').click(editMeal);
+  $('.timeactionswap').click(editMeal);
   
   if(mode == "tracking") {
     $('#photobox-fluoride').hide();
@@ -26,11 +26,11 @@ function initPlanner() {
   // hide/show item boxes
   $('.photoboxhideshow').toggle(
     function() {
-      $(this).html("+ Show");
+      $(this).html("+");
       $(this).nextAll(".thumbnails").hide();
     },
     function() {
-      $(this).html("- Hide");
+      $(this).html("-");
       $(this).nextAll(".thumbnails").show();
     }
   );

@@ -8,7 +8,7 @@
 
 		    <div class="photobox" id="photobox-{{type.grouper|lower}}">
 			  <div class="photoboxcontainer">
-  	          <div class="photoboxhideshow">- Hide</div>
+  	          <div class="photoboxhideshow">-</div>
 			    <div class="photoboxlabel">
 			      {{ type.grouper }}
 			    </div>
@@ -47,13 +47,13 @@
 				</div>
 				<div title="Move Up" class="timebutton timeactionup"><span class="timetext">Up</span></div>
 				<div title="Move Down" class="timebutton timeactiondown"><span class="timetext">Down</span></div>
-				<div title="Edit Activity" class="timebutton timeactionedit"><span class="timetext">Edit</span></div>
+				<div title="Swap Type" class="timebutton timeactionswap"><span class="timetext">Swap</span></div>
 				<div title="Delete Activity" class="timebutton timeactiondelete"><span class="timetext">Delete</span></div>
 			</div>
 			
 	     {% endfor %}
 		
-   <div id="timelinearrow"><img width="100px;" src="http://images.all-free-download.com/images/graphicmedium/green_globe_right_arrow_559.jpg" /></div>
+		<div id="timelinearrow"></div>
 
 
 
@@ -63,6 +63,7 @@
 	
 
 </div>
+
 <form action="#" method="post">
 
 <div class="formbuttons">
