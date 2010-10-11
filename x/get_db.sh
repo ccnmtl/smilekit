@@ -8,7 +8,7 @@
 #set -x
 
 ############
-DB_BACKUPS=~
+DB_BACKUPS=~/ecc_backups
 PREFIX=smilekit_prod_
 DATE=$PREFIX`date +"%F_%R" | sed 's/-/_/g' | sed 's/:/_/g'`
 PROD_SERVER_HOSTNAME=mysmilebuddy.ccnmtl.columbia.edu

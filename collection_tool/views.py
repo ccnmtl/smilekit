@@ -90,7 +90,6 @@ def html_sandbox(request):
   return render_to_response("collection_tool/html_sandbox.html", {"times":times})
 
 def widget_test(request):
-  print "I WAS HERE"
   starttime = datetime(1984,1,1,7)
   times = [(starttime + timedelta(minutes=30) * i).strftime("%I:%M%p")
            for i in range(34)]
