@@ -58,8 +58,15 @@ function store_answer(question_id, answer_id) {
 
 function answer_clicked(event) {
   event.preventDefault();
-  //console.log(event.target.id.split('_')[1]);  
-  answer_id = event.target.id.split('_')[1];
+  //console.log(event.target.id.split('_')[1]);
+  
+  if (event.target.tagName == 'IMG') {
+    the_link= event.target.parentNode
+  } else {
+    the_link = event.target
+  }
+  answer_id = the_link.id.split('_')[1];
+  
   question_id = $('#question_id_div')[0].innerHTML;
   //local_storage_set (LOCAL_STORAGE_KEY, question_id, answer_id);
   
@@ -163,8 +170,9 @@ function init() {
            }
         )
         $('a.contentbutton').hide()
-        $.each(questions, function (a, question_id) {$('#question_' + question_id).show() })
-        
+        if (questions != null) {
+          $.each(questions, function (a, question_id) {$('#question_' + question_id).show() })
+        }      
         
     }
 }

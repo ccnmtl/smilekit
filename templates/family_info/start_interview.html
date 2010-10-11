@@ -73,18 +73,17 @@
     </div>
 <script>
   if (typeof(init_family_info) == "undefined") {
-    alert ("Unable to start interview at this time. (Unable to load init_family_info).");
+    alert ("Sorry, unable to start interview at this time: unable to load init_family_info.");
     $('#downloading').hide();
     $('#done_downloading').hide();
     $('#debug_cache_status').hide();
     
   }
   if (typeof($) == "undefined") {
-    alert ("Unable to start interview at this time. (Unable to load jQuery).");
-    $('#downloading').hide();
-    $('#done_downloading').hide();
-    $('#debug_cache_status').hide();
-    
+    alert ("Sorry, unable to start interview at this time: unable to load jQuery.");
+    document.getElementById('downloading').style.display = 'none';
+    document.getElementById('done_downloading').style.display = 'none';
+    document.getElementById('debug_cache_status').style.display = 'none';
   }
   
   

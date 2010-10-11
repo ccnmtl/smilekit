@@ -1,12 +1,14 @@
 var LOCAL_STORAGE_KEY;
 
-$.extend({
-   keys: function(obj){
-     var a = [];
-     $.each(obj, function(k){ a.push(k) });
-     return a;
-   }
-})
+function add_each() {
+  $.extend({
+     keys: function(obj){
+       var a = [];
+       $.each(obj, function(k){ a.push(k) });
+       return a;
+     }
+  })
+}
 
 //value can be any object that can be turned into a json object.
 function local_storage_set ( namespace, key, value ) {
@@ -159,6 +161,8 @@ function start_interview() {
 
 
 function init_family_info() {
+  add_each();
+
    $('#done_downloading').hide()
 
    LOCAL_STORAGE_KEY = 'la_llave_encantada';
