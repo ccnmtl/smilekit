@@ -357,13 +357,14 @@ h2#contenttitle, #contentsubtitle { text-align: center; }
 #plannerright 
 
 { 
-	float: right; 
-	background-color: #99e1f0; 
+	float: right;
+	background-color: #99e1f0;
 }
 
 #plannerleft 
 { 
 position: relative;
+width: 100px;
 }
 
 /********/
@@ -429,7 +430,7 @@ div#timetable .timerowfilled .timeactivity
 	font-weight: bold;
 	position: absolute;
 	top: 0px;
-	left: 100px;
+	left: 200px;
 }
 
 div#timetable .timerowcollapsed {
@@ -923,6 +924,7 @@ td, legend, input {font-size: 16px;}
 	{
 		background-image: url(/collection_tool/media/images/toggle_arrow_close.png);
 		right: -20px;
+		display: none;
 	}
 	#plannerright { width: 500px !important; }
 	#plannerleft { margin-right: 20px !important; }

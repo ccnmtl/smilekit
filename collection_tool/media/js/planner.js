@@ -36,13 +36,24 @@ function initPlanner() {
   );
   
   // collapse/expand timeline
-  $('#timelinearrow').toggle(
+  $('.arrowclose').click(
     function() {
-      $(".timerow").addClass("timerowcollapsed");
-    },
+      $('.arrowclose').hide();
+      $('.arrowopen').show();
+      $('.timerow').addClass("timerowcollapsed");
+      $('#plannerright').show();
+      $('#plannerleft').width(100);
+    }
+  );
+  $('.arrowopen').click(
     function() {
-      $(".timerow").removeClass("timerowcollapsed");
-    });
+      $('.arrowclose').show();
+      $('.arrowopen').hide();
+      $('.timerow').removeClass("timerowcollapsed");
+      $('#plannerright').hide();
+      $('#plannerleft').width("95%");
+    }
+  );
 }
 
 function findNearestEmpty(elem) {

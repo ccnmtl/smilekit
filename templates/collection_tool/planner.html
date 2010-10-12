@@ -38,7 +38,7 @@
 		
 		  {% for time in times %}
 		
-			<div class="timerow">
+			<div class="timerow timerowcollapsed">
 				<div class="time"><span class="timetext">{{ time }}</span></div>
 				<div class="timeactivity">
 				  <span class="timetext">
@@ -53,7 +53,7 @@
 			
 	     {% endfor %}
 		
-		<div id="timelinearrow" class="arrowclose"></div>
+		<div id="timelinearrow" class="arrowclose" style="display:none;"></div>
 		<div id="timelinearrow" class="arrowopen"></div>
 
 
