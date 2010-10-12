@@ -94,7 +94,7 @@ function saveMeal() {
   
   var goodrow = findNearestEmpty($(this).parent());
 
-  $('.mealorsnack', $(goodrow)).html("Meal");
+  $('.mealorsnack', $(goodrow)).html("Snack");
   $('.activityitems', $(goodrow)).html(items);
 
   $(goodrow).addClass('timerowfilled');
