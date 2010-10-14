@@ -1,16 +1,43 @@
 // meal planner widget
-var mode = "planner";
+var mode = "all";  // options: food, fluoride, all
+var savingFluoride = false;
 
 function setMode(newMode) {
   mode = newMode;
-  if(mode != "tracking" && mode != "planner") {
-    mode = "planner";
+  if(mode != "food" && mode != "fluoride" && mode != "all") {
+    mode = "all";
   }
 }
 
 function initPlanner() {
   $('.thumbnail').click(function () {
-    $(this).toggleClass('thumbnailselected');
+    if(jQuery(this).hasClass('thumbnaildisabled')) { return; }
+    jQuery(this).toggleClass('thumbnailselected');
+
+    var id= jQuery(this).parent().parent('.photoboxcontainer').attr('id');
+    if(jQuery(this).hasClass('thumbnailselected')) {
+      if(id == "photoboxcontainer-fluoride") {
+        // disable all non-fluoride items
+        jQuery('.photoboxcontainer').not('#photoboxcontainer-fluoride').children().children('.thumbnail').each(function() {
+          jQuery(this).addClass('thumbnaildisabled');
+          savingFluoride = true;
+        });
+      }
+      else {
+        // disable fluoride items
+        jQuery('#photoboxcontainer-fluoride').children().children('.thumbnail').each(function() {
+          jQuery(this).addClass('thumbnaildisabled');
+          savingFluoride = false;
+        });
+      }
+    }
+    else {
+      // if nothing is selected, enable all choices again
+      if( jQuery('.thumbnailselected').length == 0) {
+        jQuery('.thumbnaildisabled').removeClass('thumbnaildisabled');
+      }
+    }
+
   });
   
   $('.time').click(saveMeal);
@@ -19,8 +46,15 @@ function initPlanner() {
   $('.timeactiondown').click(moveDown);
   $('.timeactionswap').click(editMeal);
   
-  if(mode == "tracking") {
+  if(mode == "food") {
     $('#photobox-fluoride').hide();
+  }
+  if(mode == "fluoride") {
+    $('.timeactionswap').hide();
+    $('.timeactiondelete').css('right', '100px');
+    //$('.mealorsnack').hide();
+    $('#photobox-foods').hide();
+    $('#photobox-drinks').hide();
   }
   
   // hide/show item boxes
@@ -94,15 +128,23 @@ function saveMeal() {
   
   var goodrow = findNearestEmpty($(this).parent());
 
-  $('.mealorsnack', $(goodrow)).html("Snack");
+  if(savingFluoride) {
+    jQuery('.mealorsnack', jQuery(goodrow)).hide();
+    savingFluoride = false;
+  }
+  else {
+    $('.mealorsnack', $(goodrow)).html("Snack: ");
+  }
   $('.activityitems', $(goodrow)).html(items);
 
-  $(goodrow).addClass('timerowfilled');
+  $(goodrow).toggleClass('timerowfilled');
+
+  // re-enable any disabled items
+  jQuery('.thumbnaildisabled').removeClass('thumbnaildisabled');
 }
 
 function deleteMeal() {
-  $(this).parent().removeClass('timerowfilled');
-  
+  $(this).parent().toggleClass('timerowfilled');
   $('.timeactivity', $(this).parent()).html("");
 }
 
@@ -112,9 +154,9 @@ function moveUp() {
   var prevElement = $(this).parent().prevAll(".timerow:not(.timerowfilled)").first();
   if(prevElement.length > 0) {
     $('.timeactivity', prevElement).html(items);
-    $(prevElement).addClass('timerowfilled');
+    $(prevElement).toggleClass('timerowfilled');
   
-    $(this).parent().removeClass('timerowfilled');
+    $(this).parent().toggleClass('timerowfilled');
   }
 }
 
@@ -125,18 +167,18 @@ function moveDown() {
   console.log(nextElement);
   if(nextElement.length > 0) {
     $('.timeactivity', nextElement).html(items);
-    $(nextElement).addClass('timerowfilled');
+    $(nextElement).toggleClass('timerowfilled');
  
-    $(this).parent().removeClass('timerowfilled');
+    $(this).parent().toggleClass('timerowfilled');
   }
 }
 
 function editMeal() {
   var mealorsnack = $('.mealorsnack', $(this).parent());
-  if(mealorsnack.html() == "Meal") {
-    mealorsnack.html("Snack");
+  if(mealorsnack.html() == "Meal: ") {
+    mealorsnack.html("Snack: ");
   } else {
-    mealorsnack.html("Meal");
+    mealorsnack.html("Meal: ");
   }
 }
 

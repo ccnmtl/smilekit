@@ -426,7 +426,7 @@ div#timetable .time
 
 div#timetable .timerowfilled .timeactivity
 {
-   display: block !important;
+   display: block;
 	font-weight: bold;
 	position: absolute;
 	top: 0px;
@@ -437,17 +437,16 @@ div#timetable .timerowcollapsed {
   width: 100px;
 }
 
-div#timetable .timerowfilled .timebutton {
-  display: block !important;
-}
-
 div#timetable .timerowcollapsed .timeactivity, div#timetable .timerowcollapsed .timebutton {
   display: none !important;
 }
 
-div#timetable .timerow  .timeactivity
-{
-	display: none;
+div#timetable .timebutton, div#timetable .timeactivity {
+  display: none;
+}
+
+div#timetable .timerowfilled .timebutton {
+  display: block;
 }
 
 div#timetable .timerowfilled .time {
@@ -467,7 +466,7 @@ div#timetable .timerowfilled .timebutton
 	border-left: 1px solid #333;
 	width: 50px;
 	padding-top: 4px;
-	text-indent: -3000px;
+	text-indent: -9999px;
 	cursor: pointer;
 	position: absolute;
 	top: 0px;
@@ -477,11 +476,6 @@ div#timetable .timerowfilled .timebutton
 
 div#timetable .timerow .time {
   cursor: pointer;
-}
-
-div#timetable .timerow .timebutton
-{
-	display: none;
 }
 
 div#timetable .timerowfilled .timeactionup
@@ -579,6 +573,12 @@ div#timetable .timerowfilled .timeactiondelete
 	border: 3px solid #000;
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
+}
+
+.thumbnaildisabled img {
+  opacity:.40;
+  filter: alpha(opacity=40);
+  -moz-opacity: 0.4;
 }
 
 
@@ -903,6 +903,8 @@ td, legend, input {font-size: 16px;}
 /********/
 
 
+.arrowclose { display: none }
+
 
 
 /* start - orientation-specific styles */
@@ -924,7 +926,6 @@ td, legend, input {font-size: 16px;}
 	{
 		background-image: url(/collection_tool/media/images/toggle_arrow_close.png);
 		right: -20px;
-		display: none;
 	}
 	#plannerright { width: 500px !important; }
 	#plannerleft { margin-right: 20px !important; }

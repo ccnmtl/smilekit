@@ -7,11 +7,9 @@
           {% for type in item_list %}
 
 		    <div class="photobox" id="photobox-{{type.grouper|lower}}">
-			  <div class="photoboxcontainer">
+			  <div class="photoboxcontainer" id="photoboxcontainer-{{type.grouper|slugify}}">
   	          <div class="photoboxhideshow">-</div>
-			    <div class="photoboxlabel">
-			      {{ type.grouper }}
-			    </div>
+			    <div class="photoboxlabel">{{ type.grouper }}</div>
 
 				 <div class="thumbnails">
 				 
@@ -42,7 +40,7 @@
 				<div class="time"><span class="timetext">{{ time }}</span></div>
 				<div class="timeactivity">
 				  <span class="timetext">
-				    <span class="mealorsnack"></span>: <span class="activityitems"></span>
+				    <span class="mealorsnack"></span><span class="activityitems"></span>
 				  </span>
 				</div>
 				<div title="Move Up" class="timebutton timeactionup"><span class="timetext">Up</span></div>
@@ -53,7 +51,7 @@
 			
 	     {% endfor %}
 		
-		<div id="timelinearrow" class="arrowclose" style="display:none;"></div>
+		<div id="timelinearrow" class="arrowclose"></div>
 		<div id="timelinearrow" class="arrowopen"></div>
 
 
