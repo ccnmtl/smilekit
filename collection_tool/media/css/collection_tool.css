@@ -375,6 +375,27 @@ width: 100px;
 
 /********/
 
+#label-snack{color: red;}
+#label-snack:after {content: "\2192";}/*Hexadecimal for Unicode right arrow (&rarr;)*/
+
+#label-meal {color: green;}
+#label-meal:after {content: "\2192";}/*Hexadecimal for Unicode right arrow (&rarr;)*/
+
+.mealorsnack {display: block; float: left;}
+
+.activityitems
+{ 	
+	text-overflow: ellipsis !important;
+	overflow: hidden;
+	white-space: nowrap;
+	display: block; 
+	float: left;
+	padding: 2px 0px 0px 5px;
+}
+
+
+
+
 div#timetable { width: 100%; }
 
 div#timelinearrow
@@ -430,7 +451,6 @@ div#timetable .timerowfilled .timeactivity
 	font-weight: bold;
 	position: absolute;
 	top: 0px;
-	left: 200px;
 }
 
 div#timetable .timerowcollapsed {
@@ -941,6 +961,11 @@ td, legend, input {font-size: 16px;}
 	{
 		max-width: 620px;
 	}
+	.activityitems {max-width: 160px;}
+	div#timetable .timerowfilled .timeactivity
+	{
+		left: 180px;
+	}
 }
 
 @media all and (orientation:landscape)
@@ -966,6 +991,11 @@ td, legend, input {font-size: 16px;}
 	.photobox
 	{
 		max-width: 840px;
+	}
+	.activityitems {max-width: 380px;}
+	div#timetable .timerowfilled .timeactivity
+	{
+		left: 200px;
 	}
 }
 

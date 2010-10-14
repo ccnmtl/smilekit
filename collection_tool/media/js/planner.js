@@ -133,7 +133,7 @@ function saveMeal() {
     savingFluoride = false;
   }
   else {
-    $('.mealorsnack', $(goodrow)).html("Snack: ");
+    $('.mealorsnack', $(goodrow)).html("<span id=\"label-snack\">Snack</span>");
   }
   $('.activityitems', $(goodrow)).html(items);
 
@@ -175,10 +175,10 @@ function moveDown() {
 
 function editMeal() {
   var mealorsnack = $('.mealorsnack', $(this).parent());
-  if(mealorsnack.html() == "Meal: ") {
-    mealorsnack.html("Snack: ");
+  if(mealorsnack.html() == "\<span\ id\=\"label-meal\"\>Meal\<\/span\>") {
+    mealorsnack.html("<span id=\"label-snack\">Snack</span>");
   } else {
-    mealorsnack.html("Meal: ");
+    mealorsnack.html("<span id=\"label-meal\">Meal</span>");
   }
 }
 
