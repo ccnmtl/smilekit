@@ -94,7 +94,7 @@ function saveMeal() {
   
   var goodrow = findNearestEmpty($(this).parent());
 
-  $('.mealorsnack', $(goodrow)).html("Snack");
+  $('.mealorsnack', $(goodrow)).html("<span id=\"label-snack\">Snack</span>");
   $('.activityitems', $(goodrow)).html(items);
 
   $(goodrow).addClass('timerowfilled');
@@ -133,10 +133,10 @@ function moveDown() {
 
 function editMeal() {
   var mealorsnack = $('.mealorsnack', $(this).parent());
-  if(mealorsnack.html() == "Meal") {
-    mealorsnack.html("Snack");
+  if(mealorsnack.html() == "\<span\ id\=\"label-meal\"\>Meal\<\/span\>") {
+    mealorsnack.html("<span id=\"label-snack\">Snack</span>");
   } else {
-    mealorsnack.html("Meal");
+    mealorsnack.html("<span id=\"label-meal\">Meal</span>");
   }
 }
 
