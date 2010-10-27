@@ -150,7 +150,9 @@ class AssessmentSection(models.Model):
 
 #TODO comment this out: it should be rendered obsolete by configuration_display_questions
 #if 1 == 0:
-#this is still used for the cache manifest.
+#this is still used for the cache manifest. -- change cache manifest to just use
+#[ dq.id for dq in DisplayQuestion.objects.all()] since order does not matter.
+
 def all_display_question_ids_in_order():
   result = []
   #order all questions, first by nav section, then by rank within that section:
@@ -188,7 +190,6 @@ def configuration_display_questions(self):
 # although the method belongs that model,
 # the code itself has more to do with display questions than with
 # equation balancing, so it belongs here.
-
 
 def configuration_first_display_question(self):
   them = self.display_questions()
@@ -307,7 +308,8 @@ class DisplayQuestion(models.Model):
     return dir(self)
   
   
-
+  #TODO these next and prev aren't used, except i think in the index pages of the
+  # data collection tool. remove.
   @property
   def next(self):
     """ return the next question in order by nav section, then rank."""

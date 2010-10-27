@@ -7,19 +7,20 @@ from django.contrib.auth.decorators import login_required
 from family_info.models import Visit, Family, User, RACE_ETHNICITY_CHOICES, EDUCATION_LEVEL_CHOICES
 from equation_balancer.models import Configuration as equation_balancer_configuration
 from collection_tool.views import question as collection_tool_question_view
-import datetime, sys, pdb
+import datetime, sys, pdb, simplejson as json
 
 @login_required
 def families(request, **kwargs):
     t = loader.get_template('family_info/families.html')
    
-   
+    print kwargs.get ('error_message', '');
     c = RequestContext(request, {
       'error_message': kwargs.get ('error_message', ''),
       'families': Family.objects.filter(active = True),
       'health_workers': User.objects.all()
-      #TODO narrow this down
     })
+    
+    #pdb.set_trace()
     return HttpResponse(t.render(c))
 
 #**************************
@@ -32,6 +33,8 @@ def new_user(request, **kwargs):
     c = RequestContext(request,  varz)
     t = loader.get_template('family_info/add_edit_user.html')
     return HttpResponse(t.render(c))
+
+
 
 
 @login_required
@@ -301,31 +304,59 @@ def edit_family(request, **kwargs):
 #**************************
 @login_required
 def start_interview(request, **kwargs):
-    c = RequestContext(request,  {'the_family': get_object_or_404(Family, pk=kwargs['family_id'])})
+    #pdb.set_trace()
+    rp = request.POST
+    happening_visits =     [ v for v in request.user.visit_set.all() if v.is_happening]
+    
+    
+    
+    if len (happening_visits) == 0:
+    
+        #if there is no interview currently:
+        the_families = Family.objects.filter(pk__in = rp.getlist('families'))
+        interviewer = request.user
+        new_visit = Visit(interviewer=request.user)
+        new_visit.save()
+        new_visit.families =  the_families
+        new_visit.save();
+        #else get list of families from current users's interview
+        
+        assert len(happening_visits ) < 2
+
+        #assert that at least one family is selected.
+        if len(the_families) == 0:
+          my_args = {'error_message' : 'Please check at least one family.'}
+          return families (request, **my_args)
+        
+        print "families"
+        print families     
+
+        
+    else:
+        the_families = happening_visits[0].families.all()
+
+
+    
+    
+    c = RequestContext(request, { 'families' : the_families } )
     t = loader.get_template('family_info/start_interview.html')
     return HttpResponse(t.render(c))
-   
-def insert_visit(request, **kwargs):
-  """Creates the visit in the DB and redirects to the first question of the interview"""
-  rp = request.POST
-  interviewer = request.user
-  first_display_question_id = rp['first_display_question_id']
-  family_id = rp['family_id']
-  #get family
-  the_family = Family.objects.get (pk = family_id)
-  assert the_family != None
-  
-  #pdb.set_trace()
-  
-  new_visit = Visit(interviewer=request.user)
-  new_visit.save()
-  
-  #now set families
-  new_visit.families =  [the_family]
-  
-  return collection_tool_question_view(request, first_display_question_id,'en')
+
+
+@login_required
+def delete_interview(request, **kwargs):
+    #this is only called when someone cancels an interview before starting it.
+    
+    #assert an interview has no responses associated with it
+    
+    #delete interview
+    
+    #redirect to the general families page with a confirm message.
+    
+    pass
 
       
+#TODO misspelled!! interivew!!
 @login_required
 def wrap_up_interivew(request, **args):
     """ Show a list of responses for each family, and construct a form that will submit to end_interview_and_go_back_online:"""
@@ -333,66 +364,36 @@ def wrap_up_interivew(request, **args):
     t = loader.get_template('family_info/end_interview.html')
     return HttpResponse(t.render(c))
     
+    
+    
+    
 @login_required
 def end_interview(request, **args):
-  
   """Attempt to store the responses posted and, on success, redirect to the list of families."""
-  
   rp = request.POST
   
-  #print "family id is "
-  #print (rp['family_id'])
-  
-  family_id = int(rp['family_id'])
-  
-  #this isn't technically necessary:
-  the_family = Family.objects.get (pk = family_id)
-  #get the_family_id
-  assert the_family != None
-  
-  #get the visit - the one one that is open associated with the family
-  current_visits = [v for v in Visit.objects.all() if v.is_happening]
-  current_family_visits = [v for v in current_visits if the_family in v.families.all()]
-  
-  if len(current_family_visits) == 0:
-    pass
+  visits = [ v for v in request.user.visit_set.all() if v.is_happening]
+  if len(visits) == 0:
     #probably just hit the back button by mistake.
     return families(request)
   
-  
-  if  len(current_family_visits) != 0:
-    #TODO remove this case.
-    #pdb.set_trace()
-    [ v.close_now() for v in current_family_visits[0::-1]]
-  
-  #TODO remove this code. This should break horribly if there is more than one open visit.
-  #Validation should be in the front end - you can't start a visit if one is arleady open with
-  #this family.  
-  current_family_visits = [current_family_visits[-1]]
-  
-  
-  assert len(current_family_visits) == 1
-  
-  my_visit = current_family_visits[0]
-  assert my_visit != None
-  
-  for question_id, answer_id in rp.iteritems():
-    try:
-      question_id_int = int(question_id)
-      my_visit.store_answer (family_id, question_id_int, answer_id)
-    
-    except ValueError:
-      pass # only deal with int - int key-value pairs
+  assert len (visits) == 1
+  my_visit = visits[0]
       
-    except:
-      assert 1 == 0
-  #print my_visit.response_set.all()
-  
+  for fam in my_visit.families.all():
+  ## instead, json parse the value for that family and iteritem on that:
+    family_id = fam.id
+    try:
+      their_answers = json.loads(rp[str(family_id)])
+    except ValueError:
+      their_answers = {}
+      
+    for question_id, answer_id in their_answers.iteritems():
+        my_visit.store_answer (family_id, int(question_id), int(answer_id))
+        
+  print my_visit.response_set.all()
+  ## END ITERATE OVER FAMILIES...
   #close the visit
   my_visit.close_now()   
   assert not my_visit.is_happening
-    
-  #TODO basic validation. If the thing fails to submit the answers, go back to interview submit page.
-
   return families(request)
-  

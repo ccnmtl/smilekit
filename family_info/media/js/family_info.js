@@ -1,14 +1,105 @@
+
+
+
+
+//////////////////////
+//////////////////////
+//// START CACHE LIBRARY:
+///CACHE HANDLER FUNCTIONS:
+// TODO: move to separate file and add to manifest, headers.
+
+
+// Convenience array of status values
+var cacheStatusValues = [];
+ cacheStatusValues[0] = 'uncached';
+ cacheStatusValues[1] = 'idle';
+ cacheStatusValues[2] = 'checking';
+ cacheStatusValues[3] = 'downloading';
+ cacheStatusValues[4] = 'updateready';
+ cacheStatusValues[5] = 'obsolete';
+
+
+
+function error_handler(e) {
+   logEvent(e);
+   status = cacheStatusValues[cache.status]; 
+   // warn, but allow to continue.
+   alert ("There was an error downloading one of the files, but you can try starting the interview anyway.");
+   announce_ready_for_interview(e);
+  
+}
+
+
+function on_update_ready (e) {
+     // Don't perform "swap" if this is the first cache
+     if (cacheStatusValues[cache.status] != 'idle') {
+         glog('About to try swapping / updating the cache.');
+         cache.swapCache();
+         glog('Swapped/updated the cache.');
+         announce_ready_for_interview(e);
+     }
+ }    
+function logEvent(e) {
+     var online, status, type, message;
+     online = (isOnline()) ? 'yes' : 'no';
+     status = cacheStatusValues[cache.status];
+     type = e.type;
+     message = 'online: ' + online;
+     message+= ', event: ' + type;
+     message+= ', status: ' + status;     if (type == 'error' && navigator.onLine) {
+         message+= ' (ERROR)';
+     }
+     glog(''+message);
+}
+
+function announce_ready_for_interview(e) {
+   logEvent(e);
+   show_buttons();
+}
+
+function show_buttons() {
+   glog("READY");
+   $('#downloading').hide()
+   $('.visit_button').show();
+}
+
+
+function glog(s) {
+  $('#debug_cache_status')[0].innerHTML =   s + '\n' + $('#debug_cache_status')[0].innerHTML;
+}
+
+function isOnline() {
+     return navigator.onLine;
+}
+
+
+
+var cache = window.applicationCache;
+
+
+// These two functions check for updates to the manifest file
+function checkForUpdates(){
+   cache.update();
+}
+
+
+function autoCheckForUpdates(){
+   try {
+     setInterval(function(){cache.update()}, 50000);
+    } catch (e) {
+    alert ("Error");
+   }
+}
+
+
+// END CACHE LIBRARY.
+//////////////////
+///////////////////
+//////////////////
+
+
 var LOCAL_STORAGE_KEY;
 
-function add_each() {
-  $.extend({
-     keys: function(obj){
-       var a = [];
-       $.each(obj, function(k){ a.push(k) });
-       return a;
-     }
-  })
-}
 
 //value can be any object that can be turned into a json object.
 function local_storage_set ( namespace, key, value ) {
@@ -34,106 +125,15 @@ function local_storage_get ( namespace, key, value ) {
   return temp_state[key];
 }
 
-// Convenience array of status values
-var cacheStatusValues = [];
- cacheStatusValues[0] = 'uncached';
- cacheStatusValues[1] = 'idle';
- cacheStatusValues[2] = 'checking';
- cacheStatusValues[3] = 'downloading';
- cacheStatusValues[4] = 'updateready';
- cacheStatusValues[5] = 'obsolete';
-
- // Listeners for all possible events
- var cache = window.applicationCache;
- cache.addEventListener('cached', logEvent, false);
- cache.addEventListener('checking', logEvent, false);
- cache.addEventListener('downloading', logEvent, false);
- 
- 
- //cache.addEventListener('error', logEvent, false);
-// cache.addEventListener('noupdate', logEvent, false);
- cache.addEventListener('obsolete', logEvent, false);
- cache.addEventListener('progress', logEvent, false);
-// cache.addEventListener('updateready', logEvent, false);
-
- cache.addEventListener('updateready', announce_ready_for_interview, false);
-
-cache.addEventListener('noupdate', blarg, false);
-cache.addEventListener('error', blarg, false);
-
-
- function blarg(e) {
-   status = cacheStatusValues[cache.status];
-  
-  
-  if (e.type == "error" ) {
-    alert ("There was an error downloading one of the files, but you can try starting the interview anyway.");
-    announce_ready_for_interview(e)
-  }
-   
-  if (e.type == "noupdate" && status == "idle") {
-    announce_ready_for_interview(e)
-  }
- }
-
-
-
- function announce_ready_for_interview(e) {
-   $('#downloading').hide()
-   $('#done_downloading').show()
-    logEvent(e);
- 
- }
-
-
- // Log every event to the console
- function logEvent(e) {
-     var online, status, type, message;
-     online = (isOnline()) ? 'yes' : 'no';
-     status = cacheStatusValues[cache.status];
-     type = e.type;
-     message = 'online: ' + online;
-     message+= ', event: ' + type;
-     message+= ', status: ' + status;
-     if (type == 'error' && navigator.onLine) {
-         message+= ' (ERROR)';
+function add_keys() {
+  $.extend({
+     keys: function(obj){
+       var a = [];
+       $.each(obj, function(k){ a.push(k) });
+       return a;
      }
-     glog(''+message);
+  })
 }
-
-function glog(s) {
-  $('#debug_cache_status')[0].innerHTML += ( '\n' + s);
-}
-
-function isOnline() {
-     return navigator.onLine;
-}
-
-
- // Swap in newly download files when update is ready
- cache.addEventListener('updateready', function(e){
-         // Don't perform "swap" if this is the first cache
-         if (cacheStatusValues[cache.status] != 'idle') {
-             glog('About to try swapping / updating the cache.');
-             cache.swapCache();
-             glog('Swapped/updated the cache.');
-         }
-     }
- , false);
-
- // These two functions check for updates to the manifest file
- function checkForUpdates(){
-     cache.update();
- }
- function autoCheckForUpdates(){
-   try {
-     setInterval(function(){cache.update()}, 50000);
-    } catch (e) {
-    alert ("a");
-   }
- }
-
-
 
 function update_debug_localstorage() {
   if ($('#debug_localstorage')[0]) {
@@ -141,40 +141,135 @@ function update_debug_localstorage() {
   }
 }
 
+function function_maker (id) {
+  my_new_func = function () {
+    local_storage_set ( LOCAL_STORAGE_KEY, 'current_family_id', id);
+    //alert ("Setting current family id to " + id);
+  }
 
-function start_interview() {
-  glog('Erasing all contents of local storage');
-  localStorage.clear();
-  
-  list_of_questions = JSON.parse($('#list_of_questions')[0].innerHTML)
-  first_question = list_of_questions[0]
-  
-  glog ('Setting family key');
-  local_storage_set ( LOCAL_STORAGE_KEY, 'family_id', parseInt($('#family_id')[0].innerHTML));
-  
-  glog('Setting list of questions for this configuration in localstorage.');
-  local_storage_set ( LOCAL_STORAGE_KEY, 'list_of_questions', list_of_questions );
-  
-  alert ('Starting visit.');
-  
+  return my_new_func
 }
 
+
+function hook_up_form (form) {
+  id = form.id
+  //alert ("Hooking up form " + id);
+  $('#' + id ).submit(function_maker(id));
+
+}
 
 function init_family_info() {
-  add_each();
+  add_keys()
+  glog('init family info:');
+  $.map( $('.start_visit_form') , hook_up_form); 
 
-   $('#done_downloading').hide()
 
-   LOCAL_STORAGE_KEY = 'la_llave_encantada';
-   //$('#insert_visit_form')[0].onsubmit = start_interview
 
-    $('#insert_visit_form').submit( start_interview);
-     
+  if (typeof (local_storage_get) == "undefined") {
+    alert ('localstorageget not found.'); 
+    return;
+  } 
+
+  LOCAL_STORAGE_KEY = 'la_llave_encantada';
+  current_family_id = local_storage_get ( LOCAL_STORAGE_KEY, 'current_family_id' );  
+  
+  if (current_family_id) {
+      glog ("Welcome back to the interview launch page.");
+      glog ('Interview already in progress. -- current family id is ' + current_family_id);
+      
+      current_interview_questions = local_storage_get(LOCAL_STORAGE_KEY, 'list_of_questions');
+      $.each(current_interview_questions , function(key, value) { 
+         //loop throught all current interview answers:
+         console.log("Family_id is " + JSON.stringify(value['family_id']));
+         family_id = value['family_id'];
+         console.log (JSON.stringify( local_storage_get ( LOCAL_STORAGE_KEY, (family_id + '_answers'))));        
+         their_answers = local_storage_get ( LOCAL_STORAGE_KEY, (family_id + '_answers'));
+
+         if (their_answers != null) {
+             console.log("Questions answered is" + $.keys(their_answers).length); 
+             console.log($.keys(their_answers).length);
+             $( "#this_interview_answered_by_" + family_id ).html( $.keys(their_answers).length );
+             $('form.end_interview_form input.' + family_id)[0].value = JSON.stringify (their_answers);
+         
+         } else {
+            console.log ("no answers found for family " + family_id );
+         }
+         $('#downloading').hide();
+       
+      });
+        
+  
+  }
+  else {
+            glog ("First visit; no data collected yet.");
+            $('.visit_button').hide();
+            $('#done_downloading').hide();
+
+            //glog('Erasing all contents of local storage');
+            //localStorage.clear();
+
+            // get the list of questions from the DATABASE:
+            // STORE IT FOR THE DURATION OF THE INTERVIEW:
+            list_of_questions = JSON.parse($('#list_of_questions')[0].innerHTML);
+
+            // take the list of questions from the database and put it into storage:
+            local_storage_set ( LOCAL_STORAGE_KEY, 'list_of_questions', list_of_questions );  
+            glog('list of questions is ' + list_of_questions);
+            
+
+
+            //setup listeners:
+            //informational:
+            cache.addEventListener('obsolete',    logEvent, false);
+            cache.addEventListener('progress',    logEvent, false);
+            cache.addEventListener('checking',    logEvent, false);
+            cache.addEventListener('downloading', logEvent, false);
+
+             
+            // cache.addEventListener('updateready', logEvent, false);
+            //cache.addEventListener('error', logEvent, false);
+            // cache.addEventListener('noupdate', logEvent, false);
+
+            // these are all success messages
+            
+            // 
+            //cache.addEventListener('updateready', announce_ready_for_interview, false);
+            
+            cache.addEventListener('noupdate',    announce_ready_for_interview, false);
+            cache.addEventListener('cached',      announce_ready_for_interview, false);
+            cache.addEventListener('idle',        announce_ready_for_interview, false);
+
+
+            cache.addEventListener('error', error_handler, false);
+
+
+
+             // Swap in newly download files when update is ready
+             cache.addEventListener('updateready', on_update_ready, false);        
+
+          
+          // start downloading them files:
+          
+          cache.update();
+          
+          /*
+          // start downloading them files:
+          if(confirm('Attempt to download files?')) {
+            cache.update();
+          }
+          else {
+            show_buttons();
+          }
+          */
+          
+   }
 }
 
 
-$(document).ready(init_family_info);
-
-if ($ == null) { alert ('Jquery not found.'); } 
+if (typeof ($) == "undefined") {
+  alert ('Jquery not found.');
+} else {
+  $(document).ready(init_family_info);
+}
 
 

@@ -1,6 +1,7 @@
 from django.db import models
 from django.db.models.signals import post_save
 import datetime
+import simplejson as json
 #from equation_balancer.models import *
 
 
@@ -43,6 +44,11 @@ class Family(models.Model):
     
   def __unicode__(self):
     return "Family # %d" % self.study_id_number
+  
+  
+  class Meta:
+    ordering = ('study_id_number',)
+  
     
   #study id (used as link. cannot be null.)
   study_id_number =         models.IntegerField(unique=True)
@@ -71,6 +77,32 @@ class Family(models.Model):
   #any extra interview state aside from basic questions and answers:
   interview_state = models.TextField(blank=True, default = '{}')
 
+  @property
+  def interviewer (self):
+    visits_happening = [ v for v in self.visit_set.all() if v.is_happening]
+    if len (visits_happening) > 0:
+      return visits_happening[0].interviewer
+    return None
+    
+
+  @property
+  def latest_answers (self):
+    """Answers to previous interviews, for the collection tool to show on repeat visits. If the family has already answered a question more than once, the most recent answer is returned."""
+    result = {}
+    all_visits = self.visit_set.all()
+    
+    #start with most recent visits: we like fresh answers better than stale answers.
+    all_visits.reverse()
+
+    for v in all_visits:
+      for r in v.response_set.all():
+        if r.family == self:
+          q_id = r.question.id
+          if not result.has_key(q_id):
+            result[q_id] = r.answer.id
+
+    return result
+    
   def set_interview_state (self, obj):
       if self.interview_state == "":
           self.interview_state = '{}'
@@ -121,8 +153,15 @@ class Visit (models.Model):
   interviewer = models.ForeignKey(User)
   analytics_info =  models.TextField(null=True, blank =True)
   
+  
+  
   #Optional extra auth, maybe:
   token =  models.TextField(null=True, blank =True)
+
+
+  class Meta:
+    ordering = ('start_timestamp',)
+  
 
   @property
   def is_happening(self):
@@ -135,6 +174,7 @@ class Visit (models.Model):
   def close_now(self):
     self.end_timestamp = datetime.datetime.now()
     self.save()
+
 
   def store_answer (self, family_id, question_id, answer_id):
     family = Family.objects.get(pk=family_id)
@@ -167,8 +207,8 @@ class Response (models.Model):
     
   during_visit = models.ForeignKey (Visit)
   family = models.ForeignKey (Family)
-  question = models.ForeignKey (Question)
-  answer = models.ForeignKey (Answer)
+  question = models.ForeignKey (Question) #can't be null
+  answer = models.ForeignKey (Answer) #can't be null
 
   
     

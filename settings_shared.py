@@ -52,7 +52,6 @@ TEMPLATE_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
     # Put application templates before these fallback ones:
     os.path.join(os.path.dirname(__file__),"templates"),
-#    "/var/www/smilekit/templates/",
 )
 
 INSTALLED_APPS = (

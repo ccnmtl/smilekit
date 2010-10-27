@@ -12,11 +12,13 @@ urlpatterns = patterns('',
   (r'^edit_family/(?P<family_id>\d+)$',       'family_info.views.edit_family'),
   
   (r'^new_user$',                             'family_info.views.new_user'),
-  (r'^insert_user$',                          'family_info.views.insert_user'),
+  #(r'^insert_user$',                          'family_info.views.insert_user'),
   (r'^edit_user/(?P<user_id>\d+)$',           'family_info.views.edit_user'),
   
   
-  (r'^start_interview/(?P<family_id>\d+)$',   'family_info.views.start_interview'),
+  (r'^start_interview$',                       'family_info.views.start_interview'),
+  
+  
   (r'^insert_visit$',                         'family_info.views.insert_visit'),
   
   

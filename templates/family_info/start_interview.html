@@ -20,58 +20,91 @@
 {% block family_info_content %}
 
 		<h2 id="contenttitle">
-			Interview launch page
+			Families to visit
 		</h2>
-		
-		
-		<h3>Account: Family #{{the_family.study_id_number}}</h3>
-		
-		<p> Here are the questions in the <b>{{ the_family.config }}</b> model: </p>
-		<ul>
-		{%for display_question in the_family.config.display_questions %}
-		   <li> {{display_question.english}}</li>
-		{%endfor%}
 
-		</ul>
-		<p id ="list_of_questions">
-		[ {%for display_question in the_family.config.display_questions %}
-		    {{display_question.id}} {% if not forloop.last %},{% endif%}
-		{%endfor%} ]
-		</p>
+    <div id="list_of_questions"> 
+		[
+		  {% for the_family in families %}
+		      {
+            "family_id" : {{the_family.id}},
+            "previous_visit_questions" :
+                    {
+                      {%for q, a in the_family.latest_answers.iteritems %}
+                        "{{q}}":"{{a}}"
+                        {% if not forloop.last %},{%endif%}
+                        
+                      {%endfor%}
+                    },
+            "all_questions" :
+              [
+                      {%for display_question in the_family.config.display_questions %}
+                        {{display_question.id}}
+                        {% if not forloop.last %},{%endif%}
+                      {%endfor%}
+              
+              ]
+                    
+          }
+          {% if not forloop.last %},{%endif%}
+		  {% endfor %}
+    ]
+    </div>
 		
 		
-		<p>Family id: </p>
-		<p id ="family_id">{{the_family.id}}</p>
+		<table>
+		<tr >
+		<td>Family </td>
+		<td>Question list</td> 
+		<td>Progress</td>
+		<td></td>
+
+		{% for the_family in families %}
+		<form class = "start_visit_form" id ="{{the_family.id}}" method="post" action="/collection_tool/question/{{the_family.config.first_display_question.id}}/language/en">
+		  <tr >
+		    <td>Family #{{the_family.study_id_number}}</td>
+		    <td>{{ the_family.config }}</td> 
+		    <td>
+		    <input type="hidden" name = "{{the_family.id}}" 
+          class = "{{the_family.id}}" 
+          value = "" />
+		    
+		    <span id="this_interview_answered_by_{{the_family.id}}">0</span> answered during this interivew.
+		    </td>
+		    
+		    <td><input type ="submit" class="visit_button" value = "Visit" /> </td>
+		  </tr>
+		</form>
+		
+		{%endfor %}
+		</table>
+		
 		
 		<p id ="downloading">
 		    <!-- this will be hidden once cache status is happy -->
 		  This device is currently downloading these questions, along with their associated images,
 		  into its local storage, so you can conduct the interview even if there is no Internet access. This can take some time.
 		</p>
-		
-    <div id ="done_downloading">
-		    <!-- this will be hidden until cache status is happy -->
-		    This device is ready for the interview.  When you click the button below, the account for Family
-		    # {{the_family.study_id_number}} will be locked until you officially end the visit.
-		    <p>
-		    Are you sure?
-		    </p>
-		
-		    <form id="insert_visit_form" action = "/family_info/insert_visit" method="post">		    
-		      <input name= "first_display_question_id" type="hidden" value="{{the_family.config.first_display_question.id}}">
-		      
-		      <input name="family_id" type = "hidden" value = "{{the_family.id}}">
-		      <input type="submit" value="Yes, start the visit with Family #{{the_family.study_id_number}}" />
-		    </form>
-		   <p>
-		      <a href = "/family_info/families">Cancel</a>
-       </p>
+
+
+		 <div>
+      <form action = "/family_info/end_interview" method = "post"  class = "end_interview_form" >
+      {% for the_family in families %}
+          <input type="hidden" name = "{{the_family.id}}" 
+          class = "{{the_family.id}}" 
+          value = "" />
+		  {%endfor %}
+      <input type="submit" value ="Push family back to server" />
+      </form>
     </div>
-    
+
+
     <div >
     <textarea id = "debug_cache_status" rows="10" cols="80" > </textarea>
     </div>
 <script>
+
+/*
   if (typeof(init_family_info) == "undefined") {
     alert ("Sorry, unable to start interview at this time: unable to load init_family_info.");
     $('#downloading').hide();
@@ -79,13 +112,13 @@
     $('#debug_cache_status').hide();
     
   }
+*/
   if (typeof($) == "undefined") {
     alert ("Sorry, unable to start interview at this time: unable to load jQuery.");
     document.getElementById('downloading').style.display = 'none';
-    document.getElementById('done_downloading').style.display = 'none';
+    //document.getElementById('done_downloading').style.display = 'none';
     document.getElementById('debug_cache_status').style.display = 'none';
   }
-  
   
 </script>
 

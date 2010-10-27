@@ -32,13 +32,8 @@
 {% endblock %}
 
 		{% block collection_tool_content %}
-
-
-		
 		<div id="contentnav">
 			  <a id="left" href="">&#8592; Back</a>
-			
-			
   		{%if displayquestion.help_item %}
   		
 			<a id="help" href="javascript:void(0)" onclick="document.getElementById('helpon').style.display='block';document.getElementById('helpoff').style.display='block'">Help!</a>
@@ -46,19 +41,11 @@
 
 			
 			{% include "collection_tool/help.html" %}
-		
 			  <a id="right" href="">Next &#8594;</a>
-			
 		</div>
-		
 		<div id ="question_id_div">{{displayquestion.question.id}}</div>
-
 		<div id ="display_question_id_div">{{displayquestion.id}}</div>
-		
-
 		<div id ="language_code_div">{{language_code}}</div>
-		
-		
 		<div>
 		{% if displayquestion.topic %}
 		  TOPIC: {{displayquestion.topic}}

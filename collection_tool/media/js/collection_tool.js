@@ -10,6 +10,47 @@ var LOCAL_STORAGE_KEY;
    }
  })
 
+/*
+function check_for_previous_answers (my_question_id) {
+  console.log("the question id is " + question_id);
+  //console.log(display_question_id);
+
+  $.each(local_storage_get(LOCAL_STORAGE_KEY, 'list_of_questions') , function(k, family_infoes) { 
+     if (family_infoes['family_id'] == family_id) {
+       previous_visit_questions = family_infoes['previous_visit_questions'];
+       console.log (JSON.stringify(previous_visit_questions));
+       $.each(previous_visit_questions, function (the_question_id, the_answer_id) {
+              if (the_question_id == my_question_id) {
+                  console.log ("Ok, the question " + the_question_id + \
+                    " was already answered " + the_answer_id);
+                  return the_answer_id;
+              }
+              else {
+                  return null;
+              }
+          })
+    }
+  }
+  );
+  return null;
+}
+*/
+
+function check_for_previous_answers (my_question_id) {
+  previous_answers_result = null;
+  $.each(local_storage_get(LOCAL_STORAGE_KEY, 'list_of_questions') , function(k, fam) { 
+     if (fam['family_id'] == family_id) {
+       previous_visit_questions = fam['previous_visit_questions'];
+       $.each(previous_visit_questions, function (the_question_id, the_answer_id) {
+         if (the_question_id == my_question_id) {
+            previous_answers_result =  the_answer_id;
+         }
+       });
+    }
+  }
+  );
+  return previous_answers_result;
+}
 
 
 //value can be any object that can be turned into a json object.
@@ -36,9 +77,8 @@ function local_storage_get ( namespace, key, value ) {
   return temp_state[key];
 }
 
-
 function family_answers () {
-    family_id = local_storage_get (LOCAL_STORAGE_KEY, 'family_id');
+    family_id = local_storage_get (LOCAL_STORAGE_KEY, 'current_family_id');
     family_key = family_id + '_answers'
     result = local_storage_get (LOCAL_STORAGE_KEY, family_key);
     if (result == null) {
@@ -68,9 +108,9 @@ function answer_clicked(event) {
   answer_id = the_link.id.split('_')[1];
   
   question_id = $('#question_id_div')[0].innerHTML;
+  
+  
   //local_storage_set (LOCAL_STORAGE_KEY, question_id, answer_id);
-  
-  
   //console.log("Answered " + answer_id + " to question " + question_id);
   
   store_answer (question_id, answer_id); 
@@ -109,8 +149,19 @@ function init() {
     update_debug_localstorage();
     answers = family_answers();
     
+    // TODO: 
+    // previous_visit_questions
     
-    questions = local_storage_get (LOCAL_STORAGE_KEY, 'list_of_questions');
+    
+    all_questions = local_storage_get (LOCAL_STORAGE_KEY, 'list_of_questions');
+    
+    
+    for (i = 0; i < all_questions.length; i = i + 1) {
+    
+      if (all_questions[i].family_id == family_id) {
+        questions = all_questions[i].all_questions;
+      }
+    }
     
     if ( window.location.href.match (/question/) ||
          window.location.href.match (/insert_visit/)
@@ -154,13 +205,27 @@ function init() {
         $('#right')[0].href = next_url
       }
       
+      init_answer_clicked();
       
+      
+      
+      if (answers [question_id] != null) {
+        // did this family answer this question in THIS interview?
+        highlight_answer (answers[question_id]);
+      }
+      else {
+        // did this family answer this question in a previous interview?
+        previous_answer = check_for_previous_answers(question_id);
+        if (previous_answer != null) {
+            highlight_answer (previous_answer);
+        }
+      }
       
       
       // highlight the chosen answer on the question page:
-      init_answer_clicked();
-      answer_id = answers[question_id];
-      highlight_answer (answer_id);
+      
+      
+      
     } else {
         answered_questions = $.keys( answers)
         $.each(

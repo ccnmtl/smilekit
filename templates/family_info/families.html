@@ -2,31 +2,43 @@
 {%load smartif%}
 {% block family_info_content %}
 		
-		
-		<h2 id="contenttitle">
-		
-			Participants
-		
-		</h2>
 
 
-					
-					<fieldset>
-						<legend>Families</legend>
-							<table>
-	        {%for family in families %}
-	          <tr>
-	            <td>Family # {{family.study_id_number}}</td>
-	            <td><a title="Lock this family and prepare for interview." href="/family_info/start_interview/{{family.id}}">Start visit</td>
-	            <td><a href="/family_info/edit_family/{{family.id}}">Details </a></td>
-	          </tr>
-	        {%endfor %}
-	
 
+<fieldset>
+	<legend>All Families</legend>
+<table>
+							
+{% if error_message %}
+<tr>
+	<td colspan = "5" class="error_message">{{error_message}}</td>
+</tr>
+{%endif%}
 	
   <tr>
-  	<td colspan = "5"><a href = "/family_info/new_family" >New Family</a></td>
+  	<td colspan = "5"><a href = "/family_info/new_family" >Add New Family</a></td>
 	</tr>
+					<form action="/family_info/start_interview" method="post" >
+	            {%for family in families %}
+	              <tr>
+	                <td>{%if family.interviewer%}
+                      <span title = "currently being interviewed by: {{family.interviewer.first_name}} {{family.interviewer.last_name}}">LOCKED</span> 
+	                    {%else %}
+	                      <input type="checkbox" name="families" value="{{family.id}}" id="family_{{family.id}}">
+	                    {%endif%}
+	                </td>
+	                <td>Family # {{family.study_id_number}}</td>
+	                <td><a href="/family_info/edit_family/{{family.id}}">Edit Family Details </a></td>
+	              </tr>
+	            {%endfor %}
+	            <tr>
+	              <td colspan = "2">
+	               <input type="submit" value ="Pull Family Data Down from Server" />
+	               <input type="reset" value ="Reset" />
+	              </td>
+	            </tr>
+	        </form>
+	  
 	
 	</table>
 					</fieldset>

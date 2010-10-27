@@ -33,12 +33,13 @@ def section(request, section_id, language_code):
 
 def video (request, video_filename):
   """Show a video."""
-  
   t = loader.get_template('collection_tool/video.html')
   c = RequestContext(request,{
       'video_filename' : video_filename
   })
   return HttpResponse(t.render(c))
+
+
 
 def question(request, displayquestion_id, language_code):
   """ Look up a DisplayQuestion object and display it in the data collection tool. Note that question_id refers to a displayquestion object, not a question object; some displayquestions are not associated with any question."""
@@ -46,7 +47,6 @@ def question(request, displayquestion_id, language_code):
   if language_code not in ['en', 'es']:
     raise Http404
   wording = displayquestion.wording(language_code)
-  
   
   answers = []
   

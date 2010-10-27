@@ -7,9 +7,11 @@ admin.autodiscover()
 site_media_root = os.path.join(os.path.dirname(__file__),"media")
 
 urlpatterns = patterns(
-  '',
-                        
-  #FAVICON
+  '',                  
+  
+  
+  (r'^$', 'family_info.views.families'),
+        
   (r'^favicon\.ico$', 'django.views.generic.simple.redirect_to', {'url': '/site_media/images/favicon.ico'}),
   (r'^logout/$', 'django.contrib.auth.views.logout', {'template_name': 'logged_out.html'}),
   ('^accounts/',include('djangowind.urls')),
@@ -26,12 +28,14 @@ urlpatterns = patterns(
   (r'^logout$', 'django.contrib.auth.views.logout',
     {
       'template_name': 'family_info/logged_out.html',
-      'next_page':'/welcome/?next=/welcome'
+      'next_page':'/?next=/'
     }
   ),
 
-
+  #this doesn't work.
   #GENERIC WELCOME URL:
-  (r'', 'family_info.views.families')
+  #
+ 
+                 
                    
 )

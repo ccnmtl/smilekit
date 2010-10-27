@@ -35,6 +35,7 @@ function local_storage_get ( namespace, key, value ) {
 
 function init_wrap_up_interview() {
    LOCAL_STORAGE_KEY = 'la_llave_encantada';
+   /*
    family_id = local_storage_get(LOCAL_STORAGE_KEY, 'family_id');
    family_answers = local_storage_get(LOCAL_STORAGE_KEY, (family_id + '_answers'));
    questions = $.keys(family_answers);
@@ -46,7 +47,7 @@ function init_wrap_up_interview() {
    }
    $('#responses_form').append('<input name="family_id" value = "' + family_id + '" type = "hidden"  />');
    $('#responses_form').append('<input type="submit" value = "End interview" />');
-
+    */
 }
 
 

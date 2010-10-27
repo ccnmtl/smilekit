@@ -2,6 +2,31 @@ CACHE MANIFEST
 # http://kodos.ccnmtl.columbia.edu:7112/collection_tool/manifest.cache
 
 CACHE:
+
+#static pictures:
+/collection_tool/media/images/icon_planner_up.png
+/collection_tool/media/images/icon_planner_up.png
+/collection_tool/media/images/icon_planner_down.png
+/collection_tool/media/images/icon_planner_swap.png
+/collection_tool/media/images/icon_planner_delete.png
+/collection_tool/media/images/toggle_arrow_open.png
+/collection_tool/media/images/toggle_arrow_close.png
+/collection_tool/media/images/logo_mysmilebuddy.png
+/collection_tool/media/images/icon_offline.jpg
+/collection_tool/media/images/icon_online.jpg
+
+#static css
+/collection_tool/media/css/collection_tool.css
+
+
+#static javascript:
+/collection_tool/media/js/json2.js
+/collection_tool/media/js/jquery.js
+/collection_tool/media/js/collection_tool.js
+/collection_tool/media/js/planner.js
+/family_info/media/js/family_info.js
+
+
 #questions:
 {% for id in question_ids %}
   /collection_tool/question/{{id}}/language/en
@@ -14,36 +39,15 @@ CACHE:
     /collection_tool/section/{{id}}/language/es
 {% endfor %}
 
-
-
 #question images: 
 {% for path in paths_to_question_images%}
     {{path}}
 {% endfor %}
 
-
 #answer images
 {% for path in paths_to_answer_images%}
     {{path}}
 {% endfor %}
-
-#static files:
-/collection_tool/media/images/icon_planner_up.png
-/collection_tool/media/images/icon_planner_up.png
-/collection_tool/media/images/icon_planner_down.png
-/collection_tool/media/images/icon_planner_swap.png
-/collection_tool/media/images/icon_planner_delete.png
-/collection_tool/media/images/toggle_arrow_open.png
-/collection_tool/media/images/toggle_arrow_close.png
-/collection_tool/media/images/logo_mysmilebuddy.png
-/collection_tool/media/images/icon_offline.jpg
-/collection_tool/media/images/icon_online.jpg
-/collection_tool/media/css/collection_tool.css
-/collection_tool/media/js/collection_tool.js
-/collection_tool/media/js/json2.js
-/collection_tool/media/js/jquery.js
-/collection_tool/media/js/planner.js
-
 
 # planner images
 {% for label in planner_labels %}

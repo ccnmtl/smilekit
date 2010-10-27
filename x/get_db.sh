@@ -24,7 +24,7 @@ echo "OK. We are downloading the database from $PROD_SERVER_HOSTNAME."
 echo "File will be backed up in: $DB_BACKUPS/$DATE"
 ssh $PROD_SERVER_HOSTNAME "pg_dump smilekit >  $DB_BACKUPS/$DATE.out"
 echo "Fetching file to your backup directory, $DB_BACKUPS."
-scp $PROD_SERVER_HOSTNAME:$DATE.out $DB_BACKUPS
+scp $PROD_SERVER_HOSTNAME:$DB_BACKUPS/$DATE.out $DB_BACKUPS
 echo "Dropping database smilekit"
 sudo -u postgres psql -Upostgres -c 'drop database smilekit'
 echo "Creating database on dev machine."

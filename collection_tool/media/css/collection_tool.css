@@ -5,8 +5,10 @@ body
 	background-color: black;
 }
 
-
-
+/*example*/
+.flatpage_div {
+  color:red;
+}
 
 /*always hidden: */
 
