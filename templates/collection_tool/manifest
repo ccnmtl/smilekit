@@ -3,6 +3,7 @@ CACHE MANIFEST
 
 CACHE:
 
+
 #static pictures:
 /collection_tool/media/images/icon_planner_up.png
 /collection_tool/media/images/icon_planner_up.png
@@ -22,9 +23,10 @@ CACHE:
 #static javascript:
 /collection_tool/media/js/json2.js
 /collection_tool/media/js/jquery.js
+/family_info/media/js/dashboard.js
+/family_info/dashboard
 /collection_tool/media/js/collection_tool.js
 /collection_tool/media/js/planner.js
-/family_info/media/js/family_info.js
 
 
 #questions:

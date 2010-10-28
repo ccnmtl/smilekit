@@ -343,6 +343,18 @@ def start_interview(request, **kwargs):
     return HttpResponse(t.render(c))
 
 
+
+
+@login_required
+def dashboard (request):
+  """show the list of families page  -- this is just meant to be downloaded."""
+    
+  c = RequestContext(request, {} )
+  t = loader.get_template('family_info/dashboard.html')
+  return HttpResponse(t.render(c))
+
+
+#TODO remove. as unneeded.
 @login_required
 def delete_interview(request, **kwargs):
     #this is only called when someone cancels an interview before starting it.

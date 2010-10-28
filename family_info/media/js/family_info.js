@@ -205,8 +205,8 @@ function init_family_info() {
             $('.visit_button').hide();
             $('#done_downloading').hide();
 
-            //glog('Erasing all contents of local storage');
-            //localStorage.clear();
+            glog('Erasing all contents of local storage');
+            localStorage.clear();
 
             // get the list of questions from the DATABASE:
             // STORE IT FOR THE DURATION OF THE INTERVIEW:

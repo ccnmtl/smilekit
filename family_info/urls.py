@@ -18,6 +18,10 @@ urlpatterns = patterns('',
   
   (r'^start_interview$',                       'family_info.views.start_interview'),
   
+  #interview dashboard:
+  (r'^dashboard$',                            'family_info.views.dashboard'),
+  
+  
   
   (r'^insert_visit$',                         'family_info.views.insert_visit'),
   

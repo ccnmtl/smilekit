@@ -10,31 +10,6 @@ var LOCAL_STORAGE_KEY;
    }
  })
 
-/*
-function check_for_previous_answers (my_question_id) {
-  console.log("the question id is " + question_id);
-  //console.log(display_question_id);
-
-  $.each(local_storage_get(LOCAL_STORAGE_KEY, 'list_of_questions') , function(k, family_infoes) { 
-     if (family_infoes['family_id'] == family_id) {
-       previous_visit_questions = family_infoes['previous_visit_questions'];
-       console.log (JSON.stringify(previous_visit_questions));
-       $.each(previous_visit_questions, function (the_question_id, the_answer_id) {
-              if (the_question_id == my_question_id) {
-                  console.log ("Ok, the question " + the_question_id + \
-                    " was already answered " + the_answer_id);
-                  return the_answer_id;
-              }
-              else {
-                  return null;
-              }
-          })
-    }
-  }
-  );
-  return null;
-}
-*/
 
 function check_for_previous_answers (my_question_id) {
   previous_answers_result = null;
@@ -154,7 +129,7 @@ function init() {
     
     
     all_questions = local_storage_get (LOCAL_STORAGE_KEY, 'list_of_questions');
-    
+    questions = null;
     
     for (i = 0; i < all_questions.length; i = i + 1) {
     
@@ -162,6 +137,14 @@ function init() {
         questions = all_questions[i].all_questions;
       }
     }
+    
+      if (questions == null) {
+        alert ("Can't find list of questions for family " + family_id);
+        $('#left').hide();
+        $('#right').hide();
+        return;
+      }
+      
     
     if ( window.location.href.match (/question/) ||
          window.location.href.match (/insert_visit/)
