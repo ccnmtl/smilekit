@@ -7,18 +7,20 @@
 
 <fieldset>
 	<legend>All Families</legend>
-<table>
+	
+	
+<form action="/family_info/start_interview" method="post" >
+  <table>
 							
-{% if error_message %}
-<tr>
-	<td colspan = "5" class="error_message">{{error_message}}</td>
-</tr>
-{%endif%}
+  {% if error_message %}
+  <tr>
+	  <td colspan = "5" class="error_message">{{error_message}}</td>
+  </tr>
+  {%endif%}
 	
   <tr>
   	<td colspan = "5"><a href = "/family_info/new_family" >Add New Family</a></td>
 	</tr>
-					<form action="/family_info/start_interview" method="post" >
 	            {%for family in families %}
 	              <tr>
 	                <td>{%if family.interviewer%}
@@ -37,10 +39,11 @@
 	               <input type="reset" value ="Reset" />
 	              </td>
 	            </tr>
-	        </form>
 	  
 	
-	</table>
+  	</table>
+</form>
+	
 					</fieldset>
 					
 					<fieldset>
