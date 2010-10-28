@@ -26,36 +26,16 @@
 		<td>Progress</td>
 		<td></td>
 
-  <span id = "start_visit_links">
-  </span>
 
-
-
-    {%comment %}
-		{% for the_family in families %}
-		      <form class = "start_visit_form" id ="{{the_family.id}}" method="post" action="/collection_tool/question/{{the_family.config.first_display_question.id}}/language/en">
-		        <tr >
-		          <td>Family #{{the_family.study_id_number}}</td>
-		          <td>{{ the_family.config }}</td> 
-		          <td>{{ the_family.id }}</td> 
-		          <td>
-		          <input type="hidden" name = "{{the_family.id}}" 
-                class = "{{the_family.id}}" 
-                value = "" />
-		          
-		          <span id="this_interview_answered_by_{{the_family.id}}">0</span> answered during this interivew.
-		          </td>
-		          
-		          <td><input type ="submit" class="visit_button" value = "Visit" /> </td>
-		        </tr>
-		      </form>
-		
-		{%endfor %}
-    {%endcomment %}
     <!-- this is wrong; the dashboard form should be constructed exclusively based
     on info from localstorage. -->
 
 		</table>
+		
+    <div id = "start_visit_links">
+   </div>
+
+
 		
 		
 		<p id ="downloading">
@@ -68,16 +48,7 @@
 		 <div>
       <form action = "/family_info/end_interview" method = "post"  class = "end_interview_form" >
       <span id="end_interview_inputs">
-        
       </span>
-      
-    {%comment %}
-      {% for the_family in families %}
-          <input type="hidden" name = "{{the_family.id}}" 
-          class = "{{the_family.id}}" 
-          value = "" />
-		  {%endfor %}
-    {%endcomment %}
       <input type="submit" value ="Push family back to server" />
       </form>
     </div>

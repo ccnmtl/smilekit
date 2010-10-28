@@ -20,11 +20,13 @@ function error_handler(e) {
 }
 
 function on_update_ready (e) {
+     
+   logEvent(e);
      // Don't perform "swap" if this is the first cache
      if (cacheStatusValues[cache.status] != 'idle') {
-         console.log('About to try swapping / updating the cache.');
+         slog('About to try swapping / updating the cache.');
          cache.swapCache();
-         console.log('Swapped/updated the cache.');
+         slog('Swapped/updated the cache.');
      }
      announce_ready_for_interview(e);
  }    
@@ -38,8 +40,19 @@ function logEvent(e) {
      message+= ', status: ' + status;     if (type == 'error' && navigator.onLine) {
          message+= ' (ERROR)';
      }
-     console.log(''+message);
+     slog(''+message);
 }
+
+function slog(a) {
+    if (typeof (glog) == "function") {
+      glog (a)
+    }
+    else {
+      console.log (a);
+    }
+
+}
+
 
 function announce_ready_for_interview(e) {
    logEvent(e);

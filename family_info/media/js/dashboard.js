@@ -25,6 +25,17 @@ function update_cache_if_necessary () {
 
 //value can be any object that can be turned into a json object.
 function local_storage_set ( namespace, key, value ) {
+
+  if (typeof(localStorage ) == "undefined" ) {
+    //alert ("localStorage not found.");
+    return;
+  }
+
+  if (typeof(localStorage [namespace]) == "undefined")  {
+    //alert ("Nothing found stored in localStorage.");
+    localStorage [namespace] = '{}';
+  }
+  
   temp_state = JSON.parse(  localStorage [namespace] )
   
   if (temp_state == null) {
@@ -37,6 +48,16 @@ function local_storage_set ( namespace, key, value ) {
 }
 
 function local_storage_get ( namespace, key, value ) {
+  if (typeof(localStorage ) == "undefined" ) {
+    //alert ("localStorage not found.");
+    return;
+  }
+
+  if (typeof(localStorage [namespace]) == "undefined")  {
+    //alert ("Nothing found stored in localStorage.");
+    localStorage [namespace] = '{}';
+  }
+
   temp_state = JSON.parse(  localStorage [namespace] )
   if (temp_state == null) {
     return null;
