@@ -14,9 +14,10 @@
 				 <div class="thumbnails">
 				 
 				   {% for item in type.list %}
-		    	   <div class="thumbnail">
-					  <div class="thumbnailimage"><img alt="" src="/collection_tool/media/images/planner/{{item.label|slugify}}.jpg" /></div>
-					  <span class="thumbnaillabel">{{ item.label }}</span>
+		    	   <div class="thumbnail" id="item-{{item.id}}">
+					  <div class="thumbnailimage" id="item-{{item.id}}-image"><img alt="" src="/collection_tool/media/images/planner/{{item.label|slugify}}.jpg" /></div>
+					  <span class="thumbnaillabel" id="item-{{item.id}}-label">{{ item.label }}</span>
+					  <input type="hidden" id="item-{{item.id}}-risk" value="{{item.risk_level}}" />
 				   </div>
 				   {% endfor %}
 				
@@ -66,9 +67,9 @@
 
 <div class="formbuttons">
 		
-	<input class="formbutton green" type="button" value="Done" /> 
+	<input id='donebutton' class="formbutton green" type="button" value="Done" /> 
 	
-	<input class="formbutton red" type="button" value="Cancel" /> 
+	<input id='cancelbutton' class="formbutton red" type="button" value="Cancel" /> 
 
 </div>
 

@@ -2,6 +2,25 @@
 var mode = "all";  // options: food, fluoride, all
 var savingFluoride = false;
 
+function saveState() {
+  // TODO: save state to localstorage
+  /* calculate risk # */
+  var risky_exposures = 0;
+  jQuery(".timerowfilled .activityitems").each(function() {
+    var risk = jQuery(this).data('risk');
+    // an average of 3 or higher is 'risky'
+    if(risk >= 3) { risky_exposures++; }
+  });
+  alert("your risky exposures is " + risky_exposures);
+  // 3 bins - 0 risky events, 1-2 risky events, 3 or more risky events
+  // TODO: save question answer to database
+}
+
+function loadState() {
+  // TODO: load state from localstorage
+}
+
+
 function setMode(newMode) {
   mode = newMode;
   if(mode != "food" && mode != "fluoride" && mode != "all") {
@@ -88,6 +107,10 @@ function initPlanner() {
       jQuery('#plannerleft').width("95%");
     }
   );
+  
+  // save and cancel buttons
+  loadState();
+  jQuery('#donebutton').click(saveState);
 }
 
 function findNearestEmpty(elem) {
@@ -117,15 +140,23 @@ function findNearestEmpty(elem) {
 
 function saveMeal() {
   var items = "";
+  var total_risk = 0;
+  var num_items = 0;
   jQuery('.thumbnailselected').each(function() {
-    var label = jQuery('.thumbnaillabel', this).html();
+    var label = jQuery('#'+this.id+'-label').html();
     items += label + ", ";
+    var risk = parseInt(jQuery('#'+this.id+'-risk').val());
+    total_risk += risk;
+    num_items++;
     jQuery(this).removeClass('thumbnailselected');
   });
-  if(items == "") { return; }  // nothing was selected
+  if(num_items == 0) { return; }  // nothing was selected
 
-  items = items.slice(0, -2);
+  var avg_risk = total_risk / num_items;
+
+  items = items.slice(0, -2); // take off the final ", "
   
+  // skip to the next valid row if this one is already full
   var goodrow = findNearestEmpty(jQuery(this).parent());
 
   if(savingFluoride) {
@@ -136,6 +167,7 @@ function saveMeal() {
     jQuery('.mealorsnack', jQuery(goodrow)).html("<span id=\"label-snack\">Snack</span>");
   }
   jQuery('.activityitems', jQuery(goodrow)).html(items);
+  jQuery('.activityitems', jQuery(goodrow)).data("risk", avg_risk);
 
   jQuery(goodrow).toggleClass('timerowfilled');
 
@@ -145,7 +177,9 @@ function saveMeal() {
 
 function deleteMeal() {
   jQuery(this).parent().toggleClass('timerowfilled');
-  jQuery('.timeactivity', jQuery(this).parent()).html("");
+  jQuery('.mealorsnack', jQuery(this).parent()).html("");
+  jQuery('.activityitems', jQuery(this).parent()).html("");
+  jQuery('.activityitems', jQuery(this).parent()).removeData();
 }
 
 function moveUp() {
