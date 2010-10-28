@@ -10,11 +10,6 @@ div#list_of_questions {
 }
 
 
-/*example*/
-.flatpage_div {
-  color:red;
-}
-
 /*always hidden: */
 
 #question_id_div {
@@ -932,6 +927,48 @@ td, legend, input {font-size: 16px;}
 
 .arrowclose { display: none }
 
+/* start - "flat page" styles */
+
+
+
+/* stop - "flat page" styles */
+
+.flatpagecontainer h2 {text-align: center;}
+
+.flatpagecontainer h3 {border-bottom: 1px solid #ccc; clear: both; margin-top: 30px;}
+
+.flatpagecontainer h4 {}
+
+.flatpagecontainer ol, ul, p {}
+
+.flatpagecontainer .editpage {clear: both;}
+
+.flatpagecontainer .articlephotocontainer {float: right; clear: both; margin-left: 20px;}
+
+.flatpagecontainer .articlephotobox 
+{
+	margin-bottom: 20px; 	
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border: 1px solid #ccc;
+	padding: 10px;
+}
+
+.flatpagecontainer .articlephoto img 
+{
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border: 0;
+}
+
+.flatpagecontainer .articlephotocaption
+{
+	width: 150px;
+	font-weight: bold;
+	font-style: italic;
+	font-size: 10px;
+	padding-top: 5px;
+}
 
 
 /* start - orientation-specific styles */
