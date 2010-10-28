@@ -5,6 +5,10 @@ body
 	background-color: black;
 }
 
+div#list_of_questions {
+  display: none;
+}
+
 
 /*always hidden: */
 

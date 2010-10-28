@@ -1,0 +1,103 @@
+{% extends "family_info/base.html" %}
+{%load smartif%}
+
+{% block html_element %}
+<html manifest="/collection_tool/manifest.cache">
+{% endblock html_element %}
+
+
+{% block family_info_js %}
+<script src="/collection_tool/media/js/jquery.js" type="text/javascript"></script>
+<script src="/family_info/media/js/localstorage.js" type="text/javascript"></script>
+<script src="/family_info/media/js/dashboard.js" type="text/javascript"></script>
+{% endblock family_info_js %}
+
+{% block family_info_content %}
+
+		<h2 id="contenttitle">
+			Families to visit
+		</h2>
+		
+		<table>
+		<tr >
+		<td>Family </td>
+		<td>Question list</td> 
+		<td>Database ID</td> 
+		<td>Progress</td>
+		<td></td>
+
+  <span id = "start_visit_links">
+  </span>
+
+
+
+    {%comment %}
+		{% for the_family in families %}
+		      <form class = "start_visit_form" id ="{{the_family.id}}" method="post" action="/collection_tool/question/{{the_family.config.first_display_question.id}}/language/en">
+		        <tr >
+		          <td>Family #{{the_family.study_id_number}}</td>
+		          <td>{{ the_family.config }}</td> 
+		          <td>{{ the_family.id }}</td> 
+		          <td>
+		          <input type="hidden" name = "{{the_family.id}}" 
+                class = "{{the_family.id}}" 
+                value = "" />
+		          
+		          <span id="this_interview_answered_by_{{the_family.id}}">0</span> answered during this interivew.
+		          </td>
+		          
+		          <td><input type ="submit" class="visit_button" value = "Visit" /> </td>
+		        </tr>
+		      </form>
+		
+		{%endfor %}
+    {%endcomment %}
+    <!-- this is wrong; the dashboard form should be constructed exclusively based
+    on info from localstorage. -->
+
+		</table>
+		
+		
+		<p id ="downloading">
+		    <!-- this will be hidden once cache status is happy -->
+		  This device is currently downloading these questions, along with their associated images,
+		  into its local storage, so you can conduct the interview even if there is no Internet access. This can take some time.
+		</p>
+
+
+		 <div>
+      <form action = "/family_info/end_interview" method = "post"  class = "end_interview_form" >
+      <span id="end_interview_inputs">
+        
+      </span>
+      
+    {%comment %}
+      {% for the_family in families %}
+          <input type="hidden" name = "{{the_family.id}}" 
+          class = "{{the_family.id}}" 
+          value = "" />
+		  {%endfor %}
+    {%endcomment %}
+      <input type="submit" value ="Push family back to server" />
+      </form>
+    </div>
+
+
+    <div >
+    <textarea id = "debug_cache_status" rows="10" cols="80" > </textarea>
+    </div>
+<script>
+
+  if (typeof($) == "undefined") {
+    alert ("Sorry, unable to start interview at this time: unable to load jQuery.");
+    document.getElementById('downloading').style.display = 'none';
+    //document.getElementById('done_downloading').style.display = 'none';
+    document.getElementById('debug_cache_status').style.display = 'none';
+  }
+  
+</script>
+
+{% endblock family_info_content %}
+
+
+

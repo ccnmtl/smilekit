@@ -10,8 +10,6 @@ var cacheStatusValues = [];
  cacheStatusValues[4] = 'updateready';
  cacheStatusValues[5] = 'obsolete';
 
-
-
 function error_handler(e) {
    logEvent(e);
    status = cacheStatusValues[cache.status]; 
@@ -21,15 +19,14 @@ function error_handler(e) {
   
 }
 
-
 function on_update_ready (e) {
      // Don't perform "swap" if this is the first cache
      if (cacheStatusValues[cache.status] != 'idle') {
          console.log('About to try swapping / updating the cache.');
          cache.swapCache();
          console.log('Swapped/updated the cache.');
-         announce_ready_for_interview(e);
      }
+     announce_ready_for_interview(e);
  }    
 function logEvent(e) {
      var online, status, type, message;
@@ -46,14 +43,11 @@ function logEvent(e) {
 
 function announce_ready_for_interview(e) {
    logEvent(e);
-   show_buttons();
+    if (typeof (download_success_callback) == 'function' ) {
+      download_success_callback();
+    }
 }
 
-function show_buttons() {
-   console.log("READY");
-   $('#downloading').hide()
-   $('.visit_button').show();
-}
 
 
 function isOnline() {
