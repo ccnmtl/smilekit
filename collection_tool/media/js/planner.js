@@ -10,7 +10,7 @@ function setMode(newMode) {
 }
 
 function initPlanner() {
-  $('.thumbnail').click(function () {
+  jQuery('.thumbnail').click(function () {
     if(jQuery(this).hasClass('thumbnaildisabled')) { return; }
     jQuery(this).toggleClass('thumbnailselected');
 
@@ -40,75 +40,75 @@ function initPlanner() {
 
   });
   
-  $('.time').click(saveMeal);
-  $('.timeactiondelete').click(deleteMeal);
-  $('.timeactionup').click(moveUp);
-  $('.timeactiondown').click(moveDown);
-  $('.timeactionswap').click(editMeal);
+  jQuery('.time').click(saveMeal);
+  jQuery('.timeactiondelete').click(deleteMeal);
+  jQuery('.timeactionup').click(moveUp);
+  jQuery('.timeactiondown').click(moveDown);
+  jQuery('.timeactionswap').click(editMeal);
   
   if(mode == "food") {
-    $('#photobox-fluoride').hide();
+    jQuery('#photobox-fluoride').hide();
   }
   if(mode == "fluoride") {
-    $('.timeactionswap').hide();
-    $('.timeactiondelete').css('right', '100px');
-    //$('.mealorsnack').hide();
-    $('#photobox-foods').hide();
-    $('#photobox-drinks').hide();
+    jQuery('.timeactionswap').hide();
+    jQuery('.timeactiondelete').css('right', '100px');
+    //jQuery('.mealorsnack').hide();
+    jQuery('#photobox-foods').hide();
+    jQuery('#photobox-drinks').hide();
   }
   
   // hide/show item boxes
-  $('.photoboxhideshow').toggle(
+  jQuery('.photoboxhideshow').toggle(
     function() {
-      $(this).html("+");
-      $(this).nextAll(".thumbnails").hide();
+      jQuery(this).html("+");
+      jQuery(this).nextAll(".thumbnails").hide();
     },
     function() {
-      $(this).html("-");
-      $(this).nextAll(".thumbnails").show();
+      jQuery(this).html("-");
+      jQuery(this).nextAll(".thumbnails").show();
     }
   );
   
   // collapse/expand timeline
-  $('.arrowclose').click(
+  jQuery('.arrowclose').click(
     function() {
-      $('.arrowclose').hide();
-      $('.arrowopen').show();
-      $('.timerow').addClass("timerowcollapsed");
-      $('#plannerright').show();
-      $('#plannerleft').width(100);
+      jQuery('.arrowclose').hide();
+      jQuery('.arrowopen').show();
+      jQuery('.timerow').addClass("timerowcollapsed");
+      jQuery('#plannerright').show();
+      jQuery('#plannerleft').width(100);
     }
   );
-  $('.arrowopen').click(
+  jQuery('.arrowopen').click(
     function() {
-      $('.arrowclose').show();
-      $('.arrowopen').hide();
-      $('.timerow').removeClass("timerowcollapsed");
-      $('#plannerright').hide();
-      $('#plannerleft').width("95%");
+      jQuery('.arrowclose').show();
+      jQuery('.arrowopen').hide();
+      jQuery('.timerow').removeClass("timerowcollapsed");
+      jQuery('#plannerright').hide();
+      jQuery('#plannerleft').width("95%");
     }
   );
 }
 
 function findNearestEmpty(elem) {
-  if( ! $(elem).hasClass("timerowfilled") ) {
+  if( ! jQuery(elem).hasClass("timerowfilled") ) {
     return elem;
   }
 
-  var next = $(elem).next(".timerow");
-  var prev = $(elem).prev(".timerow");
+  var next = jQuery(elem).next(".timerow");
+  var prev = jQuery(elem).prev(".timerow");
 
   var found = false;
   while( !found && ( (next.length > 0) || (prev.length > 0) ) ) {
-    if( (next.length > 0) && (! $(next).hasClass("timerowfilled"))) {
+    if( (next.length > 0) && (! jQuery(next).hasClass("timerowfilled"))) {
       found = next;
     }
-    else if( (prev.length > 0) && (! $(prev).hasClass("timerowfilled"))) {
+    else if( (prev.length > 0) && (! jQuery(prev).hasClass("timerowfilled"))) {
       found = prev;
     }
     else {
-      next = $(next).next(".timerow");
-      prev = $(prev).prev(".timerow");
+      next = jQuery(next).next(".timerow");
+      prev = jQuery(prev).prev(".timerow");
     }
   }
   
@@ -117,64 +117,64 @@ function findNearestEmpty(elem) {
 
 function saveMeal() {
   var items = "";
-  $('.thumbnailselected').each(function() {
-    var label = $('.thumbnaillabel', this).html();
+  jQuery('.thumbnailselected').each(function() {
+    var label = jQuery('.thumbnaillabel', this).html();
     items += label + ", ";
-    $(this).removeClass('thumbnailselected');
+    jQuery(this).removeClass('thumbnailselected');
   });
   if(items == "") { return; }  // nothing was selected
 
   items = items.slice(0, -2);
   
-  var goodrow = findNearestEmpty($(this).parent());
+  var goodrow = findNearestEmpty(jQuery(this).parent());
 
   if(savingFluoride) {
     jQuery('.mealorsnack', jQuery(goodrow)).hide();
     savingFluoride = false;
   }
   else {
-    $('.mealorsnack', $(goodrow)).html("<span id=\"label-snack\">Snack</span>");
+    jQuery('.mealorsnack', jQuery(goodrow)).html("<span id=\"label-snack\">Snack</span>");
   }
-  $('.activityitems', $(goodrow)).html(items);
+  jQuery('.activityitems', jQuery(goodrow)).html(items);
 
-  $(goodrow).toggleClass('timerowfilled');
+  jQuery(goodrow).toggleClass('timerowfilled');
 
   // re-enable any disabled items
   jQuery('.thumbnaildisabled').removeClass('thumbnaildisabled');
 }
 
 function deleteMeal() {
-  $(this).parent().toggleClass('timerowfilled');
-  $('.timeactivity', $(this).parent()).html("");
+  jQuery(this).parent().toggleClass('timerowfilled');
+  jQuery('.timeactivity', jQuery(this).parent()).html("");
 }
 
 function moveUp() {
-  var items = $('.timeactivity', $(this).parent()).html();
+  var items = jQuery('.timeactivity', jQuery(this).parent()).html();
 
-  var prevElement = $(this).parent().prevAll(".timerow:not(.timerowfilled)").first();
+  var prevElement = jQuery(this).parent().prevAll(".timerow:not(.timerowfilled)").first();
   if(prevElement.length > 0) {
-    $('.timeactivity', prevElement).html(items);
-    $(prevElement).toggleClass('timerowfilled');
+    jQuery('.timeactivity', prevElement).html(items);
+    jQuery(prevElement).toggleClass('timerowfilled');
   
-    $(this).parent().toggleClass('timerowfilled');
+    jQuery(this).parent().toggleClass('timerowfilled');
   }
 }
 
 function moveDown() {
-  var items = $('.timeactivity', $(this).parent()).html();
+  var items = jQuery('.timeactivity', jQuery(this).parent()).html();
 
-  var nextElement = $(this).parent().nextAll(".timerow:not(.timerowfilled)").first();
+  var nextElement = jQuery(this).parent().nextAll(".timerow:not(.timerowfilled)").first();
   console.log(nextElement);
   if(nextElement.length > 0) {
-    $('.timeactivity', nextElement).html(items);
-    $(nextElement).toggleClass('timerowfilled');
+    jQuery('.timeactivity', nextElement).html(items);
+    jQuery(nextElement).toggleClass('timerowfilled');
  
-    $(this).parent().toggleClass('timerowfilled');
+    jQuery(this).parent().toggleClass('timerowfilled');
   }
 }
 
 function editMeal() {
-  var mealorsnack = $('.mealorsnack', $(this).parent());
+  var mealorsnack = jQuery('.mealorsnack', jQuery(this).parent());
   if(mealorsnack.html() == "\<span\ id\=\"label-meal\"\>Meal\<\/span\>") {
     mealorsnack.html("<span id=\"label-snack\">Snack</span>");
   } else {
@@ -182,6 +182,6 @@ function editMeal() {
   }
 }
 
-$(document).ready(initPlanner);
+jQuery(document).ready(initPlanner);
 
 // TODO: load/save functionality
