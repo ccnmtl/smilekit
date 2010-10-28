@@ -5,6 +5,11 @@ body
 	background-color: black;
 }
 
+div#list_of_questions {
+  display: none;
+}
+
+
 /*example*/
 .flatpage_div {
   color:red;
