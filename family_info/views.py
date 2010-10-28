@@ -13,7 +13,6 @@ import datetime, sys, pdb, simplejson as json
 def families(request, **kwargs):
     t = loader.get_template('family_info/families.html')
    
-    print kwargs.get ('error_message', '');
     c = RequestContext(request, {
       'error_message': kwargs.get ('error_message', ''),
       'families': Family.objects.filter(active = True),
@@ -328,8 +327,7 @@ def start_interview(request, **kwargs):
           my_args = {'error_message' : 'Please check at least one family.'}
           return families (request, **my_args)
         
-        print "families"
-        print families     
+       
 
         
     else:
@@ -403,7 +401,6 @@ def end_interview(request, **args):
     for question_id, answer_id in their_answers.iteritems():
         my_visit.store_answer (family_id, int(question_id), int(answer_id))
         
-  print my_visit.response_set.all()
   ## END ITERATE OVER FAMILIES...
   #close the visit
   my_visit.close_now()   

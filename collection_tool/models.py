@@ -33,7 +33,7 @@ class HelpItem(models.Model):
     
   @property
   def dir(self):
-    print self
+    #print self
     return dir(self)
 
 
