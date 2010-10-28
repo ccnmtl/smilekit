@@ -78,7 +78,7 @@ function autoCheckForUpdates(){
    try {
      setInterval(function(){cache.update()}, 50000);
     } catch (e) {
-    alert ("Error");
+    slog ("Error");
    }
 }
 
