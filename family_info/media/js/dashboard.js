@@ -19,8 +19,14 @@ function update_cache_if_necessary () {
   cache.addEventListener('cached',      announce_ready_for_interview, false);
   cache.addEventListener('idle',        announce_ready_for_interview, false);
   cache.addEventListener('error', error_handler, false);
-  cache.addEventListener('updateready', on_update_ready, false);        
-  cache.update();
+  cache.addEventListener('updateready', on_update_ready, false);     
+  try {     
+    cache.update();
+  } catch(err) {
+    // this is only a problem on ipad safari
+    glog ("couldn't call cache update ....");
+    show_buttons();
+  }
 }
 
 //value can be any object that can be turned into a json object.
@@ -169,7 +175,7 @@ function init_family_info() {
   set_up_family_links ();
   
   if (typeof (local_storage_get) == "undefined") {
-    alert ('localstorageget not found.'); 
+    glog ('localstorageget not found.'); 
     return;
   } 
   
@@ -177,7 +183,7 @@ function init_family_info() {
   
   if (typeof (cache) == "undefined") {
     // this might not actually matter.  
-    console.log ('Cache not found, so can\'t update it.'); 
+    glog ('Cache not found, so can\'t update it.'); 
     show_buttons();
   } 
   else {

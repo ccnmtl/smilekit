@@ -14,7 +14,7 @@ function error_handler(e) {
    logEvent(e);
    status = cacheStatusValues[cache.status]; 
    // warn, but allow to continue.
-   alert ("There was an error downloading one of the files, but you can try starting the interview anyway.");
+   slog ("There was an error downloading one of the files, but you can try starting the interview anyway.");
    announce_ready_for_interview(e);
   
 }
