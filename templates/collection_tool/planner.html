@@ -2,7 +2,7 @@
 
 	<div id="plannerright">
 	
-        {% regroup items by get_type_display as item_list %}
+        {% regroup planner_items by get_type_display as item_list %}
         
           {% for type in item_list %}
 
@@ -35,7 +35,7 @@
 		
 		<div id="timetable">
 		
-		  {% for time in times %}
+		  {% for time in planner_times %}
 		
 			<div class="timerow timerowcollapsed">
 				<div class="time"><span class="timetext">{{ time }}</span></div>
@@ -63,7 +63,7 @@
 
 </div>
 
-<form action="#" method="post">
+<!--form action="#" method="post">
 
 <div class="formbuttons">
 		
@@ -73,4 +73,4 @@
 
 </div>
 
-</form>
+</form-->

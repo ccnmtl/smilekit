@@ -110,7 +110,7 @@ function initPlanner() {
   
   // save and cancel buttons
   loadState();
-  jQuery('#donebutton').click(saveState);
+  jQuery('#right').click(saveState);
 }
 
 function findNearestEmpty(elem) {

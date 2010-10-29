@@ -66,14 +66,24 @@ def question(request, displayquestion_id, language_code):
                     'text': a.text,
                     'id': a.id
                       })
-  
+
+  planner_times = []
+  planner_items = []
+  if displayquestion.question.number == 24:
+    starttime = datetime(1984,1,1,6)
+    planner_times = [(starttime + timedelta(minutes=30) * i).strftime("%I:%M%p")
+             for i in range(36)]
+    planner_items = PlannerItem.objects.all().order_by('type')
+
   t = loader.get_template('collection_tool/question.html')
   c = RequestContext(request,{
       'displayquestion': displayquestion,
       'wording' : wording,
       'answers': answers,
       'language_code': language_code,
-      'all_sections': AssessmentSection.objects.all()
+      'all_sections': AssessmentSection.objects.all(),
+      'planner_times':planner_times,
+      'planner_items':planner_items
   })
   return HttpResponse(t.render(c))
     
