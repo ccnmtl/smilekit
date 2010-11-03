@@ -929,10 +929,6 @@ td, legend, input {font-size: 16px;}
 
 /* start - "flat page" styles */
 
-
-
-/* stop - "flat page" styles */
-
 .flatpagecontainer h2 {text-align: center;}
 
 .flatpagecontainer h3 {border-bottom: 1px solid #ccc; clear: both; margin-top: 30px;}
@@ -969,6 +965,7 @@ td, legend, input {font-size: 16px;}
 	font-size: 10px;
 	padding-top: 5px;
 }
+/* stop - "flat page" styles */
 
 
 /* start - orientation-specific styles */
