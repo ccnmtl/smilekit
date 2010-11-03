@@ -937,7 +937,7 @@ td, legend, input {font-size: 16px;}
 
 .flatpagecontainer ol, ul, p {}
 
-.flatpagecontainer .editpage {clear: both;}
+.flatpagecontainer .editpage {border-top: 1px solid #ccc; clear: both; margin-top: 30px; text-align: right; padding-top: 20px;}
 
 .flatpagecontainer .articlephotocontainer {float: right; clear: both; margin-left: 20px;}
 
@@ -964,6 +964,15 @@ td, legend, input {font-size: 16px;}
 	font-style: italic;
 	font-size: 10px;
 	padding-top: 5px;
+}
+
+
+.flatpagecontainer video 
+{
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border: 1px solid #ccc;
+	padding: 20px;
 }
 /* stop - "flat page" styles */
 
