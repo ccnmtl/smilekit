@@ -1,60 +1,70 @@
 {% extends "family_info/base.html" %}
+
 {%load smartif%}
 
 {% block family_info_js %}
+
 {% endblock family_info_js %}
 
 {% block family_info_content %}
-		<h2 id="contenttitle">
-			{% if family %}
-  			Family #{{family.study_id_number}}
-	    {%else %}
-	      New Family
-	    {%endif %}		
-		</h2>
-		
-		
-    
-    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-    <div>
-      <a href = "/family_info/families">Back to list of families </a>
-    </div>
-    
-    
-		<table>
 
-    {% if family %}
-        <form id="edit_family" action="/family_info/edit_family/{{family.id}}" method="post">
-    {% else %}
-        <form id="add_family" action="/family_info/insert_family" method="post">
-      {% endif %}   
+	<h2 id="contenttitle">
+		{% if family %}
+		Family #{{family.study_id_number}}
+		{%else %}
+		New Family
+		{%endif %}		
+	</h2>
+
+	{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+	<div id="contentnav">
+		<a id="left" href = "/family_info/families">&larr; Back</a>
+	</div>
+
+	{% if family %}
+	<form id="edit_family" action="/family_info/edit_family/{{family.id}}" method="post">
+	{% else %}
+	<form id="add_family" action="/family_info/insert_family" method="post">
+	{% endif %}   
+      <fieldset>
       
-		  <tr>
-		  <td>Study ID number:</td>
-		  <td><input type="text"  name="study_id_number"  value="{{family.study_id_number}}" /></td>
-		  </tr>
+	<legend>
+	Family Details
+	</legend>
+	
+      <fieldset>
+	<legend>
+	Study Information
+	</legend>
+	
+	<table class="familydetails">
+	
+		<tr>
+			<th>Study ID Number</th>
+			<td><input type="text"  name="study_id_number"  value="{{family.study_id_number}}" /></td>
+		</tr>
 
+		<tr>
+			<th style="text-align: left">Set of Weights Used</th>
+			<td>
+				{% if not family %}
+				<select name = "config_id">
+				{% for config in equation_balancer_configs %}
+				<option value = "{{config.id}}"
+				>{{config.name}}</option>
+				{% endfor %}
+				</select>
+				{% else %}
+				{{family.config.name}}
+				{% endif %}
 
-      <tr>
-        <td>Set of weights used:</td>
-          <td>
-     {% if not family %}
-          <select name = "config_id">
-            {% for config in equation_balancer_configs %}
-                <option value = "{{config.id}}"
-                >{{config.name}}</option>
-            {% endfor %}
-          </select>
-    {% else %}
-          {{family.config.name}}
-    {% endif %}
-
-          </td>
-      </tr>
-      <tr>
-        <td colspan = "2">(This cannot be changed once the family is created.)</td>
-      </tr>
-      
+			</td>
+		</tr>
+		
+		<tr>
+			<th></th>
+			<td><span class="prompt">(This cannot be changed once the family is created.)</span></td>
+		</tr>
       
 		<!--
 		<tr>
@@ -75,37 +85,37 @@
 		
 		
 		<tr>
-		<td>Child's approximate year of birth:</td>
-		<td><input type="text"   name="child_year_of_birth" value="{{family.child_year_of_birth}}" /></td>
+			<th>Child's Approximate Year of Birth</th>
+			<td><input type="text" name="child_year_of_birth" value="{{family.child_year_of_birth}}" /></td>
 		</tr>
 
-
-
-    {% if family %}
-      <tr>
-        <td>Status:</td>
-          <td>
-            <input type="radio" name="active" value="True"  {% if family.active %}checked{%endif %}>Active
-            <input type="radio" name="active" value="False" {% if not family.active%}checked{%endif %}> Inactive
-          </td>
-      </tr>
-      <tr>
-        <td colspan = "2">(Set this to "inactive" to "delete" a family.)</td>
-      </tr>
-      
-      {% endif %}
+		{% if family %}
+		<tr>
+			<th>Current Family Visit Status</th>
+			<td>
+			<input type="radio" name="active" value="True"  {% if family.active %}checked{%endif %}>Activley Visiting
+			<input type="radio" name="active" value="False" {% if not family.active%}checked{%endif %}> Not Visiting
+			</td>
+		</tr>
+		<tr>
+			<th></th>
+			<td><span class="prompt">(Check the "inactive" button to "delete" a family.)</span></td>
+		</tr>
+		{% endif %}
 		
   
-		</table>
+	</table>
+	
+      </fieldset>
+      <fieldset>
+	<legend>
+	Demographic Information
+	</legend>
 		
-		<h3>
-		Demographic Data
-		</h3>
-		
-		<table>
+	<table class="familydetails">
 		
 		<tr>
-		<td>Race or Ethnicity of child:</td>
+		<th>Race or Ethnicity of Child</th>
 				  <td>
           <select name = "race_ethnicity">
             {% for r_e_choice_k, r_e_choice_v in r_e_choices %}
@@ -119,7 +129,7 @@
 		
 		
 		<tr>
-		<td>Was the mother born in the USA?</td>
+		<th>Was the mother born in the USA?</th>
 		<td>
         <input type="radio" name="mother_born_in_us" value="True"  {% if family.mother_born_in_us %}checked{%endif %}>Yes
         <input type="radio" name="mother_born_in_us" value="False" {% if not family.mother_born_in_us%}checked{%endif %}> No
@@ -127,7 +137,7 @@
 		</tr>
 
 		<tr>
-		<td>Did the family use food stamps in the past year?</td>
+		<th>Did the family use food stamps in the past year?</th>
 		  <td>
           <input type="radio" name="food_stamps_in_last_year" value="True"  {% if family.food_stamps_in_last_year %}checked{%endif %}>Yes
           <input type="radio" name="food_stamps_in_last_year" value="False" {% if not family.food_stamps_in_last_year%}checked{%endif %}> No
@@ -135,7 +145,7 @@
 		</tr>
 		
 		<tr>
-		<td>Highest level of parent education:</td>
+		<th>Highest Level of Parent Education</th>
 		<td>
           <select name = "highest_level_of_parent_education">
             {% for e_l_choice_k, e_l_choice_v in e_l_choices %}
@@ -150,33 +160,43 @@
 		
 		<tr>
         <td  colspan = "2" align="center">
+          </td>
+        </tr>
+        
+	</table>
+	
+      </fieldset>
+      <div align="center" style="padding: 20px;">
             <input type="submit"
               value="{{ family|yesno:"Save Changes,Save"}}"
-             />
-          </td>
-        </tr>	
-        </form>	  
-		</table>
+             /></div>
+      </fieldset>
+	</form>	
+      
+      <fieldset>
+      
+	<legend>
+	Family Visits
+	</legend>
 		
+	<table>
+	
+		<tr>
+			<th>Date</th>
+			<th>Interviewer</th>
+		</tr>
 		
-		<h3>
-  		Record of visits:
-		</h3>
+		<tr>
+			<td>Date</td>
+			<td>interviewer</td>
+		</tr>
 		
-		<table>
-		  <tr>
-		  <th>Date</th>
-		  <th>Interviewer</th>
-		  </tr>
-		  <tr>
-		  <td>Date</td>
-		  <td>interviewer</td>
-		  </tr>
-		  <tr>
-		  <td>Date</td>
-		  <td>interviewer</td>
-		  </tr>
+		<tr>
+			<td>Date</td>
+			<td>interviewer</td>
+		</tr>
 		  
-		</table>
-
+	</table>
+	
+      </fieldset>
 {% endblock family_info_content %}

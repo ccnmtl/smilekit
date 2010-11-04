@@ -1001,6 +1001,23 @@ td, legend, input {font-size: 16px;}
 /* stop - "flat page" styles */
 
 
+/* start - "family details" table styles */
+
+table.familydetails {width: 100%;}
+
+table.familydetails th, table.familydetails td {padding-top: 10px;}
+
+table.familydetails td.action {text-align: center;}
+
+table.familydetails th {text-align: left; width: 50%;}
+
+table.familydetails td.action {text-align: center;}
+
+.prompt {font-size: 10px; font-weight: bold; color: red; font-style: italic;}
+
+/* stop - "family details" table styles */
+
+
 /* start - orientation-specific styles */
 
 @media all and (orientation:portrait)
