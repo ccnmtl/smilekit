@@ -8,45 +8,62 @@
 			Health Worker Information
 		
 		</h2>
-		<a href ="/family_info/families"> Back to main page </a>
 		
-		
-    
     {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+    
+	<div id="contentnav">
+		<a id="left" href = "/family_info/families">&larr; Back</a>
+	</div>
 		
-		<!--TODO add active / inactive -->
-		<table>
 		
     {% if the_user %}
         <form id="edit_user" action="/family_info/edit_user/{{the_user.id}}" method="post">
     {% else %}
         <form id="add_user" action="/family_info/insert_user" method="post">
       {% endif %}   
+
+      <fieldset>
+      
+	<legend>
+	Worker Profile
+	</legend>
+
+		<!--TODO add active / inactive -->
+		<table class="editdetails">
+		
 		
 		<tr>
-		<td>First Name:</td>
+		<th>First Name</th>
 		<td><input type="text" name="first_name" value="{{the_user.first_name}}" /></td>
 		</tr>
 		
 		<tr>
-		<td>Last Name:</td>
+		<th>Last Name</th>
 		<td><input type="text" name="last_name" value="{{the_user.last_name}}" /></td>
 		</tr>
 		
 		<tr>
-		<td>User Name:</td>
+		<th>User Name</th>
 		<td><input type="text" name="username" value="{{the_user.username}}" /></td>
 		</tr>
 		
 		<tr>
-		<td>Password:</td>
-		<td> <input type="password"  name="password" value =""></input>  (To keep existing password, just leave blank.)
-            </td>
+		<th>Password</th>
+		<td><input type="password"  name="password" value =""></input></td>
+		</tr>
+		<tr>
+		<th></th>
+		<td><span class="prompt">(To keep existing password, just leave blank.)</span></td>
 		</tr>
 		
 		<tr>
-		<td>Re-Type Password:</td>
-		<td><input type="password" name="password_2" value = ""></input>  (To keep existing password, just leave blank.)</td>
+		<th>Re-Type Password</th>
+		<td><input type="password" name="password_2" value = ""></input></td>
+		</tr>
+		
+		<tr>
+		<th></th>
+		<td><span class="prompt">(To keep existing password, just leave blank.)</span></td>
 		</tr>
 		{% if the_user %}
     <tr>
@@ -59,7 +76,8 @@
     {% endif %}
 		
 		<tr>
-        <td  colspan = "2" align="center">
+        <td  colspan = "2" class="action">
+        <br /><br />
             <input type="submit"
               value="{{ the_user|yesno:"Save Changes,Save"}}"
              />
@@ -75,7 +93,9 @@
 		</tr>
 		
 		</table>
-							
+			</fieldset>
+			</form>
+			
 {% endblock family_info_content %}
 
 

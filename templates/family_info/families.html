@@ -3,22 +3,24 @@
 {% block family_info_content %}
 		
 
-
-
 <fieldset>
+
 	<legend>All Families</legend>
-<table>
-							
-{% if error_message %}
-<tr>
-	<td colspan = "5" class="error_message">{{error_message}}</td>
-</tr>
-{%endif%}
 	
-  <tr>
-  	<td colspan = "5"><a href = "/family_info/new_family" >Add New Family</a></td>
-	</tr>
-					<form action="/family_info/start_interview" method="post" >
+		<table class="users">
+									
+		{% if error_message %}
+		<tr>
+			<td colspan = "3" class="error_message">{{error_message}}</td>
+		</tr>
+		{%endif%}
+			
+		  <tr>
+			<td><a href = "/family_info/new_family" >+ Add New Family</a></td>
+			<td></td>
+			<td></td>
+			</tr>
+			
 	            {%for family in families %}
 	              <tr>
 	                <td>{%if family.interviewer%}
@@ -32,7 +34,7 @@
 	              </tr>
 	            {%endfor %}
 	            <tr>
-	              <td colspan = "2">
+	              <td class="action" colspan = "3">
 	               <input type="submit" value ="Pull Family Data Down from Server" />
 	               <input type="reset" value ="Reset" />
 	              </td>
@@ -41,33 +43,33 @@
 	  
 	
 	</table>
-					</fieldset>
+</fieldset>
 					
-					<fieldset>
+<fieldset>
 					
-						<legend>Health Workers</legend>
-					
-							<table>
-							{% for worker in health_workers %}
-							<tr>
-							<td>{{worker }}</td>
-							<td><a href = "/family_info/edit_user/{{worker.id}}">Edit</a></td>
-							</tr>
-							{%endfor%}
-
-	            <tr>
-  	            <td colspan = "2"><a href="/family_info/new_user" >New Health Worker</td>
-	            </tr>
+	<legend>Health Workers</legend>
 	
-
-							
-							</table>
-					
-					</fieldset>
-					
-			<script language ="javascript" >
-			   localStorage.clear();
-			</script>
+		<table class="users">
 			
+			<tr>
+			<td><a href="/family_info/new_user" >+ Add New Health Worker</a></td>
+			<td></td>
+			</tr>
+			
+			{% for worker in health_workers %}
+			<tr>
+			<td>{{worker }}</td>
+			<td><a href = "/family_info/edit_user/{{worker.id}}">Edit</a></td>
+			</tr>
+			{%endfor%}
+
+		</table>
+					
+</fieldset>
+					
+<script language ="javascript" >
+localStorage.clear();
+</script>
+
 
 {% endblock family_info_content %}

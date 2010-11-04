@@ -17,6 +17,7 @@
 	</h2>
 
 	{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+	
 	<div id="contentnav">
 		<a id="left" href = "/family_info/families">&larr; Back</a>
 	</div>
@@ -37,7 +38,7 @@
 	Study Information
 	</legend>
 	
-	<table class="familydetails">
+	<table class="editdetails">
 	
 		<tr>
 			<th>Study ID Number</th>
@@ -45,7 +46,7 @@
 		</tr>
 
 		<tr>
-			<th style="text-align: left">Set of Weights Used</th>
+			<th>Set of Weights Used</th>
 			<td>
 				{% if not family %}
 				<select name = "config_id">
@@ -93,7 +94,7 @@
 		<tr>
 			<th>Current Family Visit Status</th>
 			<td>
-			<input type="radio" name="active" value="True"  {% if family.active %}checked{%endif %}>Activley Visiting
+			<input type="radio" name="active" value="True"  {% if family.active %}checked{%endif %}>Actively Visiting
 			<input type="radio" name="active" value="False" {% if not family.active%}checked{%endif %}> Not Visiting
 			</td>
 		</tr>
@@ -112,7 +113,7 @@
 	Demographic Information
 	</legend>
 		
-	<table class="familydetails">
+	<table class="editdetails">
 		
 		<tr>
 		<th>Race or Ethnicity of Child</th>
@@ -137,7 +138,7 @@
 		</tr>
 
 		<tr>
-		<th>Did the family use food stamps in the past year?</th>
+		<th>Did any child in the household receive food stamps in the past year?</th>
 		  <td>
           <input type="radio" name="food_stamps_in_last_year" value="True"  {% if family.food_stamps_in_last_year %}checked{%endif %}>Yes
           <input type="radio" name="food_stamps_in_last_year" value="False" {% if not family.food_stamps_in_last_year%}checked{%endif %}> No
@@ -145,7 +146,7 @@
 		</tr>
 		
 		<tr>
-		<th>Highest Level of Parent Education</th>
+		<th>Mother's highest level of education</th>
 		<td>
           <select name = "highest_level_of_parent_education">
             {% for e_l_choice_k, e_l_choice_v in e_l_choices %}

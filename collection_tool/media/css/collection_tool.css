@@ -990,30 +990,40 @@ td, legend, input {font-size: 16px;}
 	padding-top: 5px;
 }
 
-
-.flatpagecontainer video 
-{
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
-	border: 1px solid #ccc;
-	padding: 20px;
-}
 /* stop - "flat page" styles */
 
 
 /* start - "family details" table styles */
 
-table.familydetails {width: 100%;}
+table.editdetails {width: 100%;}
 
-table.familydetails th, table.familydetails td {padding-top: 10px;}
+table.editdetails th, table.editdetails td, table.users th, table.users td  {padding: 10px;}
 
-table.familydetails td.action {text-align: center;}
+table.editdetails td.action, table.users td.action {text-align: center;}
 
-table.familydetails th {text-align: left; width: 50%;}
+table.editdetails th {text-align: left; width: 50%;}
 
-table.familydetails td.action {text-align: center;}
+table.editdetails td.action {text-align: center;}
 
 .prompt {font-size: 10px; font-weight: bold; color: red; font-style: italic;}
+
+table.users a
+{
+	border: 1px solid #ccc; 
+	text-decoration: none; 
+	display: block; 
+	text-align: center; 
+	-moz-border-radius: 10px; 
+	-webkit-border-radius: 10px;
+	padding: 5px;
+	font-weight: bold;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f5f5f7), to(#c1c4c3));
+	background: -moz-linear-gradient(top, #f5f5f7, #c1c4c3);
+	color: #333;
+	font-weight: bold;
+	width: 200px;
+	font-size: 11px;
+}
 
 /* stop - "family details" table styles */
 
