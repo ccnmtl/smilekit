@@ -73,7 +73,7 @@ def question(request, displayquestion_id, language_code):
     starttime = datetime(1984,1,1,6)
     planner_times = [(starttime + timedelta(minutes=30) * i).strftime("%I:%M%p")
              for i in range(36)]
-    planner_items = PlannerItem.objects.all().order_by('type')
+    planner_items = PlannerItem.objects.all().order_by('type', 'label')
 
   t = loader.get_template('collection_tool/question.html')
   c = RequestContext(request,{

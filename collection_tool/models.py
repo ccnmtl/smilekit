@@ -494,3 +494,7 @@ class PlannerItem(models.Model):
   label = models.TextField()
   risk_level = models.IntegerField()
   #image = models.ImageField(upload_to='answer_images',blank=True,null=True)
+  # for now, image is just assumed to be "slugified_label.jpg"
+  
+  class Meta:
+    ordering = ('type', 'label')
