@@ -995,19 +995,19 @@ td, legend, input {font-size: 16px;}
 
 /* start - "family details" table styles */
 
-table.editdetails {width: 100%;}
+table.editdetails, table.interviewdetails {width: 100%;}
 
 table.editdetails th, table.editdetails td, table.users th, table.users td  {padding: 10px;}
 
 table.editdetails td.action, table.users td.action {text-align: center;}
 
-table.editdetails th {text-align: left; width: 50%;}
+table.editdetails th, table.interviewdetails th {text-align: left; width: 50%;}
 
 table.editdetails td.action {text-align: center;}
 
 .prompt {font-size: 10px; font-weight: bold; color: red; font-style: italic;}
 
-table.users a
+table.users a, table.interviewdetails a
 {
 	border: 1px solid #ccc; 
 	text-decoration: none; 
@@ -1024,6 +1024,13 @@ table.users a
 	width: 200px;
 	font-size: 11px;
 }
+table.interviewdetails a {width: 20px;}
+
+table.interviewdetails {border-collapse:collapse;}
+table.interviewdetails td {vertical-align: top; padding: 3px;}
+table.interviewdetails td.toggle {width: 30px;}
+table.interviewdetails td.label {width: 150px; font-weight: bold;}
+table.interviewdetails td ul, table.interviewdetails td ol {margin: 0;} 
 
 /* stop - "family details" table styles */
 
