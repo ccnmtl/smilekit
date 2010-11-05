@@ -12,67 +12,76 @@
 
 {% block family_info_content %}
 
-		<h2 id="contenttitle">
-			Families to visit
-		</h2>
+<h2 id="contenttitle">
+	Families to Visit
+</h2>
 
-    <div id="list_of_questions"> 
+<div id="list_of_questions"> 
+	[
+	{% for the_family in families %}
+	
+	{
+		"family_id" : {{the_family.id}},
+		"previous_visit_questions" :
+		{
+		{%for q, a in the_family.latest_answers.iteritems %}
+		"{{q}}":"{{a}}"
+		{% if not forloop.last %},{%endif%}
+		
+		{%endfor%}
+		},
+		
+		"all_questions" :
 		[
-		  {% for the_family in families %}
-		      {
-            "family_id" : {{the_family.id}},
-            "previous_visit_questions" :
-                    {
-                      {%for q, a in the_family.latest_answers.iteritems %}
-                        "{{q}}":"{{a}}"
-                        {% if not forloop.last %},{%endif%}
-                        
-                      {%endfor%}
-                    },
-            
-            "all_questions" :
-              [
-                      {%for display_question in the_family.config.display_questions %}
-                        {{display_question.id}}
-                        {% if not forloop.last %},{%endif%}
-                      {%endfor%}
-              
-              ],
-              
-            "first_question_url" : "/collection_tool/question/{{the_family.config.first_display_question.id}}/language/en"
-                    
-          }
-          {% if not forloop.last %},{%endif%}
-		  {% endfor %}
-    ]
-    </div>
+		{%for display_question in the_family.config.display_questions %}
+		{{display_question.id}}
+		{% if not forloop.last %},{%endif%}
+		{%endfor%}
+		
+		],
+		
+		"first_question_url" : "/collection_tool/question/{{the_family.config.first_display_question.id}}/language/en"
+		
+	}
+	{% if not forloop.last %},{%endif%}
+	
+	{% endfor %}
+	
+	]
+</div>
 		
 		
-		<table>
-		<tr >
-		<td>Family </td>
-		<td>Question list</td> 
-		<td>Database ID</td> 
-		</tr>
+<table width="100%">
+	
+	<tr>
+		<th>Family ID</th>
+		<th>Question List</th> 
+		<th>Database ID</th> 
+	</tr>
+	
+	{% for the_family in families %}
+	<tr >
+		<td>{{the_family.study_id_number}}</td>
+		<td>{{ the_family.config }}</td> 
+		<td>{{ the_family.id }}</td> 
+	</tr>
+	{%endfor %}
 
-		{% for the_family in families %}
-		  <tr >
-		    <td>Family #{{the_family.study_id_number}}</td>
-		    <td>{{ the_family.config }}</td> 
-		    <td>{{ the_family.id }}</td> 
-		  </tr>
-		{%endfor %}
-		</table>
+</table>
 		
 		
-<div>
-    <a href = "/family_info/dashboard" >Start a visit with these families.</a>
+<div align="center">
+<br />
+<br />
+<form method="link" action="/family_info/dashboard">
+<input type="submit" value="Visit These Families">
+</form>    
 </div>
 
 <script>
-  if (typeof($) == "undefined") {
-    alert ("Sorry, unable to start interview at this time: unable to load jQuery.");
-  }
+	if (typeof($) == "undefined") {
+		alert ("Oops. We cannot start the interview right now. Message: Unable to load jQuery.");
+	}
 </script>
 
 {% endblock family_info_content %}

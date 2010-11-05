@@ -112,7 +112,7 @@ function set_up_family_links () {
 
      new_link = "<p>\
      <span id ='progress_info_for_family_" + family_id + "'> </span>\
-     <input type='button' class ='go_to_family_button' onclick ='head_to(" + family_id + ", \"" + url + "\")'  value = 'go to family " + family_id + "' /> </p>";
+     <input type='button' class ='go_to_family_button' onclick ='head_to(" + family_id + ", \"" + url + "\")'  value = 'Visit Family " + family_id + "' /> </p>";
      start_visit_links += new_link;
   });
   $('#start_visit_links')[0].innerHTML = start_visit_links;

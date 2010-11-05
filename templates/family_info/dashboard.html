@@ -13,40 +13,53 @@
 {% endblock family_info_js %}
 
 {% block family_info_content %}
-		<h2 id="contenttitle">
-			Families to visit
-		</h2>
-		
-    <div id = "start_visit_links">
-    </div>
 
-		<p id ="downloading">
-		    <!-- this will be hidden once cache status is happy -->
-		  This device is currently downloading these questions, along with their associated images,
-		  into its local storage, so you can conduct the interview even if there is no Internet access. This can take some time.
-		</p>
+<h2 id="contenttitle">
+	Families to Visit
+</h2>
 
+<div id="start_visit_links">
+</div>
 
-		 <div>
-      <form action = "/family_info/end_interview" method = "post"  class = "end_interview_form" >
-          <span id="end_interview_inputs">
-          </span>
-          <input type="submit" value ="Push family back to server" />
-      </form>
-    </div>
+<p id="downloading">
+	<!-- this will be hidden once cache status is happy -->
+	This device is currently downloading these questions, along with their associated images,
+	into its local storage, so you can conduct the interview even if there is no Internet access. This can take some time.
+</p>
 
 
-    <div >
-        <textarea id = "debug_cache_status" rows="10" cols="80" > </textarea>
-    </div>
+<div align="center">
+	<img src="/collection_tool/media/images/downloading_inprogress.png" />
+	<br />
+	<img src="/collection_tool/media/images/downloading_successful.png" />
+	<br />
+	<img src="/collection_tool/media/images/downloading_unsuccessful.png" />
+	<br />
+	<br />
+	<form action="/family_info/end_interview" method="post" class="end_interview_form" >
+		<span id="end_interview_inputs"></span>
+		<input type="submit" value ="Push Family Information Back to Server" />
+	</form>
+	<br />
+	<br />
+	<form>
+	<textarea id="debug_cache_status" rows="10" cols="80" ></textarea>
+	</form>
+</div>
+    
 <script>
 
-  if (typeof($) == "undefined") {
-    alert ("Sorry, unable to start interview at this time: unable to load jQuery.");
-    document.getElementById('downloading').style.display = 'none';
-    //document.getElementById('done_downloading').style.display = 'none';
-    document.getElementById('debug_cache_status').style.display = 'none';
-  }
+	if (typeof($) == "undefined") {
+	
+	alert ("Sorry, unable to start interview at this time: unable to load jQuery.");
+	
+	document.getElementById('downloading').style.display = 'none';
+	
+	//document.getElementById('done_downloading').style.display = 'none';
+	
+	document.getElementById('debug_cache_status').style.display = 'none';
+	
+	}
   
 </script>
 
