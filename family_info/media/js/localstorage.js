@@ -1,86 +1,46 @@
-// Convenience array of status values
+var LOCAL_STORAGE_KEY;
 
-var cache = window.applicationCache;
+//value can be any object that can be turned into a json object.
+function local_storage_set ( namespace, key, value ) {
 
-var cacheStatusValues = [];
- cacheStatusValues[0] = 'uncached';
- cacheStatusValues[1] = 'idle';
- cacheStatusValues[2] = 'checking';
- cacheStatusValues[3] = 'downloading';
- cacheStatusValues[4] = 'updateready';
- cacheStatusValues[5] = 'obsolete';
+  if (typeof(localStorage ) == "undefined" ) {
+    //alert ("localStorage not found.");
+    return;
+  }
 
-function error_handler(e) {
-   logEvent(e);
-   status = cacheStatusValues[cache.status]; 
-   // warn, but allow to continue.
-   slog ("There was an error downloading one of the files, but you can try starting the interview anyway.");
-   announce_ready_for_interview(e);
+  if (typeof(localStorage [namespace]) == "undefined")  {
+    //alert ("Nothing found stored in localStorage.");
+    localStorage [namespace] = '{}';
+  }
   
+  temp_state = JSON.parse(  localStorage [namespace] )
+  
+  if (temp_state == null) {
+    temp_state = {};
+  }
+  
+  temp_state [key] = value;
+  localStorage [namespace] = JSON.stringify(temp_state);
+  temp_state = null;
 }
 
-function on_update_ready (e) {
-     
-   logEvent(e);
-     // Don't perform "swap" if this is the first cache
-     if (cacheStatusValues[cache.status] != 'idle') {
-         slog('About to try swapping / updating the cache.');
-         cache.swapCache();
-         slog('Swapped/updated the cache.');
-     }
-     announce_ready_for_interview(e);
- }    
-function logEvent(e) {
-     var online, status, type, message;
-     online = (isOnline()) ? 'yes' : 'no';
-     status = cacheStatusValues[cache.status];
-     type = e.type;
-     message = 'online: ' + online;
-     message+= ', event: ' + type;
-     message+= ', status: ' + status;     if (type == 'error' && navigator.onLine) {
-         message+= ' (ERROR)';
-     }
-     slog(''+message);
+function local_storage_get ( namespace, key, value ) {
+  if (typeof(localStorage ) == "undefined" ) {
+    //alert ("localStorage not found.");
+    return;
+  }
+
+  if (typeof(localStorage [namespace]) == "undefined")  {
+    //alert ("Nothing found stored in localStorage.");
+    localStorage [namespace] = '{}';
+  }
+
+  temp_state = JSON.parse(  localStorage [namespace] )
+  if (temp_state == null) {
+    return null;
+  }
+  if (temp_state[key] == null) {
+    return null;
+  }
+  return temp_state[key];
 }
-
-function slog(a) {
-    if (typeof (glog) == "function") {
-      glog (a)
-    }
-    else {
-      console.log (a);
-    }
-
-}
-
-
-function announce_ready_for_interview(e) {
-   logEvent(e);
-    if (typeof (download_success_callback) == 'function' ) {
-      download_success_callback();
-    }
-}
-
-
-
-function isOnline() {
-     return navigator.onLine;
-}
-
-
-// These two functions check for updates to the manifest file
-function checkForUpdates(){
-   cache.update();
-}
-
-
-function autoCheckForUpdates(){
-   try {
-     setInterval(function(){cache.update()}, 50000);
-    } catch (e) {
-    slog ("Error");
-   }
-}
-
-
-

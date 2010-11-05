@@ -3,7 +3,6 @@ CACHE MANIFEST
 
 CACHE:
 
-
 #static pictures:
 /collection_tool/media/images/icon_planner_up.png
 /collection_tool/media/images/icon_planner_up.png
@@ -19,15 +18,14 @@ CACHE:
 #static css
 /collection_tool/media/css/collection_tool.css
 
-
 #static javascript:
-/collection_tool/media/js/json2.js
-/collection_tool/media/js/jquery.js
 /family_info/media/js/dashboard.js
+/family_info/media/js/localstorage.js
+/family_info/media/js/cache.js
 /family_info/dashboard
 /collection_tool/media/js/collection_tool.js
 /collection_tool/media/js/planner.js
-
+/collection_tool/media/js/jquery.js
 
 #questions:
 {% for id in question_ids %}
@@ -56,9 +54,6 @@ CACHE:
   /collection_tool/media/images/planner/{{label|slugify}}.jpg
 {% endfor %}
 
-
 FALLBACK:
 
-
 NETWORK:
-

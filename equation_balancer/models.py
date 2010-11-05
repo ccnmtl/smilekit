@@ -61,6 +61,28 @@ class Answer(models.Model):
 
 
 
+  @property
+  def good(self):
+    """ This is used at the end of the interview,
+    to determine which areas of dental health are of particular concern for a given family.
+    This is arbitrary, but pretty darn effective.
+    """
+    all_weights = [a.weight for a in self.question.answer_set.all()]
+    
+    #one idea:
+    average_weight = float(sum(all_weights)) / len(all_weights)
+    
+    #another idea: this yields 6 out of 21 good answers.
+    #average_weight = (float(max(all_weights)) - float (min (all_weights))) / 2
+    
+    #note: low weights good, high weights bad.
+    return ( float(self.weight) < average_weight )
+
+    #>>> from equation_balancer import models
+    #>>> from family_info.models import *
+    #>>> from collection_tool.models import *
+
+
 # configurations
 class Configuration(models.Model):
   @property

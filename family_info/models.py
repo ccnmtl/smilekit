@@ -6,14 +6,10 @@ import simplejson as json
 
 
 User          = models.get_model('auth','user')
-assert User != None
-
 Configuration = models.get_model('equation_balancer', 'configuration')
-Question = models.get_model('equation_balancer', 'question')
-Answer = models.get_model('equation_balancer', 'answer')
+Question      = models.get_model('equation_balancer', 'question')
+Answer        = models.get_model('equation_balancer', 'answer')
 
-assert Configuration != None
-#TODO: add 'no data' option to these and make them mandatory. Make "no data" the default.
 
 RACE_ETHNICITY_CHOICES = (
   ('nd', 'No data'),
@@ -31,8 +27,6 @@ EDUCATION_LEVEL_CHOICES = (
   ('hi', 'Earned a a high-school degree.'),
   ('co', 'More than a high-school degree.'),
 )
-
-#TODO: make table linking families with answers!!!
 
     
 class Family(models.Model):

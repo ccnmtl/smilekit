@@ -1,0 +1,80 @@
+{% extends "collection_tool/base.html" %}
+{%load smartif%}
+
+{% block collection_tool_js %}
+<script src="/collection_tool/media/js/jquery.js" type="text/javascript"></script>
+<script src="/family_info/media/js/localstorage.js" type="text/javascript"></script>
+<script src="/collection_tool/media/js/topics.js" type="text/javascript"></script>
+{% endblock collection_tool_js %}
+
+
+{% block assessmentnav %}
+	<div id="assessmentnav">
+	{% for s in all_sections %}
+	 <a class="{%if forloop.first%}firsttab{%endif%} {%if forloop.last%}lasttab{%endif%}    {%ifequal displayquestion.nav_section.title s.title %}activetab{%endifequal%}" href="/collection_tool/section/{{s.id}}/language/{{language_code}}">
+	  {%ifequal language_code 'en'%}{{s.english_title}}{%endifequal%}
+		{%ifequal language_code 'es'%}{{s.spanish_title}}{%endifequal%}
+		</a>
+	{% endfor %}
+	</div>
+{% endblock %}
+
+
+{% block language_toggle %}
+		{%ifequal language_code 'en'%}
+		<a href="/collection_tool/question/{{displayquestion.id}}/language/es">espa&#241;ol</a>
+		{%endifequal%}
+					
+		{%ifequal language_code 'es'%}
+			<a href="/collection_tool/question/{{displayquestion.id}}/language/en">english</a>
+		{%endifequal%}
+{% endblock %}
+
+		{% block collection_tool_content %}
+		<div id="contentnav">
+			  <a id="left" href="">&#8592; Back</a>
+			  <a id="right" href="">Next &#8594;</a>
+		</div>
+		
+		
+		<div id ="language_code_div">{{language_code}}</div>
+
+    <div>
+    <pre>
+      {% for t in all_topics%}
+        {{t.id}}
+        {{t.english_title}}
+        {% for q in t.displayquestion_set.all%}        
+          {{t.good_answers}}
+          {{t.question_count}}
+        {%endfor%}
+          {%comment%}
+          {{t.english_description}}
+          {{t.spanish_title}}
+          {{t.spanish_description}}
+          {%endcomment%}
+      {%  endfor %}
+    </pre>
+    </div>
+			
+		</div>
+	
+	</div>
+	
+</div>
+
+<!--
+[
+
+'DoesNotExist',
+'MultipleObjectsReturned',
+'__class__', '__delattr__', '__dict__', '__doc__', '__eq__', '__getattribute__', '__hash__', '__init__', '__metaclass__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__str__', '__unicode__', '__weakref__', '_collect_sub_objects', '_default_manager', '_get_FIELD_display', '_get_next_or_previous_by_FIELD', '_get_next_or_previous_in_order', '_get_pk_val', '_meta', '_set_pk_val',
+
+
+'answers', 'delete', 'dir', 'displayquestion_set', 'english_description', 'english_title', 'goal_set', 'good_answers', 'id', 'objects', 'ordering_rank', 'pk', 'question_count', 'save', 'save_base', 'spanish_description', 'spanish_title'
+
+]
+    -->  
+       
+
+{% endblock collection_tool_content %}

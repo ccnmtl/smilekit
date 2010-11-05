@@ -10,22 +10,10 @@ urlpatterns = patterns('',
   (r'^new_family$',                           'family_info.views.new_family'),
   (r'^insert_family$',                        'family_info.views.insert_family'),
   (r'^edit_family/(?P<family_id>\d+)$',       'family_info.views.edit_family'),
-  
   (r'^new_user$',                             'family_info.views.new_user'),
-  #(r'^insert_user$',                          'family_info.views.insert_user'),
   (r'^edit_user/(?P<user_id>\d+)$',           'family_info.views.edit_user'),
-  
-  
-  (r'^start_interview$',                       'family_info.views.start_interview'),
-  
-  #interview dashboard:
+  (r'^start_interview$',                      'family_info.views.start_interview'),
   (r'^dashboard$',                            'family_info.views.dashboard'),
-  
-  
-  
-  (r'^insert_visit$',                         'family_info.views.insert_visit'),
-  
-  
   (r'^wrap_up_interview$',                    'family_info.views.wrap_up_interivew'),
   (r'^end_interview$',                        'family_info.views.end_interview'),
   

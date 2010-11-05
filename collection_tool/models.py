@@ -96,6 +96,42 @@ class Topic(models.Model):
   def dir(self):
     return dir(self)
   
+  @property
+  def answers(self):
+    dquestions = self.displayquestion_set.all()
+    all_answers = []
+    for dq in dquestions:
+        all_answers.extend(dq.question.answer_set.all())
+    all_answers.sort()
+    return all_answers
+
+  @property
+  def good_answers(self):
+    return [a for a in self.answers if a.good]
+     
+  @property
+  def question_count(self):
+    return len(self.displayquestion_set.all())
+     
+  @property
+  def dir(self):
+    return dir(self)
+
+
+"""
+from equation_balancer import models
+from family_info.models import *
+from collection_tool.models import *
+Answer.objects.all()
+
+ [t for t in Topic.objects.all()][1].displayquestion_set.all()
+
+
+"""
+
+  
+    
+  
 class Goal (models.Model):
   """ one concrete step in the direction of a topic"""
   
@@ -494,3 +530,7 @@ class PlannerItem(models.Model):
   label = models.TextField()
   risk_level = models.IntegerField()
   #image = models.ImageField(upload_to='answer_images',blank=True,null=True)
+  # for now, image is just assumed to be "slugified_label.jpg"
+  
+  class Meta:
+    ordering = ('type', 'label')
