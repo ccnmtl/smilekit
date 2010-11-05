@@ -1,0 +1,18 @@
+div#left {
+  width: 100px;
+  height: 800px;
+  float: left;
+  text-align: center;
+  border: 1px black solid;
+  padding-bottom: 25px;
+}
+
+div#left .time {
+  height: 30px;
+  line-height: 30px;
+  border-bottom: 1px black solid;
+}
+
+div#right {
+  height: 750px;
+}
