@@ -52,7 +52,6 @@ def insert_user(request, **kwargs):
     
     the_new_user = User(\
         username = request.POST['username'], \
-        #TODO do password validation
         password= 'testing', \
         first_name = rp['first_name'],\
         last_name =  rp['last_name']\
@@ -173,7 +172,6 @@ def insert_family(request, **kwargs):
     assert study_id != None
     
     
-    #TODO once this is working, reduce the amount of duplicate valiation code.
     if len (Family.objects.filter(study_id_number=study_id)) > 0:
         kwargs ['error_message'] = 'Sorry, there\'s already a family with study ID number %s .' % rp['study_id_number']
         return new_family (
@@ -339,8 +337,6 @@ def start_interview(request, **kwargs):
     c = RequestContext(request, { 'families' : the_families } )
     t = loader.get_template('family_info/start_interview.html')
     return HttpResponse(t.render(c))
-
-
 
 
 @login_required

@@ -6,13 +6,37 @@ from django.template import RequestContext, loader
 import random
 from datetime import datetime, timedelta
 
-#def index(request):
-#    return render_to_response("collection_tool/index.html")
 
+#(r'topics/language/(?P<language_code>\w+)$', 'collection_tool.views.topics'), 
+def topics(request, language_code):
+  if language_code not in ['en', 'es']:
+    raise Http404
+  t = loader.get_template('collection_tool/topics.html')
+  c = RequestContext(request,{
+      'language_code': language_code,
+      'all_topics': Topic.objects.all()
+  })
+  return HttpResponse(t.render(c))    
+  
+#(r'goals/language/(?P<language_code>\w+)$', 'collection_tool.views.goals'), 
+def goals(request, language_code):
+  if language_code not in ['en', 'es']:
+    raise Http404
+  t = loader.get_template('collection_tool/goals.html')
+  c = RequestContext(request,{
+      'language_code': language_code,
+      'all_goals': Goal.objects.all()
+  })
+  return HttpResponse(t.render(c))
 
-#def temp_html(request):
-#    return render_to_response("collection_tool/temp_html.html")
-    
+#(r'help_summary$', 'collection_tool.views.help_summary'), 
+def help_summary(request):
+  section = get_object_or_404(AssessmentSection, pk=section_id)
+  t = loader.get_template('collection_tool/help_summary.html')
+  c = RequestContext(request,{
+      'all_display_questions': DisplayQuestion.objects.all()
+  })
+  return HttpResponse(t.render(c))
 
 def section(request, section_id, language_code):
   section = get_object_or_404(AssessmentSection, pk=section_id)
@@ -27,10 +51,25 @@ def section(request, section_id, language_code):
       'all_sections': AssessmentSection.objects.all()
   })
   return HttpResponse(t.render(c))    
+
+
+
+def section(request, section_id, language_code):
+  section = get_object_or_404(AssessmentSection, pk=section_id)
   
+  if language_code not in ['en', 'es']:
+    raise Http404
+    
+  t = loader.get_template('collection_tool/sectionindex.html')
+  c = RequestContext(request,{
+      'section': section,
+      'language_code': language_code,
+      'all_sections': AssessmentSection.objects.all()
+  })
+  return HttpResponse(t.render(c))    
 
-#      (r'video/(?P<video_path>\w+)/$', 'collection_tool.views.video'), 
 
+  
 def video (request, video_filename):
   """Show a video."""
   t = loader.get_template('collection_tool/video.html')
@@ -38,7 +77,6 @@ def video (request, video_filename):
       'video_filename' : video_filename
   })
   return HttpResponse(t.render(c))
-
 
 
 def question(request, displayquestion_id, language_code):
@@ -88,43 +126,12 @@ def question(request, displayquestion_id, language_code):
   return HttpResponse(t.render(c))
     
 
-
-  
-
-
-
-def html_sandbox(request):
-  starttime = datetime(1984,1,1,7)
-  times = [(starttime + timedelta(minutes=30) * i).strftime("%I:%M%p")
-           for i in range(34)]
-  return render_to_response("collection_tool/html_sandbox.html", {"times":times})
-
 def widget_test(request):
   starttime = datetime(1984,1,1,7)
   times = [(starttime + timedelta(minutes=30) * i).strftime("%I:%M%p")
            for i in range(34)]
   items = PlannerItem.objects.all().order_by('type')
   return render_to_response("collection_tool/widget_test.html", {"times":times, "items":items})
-
-# for testing:
-def available_offline(request):
-  t = loader.get_template('collection_tool/message.html')
-  c = RequestContext(request,{
-      'message': "This page should be available offline."
-  })
-  return HttpResponse(t.render(c))
-
-def not_available_offline(request):
-  t = loader.get_template('collection_tool/message.html')
-  #print "NOT AVAILABLE OFFLINE"
-  c = RequestContext(request,{
-      'message': "This page should NOT be available offline."
-  })
-  return HttpResponse(t.render(c))
-
-
-def online_check(request):
-  return HttpResponse(random.randint(0, 9999999999))
 
 
 def manifest(request):
@@ -138,10 +145,6 @@ def manifest(request):
   http://www.webreference.com/authoring/languages/html/HTML5-Application-Caching/
   """
   
-  #import pdb
-  #pdb.set_trace()
-  
-  
   paths_to_question_images = [d.image.url for d in DisplayQuestion.objects.all() if has_image(d.image)]
   
   paths_to_answer_images = [d.image.url for d in DisplayAnswer.objects.all() if has_image(d.image)]
@@ -150,8 +153,6 @@ def manifest(request):
   
   planner_labels = [i.label for i in PlannerItem.objects.all()]
 
-  #THIS WORKS:::::
-  
   response = HttpResponse(mimetype='text/cache-manifest')
   t = loader.get_template('collection_tool/manifest')
   c = RequestContext(request,{
@@ -163,16 +164,8 @@ def manifest(request):
     # 'question_ids':              [d.id for d in DisplayQuestion.objects.all()],
     'question_ids':               all_display_question_ids_in_order(),
     'randomnumber' :              random.randint(0, 9999999999)
-
-    
   })
   response.write(t.render(c))
   return response
   
-    
-
-if 1 == 0:
-
-  def manifest(request):
-    return HttpResponseNotFound()  
   

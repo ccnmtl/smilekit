@@ -24,6 +24,7 @@ function check_for_previous_answers (my_question_id) {
   return previous_answers_result;
 }
 
+
 function family_answers () {
     family_id = local_storage_get (LOCAL_STORAGE_KEY, 'current_family_id');
     family_key = family_id + '_answers'
@@ -33,7 +34,7 @@ function family_answers () {
     }
     return result;
 }
-
+/*
 function store_answer(question_id, answer_id) {
     answers = family_answers ();
     answers [question_id] = answer_id;
@@ -64,8 +65,6 @@ function answer_clicked(event) {
 }
 
 
-
-/* haven't figured out how else to do this in jquery yet: */
 function unhighlight_answer (a, b) {
   $('#' + b.id).removeClass('contentbuttonchosen')
 }
@@ -80,7 +79,7 @@ function init_answer_clicked() {
   $('a.contentbutton').click(answer_clicked);
 
 }
-
+*/
 
 function update_debug_localstorage() {
   if ($('#debug_localstorage')[0]) {
@@ -114,7 +113,7 @@ function init() {
         return;
       }
       
-    
+    /*
     if ( window.location.href.match (/question/)) {
     
       display_question_id = parseInt($('#display_question_id_div')[0].innerHTML);
@@ -184,6 +183,7 @@ function init() {
         }      
         
     }
+    */
 }
 $(document).ready(init);
 
