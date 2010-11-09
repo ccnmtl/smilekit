@@ -105,13 +105,22 @@ def question(request, displayquestion_id, language_code):
                     'id': a.id
                       })
 
+  # look up question ids for planner
   planner_times = []
   planner_items = []
-  if displayquestion.question.number == 24:
+  risky_answers = {}
+  risky_exposures_question = Question.objects.get(text="number risky exposures")
+  # TODO fluoride questions
+
+  if displayquestion.question == risky_exposures_question:
     starttime = datetime(1984,1,1,6)
     planner_times = [(starttime + timedelta(minutes=30) * i).strftime("%I:%M%p")
              for i in range(36)]
     planner_items = PlannerItem.objects.all().order_by('type', 'label')
+    
+    answers = Answer.objects.filter(question=risky_exposures_question)
+    for answer in answers:
+      risky_answers[answer.text] = answer.id
 
   t = loader.get_template('collection_tool/question.html')
   c = RequestContext(request,{
@@ -121,7 +130,10 @@ def question(request, displayquestion_id, language_code):
       'language_code': language_code,
       'all_sections': AssessmentSection.objects.all(),
       'planner_times':planner_times,
-      'planner_items':planner_items
+      'planner_items':planner_items,
+      'risky_question_id':risky_exposures_question.number,
+      'risky_answers_keys':[str(key) for key in risky_answers.keys()],
+      'risky_answers_values':risky_answers.values()
   })
   return HttpResponse(t.render(c))
     
