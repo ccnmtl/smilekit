@@ -274,7 +274,6 @@ function moveDown() {
   var items = jQuery('.timeactivity', jQuery(this).parent()).html();
 
   var nextElement = jQuery(this).parent().nextAll(".timerow:not(.timerowfilled)").first();
-  console.log(nextElement);
   if(nextElement.length > 0) {
     jQuery('.timeactivity', nextElement).html(items);
     jQuery(nextElement).toggleClass('timerowfilled');
