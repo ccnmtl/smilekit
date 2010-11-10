@@ -58,6 +58,7 @@
 		{% endif %}
 		</div>
 
+		<h2 id="contenttitle">{{wording}}</h2>
   
       {% if displayquestion.question.number in widget_question_ids %}
          {% include "collection_tool/planner.html" %}
@@ -80,7 +81,6 @@
       {% endif %}
 
       {% if displayquestion.question.number not in widget_question_ids %}<!-- begin conditional widget embed -->		
-		<h2 id="contenttitle">{{wording}}</h2>
 		
 		{%if displayquestion.has_question_picture or displayquestion.no_pictures %}
 		
