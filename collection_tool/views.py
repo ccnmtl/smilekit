@@ -1,6 +1,7 @@
 from django.http import HttpResponse, Http404, HttpResponseNotFound
 from django.shortcuts import render_to_response
 from smilekit.collection_tool.models import *
+from smilekit.family_info.models import *
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext, loader
 import random
@@ -12,9 +13,21 @@ def topics(request, language_code):
   if language_code not in ['en', 'es']:
     raise Http404
   t = loader.get_template('collection_tool/topics.html')
+  
+  if 1 == 0:  
+    all_scores = {}
+    for ttopic in Topic.objects.all():
+      new_score_infoes  = {}
+      for conf in  Configuration.objects.all():
+        new_score_infoes  [ttopic] = ttopic.scoring_info(conf)
+      all_scores[ttopic] = new_score_infoes
+      
   c = RequestContext(request,{
       'language_code': language_code,
-      'all_topics': Topic.objects.all()
+      'all_topics': Topic.objects.all(),
+      'all_families': Family.objects.all(),
+      #'all_configs': Configuration.objects.all(),
+      #'all_scores' : all_scores
   })
   return HttpResponse(t.render(c))    
   

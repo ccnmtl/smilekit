@@ -155,8 +155,6 @@ function init() {
       
       init_answer_clicked();
       
-      
-      
       if (answers [question_id] != null) {
         // did this family answer this question in THIS interview?
         highlight_answer (answers[question_id]);
@@ -169,7 +167,7 @@ function init() {
         }
       }
       
-      // highlight the chosen answer on the question page:
+    // highlight the chosen answer on the question page:
     } else {
         answered_questions = $.keys( answers)
         $.each(

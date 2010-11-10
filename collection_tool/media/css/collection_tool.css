@@ -12,6 +12,10 @@ div#list_of_questions {
 
 /*always hidden: */
 
+#scoring_info, #maxmin_scoring_info, #family_configs{
+ display:none;
+}
+
 #question_id_div {
  display:none;
 }

@@ -1,5 +1,7 @@
 from django.db import models
 from django.db.models.signals import post_save
+import simplejson as json
+from equation_balancer.models import ModuleWeight
 
 LANGUAGE_CHOICES = (
     ('en', 'English'),
@@ -106,9 +108,59 @@ class Topic(models.Model):
     return all_answers
 
   @property
-  def good_answers(self):
-    return [a for a in self.answers if a.good]
-     
+  def scoring_info(self):
+    return  json.dumps(self.scoring_info_object)
+
+  @property
+  def scoring_info_object (self):
+    return  dict([(config.id, self.config_scoring_info(config)) for config in Configuration.objects.all()])
+
+
+  
+  def config_scoring_info(self, config):
+    result = {}
+    overall_weight = 0
+    try:
+      overall_weight = config.moduleweight_set.get(module=self).weight
+    except ModuleWeight.DoesNotExist:
+      pass
+    for the_answer in self.answers:
+      try:
+        question_weight = config.weight_set.get(question = the_answer.question).weight
+      except:
+        question_weight = 0
+      result[the_answer.id] = float(the_answer.weight * question_weight * overall_weight)      
+    return result
+
+  @property
+  def maxmin_scoring_info(self):
+    """format is: {  config.id : { "max" : { answer.id : max, answer.id: max ... }, "min" : {answer.id : min , ... }, ...}, ... } """
+    
+    return  json.dumps(self.maxmin_scoring_info_object)
+
+  @property
+  def maxmin_scoring_info_object (self):
+    """ For all configurations and all answers, show the best and worst possible scores."""
+    return  dict([(config.id, self.config_maxmin_scores(config)) for config in Configuration.objects.all()])
+
+  def config_maxmin_scores (self, config):
+    """for each answer in a configuration, show the best and worst possible scores."""
+    mins = {}
+    maxs = {}
+    try:
+      overall_weight = float(config.moduleweight_set.get(module=self).weight)
+    except ModuleWeight.DoesNotExist:
+      overall_weight = 0.0
+    for dq in self.displayquestion_set.all():
+      try:
+        question_weight = float(config.weight_set.get(question = dq.question).weight)
+      except:
+        question_weight = 0.0
+      for answer in dq.question.answer_set.all():
+        mins[answer.id] = dq.question.min_answer_weight * question_weight * overall_weight
+        maxs[answer.id] = dq.question.max_answer_weight * question_weight * overall_weight
+    return {'min': mins, 'max': maxs }
+
   @property
   def question_count(self):
     return len(self.displayquestion_set.all())
@@ -118,18 +170,6 @@ class Topic(models.Model):
     return dir(self)
 
 
-"""
-from equation_balancer import models
-from family_info.models import *
-from collection_tool.models import *
-Answer.objects.all()
-
- [t for t in Topic.objects.all()][1].displayquestion_set.all()
-
-
-"""
-
-  
     
   
 class Goal (models.Model):
