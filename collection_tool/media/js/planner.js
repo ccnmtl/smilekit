@@ -3,7 +3,10 @@ var mode = "all";  // options: food, fluoride, all
 var savingFluoride = false;
 
 function saveState() {
-  // TODO: save state to localstorage
+  // save state to localstorage
+  var testblob = jQuery("#timetable").html();
+  local_storage_set(LOCAL_STORAGE_KEY, 'planner_data', {'timeline': testblob});
+
   /* calculate risk # */
   var risky_exposures = 0;
   jQuery(".timerowfilled .activityitems").each(function() {
@@ -11,13 +14,50 @@ function saveState() {
     // an average of 3 or higher is 'risky'
     if(risk >= 3) { risky_exposures++; }
   });
-  alert("your risky exposures is " + risky_exposures);
+
+  // store answer to "risky exposures" question
   // 3 bins - 0 risky events, 1-2 risky events, 3 or more risky events
-  // TODO: save question answer to database
+  var key = '3 or more';
+  if(risky_exposures == 0) {
+    var key = '0';
+  }
+  else if(risky_exposures < 3) {
+    var key = '1-2';
+  }
+  var answer_id = risky_answers_values[risky_answers_keys.indexOf(key)];
+  store_answer(risky_question_id, answer_id);
 }
 
 function loadState() {
-  // TODO: load state from localstorage
+  // load state from localstorage
+  var test = local_storage_get(LOCAL_STORAGE_KEY, 'planner_data');
+  jQuery("#timetable").html(test['timeline']);
+  
+  // reset clicky stuff 'cause it breaks
+  jQuery('.time').click(saveMeal);
+  jQuery('.timeactiondelete').click(deleteMeal);
+  jQuery('.timeactionup').click(moveUp);
+  jQuery('.timeactiondown').click(moveDown);
+  jQuery('.timeactionswap').click(editMeal);
+
+  jQuery('.arrowclose').click(
+    function() {
+      jQuery('.arrowclose').hide();
+      jQuery('.arrowopen').show();
+      jQuery('.timerow').addClass("timerowcollapsed");
+      jQuery('#plannerright').show();
+      jQuery('#plannerleft').width(100);
+    }
+  );
+  jQuery('.arrowopen').click(
+    function() {
+      jQuery('.arrowclose').show();
+      jQuery('.arrowopen').hide();
+      jQuery('.timerow').removeClass("timerowcollapsed");
+      jQuery('#plannerright').hide();
+      jQuery('#plannerleft').width("95%");
+    }
+  );
 }
 
 
@@ -111,6 +151,7 @@ function initPlanner() {
   // save and cancel buttons
   loadState();
   jQuery('#right').click(saveState);
+  jQuery('#left').click(saveState);
 }
 
 function findNearestEmpty(elem) {
