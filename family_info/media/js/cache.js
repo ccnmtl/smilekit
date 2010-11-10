@@ -16,7 +16,27 @@ function error_handler(e) {
    // warn, but allow to continue.
    slog ("There was an error downloading one of the files, but you can try starting the interview anyway.");
    announce_ready_for_interview(e);
+    status_images_error();
   
+}
+
+function status_images_none() {
+  $('.download_status_image_div').hide();
+}
+
+function status_images_upload() {
+  $('.download_status_image_div').hide()
+  $('#upload').show()
+}
+
+function status_images_download() {
+  $('.download_status_image_div').hide()
+  $('#download').show()
+}
+
+function status_images_error() {
+  $('.download_status_image_div').hide()
+  $('#error').show()
 }
 
 function on_update_ready (e) {
@@ -28,6 +48,7 @@ function on_update_ready (e) {
          cache.swapCache();
          slog('Swapped/updated the cache.');
      }
+     status_images_none();
      announce_ready_for_interview(e);
  }    
 function logEvent(e) {
@@ -39,8 +60,12 @@ function logEvent(e) {
      message+= ', event: ' + type;
      message+= ', status: ' + status;     if (type == 'error' && navigator.onLine) {
          message+= ' (ERROR)';
+          status_images_error();
      }
      slog(''+message);
+     if (type != 'error') {
+      status_images_download();
+     }
 }
 
 function slog(a) {
@@ -56,6 +81,7 @@ function slog(a) {
 
 function announce_ready_for_interview(e) {
    logEvent(e);
+   status_images_none();
     if (typeof (download_success_callback) == 'function' ) {
       download_success_callback();
     }

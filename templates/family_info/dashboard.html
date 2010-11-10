@@ -25,21 +25,23 @@
 <p id="downloading">
 	<!-- this will be hidden once cache status is happy -->
 	This device is currently downloading these questions, along with their associated images,
-	into its local storage, so you can conduct the interview even if there is no Internet access. This can take some time.
+	into its local storage, so you can conduct the interview even if there is no Internet access. This can take some time....
 </p>
 
 
 <div align="center">
-	<div>
-	<img src="/collection_tool/media/images/downloading_inprogress.png" />
+
+	<div id="download" class="download_status_image_div">
+	  <img src="/collection_tool/media/images/downloading_inprogress.png" />
 	</div>
-	<div>
-	<img src="/collection_tool/media/images/downloading_successful.png" />
+	<div id="upload" class="download_status_image_div">
+	  <img src="/collection_tool/media/images/downloading_successful.png" />
 	</div>
-	<div>
-	<img src="/collection_tool/media/images/downloading_unsuccessful.png" />
+	<div id="error" class="download_status_image_div">
+	  <img src="/collection_tool/media/images/downloading_unsuccessful.png" />
 	</div>
-	<div>
+
+
 	<br />
 	<form action="/family_info/end_interview" method="post" class="end_interview_form" >
 		<span id="end_interview_inputs"></span>
@@ -47,9 +49,7 @@
 	</form>
 	<br />
 	<br />
-	<form>
-	<textarea id="debug_cache_status" rows="10" cols="80" ></textarea>
-	</form>
+  <textarea id="debug_cache_status" rows="10" cols="80" ></textarea>
 </div>
     
 <script>
