@@ -115,19 +115,30 @@ def question(request, displayquestion_id, language_code):
   # look up question ids for planner
   planner_times = []
   planner_items = []
-  risky_answers = {}
-  risky_exposures_question = Question.objects.get(text="number risky exposures")
-  # TODO fluoride questions
 
-  if displayquestion.question == risky_exposures_question:
+  risky_exposures_question = Question.objects.get(text="number risky exposures")
+  risky_answers = {}
+
+  fluoride_question = Question.objects.get(text="Fluoride rinse exposures")
+  fluoride_answers = {}
+
+  brushing_question = Question.objects.get(text="Children's daily toothbrushing")
+  brushing_answers = {}
+
+  if displayquestion.question in [risky_exposures_question, brushing_question, fluoride_question]:
     starttime = datetime(1984,1,1,6)
     planner_times = [(starttime + timedelta(minutes=30) * i).strftime("%I:%M%p")
              for i in range(36)]
     planner_items = PlannerItem.objects.all().order_by('type', 'label')
     
-    answers = Answer.objects.filter(question=risky_exposures_question)
-    for answer in answers:
+    for answer in Answer.objects.filter(question=risky_exposures_question):
       risky_answers[answer.text] = answer.id
+
+    for answer in Answer.objects.filter(question=brushing_question):
+      brushing_answers[answer.text] = answer.id
+      
+    for answer in Answer.objects.filter(question=fluoride_question):
+      fluoride_answers[answer.text] = answer.id
 
   t = loader.get_template('collection_tool/question.html')
   c = RequestContext(request,{
@@ -138,9 +149,16 @@ def question(request, displayquestion_id, language_code):
       'all_sections': AssessmentSection.objects.all(),
       'planner_times':planner_times,
       'planner_items':planner_items,
+      'widget_question_ids':[risky_exposures_question.number, brushing_question.number, fluoride_question.number],
       'risky_question_id':risky_exposures_question.number,
       'risky_answers_keys':[str(key) for key in risky_answers.keys()],
-      'risky_answers_values':risky_answers.values()
+      'risky_answers_values':risky_answers.values(),
+      'fluoride_question_id':fluoride_question.number,
+      'fluoride_answers_keys':[str(key) for key in fluoride_answers.keys()],
+      'fluoride_answers_values':fluoride_answers.values(),
+      'brushing_question_id':brushing_question.number,
+      'brushing_answers_keys':[str(key) for key in brushing_answers.keys()],
+      'brushing_answers_values':brushing_answers.values()
   })
   return HttpResponse(t.render(c))
     
