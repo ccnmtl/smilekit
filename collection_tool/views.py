@@ -13,19 +13,12 @@ def topics(request, language_code):
   if language_code not in ['en', 'es']:
     raise Http404
   t = loader.get_template('collection_tool/topics.html')
-  
-  if 1 == 0:  
-    all_scores = {}
-    for ttopic in Topic.objects.all():
-      new_score_infoes  = {}
-      for conf in  Configuration.objects.all():
-        new_score_infoes  [ttopic] = ttopic.scoring_info(conf)
-      all_scores[ttopic] = new_score_infoes
       
   c = RequestContext(request,{
       'language_code': language_code,
       'all_topics': Topic.objects.all(),
       'all_families': Family.objects.all(),
+      'all_sections': AssessmentSection.objects.all(),
       #'all_configs': Configuration.objects.all(),
       #'all_scores' : all_scores
   })
@@ -38,7 +31,8 @@ def goals(request, language_code):
   t = loader.get_template('collection_tool/goals.html')
   c = RequestContext(request,{
       'language_code': language_code,
-      'all_goals': Goal.objects.all()
+      'all_goals': Goal.objects.all(),
+      'all_sections': AssessmentSection.objects.all(),
   })
   return HttpResponse(t.render(c))
 
@@ -93,7 +87,7 @@ def video (request, video_filename):
 
 
 def question(request, displayquestion_id, language_code):
-  """ Look up a DisplayQuestion object and display it in the data collection tool. Note that question_id refers to a displayquestion object, not a question object; some displayquestions are not associated with any question."""
+  """ Look up a DisplayQuestion object and display it in the data collection tool. Note that question_id refers to a displayquestion object, not a question object."""
   displayquestion = get_object_or_404(DisplayQuestion, pk=displayquestion_id)
   if language_code not in ['en', 'es']:
     raise Http404
