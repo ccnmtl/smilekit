@@ -52,9 +52,9 @@ function calculate_relative_score (absolute_score,  scoring_info, config_id, ans
       max_answer_info =  topic_info [config_id]['max'];
       //console.log (answer_array);
       //console.log (answer_array);
-      console.log (min_answer_info);
+      //console.log (min_answer_info);
       for (i = 0; i < answer_array.length; i = i + 1) {
-        console.log (answer_array[i]);
+        //console.log (answer_array[i]);
         if (min_answer_info[answer_array[i]] !== undefined) {
           min_score += min_answer_info[answer_array[i]];
         }
@@ -67,7 +67,10 @@ function calculate_relative_score (absolute_score,  scoring_info, config_id, ans
     }); // end each
    
    range_of_possible_scores = max_score - min_score;
-   if (range_of_possible_scores == 0) { return null; }
+   if (range_of_possible_scores == 0) {
+       console.log ( "Best and worst scores are the same; can't calculate a risk rating." );
+       return null;
+   }
    
    console.log ( "Worst possible score is : " + max_score );
    console.log ( "Best possible score is : " +  min_score );
@@ -113,6 +116,10 @@ function init() {
     $('.score_div').hide();
     $('.risk_div').hide();
     
+    if relative_score == null {
+      // do something;
+      return;
+    }
     
     $('.score_div.score_' + relative_score ).show()
     if (between (relative_score, 0, 3)) {

@@ -7,25 +7,60 @@ function saveState() {
   var testblob = jQuery("#timetable").html();
   local_storage_set(LOCAL_STORAGE_KEY, 'planner_data', {'timeline': testblob});
 
-  /* calculate risk # */
-  var risky_exposures = 0;
-  jQuery(".timerowfilled .activityitems").each(function() {
-    var risk = jQuery(this).data('risk');
-    // an average of 3 or higher is 'risky'
-    if(risk >= 3) { risky_exposures++; }
-  });
+  if(mode == "food") {
+    /* calculate risk # */
+    var risky_exposures = 0;
+    jQuery(".timerowfilled .activityitems").each(function() {
+      var risk = jQuery(this).data('risk');
+      // an average of 3 or higher is 'risky'
+      if(risk >= 3) { risky_exposures++; }
+    });
 
-  // store answer to "risky exposures" question
-  // 3 bins - 0 risky events, 1-2 risky events, 3 or more risky events
-  var key = '3 or more';
-  if(risky_exposures == 0) {
-    var key = '0';
+    // store answer to "risky exposures" question
+    // 3 bins - 0 risky events, 1-2 risky events, 3 or more risky events
+    var key = '3 or more';
+    if(risky_exposures == 0) {
+      key = '0';
+    }
+    else if(risky_exposures < 3) {
+      key = '1-2';
+    }
+    var answer_id = risky_answers_values[risky_answers_keys.indexOf(key)];
+    store_answer(risky_question_id, answer_id);
   }
-  else if(risky_exposures < 3) {
-    var key = '1-2';
+  
+  if(mode == "fluoride") {
+    var fluoride_times = 0;
+    var brushing_times = 0;
+    jQuery(".timerowfilled .activityitems").each(function() {
+      if(jQuery(this).html().indexOf("brush teeth") != -1) {
+        brushing_times++;
+      }
+      if(jQuery(this).html().indexOf("fluoride rinse") != -1) {
+        fluoride_times++;
+      }
+    });
+    
+    // store answers to fluoride questions in database
+    // fluoride rinse exposures: "none", "once", "twice or more"
+    var fluoride_key = "twice or more";
+    if(fluoride_times == 0) {
+      fluoride_key = "none";
+    }
+    else if(fluoride_times == 1) {
+      fluoride_key = "once"
+    }
+
+    // daily toothbrushing: "none", "once", "twice or more"
+    var brushing_key = "twice or more";
+    if(brushing_times == 0) { brushing_key = "none"; }
+    else if(brushing_times == 1) { brushing_key = "once"; }
+  
+    var fluoride_answer_id = fluoride_answers_values[fluoride_answers_keys.indexOf(fluoride_key)];
+    store_answer(fluoride_question_id, fluoride_answer_id);
+    var brushing_answer_id = brushing_answers_values[brushing_answers_keys.indexOf(brushing_key)];
+    store_answer(brushing_question_id, brushing_answer_id);
   }
-  var answer_id = risky_answers_values[risky_answers_keys.indexOf(key)];
-  store_answer(risky_question_id, answer_id);
 }
 
 function loadState() {
@@ -239,7 +274,6 @@ function moveDown() {
   var items = jQuery('.timeactivity', jQuery(this).parent()).html();
 
   var nextElement = jQuery(this).parent().nextAll(".timerow:not(.timerowfilled)").first();
-  console.log(nextElement);
   if(nextElement.length > 0) {
     jQuery('.timeactivity', nextElement).html(items);
     jQuery(nextElement).toggleClass('timerowfilled');
