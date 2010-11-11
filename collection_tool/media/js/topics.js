@@ -80,8 +80,7 @@ function init() {
     LOCAL_STORAGE_KEY = 'la_llave_encantada';
     $('.score_div').hide();
     $('.risk_div').hide();
-    $('#left').hide();
-    $('#right').hide();
+    $('#contentnav').hide();
     
     
     family_configs = JSON.parse($('#family_configs')[0].innerHTML);
