@@ -886,7 +886,9 @@ a.contentbutton
 
 /********/
 
-.riskscore
+h2#your_score_is {text-align: center;}
+
+.score_div
 {
 	width: 300px;
 	margin: 10px auto;
@@ -897,24 +899,32 @@ a.contentbutton
 	font-weight: bold;
 	color: #fff;
 }
-
-.low
+.score_1,.score_2, .score_3
 {
 	background: -webkit-gradient(linear, left top, left bottom, from(#9bdbbb), to(#1eaf65));
 	background: -moz-linear-gradient(top, #9bdbbb, #1eaf65);
 }
 
-.medium
+.score_4,.score_5, .score_6
 {
 	background: -webkit-gradient(linear, left top, left bottom, from(#fc0), to(#f90));
 	background: -moz-linear-gradient(top, #fc0, #f90);
 }
 
-.high
+.score_7,.score_8, .score_9, .score_10
 {
 	background: -webkit-gradient(linear, left top, left bottom, from(#ff7575), to(#ff0101));
 	background: -moz-linear-gradient(top, #ff7575, #ff0101);
 }
+
+
+.risk_div {font-weight: bold; text-align: center; font-size: 48px;}
+
+#low_risk {color: green;}
+
+#medium_risk {color: orange;}
+
+#hig_risk {color: red;}
 
 /********/
 
