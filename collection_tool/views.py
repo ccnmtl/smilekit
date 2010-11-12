@@ -7,34 +7,84 @@ from django.template import RequestContext, loader
 import random
 from datetime import datetime, timedelta
 
+def risk(request, language_code):
+  """ Show risk score."""
+  if language_code not in ['en', 'es']:
+    raise Http404
+  t = loader.get_template('collection_tool/risk.html')
+      
+  c = RequestContext(request,{
+      #need this for nav:
+      'all_sections': AssessmentSection.objects.all(),
+      'language_code': language_code,
+      'all_topics': Topic.objects.all(),
+      'all_families': Family.objects.all(),
+  })
+  return HttpResponse(t.render(c))
 
-#(r'topics/language/(?P<language_code>\w+)$', 'collection_tool.views.topics'), 
+
 def topics(request, language_code):
   if language_code not in ['en', 'es']:
     raise Http404
+  print "AAAA"
   t = loader.get_template('collection_tool/topics.html')
       
   c = RequestContext(request,{
       'language_code': language_code,
       'all_topics': Topic.objects.all(),
       'all_families': Family.objects.all(),
+      #need this for nav:
       'all_sections': AssessmentSection.objects.all(),
       #'all_configs': Configuration.objects.all(),
       #'all_scores' : all_scores
   })
+  return HttpResponse(t.render(c))
+
+def topic(request, topic_id, language_code ):
+  """Show the topic title and description, goal title and
+description. Get here by clicking 'Learn' on the goals page."""
+
+  if language_code not in ['en', 'es']:
+    raise Http404
+  t = loader.get_template('collection_tool/topic.html')
+      
+  c = RequestContext(request,{
+      #need this for nav:
+      'all_sections': AssessmentSection.objects.all(),
+      'language_code': language_code,
+      'topic': get_object_or_404(Topic, pk=topic_id)
+  })
   return HttpResponse(t.render(c))    
   
-#(r'goals/language/(?P<language_code>\w+)$', 'collection_tool.views.goals'), 
 def goals(request, language_code):
+  """Displays goals we've already made progress on. AKA Plan History."""
   if language_code not in ['en', 'es']:
     raise Http404
   t = loader.get_template('collection_tool/goals.html')
   c = RequestContext(request,{
-      'language_code': language_code,
       'all_goals': Goal.objects.all(),
-      'all_sections': AssessmentSection.objects.all(),
   })
   return HttpResponse(t.render(c))
+
+
+def goal(request, goal_id, language_code):
+  """Goal form: shown when you pick a goal by clicking 'Plan' in the Topics page..."""
+  if language_code not in ['en', 'es']:
+    raise Http404
+  t = loader.get_template('collection_tool/goal.html')
+      
+  c = RequestContext(request,{
+      'language_code': language_code,
+      'goal': get_object_or_404(Goal, pk=goal_id),
+      'all_families': Family.objects.all(),
+      #need this for nav:
+      'all_sections': AssessmentSection.objects.all(),
+  })
+  return HttpResponse(t.render(c))    
+
+##########################
+##########################
+
 
 #(r'help_summary$', 'collection_tool.views.help_summary'), 
 def help_summary(request):
@@ -47,7 +97,6 @@ def help_summary(request):
 
 def section(request, section_id, language_code):
   section = get_object_or_404(AssessmentSection, pk=section_id)
-  
   if language_code not in ['en', 'es']:
     raise Http404
     
@@ -57,10 +106,8 @@ def section(request, section_id, language_code):
       'language_code': language_code,
       'all_sections': AssessmentSection.objects.all()
   })
-  return HttpResponse(t.render(c))    
-
-
-
+  return HttpResponse(t.render(c))
+  
 def section(request, section_id, language_code):
   section = get_object_or_404(AssessmentSection, pk=section_id)
   
@@ -73,9 +120,7 @@ def section(request, section_id, language_code):
       'language_code': language_code,
       'all_sections': AssessmentSection.objects.all()
   })
-  return HttpResponse(t.render(c))    
-
-
+  return HttpResponse(t.render(c))
   
 def video (request, video_filename):
   """Show a video."""
@@ -84,7 +129,6 @@ def video (request, video_filename):
       'video_filename' : video_filename
   })
   return HttpResponse(t.render(c))
-
 
 def question(request, displayquestion_id, language_code):
   """ Look up a DisplayQuestion object and display it in the data collection tool. Note that question_id refers to a displayquestion object, not a question object."""

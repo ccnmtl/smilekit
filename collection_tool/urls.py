@@ -13,9 +13,16 @@ urlpatterns = patterns('',
       (r'question/(?P<displayquestion_id>\d+)/language/(?P<language_code>\w+)$', 'collection_tool.views.question'), 
       (r'section/(?P<section_id>\d+)/language/(?P<language_code>\w+)$', 'collection_tool.views.section'), 
       (r'video/(?P<video_filename>\w+)$', 'collection_tool.views.video'), 
+      
+      
+      (r'risk/language/(?P<language_code>\w+)$', 'collection_tool.views.risk'), 
            
       (r'topics/language/(?P<language_code>\w+)$', 'collection_tool.views.topics'), 
+      (r'topic/(?P<topic_id>\d+)/language/(?P<language_code>\w+)$', 'collection_tool.views.topic'), 
+      
       (r'goals/language/(?P<language_code>\w+)$', 'collection_tool.views.goals'), 
-      (r'help_summary$', 'collection_tool.views.help_summary'), 
+      (r'goal/(?P<goal_id>\d+)/language/(?P<language_code>\w+)$', 'collection_tool.views.goal'), 
+      
+      (r'help_summary$', 'collection_tool.views.help_summary'),       
 
 )

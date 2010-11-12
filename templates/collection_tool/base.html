@@ -27,22 +27,16 @@
 <body>
 
 <div id="wrapper">
-
 	<div id="masthead">
-	
 		<h1 id="logo"><a href="#">MySmileBuddy</a></h1>
-		
 		<div id="mastheadnav">
-		  
-
-{% block language_toggle %}
+    {% block language_toggle %}
 			<a href="">En Espa&#241;ol</a>
 			<a href="">English</a>
-{% endblock %}
+    {% endblock %}
 			<a href="/family_info/dashboard">Interview page</a>
 			<a href="/library">Library</a>
 			<a href="/about/">About</a>
-		  
 		</div>
 		
 	</div>
@@ -52,7 +46,7 @@
 	<div id="mainnav">
 		<a id="introductiontab" class="mainfirsttab" href="/collection_tool/introduction/">Introduction</a>
 		<a id="assessmenttab" class="assessmenttabactive" href="/collection_tool">Assessment</a>
-		<a id="risktab" class="" href="/collection_tool/topics/language/en">Risk</a>
+		<a id="risktab" class="" href="/collection_tool/risk/language/en">Risk</a>
 		<a id="planningtab" class="mainlasttab" href="#">Planning</a>
 	</div>
 {% endblock %}

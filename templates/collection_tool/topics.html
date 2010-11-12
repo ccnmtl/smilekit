@@ -36,54 +36,40 @@
 		</div>
 		<div id ="language_code_div">{{language_code}}</div>
     <div>
-    <!-- all the JSON you need to calculate scores: -->
-    <pre id = "scoring_info"> {  {% for t in all_topics%} 
-          {%if not forloop.first%},{%endif%}"{{t.id}}" : {{t.scoring_info}}
-    {%  endfor %}  }  </pre>
-      <pre id = "maxmin_scoring_info"> { {% for t in all_topics%} 
-          {%if not forloop.first%},{%endif%}"{{t.id}}" : {{t.maxmin_scoring_info}}
-    {%  endfor %}  } </pre>
-    <!-- Show only families with active interviews?? meh, that's just more debugging. -->
-    <pre id = "family_configs"> {  {% for f in all_families%} 
-          {%if not forloop.first%},{%endif%}"{{f.id}}" : {{f.config.id}}
-    {%  endfor %}  } </pre>
- <!-- end scoring info -->
-
-    <h2 id="your_score_is">Your score is:</h2>
+    <div>
+        Let's put these fires out!
+    </div>    
+    {% for t in all_topics%} 
+      <div>
+        <a href ="javascript:show_topic_details ( {{t.id}} )">{{t}}</a>
+      </div>
+    {% endfor %}
     
-    <!-- one of these gets shown; the others stay hidden. -->
-	<div class="score_div score_1">1</div>
-	<div class="score_div score_2">2</div>
-	<div class="score_div score_3">3</div>
-	<div class="score_div score_4">4</div>
-	<div class="score_div score_5">5</div>
-	<div class="score_div score_6">6</div>
-	<div class="score_div score_7">7</div>
-	<div class="score_div score_8">8</div>
-	<div class="score_div score_9">9</div>
-	<div class="score_div score_10">10</div>
-    <!-- one of these gets shown; the others stay hidden. -->
+      
+    {% for t in all_topics%}
+      <div class ="topic_div topic_{{t.id}}">
+          <div>
+            {{t}}:
+          </div>
+          {% for g in t.goal_set.all %}
+            <div class = "goal_div">
+                    <div>
+                      {{g.english_title}}
+                   </div>
+              
+                    <div>
+                       <a href = "/collection_tool/goal/{{g.id}}/language/en">Learn</a>
+                   </div>
+                   
+                   <div>
+                    <a href = "/collection_tool/goal/{{g.id}}/language/en">Plan</a>
+                   </div>
+             
+            </div>
+          {%endfor%}    
+      </div>
+    {% endfor %}
     
-    <!-- note: spelling it 'hig' instead of high'; keeps the code easier to read if it's 3 characters. -->
-
-    <div id="hig_risk" class="risk_div">
-      There is high risk.
-    </div>
-    
-    <div id="medium_risk" class="risk_div">
-      There is medium risk.
-    </div>
-    
-    <div id="low_risk" class="risk_div">
-      There is low risk.
-    </div>
-    
-
-    </div>
-			
-		</div>
-	
-	</div>
 	
 </div>
 

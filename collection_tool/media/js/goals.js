@@ -1,188 +1,133 @@
-// just for testing:
- $.extend({
-   keys: function(obj){
-     var a = [];
-     $.each(obj, function(k){ a.push(k) });
-     return a;
-   }
- })
-
-
-function check_for_previous_answers (my_question_id) {
-  previous_answers_result = null;
-  $.each(local_storage_get(LOCAL_STORAGE_KEY, 'list_of_questions') , function(k, fam) { 
-     if (fam['family_id'] == family_id) {
-       previous_visit_questions = fam['previous_visit_questions'];
-       $.each(previous_visit_questions, function (the_question_id, the_answer_id) {
-         if (the_question_id == my_question_id) {
-            previous_answers_result =  the_answer_id;
-         }
-       });
-    }
-  }
-  );
-  return previous_answers_result;
-}
-
-function family_answers () {
-    family_id = local_storage_get (LOCAL_STORAGE_KEY, 'current_family_id');
+function calculate_family_answers (family_id) {
     family_key = family_id + '_answers'
     result = local_storage_get (LOCAL_STORAGE_KEY, family_key);
     if (result == null) {
       result = {}
     }
+    // include data from previous visits:
+    prev = local_storage_get(LOCAL_STORAGE_KEY, 'list_of_questions')[family_id]['previous_visit_questions'];
+     $.each(scoring_info, function (qid, aid) {
+      if (result [qid] == null) {
+          result [qid] = aid;
+        }
+     });
     return result;
 }
 
-function store_answer(question_id, answer_id) {
-    answers = family_answers ();
-    answers [question_id] = answer_id;
-    local_storage_set (LOCAL_STORAGE_KEY, family_key, answers);
-    update_debug_localstorage(); 
+function the_score_for (topic_id, config_id, answer_id) {
+  return scoring_info[topic_id][config_id][answer_id]
 }
 
-function answer_clicked(event) {
-  event.preventDefault();
-  //console.log(event.target.id.split('_')[1]);
-  
-  if (event.target.tagName == 'IMG') {
-    the_link= event.target.parentNode
-  } else {
-    the_link = event.target
-  }
-  answer_id = the_link.id.split('_')[1];
-  
-  question_id = $('#question_id_div')[0].innerHTML;
-  
-  //local_storage_set (LOCAL_STORAGE_KEY, question_id, answer_id);
-  //console.log("Answered " + answer_id + " to question " + question_id);
-  
-  store_answer (question_id, answer_id); 
-  
-  update_debug_localstorage(); 
-  highlight_answer (answer_id);
+function max_score_for  (topic_id, config_id, answer_id) {
+  return maxmin_scoring_info[topic_id][config_id]['max'][answer_id];
 }
 
-
-
-/* haven't figured out how else to do this in jquery yet: */
-function unhighlight_answer (a, b) {
-  $('#' + b.id).removeClass('contentbuttonchosen')
+function min_score_for  (topic_id, config_id, answer_id) {
+  return maxmin_scoring_info[topic_id][config_id]['min'][answer_id];
 }
 
-function highlight_answer (answer_id) {
-  $.each ( $('.contentbuttonchosen'), unhighlight_answer);
-  $('#answer_' + answer_id).addClass('contentbuttonchosen')
+function llog (a) {
+    console.log(JSON.stringify(a));
 }
 
-function init_answer_clicked() {
-  $('a.answerthumbnailimage').click(answer_clicked);
-  $('a.contentbutton').click(answer_clicked);
-
+function calculate_scores (family_id, scoring_info, config_id, answer_array) {
+    var result = {'all': {'score': 0, 'max':0, 'min':0}};
+    $.each(scoring_info, function (tid, bla) {
+        result[tid] = {'score': 0, 'max':0, 'min':0};
+        for (i = 0; i < answer_array.length; i = i + 1) {
+            answer_id = answer_array[i]
+            found_score = the_score_for (tid, config_id, answer_id);
+            if (found_score != null) {
+                result['all']['score'] += found_score;
+                result['all']['min']   += min_score_for  (tid, config_id, answer_id);
+                result['all']['max']   += max_score_for  (tid, config_id, answer_id);
+                result[tid]['score']   += found_score;
+                result[tid]['min']     += min_score_for  (tid, config_id, answer_id);
+                result[tid]['max']     += max_score_for  (tid, config_id, answer_id);
+            }        
+        }
+    }
+  );
+  return result;
 }
 
+function calculate_friendly_score (max_score, min_score, raw_score) {
+   range_of_possible_scores = max_score - min_score;
+   // if your answers are the BEST possible, your adjusted_score is zero:
+   if (range_of_possible_scores == 0) {
+      // you need to answer a question to get a score, sorry.
+      return null;
+   }
+   adjusted_score = raw_score - min_score;
+   // Now make the best score 10 and the worst score 1:
+   friendly_score =    1 + Math.round ( 9.0 * ( 1.0 - ( adjusted_score /  range_of_possible_scores) ) );
+   
+   if (true ) {
+       console.log ( "User's raw score is " + raw_score);
+       console.log ( "Worst possible score is : " + max_score );
+       console.log ( "Best possible score is : " +  min_score );
+       console.log ( "Adjusted score : " +  adjusted_score );
+       console.log ( "Friendly score is " + result);
+   }
+   return friendly_score;
+}
 
-function update_debug_localstorage() {
-  if ($('#debug_localstorage')[0]) {
-    document.getElementById('debug_localstorage').innerHTML = localStorage [LOCAL_STORAGE_KEY];
-  }
+function between (x, a, b) {
+  return a < x && x <= b;
 }
 
 function init() {
     LOCAL_STORAGE_KEY = 'la_llave_encantada';
-    update_debug_localstorage();
-    answers = family_answers();
-    
-    // TODO: 
-    // previous_visit_questions
+    $('.score_div').hide();
+    $('.risk_div').hide();
+    $('#contentnav').hide();
     
     
+    family_configs = JSON.parse($('#family_configs')[0].innerHTML);
+    scoring_info   = JSON.parse($('#scoring_info')[0].innerHTML  );
+    maxmin_scoring_info = JSON.parse($('#maxmin_scoring_info')[0].innerHTML);
     all_questions = local_storage_get (LOCAL_STORAGE_KEY, 'list_of_questions');
+    
+    family_id = local_storage_get (LOCAL_STORAGE_KEY, 'current_family_id');
+    config_id = family_configs [family_id];
+    
+    family_answers =  calculate_family_answers(family_id);
     questions = null;
-    
     for (i = 0; i < all_questions.length; i = i + 1) {
-    
-      if (all_questions[i].family_id == family_id) {
-        questions = all_questions[i].all_questions;
-      }
-    }
-    
-      if (questions == null) {
-        alert ("Can't find list of questions for family " + family_id);
-        $('#left').hide();
-        $('#right').hide();
-        return;
-      }
-      
-    
-    if ( window.location.href.match (/question/)) {
-    
-      display_question_id = parseInt($('#display_question_id_div')[0].innerHTML);
-      question_id = parseInt($('#question_id_div')[0].innerHTML);
-      
-      // set up next and previous:
-      language_code = $('#language_code_div')[0].innerHTML
-      
-      if (questions == null) {
-        alert ("Can't find list of questions.");
-        $('#left').hide();
-        $('#right').hide();
-        return;
-      }
-      
-      position_of_next_question = questions.indexOf(display_question_id) + 1;
-      position_of_prev_question = questions.indexOf(display_question_id) -1;
-      
-      
-      if (position_of_prev_question < 0) {
-        $('#left').hide()  
-      } else {
-        prev_question_id = questions[position_of_prev_question];
-        prev_url = '/collection_tool/question/' + prev_question_id + '/language/' + language_code 
-        $('#left')[0].href = prev_url
-      }
-      
-      
-      
-      if (position_of_next_question >= questions.length) {
-        $('#right').hide()  
-      }
-      else {
-        next_question_id = questions[position_of_next_question];
-        next_url = '/collection_tool/question/' + next_question_id + '/language/' + language_code 
-        $('#right')[0].href = next_url
-      }
-      
-      init_answer_clicked();
-      
-      if (answers [question_id] != null) {
-        // did this family answer this question in THIS interview?
-        highlight_answer (answers[question_id]);
-      }
-      else {
-        // did this family answer this question in a previous interview?
-        previous_answer = check_for_previous_answers(question_id);
-        if (previous_answer != null) {
-            highlight_answer (previous_answer);
+        if (all_questions[i].family_id == family_id) {
+            questions = all_questions[i].all_questions;
         }
-      }
-      
-    // highlight the chosen answer on the question page:
-    } else {
-        answered_questions = $.keys( answers)
-        $.each(
-            answered_questions,
-            function (a, question_id) {
-                  $('#question_' + question_id).addClass('contentbuttoncomplete');
-           }
-        )
-        $('a.contentbutton').hide()
-        if (questions != null) {
-          $.each(questions, function (a, question_id) {$('#question_' + question_id).show() })
-        }      
-        
     }
+    if (questions == null) {
+      alert ("Can't find list of questions for family " + family_id);
+      return;
+    }
+    var answer_array = [];
+      $.each(family_answers, function(k, v){
+        answer_array.push(v) 
+    });
+    the_scores = calculate_scores (family_id, scoring_info, config_id, answer_array);
+    overall_score = calculate_friendly_score(the_scores['all']['max'], the_scores['all']['min'], the_scores['all']['score']);
+    
+    if (overall_score == null) {
+      // No questions were answered.
+      alert ('Can\'t calculate a score; no questions were answered yet.');
+      return;
+    }
+    
+    $('.score_div.score_' + overall_score ).show()
+    if (between (overall_score, 0, 3)) {
+      $('#hig_risk').show();
+    }
+    if (between (overall_score, 3, 6)) {
+      $('#med_risk').show();
+    }
+    if (between (overall_score, 6, 10)) {
+      $('#low_risk').show();
+    }
+    
 }
+
 $(document).ready(init);
 
 

@@ -1,3 +1,4 @@
+/*
 function calculate_family_answers (family_id) {
     family_key = family_id + '_answers'
     result = local_storage_get (LOCAL_STORAGE_KEY, family_key);
@@ -75,13 +76,21 @@ function calculate_friendly_score (max_score, min_score, raw_score) {
 function between (x, a, b) {
   return a < x && x <= b;
 }
+*/
+
+function show_topic_details (topic_id) {
+    $('.topic_div').hide();
+    $('.topic_div.topic_' + topic_id).show();
+}
+
+
 
 function init() {
     LOCAL_STORAGE_KEY = 'la_llave_encantada';
-    $('.score_div').hide();
-    $('.risk_div').hide();
-    $('#contentnav').hide();
-    
+    $('.topic_div').hide();
+    the_scores = local_storage_get (LOCAL_STORAGE_KEY, 'risk' );
+
+    /*
     
     family_configs = JSON.parse($('#family_configs')[0].innerHTML);
     scoring_info   = JSON.parse($('#scoring_info')[0].innerHTML  );
@@ -109,6 +118,9 @@ function init() {
     the_scores = calculate_scores (family_id, scoring_info, config_id, answer_array);
     overall_score = calculate_friendly_score(the_scores['all']['max'], the_scores['all']['min'], the_scores['all']['score']);
     
+    
+    local_storage_set (LOCAL_STORAGE_KEY, 'risk', the_scores);
+    
     if (overall_score == null) {
       // No questions were answered.
       alert ('Can\'t calculate a score; no questions were answered yet.');
@@ -125,7 +137,7 @@ function init() {
     if (between (overall_score, 6, 10)) {
       $('#low_risk').show();
     }
-    
+    */   
 }
 
 $(document).ready(init);

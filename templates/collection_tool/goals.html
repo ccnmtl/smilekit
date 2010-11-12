@@ -1,12 +1,12 @@
 {% extends "collection_tool/base.html" %}
+
 {%load smartif%}
 
 {% block collection_tool_js %}
 <script src="/collection_tool/media/js/jquery.js" type="text/javascript"></script>
+<script src="/family_info/media/js/localstorage.js" type="text/javascript"></script>
 <script src="/collection_tool/media/js/topics.js" type="text/javascript"></script>
-
 {% endblock collection_tool_js %}
-
 
 {% block assessmentnav %}
 	<div id="assessmentnav">
@@ -19,129 +19,34 @@
 	</div>
 {% endblock %}
 
-
 {% block language_toggle %}
-		{%ifequal language_code 'en'%}
+	{%ifequal language_code 'en'%}
 		<a href="/collection_tool/question/{{displayquestion.id}}/language/es">espa&#241;ol</a>
-		{%endifequal%}
-					
-		{%ifequal language_code 'es'%}
-			<a href="/collection_tool/question/{{displayquestion.id}}/language/en">english</a>
-		{%endifequal%}
+	{%endifequal%}
+				
+	{%ifequal language_code 'es'%}
+		<a href="/collection_tool/question/{{displayquestion.id}}/language/en">english</a>
+	{%endifequal%}
 {% endblock %}
 
-		{% block collection_tool_content %}
-		<div id="contentnav">
-			  <a id="left" href="">&#8592; Back</a>
-  		{%if displayquestion.help_item %}
-  		
-			<a id="help" href="javascript:void(0)" onclick="document.getElementById('helpon').style.display='block';document.getElementById('helpoff').style.display='block'">Help!</a>
-  		{%endif %}
-
-			
-			{% include "collection_tool/help.html" %}
-			  <a id="right" href="">Next &#8594;</a>
-		</div>
-		<div id ="question_id_div">{{displayquestion.question.id}}</div>
-		<div id ="display_question_id_div">{{displayquestion.id}}</div>
+{% block collection_tool_content %}
 		<div id ="language_code_div">{{language_code}}</div>
+		
 		<div>
-		{% if displayquestion.topic %}
-		  TOPIC: {{displayquestion.topic}}
-		{% endif %}
-		</div>
-
-  
-      {% ifequal displayquestion.question.number 24 %}
-         {% include "collection_tool/planner.html" %}
-         <!-- set mode (fluoride or feeding) -->
-         <script type="text/javascript">
-           setMode("food");
-           {% ifequal displayquestion.nav_section.title "Fluoride" %}
-             setMode("fluoride");
-           {% endifequal %}
-         </script>
-      {% endifequal %}
-
-      {% ifnotequal displayquestion.question.number 24 %}<!-- begin conditional widget embed -->		
-		<h2 id="contenttitle">{{wording}}</h2>
-		
-		{%if displayquestion.has_question_picture or displayquestion.no_pictures %}
-		
-			          {% if displayquestion.image %}
-			          <div class="photowrapper">
-			          <img alt="Question Image" src="/uploads/{{displayquestion.image}}" />
-			          </div>
-			          {%endif%}
-			          <div class="contentbuttons">
-			
-			          {%for a in answers%}
-			
-			          {% if a.stock_answer %}
-			
-			          {% ifequal language_code 'en'%}
-			          {% include "collection_tool/stock_answers_en.html" %}
-			          {% endifequal %}
-			
-			          {% ifequal language_code 'es'%}
-			          {% include "collection_tool/stock_answers_es.html" %}
-			          {% endifequal %}
-			
-			          {% else %}
-				
-			          <a href="#" id="answer_{{a.id}}" class="contentbutton">{{a.wording}}</a>
-			
-			          {% if a.image %}<img src="/uploads/{{a.image}}"/>{%endif%}
-			
-			          {%endif%}	
-			
-			          {%endfor%}
-			
-			          </div>
-		
-    {%endif %}
-    
-    {%if displayquestion.has_answer_pictures%}
-
-			                <div class="answerphotobox">
-			
-				                <div class="answerphotoboxcontainer">
-				
-					                <div class="answerphotoboxlabel">
-					                Your Choices
-					                </div>
-				
-					                <div class="answerthumbnails">
-					                {%for a in answers%}
-		
-						                <div class="answerthumbnail">
-							                <a href="#" id="answer_{{a.id}}" class="answerthumbnailimage">{% if a.image %}<img width=200 height=200 src="/uploads/{{a.image}}"/>{%endif%}</a>
-							                <span class="answerthumbnaillabel">{{a.wording}}</span>
-						                </div>
-		
-					                {%endfor%}	
-					                </div>
-					
-					                <br clear="all" />
-					
-				                </div>
-				
-			                </div>
-			{%endif%}
-		{% endifnotequal %}<!-- end conditional widget embed -->	
-
-			<div id="debugstuff" style="border: 1px solid #000; margin-top: 20px; text-align: center;">
-				<div>Debug Stuff</div>
-				<div id="debug_localstorage"></div>
-				<div id="debug_cache_status"></div>
-				<div><img id="online_or_not" src="/collection_tool/media/images/icon_offline.jpg" ></div>
-			</div>
-			
+		  Plan History
 		</div>
 	
-	</div>
-	
-</div>
+		<div>
+		 These are some of the goals you've already made progress on:
 
+		</div>
+		<!-- JS will hide the ones you haven't visited. -->
+	  {% for goal in all_goals %}	
+    <div class = "goal_title">
+        <a href = "/collection_tool/goal/{{goal.id}}/language/en">{{goal.english_title}}</a>
+    </div>
+	  {%endfor%}
+	
+	
 
 {% endblock collection_tool_content %}
