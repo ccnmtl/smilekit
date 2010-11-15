@@ -35,41 +35,56 @@
 			  <a id="right" href="">Next &#8594;</a>
 		</div>
 		<div id ="language_code_div">{{language_code}}</div>
-    <div>
-    <div>
-        Let's put these fires out!
-    </div>    
-    {% for t in all_topics%} 
-      <div>
-        <a href ="javascript:show_topic_details ( {{t.id}} )">{{t}}</a>
-      </div>
-    {% endfor %}
-    
-      
-    {% for t in all_topics%}
-      <div class ="topic_div topic_{{t.id}}">
-          <div>
-            {{t}}:
-          </div>
-          {% for g in t.goal_set.all %}
-            <div class = "goal_div">
-                    <div>
-                      {{g.english_title}}
-                   </div>
-              
-                    <div>
-                       <a href = "/collection_tool/goal/{{g.id}}/language/en">Learn</a>
-                   </div>
-                   
-                   <div>
-                    <a href = "/collection_tool/goal/{{g.id}}/language/en">Plan</a>
-                   </div>
-             
-            </div>
-          {%endfor%}    
-      </div>
-    {% endfor %}
-    
+		<div align="center">
+		
+			<h2>
+			Let's put these fires out!
+			</h2>    
+			
+			<img src="/collection_tool/media/images/topics_graphic.png" />
+			
+			
+			{% for t in all_topics%} 
+			<div class="firebutton">
+				<div class="firebuttonicon"></div>
+				<a href="javascript:show_topic_details ( {{t.id}} )">{{t}}</a>
+				<div class="indexpageicon"><a href="#">?</a></div>
+			</div>
+			{% endfor %}
+			<div class="firebutton extinguished">
+				<div class="firebuttonicon"></div>
+				<a href="#">Test Topic</a>
+				<div class="indexpageicon"><a href="#">?</a></div>
+			</div>
+			
+			{% for t in all_topics%}
+			<div class ="topic_div topic_{{t.id}}" id="topicbox">
+			
+				<h3>
+				{{t}}:
+				</h3>
+				
+				<ol>
+				{% for g in t.goal_set.all %}
+				<li class="goal_div">
+				
+					{{g.english_title}}.
+					
+					<div class="goal_div_learn">
+					<a href = "/collection_tool/goal/{{g.id}}/language/en">Learn</a>
+					</div>
+					
+					<div class="goal_div_plan">
+					<a href = "/collection_tool/goal/{{g.id}}/language/en">Plan</a>
+					</div>
+				
+				</li>
+				{%endfor%}    
+				</ol>
+			</div>
+			{% endfor %}
+			
+		</div>
 	
 </div>
 
