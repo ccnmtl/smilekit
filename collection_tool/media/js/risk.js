@@ -1,17 +1,38 @@
-function calculate_family_answers (family_id) {
-    family_key = family_id + '_answers'
-    result = local_storage_get (LOCAL_STORAGE_KEY, family_key);
-    if (result == null) {
-      result = {}
+
+function llog (a) {
+    console.log(JSON.stringify(a));
+}
+
+function family_questions (key, family_id) {
+     family_questions_result = null;
+     $.each(local_storage_get(key, 'list_of_questions') , function(k, fam) { 
+         if (fam['family_id'] == family_id) {
+           family_questions_result = fam;
+           return;
+         }
+    });
+    return family_questions_result;
+}
+
+
+function calculate_family_answers (family_id, scoring_info) {
+    family_key = family_id + '_answers';
+    calculate_family_answers_result = local_storage_get (LOCAL_STORAGE_KEY, family_key);
+    if (calculate_family_answers_result == null) {
+      calculate_family_answers_result = {}
     }
+    
     // include data from previous visits:
-    prev = local_storage_get(LOCAL_STORAGE_KEY, 'list_of_questions')[family_id]['previous_visit_questions'];
-     $.each(scoring_info, function (qid, aid) {
-      if (result [qid] == null) {
-          result [qid] = aid;
+   //llog( family_questions (LOCAL_STORAGE_KEY, family_id)['previous_visit_questions']);
+     
+    prev = family_questions (LOCAL_STORAGE_KEY, family_id)['previous_visit_questions'];
+     $.each(prev, function (qid, aid) {
+      if (calculate_family_answers_result [qid] == null) {
+          calculate_family_answers_result [qid] = aid;
         }
      });
-    return result;
+    
+    return calculate_family_answers_result;
 }
 
 function the_score_for (topic_id, config_id, answer_id) {
@@ -70,7 +91,7 @@ function calculate_friendly_score (max_score, min_score, raw_score) {
        console.log ( "Worst possible score is : " + max_score );
        console.log ( "Best possible score is : " +  min_score );
        console.log ( "Adjusted score : " +  adjusted_score );
-       console.log ( "Friendly score is " + result);
+       console.log ( "Friendly score is " + friendly_score);
    }
    return friendly_score;
 }
@@ -94,7 +115,7 @@ function init() {
     family_id = local_storage_get (LOCAL_STORAGE_KEY, 'current_family_id');
     config_id = family_configs [family_id];
     
-    family_answers =  calculate_family_answers(family_id);
+    family_answers =  calculate_family_answers(family_id, scoring_info);
     questions = null;
     for (i = 0; i < all_questions.length; i = i + 1) {
         if (all_questions[i].family_id == family_id) {
