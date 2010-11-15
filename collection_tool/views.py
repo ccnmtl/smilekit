@@ -26,7 +26,6 @@ def risk(request, language_code):
 def topics(request, language_code):
   if language_code not in ['en', 'es']:
     raise Http404
-  print "AAAA"
   t = loader.get_template('collection_tool/topics.html')
       
   c = RequestContext(request,{

@@ -303,14 +303,28 @@ def edit_family(request, **kwargs):
 def start_interview(request, **kwargs):
     #pdb.set_trace()
     rp = request.POST
-    happening_visits =     [ v for v in request.user.visit_set.all() if v.is_happening]
     
+    
+    #evil visit cleanup: this should fail loudly.
+    #TODO remove for QA.
+    #for v in Visit.objects.all()
+    #  if len(v.families.all()) == 0:
+    #    v.close_now()
+    
+    happening_visits =     [ v for v in request.user.visit_set.all() if v.is_happening]
     
     
     if len (happening_visits) == 0:
     
         #if there is no interview currently:
         the_families = Family.objects.filter(pk__in = rp.getlist('families'))
+        
+        #assert that at least one family is selected.
+        if len(the_families) == 0:
+          my_args = {'error_message' : 'Please check at least one family.'}
+          return families (request, **my_args)
+
+
         interviewer = request.user
         new_visit = Visit(interviewer=request.user)
         new_visit.save()
@@ -320,10 +334,6 @@ def start_interview(request, **kwargs):
         
         assert len(happening_visits ) < 2
 
-        #assert that at least one family is selected.
-        if len(the_families) == 0:
-          my_args = {'error_message' : 'Please check at least one family.'}
-          return families (request, **my_args)
         
        
 
