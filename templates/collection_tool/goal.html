@@ -32,29 +32,33 @@
 {% block collection_tool_content %}
 
 		<div id ="language_code_div">{{language_code}}</div>
-		
-    <div class = "goal_title">
-        {{goal.english_title}}
+	
+	<h2 align="center">Goal</h2>
+    <p align="center" class="goal_title">
+       <b> {{goal.english_title}}</b>
+    </p>
+    
+    <div>
+        What is your goal: <input type="text" />
     </div>
     
     <div>
-        What is your goal:
+        What are the four steps it will take to make it happen: <input type="text" />
+    </div>
+
+    <div>
+        Who is responsible for this success: <input type="text" />
+    </div>
+
+    <div>
+        When will this happen? <input type="text" />
+    </div>
+
+	<div align="center">
+    <a href = "/collection_tool/goals/language/en">Set Goal</a>
+    <a href = "" > Cancel and Start over </a>
     </div>
     
-    <div>
-        What are the four steps it will take to make it happen:
-    </div>
-
-    <div>
-        Who is responsible for this success:
-    </div>
-
-    <div>
-        When will this happen?
-    </div>
-
-    <a href = "/collection_tool/goals/language/en">Set goal</a>
-    <a href = "" > Cancel and start over </a>
 	
 
 
