@@ -1,3 +1,9 @@
+/********/
+
+#debugstuff {display: none;}
+
+/********/
+
 body
 {
 	padding: 20px;
@@ -211,11 +217,12 @@ div#list_of_questions {
 	float: left;
 	/*border-left: 1px solid #000;*/
 	text-align: center;
-	padding: 21px 0px 21px 0px;
+	padding: 22px 0px 22px 0px;
 	width: 20%;
 	text-decoration: none;
 	color: #000;
 	text-shadow: #fff 1px 1px 1px;
+	font-size: 80%;
 }
 
 #assessmentnav a.activetab
@@ -248,11 +255,12 @@ div#list_of_questions {
 	float: left;
 	/*border-left: 1px solid #000;*/
 	text-align: center;
-	padding: 21px 0px 21px 0px;
+	padding: 22px 0px 22px 0px;
 	width: 25%;
 	text-decoration: none;
 	color: #000;
 	text-shadow: #fff 1px 1px 1px;
+	font-size: 80%;
 }
 
 #planningnav a.activetab
@@ -295,7 +303,7 @@ div#list_of_questions {
 #contentcontainer
 {
 	background-color: #fff;
-	padding: 20px;
+	padding: 20px 20px 40px 20px;
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
 }
