@@ -31,35 +31,37 @@
 
 {% block collection_tool_content %}
 
-		<div id ="language_code_div">{{language_code}}</div>
+	<div id ="language_code_div">{{language_code}}</div>
 	
 	<h2 align="center">Goal</h2>
-    <p align="center" class="goal_title">
-       <b> {{goal.english_title}}</b>
-    </p>
-    
-    <div>
-        What is your goal: <input type="text" />
-    </div>
-    
-    <div>
-        What are the four steps it will take to make it happen: <input type="text" />
-    </div>
-
-    <div>
-        Who is responsible for this success: <input type="text" />
-    </div>
-
-    <div>
-        When will this happen? <input type="text" />
-    </div>
-
-	<div align="center">
-    <a href = "/collection_tool/goals/language/en">Set Goal</a>
-    <a href = "" > Cancel and Start over </a>
-    </div>
-    
+	<p align="center" class="goal_title">
+	<b> {{goal.english_title}}</b>
+	</p>
 	
+	<div>
+	What is your goal: <input type="text" />
+	</div>
+	
+	<div>
+	What are the four steps it will take to make it happen: <input type="text" />
+	</div>
+	
+	<div>
+	Who is responsible for this success: <input type="text" />
+	</div>
+	
+	<div>
+	When will this happen? <input type="text" />
+	</div>
+	
+	<div align="center">
+	<a href = "/collection_tool/goals/language/en">Set Goal</a>
+	<a href = "" > Cancel and Start over </a>
+	</div>
+    
+	<FORM METHOD="LINK" ACTION="page1.htm">
+	<INPUT TYPE="submit" VALUE="Clickable Button">
+	</FORM>
 
 
 {% endblock collection_tool_content %}

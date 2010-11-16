@@ -31,27 +31,25 @@
 
 {% block collection_tool_content %}
 
-		<div id ="language_code_div">{{language_code}}</div>
-		
-		<h2 align="center">
-		  Plan History
-		</h2>
+	<div id ="language_code_div">{{language_code}}</div>
 	
-		<p>
-		 These are some of the goals you've already made progress on:
-		</p>
-		
-		<!-- JS will hide the ones you haven't visited. -->
-		<ul>
-	  {% for goal in all_goals %}	
-		<li class="goal_title">
-		<a href="/collection_tool/goal/{{goal.id}}/language/en">{{goal.english_title}}</a>
-		<br />
-		<br />
-		</li>
-	  {%endfor%}
-	  </ul>
+	<h2 align="center">
+	  Plan History
+	</h2>
+
+	<p>
+	 These are some of the goals you've already made progress on:
+	</p>
 	
-	
+	<!-- JS will hide the ones you haven't visited. -->
+	<ul>
+	{% for goal in all_goals %}	
+	<li class="goal_title">
+	<a href="/collection_tool/goal/{{goal.id}}/language/en">{{goal.english_title}}</a>
+	<br />
+	<br />
+	</li>
+	{%endfor%}
+	</ul>
 
 {% endblock collection_tool_content %}

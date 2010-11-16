@@ -765,6 +765,9 @@ a.contentbutton
 {
 	background: -webkit-gradient(linear, left top, left bottom, from(#f5f5f7), to(#c1c4c3));
 	background: -moz-linear-gradient(top, #f5f5f7, #c1c4c3);
+	padding: 15px 30px 15px 30px;
+	display: block;
+	position: relative;
 }
 
 .contentbuttoncomplete
@@ -786,10 +789,12 @@ a.contentbutton
 }
 
 
-.contentbuttoncomplete:after
+.contentbuttoncomplete:before
 {
-	content: url(http://files.wts.edu/images/icons/checkbox.png);
+	content: url(/collection_tool/media/images/checkbox.png);
 	margin-left: 10px;
+	position: absolute;
+	left: 0px;
 }
 
 /********/
