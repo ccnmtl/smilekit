@@ -23,19 +23,40 @@
 			    <form action="/family_info/start_interview" method="post" >
 	            {%for family in families %}
 	              <tr>
-	                <td>{%if family.interviewer%}
-                      <span title = "currently being interviewed by: {{family.interviewer.first_name}} {{family.interviewer.last_name}}">LOCKED</span> 
+	                <td>
+                      <span title = "currently being interviewed by: {{family.interviewer.first_name}} {{family.interviewer.last_name}}">
+                      
+                      {%if family.interviewer%}
+	                
+	                    {% if family.interviewer == user %}
+	                        <img src ='http://icons.iconarchive.com/icons/aha-soft/security/16/lock-icon.png' /> (Me)
 	                    {%else %}
-	                      <input type="checkbox" name="families" value="{{family.id}}" id="family_{{family.id}}">
+	                        <img src ='http://icons.iconarchive.com/icons/aha-soft/security/16/lock-icon.png' />({{family.interviewer.first_name}})
+                      {%endif %}
+                      
+                      </span> 
+	                    {%else %}
+	                      {%if not user.current_visit%}
+	                        <input type="checkbox" name="families" value="{{family.id}}" id="family_{{family.id}}">
+	                      {%endif%}
 	                    {%endif%}
 	                </td>
 	                <td>Family # {{family.study_id_number}}</td>
 	                <td><a href="/family_info/edit_family/{{family.id}}">Edit Family Details </a></td>
 	              </tr>
 	            {%endfor %}
+	           
+	            
 	            <tr>
 	              <td class="action" colspan = "3">
-	               <input type="submit" value ="Pull Family Data Down from Server" />
+	               <input type="submit"
+	               
+                {%if user.current_visit%}
+                  value ="Resume interview with families {%for f in user.current_visit.families.all%}{{f.study_id_number}}{% if forloop.last %}{%else%} and {%endif%}{%endfor%}"
+                {%else %}
+	               value ="Start interview"
+	               {%endif%}
+	               />
 	               <input type="reset" value ="Reset" />
 	              </td>
 	            </tr>
@@ -44,6 +65,10 @@
 	
 	</table>
 </fieldset>
+					
+<div>
+
+</div>		
 					
 <fieldset>
 					

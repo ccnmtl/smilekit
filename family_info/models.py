@@ -117,6 +117,9 @@ class Family(models.Model):
       except:
           return {'error': 'Error loading interview state info.'}
 
+
+
+
   
   def responses (self):
     return Response.objects.filter (family= self)
@@ -190,7 +193,18 @@ class Visit (models.Model):
     new_response.save()
     self.save()
     
-    
+
+
+def monkey_patch_user_current_visit(self):
+    my_current_visits = [ v for v in self.visit_set.all() if v.is_happening]
+    #this should NEVER happen as there is code in the visit creation code in  family_info/views.py that prevents you from opening a new visit until you close the current one.
+    assert len ( my_current_visits) < 2
+    if len (my_current_visits) == 1:
+      return my_current_visits [0]
+    return None
+      
+User.current_visit = monkey_patch_user_current_visit
+
 
 
 
@@ -204,8 +218,4 @@ class Response (models.Model):
   question = models.ForeignKey (Question) #can't be null
   answer = models.ForeignKey (Answer) #can't be null
 
-  
-    
-  
 
-  

@@ -74,13 +74,19 @@
 	{%endfor %}
 
 </table>
-		
+
 		
 <div align="center">
 <br />
 <br />
 <form method="link" action="/family_info/dashboard">
-<input type="submit" value="Visit These Families">
+{%if user.current_visit%}
+<input type="submit" value="Resume">
+{%else %}
+<input type="submit" value="Start">
+{%endif%}
+
+
 </form>    
 </div>
 
