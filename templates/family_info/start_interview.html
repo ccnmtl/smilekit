@@ -25,6 +25,9 @@
 	
 	{
 		"family_id" : {{the_family.id}},
+		"family_study_id_number" : {{the_family.study_id_number}},
+		
+		
 		"previous_visit_questions" :
 		{
 		{%for q, a in the_family.latest_answers.iteritems %}
@@ -52,24 +55,28 @@
 	
 	]
 </div>
-		
+		<!--
 <div class="learnmore">
 <a href="#">Learn More</a>
 </div>
-
-<table width="100%">
+-->
+<table width="100%" border = "1">
 	
 	<tr>
 		<th>Family ID</th>
 		<th>Question List</th> 
+		<!--
 		<th>Database ID</th> 
+	  -->
 	</tr>
 	
 	{% for the_family in families %}
 	<tr >
-		<td>{{the_family.study_id_number}}</td>
+		<td title ="Family {{the_family.study_id_number}} has ID {{ the_family.id }} in the database." >{{the_family.study_id_number}}</td>
 		<td>{{ the_family.config }}</td> 
+		<!--
 		<td>{{ the_family.id }}</td> 
+	  -->
 	</tr>
 	{%endfor %}
 
@@ -81,9 +88,7 @@
 <br />
 <form method="link" action="/family_info/dashboard">
 {%if user.current_visit%}
-<input type="submit" value="Resume">
-{%else %}
-<input type="submit" value="Start">
+<input type="submit" value="Get materials for visit">
 {%endif%}
 
 

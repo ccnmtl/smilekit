@@ -64,12 +64,13 @@ function set_up_family_links () {
 
   list_of_questions = local_storage_get(LOCAL_STORAGE_KEY, 'list_of_questions');
   $.each(list_of_questions , function(key, value) { 
+     family_study_id_number = value['family_study_id_number'];
      family_id = value['family_id'];
      url = value ['first_question_url']
 
      new_link = "<p>\
      <span id ='progress_info_for_family_" + family_id + "'> </span>\
-     <input type='button' class ='go_to_family_button' onclick ='head_to(" + family_id + ", \"" + url + "\")'  value = 'Visit Family " + family_id + "' /> </p>";
+     <input type='button' class ='go_to_family_button' onclick ='head_to(" + family_id + ", \"" + url + "\")'  value = 'Visit Family # " + family_study_id_number + "' /> </p>";
      start_visit_links += new_link;
   });
   $('#start_visit_links')[0].innerHTML = start_visit_links;
@@ -120,6 +121,7 @@ function hide_buttons() {
 
 function show_buttons() {
     $('.go_to_family_button').show();
+    $('#downloading').hide();
 }
 
 download_success_callback = show_buttons;

@@ -335,14 +335,8 @@ def start_interview(request, **kwargs):
         assert len(happening_visits ) < 2
 
         
-       
-
-        
     else:
         the_families = happening_visits[0].families.all()
-
-
-    
     
     c = RequestContext(request, { 'families' : the_families } )
     t = loader.get_template('family_info/start_interview.html')
@@ -405,10 +399,15 @@ def end_interview(request, **args):
       their_answers = {}
       
     for question_id, answer_id in their_answers.iteritems():
-        my_visit.store_answer (family_id, int(question_id), int(answer_id))
+      my_visit.store_answer (family_id, int(question_id), int(answer_id))
+
         
+            
   ## END ITERATE OVER FAMILIES...
   #close the visit
   my_visit.close_now()   
   assert not my_visit.is_happening
-  return families(request)
+  my_args = {'error_message' : 'Visit ended.'}
+  return families (request, **my_args)
+  
+  

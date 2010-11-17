@@ -24,12 +24,12 @@
 	            {%for family in families %}
 	              <tr>
 	                <td>
-                      <span title = "currently being interviewed by: {{family.interviewer.first_name}} {{family.interviewer.last_name}}">
+                      <span title = "currently being visited by: {{family.interviewer.first_name}} {{family.interviewer.last_name}}">
                       
                       {%if family.interviewer%}
 	                
 	                    {% if family.interviewer == user %}
-	                        <img src ='http://icons.iconarchive.com/icons/aha-soft/security/16/lock-icon.png' /> (Me)
+	                        <img src ='http://icons.iconarchive.com/icons/aha-soft/security/16/lock-icon.png' /> (You)
 	                    {%else %}
 	                        <img src ='http://icons.iconarchive.com/icons/aha-soft/security/16/lock-icon.png' />({{family.interviewer.first_name}})
                       {%endif %}
@@ -52,9 +52,9 @@
 	               <input type="submit"
 	               
                 {%if user.current_visit%}
-                  value ="Resume interview with families {%for f in user.current_visit.families.all%}{{f.study_id_number}}{% if forloop.last %}{%else%} and {%endif%}{%endfor%}"
+                  value ="Resume your visit with families {%for f in user.current_visit.families.all%}{{f.study_id_number}}{% if forloop.last %}{%else%} and {%endif%}{%endfor%}"
                 {%else %}
-	               value ="Start interview"
+	               value ="Start visit"
 	               {%endif%}
 	               />
 	               <input type="reset" value ="Reset" />
