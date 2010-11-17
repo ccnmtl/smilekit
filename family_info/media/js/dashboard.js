@@ -61,6 +61,7 @@ function head_to (family_id, url) {
 
 function set_up_family_links () {
   start_visit_links = "";
+
   list_of_questions = local_storage_get(LOCAL_STORAGE_KEY, 'list_of_questions');
   $.each(list_of_questions , function(key, value) { 
      family_id = value['family_id'];
@@ -97,7 +98,8 @@ function build_end_interview_form () {
 
 
 function show_interview_progress() {
-list_of_questions = local_storage_get(LOCAL_STORAGE_KEY, 'list_of_questions');
+
+
   $.each(list_of_questions , function(key, value) { 
      family_id = value['family_id'];
      their_answers = local_storage_get ( LOCAL_STORAGE_KEY, family_id + '_answers');
@@ -134,9 +136,14 @@ function init_family_info() {
     glog ('localstorageget not found.'); 
     return;
   } 
-  
   hide_buttons();
-  
+  list_of_questions = local_storage_get(LOCAL_STORAGE_KEY, 'list_of_questions');
+
+  if (list_of_questions == null) {
+    alert ('List of questions not found in local storage. Can\'t proceed with interview.');
+    return;
+  }
+
   if (typeof (cache) == "undefined") {
     // this might not actually matter.  
     glog ('Cache not found, so can\'t update it.'); 
@@ -145,10 +152,6 @@ function init_family_info() {
   else {
     update_cache_if_necessary ();
   }
-  
-  
-  
-  
   //3) BUILD THE END INTERVIEW FORM
   build_end_interview_form ();
   

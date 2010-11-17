@@ -8,6 +8,18 @@
  })
 
 
+function family_questions (key, family_id) {
+     result = null;
+     $.each(local_storage_get(key, 'list_of_questions') , function(k, fam) { 
+         if (fam['family_id'] == family_id) {
+           result = fam;
+           return;
+         }
+    });
+    return result;
+}
+
+
 function check_for_previous_answers (my_question_id) {
   previous_answers_result = null;
   $.each(local_storage_get(LOCAL_STORAGE_KEY, 'list_of_questions') , function(k, fam) { 

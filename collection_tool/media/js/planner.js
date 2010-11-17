@@ -66,6 +66,11 @@ function saveState() {
 function loadState() {
   // load state from localstorage
   var test = local_storage_get(LOCAL_STORAGE_KEY, 'planner_data');
+  if (test == null) {
+    alert ('no data.');
+    return;
+  }
+  
   jQuery("#timetable").html(test['timeline']);
   
   // reset clicky stuff 'cause it breaks
