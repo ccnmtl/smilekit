@@ -10,7 +10,7 @@ function add_keys() {
   })
 }
 
-function update_cache_if_necessary () {
+function download_files_into_cache () {
   cache.addEventListener('obsolete',    logEvent, false);
   cache.addEventListener('progress',    logEvent, false);
   cache.addEventListener('checking',    logEvent, false);
@@ -19,14 +19,10 @@ function update_cache_if_necessary () {
   cache.addEventListener('cached',      announce_ready_for_interview, false);
   cache.addEventListener('idle',        announce_ready_for_interview, false);
   cache.addEventListener('error', error_handler, false);
-  cache.addEventListener('updateready', on_update_ready, false);     
-  try {     
-    cache.update();
-  } catch(err) {
-    // this is only a problem on ipad safari
-    glog ("couldn't call cache update ....");
-    show_buttons();
-  }
+  cache.addEventListener('updateready', on_update_ready, false);
+  
+  cache.update();
+  
 }
 
 
@@ -63,13 +59,20 @@ function set_up_family_links () {
   start_visit_links = "";
 
   list_of_questions = local_storage_get(LOCAL_STORAGE_KEY, 'list_of_questions');
+  
+  if (list_of_questions == null) {
+        alert ('list of questions is null; can\'t start interview.');
+        return;
+  }
+  
   $.each(list_of_questions , function(key, value) { 
+     family_study_id_number = value['family_study_id_number'];
      family_id = value['family_id'];
      url = value ['first_question_url']
 
-     new_link = "<p>\
-     <span id ='progress_info_for_family_" + family_id + "'> </span>\
-     <input type='button' class ='go_to_family_button' onclick ='head_to(" + family_id + ", \"" + url + "\")'  value = 'Visit Family " + family_id + "' /> </p>";
+     new_link = "<p> Family " + family_study_id_number + " ( \
+     <span id ='progress_info_for_family_" + family_id + "'> </span> )\
+     <input type='button' class ='go_to_family_button' onclick ='head_to(" + family_id + ", \"" + url + "\")'  value = 'Visit' /> </p>";
      start_visit_links += new_link;
   });
   $('#start_visit_links')[0].innerHTML = start_visit_links;
@@ -98,8 +101,6 @@ function build_end_interview_form () {
 
 
 function show_interview_progress() {
-
-
   $.each(list_of_questions , function(key, value) { 
      family_id = value['family_id'];
      their_answers = local_storage_get ( LOCAL_STORAGE_KEY, family_id + '_answers');
@@ -108,7 +109,7 @@ function show_interview_progress() {
         number = $.keys(their_answers).length;
       }
      span_id =  '#progress_info_for_family_' + family_id;
-     $(span_id)[0].innerHTML = "Questions answered so far: " +  number;
+     $(span_id)[0].innerHTML =  number + " answered during this interview.";
   
   });
 }
@@ -120,6 +121,11 @@ function hide_buttons() {
 
 function show_buttons() {
     $('.go_to_family_button').show();
+    $('#downloading').hide();
+  if (list_of_questions == null) {
+        alert ('list of questions is null; can\'t start interview.');
+        return;
+    }
 }
 
 download_success_callback = show_buttons;
@@ -150,7 +156,7 @@ function init_family_info() {
     show_buttons();
   } 
   else {
-    update_cache_if_necessary ();
+    download_files_into_cache ();
   }
   //3) BUILD THE END INTERVIEW FORM
   build_end_interview_form ();

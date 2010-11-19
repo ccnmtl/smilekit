@@ -1170,6 +1170,40 @@ td, legend, input {font-size: 16px;}
 	padding-top: 5px;
 }
 
+
+.horizontalphotocontainer
+{
+	clear: both;
+	width: 100%;
+}
+
+.horizontalphotobox 
+{
+	margin: 0px 20px 20px 0px; 	
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border: 1px solid #ccc;
+	padding: 10px;
+	float: left;
+}
+
+.horizontalphoto img 
+{
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border: 0;
+}
+
+.horizontalphotocaption
+{
+	width: 250px;
+	font-weight: bold;
+	font-style: italic;
+	font-size: 10px;
+	padding-top: 5px;
+}
+
+
 /* stop - "flat page" styles */
 
 
@@ -1254,6 +1288,13 @@ table.interviewdetails td ul, table.interviewdetails td ol {margin: 0;}
 	{
 		left: 180px;
 	}
+	
+	.horizontalphotocontainer
+	{
+		padding-left: 50px;
+		
+	}
+
 }
 
 @media all and (orientation:landscape)
@@ -1285,6 +1326,12 @@ table.interviewdetails td ul, table.interviewdetails td ol {margin: 0;}
 	{
 		left: 200px;
 	}
+	.horizontalphotocontainer
+	{
+		padding-left: 40px;
+		
+	}
+
 }
 
 /* stop - orientation-specific styles */

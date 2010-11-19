@@ -8,7 +8,6 @@ LANGUAGE_CHOICES = (
     ('es', 'Spanish'),
 )
 
-
 Question = models.get_model('equation_balancer', 'question')
 Answer = models.get_model('equation_balancer', 'answer')
 Configuration = models.get_model('equation_balancer', 'configuration')

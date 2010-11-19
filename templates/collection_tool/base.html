@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{%ifequal 1 0%}
+{%ifequal 1 1%}
 <html manifest="/collection_tool/manifest.cache">
 {% else %}
 <html>
@@ -10,7 +10,6 @@
 	
 {% block collection_tool_js %}
 {% endblock collection_tool_js %}
-	
 	<link type="image/png" rel="apple-touch-icon" href="/collection_tool/media/images/mysmilebuddy_icon.png" />
 	
 	<meta name="apple-mobile-web-app-capable" content="yes" /> 
@@ -37,6 +36,7 @@
 			<a href="/family_info/dashboard">Interview page</a>
 			<a href="/library">Library</a>
 			<a href="/about/">About</a>
+			<a href="javascript:void();" id ="family_id_nav_display">Family ID</a>
 		</div>
 		
 	</div>

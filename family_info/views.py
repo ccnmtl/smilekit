@@ -335,14 +335,8 @@ def start_interview(request, **kwargs):
         assert len(happening_visits ) < 2
 
         
-       
-
-        
     else:
         the_families = happening_visits[0].families.all()
-
-
-    
     
     c = RequestContext(request, { 'families' : the_families } )
     t = loader.get_template('family_info/start_interview.html')
@@ -387,6 +381,7 @@ def wrap_up_interivew(request, **args):
 def end_interview(request, **args):
   """Attempt to store the responses posted and, on success, redirect to the list of families."""
   rp = request.POST
+  answer_count = 0
   
   visits = [ v for v in request.user.visit_set.all() if v.is_happening]
   if len(visits) == 0:
@@ -405,10 +400,21 @@ def end_interview(request, **args):
       their_answers = {}
       
     for question_id, answer_id in their_answers.iteritems():
-        my_visit.store_answer (family_id, int(question_id), int(answer_id))
+      my_visit.store_answer (family_id, int(question_id), int(answer_id))
+      answer_count = answer_count + 1
+
         
+            
   ## END ITERATE OVER FAMILIES...
   #close the visit
   my_visit.close_now()   
   assert not my_visit.is_happening
-  return families(request)
+  
+  if answer_count == 0:
+    my_args = {'error_message' : 'Visit ended.'}
+  else:
+    my_args = {'error_message' : '%d  answers from your visit were sent back.' % answer_count}
+
+  return families (request, **my_args)
+  
+  
