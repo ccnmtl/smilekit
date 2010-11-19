@@ -8,16 +8,6 @@ import random
 from datetime import datetime, timedelta
 
 
-
-#def foo ():
-#  print DisplayQuestion
-#
-#def bar ():
-#  from smilekit.collection_tool.models import *
-#  print DisplayQuestion
-
-
-
 def risk(request, language_code):
   """ Show risk score."""
   if language_code not in ['en', 'es']:
