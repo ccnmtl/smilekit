@@ -7,17 +7,6 @@ from django.template import RequestContext, loader
 import random
 from datetime import datetime, timedelta
 
-
-
-#def foo ():
-#  print DisplayQuestion
-#
-#def bar ():
-#  from smilekit.collection_tool.models import *
-#  print DisplayQuestion
-
-
-
 def risk(request, language_code):
   """ Show risk score."""
   if language_code not in ['en', 'es']:
@@ -142,6 +131,7 @@ def video (request, video_filename):
 
 def question(request, displayquestion_id, language_code):
   """ Look up a DisplayQuestion object and display it in the data collection tool. Note that question_id refers to a displayquestion object, not a question object."""
+  
   displayquestion = get_object_or_404(DisplayQuestion, pk=displayquestion_id)
   if language_code not in ['en', 'es']:
     raise Http404
@@ -236,7 +226,6 @@ def manifest(request):
   http://stackoverflow.com/questions/1715568/how-to-properly-invalidate-an-html5-cache-manifest-for-online-offline-web-apps
   http://www.webreference.com/authoring/languages/html/HTML5-Application-Caching/
   """
-  from smilekit.collection_tool.models import *
  
   paths_to_question_images = [d.image.url for d in DisplayQuestion.objects.all() if has_image(d.image)]
   

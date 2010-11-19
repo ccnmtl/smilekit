@@ -84,11 +84,15 @@ class Family(models.Model):
   @property
   def latest_answers (self):
     """Answers to previous interviews, for the collection tool to show on repeat visits. If the family has already answered a question more than once, the most recent answer is returned."""
+    #import pdb
+    #pdb.set_trace()
     result = {}
-    all_visits = self.visit_set.all()
     
     #start with most recent visits: we like fresh answers better than stale answers.
-    all_visits.reverse()
+    all_visits = self.visit_set.all().reverse()
+    
+    # MEMENTOTE OMNES: THIS DOES NOT WORK.
+    #all_visits.reverse()
 
     for v in all_visits:
       for r in v.response_set.all():
