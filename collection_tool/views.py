@@ -7,6 +7,7 @@ from django.template import RequestContext, loader
 import random
 from datetime import datetime, timedelta
 
+
 def risk(request, language_code):
   """ Show risk score."""
   if language_code not in ['en', 'es']:
@@ -226,7 +227,6 @@ def manifest(request):
   http://stackoverflow.com/questions/1715568/how-to-properly-invalidate-an-html5-cache-manifest-for-online-offline-web-apps
   http://www.webreference.com/authoring/languages/html/HTML5-Application-Caching/
   """
- 
   paths_to_question_images = [d.image.url for d in DisplayQuestion.objects.all() if has_image(d.image)]
   
   paths_to_answer_images = [d.image.url for d in DisplayAnswer.objects.all() if has_image(d.image)]

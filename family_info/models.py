@@ -2,15 +2,13 @@ from django.db import models
 from django.db.models.signals import post_save
 import datetime
 import simplejson as json
-#from equation_balancer.models import *
-#from equation_balancer.models import *
-
 
 User          = models.get_model('auth','user')
 Configuration = models.get_model('equation_balancer', 'configuration')
 Question      = models.get_model('equation_balancer', 'question')
-DisplayQuestion      = models.get_model('equation_balancer', 'displayquestion')
 Answer        = models.get_model('equation_balancer', 'answer')
+
+DisplayQuestion      = models.get_model('collection_tool', 'displayquestion')
 
 
 RACE_ETHNICITY_CHOICES = (
