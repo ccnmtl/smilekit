@@ -10,7 +10,7 @@ function add_keys() {
   })
 }
 
-function update_cache_if_necessary () {
+function download_files_into_cache () {
   cache.addEventListener('obsolete',    logEvent, false);
   cache.addEventListener('progress',    logEvent, false);
   cache.addEventListener('checking',    logEvent, false);
@@ -19,14 +19,10 @@ function update_cache_if_necessary () {
   cache.addEventListener('cached',      announce_ready_for_interview, false);
   cache.addEventListener('idle',        announce_ready_for_interview, false);
   cache.addEventListener('error', error_handler, false);
-  cache.addEventListener('updateready', on_update_ready, false);     
-  try {     
-    cache.update();
-  } catch(err) {
-    // this is only a problem on ipad safari
-    glog ("couldn't call cache update ....");
-    show_buttons();
-  }
+  cache.addEventListener('updateready', on_update_ready, false);
+  
+  cache.update();
+  
 }
 
 
@@ -160,7 +156,7 @@ function init_family_info() {
     show_buttons();
   } 
   else {
-    update_cache_if_necessary ();
+    download_files_into_cache ();
   }
   //3) BUILD THE END INTERVIEW FORM
   build_end_interview_form ();
