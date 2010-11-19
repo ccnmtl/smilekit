@@ -63,6 +63,12 @@ function set_up_family_links () {
   start_visit_links = "";
 
   list_of_questions = local_storage_get(LOCAL_STORAGE_KEY, 'list_of_questions');
+  
+  if (list_of_questions == null) {
+        alert ('list of questions is null; can\'t start interview.');
+        return;
+  }
+  
   $.each(list_of_questions , function(key, value) { 
      family_study_id_number = value['family_study_id_number'];
      family_id = value['family_id'];
@@ -122,6 +128,10 @@ function hide_buttons() {
 function show_buttons() {
     $('.go_to_family_button').show();
     $('#downloading').hide();
+  if (list_of_questions == null) {
+        alert ('list of questions is null; can\'t start interview.');
+        return;
+    }
 }
 
 download_success_callback = show_buttons;

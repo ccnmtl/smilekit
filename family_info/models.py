@@ -3,11 +3,13 @@ from django.db.models.signals import post_save
 import datetime
 import simplejson as json
 #from equation_balancer.models import *
+#from equation_balancer.models import *
 
 
 User          = models.get_model('auth','user')
 Configuration = models.get_model('equation_balancer', 'configuration')
 Question      = models.get_model('equation_balancer', 'question')
+DisplayQuestion      = models.get_model('equation_balancer', 'displayquestion')
 Answer        = models.get_model('equation_balancer', 'answer')
 
 
@@ -218,4 +220,76 @@ class Response (models.Model):
   question = models.ForeignKey (Question) #can't be null
   answer = models.ForeignKey (Answer) #can't be null
 
+  @property
+  def date_of_response(self):
+    return 'a'
+    
+  @property
+  def question_english(self):
+    #import pdb
+    #pdb.set_trace()
+    #return DisplayQuestion.objects.get (question = self.question)
+    return self.question.displayquestion_set.all()[0].english
+
+  @property
+  def question_english(self):
+    return self.question.text
+
+  @property
+  def answer_english(self):
+    return self.answer.text
+
+  @property
+  def interviewer(self):
+    return self.during_visit.interviewer.first_name
+
+  @property
+  def module(self):
+    return self.question.module.name
+    
+  @property
+  def module_weight(self):
+    return float(self.family.config.moduleweight_set.get(module=self.question.module).weight)
+
+  @property
+  def config(self):
+    return self.family.config
+
+  @property
+  def question_weight(self):
+    return float(self.question.weight_set.get(config=self.config).weight)
+
+  @property
+  def answer_weight(self):
+    return float(self.answer.weight)
+
+  @property
+  def score(self):
+    return self.module_weight * self.question_weight * self.answer_weight
+    
+  @property
+  def date_of_response(self):
+    #return self.during_visit.start_timestamp.strftime("%a, %d %b %Y %H:%M:%S")
+    return self.during_visit.start_timestamp.strftime("%a %d %H:%M")
+    
+  @property
+  def id_of_question(self):
+    return self.question.id
+
+  @property
+  def id_of_answer(self):
+    return self.answer.id
+
+  @property
+  def id_of_question(self):
+    return self.question.id
+
+  @property
+  def id_of_family(self):
+    return self.family.study_id_number
+
+
+      
+
+  
 

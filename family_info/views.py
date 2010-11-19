@@ -381,6 +381,7 @@ def wrap_up_interivew(request, **args):
 def end_interview(request, **args):
   """Attempt to store the responses posted and, on success, redirect to the list of families."""
   rp = request.POST
+  answer_count = 0
   
   visits = [ v for v in request.user.visit_set.all() if v.is_happening]
   if len(visits) == 0:
@@ -400,6 +401,7 @@ def end_interview(request, **args):
       
     for question_id, answer_id in their_answers.iteritems():
       my_visit.store_answer (family_id, int(question_id), int(answer_id))
+      answer_count = answer_count + 1
 
         
             
@@ -407,7 +409,12 @@ def end_interview(request, **args):
   #close the visit
   my_visit.close_now()   
   assert not my_visit.is_happening
-  my_args = {'error_message' : 'Visit ended.'}
+  
+  if answer_count == 0:
+    my_args = {'error_message' : 'Visit ended.'}
+  else:
+    my_args = {'error_message' : '%d  answers from your visit were sent back.' % answer_count}
+
   return families (request, **my_args)
   
   
