@@ -74,9 +74,9 @@ function set_up_family_links () {
      family_id = value['family_id'];
      url = value ['first_question_url']
 
-     new_link = "<p>\
-     <span id ='progress_info_for_family_" + family_id + "'> </span>\
-     <input type='button' class ='go_to_family_button' onclick ='head_to(" + family_id + ", \"" + url + "\")'  value = 'Visit Family # " + family_study_id_number + "' /> </p>";
+     new_link = "<p> Family " + family_study_id_number + " ( \
+     <span id ='progress_info_for_family_" + family_id + "'> </span> )\
+     <input type='button' class ='go_to_family_button' onclick ='head_to(" + family_id + ", \"" + url + "\")'  value = 'Visit' /> </p>";
      start_visit_links += new_link;
   });
   $('#start_visit_links')[0].innerHTML = start_visit_links;
@@ -105,8 +105,6 @@ function build_end_interview_form () {
 
 
 function show_interview_progress() {
-
-
   $.each(list_of_questions , function(key, value) { 
      family_id = value['family_id'];
      their_answers = local_storage_get ( LOCAL_STORAGE_KEY, family_id + '_answers');
@@ -115,7 +113,7 @@ function show_interview_progress() {
         number = $.keys(their_answers).length;
       }
      span_id =  '#progress_info_for_family_' + family_id;
-     $(span_id)[0].innerHTML = "Questions answered so far: " +  number;
+     $(span_id)[0].innerHTML =  number + " answered during this interview.";
   
   });
 }

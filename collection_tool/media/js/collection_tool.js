@@ -19,7 +19,15 @@ function family_questions (key, family_id) {
     return result;
 }
 
+function llog (a) {
+    if (console) {
+      console.log (JSON.stringify(a));
+    }
+}
 
+
+
+// TODO refactor check_for_previous_answers to use family_questions (LOCAL_STORAGE_KEY, family_id) to find fam.
 function check_for_previous_answers (my_question_id) {
   previous_answers_result = null;
   $.each(local_storage_get(LOCAL_STORAGE_KEY, 'list_of_questions') , function(k, fam) { 
@@ -55,29 +63,18 @@ function store_answer(question_id, answer_id) {
 
 function answer_clicked(event) {
   event.preventDefault();
-  //console.log(event.target.id.split('_')[1]);
-  
   if (event.target.tagName == 'IMG') {
     the_link= event.target.parentNode
   } else {
     the_link = event.target
   }
   answer_id = the_link.id.split('_')[1];
-  
   question_id = $('#question_id_div')[0].innerHTML;
-  
-  //local_storage_set (LOCAL_STORAGE_KEY, question_id, answer_id);
-  //console.log("Answered " + answer_id + " to question " + question_id);
-  
   store_answer (question_id, answer_id); 
-  
   update_debug_localstorage(); 
   highlight_answer (answer_id);
 }
 
-
-
-/* haven't figured out how else to do this in jquery yet: */
 function unhighlight_answer (a, b) {
   $('#' + b.id).removeClass('contentbuttonchosen')
 }
@@ -100,14 +97,43 @@ function update_debug_localstorage() {
   }
 }
 
+function init_question_nav(questions, display_question_id) {
+  position_of_next_question = questions.indexOf(display_question_id) + 1;
+  position_of_prev_question = questions.indexOf(display_question_id) -1;
+  if (position_of_prev_question < 0) {
+    $('#left').hide()  
+  } else {
+    prev_question_id = questions[position_of_prev_question];
+    prev_url = '/collection_tool/question/' + prev_question_id + '/language/' + language_code 
+    $('#left')[0].href = prev_url
+  }
+  
+  if (position_of_next_question >= questions.length) {
+    $('#right').hide()  
+  }
+  else {
+    next_question_id = questions[position_of_next_question];
+    next_url = '/collection_tool/question/' + next_question_id + '/language/' + language_code 
+    $('#right')[0].href = next_url
+  }
+
+}
+
+function hilite_answered_questions (arr) {
+    $.each(arr,
+        function (a, question_id) {
+            it =  $('.question_id_' + question_id);
+            it.addClass('contentbuttoncomplete');
+        }
+    )
+}
+
+
+
 function init() {
     LOCAL_STORAGE_KEY = 'la_llave_encantada';
     update_debug_localstorage();
     answers = family_answers();
-    
-    // TODO: 
-    // previous_visit_questions
-    
     
     all_questions = local_storage_get (LOCAL_STORAGE_KEY, 'list_of_questions');
     questions = null;
@@ -128,7 +154,7 @@ function init() {
       
     
     if ( window.location.href.match (/question/)) {
-    
+      // highlight the chosen answer on the question page:    
       display_question_id = parseInt($('#display_question_id_div')[0].innerHTML);
       question_id = parseInt($('#question_id_div')[0].innerHTML);
       
@@ -142,32 +168,8 @@ function init() {
         return;
       }
       
-      position_of_next_question = questions.indexOf(display_question_id) + 1;
-      position_of_prev_question = questions.indexOf(display_question_id) -1;
-      
-      
-      if (position_of_prev_question < 0) {
-        $('#left').hide()  
-      } else {
-        prev_question_id = questions[position_of_prev_question];
-        prev_url = '/collection_tool/question/' + prev_question_id + '/language/' + language_code 
-        $('#left')[0].href = prev_url
-      }
-      
-      
-      
-      if (position_of_next_question >= questions.length) {
-        $('#right').hide()  
-      }
-      else {
-        next_question_id = questions[position_of_next_question];
-        next_url = '/collection_tool/question/' + next_question_id + '/language/' + language_code 
-        $('#right')[0].href = next_url
-      }
-      
+      init_question_nav(questions, display_question_id) 
       init_answer_clicked();
-      
-      
       
       if (answers [question_id] != null) {
         // did this family answer this question in THIS interview?
@@ -180,20 +182,17 @@ function init() {
             highlight_answer (previous_answer);
         }
       }
-      
-      // highlight the chosen answer on the question page:
-    } else {
-        answered_questions = $.keys( answers)
-        $.each(
-            answered_questions,
-            function (a, question_id) {
-                  $('#question_' + question_id).addClass('contentbuttoncomplete');
-           }
-        )
+      } else {
+        /// show all questions that are in the topic for this config:
         $('a.contentbutton').hide()
         if (questions != null) {
           $.each(questions, function (a, question_id) {$('#question_' + question_id).show() })
         }      
+        //highlight the ones that are answered:
+        new_answered_questions = $.keys( answers);
+        old_answered_questions = $.keys(family_questions(LOCAL_STORAGE_KEY, family_id)['previous_visit_questions']);
+        hilite_answered_questions(old_answered_questions);
+        hilite_answered_questions(new_answered_questions);
         
     }
 }

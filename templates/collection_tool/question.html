@@ -2,15 +2,14 @@
 {%load smartif%}
 
 {% block collection_tool_js %}
-<script src="/collection_tool/media/js/jquery.js" type="text/javascript"></script>
-<script src="/family_info/media/js/localstorage.js" type="text/javascript"></script>
-<script src="/collection_tool/media/js/collection_tool.js" type="text/javascript"></script>
+  <script src="/collection_tool/media/js/jquery.js" type="text/javascript"></script>
+  <script src="/family_info/media/js/localstorage.js" type="text/javascript"></script>
+  <script src="/collection_tool/media/js/collection_tool.js" type="text/javascript"></script>
 
-{% if displayquestion.question.number in widget_question_ids %}
-  <link type="text/css" rel="stylesheet" href="/collection_tool/media/css/planner.css" />
-  <script src="/collection_tool/media/js/planner.js" type="text/javascript"></script>
-{% endif %}
-
+  {% if displayquestion.question.number in widget_question_ids %}
+    <link type="text/css" rel="stylesheet" href="/collection_tool/media/css/planner.css" />
+    <script src="/collection_tool/media/js/planner.js" type="text/javascript"></script>
+  {% endif %}
 {% endblock collection_tool_js %}
 
 
@@ -80,71 +79,48 @@
          </script>
       {% endif %}
 
-      {% if displayquestion.question.number not in widget_question_ids %}<!-- begin conditional widget embed -->		
-		
-		{%if displayquestion.has_question_picture or displayquestion.no_pictures %}
-		
-			          {% if displayquestion.image %}
-			          <div class="photowrapper">
-			          <img alt="Question Image" src="/uploads/{{displayquestion.image}}" />
-			          </div>
-			          {%endif%}
-			          <div class="contentbuttons">
-			
-			          {%for a in answers%}
-			
-			          {% if a.stock_answer %}
-			
-			          {% ifequal language_code 'en'%}
-			          {% include "collection_tool/stock_answers_en.html" %}
-			          {% endifequal %}
-			
-			          {% ifequal language_code 'es'%}
-			          {% include "collection_tool/stock_answers_es.html" %}
-			          {% endifequal %}
-			
-			          {% else %}
-				
-			          <a href="#" id="answer_{{a.id}}" class="contentbutton">{{a.wording}}</a>
-			
-			          {% if a.image %}<img src="/uploads/{{a.image}}"/>{%endif%}
-			
-			          {%endif%}	
-			
-			          {%endfor%}
-			
-			          </div>
-		
-    {%endif %}
-    
-    {%if displayquestion.has_answer_pictures%}
-
-			                <div class="answerphotobox">
-			
-				                <div class="answerphotoboxcontainer">
-				
-					                <div class="answerphotoboxlabel">
-					                Your Choices
-					                </div>
-				
-					                <div class="answerthumbnails">
-					                {%for a in answers%}
-		
-						                <div class="answerthumbnail">
-							                <a href="#" id="answer_{{a.id}}" class="answerthumbnailimage">{% if a.image %}<img width=200 height=200 src="/uploads/{{a.image}}"/>{%endif%}</a>
-							                <span class="answerthumbnaillabel">{{a.wording}}</span>
-						                </div>
-		
-					                {%endfor%}	
-					                </div>
-					
-					                <br clear="all" />
-					
-				                </div>
-				
-			                </div>
-			{%endif%}
-		{% endif %}<!-- end conditional widget embed -->	
+    {% if displayquestion.question.number not in widget_question_ids %}
+		  {%if displayquestion.has_question_picture or displayquestion.no_pictures %}
+        {% if displayquestion.image %}
+          <div class="photowrapper">
+            <img alt="Question Image" src="/uploads/{{displayquestion.image}}" />
+          </div>
+        {%endif%}
+        <div class="contentbuttons">
+          {%for a in answers%}
+            {% if a.stock_answer %}
+              {% ifequal language_code 'en'%}
+                {% include "collection_tool/stock_answers_en.html" %}
+              {% endifequal %}
+              {% ifequal language_code 'es'%}
+                {% include "collection_tool/stock_answers_es.html" %}
+              {% endifequal %}
+            {% else %}
+              <a href="#" id="answer_{{a.id}}" class="contentbutton">{{a.wording}}</a>
+              {% if a.image %}<img src="/uploads/{{a.image}}"/>{%endif%}
+            {%endif%}
+          {%endfor%}
+        </div>
+      {%endif %}
+      {%if displayquestion.has_answer_pictures%}
+        <div class="answerphotobox">
+          <div class="answerphotoboxcontainer">
+            <div class="answerphotoboxlabel">
+            Your Choices
+            </div>
+            <div class="answerthumbnails">
+            {%for a in answers%}
+              <div class="answerthumbnail">
+                <a href="#" id="answer_{{a.id}}" class="answerthumbnailimage">{% if a.image %}<img width=200 height=200 src="/uploads/{{a.image}}"/>{%endif%}</a>
+                <span class="answerthumbnaillabel">{{a.wording}}</span>
+              </div>
+            {%endfor%}	
+            </div>
+            <br clear="all" />
+          </div>
+        </div>
+	    {%endif%}
+		{% endif %}
 
 			<div id="debugstuff" style="border: 1px solid #000; margin-top: 20px; text-align: center;">
 				<div>Debug Stuff</div>
