@@ -9,7 +9,7 @@ import simplejson as json
 User          = models.get_model('auth','user')
 Configuration = models.get_model('equation_balancer', 'configuration')
 Question      = models.get_model('equation_balancer', 'question')
-DisplayQuestion      = models.get_model('equation_balancer', 'displayquestion')
+DisplayQuestion      = models.get_model('collection_tool', 'displayquestion')
 Answer        = models.get_model('equation_balancer', 'answer')
 
 
