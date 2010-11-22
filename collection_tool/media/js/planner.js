@@ -5,7 +5,9 @@ var savingFluoride = false;
 function saveState() {
   // save state to localstorage
   var testblob = jQuery("#timetable").html();
-  local_storage_set(LOCAL_STORAGE_KEY, 'planner_data', {'timeline': testblob});
+  //local_storage_set(LOCAL_STORAGE_KEY, 'planner_data', {'timeline': testblob});
+
+  set_planner_data(LOCAL_STORAGE_KEY, family_id,{"timeline": testblob })
 
   if(mode == "food") {
     /* calculate risk # */
@@ -63,12 +65,16 @@ function saveState() {
   }
 }
 
+
+
 function loadState() {
   // load state from localstorage
-  var test = local_storage_get(LOCAL_STORAGE_KEY, 'planner_data');
+  //var test = local_storage_get(LOCAL_STORAGE_KEY, 'planner_data');
+  
+  var test = get_planner_data (LOCAL_STORAGE_KEY, family_id);
+  
   if (test == null) {
     alert ('no data.');
-    return;
   }
   
   jQuery("#timetable").html(test['timeline']);

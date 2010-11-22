@@ -352,20 +352,7 @@ def dashboard (request):
   return HttpResponse(t.render(c))
 
 
-#TODO remove. as unneeded.
-@login_required
-def delete_interview(request, **kwargs):
-    #this is only called when someone cancels an interview before starting it.
-    
-    #assert an interview has no responses associated with it
-    
-    #delete interview
-    
-    #redirect to the general families page with a confirm message.
-    
-    pass
-
-      
+#TODO is this ever used??? Try deleting.      
 #TODO misspelled!! interivew!!
 @login_required
 def wrap_up_interivew(request, **args):
@@ -390,17 +377,38 @@ def end_interview(request, **args):
   
   assert len (visits) == 1
   my_visit = visits[0]
+  
+  #import pdb
+  #pdb.set_trace()
       
   for fam in my_visit.families.all():
   ## instead, json parse the value for that family and iteritem on that:
     family_id = fam.id
+    
+    fam = Family.objects.get(pk=family_id)
+    assert (fam != None)
+    
+    assert (rp['state_%d' % family_id]) 
+    
+    fam.set_state( rp['state_%d' % family_id])
+    
     try:
       their_answers = json.loads(rp[str(family_id)])
     except ValueError:
       their_answers = {}
       
     for question_id, answer_id in their_answers.iteritems():
+      
+      
+      #try:
+      #  my_visit.store_answer (family_id, int(question_id), int(answer_id))
+      #except:
+      #  import pdb
+      #  pdb.set_trace();
+      
       my_visit.store_answer (family_id, int(question_id), int(answer_id))
+      
+      
       answer_count = answer_count + 1
 
         

@@ -11,20 +11,26 @@ function add_keys() {
 }
 
 function download_files_into_cache () {
+  //info messages:
   cache.addEventListener('obsolete',    logEvent, false);
   cache.addEventListener('progress',    logEvent, false);
   cache.addEventListener('checking',    logEvent, false);
   cache.addEventListener('downloading', logEvent, false);
+  
+  //new cache:
+  cache.addEventListener('updateready', on_update_ready, false);
+  
+  //done caching:
   cache.addEventListener('noupdate',    announce_ready_for_interview, false);
   cache.addEventListener('cached',      announce_ready_for_interview, false);
   cache.addEventListener('idle',        announce_ready_for_interview, false);
+  
+  // problem:
   cache.addEventListener('error', error_handler, false);
-  cache.addEventListener('updateready', on_update_ready, false);
   
   cache.update();
   
 }
-
 
 function update_debug_localstorage() {
   if ($('#debug_localstorage')[0]) {
@@ -41,8 +47,6 @@ function function_maker (id) {
   return my_new_func
 }
 
-
-
 function glog (str) {
   nw = str + "\n" + $("#debug_cache_status").html();
   $("#debug_cache_status").html(nw);
@@ -57,7 +61,6 @@ function head_to (family_id, url) {
 
 function set_up_family_links () {
   start_visit_links = "";
-
   list_of_questions = local_storage_get(LOCAL_STORAGE_KEY, 'list_of_questions');
   
   if (list_of_questions == null) {
@@ -79,22 +82,34 @@ function set_up_family_links () {
 
 }
 
-
 function build_end_interview_form () {
   form_contents = "";
   current_interview_questions = local_storage_get(LOCAL_STORAGE_KEY, 'list_of_questions');
   $.each(current_interview_questions , function(key, value) {
         family_id = value['family_id'];
         their_answers = local_storage_get ( LOCAL_STORAGE_KEY, (family_id + '_answers'));
+        
+        their_state = local_storage_get(LOCAL_STORAGE_KEY, 'list_of_states')[family_id];
+        
+        
         if (their_answers != null) {
-             tmp =  JSON.stringify (their_answers)
+             safe_answers =  JSON.stringify (their_answers);
         } else {
-            tmp = '{}';
+            safe_answers = '{}';
         }
+        
+        safe_state = JSON.stringify (their_state)
         form_contents +=  "<input type='hidden' \
               name = '"  + family_id + "' \
               class = '" + family_id + "' \
-              value = '" + tmp + "' />";
+              value = '" + safe_answers + "' />\
+              \
+              \
+              <input type='hidden' \
+              name = 'state_"  + family_id + "' \
+              class = 'state_" + family_id + "' \
+              value = '" + safe_state + "' />\
+              ";
     });
     $('#end_interview_inputs')[0].innerHTML = form_contents;
 }
@@ -109,7 +124,7 @@ function show_interview_progress() {
         number = $.keys(their_answers).length;
       }
      span_id =  '#progress_info_for_family_' + family_id;
-     $(span_id)[0].innerHTML =  number + " answered during this interview.";
+     $(span_id)[0].innerHTML =  number + " answers during this interview.";
   
   });
 }

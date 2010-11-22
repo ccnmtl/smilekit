@@ -67,10 +67,8 @@ class Family(models.Model):
     choices=RACE_ETHNICITY_CHOICES,
     default = 'nd'
   )
-    
-  #any extra interview state aside from basic questions and answers:
-  interview_state = models.TextField(blank=True, default = '{}')
-
+  
+  
   @property
   def interviewer (self):
     visits_happening = [ v for v in self.visit_set.all() if v.is_happening]
@@ -101,29 +99,26 @@ class Family(models.Model):
 
     return result
     
-  def set_interview_state (self, obj):
-      if self.interview_state == "":
-          self.interview_state = '{}'
-      fact_obj = json.loads (self.interview_state)
-      fact_obj.update(json.loads(obj))
-      self.interview_state = json.dumps(fact_obj)
-      self.save()
+  
+    
+  #any extra interview state aside from basic questions and answers:
+  interview_state = models.TextField(blank=True, default = '{}')
+  
+    
+  def set_state (self, obj):
+    """ takes json"""
+    fact_obj = json.loads (self.interview_state)
+    fact_obj.update(json.loads(obj))
+    self.interview_state = json.dumps(fact_obj)
+    self.save()
 
-  def get_interview_state (self, keys):
-      key_list = json.loads(keys)
-      if self.interview_state != "":
-          return dict([(key, json.loads(self.interview_state).get(key, '')) for key in key_list])
-      return dict([(f, '') for f in key_list])
-
-  def interview_state (self):
-      try:
-          return  simplejson.loads(self.interview_state)
-      except:
-          return {'error': 'Error loading interview state info.'}
-
-
-
-
+  @property
+  def state (self):
+    """outputs json"""
+    try:
+      return  self.interview_state
+    except:
+      return JSON.dumps({'error': 'Error loading interview state info.'})
   
   def responses (self):
     return Response.objects.filter (family= self)

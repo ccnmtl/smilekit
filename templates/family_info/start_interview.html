@@ -19,6 +19,7 @@
 
 
 
+
 <div id="list_of_questions"> 
 	[
 	{% for the_family in families %}
@@ -26,7 +27,6 @@
 	{
 		"family_id" : {{the_family.id}},
 		"family_study_id_number" : {{the_family.study_id_number}},
-		
 		
 		"previous_visit_questions" :
 		{
@@ -55,6 +55,16 @@
 	
 	]
 </div>
+
+<div id ="state">
+  {
+    {% for the_family in families %}
+      "{{the_family.id}}" : {{the_family.state|safe}}
+  	  {% if not forloop.last %},{%endif%}
+    {% endfor %}
+  }
+</div>
+
 		<!--
 <div class="learnmore">
 <a href="#">Learn More</a>
