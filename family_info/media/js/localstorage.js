@@ -75,8 +75,8 @@ function set_planner_data(LOCAL_STORAGE_KEY, family_id, blob) {
 function test_planner_set() {
   var initial =   get_planner_data(LOCAL_STORAGE_KEY, family_id);
 
-  var before = {"a":{"b":"c"}};
-  var after =  {"d":{"e":"f"}};
+  var before = {"a":{"b":"c<c<c>c"}};
+  var after =  {"d":{"e":"f>&d"}};
   set_planner_data(LOCAL_STORAGE_KEY, family_id, before)
   var should_be_before = get_planner_data(LOCAL_STORAGE_KEY, family_id);
   
