@@ -385,12 +385,10 @@ def end_interview(request, **args):
   ## instead, json parse the value for that family and iteritem on that:
     family_id = fam.id
     
-    fam = Family.objects.get(pk=family_id)
-    assert (fam != None)
     
-    assert (rp['state_%d' % family_id]) 
-    
-    fam.set_state( rp['state_%d' % family_id])
+    if rp.has_key('state_%d' % family_id):
+      fam = Family.objects.get(pk=family_id)
+      fam.set_state( rp['state_%d' % family_id])
     
     try:
       their_answers = json.loads(rp[str(family_id)])
