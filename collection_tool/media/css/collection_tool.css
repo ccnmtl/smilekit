@@ -459,6 +459,12 @@ div#timetable .time
 	color: #333;
 }
 
+div#timetable .timerowfilled .time
+{
+	background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ccc)) !important;
+	background: -moz-linear-gradient(top, #fff, #ccc) !important;
+}
+
 div#timetable .timerowfilled .timeactivity
 {
    display: block;
@@ -483,9 +489,11 @@ div#timetable .timerowfilled .timebutton {
   display: block;
 }
 
+/*
 div#timetable .timerowfilled .time {
 	background: -moz-linear-gradient(top, #fff, #9bd);
 }
+*/
 
 div#timetable .timerowfilled .timebutton
 {
