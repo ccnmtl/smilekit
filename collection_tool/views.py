@@ -187,14 +187,18 @@ def question(request, displayquestion_id, language_code):
       'all_sections': AssessmentSection.objects.all(),
       'planner_times':planner_times,
       'planner_items':planner_items,
-      'widget_question_ids':[risky_exposures_question.number, brushing_question.number, fluoride_question.number],
-      'risky_question_id':risky_exposures_question.number,
+      
+      # Kat, i'm changing these numbers to id's; i suspect it was causing a bug because the widget JS was saving
+      # the answers under the number of the questions, rather than the id. I changed the corresponding chunk of
+      # question.html as well. apologies in advance for any confusion!
+      'widget_question_ids':[risky_exposures_question.id, brushing_question.id, fluoride_question.id],
+      'risky_question_id':risky_exposures_question.id,
       'risky_answers_keys':[str(key) for key in risky_answers.keys()],
       'risky_answers_values':risky_answers.values(),
-      'fluoride_question_id':fluoride_question.number,
+      'fluoride_question_id':fluoride_question.id,
       'fluoride_answers_keys':[str(key) for key in fluoride_answers.keys()],
       'fluoride_answers_values':fluoride_answers.values(),
-      'brushing_question_id':brushing_question.number,
+      'brushing_question_id':brushing_question.id,
       'brushing_answers_keys':[str(key) for key in brushing_answers.keys()],
       'brushing_answers_values':brushing_answers.values()
   })

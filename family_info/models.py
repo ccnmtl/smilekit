@@ -39,10 +39,8 @@ class Family(models.Model):
   def __unicode__(self):
     return "Family # %d" % self.study_id_number
   
-  
   class Meta:
     ordering = ('study_id_number',)
-  
     
   #study id (used as link. cannot be null.)
   study_id_number =         models.IntegerField(unique=True)
@@ -68,12 +66,31 @@ class Family(models.Model):
     default = 'nd'
   )
   
+  @property
+  def all_visits(self):
+    return [v for v in self.visit_set.all() ]
+  
+  @property
+  def in_a_visit(self):
+    return len (self.visits_happening) > 0
+  
+  @property
+  def visits_happening (self):
+    return [ v for v in self.all_visits  if v.is_happening]
+  
+  @property
+  def has_had_an_interview(self):
+    return len (self.all_visits) > 0
+    
+  @property
+  def config_locked(self):
+    """ should we allow this family's configuration to change? Not if they've already had an interview."""
+    return not self.has_had_an_interview
   
   @property
   def interviewer (self):
-    visits_happening = [ v for v in self.visit_set.all() if v.is_happening]
-    if len (visits_happening) > 0:
-      return visits_happening[0].interviewer
+    if len (self.visits_happening) > 0:
+      return self.visits_happening[0].interviewer
     return None
     
 

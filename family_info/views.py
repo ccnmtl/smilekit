@@ -156,8 +156,6 @@ def new_family(request, **kwargs):
     t = loader.get_template('family_info/add_edit_family.html')
     return HttpResponse(t.render(c))
 
-
-
 @login_required
 def insert_family(request, **kwargs):
     """ this validates the family form and inserts the family."""
@@ -170,7 +168,6 @@ def insert_family(request, **kwargs):
       kwargs ['error_message'] = "Sorry, couldn't turn : \"%s\" into a valid study ID number." % rp['study_id_number']
       return new_family (request,**kwargs )
     assert study_id != None
-    
     
     if len (Family.objects.filter(study_id_number=study_id)) > 0:
         kwargs ['error_message'] = 'Sorry, there\'s already a family with study ID number %s .' % rp['study_id_number']
@@ -228,7 +225,6 @@ def back_to_edit_family (request, **kwargs):
     c = RequestContext(request, varz)
     t = loader.get_template('family_info/add_edit_family.html')
     return HttpResponse(t.render(c))
-
 
 @login_required
 def edit_family(request, **kwargs):
@@ -301,28 +297,26 @@ def edit_family(request, **kwargs):
 #**************************
 @login_required
 def start_interview(request, **kwargs):
-    #pdb.set_trace()
     rp = request.POST
     
+    my_happening_visits =     [ v for v in request.user.visit_set.all() if v.is_happening]
     
-    #evil visit cleanup: this should fail loudly.
-    #TODO remove for QA.
-    #for v in Visit.objects.all()
-    #  if len(v.families.all()) == 0:
-    #    v.close_now()
+    #can't start an interview if i'm already interviewing someone else:
+    if len (my_happening_visits) == 0:
     
-    happening_visits =     [ v for v in request.user.visit_set.all() if v.is_happening]
-    
-    
-    if len (happening_visits) == 0:
-    
-        #if there is no interview currently:
         the_families = Family.objects.filter(pk__in = rp.getlist('families'))
-        
+
         #assert that at least one family is selected.
         if len(the_families) == 0:
           my_args = {'error_message' : 'Please check at least one family.'}
           return families (request, **my_args)
+
+        
+        #double-check nobody else started an interview with any of these families since you arrived on the page.
+        if [fam for fam in the_families if fam.in_a_visit]:
+          my_args = {'error_message' : 'Sorry, one of these families is already being visited.'}
+          return families (request, **my_args)
+        
 
 
         interviewer = request.user
@@ -332,11 +326,11 @@ def start_interview(request, **kwargs):
         new_visit.save();
         #else get list of families from current users's interview
         
-        assert len(happening_visits ) < 2
+        assert len(my_happening_visits ) < 2
 
-        
+      
     else:
-        the_families = happening_visits[0].families.all()
+        the_families = my_happening_visits[0].families.all()
     
     c = RequestContext(request, { 'families' : the_families } )
     t = loader.get_template('family_info/start_interview.html')
