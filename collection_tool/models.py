@@ -21,10 +21,10 @@ class HelpItem(models.Model):
   spanish_title = models.CharField(max_length=1024, null = True, blank = True)
   
   english_script = models.TextField(null=True, blank =True,  help_text = "Basic script to follow")
-  english_script_instructions = models.TextField(null=True, blank =True,  help_text = "More details about this subject")
+  english_script_instructions = models.TextField(null=True, blank =True, verbose_name="English - More Details",  help_text = "More details about this subject")
   
   spanish_script = models.TextField(null=True, blank =True ,  help_text = "Basic script to follow")
-  spanish_script_instructions = models.TextField(null=True, blank =True, help_text = "More details about this question")
+  spanish_script_instructions = models.TextField(null=True, blank =True, verbose_name="Spanish - More Details",  help_text = "More details about this question")
   
   
   def __unicode__(self):
