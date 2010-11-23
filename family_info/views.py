@@ -371,48 +371,29 @@ def end_interview(request, **args):
   answer_count = 0
   
   visits = [ v for v in request.user.visit_set.all() if v.is_happening]
+  
   if len(visits) == 0:
-    #probably just hit the back button by mistake.
+    #back button by mistake after ending an interview:
+    #just toss them back to families page.
     return families(request)
   
   assert len (visits) == 1
   my_visit = visits[0]
   
-  #import pdb
-  #pdb.set_trace()
-      
   for fam in my_visit.families.all():
-  ## instead, json parse the value for that family and iteritem on that:
     family_id = fam.id
-    
-    
     if rp.has_key('state_%d' % family_id):
       fam = Family.objects.get(pk=family_id)
       fam.set_state( rp['state_%d' % family_id])
-    
-    try:
-      their_answers = json.loads(rp[str(family_id)])
-    except ValueError:
-      their_answers = {}
-      
-    for question_id, answer_id in their_answers.iteritems():
-      
-      
-      #try:
-      #  my_visit.store_answer (family_id, int(question_id), int(answer_id))
-      #except:
-      #  import pdb
-      #  pdb.set_trace();
-      
-      my_visit.store_answer (family_id, int(question_id), int(answer_id))
-      
-      
-      answer_count = answer_count + 1
-
-        
-            
-  ## END ITERATE OVER FAMILIES...
-  #close the visit
+    if rp.has_key(str(family_id)):
+      try:
+        their_answers = json.loads(rp[str(family_id)])
+      except ValueError:
+        their_answers = {}
+      for question_id, answer_id in their_answers.iteritems():
+        my_visit.store_answer (family_id, int(question_id), int(answer_id))
+        answer_count = answer_count + 1
+  
   my_visit.close_now()   
   assert not my_visit.is_happening
   
