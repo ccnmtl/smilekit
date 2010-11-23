@@ -88,7 +88,11 @@
 		
 		<tr>
 			<th>Child's Approximate Year of Birth</th>
-			<td><input type="text" name="child_year_of_birth" value="{{family.child_year_of_birth}}" /></td>
+			<td><input type="text" name="child_year_of_birth" 
+			{%if family.child_year_of_birth%}
+			  value="{{family.child_year_of_birth}}" 
+			{%endif%}
+			/></td>
 		</tr>
 
 		{% if family %}
@@ -128,8 +132,7 @@
           </select>
       </td>
 		</tr>
-		
-		
+
 		<tr>
 		<th>Was the mother born in the USA?</th>
 		<td>

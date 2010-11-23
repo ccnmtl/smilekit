@@ -175,13 +175,16 @@ def insert_family(request, **kwargs):
           request,
           **kwargs
         )
-      
-    try:
-      child_year_of_birth = int(rp['child_year_of_birth'])
-    except ValueError:
-      kwargs ['error_message'] = "Sorry, %s is not a valid year." % rp['child_year_of_birth']
-      return new_family (request,**kwargs )
+        
     
+    child_year_of_birth = None
+    if rp['child_year_of_birth'] != '':
+      try:
+        child_year_of_birth = int(rp['child_year_of_birth'])
+      except ValueError:
+        kwargs ['error_message'] = "Sorry, %s is not a valid year." % rp['child_year_of_birth']
+        return new_family (request,**kwargs )
+
     
     the_config = equation_balancer_configuration.objects.get(pk = rp['config_id'])
     assert the_config != None
@@ -191,7 +194,7 @@ def insert_family(request, **kwargs):
       study_id_number= study_id,
       date_created = datetime.datetime.now(),
       date_modified = datetime.datetime.now(),
-      child_year_of_birth = int( rp['child_year_of_birth']),
+      child_year_of_birth = child_year_of_birth,
       config_id = the_config.id
     )
     
@@ -203,11 +206,8 @@ def insert_family(request, **kwargs):
     if rp.has_key ('family_last_name'):
       the_family.family_last_name                   = rp['family_last_name']
     
-    the_new_family.mother_born_in_us =        (rp['mother_born_in_us'] == 'True')
-    the_new_family.food_stamps_in_last_year = (rp['food_stamps_in_last_year'] == 'True')
-    the_new_family.study_id_number                    = rp['study_id_number']
-    the_new_family.study_id_number                    = study_id
-    the_new_family.child_year_of_birth                = int(rp['child_year_of_birth'])
+    the_new_family.mother_born_in_us =                  (rp['mother_born_in_us'] == 'True')
+    the_new_family.food_stamps_in_last_year =           (rp['food_stamps_in_last_year'] == 'True')
     the_new_family.race_ethnicity                     = rp['race_ethnicity']
     the_new_family.highest_level_of_parent_education  = rp['highest_level_of_parent_education']
         
@@ -249,15 +249,17 @@ def edit_family(request, **kwargs):
               )
             assert study_id != None
             
-            try:
-              child_year_of_birth = int(rp['child_year_of_birth'])
-            except ValueError:
-              return back_to_edit_family (
-                request,
-                family=the_family,
-                error_message="Sorry, %s is not a valid year." % rp['child_year_of_birth']
-              )
-              
+            child_year_of_birth = None
+            if rp['child_year_of_birth'] != '':
+              try:
+                child_year_of_birth = int(rp['child_year_of_birth'])
+              except ValueError:
+                return back_to_edit_family (
+                  request,
+                  family=the_family,
+                  error_message="Sorry, %s is not a valid year." % rp['child_year_of_birth']
+                )
+                
             if the_family.study_id_number != study_id and len (Family.objects.filter(study_id_number=rp['study_id_number'])) > 0:
                 error_message = 'Sorry, there\'s already a family with study ID number %s .' % rp['study_id_number']
                 return back_to_edit_family (
