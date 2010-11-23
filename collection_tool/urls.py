@@ -23,6 +23,6 @@ urlpatterns = patterns('',
       (r'goals/language/(?P<language_code>\w+)$', 'collection_tool.views.goals'), 
       (r'goal/(?P<goal_id>\d+)/language/(?P<language_code>\w+)$', 'collection_tool.views.goal'), 
       
-      (r'help_summary$', 'collection_tool.views.help_summary'),       
+
 
 )

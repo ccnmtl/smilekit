@@ -86,14 +86,7 @@ def goal(request, goal_id, language_code):
 ##########################
 
 
-#(r'help_summary$', 'collection_tool.views.help_summary'), 
-def help_summary(request):
-  section = get_object_or_404(AssessmentSection, pk=section_id)
-  t = loader.get_template('collection_tool/help_summary.html')
-  c = RequestContext(request,{
-      'all_display_questions': DisplayQuestion.objects.all()
-  })
-  return HttpResponse(t.render(c))
+
 
 def section(request, section_id, language_code):
   section = get_object_or_404(AssessmentSection, pk=section_id)

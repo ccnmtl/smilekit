@@ -18,7 +18,7 @@ div#list_of_questions {
 
 /*always hidden: */
 
-#scoring_info, #maxmin_scoring_info, #family_configs{
+#scoring_info, #maxmin_scoring_info, #family_configs, div#state{
  display:none;
 }
 

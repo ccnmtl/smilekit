@@ -424,3 +424,11 @@ def end_interview(request, **args):
   return families (request, **my_args)
   
   
+  
+def help_summary(request):
+  t = loader.get_template('family_info/help_summary.html')
+  c = RequestContext(request,{
+      'all_help_items': HelpItem.objects.all()
+  })
+  return HttpResponse(t.render(c))
+  
