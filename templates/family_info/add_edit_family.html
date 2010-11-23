@@ -46,9 +46,10 @@
 		</tr>
 
 		<tr>
-			<th>Set of Weights Used</th>
+			<th>Set of Weights Usedddd</th>
 			<td>
-				{% if not family %}
+			
+				{% if not family.config_locked %}
 				<select name = "config_id">
 				{% for config in equation_balancer_configs %}
 				<option value = "{{config.id}}"
@@ -64,7 +65,7 @@
 		
 		<tr>
 			<th></th>
-			<td><span class="prompt">(This cannot be changed once the family is created.)</span></td>
+			<td><span class="prompt">(This cannot be changed once someone has started an interview with the family.)</span></td>
 		</tr>
       
 		<!--
