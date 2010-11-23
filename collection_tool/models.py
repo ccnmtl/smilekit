@@ -202,11 +202,15 @@ class AssessmentSection(models.Model):
   english_title = models.CharField(max_length=1024, null = True, blank = True)
   spanish_title = models.CharField(max_length=1024, null = True, blank = True)
 
+  english_description = models.CharField(max_length=1024, null = True, blank = True, help_text = "a few English sentences that will appear at the top of this index page." )
+  spanish_description = models.CharField(max_length=1024, null = True, blank = True, help_text = "a few Spanish sentences that will appear at the top of this index page." )
+  
+
   ordering_rank = models.IntegerField()
+  
     
   class Meta:
     ordering = ('ordering_rank',)
-
   
   @property
   def dir(self):
@@ -214,7 +218,6 @@ class AssessmentSection(models.Model):
     
   def __unicode__(self):
     return self.title
-
   
   def display_question_ids(self):
     """ used for ordering"""

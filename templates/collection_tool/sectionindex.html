@@ -42,6 +42,16 @@
 		{% block collection_tool_content %}
 		<div id="content">
 			
+		
+      <div class="section_description">
+		    {%ifequal language_code 'en'%}
+		          {{section.english_description}}
+		    {%endifequal%}
+		    {%ifequal language_code 'es'%}
+			        {{section.spanish_description}}
+		    {%endifequal%}
+      </div>			
+			
 			{% spaceless %}
 			
 			<div class="contentbuttons">
