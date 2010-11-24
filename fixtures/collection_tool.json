@@ -1,0 +1,4618 @@
+[
+  {
+    "pk": 2, 
+    "model": "collection_tool.helpitem", 
+    "fields": {
+      "english_objective": null, 
+      "english_title": "EN help title", 
+      "spanish_title": "ES help title", 
+      "spanish_objective": null, 
+      "english_script_instructions": "EN script instros", 
+      "spanish_script_instructions": "ES script instros", 
+      "spanish_script": "ES script ", 
+      "english_script": "EN script"
+    }
+  }, 
+  {
+    "pk": 7, 
+    "model": "collection_tool.helpitem", 
+    "fields": {
+      "english_objective": "Assess the general understanding of cavity development in young children", 
+      "english_title": "Vertical Transmission- can germs be passed along", 
+      "spanish_title": "", 
+      "spanish_objective": "", 
+      "english_script_instructions": "\r\n\r\n", 
+      "spanish_script_instructions": "", 
+      "spanish_script": "", 
+      "english_script": "Now I am going to ask you a general question about children\u2019s cavities.  Would you say the following statement is true, false or you are not sure- A mother can pass cavity-causing germs to their child."
+    }
+  }, 
+  {
+    "pk": 5, 
+    "model": "collection_tool.helpitem", 
+    "fields": {
+      "english_objective": "Dental caries is a disease that is transmitted from mother to child.  Utensils may be a way to transfer bacteria from mother to child. ", 
+      "english_title": "Vertical Transmission- share utensils", 
+      "spanish_title": "", 
+      "spanish_objective": "", 
+      "english_script_instructions": " ", 
+      "spanish_script_instructions": "", 
+      "spanish_script": "", 
+      "english_script": "When you are feeding your child, how often do you share utensils with them?"
+    }
+  }, 
+  {
+    "pk": 9, 
+    "model": "collection_tool.helpitem", 
+    "fields": {
+      "english_objective": "Learn the importance of limiting sugary foods", 
+      "english_title": "Cutting back on sugar intake- How difficult is it to cut back on the number of sweets your child eats?", 
+      "spanish_title": "", 
+      "spanish_objective": "", 
+      "english_script_instructions": "Water is the best drink for children to have if they are thirsty between meals. Juice should be limited to meals and set snack times.  Sweetened foods and beverages should be offered with meals.  Sweets should not be offered as rewards.  Sweets should be planned so they are eaten all at once and not throughout the day.  HARMFUL TO TEETH are sweets that are sucked, stick to teeth, or dissolve slowly.  Less sticky treats include:  nuts, popcorn, pumpkin or sunflower seeds, and fresh juicy fruit such as apples, berries and melon.\r\n\r\nAfter eating sweet foods children should: drink water; eat cheese or milk; munch raw carrots, celery, apples or other wet-crisp, vegetables and fruits; best yet- brush their teeth with fluoride toothpaste.\r\n", 
+      "spanish_script_instructions": "", 
+      "spanish_script": "", 
+      "english_script": "We are going to talk a little bit more about what your child likes to eat.  How difficult is it to cut back on the number of sweets your child eats and drinks?"
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "collection_tool.helpitem", 
+    "fields": {
+      "english_objective": "Dental caries is a disease that is transmitted from mother to child.  Pacifiers may be a way to transfer bacteria from mother to child. ", 
+      "english_title": "Vertical Transmission- Pacifier question", 
+      "spanish_title": "", 
+      "spanish_objective": "", 
+      "english_script_instructions": "\r\n", 
+      "spanish_script_instructions": "", 
+      "spanish_script": "", 
+      "english_script": "Pacifiers can be soothing for children.  Does your child use a pacifier?  If it falls, how do you usually clean it?  Sometimes if mothers are in a rush they might clean it by putting it in their mouth. How often would you say you clean your child's pacifier by putting it in your mouth?"
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "collection_tool.helpitem", 
+    "fields": {
+      "english_objective": "Learn that allowing a child to drink slowly, frequently and over long periods of time out of a bottle or sippy cup increases their risk for developing Early Childhood Caries.", 
+      "english_title": "Bottle & Sippy Cup use during the day", 
+      "spanish_title": "", 
+      "spanish_objective": "ES objective", 
+      "english_script_instructions": "Parents may be anxious about taking the bottle away from their child if it helps them relax, sleep better, or stop crying.  Provide some suggestions on how to start a nighttime routine that does not include the bottle such as: sing or play music; hold or rock the baby; rub or pat the baby\u2019s head or back; read or tell a story.  \r\n\r\nIf the baby already sleeps with a bottle, be sure he/she is fed before being put to bed.  Wipe teeth with a damp cloth after feeding. There are several techniques to try to wean a child from the bottle.  (1) Try giving a child the bottle in the living room with the family, then brush their teeth, go to their room and read, sing, and rock. This makes the baby not dependent on the bottle as a sleep crutch. (2) Try gradually diluting the liquid in the bottle with water until there is only water in the bottle.  \r\n(3) Also try to take it away slowly such as half an ounce out a day until it is gone then it can be taken away completely. \r\n(4) If the child is having multiple bottles per day, take one bottle away at a time. \r\n(5) If the baby is already a toddler and goes to bed with a bottle, explain that he/she is too big to have a bottle in bed anymore.\r\n\r\nChildren may have a hard time learning to sleep without it but eventually they will get the hang of it.  This may not be an easy or fast transition.  It may take days, weeks or even longer for the baby to give up the bottle in bed, but the mother needs to remain consistent in her actions.\r\n\r\n", 
+      "spanish_script_instructions": "", 
+      "spanish_script": "", 
+      "english_script": "Now let\u2019s talk about what your child usually drinks out of.  Tell me about what type of cup they usually use? (look at pictures of cups and bottles) A bottle? A sippy cup? A regular cup?  If they use bottles or sippy cups, how often do they sip a sugared drink such as juice or soda from one throughout the day?  "
+    }
+  }, 
+  {
+    "pk": 24, 
+    "model": "collection_tool.helpitem", 
+    "fields": {
+      "english_objective": "Learn about what early childhood caries  is and how it may impact their child.", 
+      "english_title": "Clinical history- how much of a problem with tooth decay", 
+      "spanish_title": "", 
+      "spanish_objective": "", 
+      "english_script_instructions": "ECC happens when foods or liquids that contain sugar (such as milk, formula, soda, juice, blended foods) are left in a baby\u2019s mouth frequently or for long periods of time and/or a baby\u2019s teeth are not brushed regularly.  ECC can start as soon as a child\u2019s teeth come in.  ECC can change how the child looks.  This may affect how a child feels about him/herself.  ECC may cause developmental speech problems.  ", 
+      "spanish_script_instructions": "", 
+      "spanish_script": "", 
+      "english_script": "Now we are going to talk about your child\u2019s risk for early childhood caries and tooth decay.  In general, how much of a problem would you say your child has had with tooth decay?"
+    }
+  }, 
+  {
+    "pk": 22, 
+    "model": "collection_tool.helpitem", 
+    "fields": {
+      "english_objective": "Learn the importance of routinely bringing all children to the dentist.", 
+      "english_title": "Dental Home- cavity", 
+      "spanish_title": "", 
+      "spanish_objective": "", 
+      "english_script_instructions": "", 
+      "spanish_script_instructions": "", 
+      "spanish_script": "", 
+      "english_script": "Has your child had a cavity in the last 12 months?"
+    }
+  }, 
+  {
+    "pk": 20, 
+    "model": "collection_tool.helpitem", 
+    "fields": {
+      "english_objective": "Learn about the importance of fluoride in protecting teeth from decay and how much is appropriate for their child.", 
+      "english_title": "Fluoride-Type of water used", 
+      "spanish_title": "", 
+      "spanish_objective": "", 
+      "english_script_instructions": "Tap water is the most common source of fluoride.  New York City community water is fluoridated.  If your child only drinks bottled water they may not be receiving the benefits of community fluoride.  Some parents purchase bottled water for their children to drink instead of tap water. Most bottled waters lack fluoride, but fluoridated bottled water is now available.  Many New Yorkers come from places where it's unsafe to drink tap water. Or they're simply getting out of the tap water habit.  New York City tap water is fluoridated", 
+      "spanish_script_instructions": "", 
+      "spanish_script": "", 
+      "english_script": "What type of water does your child drink most often?  Bottled, tap or both?"
+    }
+  }, 
+  {
+    "pk": 19, 
+    "model": "collection_tool.helpitem", 
+    "fields": {
+      "english_objective": "Learn about the importance of fluoride in protecting teeth from decay and how much is appropriate for their child.", 
+      "english_title": "Fluoride-fluoride rinse", 
+      "spanish_title": "", 
+      "spanish_objective": "", 
+      "english_script_instructions": "", 
+      "spanish_script_instructions": "", 
+      "spanish_script": "", 
+      "english_script": "Does your child ever use a fluoride rinse (show mother pictures of fluoride rinses).  If so, how many times a day?"
+    }
+  }, 
+  {
+    "pk": 18, 
+    "model": "collection_tool.helpitem", 
+    "fields": {
+      "english_objective": "Learn about the importance of fluoride in protecting teeth from decay and how much is appropriate for their child.", 
+      "english_title": "Fluoride-Prescription toothpaste", 
+      "spanish_title": "", 
+      "spanish_objective": "", 
+      "english_script_instructions": "", 
+      "spanish_script_instructions": "", 
+      "spanish_script": "", 
+      "english_script": "Does your child ever use prescription toothpaste?  If so, how many times a day?"
+    }
+  }, 
+  {
+    "pk": 14, 
+    "model": "collection_tool.helpitem", 
+    "fields": {
+      "english_objective": "", 
+      "english_title": "Tooth brushing- Someone other than primary parent brushing child\u2019s teeth", 
+      "spanish_title": "", 
+      "spanish_objective": "", 
+      "english_script_instructions": "Parents should make tooth brushing appear as a fun activity; if the parent is enthusiastic about the activity, the children will be enthusiastic.Kids like routine so parents should also set regular tooth brushing times and stick to them.  If possible, kids picking out their own toothbrush may help get them excited about it. \r\n\r\nFor infants without teeth, gums should be wiped with a clean, damp cloth.  When teeth start to come in, parents should switch to a small soft toothbrush.  For children under 2- only a thin film of toothpaste should be used. For children over 2- a pea-sized amount of toothpaste should be used. Parents should supervise brushing until their child is 6-7 years old (Being able to tie own shoes and coloring within the lines are good markers.)  Most young children can hold and move a brush in their mouths BUT, they usually do a very poor job of brushing their teeth.  Brushing should be a family routine where the parent allows child to brush their teeth on their own with the parent \u201cchecking how they did\u201d by brushing their teeth an additional time.  \r\n\r\n", 
+      "spanish_script_instructions": "", 
+      "spanish_script": "", 
+      "english_script": "Speaking of who brushes your child\u2019s teeth most often, is there someone other than yourself who helps brush your child\u2019s teeth?"
+    }
+  }, 
+  {
+    "pk": 11, 
+    "model": "collection_tool.helpitem", 
+    "fields": {
+      "english_objective": "Learn that certain teething remedies may increase caries risk.", 
+      "english_title": "Teething remedies", 
+      "spanish_title": "", 
+      "spanish_objective": "", 
+      "english_script_instructions": "", 
+      "spanish_script_instructions": "", 
+      "spanish_script": "", 
+      "english_script": "If your child uses pacifiers, they may be especially soothing when they are teething or uncomfortable.  Do you ever put honey, sugar or syrup on your child\u2019s gums or pacifier?  If so, how often?"
+    }
+  }, 
+  {
+    "pk": 15, 
+    "model": "collection_tool.helpitem", 
+    "fields": {
+      "english_objective": "Learn about the oral hygiene habits of the mother\u2019s community", 
+      "english_title": "Tooth brushing- Most mothers I know brush their children\u2019s teeth daily", 
+      "spanish_title": "", 
+      "spanish_objective": "", 
+      "english_script_instructions": "", 
+      "spanish_script_instructions": "", 
+      "spanish_script": "", 
+      "english_script": "Would you say you agree, disagree or are unsure about the following statement? Most mothers you know brush their child\u2019s teeth every day."
+    }
+  }, 
+  {
+    "pk": 23, 
+    "model": "collection_tool.helpitem", 
+    "fields": {
+      "english_objective": "Learn how to conduct a lift the lip exam on their child", 
+      "english_title": "Lift the Lip- white spots", 
+      "spanish_title": "", 
+      "spanish_objective": "", 
+      "english_script_instructions": "  \r\n\r\n", 
+      "spanish_script_instructions": "", 
+      "spanish_script": "", 
+      "english_script": "There is a simple way to check for early signs of early childhood caries by lifting your child\u2019s lip and looking closely at their teeth.  The exam takes only a few seconds and can easily become a part of your child\u2019s brushing routine.  Start by gently lifting your child\u2019s upper lip and cheek. Children\u2019s teeth should all be the same color.  Do you see any white spots on your child's upper four front teeth? \r\n\r\n"
+    }
+  }, 
+  {
+    "pk": 10, 
+    "model": "collection_tool.helpitem", 
+    "fields": {
+      "english_objective": "Learn the importance of limiting sugary foods", 
+      "english_title": "Cutting back on sugar intake- Most mothers I know don\u2019t let their children have sugary drinks or snacks between meals", 
+      "spanish_title": "", 
+      "spanish_objective": "", 
+      "english_script_instructions": "Water is the best drink for children to have if they are thirsty between meals. Juice should be limited to meals and set snack times.  Sweetened foods and beverages should be offered with meals.  Sweets should not be offered as rewards.  Sweets should be planned so they are eaten all at once and not throughout the day.  HARMFUL TO TEETH are sweets that are sucked, stick to teeth, or dissolve slowly.  Less sticky treats include:  nuts, popcorn, pumpkin or sunflower seeds, and fresh juicy fruit such as apples, berries and melon.\r\n\r\nAfter eating sweet foods children should: drink water; eat cheese or milk; munch raw carrots, celery, apples or other wet-crisp, vegetables and fruits; best yet- brush their teeth with fluoride toothpaste.\r\n", 
+      "spanish_script_instructions": "", 
+      "spanish_script": "", 
+      "english_script": "Sometimes friends and family offer helpful advice on how to get children to eat healthy.  Would you say that you agree, disagree or are unsure that most mothers you know don\u2019t let their children have high sugar drinks and snacks between meals?"
+    }
+  }, 
+  {
+    "pk": 26, 
+    "model": "collection_tool.helpitem", 
+    "fields": {
+      "english_objective": "Learn about what early childhood caries (ECC) is and how it may impact their child.", 
+      "english_title": "Thoughts and feelings- cavities can be prevented", 
+      "spanish_title": "", 
+      "spanish_objective": "", 
+      "english_script_instructions": "Parents forget or are misinformed about caring for their children\u2019s baby teeth because they will fall out and are replaced with adult teeth.  The baby teeth help the adult teeth to come in correctly and are very important for a child to be able to eat, speak, and feel good about him/herself.  ", 
+      "spanish_script_instructions": "", 
+      "spanish_script": "", 
+      "english_script": "Would you say the following statement is true, false or you are unsure?  Cavities can be prevented."
+    }
+  }, 
+  {
+    "pk": 17, 
+    "model": "collection_tool.helpitem", 
+    "fields": {
+      "english_objective": "Learn about the importance of fluoride in protecting teeth from decay and how much is appropriate for their child.", 
+      "english_title": "Fluoride-Fluoride knowledge", 
+      "spanish_title": "", 
+      "spanish_objective": "", 
+      "english_script_instructions": "   ", 
+      "spanish_script_instructions": "", 
+      "spanish_script": "", 
+      "english_script": "Would you say the following statement is true, false or you are unsure?  Products containing fluoride help to strengthen teeth and prevent cavities."
+    }
+  }, 
+  {
+    "pk": 13, 
+    "model": "collection_tool.helpitem", 
+    "fields": {
+      "english_objective": "Learn age appropriate methods for cleaning children\u2019s teeth", 
+      "english_title": "Tooth brushing- Who most routinely brushes the child\u2019s teeth?", 
+      "spanish_title": "", 
+      "spanish_objective": "", 
+      "english_script_instructions": "Parents should make tooth brushing appear as a fun activity; if the parent is enthusiastic about the activity, the children will be enthusiastic. Parents should make brushing seem like a fun thing to do rather than a chore. Kids like routine so parents should also set regular tooth brushing times and stick to them.  If possible, kids picking out their own toothbrush may help get them excited about it. \r\n\r\nFor infants without teeth, gums should be wiped with a clean, damp cloth.  When teeth start to come in, parents should switch to a small soft toothbrush.  For children under 2- only a thin film of toothpaste should be used. For children over 2- a pea-sized amount of toothpaste should be used. Brushing should be a family routine where the parent allows child to brush their teeth on their own with the parent \u201cchecking how they did\u201d by brushing their teeth an additional time.  \r\n", 
+      "spanish_script_instructions": "", 
+      "spanish_script": "", 
+      "english_script": "So you said child\u2019s teeth are brushed x times a day.  Do they like to brush their teeth themselves?  Who most routinely brushes your child\u2019s teeth? You, your child, both of you together, or neither of you."
+    }
+  }, 
+  {
+    "pk": 27, 
+    "model": "collection_tool.helpitem", 
+    "fields": {
+      "english_objective": "Learn the importance of the parent\u2019s oral health", 
+      "english_title": "Parental Oral Health- abscessed tooth", 
+      "spanish_title": "", 
+      "spanish_objective": "", 
+      "english_script_instructions": "When selecting a toothbrush parents should be sure to pick one with soft or ultra-soft bristles.  Ideally, one should spend at least 2 minutes brushing teeth.  Routinely flossing and visiting the dentist is just as important as brushing.  Dental floss helps to clean the areas that your toothbrush can not reach.  In adults, it is very common for these spaces to get cavities.", 
+      "spanish_script_instructions": "", 
+      "spanish_script": "", 
+      "english_script": "Now we are going to spend a little time talking about your own dental habits.  One of the best ways for a parent to help keep their child\u2019s mouth healthy is by keeping their own mouths healthy.  It is also very common to have a history of cavities.  Have you ever had an abscessed tooth?\r\n\r\n"
+    }
+  }, 
+  {
+    "pk": 28, 
+    "model": "collection_tool.helpitem", 
+    "fields": {
+      "english_objective": "Learn the importance of the parent\u2019s oral health", 
+      "english_title": "Parental Oral Health- history of tooth decay", 
+      "spanish_title": "", 
+      "spanish_objective": "", 
+      "english_script_instructions": "", 
+      "spanish_script_instructions": "", 
+      "spanish_script": "En general, \u00bfqu\u00e9 tan problem\u00e1ticas han sido las caries para usted y sus otros hijos?\r\n", 
+      "english_script": "In general, how much of a problem have you or your other children had with tooth decay?"
+    }
+  }, 
+  {
+    "pk": 21, 
+    "model": "collection_tool.helpitem", 
+    "fields": {
+      "english_objective": "Learn the importance of routinely bringing all children to the dentist.", 
+      "english_title": "Clinical history- Dental Home", 
+      "spanish_title": "", 
+      "spanish_objective": "", 
+      "english_script_instructions": "A child\u2019s first dental visit should be scheduled with a Pediatric Dentist shortly after their first tooth comes in and no later than their first birthday.  The dentist may recommend that the child come back at different times for checkups- sometimes as soon as 3 months and sometimes as long as 1 year.\r\n\r\nIt is important not to frighten or negatively influence a child about going to the dentist. Don\u2019t threaten child (even as a joke) about taking a tooth out or getting \u201ca shot\u201d, keep siblings from this as well.    Be honest with a child about the dental appointment.  Take some time to explain what will happen beforehand.  Depending on the dentist, parents may accompany the child during treatment.  Other times they may be asked to wait by the door or outside in the waiting room.  It is important that the parent have any questions answered by the dental staff and is comfortable with the treatment plan.  The parent should also inform dental staff of any medical information or any specific dental concern prior to the visit so that both you and the dental staff are prepared that day. \r\n", 
+      "spanish_script_instructions": "", 
+      "spanish_script": "", 
+      "english_script": "Next we are going to talk about visiting the dentist.  Has your child had a routine dental checkup in the last 12 months?"
+    }
+  }, 
+  {
+    "pk": 16, 
+    "model": "collection_tool.helpitem", 
+    "fields": {
+      "english_objective": "Learn about the importance of fluoride in protecting teeth from decay and how much is appropriate for their child.", 
+      "english_title": "Fluoride-Type of toothpaste used", 
+      "spanish_title": "", 
+      "spanish_objective": "", 
+      "english_script_instructions": "Parents may be concerned with using toothpaste with fluoride.  Assure them that when used correctly, fluoride toothpaste is safe and one of the best ways to prevent cavities in their children.  Products containing fluoride should be stored out of the reach of young children.  Children should be encouraged to spit out the toothpaste.  Use only a small amount (smear to pea-sized) when assisting a child in brushing.  Ingesting too much fluoride can make a child ill and/or cause the permanent teeth to come in with white spots/discolorations on them.  This condition is called enamel fluorosis.  Parents should dispense toothpaste to prevent their young children from swallowing too much. Use a smear of fluoridated toothpaste for children under 2 and a pea-sized amount of toothpaste for children 2-5 years old.  At your child\u2019s regular check-ups, the dentist may recommend that a child receive a professional fluoride application.", 
+      "spanish_script_instructions": "", 
+      "spanish_script": "", 
+      "english_script": "Let\u2019s talk about the type of toothpaste that your child uses.  It seems like there are so many brands of toothpaste to choose from (show mother pictures of toothpaste). Is there one type of toothpaste that your child likes to use?  Some toothpaste contains a mineral called fluoride, have you heard of that before?  Do you know if the toothpaste your child uses is a fluoride or non-fluoride toothpaste?"
+    }
+  }, 
+  {
+    "pk": 6, 
+    "model": "collection_tool.helpitem", 
+    "fields": {
+      "english_objective": "Dental caries is a disease that is transmitted from mother to child.  Pre chewing food may be a way to transfer bacteria from mother to child. ", 
+      "english_title": "Vertical Transmission- pre-chewing food", 
+      "spanish_title": "", 
+      "spanish_objective": "", 
+      "english_script_instructions": "\r\n", 
+      "spanish_script_instructions": "", 
+      "spanish_script": "", 
+      "english_script": "When children are still too young to eat solid food, parents may pre-chew the food to make it easier for them to eat.  How often do you pre-chew your child's food?"
+    }
+  }, 
+  {
+    "pk": 25, 
+    "model": "collection_tool.helpitem", 
+    "fields": {
+      "english_objective": "Learn about what early childhood caries (ECC) is and how it may impact their child.", 
+      "english_title": "Thoughts and feelings-  parents confidence in reducing tooth decay", 
+      "spanish_title": "", 
+      "spanish_objective": "", 
+      "english_script_instructions": "Parents and caregivers play a very important role in finding and preventing ECC by: not letting child sleep with a baby bottle; switching to an infant cup by 12 months of age;  assisting child in tooth-brushing and \u2018lifting the lip\u2019 to check for \u2018white spots\u2019; regular dental visits; and a healthy diet with limited snacking. ", 
+      "spanish_script_instructions": "", 
+      "spanish_script": "", 
+      "english_script": "How confident are you in reducing your child\u2019s risk for tooth decay?"
+    }
+  }, 
+  {
+    "pk": 12, 
+    "model": "collection_tool.helpitem", 
+    "fields": {
+      "english_objective": "Learn age appropriate methods for cleaning children\u2019s teeth", 
+      "english_title": "Tooth brushing- How many times a day are your child\u2019s teeth brushed?", 
+      "spanish_title": "", 
+      "spanish_objective": "", 
+      "english_script_instructions": "Parents should make tooth brushing appear as a fun activity; if the parent is enthusiastic about the activity, the children will be enthusiastic. Parents should make brushing seem like a fun thing to do rather than a chore. Kids like routine so parents should also set regular tooth brushing times and stick to them.  If possible, kids picking out their own toothbrush may help get them excited about it. \r\n\r\nFor infants without teeth, gums should be wiped with a clean, damp cloth.  When teeth start to come in, parents should switch to a small soft toothbrush.  For children under 2- only a thin film of toothpaste should be used. For children over 2- a pea-sized amount of toothpaste should be used. Parents should supervise brushing until their child is 6-7 years old (Being able to tie own shoes and coloring within the lines are good markers.)  Most young children can hold and move a brush in their mouths BUT, they usually do a very poor job of brushing their teeth.  Brushing should be a family routine where the parent allows child to brush their teeth on their own with the parent \u201cchecking how they did\u201d by brushing their teeth an additional time.  \r\n", 
+      "spanish_script_instructions": "", 
+      "spanish_script": "", 
+      "english_script": "Now we are going to talk about some of your child\u2019s dental habits.  Does your child like having their teeth brushed? How many times a day are your child\u2019s teeth brushed?"
+    }
+  }, 
+  {
+    "pk": 8, 
+    "model": "collection_tool.helpitem", 
+    "fields": {
+      "english_objective": "Learn that allowing a child to sleep with a bottle or sippy cup filled with a sugary drink (including milk) increases the child\u2019s risk of early childhood caries.", 
+      "english_title": "Bottle & Sippy Cup during the night", 
+      "spanish_title": "", 
+      "spanish_objective": "", 
+      "english_script_instructions": "Parents may be anxious about taking the bottle away from their child if it helps them relax, sleep better, or stop crying.  Provide some suggestions on how to start a nighttime routine that does not include the bottle such as: sing or play music; hold or rock the baby; rub or pat the baby\u2019s head or back; read or tell a story.  \r\n\r\nIf the baby already sleeps with a bottle, be sure he/she is fed before being put to bed.  Wipe teeth with a damp cloth after feeding. There are several techniques to try to wean a child from the bottle.  (1) Try giving a child the bottle in the living room with the family, then brush their teeth, go to their room and read, sing, and rock. This makes the baby not dependent on the bottle as a sleep crutch. (2) Try gradually diluting the liquid in the bottle with water until there is only water in the bottle.  (2) Also try to take it away slowly such as half an ounce out a day until it is gone then it can be taken away completely. (3) If the child is having multiple bottles per day, take one bottle away at a time. (4) If the baby is already a toddler and goes to bed with a bottle, explain that he/she is too big to have a bottle in bed anymore.\r\n\r\nChildren may have a hard time learning to sleep without it but eventually they will get the hang of it.  This may not be an easy or fast transition.  It may take days, weeks or even longer for the baby to give up the bottle in bed, but the mother needs to remain consistent in her actions.\r\n", 
+      "spanish_script_instructions": "", 
+      "spanish_script": "", 
+      "english_script": "We just spoke about what your child drinks out of during the day.  Are they ever put to bed with a sippy cup or bottle with a sugary drink including milk?"
+    }
+  }, 
+  {
+    "pk": 29, 
+    "model": "collection_tool.helpitem", 
+    "fields": {
+      "english_objective": "Social Support", 
+      "english_title": "Social Support- People in my neighborhood help each other out", 
+      "spanish_title": "", 
+      "spanish_objective": "", 
+      "english_script_instructions": "", 
+      "spanish_script_instructions": "", 
+      "spanish_script": "", 
+      "english_script": "How much would you say you agree with the following statement?  People in my neighborhood help each other out."
+    }
+  }, 
+  {
+    "pk": 30, 
+    "model": "collection_tool.helpitem", 
+    "fields": {
+      "english_objective": "Learn how to conduct a lift the lip exam on their child", 
+      "english_title": "Lift the Lip- visible plaque", 
+      "spanish_title": "", 
+      "spanish_objective": "", 
+      "english_script_instructions": "", 
+      "spanish_script_instructions": "", 
+      "spanish_script": "", 
+      "english_script": "There is a simple way to check for early signs of early childhood caries by lifting your child\u2019s lip and looking closely at their teeth.  The exam takes only a few seconds and can easily become a part of your child\u2019s brushing routine.  Start by gently lifting your child\u2019s upper lip and cheek. Look for plaque which is a sticky film of bacteria that sticks to teeth, the spaces between the teeth, and under gums. Does your child have any plaque on their upper four front teeth?"
+    }
+  }, 
+  {
+    "pk": 31, 
+    "model": "collection_tool.helpitem", 
+    "fields": {
+      "english_objective": "Initiate the food timeline", 
+      "english_title": "Food timeline- when does your child wake up?", 
+      "spanish_title": "", 
+      "spanish_objective": "", 
+      "english_script_instructions": "", 
+      "spanish_script_instructions": "", 
+      "spanish_script": "", 
+      "english_script": "We are going to go through a timeline and look at some pictures of foods and drinks.  To start the daily timeline, what time did your child wake up yesterday?"
+    }
+  }, 
+  {
+    "pk": 32, 
+    "model": "collection_tool.helpitem", 
+    "fields": {
+      "english_objective": "Initiate the food timeline", 
+      "english_title": "Food timeline- when does your child go to sleep?", 
+      "spanish_title": "", 
+      "spanish_objective": "", 
+      "english_script_instructions": "", 
+      "spanish_script_instructions": "", 
+      "spanish_script": "", 
+      "english_script": "What time did your child go to sleep?  "
+    }
+  }, 
+  {
+    "pk": 33, 
+    "model": "collection_tool.helpitem", 
+    "fields": {
+      "english_objective": "Learn about how to reduce ad lib breast feeding during the night", 
+      "english_title": "Breast feeding during the night", 
+      "spanish_title": "", 
+      "spanish_objective": "", 
+      "english_script_instructions": "", 
+      "spanish_script_instructions": "", 
+      "spanish_script": "", 
+      "english_script": "Are you breast feeding your child?  If so, how often do you breast feed ad lib during the night?"
+    }
+  }, 
+  {
+    "pk": 34, 
+    "model": "collection_tool.helpitem", 
+    "fields": {
+      "english_objective": "Learn the importance of flossing", 
+      "english_title": "Dental hygeine- flossing", 
+      "spanish_title": "", 
+      "spanish_objective": "", 
+      "english_script_instructions": "", 
+      "spanish_script_instructions": "", 
+      "spanish_script": "", 
+      "english_script": "How many times a week are your child's teeth flossed?"
+    }
+  }, 
+  {
+    "pk": 35, 
+    "model": "collection_tool.helpitem", 
+    "fields": {
+      "english_objective": "Determine a typical eating day", 
+      "english_title": "Food recall- typical eating day", 
+      "spanish_title": "", 
+      "spanish_objective": "", 
+      "english_script_instructions": "", 
+      "spanish_script_instructions": "", 
+      "spanish_script": "", 
+      "english_script": "Now we are going to talk about what your child eats during the day.  Was yesterday a typical eating day for your child?"
+    }
+  }, 
+  {
+    "pk": 36, 
+    "model": "collection_tool.helpitem", 
+    "fields": {
+      "english_objective": "Learn the importance of where children eat", 
+      "english_title": "Diet- meal location", 
+      "spanish_title": "", 
+      "spanish_objective": "", 
+      "english_script_instructions": "", 
+      "spanish_script_instructions": "", 
+      "spanish_script": "", 
+      "english_script": "Sometimes where our children eat influences how long it takes them to eat.  Where does your child typically eat their meals?"
+    }
+  }, 
+  {
+    "pk": 37, 
+    "model": "collection_tool.helpitem", 
+    "fields": {
+      "english_objective": "Learn the importance of where children eat", 
+      "english_title": "Diet- snack location", 
+      "spanish_title": "", 
+      "spanish_objective": "", 
+      "english_script_instructions": "", 
+      "spanish_script_instructions": "", 
+      "spanish_script": "", 
+      "english_script": "Sometimes where our children eat influences how long it takes them to eat.  Where does your child typically eat their snacks?"
+    }
+  }, 
+  {
+    "pk": 38, 
+    "model": "collection_tool.helpitem", 
+    "fields": {
+      "english_objective": "Learn how food intake impacts caries risk", 
+      "english_title": "Diet-food recall", 
+      "spanish_title": "", 
+      "spanish_objective": "", 
+      "english_script_instructions": "", 
+      "spanish_script_instructions": "", 
+      "spanish_script": "", 
+      "english_script": "Now let\u2019s look at some pictures of foods and drinks.  What is the first thing that your child ate or drank yesterday?  What time did they eat or drink this item?  Would you consider this a meal or a snack?"
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "collection_tool.helpurl", 
+    "fields": {
+      "url": "/question/5", 
+      "help_item": 2
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "collection_tool.helpurl", 
+    "fields": {
+      "url": "/question/19/", 
+      "help_item": 4
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "collection_tool.helpurl", 
+    "fields": {
+      "url": "/question/16/", 
+      "help_item": 3
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "collection_tool.helpurl", 
+    "fields": {
+      "url": "/question/2/", 
+      "help_item": 20
+    }
+  }, 
+  {
+    "pk": 5, 
+    "model": "collection_tool.helpurl", 
+    "fields": {
+      "url": "/question/22/", 
+      "help_item": 28
+    }
+  }, 
+  {
+    "pk": 6, 
+    "model": "collection_tool.helpurl", 
+    "fields": {
+      "url": "/question/8/", 
+      "help_item": 27
+    }
+  }, 
+  {
+    "pk": 7, 
+    "model": "collection_tool.helpurl", 
+    "fields": {
+      "url": "/question/29/", 
+      "help_item": 26
+    }
+  }, 
+  {
+    "pk": 8, 
+    "model": "collection_tool.helpurl", 
+    "fields": {
+      "url": "/question/20/", 
+      "help_item": 25
+    }
+  }, 
+  {
+    "pk": 9, 
+    "model": "collection_tool.helpurl", 
+    "fields": {
+      "url": "/question/23/", 
+      "help_item": 24
+    }
+  }, 
+  {
+    "pk": 10, 
+    "model": "collection_tool.helpurl", 
+    "fields": {
+      "url": "/question/10/", 
+      "help_item": 22
+    }
+  }, 
+  {
+    "pk": 11, 
+    "model": "collection_tool.helpurl", 
+    "fields": {
+      "url": "/question/6/", 
+      "help_item": 21
+    }
+  }, 
+  {
+    "pk": 12, 
+    "model": "collection_tool.helpurl", 
+    "fields": {
+      "url": "/question/4/", 
+      "help_item": 19
+    }
+  }, 
+  {
+    "pk": 13, 
+    "model": "collection_tool.helpurl", 
+    "fields": {
+      "url": "/question/5/", 
+      "help_item": 18
+    }
+  }, 
+  {
+    "pk": 14, 
+    "model": "collection_tool.helpurl", 
+    "fields": {
+      "url": "/question/28/", 
+      "help_item": 17
+    }
+  }, 
+  {
+    "pk": 15, 
+    "model": "collection_tool.helpurl", 
+    "fields": {
+      "url": "/question/3/", 
+      "help_item": 16
+    }
+  }, 
+  {
+    "pk": 16, 
+    "model": "collection_tool.helpurl", 
+    "fields": {
+      "url": "/question/26/", 
+      "help_item": 15
+    }
+  }, 
+  {
+    "pk": 17, 
+    "model": "collection_tool.helpurl", 
+    "fields": {
+      "url": "/question/24/", 
+      "help_item": 14
+    }
+  }, 
+  {
+    "pk": 18, 
+    "model": "collection_tool.helpurl", 
+    "fields": {
+      "url": "/question/1/", 
+      "help_item": 13
+    }
+  }, 
+  {
+    "pk": 19, 
+    "model": "collection_tool.helpurl", 
+    "fields": {
+      "url": "/question/1/", 
+      "help_item": 13
+    }
+  }, 
+  {
+    "pk": 20, 
+    "model": "collection_tool.helpurl", 
+    "fields": {
+      "url": "/question/7/", 
+      "help_item": 12
+    }
+  }, 
+  {
+    "pk": 21, 
+    "model": "collection_tool.helpurl", 
+    "fields": {
+      "url": "/question/15/", 
+      "help_item": 11
+    }
+  }, 
+  {
+    "pk": 22, 
+    "model": "collection_tool.helpurl", 
+    "fields": {
+      "url": "/question/25/", 
+      "help_item": 10
+    }
+  }, 
+  {
+    "pk": 23, 
+    "model": "collection_tool.helpurl", 
+    "fields": {
+      "url": "/question/21/", 
+      "help_item": 9
+    }
+  }, 
+  {
+    "pk": 24, 
+    "model": "collection_tool.helpurl", 
+    "fields": {
+      "url": "/question/14/", 
+      "help_item": 8
+    }
+  }, 
+  {
+    "pk": 25, 
+    "model": "collection_tool.helpurl", 
+    "fields": {
+      "url": "/question/27/", 
+      "help_item": 7
+    }
+  }, 
+  {
+    "pk": 26, 
+    "model": "collection_tool.helpurl", 
+    "fields": {
+      "url": "/question/18/", 
+      "help_item": 6
+    }
+  }, 
+  {
+    "pk": 27, 
+    "model": "collection_tool.helpurl", 
+    "fields": {
+      "url": "/question/17/", 
+      "help_item": 5
+    }
+  }, 
+  {
+    "pk": 28, 
+    "model": "collection_tool.helpurl", 
+    "fields": {
+      "url": "/question/30/", 
+      "help_item": 29
+    }
+  }, 
+  {
+    "pk": 29, 
+    "model": "collection_tool.helpurl", 
+    "fields": {
+      "url": "/question/11/", 
+      "help_item": 30
+    }
+  }, 
+  {
+    "pk": 30, 
+    "model": "collection_tool.helpurl", 
+    "fields": {
+      "url": "/question/31/", 
+      "help_item": 31
+    }
+  }, 
+  {
+    "pk": 31, 
+    "model": "collection_tool.helpurl", 
+    "fields": {
+      "url": "/question/32/", 
+      "help_item": 32
+    }
+  }, 
+  {
+    "pk": 32, 
+    "model": "collection_tool.helpurl", 
+    "fields": {
+      "url": "/question/34/", 
+      "help_item": 33
+    }
+  }, 
+  {
+    "pk": 33, 
+    "model": "collection_tool.helpurl", 
+    "fields": {
+      "url": "/question/35/", 
+      "help_item": 34
+    }
+  }, 
+  {
+    "pk": 34, 
+    "model": "collection_tool.helpurl", 
+    "fields": {
+      "url": "/question/40/", 
+      "help_item": 35
+    }
+  }, 
+  {
+    "pk": 35, 
+    "model": "collection_tool.helpurl", 
+    "fields": {
+      "url": "/question/36/", 
+      "help_item": 36
+    }
+  }, 
+  {
+    "pk": 36, 
+    "model": "collection_tool.helpurl", 
+    "fields": {
+      "url": "/question/37/", 
+      "help_item": 37
+    }
+  }, 
+  {
+    "pk": 37, 
+    "model": "collection_tool.helpurl", 
+    "fields": {
+      "url": "/question/38/", 
+      "help_item": 38
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 2, 
+      "ordering_rank": 0, 
+      "spanish_text": "ES bullet", 
+      "english_text": "EN bullet"
+    }
+  }, 
+  {
+    "pk": 23, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 12, 
+      "ordering_rank": 1, 
+      "spanish_text": "", 
+      "english_text": "Teeth should be brushed at least twice a day, everyday."
+    }
+  }, 
+  {
+    "pk": 11, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 5, 
+      "ordering_rank": 1, 
+      "spanish_text": "", 
+      "english_text": "Sharing utensils includes: Eating meals with the same utensils;   The mother testing the temperature or taste of the child\u2019s food and then using the same utensil to feed the child."
+    }
+  }, 
+  {
+    "pk": 20, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 11, 
+      "ordering_rank": 1, 
+      "spanish_text": "", 
+      "english_text": "If the child does not use a pacifier answer the question as never and move on to the next question."
+    }
+  }, 
+  {
+    "pk": 101, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 38, 
+      "ordering_rank": 1, 
+      "spanish_text": "", 
+      "english_text": "You will continue to choose a slot on the time line and enter a food or drink from the series of pictures until you reach the end of the day.  "
+    }
+  }, 
+  {
+    "pk": 14, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 8, 
+      "ordering_rank": 1, 
+      "spanish_text": "", 
+      "english_text": "Putting a child to bed with a bottle or sippy cup filled with a sugary drink (including milk and formula) should be avoided."
+    }
+  }, 
+  {
+    "pk": 29, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 14, 
+      "ordering_rank": 1, 
+      "spanish_text": "", 
+      "english_text": "Someone other than the mother may include the grandparent, other parent, daycare teacher, or other caretaker."
+    }
+  }, 
+  {
+    "pk": 13, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 7, 
+      "ordering_rank": 1, 
+      "spanish_text": "", 
+      "english_text": "The bacteria that cause cavities can be passed on from mother to child after a child\u2019s baby teeth come in (at about 6-10 months).  This can be a serious problem if the mother herself has a lot of cavities, is not brushing her teeth well, or is not being treated by a dentist."
+    }
+  }, 
+  {
+    "pk": 9, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 4, 
+      "ordering_rank": 1, 
+      "spanish_text": "", 
+      "english_text": "If the child does not use a pacifier answer the question as never and move on to the next question.\r\n\r\n"
+    }
+  }, 
+  {
+    "pk": 12, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 6, 
+      "ordering_rank": 1, 
+      "spanish_text": "", 
+      "english_text": "If the mother appears uncomfortable with this question, let them know that the practice of pre-chewing is common in some cultures.   A food mill or food processor is a safer way to soften foods."
+    }
+  }, 
+  {
+    "pk": 32, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 15, 
+      "ordering_rank": 1, 
+      "spanish_text": "", 
+      "english_text": "This question is being used to examine social norms or a pattern of behavior in a particular group, community or culture.  A family's environment often influences their behavior.  We are asking about the habits of close friends and family members because their actions may influence this family's health behaviors."
+    }
+  }, 
+  {
+    "pk": 54, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 23, 
+      "ordering_rank": 1, 
+      "spanish_text": "", 
+      "english_text": "If you find any white spots, discoloration or redness, contact the dentist."
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 3, 
+      "ordering_rank": 1, 
+      "spanish_text": "", 
+      "english_text": "If the parent answers sometimes, often, or always or appears anxious about taking the bottle away from their child. Refer to the further details below for suggestions."
+    }
+  }, 
+  {
+    "pk": 34, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 16, 
+      "ordering_rank": 1, 
+      "spanish_text": "", 
+      "english_text": "Parents should check with their child\u2019s dentist about their child\u2019s specific fluoride needs"
+    }
+  }, 
+  {
+    "pk": 36, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 18, 
+      "ordering_rank": 1, 
+      "spanish_text": "", 
+      "english_text": "Prescription toothpaste usually contains a higher and stronger concentration of fluoride than regular toothpaste, in order to make up for these deficiencies."
+    }
+  }, 
+  {
+    "pk": 37, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 19, 
+      "ordering_rank": 1, 
+      "spanish_text": "", 
+      "english_text": "Fluoride rinse should not be confused with breath freshening mouthwash"
+    }
+  }, 
+  {
+    "pk": 16, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 9, 
+      "ordering_rank": 1, 
+      "spanish_text": "", 
+      "english_text": "Sweets is referring to foods that help bacteria make more acid in the child\u2019s mouth such as: soda and juice drinks;  Cookies, suckers, lollipops and hard candies, toffee taffy, caramel corn, gum drops, chocolate bars with rice cereal, nougat, candy-coated chocolate, candy corn; dried fruit, fruit roll-ups, chocolate-covered raisins, high energy candy bars or sport bars;  Sweetened cereals such as Fruit Loops, Corn Pops or Frosted Flakes\r\n"
+    }
+  }, 
+  {
+    "pk": 100, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 37, 
+      "ordering_rank": 1, 
+      "spanish_text": "", 
+      "english_text": "If the child eats in various places during the day, have the parent choose where they eat most often. "
+    }
+  }, 
+  {
+    "pk": 40, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 20, 
+      "ordering_rank": 1, 
+      "spanish_text": "", 
+      "english_text": "Parents may answer that their child drinks filtered water.  Most filtered tap water still contains fluoride.  "
+    }
+  }, 
+  {
+    "pk": 41, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 21, 
+      "ordering_rank": 1, 
+      "spanish_text": "", 
+      "english_text": "If the parent has not brought their child to the dentist it is important to probe about barriers, if any.   The following bullets are some common barriers."
+    }
+  }, 
+  {
+    "pk": 99, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 36, 
+      "ordering_rank": 1, 
+      "spanish_text": "", 
+      "english_text": "If the child eats in various places during the day, have the parent choose where they eat most often. "
+    }
+  }, 
+  {
+    "pk": 98, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 35, 
+      "ordering_rank": 1, 
+      "spanish_text": "", 
+      "english_text": "If the parent answers yes, then you will move into the assessment.  If no, you will ask them to provide the foods and drinks that their child eats in a typical day. "
+    }
+  }, 
+  {
+    "pk": 96, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 34, 
+      "ordering_rank": 1, 
+      "spanish_text": "", 
+      "english_text": "Flossing helps prevent cavities by removing plaque and food particles caught between teeth."
+    }
+  }, 
+  {
+    "pk": 93, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 33, 
+      "ordering_rank": 1, 
+      "spanish_text": "", 
+      "english_text": "Breast feeding ad lib means feeding at will or as desired."
+    }
+  }, 
+  {
+    "pk": 91, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 30, 
+      "ordering_rank": 1, 
+      "spanish_text": "", 
+      "english_text": "If you find any white spots, discoloration or redness, contact the dentist."
+    }
+  }, 
+  {
+    "pk": 89, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 29, 
+      "ordering_rank": 1, 
+      "spanish_text": "", 
+      "english_text": "This question is being used to examine social support in a particular group, community or culture. A family's environment often influences their behavior.  We are asking about the support of close friends and family members because their actions may influence this family's health behaviors."
+    }
+  }, 
+  {
+    "pk": 73, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 17, 
+      "ordering_rank": 1, 
+      "spanish_text": "", 
+      "english_text": "Parents may be concerned with using toothpaste with fluoride.  Assure them that when used correctly, fluoride toothpaste is safe and one of the best ways to prevent cavities in their children."
+    }
+  }, 
+  {
+    "pk": 57, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 25, 
+      "ordering_rank": 1, 
+      "spanish_text": "", 
+      "english_text": "This question if referring to parents confidence at this time.  Are they confident in their ability (for example by improving their child's oral hygiene habits and improving their diet)  to reduce their child's risk for tooth decay."
+    }
+  }, 
+  {
+    "pk": 69, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 28, 
+      "ordering_rank": 1, 
+      "spanish_text": "", 
+      "english_text": "If the parent is not regularly visiting the dentist it is important to probe about barriers, if any.   "
+    }
+  }, 
+  {
+    "pk": 65, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 27, 
+      "ordering_rank": 1, 
+      "spanish_text": "", 
+      "english_text": "An abscessed tooth is a painful infection at the root of a tooth or between the gum and a tooth. Its most commonly caused by severe tooth decay and can also be referred to as a gum boil."
+    }
+  }, 
+  {
+    "pk": 60, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 26, 
+      "ordering_rank": 1, 
+      "spanish_text": "", 
+      "english_text": "Cavities can be prevented:Not letting children sleep with baby bottles or sippy cups; Switching children to an infant cup by 12 months of age; Assisting children in tooth-brushing; \u201cLifting the lip\u201d to check for white spots; Regular dental visits; Healthy diet with limited snacking.\r\n"
+    }
+  }, 
+  {
+    "pk": 55, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 24, 
+      "ordering_rank": 1, 
+      "spanish_text": "", 
+      "english_text": "Early Childhood Caries is a serious type of dental decay in young children that starts on the upper front teeth and can eventually attack the back teeth."
+    }
+  }, 
+  {
+    "pk": 18, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 10, 
+      "ordering_rank": 1, 
+      "spanish_text": "", 
+      "english_text": "This question is being used to examine social norms or a pattern of behavior in a particular group, community or culture. A family's environment often influences their behavior.  We are asking about the habits of close friends and family members because their actions may influence this family's health behaviors."
+    }
+  }, 
+  {
+    "pk": 25, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 13, 
+      "ordering_rank": 1, 
+      "spanish_text": "", 
+      "english_text": "Teeth should be brushed at least twice a day, everyday"
+    }
+  }, 
+  {
+    "pk": 102, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 38, 
+      "ordering_rank": 2, 
+      "spanish_text": "", 
+      "english_text": "If the exact item that the child ate/drank is not available in the list of categories, choose the most similar item. "
+    }
+  }, 
+  {
+    "pk": 5, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 3, 
+      "ordering_rank": 2, 
+      "spanish_text": "", 
+      "english_text": "Parents should avoid putting juice, soda, or other sweet drinks in a baby bottle.  "
+    }
+  }, 
+  {
+    "pk": 17, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 9, 
+      "ordering_rank": 2, 
+      "spanish_text": "", 
+      "english_text": "Now would be a good time to watch the reducing sugared drinks video."
+    }
+  }, 
+  {
+    "pk": 26, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 13, 
+      "ordering_rank": 2, 
+      "spanish_text": "", 
+      "english_text": "Parents should supervise brushing until their child is 6-7 years old (Being able to tie own shoes and coloring within the lines are good markers.)  "
+    }
+  }, 
+  {
+    "pk": 33, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 15, 
+      "ordering_rank": 2, 
+      "spanish_text": "", 
+      "english_text": "Now may be a good time to watch the tooth brushing video\r\n\r\n"
+    }
+  }, 
+  {
+    "pk": 35, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 16, 
+      "ordering_rank": 2, 
+      "spanish_text": "", 
+      "english_text": "Children should being using toothpaste with fluoride when he/she turns 2 or earlier if the child is at high risk for dental caries."
+    }
+  }, 
+  {
+    "pk": 38, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 19, 
+      "ordering_rank": 2, 
+      "spanish_text": "", 
+      "english_text": "Children under 6 years old should consult with a dentist before using fluoride rinse"
+    }
+  }, 
+  {
+    "pk": 42, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 21, 
+      "ordering_rank": 2, 
+      "spanish_text": "", 
+      "english_text": "No time"
+    }
+  }, 
+  {
+    "pk": 56, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 24, 
+      "ordering_rank": 2, 
+      "spanish_text": "", 
+      "english_text": "Other common names include baby bottle tooth decay, nursing bottle mouth or bottle rot"
+    }
+  }, 
+  {
+    "pk": 24, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 12, 
+      "ordering_rank": 2, 
+      "spanish_text": "", 
+      "english_text": "If the parent expresses difficulty in brushing their children\u2019s teeth offer some suggestions from the additional details."
+    }
+  }, 
+  {
+    "pk": 21, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 11, 
+      "ordering_rank": 2, 
+      "spanish_text": "", 
+      "english_text": "Sucking a pacifier is normal for infants and young children.\r\n\r\n\r\n\r\n"
+    }
+  }, 
+  {
+    "pk": 15, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 8, 
+      "ordering_rank": 2, 
+      "spanish_text": "", 
+      "english_text": "If the parent answers sometimes, often, or always or appears anxious about taking the bottle away from their child. Refer to the further details for suggestions."
+    }
+  }, 
+  {
+    "pk": 61, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 26, 
+      "ordering_rank": 2, 
+      "spanish_text": "", 
+      "english_text": "Baby teeth help a child: Chew and enjoy food; Speak clearly;Guide and save space for adult teeth;Have a healthy smile that makes a child feel good about him/herself.\r\n"
+    }
+  }, 
+  {
+    "pk": 70, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 28, 
+      "ordering_rank": 2, 
+      "spanish_text": "", 
+      "english_text": "Common concerns for not visiting the dentist may include: No time; cost too much; have to travel too far; have to wait too long at the dentist's office; dentist doesn't speak their language; doesn't know of a dentist or clinic"
+    }
+  }, 
+  {
+    "pk": 58, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 25, 
+      "ordering_rank": 2, 
+      "spanish_text": "", 
+      "english_text": "Parents and caregivers play a very important role in finding and preventing ECC."
+    }
+  }, 
+  {
+    "pk": 74, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 17, 
+      "ordering_rank": 2, 
+      "spanish_text": "", 
+      "english_text": "Ingesting too much fluoride can make a child ill and/or cause the permanent teeth to come in with white spots/discolorations on them.  Products containing fluoride should be stored out of the reach of young children.  Children should be encouraged to spit out the toothpaste.   "
+    }
+  }, 
+  {
+    "pk": 30, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 14, 
+      "ordering_rank": 2, 
+      "spanish_text": "", 
+      "english_text": "Teeth should be brushed at least twice a day, everyday."
+    }
+  }, 
+  {
+    "pk": 78, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 7, 
+      "ordering_rank": 2, 
+      "spanish_text": "", 
+      "english_text": "It\u2019s important for the mother to understand that eliminating all contact with their child\u2019s mouth is unrealistic.  "
+    }
+  }, 
+  {
+    "pk": 80, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 6, 
+      "ordering_rank": 2, 
+      "spanish_text": "", 
+      "english_text": "The bacteria that cause cavities can be passed on from mother to child after a child\u2019s baby teeth come in (at about 6-10 months) through pre chewing food. This can be a serious problem if the mother herself has a lot of cavities, is not brushing her teeth well, or is not being treated by a dentist.\r\n"
+    }
+  }, 
+  {
+    "pk": 83, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 5, 
+      "ordering_rank": 2, 
+      "spanish_text": "", 
+      "english_text": "Sharing utensils is one way that saliva and bacteria can be transferred from the mother to the child. The bacteria that cause cavities can be passed on from mother to child after a child\u2019s baby teeth come in (at about 6-10 months). "
+    }
+  }, 
+  {
+    "pk": 10, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 4, 
+      "ordering_rank": 2, 
+      "spanish_text": "", 
+      "english_text": "Pacifiers should not be cleaned in a parent or caregiver\u2019s mouth.  Run them under water, in a dishwater, or with a clean wipe.  "
+    }
+  }, 
+  {
+    "pk": 66, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 27, 
+      "ordering_rank": 2, 
+      "spanish_text": "", 
+      "english_text": ""
+    }
+  }, 
+  {
+    "pk": 19, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 10, 
+      "ordering_rank": 2, 
+      "spanish_text": "", 
+      "english_text": "Sweets is referring to foods that help bacteria make more acid in the child\u2019s mouth such as: soda and juice drinks; Cookies, suckers, lollipops and hard candies, toffee taffy, caramel corn, gum drops, chocolate bars with rice cereal, nougat, candy-coated chocolate, candy corn; dried fruit, fruit roll-ups, chocolate-covered raisins, high energy candy bars or sport bars; Sweetened cereals such as Fruit Loops, Corn Pops or Frosted Flakes"
+    }
+  }, 
+  {
+    "pk": 90, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 23, 
+      "ordering_rank": 2, 
+      "spanish_text": "", 
+      "english_text": "Discovering and treating dental caries early (as a \u201cwhite spot\u201d vs. \u201ca cavity\u201d) is quicker, easier, cheaper and less stressful for both the parent and the child."
+    }
+  }, 
+  {
+    "pk": 92, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 30, 
+      "ordering_rank": 2, 
+      "spanish_text": "", 
+      "english_text": "Discovering and treating dental caries early (as a \u201cwhite spot\u201d vs. \u201ca cavity\u201d) is quicker, easier, cheaper and less stressful for both the parent and the child."
+    }
+  }, 
+  {
+    "pk": 94, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 33, 
+      "ordering_rank": 2, 
+      "spanish_text": "", 
+      "english_text": "Breast feeding is good for your baby but like a baby bottle, frequent and long feeding can put a child at risk for cavities.  "
+    }
+  }, 
+  {
+    "pk": 97, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 34, 
+      "ordering_rank": 2, 
+      "spanish_text": "", 
+      "english_text": "Your child should be able to floss his or her own teeth by the time he or she is 9 years old. To floss younger children's teeth, place them in your lap facing you."
+    }
+  }, 
+  {
+    "pk": 43, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 21, 
+      "ordering_rank": 3, 
+      "spanish_text": "", 
+      "english_text": "Don't think I need to because they have baby teeth which are going to fall out anyway"
+    }
+  }, 
+  {
+    "pk": 59, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 25, 
+      "ordering_rank": 3, 
+      "spanish_text": "", 
+      "english_text": "Parents forget or are misinformed about caring for their children\u2019s baby teeth because they will fall out and are replaced with adult teeth. "
+    }
+  }, 
+  {
+    "pk": 75, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 17, 
+      "ordering_rank": 3, 
+      "spanish_text": "", 
+      "english_text": "Parents should dispense toothpaste to prevent their young children from swallowing too much. Use a smear of fluoridated toothpaste for children under 2 and a  pea-sized amount of toothpaste for children 2-5 years old. "
+    }
+  }, 
+  {
+    "pk": 39, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 19, 
+      "ordering_rank": 3, 
+      "spanish_text": "", 
+      "english_text": "Children should spit out and NOT swallow fluoride rinse.  Products with fluoride should be kept out of reach of young children."
+    }
+  }, 
+  {
+    "pk": 31, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 14, 
+      "ordering_rank": 3, 
+      "spanish_text": "", 
+      "english_text": "If the parent expresses difficulty in brushing their children\u2019s teeth offer some suggestions from the additional details."
+    }
+  }, 
+  {
+    "pk": 22, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 11, 
+      "ordering_rank": 3, 
+      "spanish_text": "", 
+      "english_text": "Suggest speaking with their doctor for suggestions on how to relieve pain from teething.  "
+    }
+  }, 
+  {
+    "pk": 79, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 7, 
+      "ordering_rank": 3, 
+      "spanish_text": "", 
+      "english_text": "The longer a parent is able to protect their child from receiving these bacteria and the less bacteria a mother has in her own mouth; the better a parent\u2019s chances in decreasing their child\u2019s risk for future cavities. A food mill or food processor is a safer way to soften foods."
+    }
+  }, 
+  {
+    "pk": 27, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 13, 
+      "ordering_rank": 3, 
+      "spanish_text": "", 
+      "english_text": "Most young children can hold and move a brush in their mouths BUT, they usually do a very poor job of brushing their teeth.  "
+    }
+  }, 
+  {
+    "pk": 81, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 6, 
+      "ordering_rank": 3, 
+      "spanish_text": "", 
+      "english_text": "It\u2019s important for the mother to understand that eliminating all contact with their child\u2019s mouth is unrealistic. "
+    }
+  }, 
+  {
+    "pk": 95, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 33, 
+      "ordering_rank": 3, 
+      "spanish_text": "", 
+      "english_text": "To reduce a child's risk for developing cavities, a mother who is breast feeding should finish nursing child and then put them to bed."
+    }
+  }, 
+  {
+    "pk": 84, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 5, 
+      "ordering_rank": 3, 
+      "spanish_text": "", 
+      "english_text": "This can be a serious problem if the mother herself has a lot of cavities, is not brushing her teeth well, or is not being treated by a dentist."
+    }
+  }, 
+  {
+    "pk": 85, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 4, 
+      "ordering_rank": 3, 
+      "spanish_text": "", 
+      "english_text": "The bacteria that cause cavities can be passed on from mother to child after a child\u2019s baby teeth come in (at about 6-10 months). This can be a serious problem if the mother herself has a lot of cavities, is not brushing her teeth well, or is not being treated by a dentist."
+    }
+  }, 
+  {
+    "pk": 6, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 3, 
+      "ordering_rank": 3, 
+      "spanish_text": "", 
+      "english_text": "Parents should avoid letting their baby carry bottle or sippy cut around throughout the day. "
+    }
+  }, 
+  {
+    "pk": 88, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 10, 
+      "ordering_rank": 3, 
+      "spanish_text": "", 
+      "english_text": "Now would be a good time to watch the reducing sugared drinks video."
+    }
+  }, 
+  {
+    "pk": 62, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 26, 
+      "ordering_rank": 3, 
+      "spanish_text": "", 
+      "english_text": "Not taking care of a child\u2019s baby teeth can cause cavities which can be painful, and can spread to other baby teeth and adult teeth."
+    }
+  }, 
+  {
+    "pk": 71, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 28, 
+      "ordering_rank": 3, 
+      "spanish_text": "", 
+      "english_text": "Refer the parent to appropriate dental resources as needed.  Insurance and provider information can be found for children and pregnant women by contacting www.insurekidsnow.gov or 1-877-Kids-Now (1-877-543-7669)."
+    }
+  }, 
+  {
+    "pk": 67, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 27, 
+      "ordering_rank": 3, 
+      "spanish_text": "", 
+      "english_text": "Parents may not have access to tooth brushing and flossing tools.  It is important to assess this and refer the parent to the appropriate resource as needed. "
+    }
+  }, 
+  {
+    "pk": 7, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 3, 
+      "ordering_rank": 4, 
+      "spanish_text": "", 
+      "english_text": "Children should be weaned from the bottle to an infant cup by 12 to 14 months."
+    }
+  }, 
+  {
+    "pk": 76, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 17, 
+      "ordering_rank": 4, 
+      "spanish_text": "", 
+      "english_text": "At your child\u2019s regular check-ups, the dentist may recommend that a child receive a professional fluoride application."
+    }
+  }, 
+  {
+    "pk": 77, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 11, 
+      "ordering_rank": 4, 
+      "spanish_text": "", 
+      "english_text": "Additional suggestions include using a clean finger (or cold teething ring) to gently rub the baby's gum for about 2 minutes at a time. Many babies find this soothing, although they may protest at first. Also, parents can provide safe objects for the baby to chew on, such as teething rings. "
+    }
+  }, 
+  {
+    "pk": 28, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 13, 
+      "ordering_rank": 4, 
+      "spanish_text": "", 
+      "english_text": "If the parent expresses difficulty in brushing their children\u2019s teeth offer some suggestions from the additional details."
+    }
+  }, 
+  {
+    "pk": 82, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 6, 
+      "ordering_rank": 4, 
+      "spanish_text": "", 
+      "english_text": "The longer a parent is able to protect their child from receiving these bacteria and the less bacteria a mother has in her own mouth; the better a parent\u2019s chances in decreasing their child\u2019s risk for future cavities."
+    }
+  }, 
+  {
+    "pk": 86, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 4, 
+      "ordering_rank": 4, 
+      "spanish_text": "", 
+      "english_text": "It\u2019s important for the mother to understand that eliminating all contact with their child\u2019s mouth is unrealistic. "
+    }
+  }, 
+  {
+    "pk": 44, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 21, 
+      "ordering_rank": 4, 
+      "spanish_text": "", 
+      "english_text": "Child is afraid of dentist or pain"
+    }
+  }, 
+  {
+    "pk": 72, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 25, 
+      "ordering_rank": 4, 
+      "spanish_text": "", 
+      "english_text": "The baby teeth help the adult teeth to come in correctly and are very important for a child to be able to eat, speak, and feel good about him/herself.  "
+    }
+  }, 
+  {
+    "pk": 63, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 26, 
+      "ordering_rank": 4, 
+      "spanish_text": "", 
+      "english_text": "A child will not lose all their baby teeth until they are about 11-12 years old."
+    }
+  }, 
+  {
+    "pk": 68, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 27, 
+      "ordering_rank": 4, 
+      "spanish_text": "", 
+      "english_text": ""
+    }
+  }, 
+  {
+    "pk": 64, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 26, 
+      "ordering_rank": 5, 
+      "spanish_text": "", 
+      "english_text": "Removing baby teeth early due to infection may also affect the future alignment of the permanent teeth."
+    }
+  }, 
+  {
+    "pk": 45, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 21, 
+      "ordering_rank": 5, 
+      "spanish_text": "", 
+      "english_text": "Cost too much "
+    }
+  }, 
+  {
+    "pk": 87, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 4, 
+      "ordering_rank": 5, 
+      "spanish_text": "", 
+      "english_text": "The longer a parent is able to protect their child from receiving these bacteria and the less bacteria a mother has in her own mouth; the better a parent\u2019s chances in decreasing their child\u2019s risk for future cavities. \r\n"
+    }
+  }, 
+  {
+    "pk": 8, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 3, 
+      "ordering_rank": 5, 
+      "spanish_text": "", 
+      "english_text": "Unless being used at mealtime, the sippy cup should only be filled with water."
+    }
+  }, 
+  {
+    "pk": 46, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 21, 
+      "ordering_rank": 6, 
+      "spanish_text": "", 
+      "english_text": "Afraid of being separated from the child"
+    }
+  }, 
+  {
+    "pk": 47, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 21, 
+      "ordering_rank": 7, 
+      "spanish_text": "", 
+      "english_text": "Have to travel too far"
+    }
+  }, 
+  {
+    "pk": 48, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 21, 
+      "ordering_rank": 8, 
+      "spanish_text": "", 
+      "english_text": "Have to wait too long at the office"
+    }
+  }, 
+  {
+    "pk": 49, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 21, 
+      "ordering_rank": 9, 
+      "spanish_text": "", 
+      "english_text": "Dentist doesn't speak my language"
+    }
+  }, 
+  {
+    "pk": 50, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 21, 
+      "ordering_rank": 10, 
+      "spanish_text": "", 
+      "english_text": "Don't know of any dentist or clinic"
+    }
+  }, 
+  {
+    "pk": 51, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 21, 
+      "ordering_rank": 11, 
+      "spanish_text": "", 
+      "english_text": "Afraid of child contracting a disease"
+    }
+  }, 
+  {
+    "pk": 52, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 21, 
+      "ordering_rank": 12, 
+      "spanish_text": "", 
+      "english_text": "Refer the parent to the appropriate dental resources as needed"
+    }
+  }, 
+  {
+    "pk": 53, 
+    "model": "collection_tool.helpbulletpoint", 
+    "fields": {
+      "help_item": 21, 
+      "ordering_rank": 13, 
+      "spanish_text": "", 
+      "english_text": "Now may be a good time to have them watch the first dental visit video"
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "collection_tool.helpdefinition", 
+    "fields": {
+      "help_item": 2, 
+      "english_title": "EN title", 
+      "spanish_title": "ES title", 
+      "english_body": "EN body", 
+      "spanish_body": "ES body", 
+      "ordering_rank": 0
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "collection_tool.helpdefinition", 
+    "fields": {
+      "help_item": 3, 
+      "english_title": "Sippy Cup", 
+      "spanish_title": "", 
+      "english_body": "The sippy cup is a training tool to help children transition from a bottle to a cup.  It should not be used for a long period of time- it is not a bottle and not a pacifier. It should also not be used as a replacement for a bottle or pacifier.", 
+      "spanish_body": "", 
+      "ordering_rank": 1
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "collection_tool.helpdefinition", 
+    "fields": {
+      "help_item": 4, 
+      "english_title": "Vertical Transmission ", 
+      "spanish_title": "transmisi\u03ccn de madre a nino", 
+      "english_body": "Vertical Transmission is a term describing part of the disease process of dental caries where the bacteria responsible for dental caries is passed on from the parent (usually mother) to child.", 
+      "spanish_body": "", 
+      "ordering_rank": 1
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "collection_tool.helpdefinition", 
+    "fields": {
+      "help_item": 5, 
+      "english_title": "Vertical Transmission", 
+      "spanish_title": "Transmisi\u03ccn de madre a nino", 
+      "english_body": "Vertical Transmission is a term describing part of the disease process of dental caries where the bacteria responsible for dental caries is passed on from the parent (usually mother) to child.", 
+      "spanish_body": "", 
+      "ordering_rank": 1
+    }
+  }, 
+  {
+    "pk": 5, 
+    "model": "collection_tool.helpdefinition", 
+    "fields": {
+      "help_item": 6, 
+      "english_title": "Vertical Transmission ", 
+      "spanish_title": "Transmisi\u03ccn de madre a nino", 
+      "english_body": "Vertical Transmission is a term describing part of the disease process of dental caries where the bacteria responsible for dental caries is passed on from the parent (usually mother) to child.", 
+      "spanish_body": "", 
+      "ordering_rank": 1
+    }
+  }, 
+  {
+    "pk": 6, 
+    "model": "collection_tool.helpdefinition", 
+    "fields": {
+      "help_item": 7, 
+      "english_title": "Vertical Transmission ", 
+      "spanish_title": "Transmisi\u03ccn de madre a nino", 
+      "english_body": "Vertical Transmission is a term describing part of the disease process of dental caries where the bacteria responsible for dental caries is passed on from the parent (usually mother) to child.", 
+      "spanish_body": "", 
+      "ordering_rank": 1
+    }
+  }, 
+  {
+    "pk": 7, 
+    "model": "collection_tool.helpdefinition", 
+    "fields": {
+      "help_item": 8, 
+      "english_title": "Sippy Cup", 
+      "spanish_title": "", 
+      "english_body": "The sippy cup is a training tool to help children transition from a bottle to a cup.  It should not be used for a long period of time- it is not a bottle and not a pacifier. It should also not be used as a replacement for a bottle or pacifier.", 
+      "spanish_body": "", 
+      "ordering_rank": 1
+    }
+  }, 
+  {
+    "pk": 9, 
+    "model": "collection_tool.helpdefinition", 
+    "fields": {
+      "help_item": 12, 
+      "english_title": "Dental hygiene", 
+      "spanish_title": "", 
+      "english_body": "The state or practice of keeping the mouth cavity in a healthy condition, as by a regular program of brushing and flossing the teeth combined with periodic examinations by a dentist.", 
+      "spanish_body": "", 
+      "ordering_rank": 1
+    }
+  }, 
+  {
+    "pk": 10, 
+    "model": "collection_tool.helpdefinition", 
+    "fields": {
+      "help_item": 16, 
+      "english_title": "Fluoride", 
+      "spanish_title": "flouro", 
+      "english_body": "Fluoride is a mineral that helps protect the teeth from decay by hardening the tooth, repairing tiny areas of decay before they become big cavities, and making bacteria in plaque less able to cause decay.  Common sources include prescription-strength fluoride put on at the dentist\u2019s office, toothpaste, and over-the-counter rinses that you can buy at the store.", 
+      "spanish_body": "", 
+      "ordering_rank": 1
+    }
+  }, 
+  {
+    "pk": 24, 
+    "model": "collection_tool.helpdefinition", 
+    "fields": {
+      "help_item": 38, 
+      "english_title": "Balanced diet", 
+      "spanish_title": "", 
+      "english_body": "Balanced diet means eating a wide variety of foods from all food groups, as well as eating everything in moderation.  Dairy products provide calcium and vitamin D for strengthening teeth and bones.  Breads and cereals supply B vitamins for growth and iron for healthy blood which adds to healthy gum tissue.  Fruits and vegetables containing Vitamin C (among other important vitamins) are essential to maintaining healthy gums.  Lean meat, poultry and beans provide iron and protein for overall health, and magnesium and zinc for teeth and bones.", 
+      "spanish_body": "", 
+      "ordering_rank": 1
+    }
+  }, 
+  {
+    "pk": 16, 
+    "model": "collection_tool.helpdefinition", 
+    "fields": {
+      "help_item": 19, 
+      "english_title": "Fluoride ", 
+      "spanish_title": "flouro", 
+      "english_body": "Fluoride is a mineral that helps protect the teeth from decay by hardening the tooth, repairing tiny areas of decay before they become big cavities, and making bacteria in plaque less able to cause decay.  Common sources include prescription-strength fluoride put on at the dentist\u2019s office, toothpaste, and over-the-counter rinses that you can buy at the store.", 
+      "spanish_body": "", 
+      "ordering_rank": 1
+    }
+  }, 
+  {
+    "pk": 17, 
+    "model": "collection_tool.helpdefinition", 
+    "fields": {
+      "help_item": 21, 
+      "english_title": "Dental Home", 
+      "spanish_title": "", 
+      "english_body": "Dental Home: An accessible place where a child can receive consistent and comprehensive dental services, including dental restorations.", 
+      "spanish_body": "", 
+      "ordering_rank": 1
+    }
+  }, 
+  {
+    "pk": 19, 
+    "model": "collection_tool.helpdefinition", 
+    "fields": {
+      "help_item": 23, 
+      "english_title": "Lift the Lip", 
+      "spanish_title": "Examen de levanter el labio", 
+      "english_body": "Lift the Lip exam is a simple and quick way to examine a child for early signs of Early Childhood Caries consisting of gently lifting a baby\u2019s upper lip and cheek and looking for any discolorations on the teeth.", 
+      "spanish_body": "", 
+      "ordering_rank": 1
+    }
+  }, 
+  {
+    "pk": 21, 
+    "model": "collection_tool.helpdefinition", 
+    "fields": {
+      "help_item": 24, 
+      "english_title": "Early Childhood Caries ", 
+      "spanish_title": "Carie de la denticion primaria", 
+      "english_body": "Early Childhood Caries is an aggressive and quickly progressing form of dental caries that affects children at a very young age.", 
+      "spanish_body": "", 
+      "ordering_rank": 1
+    }
+  }, 
+  {
+    "pk": 22, 
+    "model": "collection_tool.helpdefinition", 
+    "fields": {
+      "help_item": 27, 
+      "english_title": "Abscessed tooth", 
+      "spanish_title": "", 
+      "english_body": "Abscessed tooth is a painful infection at the root of a tooth or between the gum and a tooth that is most often caused by tooth decay.", 
+      "spanish_body": "", 
+      "ordering_rank": 1
+    }
+  }, 
+  {
+    "pk": 23, 
+    "model": "collection_tool.helpdefinition", 
+    "fields": {
+      "help_item": 30, 
+      "english_title": "Lift the Lip", 
+      "spanish_title": "Examen de levanter el labio", 
+      "english_body": "Lift the Lip exam is a simple and quick way to examine a child for early signs of Early Childhood Caries consisting of gently lifting a baby\u2019s upper lip and cheek and looking for any discolorations on the teeth.", 
+      "spanish_body": "", 
+      "ordering_rank": 1
+    }
+  }, 
+  {
+    "pk": 12, 
+    "model": "collection_tool.helpdefinition", 
+    "fields": {
+      "help_item": 17, 
+      "english_title": "Fluoride", 
+      "spanish_title": "flouro", 
+      "english_body": "Fluoride is a mineral that helps protect the teeth from decay by hardening the tooth, repairing tiny areas of decay before they become big cavities, and making bacteria in plaque less able to cause decay.  Common sources include prescription-strength fluoride put on at the dentist\u2019s office, toothpaste, and over-the-counter rinses that you can buy at the store.", 
+      "spanish_body": "", 
+      "ordering_rank": 1
+    }
+  }, 
+  {
+    "pk": 14, 
+    "model": "collection_tool.helpdefinition", 
+    "fields": {
+      "help_item": 18, 
+      "english_title": "Prescription toothpaste", 
+      "spanish_title": "", 
+      "english_body": "Prescription toothpaste usually contains a higher and stronger concentration of fluoride than regular toothpaste, in order to make up for these deficiencies.\r\n\r\n", 
+      "spanish_body": "", 
+      "ordering_rank": 1
+    }
+  }, 
+  {
+    "pk": 11, 
+    "model": "collection_tool.helpdefinition", 
+    "fields": {
+      "help_item": 16, 
+      "english_title": "Enamel fluorosis", 
+      "spanish_title": "Fluorosis del esmalte dental", 
+      "english_body": "Enamel Fluorosis is a condition that occurs when inappropriate levels of fluoride are ingested by a child during specific time of tooth development, causing discolorations on the permanent teeth", 
+      "spanish_body": "", 
+      "ordering_rank": 2
+    }
+  }, 
+  {
+    "pk": 20, 
+    "model": "collection_tool.helpdefinition", 
+    "fields": {
+      "help_item": 23, 
+      "english_title": "White Spot", 
+      "spanish_title": "", 
+      "english_body": "White Spot is a term to describe the early stages of tooth decay.", 
+      "spanish_body": "", 
+      "ordering_rank": 2
+    }
+  }, 
+  {
+    "pk": 13, 
+    "model": "collection_tool.helpdefinition", 
+    "fields": {
+      "help_item": 17, 
+      "english_title": "Enamel fluorosis", 
+      "spanish_title": "Fluorosis del esmalte dental", 
+      "english_body": "Enamel Fluorosis is a condition that occurs when inappropriate levels of fluoride are ingested by a child during specific time of tooth development, causing discolorations on the permanent teeth", 
+      "spanish_body": "", 
+      "ordering_rank": 2
+    }
+  }, 
+  {
+    "pk": 18, 
+    "model": "collection_tool.helpdefinition", 
+    "fields": {
+      "help_item": 21, 
+      "english_title": "Pediatric Dentist", 
+      "spanish_title": "", 
+      "english_body": "Pediatric dentistry is the specialty of dentistry that focuses on the oral health of young people. After completing a four-year dental school curriculum, two to three additional years of rigorous training are required to become a pediatric dentist. This specialized program of study and hands-on experience prepares pediatric dentists to meet the needs of infants, children and adolescents, including persons with special health care needs.", 
+      "spanish_body": "", 
+      "ordering_rank": 2
+    }
+  }, 
+  {
+    "pk": 15, 
+    "model": "collection_tool.helpdefinition", 
+    "fields": {
+      "help_item": 18, 
+      "english_title": "Fluoride", 
+      "spanish_title": "flouro", 
+      "english_body": "Fluoride is a mineral that helps protect the teeth from decay by hardening the tooth, repairing tiny areas of decay before they become big cavities, and making bacteria in plaque less able to cause decay.  Common sources include prescription-strength fluoride put on at the dentist\u2019s office, toothpaste, and over-the-counter rinses that you can buy at the store.", 
+      "spanish_body": "", 
+      "ordering_rank": 2
+    }
+  }, 
+  {
+    "pk": 8, 
+    "model": "collection_tool.helpdefinition", 
+    "fields": {
+      "help_item": 8, 
+      "english_title": "Sip", 
+      "spanish_title": "", 
+      "english_body": "A small quantity of a liquid taken into the mouth and swallowed", 
+      "spanish_body": "", 
+      "ordering_rank": 2
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "collection_tool.topic", 
+    "fields": {
+      "english_description": "", 
+      "spanish_description": "", 
+      "ordering_rank": 1, 
+      "spanish_title": "", 
+      "english_title": "Sugary Food"
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "collection_tool.topic", 
+    "fields": {
+      "english_description": "", 
+      "spanish_description": "", 
+      "ordering_rank": 2, 
+      "spanish_title": "", 
+      "english_title": "Sugary Beverages"
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "collection_tool.topic", 
+    "fields": {
+      "english_description": "", 
+      "spanish_description": "", 
+      "ordering_rank": 3, 
+      "spanish_title": "", 
+      "english_title": "Tooth Brushing"
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "collection_tool.topic", 
+    "fields": {
+      "english_description": "", 
+      "spanish_description": "", 
+      "ordering_rank": 3, 
+      "spanish_title": "", 
+      "english_title": "Using Fluoride"
+    }
+  }, 
+  {
+    "pk": 5, 
+    "model": "collection_tool.topic", 
+    "fields": {
+      "english_description": "", 
+      "spanish_description": "", 
+      "ordering_rank": 5, 
+      "spanish_title": "", 
+      "english_title": "Taking Your Child to the Dentist"
+    }
+  }, 
+  {
+    "pk": 6, 
+    "model": "collection_tool.topic", 
+    "fields": {
+      "english_description": "", 
+      "spanish_description": "", 
+      "ordering_rank": 6, 
+      "spanish_title": "", 
+      "english_title": "Checking Your Child's Teeth"
+    }
+  }, 
+  {
+    "pk": 7, 
+    "model": "collection_tool.topic", 
+    "fields": {
+      "english_description": "", 
+      "spanish_description": "", 
+      "ordering_rank": 7, 
+      "spanish_title": "", 
+      "english_title": "Caring For Your Own Teeth"
+    }
+  }, 
+  {
+    "pk": 8, 
+    "model": "collection_tool.topic", 
+    "fields": {
+      "english_description": "", 
+      "spanish_description": "", 
+      "ordering_rank": 8, 
+      "spanish_title": "", 
+      "english_title": "Limiting Salivary Contact"
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "collection_tool.goal", 
+    "fields": {
+      "english_title": "Not putting my chidl to bed with a bottle", 
+      "spanish_title": "", 
+      "english_description": "", 
+      "show_in_planner": false, 
+      "topic": 3, 
+      "spanish_description": "", 
+      "ordering_rank": 1
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "collection_tool.goal", 
+    "fields": {
+      "english_title": "Talk to my child's dentist about what is the right amount of fluoride for my child", 
+      "spanish_title": "", 
+      "english_description": "", 
+      "show_in_planner": false, 
+      "topic": 1, 
+      "spanish_description": "", 
+      "ordering_rank": 1
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "collection_tool.goal", 
+    "fields": {
+      "english_title": "Only serve sweet foods with meals", 
+      "spanish_title": "", 
+      "english_description": "", 
+      "show_in_planner": true, 
+      "topic": 2, 
+      "spanish_description": "", 
+      "ordering_rank": 1
+    }
+  }, 
+  {
+    "pk": 17, 
+    "model": "collection_tool.goal", 
+    "fields": {
+      "english_title": "Find a pediatric dentist for my child", 
+      "spanish_title": "", 
+      "english_description": "", 
+      "show_in_planner": false, 
+      "topic": 5, 
+      "spanish_description": "", 
+      "ordering_rank": 1
+    }
+  }, 
+  {
+    "pk": 16, 
+    "model": "collection_tool.goal", 
+    "fields": {
+      "english_title": "Make set times to brush your child's teeth", 
+      "spanish_title": "", 
+      "english_description": "", 
+      "show_in_planner": true, 
+      "topic": 4, 
+      "spanish_description": "", 
+      "ordering_rank": 1
+    }
+  }, 
+  {
+    "pk": 21, 
+    "model": "collection_tool.goal", 
+    "fields": {
+      "english_title": "lift the lips and look for white and brown spots", 
+      "spanish_title": "", 
+      "english_description": "", 
+      "show_in_planner": false, 
+      "topic": 6, 
+      "spanish_description": "", 
+      "ordering_rank": 1
+    }
+  }, 
+  {
+    "pk": 22, 
+    "model": "collection_tool.goal", 
+    "fields": {
+      "english_title": "Brush my teeth with a fluoridated toothpaste at least two times a day", 
+      "spanish_title": "", 
+      "english_description": "", 
+      "show_in_planner": false, 
+      "topic": 7, 
+      "spanish_description": "", 
+      "ordering_rank": 1
+    }
+  }, 
+  {
+    "pk": 25, 
+    "model": "collection_tool.goal", 
+    "fields": {
+      "english_title": "Stop sharing spoons, toothbrushes, chewing food for my baby, or putting pacifiers in my mouth to clean", 
+      "spanish_title": "", 
+      "english_description": "", 
+      "show_in_planner": false, 
+      "topic": 8, 
+      "spanish_description": "", 
+      "ordering_rank": 1
+    }
+  }, 
+  {
+    "pk": 15, 
+    "model": "collection_tool.goal", 
+    "fields": {
+      "english_title": "Use a smear (under 2 years old) or a pea-sized amount (over 2 years old) of toothpaste for my child", 
+      "spanish_title": "", 
+      "english_description": "", 
+      "show_in_planner": false, 
+      "topic": 1, 
+      "spanish_description": "", 
+      "ordering_rank": 2
+    }
+  }, 
+  {
+    "pk": 5, 
+    "model": "collection_tool.goal", 
+    "fields": {
+      "english_title": "Not letting my child carry and sip sweetedn drinks all day", 
+      "spanish_title": "", 
+      "english_description": "", 
+      "show_in_planner": true, 
+      "topic": 3, 
+      "spanish_description": "", 
+      "ordering_rank": 2
+    }
+  }, 
+  {
+    "pk": 23, 
+    "model": "collection_tool.goal", 
+    "fields": {
+      "english_title": "Schedule routine dental checkups for myself at least two times a year", 
+      "spanish_title": "", 
+      "english_description": "", 
+      "show_in_planner": false, 
+      "topic": 7, 
+      "spanish_description": "", 
+      "ordering_rank": 2
+    }
+  }, 
+  {
+    "pk": 18, 
+    "model": "collection_tool.goal", 
+    "fields": {
+      "english_title": "Schedule a dental visit", 
+      "spanish_title": "", 
+      "english_description": "", 
+      "show_in_planner": false, 
+      "topic": 5, 
+      "spanish_description": "", 
+      "ordering_rank": 2
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "collection_tool.goal", 
+    "fields": {
+      "english_title": "Only serve sweet foods on special occaisons", 
+      "spanish_title": "", 
+      "english_description": "", 
+      "show_in_planner": false, 
+      "topic": 2, 
+      "spanish_description": "", 
+      "ordering_rank": 2
+    }
+  }, 
+  {
+    "pk": 19, 
+    "model": "collection_tool.goal", 
+    "fields": {
+      "english_title": "Make sure to brush your child's teeth before bed", 
+      "spanish_title": "", 
+      "english_description": "", 
+      "show_in_planner": false, 
+      "topic": 4, 
+      "spanish_description": "", 
+      "ordering_rank": 2
+    }
+  }, 
+  {
+    "pk": 12, 
+    "model": "collection_tool.goal", 
+    "fields": {
+      "english_title": "Serve non-cariogenic foods as snacks", 
+      "spanish_title": "", 
+      "english_description": "", 
+      "show_in_planner": true, 
+      "topic": 2, 
+      "spanish_description": "", 
+      "ordering_rank": 3
+    }
+  }, 
+  {
+    "pk": 20, 
+    "model": "collection_tool.goal", 
+    "fields": {
+      "english_title": "Add extra times to brush your child's teeth during the day", 
+      "spanish_title": "", 
+      "english_description": "", 
+      "show_in_planner": false, 
+      "topic": 4, 
+      "spanish_description": "", 
+      "ordering_rank": 3
+    }
+  }, 
+  {
+    "pk": 24, 
+    "model": "collection_tool.goal", 
+    "fields": {
+      "english_title": "Set a good example for my child by consuming less sugar", 
+      "spanish_title": "", 
+      "english_description": "", 
+      "show_in_planner": false, 
+      "topic": 7, 
+      "spanish_description": "", 
+      "ordering_rank": 3
+    }
+  }, 
+  {
+    "pk": 6, 
+    "model": "collection_tool.goal", 
+    "fields": {
+      "english_title": "Not having my child drink in front of the TV", 
+      "spanish_title": "", 
+      "english_description": "", 
+      "show_in_planner": false, 
+      "topic": 3, 
+      "spanish_description": "", 
+      "ordering_rank": 3
+    }
+  }, 
+  {
+    "pk": 7, 
+    "model": "collection_tool.goal", 
+    "fields": {
+      "english_title": "Only serve sweet drinks with meals", 
+      "spanish_title": "", 
+      "english_description": "", 
+      "show_in_planner": true, 
+      "topic": 3, 
+      "spanish_description": "", 
+      "ordering_rank": 4
+    }
+  }, 
+  {
+    "pk": 13, 
+    "model": "collection_tool.goal", 
+    "fields": {
+      "english_title": "Create set meal times", 
+      "spanish_title": "", 
+      "english_description": "", 
+      "show_in_planner": true, 
+      "topic": 2, 
+      "spanish_description": "", 
+      "ordering_rank": 4
+    }
+  }, 
+  {
+    "pk": 8, 
+    "model": "collection_tool.goal", 
+    "fields": {
+      "english_title": "Only put water in my child's bottle at night", 
+      "spanish_title": "", 
+      "english_description": "", 
+      "show_in_planner": false, 
+      "topic": 3, 
+      "spanish_description": "", 
+      "ordering_rank": 5
+    }
+  }, 
+  {
+    "pk": 14, 
+    "model": "collection_tool.goal", 
+    "fields": {
+      "english_title": "Not let my child carry and eat sweetened snacks", 
+      "spanish_title": "", 
+      "english_description": "", 
+      "show_in_planner": true, 
+      "topic": 2, 
+      "spanish_description": "", 
+      "ordering_rank": 5
+    }
+  }, 
+  {
+    "pk": 9, 
+    "model": "collection_tool.goal", 
+    "fields": {
+      "english_title": "Only serve sweet drinks at special occasions", 
+      "spanish_title": "", 
+      "english_description": "", 
+      "show_in_planner": false, 
+      "topic": 3, 
+      "spanish_description": "", 
+      "ordering_rank": 6
+    }
+  }, 
+  {
+    "pk": 10, 
+    "model": "collection_tool.goal", 
+    "fields": {
+      "english_title": "Have my child drink only at the table", 
+      "spanish_title": "", 
+      "english_description": "", 
+      "show_in_planner": false, 
+      "topic": 3, 
+      "spanish_description": "", 
+      "ordering_rank": 7
+    }
+  }, 
+  {
+    "pk": 11, 
+    "model": "collection_tool.goal", 
+    "fields": {
+      "english_title": "Replace sugary drinks with less sugary choices", 
+      "spanish_title": "", 
+      "english_description": "", 
+      "show_in_planner": true, 
+      "topic": 3, 
+      "spanish_description": "", 
+      "ordering_rank": 8
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "collection_tool.assessmentsection", 
+    "fields": {
+      "english_title": "Diet", 
+      "spanish_title": "Diet (es)", 
+      "title": "Diet", 
+      "english_description": "(diet description)", 
+      "spanish_description": "(diet description (es))", 
+      "ordering_rank": 0
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "collection_tool.assessmentsection", 
+    "fields": {
+      "english_title": "Feeding Practices", 
+      "spanish_title": "Feeding Practices", 
+      "title": "Feeding Practices", 
+      "english_description": null, 
+      "spanish_description": null, 
+      "ordering_rank": 1
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "collection_tool.assessmentsection", 
+    "fields": {
+      "english_title": "Family History", 
+      "spanish_title": "Family History", 
+      "title": "Family History", 
+      "english_description": null, 
+      "spanish_description": null, 
+      "ordering_rank": 2
+    }
+  }, 
+  {
+    "pk": 5, 
+    "model": "collection_tool.assessmentsection", 
+    "fields": {
+      "english_title": "Capacity", 
+      "spanish_title": "Capacity", 
+      "title": "Capacity", 
+      "english_description": null, 
+      "spanish_description": null, 
+      "ordering_rank": 4
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "collection_tool.assessmentsection", 
+    "fields": {
+      "english_title": "Fluoride", 
+      "spanish_title": "Fluoride", 
+      "title": "Fluoride", 
+      "english_description": null, 
+      "spanish_description": null, 
+      "ordering_rank": 5
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "collection_tool.resource", 
+    "fields": {
+      "url": "http://www.nytimes.com", 
+      "ordering_rank": 0, 
+      "name": "New York Times", 
+      "resource_type": "test"
+    }
+  }, 
+  {
+    "pk": 14, 
+    "model": "collection_tool.displayquestion", 
+    "fields": {
+      "nav_section": 2, 
+      "display_regardless_of_weight": false, 
+      "image": "question_images/sleepingwithsippycup.jpg", 
+      "question": 29, 
+      "ordering_rank": 1, 
+      "topics": [
+        3
+      ], 
+      "resources": []
+    }
+  }, 
+  {
+    "pk": 30, 
+    "model": "collection_tool.displayquestion", 
+    "fields": {
+      "nav_section": 5, 
+      "display_regardless_of_weight": false, 
+      "image": "", 
+      "question": 61, 
+      "ordering_rank": 1, 
+      "topics": [], 
+      "resources": []
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "collection_tool.displayquestion", 
+    "fields": {
+      "nav_section": 4, 
+      "display_regardless_of_weight": false, 
+      "image": "", 
+      "question": 3, 
+      "ordering_rank": 1, 
+      "topics": [
+        4
+      ], 
+      "resources": []
+    }
+  }, 
+  {
+    "pk": 39, 
+    "model": "collection_tool.displayquestion", 
+    "fields": {
+      "nav_section": 4, 
+      "display_regardless_of_weight": false, 
+      "image": "", 
+      "question": 7, 
+      "ordering_rank": 1, 
+      "topics": [
+        4, 
+        1
+      ], 
+      "resources": []
+    }
+  }, 
+  {
+    "pk": 38, 
+    "model": "collection_tool.displayquestion", 
+    "fields": {
+      "nav_section": 1, 
+      "display_regardless_of_weight": false, 
+      "image": "", 
+      "question": 23, 
+      "ordering_rank": 1, 
+      "topics": [
+        2, 
+        3
+      ], 
+      "resources": []
+    }
+  }, 
+  {
+    "pk": 33, 
+    "model": "collection_tool.displayquestion", 
+    "fields": {
+      "nav_section": 1, 
+      "display_regardless_of_weight": false, 
+      "image": "", 
+      "question": 64, 
+      "ordering_rank": 1, 
+      "topics": [], 
+      "resources": []
+    }
+  }, 
+  {
+    "pk": 6, 
+    "model": "collection_tool.displayquestion", 
+    "fields": {
+      "nav_section": 3, 
+      "display_regardless_of_weight": false, 
+      "image": "question_images/dentalvisit.jpg", 
+      "question": 16, 
+      "ordering_rank": 1, 
+      "topics": [
+        5
+      ], 
+      "resources": []
+    }
+  }, 
+  {
+    "pk": 11, 
+    "model": "collection_tool.displayquestion", 
+    "fields": {
+      "nav_section": null, 
+      "display_regardless_of_weight": false, 
+      "image": "", 
+      "question": 17, 
+      "ordering_rank": 2, 
+      "topics": [], 
+      "resources": []
+    }
+  }, 
+  {
+    "pk": 8, 
+    "model": "collection_tool.displayquestion", 
+    "fields": {
+      "nav_section": 3, 
+      "display_regardless_of_weight": false, 
+      "image": "question_images/abscessedtooth.jpg", 
+      "question": 11, 
+      "ordering_rank": 2, 
+      "topics": [], 
+      "resources": []
+    }
+  }, 
+  {
+    "pk": 31, 
+    "model": "collection_tool.displayquestion", 
+    "fields": {
+      "nav_section": 1, 
+      "display_regardless_of_weight": false, 
+      "image": "", 
+      "question": 62, 
+      "ordering_rank": 2, 
+      "topics": [], 
+      "resources": []
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "collection_tool.displayquestion", 
+    "fields": {
+      "nav_section": 4, 
+      "display_regardless_of_weight": false, 
+      "image": "", 
+      "question": 4, 
+      "ordering_rank": 2, 
+      "topics": [], 
+      "resources": []
+    }
+  }, 
+  {
+    "pk": 16, 
+    "model": "collection_tool.displayquestion", 
+    "fields": {
+      "nav_section": 2, 
+      "display_regardless_of_weight": false, 
+      "image": "question_images/sippycupduringday.jpg", 
+      "question": 28, 
+      "ordering_rank": 2, 
+      "topics": [
+        3
+      ], 
+      "resources": []
+    }
+  }, 
+  {
+    "pk": 34, 
+    "model": "collection_tool.displayquestion", 
+    "fields": {
+      "nav_section": 2, 
+      "display_regardless_of_weight": false, 
+      "image": "", 
+      "question": 66, 
+      "ordering_rank": 2, 
+      "topics": [
+        3
+      ], 
+      "resources": []
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "collection_tool.displayquestion", 
+    "fields": {
+      "nav_section": null, 
+      "display_regardless_of_weight": false, 
+      "image": "question_images/fluoriderinse-nobrand.jpg", 
+      "question": 5, 
+      "ordering_rank": 3, 
+      "topics": [], 
+      "resources": []
+    }
+  }, 
+  {
+    "pk": 12, 
+    "model": "collection_tool.displayquestion", 
+    "fields": {
+      "nav_section": 3, 
+      "display_regardless_of_weight": false, 
+      "image": "question_images/whitespots.jpg", 
+      "question": 18, 
+      "ordering_rank": 3, 
+      "topics": [], 
+      "resources": []
+    }
+  }, 
+  {
+    "pk": 40, 
+    "model": "collection_tool.displayquestion", 
+    "fields": {
+      "nav_section": 1, 
+      "display_regardless_of_weight": false, 
+      "image": "", 
+      "question": 70, 
+      "ordering_rank": 3, 
+      "topics": [
+        2, 
+        3
+      ], 
+      "resources": []
+    }
+  }, 
+  {
+    "pk": 32, 
+    "model": "collection_tool.displayquestion", 
+    "fields": {
+      "nav_section": 1, 
+      "display_regardless_of_weight": false, 
+      "image": "", 
+      "question": 63, 
+      "ordering_rank": 3, 
+      "topics": [], 
+      "resources": []
+    }
+  }, 
+  {
+    "pk": 5, 
+    "model": "collection_tool.displayquestion", 
+    "fields": {
+      "nav_section": 4, 
+      "display_regardless_of_weight": false, 
+      "image": "", 
+      "question": 6, 
+      "ordering_rank": 3, 
+      "topics": [], 
+      "resources": []
+    }
+  }, 
+  {
+    "pk": 10, 
+    "model": "collection_tool.displayquestion", 
+    "fields": {
+      "nav_section": 3, 
+      "display_regardless_of_weight": false, 
+      "image": "", 
+      "question": 14, 
+      "ordering_rank": 3, 
+      "topics": [], 
+      "resources": []
+    }
+  }, 
+  {
+    "pk": 18, 
+    "model": "collection_tool.displayquestion", 
+    "fields": {
+      "nav_section": 2, 
+      "display_regardless_of_weight": false, 
+      "image": "", 
+      "question": 34, 
+      "ordering_rank": 4, 
+      "topics": [], 
+      "resources": []
+    }
+  }, 
+  {
+    "pk": 7, 
+    "model": "collection_tool.displayquestion", 
+    "fields": {
+      "nav_section": null, 
+      "display_regardless_of_weight": false, 
+      "image": "question_images/whendoyoubrush.jpg", 
+      "question": 7, 
+      "ordering_rank": 4, 
+      "topics": [], 
+      "resources": []
+    }
+  }, 
+  {
+    "pk": 9, 
+    "model": "collection_tool.displayquestion", 
+    "fields": {
+      "nav_section": null, 
+      "display_regardless_of_weight": false, 
+      "image": "", 
+      "question": 12, 
+      "ordering_rank": 4, 
+      "topics": [], 
+      "resources": []
+    }
+  }, 
+  {
+    "pk": 36, 
+    "model": "collection_tool.displayquestion", 
+    "fields": {
+      "nav_section": 2, 
+      "display_regardless_of_weight": false, 
+      "image": "", 
+      "question": 68, 
+      "ordering_rank": 5, 
+      "topics": [
+        2
+      ], 
+      "resources": []
+    }
+  }, 
+  {
+    "pk": 24, 
+    "model": "collection_tool.displayquestion", 
+    "fields": {
+      "nav_section": 4, 
+      "display_regardless_of_weight": false, 
+      "image": "", 
+      "question": 45, 
+      "ordering_rank": 5, 
+      "topics": [], 
+      "resources": []
+    }
+  }, 
+  {
+    "pk": 35, 
+    "model": "collection_tool.displayquestion", 
+    "fields": {
+      "nav_section": 4, 
+      "display_regardless_of_weight": false, 
+      "image": "", 
+      "question": 67, 
+      "ordering_rank": 5, 
+      "topics": [
+        4
+      ], 
+      "resources": []
+    }
+  }, 
+  {
+    "pk": 37, 
+    "model": "collection_tool.displayquestion", 
+    "fields": {
+      "nav_section": 2, 
+      "display_regardless_of_weight": false, 
+      "image": "", 
+      "question": 69, 
+      "ordering_rank": 6, 
+      "topics": [
+        2
+      ], 
+      "resources": []
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "collection_tool.displayquestion", 
+    "fields": {
+      "nav_section": 4, 
+      "display_regardless_of_weight": false, 
+      "image": "", 
+      "question": 2, 
+      "ordering_rank": 7, 
+      "topics": [], 
+      "resources": []
+    }
+  }, 
+  {
+    "pk": 20, 
+    "model": "collection_tool.displayquestion", 
+    "fields": {
+      "nav_section": 5, 
+      "display_regardless_of_weight": false, 
+      "image": "", 
+      "question": 36, 
+      "ordering_rank": 10, 
+      "topics": [], 
+      "resources": []
+    }
+  }, 
+  {
+    "pk": 22, 
+    "model": "collection_tool.displayquestion", 
+    "fields": {
+      "nav_section": 3, 
+      "display_regardless_of_weight": false, 
+      "image": "", 
+      "question": 41, 
+      "ordering_rank": 11, 
+      "topics": [], 
+      "resources": []
+    }
+  }, 
+  {
+    "pk": 26, 
+    "model": "collection_tool.displayquestion", 
+    "fields": {
+      "nav_section": 5, 
+      "display_regardless_of_weight": false, 
+      "image": "", 
+      "question": 53, 
+      "ordering_rank": 12, 
+      "topics": [], 
+      "resources": []
+    }
+  }, 
+  {
+    "pk": 28, 
+    "model": "collection_tool.displayquestion", 
+    "fields": {
+      "nav_section": 5, 
+      "display_regardless_of_weight": false, 
+      "image": "", 
+      "question": 58, 
+      "ordering_rank": 13, 
+      "topics": [], 
+      "resources": []
+    }
+  }, 
+  {
+    "pk": 23, 
+    "model": "collection_tool.displayquestion", 
+    "fields": {
+      "nav_section": 5, 
+      "display_regardless_of_weight": false, 
+      "image": "", 
+      "question": 42, 
+      "ordering_rank": 15, 
+      "topics": [], 
+      "resources": []
+    }
+  }, 
+  {
+    "pk": 29, 
+    "model": "collection_tool.displayquestion", 
+    "fields": {
+      "nav_section": 5, 
+      "display_regardless_of_weight": false, 
+      "image": "", 
+      "question": 60, 
+      "ordering_rank": 16, 
+      "topics": [], 
+      "resources": []
+    }
+  }, 
+  {
+    "pk": 19, 
+    "model": "collection_tool.displayquestion", 
+    "fields": {
+      "nav_section": 2, 
+      "display_regardless_of_weight": false, 
+      "image": "", 
+      "question": 35, 
+      "ordering_rank": 18, 
+      "topics": [], 
+      "resources": []
+    }
+  }, 
+  {
+    "pk": 27, 
+    "model": "collection_tool.displayquestion", 
+    "fields": {
+      "nav_section": 5, 
+      "display_regardless_of_weight": false, 
+      "image": "", 
+      "question": 56, 
+      "ordering_rank": 20, 
+      "topics": [], 
+      "resources": []
+    }
+  }, 
+  {
+    "pk": 25, 
+    "model": "collection_tool.displayquestion", 
+    "fields": {
+      "nav_section": 5, 
+      "display_regardless_of_weight": false, 
+      "image": "", 
+      "question": 52, 
+      "ordering_rank": 22, 
+      "topics": [
+        2, 
+        3
+      ], 
+      "resources": [
+        1
+      ]
+    }
+  }, 
+  {
+    "pk": 21, 
+    "model": "collection_tool.displayquestion", 
+    "fields": {
+      "nav_section": 5, 
+      "display_regardless_of_weight": false, 
+      "image": "question_images/kidincandystore.jpg", 
+      "question": 40, 
+      "ordering_rank": 24, 
+      "topics": [
+        2, 
+        3
+      ], 
+      "resources": []
+    }
+  }, 
+  {
+    "pk": 17, 
+    "model": "collection_tool.displayquestion", 
+    "fields": {
+      "nav_section": 2, 
+      "display_regardless_of_weight": false, 
+      "image": "", 
+      "question": 33, 
+      "ordering_rank": 26, 
+      "topics": [], 
+      "resources": []
+    }
+  }, 
+  {
+    "pk": 13, 
+    "model": "collection_tool.displayquestion", 
+    "fields": {
+      "nav_section": null, 
+      "display_regardless_of_weight": false, 
+      "image": "", 
+      "question": 20, 
+      "ordering_rank": 1, 
+      "topics": [], 
+      "resources": []
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "collection_tool.translation", 
+    "fields": {
+      "text": "What is your child's main source of drinking water?", 
+      "question": 2, 
+      "language": "en"
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "collection_tool.translation", 
+    "fields": {
+      "text": "What type of toothpaste does your child most routinely use?", 
+      "question": 3, 
+      "language": "en"
+    }
+  }, 
+  {
+    "pk": 5, 
+    "model": "collection_tool.translation", 
+    "fields": {
+      "text": "How many times a day does your child use a fluoride rinse?", 
+      "question": 4, 
+      "language": "en"
+    }
+  }, 
+  {
+    "pk": 6, 
+    "model": "collection_tool.translation", 
+    "fields": {
+      "text": "How many times a day does your child use prescription toothpaste?", 
+      "question": 5, 
+      "language": "en"
+    }
+  }, 
+  {
+    "pk": 7, 
+    "model": "collection_tool.translation", 
+    "fields": {
+      "text": "Has your child had a routine dental checkup in the last 12 months?", 
+      "question": 6, 
+      "language": "en"
+    }
+  }, 
+  {
+    "pk": 8, 
+    "model": "collection_tool.translation", 
+    "fields": {
+      "text": "How many times a day are your child's teeth brushed?", 
+      "question": 7, 
+      "language": "en"
+    }
+  }, 
+  {
+    "pk": 9, 
+    "model": "collection_tool.translation", 
+    "fields": {
+      "text": "Have you ever had an abscessed tooth?", 
+      "question": 8, 
+      "language": "en"
+    }
+  }, 
+  {
+    "pk": 10, 
+    "model": "collection_tool.translation", 
+    "fields": {
+      "text": "Do you currently have an untreated cavity?", 
+      "question": 9, 
+      "language": "en"
+    }
+  }, 
+  {
+    "pk": 11, 
+    "model": "collection_tool.translation", 
+    "fields": {
+      "text": "Has your child had a cavity in the last twelve months?", 
+      "question": 10, 
+      "language": "en"
+    }
+  }, 
+  {
+    "pk": 12, 
+    "model": "collection_tool.translation", 
+    "fields": {
+      "text": "Is there visible plaque on the child's upper front teeth?", 
+      "question": 11, 
+      "language": "en"
+    }
+  }, 
+  {
+    "pk": 13, 
+    "model": "collection_tool.translation", 
+    "fields": {
+      "text": "Are there visible white spots on your child's upper front teeth?", 
+      "question": 12, 
+      "language": "en"
+    }
+  }, 
+  {
+    "pk": 14, 
+    "model": "collection_tool.translation", 
+    "fields": {
+      "text": "What is this child's mutans level?", 
+      "question": 13, 
+      "language": "en"
+    }
+  }, 
+  {
+    "pk": 15, 
+    "model": "collection_tool.translation", 
+    "fields": {
+      "text": "How often do you put your child to bed with a bottle or sippy cup with a sugary drink?", 
+      "question": 14, 
+      "language": "en"
+    }
+  }, 
+  {
+    "pk": 17, 
+    "model": "collection_tool.translation", 
+    "fields": {
+      "text": "How often does your child sip a sugared drink from a sippy cup or bottle throughout the day?", 
+      "question": 16, 
+      "language": "en"
+    }
+  }, 
+  {
+    "pk": 19, 
+    "model": "collection_tool.translation", 
+    "fields": {
+      "text": "How often do you pre-chew your child\u2019s food?", 
+      "question": 18, 
+      "language": "en"
+    }
+  }, 
+  {
+    "pk": 20, 
+    "model": "collection_tool.translation", 
+    "fields": {
+      "text": "How often do you clean your child\u2019s pacifier by putting it in your mouth?", 
+      "question": 19, 
+      "language": "en"
+    }
+  }, 
+  {
+    "pk": 21, 
+    "model": "collection_tool.translation", 
+    "fields": {
+      "text": "How confident are you in reducing your child\u2019s risk for tooth decay?", 
+      "question": 20, 
+      "language": "en"
+    }
+  }, 
+  {
+    "pk": 22, 
+    "model": "collection_tool.translation", 
+    "fields": {
+      "text": "How difficult is it to cut back on the number of sweets your child eats?", 
+      "question": 21, 
+      "language": "en"
+    }
+  }, 
+  {
+    "pk": 24, 
+    "model": "collection_tool.translation", 
+    "fields": {
+      "text": "In general, how much of a problem has your child had with tooth decay?", 
+      "question": 23, 
+      "language": "en"
+    }
+  }, 
+  {
+    "pk": 25, 
+    "model": "collection_tool.translation", 
+    "fields": {
+      "text": "Other than yourself, is there someone who helps brush your child\u2019s teeth?", 
+      "question": 24, 
+      "language": "en"
+    }
+  }, 
+  {
+    "pk": 26, 
+    "model": "collection_tool.translation", 
+    "fields": {
+      "text": "Most of the mothers I know don\u2019t let their children have sugary drinks or snacks between meals", 
+      "question": 25, 
+      "language": "en"
+    }
+  }, 
+  {
+    "pk": 27, 
+    "model": "collection_tool.translation", 
+    "fields": {
+      "text": "Most of the mothers I know brush their children's teeth daily", 
+      "question": 26, 
+      "language": "en"
+    }
+  }, 
+  {
+    "pk": 28, 
+    "model": "collection_tool.translation", 
+    "fields": {
+      "text": "A mother can pass cavity causing germs to their child", 
+      "question": 27, 
+      "language": "en"
+    }
+  }, 
+  {
+    "pk": 29, 
+    "model": "collection_tool.translation", 
+    "fields": {
+      "text": "Products containing fluoride help to strengthen teeth and prevent cavities", 
+      "question": 28, 
+      "language": "en"
+    }
+  }, 
+  {
+    "pk": 30, 
+    "model": "collection_tool.translation", 
+    "fields": {
+      "text": "Cavities can be prevented", 
+      "question": 29, 
+      "language": "en"
+    }
+  }, 
+  {
+    "pk": 31, 
+    "model": "collection_tool.translation", 
+    "fields": {
+      "text": "People in my neighborhood help each other out.", 
+      "question": 30, 
+      "language": "en"
+    }
+  }, 
+  {
+    "pk": 32, 
+    "model": "collection_tool.translation", 
+    "fields": {
+      "text": "When does your child start the day?", 
+      "question": 31, 
+      "language": "en"
+    }
+  }, 
+  {
+    "pk": 33, 
+    "model": "collection_tool.translation", 
+    "fields": {
+      "text": "When does your child go to bed?", 
+      "question": 32, 
+      "language": "en"
+    }
+  }, 
+  {
+    "pk": 23, 
+    "model": "collection_tool.translation", 
+    "fields": {
+      "text": "In general, how much of a problem have you or your other children ever had with tooth decay?", 
+      "question": 22, 
+      "language": "en"
+    }
+  }, 
+  {
+    "pk": 18, 
+    "model": "collection_tool.translation", 
+    "fields": {
+      "text": "How often do you share utensils or drinks with your child?", 
+      "question": 17, 
+      "language": "en"
+    }
+  }, 
+  {
+    "pk": 35, 
+    "model": "collection_tool.translation", 
+    "fields": {
+      "text": "How often do you breast feed your child ad lib during the night?", 
+      "question": 34, 
+      "language": "en"
+    }
+  }, 
+  {
+    "pk": 36, 
+    "model": "collection_tool.translation", 
+    "fields": {
+      "text": "How many times a week are your child's teeth flossed?", 
+      "question": 35, 
+      "language": "en"
+    }
+  }, 
+  {
+    "pk": 37, 
+    "model": "collection_tool.translation", 
+    "fields": {
+      "text": "Where does your child typically eat their meals?", 
+      "question": 36, 
+      "language": "en"
+    }
+  }, 
+  {
+    "pk": 38, 
+    "model": "collection_tool.translation", 
+    "fields": {
+      "text": "Where does your child typically eat their snacks?", 
+      "question": 37, 
+      "language": "en"
+    }
+  }, 
+  {
+    "pk": 41, 
+    "model": "collection_tool.translation", 
+    "fields": {
+      "text": "\u00bfSu hijo ha tenido caries en los \u00faltimos 12 meses?\r\n", 
+      "question": 6, 
+      "language": "es"
+    }
+  }, 
+  {
+    "pk": 42, 
+    "model": "collection_tool.translation", 
+    "fields": {
+      "text": "\u00bfCon qu\u00e9 frecuencia pone a su hijo a dormir con un biber\u00f3n o vaso entrenador que contiene una bebida azucarada?\r\n", 
+      "question": 14, 
+      "language": "es"
+    }
+  }, 
+  {
+    "pk": 43, 
+    "model": "collection_tool.translation", 
+    "fields": {
+      "text": "\u201cLa gente de mi vecindario se ayuda mutuamente.\u201d \u00bfQu\u00e9 tan de acuerdo est\u00e1 con este enunciado?\r\n", 
+      "question": 30, 
+      "language": "es"
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "collection_tool.translation", 
+    "fields": {
+      "text": "Who most routinely brushes your child\u2019s teeth?\r\n", 
+      "question": 1, 
+      "language": "en"
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "collection_tool.translation", 
+    "fields": {
+      "text": "\u00bfQui\u00e9n le lava los dientes a su hijo generalmente?\r\n", 
+      "question": 1, 
+      "language": "es"
+    }
+  }, 
+  {
+    "pk": 34, 
+    "model": "collection_tool.translation", 
+    "fields": {
+      "text": "Are you currently receiving WIC?", 
+      "question": 33, 
+      "language": "en"
+    }
+  }, 
+  {
+    "pk": 44, 
+    "model": "collection_tool.translation", 
+    "fields": {
+      "text": "\u00bfActualmente est\u00e1 recibiendo WIC?", 
+      "question": 33, 
+      "language": "es"
+    }
+  }, 
+  {
+    "pk": 45, 
+    "model": "collection_tool.translation", 
+    "fields": {
+      "text": "\u00bfQu\u00e9 tipo de pasta dental usa su hijo con m\u00e1s frecuencia?\r\n", 
+      "question": 3, 
+      "language": "es"
+    }
+  }, 
+  {
+    "pk": 46, 
+    "model": "collection_tool.translation", 
+    "fields": {
+      "text": "\u00bfCon qu\u00e9 frecuencia toma su hijo bebidas azucaradas en biber\u00f3n o vaso entrenador durante el d\u00eda?\r\n", 
+      "question": 16, 
+      "language": "es"
+    }
+  }, 
+  {
+    "pk": 47, 
+    "model": "collection_tool.translation", 
+    "fields": {
+      "text": "\u00bfCuantas veces alimenta a su hijo/a del seno durante la noche?", 
+      "question": 34, 
+      "language": "es"
+    }
+  }, 
+  {
+    "pk": 48, 
+    "model": "collection_tool.translation", 
+    "fields": {
+      "text": "\u00bfSu hijo tiene manchas blancas visibles en los cuatro dientes delanteros superiores?\r\n", 
+      "question": 12, 
+      "language": "es"
+    }
+  }, 
+  {
+    "pk": 50, 
+    "model": "collection_tool.translation", 
+    "fields": {
+      "text": "\u00bfCon qu\u00e9 frecuencia mastica usted primero la comida de su hijo?\r\n", 
+      "question": 18, 
+      "language": "es"
+    }
+  }, 
+  {
+    "pk": 51, 
+    "model": "collection_tool.translation", 
+    "fields": {
+      "text": "Aparte de usted, \u00bfhay alguien m\u00e1s que ayuda a su hijo a lavarse los dientes?\r\n", 
+      "question": 24, 
+      "language": "es"
+    }
+  }, 
+  {
+    "pk": 52, 
+    "model": "collection_tool.translation", 
+    "fields": {
+      "text": "\u00bfPor lo general, en d\u00f3nde come su hijo sus refrigerios?\r\n", 
+      "question": 37, 
+      "language": "es"
+    }
+  }, 
+  {
+    "pk": 53, 
+    "model": "collection_tool.translation", 
+    "fields": {
+      "text": "\u00bfPor lo general, en d\u00f3nde come su hijo sus comidas?\r\n", 
+      "question": 36, 
+      "language": "es"
+    }
+  }, 
+  {
+    "pk": 54, 
+    "model": "collection_tool.translation", 
+    "fields": {
+      "text": "\u00bfCu\u00e1l es la fuente principal de agua potable de su hijo?\r\n", 
+      "question": 2, 
+      "language": "es"
+    }
+  }, 
+  {
+    "pk": 55, 
+    "model": "collection_tool.translation", 
+    "fields": {
+      "text": "\u00bfQu\u00e9 tan convencido(a) se siente de poder reducir el riesgo de que su hijo tenga caries?\r\n", 
+      "question": 20, 
+      "language": "es"
+    }
+  }, 
+  {
+    "pk": 56, 
+    "model": "collection_tool.translation", 
+    "fields": {
+      "text": "En general, \u00bfqu\u00e9 tan problem\u00e1ticas han sido las caries para usted y sus otros hijos?\r\n", 
+      "question": 22, 
+      "language": "es"
+    }
+  }, 
+  {
+    "pk": 57, 
+    "model": "collection_tool.translation", 
+    "fields": {
+      "text": "La mayor\u00eda de las madres que conozco les lavan los dientes a sus hijos todos los d\u00edas\r\n", 
+      "question": 26, 
+      "language": "es"
+    }
+  }, 
+  {
+    "pk": 58, 
+    "model": "collection_tool.translation", 
+    "fields": {
+      "text": "Los productos que contienen fluoruro ayudan a fortalecer los dientes y prevenir las caries\r\n", 
+      "question": 28, 
+      "language": "es"
+    }
+  }, 
+  {
+    "pk": 59, 
+    "model": "collection_tool.translation", 
+    "fields": {
+      "text": "En general, \u00bfcu\u00e1ntos problemas han tenido su hijo con caries?\r\n", 
+      "question": 23, 
+      "language": "es"
+    }
+  }, 
+  {
+    "pk": 60, 
+    "model": "collection_tool.translation", 
+    "fields": {
+      "text": "Las caries se pueden evitar\r\n", 
+      "question": 29, 
+      "language": "es"
+    }
+  }, 
+  {
+    "pk": 61, 
+    "model": "collection_tool.translation", 
+    "fields": {
+      "text": "\u00bfCon qu\u00e9 frecuencia se mete a la boca el chup\u00f3n de su hijo para limpiarlo?\r\n", 
+      "question": 19, 
+      "language": "es"
+    }
+  }, 
+  {
+    "pk": 62, 
+    "model": "collection_tool.translation", 
+    "fields": {
+      "text": "La madre puede transmitirle a su hijo microbios que causan caries\r\n", 
+      "question": 27, 
+      "language": "es"
+    }
+  }, 
+  {
+    "pk": 63, 
+    "model": "collection_tool.translation", 
+    "fields": {
+      "text": "La mayor\u00eda de las madres que conozco no dejan que sus hijos beban o coman cosas dulces entre comidas\r\n", 
+      "question": 25, 
+      "language": "es"
+    }
+  }, 
+  {
+    "pk": 64, 
+    "model": "collection_tool.translation", 
+    "fields": {
+      "text": "\u00bfQu\u00e9 tan dif\u00edcil es reducir la cantidad de cosas dulces que come su hijo?\r\n", 
+      "question": 21, 
+      "language": "es"
+    }
+  }, 
+  {
+    "pk": 65, 
+    "model": "collection_tool.translation", 
+    "fields": {
+      "text": "\u00bfCon qu\u00e9 frecuencia comparte los cubiertos con su hijo?\r\n", 
+      "question": 17, 
+      "language": "es"
+    }
+  }, 
+  {
+    "pk": 66, 
+    "model": "collection_tool.translation", 
+    "fields": {
+      "text": "\u00bfSu hijo tiene placa dental visible en los cuatro dientes delanteros superiores?\r\n", 
+      "question": 11, 
+      "language": "es"
+    }
+  }, 
+  {
+    "pk": 67, 
+    "model": "collection_tool.translation", 
+    "fields": {
+      "text": "\u00bfActualmente tiene caries en alg\u00fan diente y no ha recibido tratamiento?\r\n", 
+      "question": 9, 
+      "language": "es"
+    }
+  }, 
+  {
+    "pk": 68, 
+    "model": "collection_tool.translation", 
+    "fields": {
+      "text": "\u00bfCu\u00e1ntas veces al d\u00eda usa su hijo enjuague con fluoruro?\r\n", 
+      "question": 4, 
+      "language": "es"
+    }
+  }, 
+  {
+    "pk": 69, 
+    "model": "collection_tool.translation", 
+    "fields": {
+      "text": "\u00bfCu\u00e1ntas veces al d\u00eda se le lavan los dientes a su hijo?\r\n", 
+      "question": 7, 
+      "language": "es"
+    }
+  }, 
+  {
+    "pk": 49, 
+    "model": "collection_tool.translation", 
+    "fields": {
+      "text": "\u00bfHa tenido su hijo caries en los \u00faltimos 12 meses?", 
+      "question": 10, 
+      "language": "es"
+    }
+  }, 
+  {
+    "pk": 40, 
+    "model": "collection_tool.translation", 
+    "fields": {
+      "text": "When do your child's teeth get brushed?  When does your child rinse with fluoride rinse?", 
+      "question": 39, 
+      "language": "en"
+    }
+  }, 
+  {
+    "pk": 39, 
+    "model": "collection_tool.translation", 
+    "fields": {
+      "text": "What did your child eat yesterday?", 
+      "question": 38, 
+      "language": "en"
+    }
+  }, 
+  {
+    "pk": 70, 
+    "model": "collection_tool.translation", 
+    "fields": {
+      "text": "Was yesterday a typical eating day for your child?", 
+      "question": 40, 
+      "language": "en"
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "collection_tool.displayanswer", 
+    "fields": {
+      "answer": 7, 
+      "ordering_rank": 1, 
+      "image": "answer_images/bothbrush_.jpg"
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "collection_tool.displayanswer", 
+    "fields": {
+      "answer": 6, 
+      "ordering_rank": 1, 
+      "image": "answer_images/mychildbrushes.jpg"
+    }
+  }, 
+  {
+    "pk": 5, 
+    "model": "collection_tool.displayanswer", 
+    "fields": {
+      "answer": 5, 
+      "ordering_rank": 1, 
+      "image": "answer_images/Ibrushchildsteeth.jpg"
+    }
+  }, 
+  {
+    "pk": 6, 
+    "model": "collection_tool.displayanswer", 
+    "fields": {
+      "answer": 3, 
+      "ordering_rank": 1, 
+      "image": "answer_images/bottledwater.jpg"
+    }
+  }, 
+  {
+    "pk": 7, 
+    "model": "collection_tool.displayanswer", 
+    "fields": {
+      "answer": 2, 
+      "ordering_rank": 1, 
+      "image": "answer_images/tapwater.jpg"
+    }
+  }, 
+  {
+    "pk": 8, 
+    "model": "collection_tool.displayanswer", 
+    "fields": {
+      "answer": 4, 
+      "ordering_rank": 1, 
+      "image": "answer_images/bothwater.jpg"
+    }
+  }, 
+  {
+    "pk": 9, 
+    "model": "collection_tool.displayanswer", 
+    "fields": {
+      "answer": 10, 
+      "ordering_rank": 1, 
+      "image": "answer_images/non-fluoride1.jpg"
+    }
+  }, 
+  {
+    "pk": 10, 
+    "model": "collection_tool.displayanswer", 
+    "fields": {
+      "answer": 152, 
+      "ordering_rank": 1, 
+      "image": "answer_images/non-fluoride2.jpg"
+    }
+  }, 
+  {
+    "pk": 11, 
+    "model": "collection_tool.displayanswer", 
+    "fields": {
+      "answer": 153, 
+      "ordering_rank": 1, 
+      "image": "answer_images/non-fluoride3.jpg"
+    }
+  }, 
+  {
+    "pk": 12, 
+    "model": "collection_tool.displayanswer", 
+    "fields": {
+      "answer": 154, 
+      "ordering_rank": 1, 
+      "image": "answer_images/non-fluoride4.jpg"
+    }
+  }, 
+  {
+    "pk": 13, 
+    "model": "collection_tool.displayanswer", 
+    "fields": {
+      "answer": 9, 
+      "ordering_rank": 1, 
+      "image": "answer_images/majorepastes.jpg"
+    }
+  }, 
+  {
+    "pk": 14, 
+    "model": "collection_tool.displayanswer", 
+    "fields": {
+      "answer": 12, 
+      "ordering_rank": 1, 
+      "image": ""
+    }
+  }, 
+  {
+    "pk": 15, 
+    "model": "collection_tool.displayanswer", 
+    "fields": {
+      "answer": 155, 
+      "ordering_rank": 1, 
+      "image": ""
+    }
+  }, 
+  {
+    "pk": 16, 
+    "model": "collection_tool.displayanswer", 
+    "fields": {
+      "answer": 156, 
+      "ordering_rank": 1, 
+      "image": ""
+    }
+  }, 
+  {
+    "pk": 17, 
+    "model": "collection_tool.displayanswer", 
+    "fields": {
+      "answer": 13, 
+      "ordering_rank": 1, 
+      "image": ""
+    }
+  }, 
+  {
+    "pk": 18, 
+    "model": "collection_tool.displayanswer", 
+    "fields": {
+      "answer": 157, 
+      "ordering_rank": 1, 
+      "image": ""
+    }
+  }, 
+  {
+    "pk": 19, 
+    "model": "collection_tool.displayanswer", 
+    "fields": {
+      "answer": 158, 
+      "ordering_rank": 1, 
+      "image": ""
+    }
+  }, 
+  {
+    "pk": 20, 
+    "model": "collection_tool.displayanswer", 
+    "fields": {
+      "answer": 14, 
+      "ordering_rank": 1, 
+      "image": ""
+    }
+  }, 
+  {
+    "pk": 22, 
+    "model": "collection_tool.displayanswer", 
+    "fields": {
+      "answer": 15, 
+      "ordering_rank": 1, 
+      "image": ""
+    }
+  }, 
+  {
+    "pk": 23, 
+    "model": "collection_tool.displayanswer", 
+    "fields": {
+      "answer": 16, 
+      "ordering_rank": 1, 
+      "image": ""
+    }
+  }, 
+  {
+    "pk": 24, 
+    "model": "collection_tool.displayanswer", 
+    "fields": {
+      "answer": 42, 
+      "ordering_rank": 1, 
+      "image": ""
+    }
+  }, 
+  {
+    "pk": 25, 
+    "model": "collection_tool.displayanswer", 
+    "fields": {
+      "answer": 43, 
+      "ordering_rank": 1, 
+      "image": ""
+    }
+  }, 
+  {
+    "pk": 26, 
+    "model": "collection_tool.displayanswer", 
+    "fields": {
+      "answer": 44, 
+      "ordering_rank": 1, 
+      "image": ""
+    }
+  }, 
+  {
+    "pk": 27, 
+    "model": "collection_tool.displayanswer", 
+    "fields": {
+      "answer": 47, 
+      "ordering_rank": 1, 
+      "image": ""
+    }
+  }, 
+  {
+    "pk": 28, 
+    "model": "collection_tool.displayanswer", 
+    "fields": {
+      "answer": 213, 
+      "ordering_rank": 1, 
+      "image": ""
+    }
+  }, 
+  {
+    "pk": 29, 
+    "model": "collection_tool.displayanswer", 
+    "fields": {
+      "answer": 214, 
+      "ordering_rank": 1, 
+      "image": ""
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "collection_tool.answertranslation", 
+    "fields": {
+      "answer": 3, 
+      "text": "Both me and my child", 
+      "language": "en", 
+      "ordering_string": null
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "collection_tool.answertranslation", 
+    "fields": {
+      "answer": 3, 
+      "text": "Both me and my child (Spanish)", 
+      "language": "es", 
+      "ordering_string": null
+    }
+  }, 
+  {
+    "pk": 5, 
+    "model": "collection_tool.answertranslation", 
+    "fields": {
+      "answer": 4, 
+      "text": "My child", 
+      "language": "en", 
+      "ordering_string": null
+    }
+  }, 
+  {
+    "pk": 6, 
+    "model": "collection_tool.answertranslation", 
+    "fields": {
+      "answer": 4, 
+      "text": "My child (Spanish)", 
+      "language": "es", 
+      "ordering_string": null
+    }
+  }, 
+  {
+    "pk": 7, 
+    "model": "collection_tool.answertranslation", 
+    "fields": {
+      "answer": 5, 
+      "text": "Me", 
+      "language": "en", 
+      "ordering_string": null
+    }
+  }, 
+  {
+    "pk": 8, 
+    "model": "collection_tool.answertranslation", 
+    "fields": {
+      "answer": 5, 
+      "text": "Me (Spanish)", 
+      "language": "es", 
+      "ordering_string": null
+    }
+  }, 
+  {
+    "pk": 9, 
+    "model": "collection_tool.answertranslation", 
+    "fields": {
+      "answer": 6, 
+      "text": "Bottled", 
+      "language": "en", 
+      "ordering_string": null
+    }
+  }, 
+  {
+    "pk": 10, 
+    "model": "collection_tool.answertranslation", 
+    "fields": {
+      "answer": 7, 
+      "text": "Tap", 
+      "language": "en", 
+      "ordering_string": null
+    }
+  }, 
+  {
+    "pk": 11, 
+    "model": "collection_tool.answertranslation", 
+    "fields": {
+      "answer": 8, 
+      "text": "both", 
+      "language": "en", 
+      "ordering_string": null
+    }
+  }, 
+  {
+    "pk": 12, 
+    "model": "collection_tool.answertranslation", 
+    "fields": {
+      "answer": 9, 
+      "text": "Orajel Toddler Training Toothpaste", 
+      "language": "en", 
+      "ordering_string": null
+    }
+  }, 
+  {
+    "pk": 13, 
+    "model": "collection_tool.answertranslation", 
+    "fields": {
+      "answer": 9, 
+      "text": "Orajel Toddler Training Toothpaste", 
+      "language": "es", 
+      "ordering_string": null
+    }
+  }, 
+  {
+    "pk": 14, 
+    "model": "collection_tool.answertranslation", 
+    "fields": {
+      "answer": 10, 
+      "text": "Burt's Bees Natural Toothpaste Kids", 
+      "language": "en", 
+      "ordering_string": null
+    }
+  }, 
+  {
+    "pk": 15, 
+    "model": "collection_tool.answertranslation", 
+    "fields": {
+      "answer": 10, 
+      "text": "Burt's Bees Natural Toothpaste Kids", 
+      "language": "es", 
+      "ordering_string": null
+    }
+  }, 
+  {
+    "pk": 16, 
+    "model": "collection_tool.answertranslation", 
+    "fields": {
+      "answer": 11, 
+      "text": "Gerber Toddler Tooth and Gum Cleanser", 
+      "language": "en", 
+      "ordering_string": null
+    }
+  }, 
+  {
+    "pk": 17, 
+    "model": "collection_tool.answertranslation", 
+    "fields": {
+      "answer": 11, 
+      "text": "Gerber Toddler Tooth and Gum Cleanser", 
+      "language": "es", 
+      "ordering_string": null
+    }
+  }, 
+  {
+    "pk": 18, 
+    "model": "collection_tool.answertranslation", 
+    "fields": {
+      "answer": 12, 
+      "text": "Tom's of Maine Natural Fluoride-free Toothpaste for Children", 
+      "language": "en", 
+      "ordering_string": null
+    }
+  }, 
+  {
+    "pk": 19, 
+    "model": "collection_tool.answertranslation", 
+    "fields": {
+      "answer": 12, 
+      "text": "Tom's of Maine Natural Fluoride-free Toothpaste for Children", 
+      "language": "es", 
+      "ordering_string": null
+    }
+  }, 
+  {
+    "pk": 20, 
+    "model": "collection_tool.answertranslation", 
+    "fields": {
+      "answer": 13, 
+      "text": "Brands with fluoride", 
+      "language": "en", 
+      "ordering_string": null
+    }
+  }, 
+  {
+    "pk": 21, 
+    "model": "collection_tool.answertranslation", 
+    "fields": {
+      "answer": 14, 
+      "text": "none", 
+      "language": "en", 
+      "ordering_string": null
+    }
+  }, 
+  {
+    "pk": 22, 
+    "model": "collection_tool.answertranslation", 
+    "fields": {
+      "answer": 15, 
+      "text": "once", 
+      "language": "en", 
+      "ordering_string": null
+    }
+  }, 
+  {
+    "pk": 23, 
+    "model": "collection_tool.answertranslation", 
+    "fields": {
+      "answer": 16, 
+      "text": "twice or more", 
+      "language": "en", 
+      "ordering_string": null
+    }
+  }, 
+  {
+    "pk": 24, 
+    "model": "collection_tool.answertranslation", 
+    "fields": {
+      "answer": 17, 
+      "text": "none", 
+      "language": "en", 
+      "ordering_string": null
+    }
+  }, 
+  {
+    "pk": 25, 
+    "model": "collection_tool.answertranslation", 
+    "fields": {
+      "answer": 18, 
+      "text": "once", 
+      "language": "en", 
+      "ordering_string": null
+    }
+  }, 
+  {
+    "pk": 26, 
+    "model": "collection_tool.answertranslation", 
+    "fields": {
+      "answer": 19, 
+      "text": "twice or more", 
+      "language": "en", 
+      "ordering_string": null
+    }
+  }, 
+  {
+    "pk": 27, 
+    "model": "collection_tool.answertranslation", 
+    "fields": {
+      "answer": 20, 
+      "text": "none", 
+      "language": "en", 
+      "ordering_string": null
+    }
+  }, 
+  {
+    "pk": 29, 
+    "model": "collection_tool.answertranslation", 
+    "fields": {
+      "answer": 22, 
+      "text": "once", 
+      "language": "en", 
+      "ordering_string": null
+    }
+  }, 
+  {
+    "pk": 30, 
+    "model": "collection_tool.answertranslation", 
+    "fields": {
+      "answer": 23, 
+      "text": "twice or more", 
+      "language": "en", 
+      "ordering_string": null
+    }
+  }, 
+  {
+    "pk": 31, 
+    "model": "collection_tool.answertranslation", 
+    "fields": {
+      "answer": 24, 
+      "text": "low/moderate", 
+      "language": "en", 
+      "ordering_string": null
+    }
+  }, 
+  {
+    "pk": 32, 
+    "model": "collection_tool.answertranslation", 
+    "fields": {
+      "answer": 25, 
+      "text": "high", 
+      "language": "en", 
+      "ordering_string": null
+    }
+  }, 
+  {
+    "pk": 33, 
+    "model": "collection_tool.answertranslation", 
+    "fields": {
+      "answer": 26, 
+      "text": "Too numerous to count", 
+      "language": "en", 
+      "ordering_string": null
+    }
+  }, 
+  {
+    "pk": 34, 
+    "model": "collection_tool.answertranslation", 
+    "fields": {
+      "answer": 27, 
+      "text": "0", 
+      "language": "en", 
+      "ordering_string": null
+    }
+  }, 
+  {
+    "pk": 35, 
+    "model": "collection_tool.answertranslation", 
+    "fields": {
+      "answer": 28, 
+      "text": "1-2", 
+      "language": "en", 
+      "ordering_string": null
+    }
+  }, 
+  {
+    "pk": 36, 
+    "model": "collection_tool.answertranslation", 
+    "fields": {
+      "answer": 29, 
+      "text": "3 or more", 
+      "language": "en", 
+      "ordering_string": null
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "collection_tool.planneritem", 
+    "fields": {
+      "risk_level": 0, 
+      "type": "A", 
+      "label": "brush teeth"
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "collection_tool.planneritem", 
+    "fields": {
+      "risk_level": 0, 
+      "type": "A", 
+      "label": "fluoride rinse"
+    }
+  }, 
+  {
+    "pk": 23, 
+    "model": "collection_tool.planneritem", 
+    "fields": {
+      "risk_level": 0, 
+      "type": "B", 
+      "label": "bread and tortillas"
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "collection_tool.planneritem", 
+    "fields": {
+      "risk_level": 5, 
+      "type": "B", 
+      "label": "cake-like dessert"
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "collection_tool.planneritem", 
+    "fields": {
+      "risk_level": 5, 
+      "type": "B", 
+      "label": "candy and chocolate"
+    }
+  }, 
+  {
+    "pk": 5, 
+    "model": "collection_tool.planneritem", 
+    "fields": {
+      "risk_level": 3, 
+      "type": "B", 
+      "label": "cheese"
+    }
+  }, 
+  {
+    "pk": 6, 
+    "model": "collection_tool.planneritem", 
+    "fields": {
+      "risk_level": 5, 
+      "type": "B", 
+      "label": "cold desserts"
+    }
+  }, 
+  {
+    "pk": 24, 
+    "model": "collection_tool.planneritem", 
+    "fields": {
+      "risk_level": 0, 
+      "type": "B", 
+      "label": "cold plain cereal"
+    }
+  }, 
+  {
+    "pk": 7, 
+    "model": "collection_tool.planneritem", 
+    "fields": {
+      "risk_level": 3, 
+      "type": "B", 
+      "label": "eggs"
+    }
+  }, 
+  {
+    "pk": 8, 
+    "model": "collection_tool.planneritem", 
+    "fields": {
+      "risk_level": 2, 
+      "type": "B", 
+      "label": "fruit"
+    }
+  }, 
+  {
+    "pk": 9, 
+    "model": "collection_tool.planneritem", 
+    "fields": {
+      "risk_level": 2, 
+      "type": "B", 
+      "label": "granola bar"
+    }
+  }, 
+  {
+    "pk": 10, 
+    "model": "collection_tool.planneritem", 
+    "fields": {
+      "risk_level": 4, 
+      "type": "B", 
+      "label": "hard candy"
+    }
+  }, 
+  {
+    "pk": 11, 
+    "model": "collection_tool.planneritem", 
+    "fields": {
+      "risk_level": 1, 
+      "type": "B", 
+      "label": "high-fiber vegetables"
+    }
+  }, 
+  {
+    "pk": 26, 
+    "model": "collection_tool.planneritem", 
+    "fields": {
+      "risk_level": 0, 
+      "type": "B", 
+      "label": "hot cereal"
+    }
+  }, 
+  {
+    "pk": 35, 
+    "model": "collection_tool.planneritem", 
+    "fields": {
+      "risk_level": 0, 
+      "type": "B", 
+      "label": "meat"
+    }
+  }, 
+  {
+    "pk": 12, 
+    "model": "collection_tool.planneritem", 
+    "fields": {
+      "risk_level": 3, 
+      "type": "B", 
+      "label": "meat cheese sandwich"
+    }
+  }, 
+  {
+    "pk": 13, 
+    "model": "collection_tool.planneritem", 
+    "fields": {
+      "risk_level": 3, 
+      "type": "B", 
+      "label": "nuts"
+    }
+  }, 
+  {
+    "pk": 14, 
+    "model": "collection_tool.planneritem", 
+    "fields": {
+      "risk_level": 4, 
+      "type": "B", 
+      "label": "peanut butter and jelly sandwich"
+    }
+  }, 
+  {
+    "pk": 15, 
+    "model": "collection_tool.planneritem", 
+    "fields": {
+      "risk_level": 4, 
+      "type": "B", 
+      "label": "pizza"
+    }
+  }, 
+  {
+    "pk": 29, 
+    "model": "collection_tool.planneritem", 
+    "fields": {
+      "risk_level": 0, 
+      "type": "B", 
+      "label": "rice/pasta"
+    }
+  }, 
+  {
+    "pk": 16, 
+    "model": "collection_tool.planneritem", 
+    "fields": {
+      "risk_level": 3, 
+      "type": "B", 
+      "label": "salty snack foods"
+    }
+  }, 
+  {
+    "pk": 17, 
+    "model": "collection_tool.planneritem", 
+    "fields": {
+      "risk_level": 5, 
+      "type": "B", 
+      "label": "spreads"
+    }
+  }, 
+  {
+    "pk": 18, 
+    "model": "collection_tool.planneritem", 
+    "fields": {
+      "risk_level": 1, 
+      "type": "B", 
+      "label": "starchy vegetables"
+    }
+  }, 
+  {
+    "pk": 19, 
+    "model": "collection_tool.planneritem", 
+    "fields": {
+      "risk_level": 4, 
+      "type": "B", 
+      "label": "sweetened cereal"
+    }
+  }, 
+  {
+    "pk": 31, 
+    "model": "collection_tool.planneritem", 
+    "fields": {
+      "risk_level": 0, 
+      "type": "B", 
+      "label": "sweetened yogurt"
+    }
+  }, 
+  {
+    "pk": 20, 
+    "model": "collection_tool.planneritem", 
+    "fields": {
+      "risk_level": 5, 
+      "type": "B", 
+      "label": "sweeteners"
+    }
+  }, 
+  {
+    "pk": 28, 
+    "model": "collection_tool.planneritem", 
+    "fields": {
+      "risk_level": 0, 
+      "type": "C", 
+      "label": "Nesquick"
+    }
+  }, 
+  {
+    "pk": 25, 
+    "model": "collection_tool.planneritem", 
+    "fields": {
+      "risk_level": 0, 
+      "type": "C", 
+      "label": "diet soda"
+    }
+  }, 
+  {
+    "pk": 22, 
+    "model": "collection_tool.planneritem", 
+    "fields": {
+      "risk_level": 3, 
+      "type": "C", 
+      "label": "juice"
+    }
+  }, 
+  {
+    "pk": 27, 
+    "model": "collection_tool.planneritem", 
+    "fields": {
+      "risk_level": 0, 
+      "type": "C", 
+      "label": "milk and plain yogurt"
+    }
+  }, 
+  {
+    "pk": 21, 
+    "model": "collection_tool.planneritem", 
+    "fields": {
+      "risk_level": 5, 
+      "type": "C", 
+      "label": "soda"
+    }
+  }, 
+  {
+    "pk": 32, 
+    "model": "collection_tool.planneritem", 
+    "fields": {
+      "risk_level": 0, 
+      "type": "C", 
+      "label": "tea drinks"
+    }
+  }, 
+  {
+    "pk": 33, 
+    "model": "collection_tool.planneritem", 
+    "fields": {
+      "risk_level": 0, 
+      "type": "C", 
+      "label": "tomato juice"
+    }
+  }, 
+  {
+    "pk": 34, 
+    "model": "collection_tool.planneritem", 
+    "fields": {
+      "risk_level": 0, 
+      "type": "C", 
+      "label": "water/seltzer"
+    }
+  }
+]
