@@ -32,6 +32,8 @@ EDUCATION_LEVEL_CHOICES = (
 class Family(models.Model):
   active = models.BooleanField( help_text = "Uncheck to mostly-delete this family" , default = True)
   
+  
+  
   @property
   def dir(self):
     return dir(self)
@@ -41,6 +43,7 @@ class Family(models.Model):
   
   class Meta:
     ordering = ('study_id_number',)
+    verbose_name_plural = "Families"
     
   #study id (used as link. cannot be null.)
   study_id_number =         models.IntegerField(unique=True)
@@ -162,11 +165,9 @@ class Visit (models.Model):
    
   families = models.ManyToManyField(Family)
   start_timestamp = models.DateTimeField(auto_now_add=True)
-  end_timestamp = models.DateTimeField(null=True, blank =True)
+  end_timestamp = models.DateTimeField(null=True, blank =True, help_text = "If necessary, you can force this interview to end by setting the date / time to today and now. Results collected during the interview may be lost.")
   interviewer = models.ForeignKey(User)
   analytics_info =  models.TextField(null=True, blank =True)
-  
-  
   
   #Optional extra auth, maybe:
   token =  models.TextField(null=True, blank =True)
