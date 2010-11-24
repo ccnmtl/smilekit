@@ -82,7 +82,7 @@ div#list_of_questions {
 	float: right;
 	border-left: 1px solid #bbb;
 	text-align: center;
-	padding: 21px 15px 21px 15px;
+	padding: 22px 9px 22px 9px;
 	text-decoration: none;
 	color: #3172bb;
 	text-shadow: #fff 1px 1px 1px;
@@ -626,8 +626,8 @@ div#timetable .timerowfilled .timeactiondelete
 
 .thumbnail img, .answerthumbnail img
 {
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px !important;
+	-webkit-border-radius: 10px !important;
 }
 
 
@@ -643,7 +643,7 @@ div#timetable .timerowfilled .timeactiondelete
 
 .thumbnailselected,.answerthumbnailselected { border: 3px solid #3c3; }
 
-a.thumbnailimage,a.answerthumbnailimage { text-decoration: none; }
+a.thumbnailimage, a.answerthumbnailimage { text-decoration: none; }
 
 span.thumbnaillabel, span.answerthumbnaillabel
 {
@@ -666,6 +666,42 @@ span.answerthumbnaillabel
 {
 	width: 200px;
 }
+
+
+/****special*****/
+.answerphotobox .answerthumbnail a
+{
+	background: none !important;
+	display: block !important;
+}
+
+.answerphotobox .answerthumbnail a.contentbuttonchosen
+{
+	background: none !important;
+	display: block !important;
+}
+
+.answerphotobox .answerthumbnail a img
+{
+	border: 3px solid #000 !important;
+	margin-left: -3px !important;
+	display: block !important;
+}
+
+.answerphotobox .answerthumbnail a.contentbuttonchosen img 
+{ 
+	border: 3px solid #3c3 !important; 
+	margin-left: -3px !important;
+	display: block !important;
+}
+/****special*****/
+
+
+
+
+
+
+
 
 /********/
 
@@ -812,6 +848,8 @@ a.contentbutton
 	position: absolute;
 	left: 0px;
 }
+
+
 
 /********/
 

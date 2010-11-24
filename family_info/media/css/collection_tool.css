@@ -1,3 +1,31 @@
+answerphotobox .answerthumbnail a
+{
+	background: none !important;
+	display: block !important;
+}
+
+.answerphotobox .answerthumbnail a.contentbuttonchosen
+{
+	background: none !important;
+	display: block !important;
+}
+
+.answerphotobox .answerthumbnail a img
+{
+	border: 3px solid #000 !important;
+	margin-left: -3px !important;
+	display: block !important;
+}
+
+.answerphotobox .answerthumbnail a.contentbuttonchosen img 
+{ 
+	border: 3px solid #3c3 !important; 
+	margin-left: -3px !important;
+	display: block !important;
+}
+
+
+
 body
 {
 	padding: 20px;
