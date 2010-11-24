@@ -16,20 +16,20 @@ function download_files_into_cache () {
   cache.addEventListener('progress',    logEvent, false);
   cache.addEventListener('checking',    logEvent, false);
   cache.addEventListener('downloading', logEvent, false);
-  
+
   //new cache:
   cache.addEventListener('updateready', on_update_ready, false);
-  
+
   //done caching:
   cache.addEventListener('noupdate',    announce_ready_for_interview, false);
   cache.addEventListener('cached',      announce_ready_for_interview, false);
   cache.addEventListener('idle',        announce_ready_for_interview, false);
-  
+
   // problem:
   cache.addEventListener('error', error_handler, false);
-  
+
   cache.update();
-  
+
 }
 
 function update_debug_localstorage() {
@@ -54,7 +54,7 @@ function glog (str) {
 
 
 function head_to (family_id, url) {
-  local_storage_set ( LOCAL_STORAGE_KEY, 'current_family_id', family_id);  
+  local_storage_set ( LOCAL_STORAGE_KEY, 'current_family_id', family_id);
   window.location = url;
 }
 
@@ -62,20 +62,20 @@ function head_to (family_id, url) {
 function set_up_family_links () {
   start_visit_links = "";
   list_of_questions = local_storage_get(LOCAL_STORAGE_KEY, 'list_of_questions');
-  
+
   if (list_of_questions == null) {
         alert ('list of questions is null; can\'t start interview.');
         return;
   }
-  
-  $.each(list_of_questions , function(key, value) { 
+
+  $.each(list_of_questions , function(key, value) {
      family_study_id_number = value['family_study_id_number'];
      family_id = value['family_id'];
      url = value ['first_question_url']
 
      new_link = "<p> Family " + family_study_id_number + " ( \
      <span id ='progress_info_for_family_" + family_id + "'> </span> )\
-     <input type='button' class ='go_to_family_button' onclick ='head_to(" + family_id + ", \"" + url + "\")'  value = 'Visit' /> </p>";
+     <input type='button' id='go_to_family_button_" + family_id + "' class ='go_to_family_button' onclick ='head_to(" + family_id + ", \"" + url + "\")'  value = 'Visit' /> </p>";
      start_visit_links += new_link;
   });
   $('#start_visit_links')[0].innerHTML = start_visit_links;
@@ -88,16 +88,16 @@ function build_end_interview_form () {
   $.each(current_interview_questions , function(key, value) {
         family_id = value['family_id'];
         their_answers = local_storage_get ( LOCAL_STORAGE_KEY, (family_id + '_answers'));
-        
+
         their_state = local_storage_get(LOCAL_STORAGE_KEY, 'list_of_states')[family_id];
-        
-        
+
+
         if (their_answers != null) {
              safe_answers =  JSON.stringify (their_answers);
         } else {
             safe_answers = '{}';
         }
-        
+
         safe_state = JSON.stringify (their_state)
         form_contents +=  "<input type='hidden' \
               name = '"  + family_id + "' \
@@ -116,7 +116,7 @@ function build_end_interview_form () {
 
 
 function show_interview_progress() {
-  $.each(list_of_questions , function(key, value) { 
+  $.each(list_of_questions , function(key, value) {
      family_id = value['family_id'];
      their_answers = local_storage_get ( LOCAL_STORAGE_KEY, family_id + '_answers');
       number = 0;
@@ -125,13 +125,13 @@ function show_interview_progress() {
       }
      span_id =  '#progress_info_for_family_' + family_id;
      $(span_id)[0].innerHTML =  number + " answers during this interview.";
-  
+
   });
 }
 
 function hide_buttons() {
   $('.go_to_family_button').hide();
-  
+
 }
 
 function show_buttons() {
@@ -149,14 +149,14 @@ function init_family_info() {
   add_keys();
   LOCAL_STORAGE_KEY = 'la_llave_encantada';
   //glog('init family info:');
-  
+
   // 2) SET UP LINKS TO FIRST PAGE OF EACH FAMILY'S INTERVIEW.
   set_up_family_links ();
-  
+
   if (typeof (local_storage_get) == "undefined") {
-    glog ('localstorageget not found.'); 
+    glog ('localstorageget not found.');
     return;
-  } 
+  }
   hide_buttons();
   list_of_questions = local_storage_get(LOCAL_STORAGE_KEY, 'list_of_questions');
 
@@ -166,16 +166,16 @@ function init_family_info() {
   }
 
   if (typeof (cache) == "undefined") {
-    // this might not actually matter.  
-    glog ('Cache not found, so can\'t update it.'); 
+    // this might not actually matter.
+    glog ('Cache not found, so can\'t update it.');
     show_buttons();
-  } 
+  }
   else {
     download_files_into_cache ();
   }
   //3) BUILD THE END INTERVIEW FORM
   build_end_interview_form ();
-  
+
   // 4) SHOW INTERVIEW PROGRESS SO FAR:
   show_interview_progress();
 }
