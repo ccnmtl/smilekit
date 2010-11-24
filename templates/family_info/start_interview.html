@@ -23,7 +23,6 @@
 <div id="list_of_questions"> 
 	[
 	{% for the_family in families %}
-	
 	{
 		"family_id" : {{the_family.id}},
 		"family_study_id_number" : {{the_family.study_id_number}},
@@ -46,8 +45,9 @@
 		
 		],
 		
+	        {% if the_family.config and the_family.config.first_display_question %}
 		"first_question_url" : "/collection_tool/question/{{the_family.config.first_display_question.id}}/language/en"
-		
+		{% endif %}
 	}
 	{% if not forloop.last %},{%endif%}
 	
