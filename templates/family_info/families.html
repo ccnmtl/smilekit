@@ -59,7 +59,7 @@
 	            <tr>
 	              <td class="action" colspan = "3">
 	               <input type="submit"
-	               
+			      id="main_submit_button"
                 {%if user.current_visit%}
                   value ="Resume your visit with families {%for f in user.current_visit.families.all%}{{f.study_id_number}}{% if forloop.last %}{%else%} and {%endif%}{%endfor%}"
                 {%else %}
