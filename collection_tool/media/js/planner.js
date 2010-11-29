@@ -75,6 +75,7 @@ function loadState() {
   
   if (test == null) {
     alert ('no data.');
+    return;
   }
   
   jQuery("#timetable").html(test['timeline']);
@@ -153,6 +154,7 @@ function initPlanner() {
   
   if(mode == "food") {
     jQuery('#photobox-fluoride').hide();
+    //jQuery('.timeactiondelete').disable();
   }
   if(mode == "fluoride") {
     jQuery('.timeactionswap').hide();
@@ -160,6 +162,7 @@ function initPlanner() {
     //jQuery('.mealorsnack').hide();
     jQuery('#photobox-foods').hide();
     jQuery('#photobox-drinks').hide();
+    //jQuery('.timeactiondelete').disable(); 
   }
   
   // hide/show item boxes
