@@ -12,12 +12,12 @@ var cacheStatusValues = [];
 
 function error_handler(e) {
    logEvent(e);
-   status = cacheStatusValues[cache.status]; 
+   status = cacheStatusValues[cache.status];
    // warn, but allow to continue.
    slog ("There was an error downloading one of the files, but you can try starting the interview anyway.");
    announce_ready_for_interview(e);
     status_images_error();
-  
+
 }
 
 function status_images_none() {
@@ -50,7 +50,7 @@ function on_update_ready (e) {
    status_images_none();
    announce_ready_for_interview(e);
  }
- 
+
 function logEvent(e) {
   var online, status, type, message;
   online = (isOnline()) ? 'yes' : 'no';

@@ -32,6 +32,8 @@ EDUCATION_LEVEL_CHOICES = (
 class Family(models.Model):
   active = models.BooleanField( help_text = "Uncheck to mostly-delete this family" , default = True)
   
+  
+  
   @property
   def dir(self):
     return dir(self)
@@ -39,10 +41,9 @@ class Family(models.Model):
   def __unicode__(self):
     return "Family # %d" % self.study_id_number
   
-  
   class Meta:
     ordering = ('study_id_number',)
-  
+    verbose_name_plural = "Families"
     
   #study id (used as link. cannot be null.)
   study_id_number =         models.IntegerField(unique=True)
@@ -68,12 +69,31 @@ class Family(models.Model):
     default = 'nd'
   )
   
+  @property
+  def all_visits(self):
+    return [v for v in self.visit_set.all() ]
+  
+  @property
+  def in_a_visit(self):
+    return len (self.visits_happening) > 0
+  
+  @property
+  def visits_happening (self):
+    return [ v for v in self.all_visits  if v.is_happening]
+  
+  @property
+  def has_had_an_interview(self):
+    return len (self.all_visits) > 0
+    
+  @property
+  def config_locked(self):
+    """ should we allow this family's configuration to change? Not if they've already had an interview."""
+    return not self.has_had_an_interview
   
   @property
   def interviewer (self):
-    visits_happening = [ v for v in self.visit_set.all() if v.is_happening]
-    if len (visits_happening) > 0:
-      return visits_happening[0].interviewer
+    if len (self.visits_happening) > 0:
+      return self.visits_happening[0].interviewer
     return None
     
 
@@ -145,11 +165,9 @@ class Visit (models.Model):
    
   families = models.ManyToManyField(Family)
   start_timestamp = models.DateTimeField(auto_now_add=True)
-  end_timestamp = models.DateTimeField(null=True, blank =True)
+  end_timestamp = models.DateTimeField(null=True, blank =True, help_text = "If necessary, you can force this interview to end by setting the date / time to today and now. Results collected during the interview may be lost.")
   interviewer = models.ForeignKey(User)
   analytics_info =  models.TextField(null=True, blank =True)
-  
-  
   
   #Optional extra auth, maybe:
   token =  models.TextField(null=True, blank =True)

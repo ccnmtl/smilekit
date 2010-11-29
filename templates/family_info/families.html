@@ -41,8 +41,17 @@
 	                      {%endif%}
 	                    {%endif%}
 	                </td>
-	                <td>Family # {{family.study_id_number}}</td>
-	                <td><a href="/family_info/edit_family/{{family.id}}">Edit Family Details </a></td>
+	                <td>Family # {{family.study_id_number}} 
+	                </td>
+	                <td><a href="/family_info/edit_family/{{family.id}}">Edit Family Details </a>
+	                
+	                {% if user.is_staff%}
+  	                {%if family.in_a_visit %}
+	                  <a href="/admin/family_info/visit/{{family.interviewer.current_visit.id}}/">Visit page</a>
+	                  {%endif%}
+	                {%endif%}                
+	                
+	                </td>
 	              </tr>
 	            {%endfor %}
 	           
@@ -50,7 +59,7 @@
 	            <tr>
 	              <td class="action" colspan = "3">
 	               <input type="submit"
-	               
+			      id="main_submit_button"
                 {%if user.current_visit%}
                   value ="Resume your visit with families {%for f in user.current_visit.families.all%}{{f.study_id_number}}{% if forloop.last %}{%else%} and {%endif%}{%endfor%}"
                 {%else %}

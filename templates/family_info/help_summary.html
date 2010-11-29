@@ -1,0 +1,76 @@
+{% extends "family_info/base.html" %}
+{%load smartif%}
+{% block html_element %}{% endblock html_element %}
+
+
+
+{% block family_info_content %}
+
+<style type="text/css">
+pre.translation_pre {
+    white-space: -moz-pre-wrap; /* Mozilla, supported since 1999 */
+    white-space: -pre-wrap; /* Opera */
+    white-space: -o-pre-wrap; /* Opera */
+    white-space: pre-wrap; /* CSS3 - Text module (Candidate Recommendation) http://www.w3.org/TR/css3-text/#white-space */
+    word-wrap: break-word; /* IE 5.5+ */
+}
+</style>
+
+
+<h2 id="contenttitle">
+	Summary of help items
+</h2>
+<div width="800px">
+	The following is intentionally formatted very simply.
+</div>
+
+<div>
+
+<pre class = "translation_pre">
+{%for h_i in all_help_items%}
+*****************************
+*** {{h_i.english_title}} *** 
+*** {{h_i.spanish_title}} ***
+
+** /admin/collection_tool/helpitem/{{h_i.id}}/
+** objective:
+en: {{h_i.english_objective}}
+es: {{h_i.spanish_objective}}
+
+** script:
+en: {{h_i.english_script}}
+es: {{h_i.spanish_script}}
+{%comment %}
+** Script instructions:
+	{%for ins in h_i.english_script_instructions.all%}
+		{{ins.dir}}
+	{%endfor%}
+	{%for ins in h_i.english_script_instructions.all%}
+		{{ins.dir}}
+	{%endfor%}
+{%endcomment %}
+* Bullet points:
+{%for bp in h_i.helpbulletpoint_set.all%}
+		en: * {{bp.english_text}}
+		es: * {{bp.spanish_text}}
+{%endfor%}
+* Definitions:	
+{% for d in h_i.helpdefinition_set.all%}
+		en: {{d.english_title}} :
+			{{d.english_body}}
+		es: {{d.spanish_title}}:
+			{{d.spanish_body}}
+{%endfor%}
+{{h_i.help_item}}
+{%endfor%}
+</pre>
+</div>
+		
+ </div>
+
+
+
+{% endblock family_info_content %}
+
+
+

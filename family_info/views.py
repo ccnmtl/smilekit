@@ -156,8 +156,6 @@ def new_family(request, **kwargs):
     t = loader.get_template('family_info/add_edit_family.html')
     return HttpResponse(t.render(c))
 
-
-
 @login_required
 def insert_family(request, **kwargs):
     """ this validates the family form and inserts the family."""
@@ -171,20 +169,22 @@ def insert_family(request, **kwargs):
       return new_family (request,**kwargs )
     assert study_id != None
     
-    
     if len (Family.objects.filter(study_id_number=study_id)) > 0:
         kwargs ['error_message'] = 'Sorry, there\'s already a family with study ID number %s .' % rp['study_id_number']
         return new_family (
           request,
           **kwargs
         )
-      
-    try:
-      child_year_of_birth = int(rp['child_year_of_birth'])
-    except ValueError:
-      kwargs ['error_message'] = "Sorry, %s is not a valid year." % rp['child_year_of_birth']
-      return new_family (request,**kwargs )
+        
     
+    child_year_of_birth = None
+    if rp['child_year_of_birth'] != '':
+      try:
+        child_year_of_birth = int(rp['child_year_of_birth'])
+      except ValueError:
+        kwargs ['error_message'] = "Sorry, %s is not a valid year." % rp['child_year_of_birth']
+        return new_family (request,**kwargs )
+
     
     the_config = equation_balancer_configuration.objects.get(pk = rp['config_id'])
     assert the_config != None
@@ -194,7 +194,7 @@ def insert_family(request, **kwargs):
       study_id_number= study_id,
       date_created = datetime.datetime.now(),
       date_modified = datetime.datetime.now(),
-      child_year_of_birth = int( rp['child_year_of_birth']),
+      child_year_of_birth = child_year_of_birth,
       config_id = the_config.id
     )
     
@@ -206,11 +206,8 @@ def insert_family(request, **kwargs):
     if rp.has_key ('family_last_name'):
       the_family.family_last_name                   = rp['family_last_name']
     
-    the_new_family.mother_born_in_us =        (rp['mother_born_in_us'] == 'True')
-    the_new_family.food_stamps_in_last_year = (rp['food_stamps_in_last_year'] == 'True')
-    the_new_family.study_id_number                    = rp['study_id_number']
-    the_new_family.study_id_number                    = study_id
-    the_new_family.child_year_of_birth                = int(rp['child_year_of_birth'])
+    the_new_family.mother_born_in_us =                  (rp['mother_born_in_us'] == 'True')
+    the_new_family.food_stamps_in_last_year =           (rp['food_stamps_in_last_year'] == 'True')
     the_new_family.race_ethnicity                     = rp['race_ethnicity']
     the_new_family.highest_level_of_parent_education  = rp['highest_level_of_parent_education']
         
@@ -228,7 +225,6 @@ def back_to_edit_family (request, **kwargs):
     c = RequestContext(request, varz)
     t = loader.get_template('family_info/add_edit_family.html')
     return HttpResponse(t.render(c))
-
 
 @login_required
 def edit_family(request, **kwargs):
@@ -253,15 +249,17 @@ def edit_family(request, **kwargs):
               )
             assert study_id != None
             
-            try:
-              child_year_of_birth = int(rp['child_year_of_birth'])
-            except ValueError:
-              return back_to_edit_family (
-                request,
-                family=the_family,
-                error_message="Sorry, %s is not a valid year." % rp['child_year_of_birth']
-              )
-              
+            child_year_of_birth = None
+            if rp['child_year_of_birth'] != '':
+              try:
+                child_year_of_birth = int(rp['child_year_of_birth'])
+              except ValueError:
+                return back_to_edit_family (
+                  request,
+                  family=the_family,
+                  error_message="Sorry, %s is not a valid year." % rp['child_year_of_birth']
+                )
+                
             if the_family.study_id_number != study_id and len (Family.objects.filter(study_id_number=rp['study_id_number'])) > 0:
                 error_message = 'Sorry, there\'s already a family with study ID number %s .' % rp['study_id_number']
                 return back_to_edit_family (
@@ -301,28 +299,26 @@ def edit_family(request, **kwargs):
 #**************************
 @login_required
 def start_interview(request, **kwargs):
-    #pdb.set_trace()
     rp = request.POST
     
+    my_happening_visits =     [ v for v in request.user.visit_set.all() if v.is_happening]
     
-    #evil visit cleanup: this should fail loudly.
-    #TODO remove for QA.
-    #for v in Visit.objects.all()
-    #  if len(v.families.all()) == 0:
-    #    v.close_now()
+    #can't start an interview if i'm already interviewing someone else:
+    if len (my_happening_visits) == 0:
     
-    happening_visits =     [ v for v in request.user.visit_set.all() if v.is_happening]
-    
-    
-    if len (happening_visits) == 0:
-    
-        #if there is no interview currently:
         the_families = Family.objects.filter(pk__in = rp.getlist('families'))
-        
+
         #assert that at least one family is selected.
         if len(the_families) == 0:
           my_args = {'error_message' : 'Please check at least one family.'}
           return families (request, **my_args)
+
+        
+        #double-check nobody else started an interview with any of these families since you arrived on the page.
+        if [fam for fam in the_families if fam.in_a_visit]:
+          my_args = {'error_message' : 'Sorry, one of these families is already being visited.'}
+          return families (request, **my_args)
+        
 
 
         interviewer = request.user
@@ -332,11 +328,11 @@ def start_interview(request, **kwargs):
         new_visit.save();
         #else get list of families from current users's interview
         
-        assert len(happening_visits ) < 2
+        assert len(my_happening_visits ) < 2
 
-        
+      
     else:
-        the_families = happening_visits[0].families.all()
+        the_families = my_happening_visits[0].families.all()
     
     c = RequestContext(request, { 'families' : the_families } )
     t = loader.get_template('family_info/start_interview.html')
@@ -371,48 +367,29 @@ def end_interview(request, **args):
   answer_count = 0
   
   visits = [ v for v in request.user.visit_set.all() if v.is_happening]
+  
   if len(visits) == 0:
-    #probably just hit the back button by mistake.
+    #back button by mistake after ending an interview:
+    #just toss them back to families page.
     return families(request)
   
   assert len (visits) == 1
   my_visit = visits[0]
   
-  #import pdb
-  #pdb.set_trace()
-      
   for fam in my_visit.families.all():
-  ## instead, json parse the value for that family and iteritem on that:
     family_id = fam.id
-    
-    
     if rp.has_key('state_%d' % family_id):
       fam = Family.objects.get(pk=family_id)
       fam.set_state( rp['state_%d' % family_id])
-    
-    try:
-      their_answers = json.loads(rp[str(family_id)])
-    except ValueError:
-      their_answers = {}
-      
-    for question_id, answer_id in their_answers.iteritems():
-      
-      
-      #try:
-      #  my_visit.store_answer (family_id, int(question_id), int(answer_id))
-      #except:
-      #  import pdb
-      #  pdb.set_trace();
-      
-      my_visit.store_answer (family_id, int(question_id), int(answer_id))
-      
-      
-      answer_count = answer_count + 1
-
-        
-            
-  ## END ITERATE OVER FAMILIES...
-  #close the visit
+    if rp.has_key(str(family_id)):
+      try:
+        their_answers = json.loads(rp[str(family_id)])
+      except ValueError:
+        their_answers = {}
+      for question_id, answer_id in their_answers.iteritems():
+        my_visit.store_answer (family_id, int(question_id), int(answer_id))
+        answer_count = answer_count + 1
+  
   my_visit.close_now()   
   assert not my_visit.is_happening
   
@@ -423,4 +400,12 @@ def end_interview(request, **args):
 
   return families (request, **my_args)
   
+  
+  
+def help_summary(request):
+  t = loader.get_template('family_info/help_summary.html')
+  c = RequestContext(request,{
+      'all_help_items': HelpItem.objects.all()
+  })
+  return HttpResponse(t.render(c))
   
