@@ -47,7 +47,7 @@ function local_storage_get ( namespace, key, value ) {
 
 
 function get_planner_data(LOCAL_STORAGE_KEY, family_id) {
-  null_state = {'timeline': {}}
+  null_state = null;
   var all_states = local_storage_get(LOCAL_STORAGE_KEY, 'list_of_states');
   if (all_states == null ) {
       alert ("No planner data found.");

@@ -70,9 +70,11 @@
          {% include "collection_tool/planner.html" %}
          <!-- set mode (fluoride or feeding) -->
          <script type="text/javascript">
-           setMode("food");
            {% ifequal displayquestion.nav_section.title "Fluoride" %}
              setMode("fluoride");
+           {% endifequal %}
+           {% ifequal displayquestion.nav_section.title "Diet" %}
+             setMode("food");
            {% endifequal %}
            var risky_question_id = {{risky_question_id}};
            var risky_answers_keys = {{risky_answers_keys|safe}};
