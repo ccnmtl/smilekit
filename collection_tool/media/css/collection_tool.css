@@ -822,6 +822,24 @@ a.contentbutton
 	position: relative;
 }
 
+.nobutton
+{
+	background: -webkit-gradient(linear, left top, left bottom, from(#ff7575), to(#ff0101)) !important;
+	background: -moz-linear-gradient(top, #ff7575, #ff0101) !important;
+	color: #fff !important;
+	text-shadow: #000 1px 1px 1px !important;
+}
+
+.yesbutton
+{
+	background: -webkit-gradient(linear, left top, left bottom, from(#9bdbbb), to(#1eaf65)) !important;
+	background: -moz-linear-gradient(top, #9bdbbb, #1eaf65) !important;
+	color: #fff !important;
+	text-shadow: #000 1px 1px 1px !important;
+}
+
+
+
 .contentbuttoncomplete
 {
 	background: -webkit-gradient(linear, left top, left bottom, from(#666), to(#999)) !important;
@@ -1293,6 +1311,7 @@ table.interviewdetails td.label {width: 150px; font-weight: bold;}
 table.interviewdetails td ul, table.interviewdetails td ol {margin: 0;} 
 
 /* stop - "family details" table styles */
+
 
 
 /* start - orientation-specific styles */
