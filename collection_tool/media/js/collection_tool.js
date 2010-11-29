@@ -79,10 +79,26 @@ function unhighlight_answer (a, b) {
   $('#' + b.id).removeClass('contentbuttonchosen')
 }
 
-function highlight_answer (answer_id) {
-  $.each ( $('.contentbuttonchosen'), unhighlight_answer);
-  $('#answer_' + answer_id).addClass('contentbuttonchosen')
+
+function page_has_pictures_to_illustrate_answers() {
+  return $('.answerthumbnail').length > 0
 }
+
+
+function highlight_answer (answer_id) {
+  if ( page_has_pictures_to_illustrate_answers()) {
+    $('.answerthumbnail').removeClass('chosen_thumbnail_div')
+    $('#answer_' + answer_id).parent().addClass ('chosen_thumbnail_div');
+  }
+  else {
+    // regular questions:
+    $.each ( $('.contentbuttonchosen'), unhighlight_answer);
+    $('#answer_' + answer_id).addClass('contentbuttonchosen')
+  }
+}
+
+
+
 
 function init_answer_clicked() {
   $('a.answerthumbnailimage').click(answer_clicked);
