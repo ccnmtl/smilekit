@@ -577,11 +577,6 @@ div#timetable .timerowfilled .timeactiondelete
 	-webkit-border-radius: 5px;
 }
 
-.answerphotobox
-{
-	width: 682px;
-}
-
 .photoboxcontainer, .answerphotoboxcontainer
 {
 	background-color: #000;
@@ -594,7 +589,7 @@ div#timetable .timerowfilled .timeactiondelete
 	position: relative;
 }
 
-.photoboxlabel, .answerphotoboxlabel
+.photoboxlabel
 {
 	font-weight: bold;
 	text-transform: uppercase;
@@ -603,9 +598,10 @@ div#timetable .timerowfilled .timeactiondelete
 	text-align: center;
 }
 
-.thumbnails, .answerthumbnails {}
 
-.thumbnail, .answerthumbnail
+a.thumbnailimage, a.answerthumbnailimage { text-decoration: none; }
+
+.thumbnail
 {
 	display: block;
 	float: left;
@@ -617,10 +613,12 @@ div#timetable .timerowfilled .timeactiondelete
 	-webkit-border-radius: 10px;
 }
 
-.thumbnaildisabled img {
-  opacity:.40;
-  filter: alpha(opacity=40);
-  -moz-opacity: 0.4;
+
+.thumbnaildisabled img 
+{
+	opacity:.40;
+	filter: alpha(opacity=40);
+	-moz-opacity: 0.4;
 }
 
 
@@ -636,16 +634,12 @@ div#timetable .timerowfilled .timeactiondelete
 	width: 100px;
 }
 
-.answerthumbnail
-{
-	width: 200px;
-}
 
-.thumbnailselected,.answerthumbnailselected { border: 3px solid #3c3; }
 
-a.thumbnailimage, a.answerthumbnailimage { text-decoration: none; }
+.thumbnailselected { border: 3px solid yellow; }
 
-span.thumbnaillabel, span.answerthumbnaillabel
+
+span.thumbnaillabel
 {
 	display: block;
 	color: #fff;
@@ -657,50 +651,61 @@ span.thumbnaillabel, span.answerthumbnaillabel
 	text-overflow: ellipsis;
 }
 
+
 span.thumbnaillabel
 {
 	width: 100px;
 }
 
-span.answerthumbnaillabel
+
+.answerphotobox
+{
+	width: 682px;
+}
+
+
+
+.answerthumbnail a img {border: 1px solid black;}
+
+.answerthumbnail
 {
 	width: 200px;
+	display: block;
+	float: left;
+	background-color: #000;
+	margin-left: 8px;
+	margin-bottom: 8px;
+	border: 3px solid #000;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	width: 200px;
 }
+.chosen_thumbnail_div {background-color: yellow !important;}
 
 
-/****special*****/
-.answerphotobox .answerthumbnail a
+.answerthumbnaillabel
 {
-	background: none !important;
-	display: block !important;
+	display: block;
+	color: #fff;
+	text-align: center;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: block;
 }
+.chosen_thumbnail_div .answerthumbnaillabel {color: black !important;}
 
-.answerphotobox .answerthumbnail a.contentbuttonchosen
+
+/*
+.answerphotoboxlabel
 {
-	background: none !important;
-	display: block !important;
+	font-weight: bold;
+	text-transform: uppercase;
+	color: #fff;
+	padding: 10px;
+	text-align: center;
 }
-
-.answerphotobox .answerthumbnail a img
-{
-	border: 3px solid #000 !important;
-	margin-left: -3px !important;
-	display: block !important;
-}
-
-.answerphotobox .answerthumbnail a.contentbuttonchosen img 
-{ 
-	border: 3px solid #3c3 !important; 
-	margin-left: -3px !important;
-	display: block !important;
-}
-/****special*****/
-
-
-
-
-
-
+*/
 
 
 /********/
@@ -773,6 +778,7 @@ input.formbutton
 	width: 49%;
 }
 
+/*
 .red
 {
 	background: -webkit-gradient(linear, left top, left bottom, from(#ff7575), to(#ff0101));
@@ -792,6 +798,7 @@ input.formbutton
 	left: 51%;
 	top: 0px;
 }
+*/
 
 a.contentbutton, a.riskbutton
 {
