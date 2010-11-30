@@ -58,14 +58,23 @@
 		</div>
 
 		<h2 id="contenttitle">{{wording}}</h2>
+		
+		<!-- this should be conditional and not persistent as not all questions have links to ancillary information -->
+		<!-- start - learn more -->
+		<div class="learnmore">
+		<a href="#">Learn More</a>
+		</div>
+		<!-- stop - learn more -->
   
       {% if displayquestion.question.id in widget_question_ids %}
          {% include "collection_tool/planner.html" %}
          <!-- set mode (fluoride or feeding) -->
          <script type="text/javascript">
-           setMode("food");
            {% ifequal displayquestion.nav_section.title "Fluoride" %}
              setMode("fluoride");
+           {% endifequal %}
+           {% ifequal displayquestion.nav_section.title "Diet" %}
+             setMode("food");
            {% endifequal %}
            var risky_question_id = {{risky_question_id}};
            var risky_answers_keys = {{risky_answers_keys|safe}};

@@ -29,6 +29,16 @@ function hook_up_form (form) {
 
 }
 
+function unescape_from_innerhtml(s) {
+    s = s.replace(/&apos;/g,"'");
+    s = s.replace(/&amp;/g,"&");
+    s = s.replace(/&quote;/g,'"');
+    s = s.replace(/&lt;/g,"<");
+    s = s.replace(/&gt;/g,">");
+    return s;
+}
+
+
 function init_family_info() {
   add_keys();
   //console.log('init family info:');
@@ -46,7 +56,7 @@ function init_family_info() {
   // get the list of questions from the DATABASE:
   // STORE IT FOR THE DURATION OF THE INTERVIEW:
   var list_of_questions = JSON.parse($('#list_of_questions')[0].innerHTML);
-  var list_of_states = JSON.parse($('#state')[0].innerHTML);
+  var list_of_states = JSON.parse(unescape_from_innerhtml($('#state')[0].innerHTML));
   // take the list of questions from the database and put it into storage:
   local_storage_set ( LOCAL_STORAGE_KEY, 'list_of_questions', list_of_questions );
   local_storage_set ( LOCAL_STORAGE_KEY, 'list_of_states', list_of_states );
