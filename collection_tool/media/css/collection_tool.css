@@ -937,6 +937,17 @@ a.contentbutton
 	color: #000;
 }
 
+/********/
+
+
+
+/********/
+
+.learnmore 
+{
+}
+
+
 .learn_more_close_button
 {
 	position: absolute !important;
@@ -947,15 +958,8 @@ a.contentbutton
 	border: 1px solid #000 !important;
 	font-weight: bold !important;
 	text-decoration: none !important;
-	color: #000 !important;
+	color: #000;
 }
-
-/********/
-
-
-
-/********/
-
 
 .learn_more_help_content {
 
@@ -969,20 +973,16 @@ a.contentbutton
 	top: 50px;
 	left: 50%;
 	width: 600px;
-	margin-left: -300px;
+	margin-left: -325px;
 	padding: 15px;
 	text-align: left;
 	background-image: none;
 }
 
-.learnmore
-{
-	text-align: center;
-	background-color: #fff !important;
-}
 
 .learnmore a
 {
+	text-align: center;
 	text-decoration: none; 
 	display: block; 
 	-moz-border-radius: 10px; 
