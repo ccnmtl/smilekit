@@ -1,7 +1,9 @@
 from django.db import models
 from django.db.models.signals import post_save
+from django.shortcuts import get_object_or_404
 import simplejson as json
 from equation_balancer.models import ModuleWeight
+from django.contrib.flatpages.models import FlatPage
 
 LANGUAGE_CHOICES = (
     ('en', 'English'),
@@ -323,7 +325,6 @@ class DisplayQuestion(models.Model):
 
   resources = models.ManyToManyField(Resource, help_text =  "Links to other pages that are relevant to this question.", null=True, blank=True)
 
-
   image = models.ImageField(upload_to='question_images',blank=True,null=True)
   
   ordering_rank = models.IntegerField(help_text = "Use this to determine the order in which the questions are asked within each nav section.")
@@ -462,6 +463,20 @@ class DisplayQuestion(models.Model):
     
     return "Sorry, no wordings provided in either language. Enter wordings at /admin/collection_tool/displayquestion/%d/" % self.id
   
+  
+  
+  @property
+  def learn_more (self):
+    """the content of some flat pages also need to be accessible from the question page in the collection tool. here's a simple way of doing this:"""
+    #import pdb
+    #pdb.set_trace()
+    if not self.resources.all():
+      return None
+      
+    url = self.resources.all()[0].url
+    my_flat_page = get_object_or_404(FlatPage, url=url)
+    return {'url':my_flat_page.url,  'title':my_flat_page.title, 'content':my_flat_page.content}
+
   
   def __unicode__(self):
     """ Just the English."""
