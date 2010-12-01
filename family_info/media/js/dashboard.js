@@ -11,6 +11,8 @@ function add_keys() {
 }
 
 function download_files_into_cache () {
+  // successful return value is null;
+  // error returns the error.
   //info messages:
   cache.addEventListener('obsolete',    logEvent, false);
   cache.addEventListener('progress',    logEvent, false);
@@ -28,8 +30,13 @@ function download_files_into_cache () {
   // problem:
   cache.addEventListener('error', error_handler, false);
 
-  cache.update();
-
+  try  {
+    cache.update();
+    return null;
+  }
+  catch(e) {
+    return e;
+  }
 }
 
 function update_debug_localstorage() {
@@ -143,21 +150,29 @@ function show_buttons() {
     }
 }
 
-download_success_callback = show_buttons;
+download_success_callback = function () {
+  $("#guidance_1").html ("Download was successful. Click one of the 'Visit' buttons below to start.");
+  show_buttons();
+}
 
 function init_family_info() {
-  add_keys();
+  hide_buttons();
   LOCAL_STORAGE_KEY = 'la_llave_encantada';
+  add_keys();
+  
   //glog('init family info:');
 
-  // 2) SET UP LINKS TO FIRST PAGE OF EACH FAMILY'S INTERVIEW.
+
+  //2) BUILD THE END INTERVIEW FORM
+  build_end_interview_form ();
+
+  // 3) SET UP LINKS TO FIRST PAGE OF EACH FAMILY'S INTERVIEW.
   set_up_family_links ();
 
   if (typeof (local_storage_get) == "undefined") {
     glog ('localstorageget not found.');
     return;
   }
-  hide_buttons();
   list_of_questions = local_storage_get(LOCAL_STORAGE_KEY, 'list_of_questions');
 
   if (list_of_questions == null) {
@@ -168,13 +183,21 @@ function init_family_info() {
   if (typeof (cache) == "undefined") {
     // this might not actually matter.
     glog ('Cache not found, so can\'t update it.');
+    
     show_buttons();
   }
   else {
-    download_files_into_cache ();
+    error = download_files_into_cache ();
+    
+    if (error) {
+      status_images_error();
+      $('#downloading').hide();
+      $('#guidance_1').html ('If you see an "Allow" button at the top of your browser window, please click on it to start the download. If you do not see an "Allow" button, you might have previously told your browser not to accept downloads from this site; you might have to reset your site preferences for this site and try again.)');
+      hide_buttons();
+      $('#guidance_2').html ('You can also click the "End Visit" button to cancel this visit and go back to the list of families.');
+      return;
+    }
   }
-  //3) BUILD THE END INTERVIEW FORM
-  build_end_interview_form ();
 
   // 4) SHOW INTERVIEW PROGRESS SO FAR:
   show_interview_progress();

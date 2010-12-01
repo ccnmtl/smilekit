@@ -472,7 +472,9 @@ class DisplayQuestion(models.Model):
     #pdb.set_trace()
     if not self.resources.all():
       return None
-      
+    
+    
+    #throw 404? Consider just failing silently.  
     url = self.resources.all()[0].url
     my_flat_page = get_object_or_404(FlatPage, url=url)
     return {'url':my_flat_page.url,  'title':my_flat_page.title, 'content':my_flat_page.content}
