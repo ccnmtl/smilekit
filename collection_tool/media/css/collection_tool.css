@@ -1343,8 +1343,10 @@ table.users a, table.interviewdetails a
 	background: -moz-linear-gradient(top, #f5f5f7, #c1c4c3);
 	color: #333;
 	font-weight: bold;
-	width: 200px;
+	width: 130px;
 	font-size: 11px;
+	float: left;
+	margin-right: 10px;
 }
 table.interviewdetails a {width: 20px;}
 

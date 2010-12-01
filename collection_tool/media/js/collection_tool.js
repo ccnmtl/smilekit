@@ -98,8 +98,6 @@ function highlight_answer (answer_id) {
 }
 
 
-
-
 function init_answer_clicked() {
   $('a.answerthumbnailimage').click(answer_clicked);
   $('a.contentbutton').click(answer_clicked);
@@ -154,12 +152,17 @@ function init() {
     all_questions = local_storage_get (LOCAL_STORAGE_KEY, 'list_of_questions');
     questions = null;
     
+    var family_study_id = null;
+    
     for (i = 0; i < all_questions.length; i = i + 1) {
     
       if (all_questions[i].family_id == family_id) {
         questions = all_questions[i].all_questions;
+        family_study_id =  all_questions[i]['family_study_id_number']
       }
     }
+    
+    
     
       if (questions == null) {
         alert ("Can't find list of questions for family " + family_id);
@@ -167,6 +170,11 @@ function init() {
         $('#right').hide();
         return;
       }
+    
+    
+    if ($('#family_id_nav_display')) {
+      $('#family_id_nav_display').html( 'Family #' + family_study_id )
+    }
       
     
     if ( window.location.href.match (/question/)) {

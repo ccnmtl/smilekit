@@ -16,7 +16,7 @@
 		{%endif%}
 			
 		  <tr>
-			<td><a href = "/family_info/new_family" >+ Add New Family</a></td>
+			<td><a href = "/family_info/new_family" >+ Add a Family</a></td>
 			<td></td>
 			<td></td>
 			</tr>
@@ -58,7 +58,7 @@
 	            
 	            <tr>
 	              <td class="action" colspan = "3">
-	               <input type="submit"
+	               <input  style="background-color: #063; color: #fff; font-weight: bold" type="submit"
 			      id="main_submit_button"
                 {%if user.current_visit%}
                   value ="Resume your visit with families {%for f in user.current_visit.families.all%}{{f.study_id_number}}{% if forloop.last %}{%else%} and {%endif%}{%endfor%}"
@@ -66,7 +66,7 @@
 	               value ="Start visit"
 	               {%endif%}
 	               />
-	               <input type="reset" value ="Reset" />
+	               <!--<input type="reset" value ="Reset" />-->
 	              </td>
 	            </tr>
 	        </form>
@@ -86,7 +86,7 @@
 		<table class="users">
 			
 			<tr>
-			<td><a href="/family_info/new_user" >+ Add New Health Worker</a></td>
+			<td><a href="/family_info/new_user" >+ Add a Health Worker</a></td>
 			<td></td>
 			</tr>
 			
