@@ -58,8 +58,8 @@ function get_planner_data(LOCAL_STORAGE_KEY, family_id) {
       alert ("No planner data found for this family.");
       return;
   }
-  var planner_data = family_state['planner_data']
-  if (planner_data == null ) {
+  var planner_data = family_state['planner_data'];
+  if ( typeof ( planner_data ) == "undefined" || planner_data == null ) {
       return null_state;
   }
   return planner_data;

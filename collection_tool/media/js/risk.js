@@ -21,9 +21,6 @@ function calculate_family_answers (family_id, scoring_info) {
     if (calculate_family_answers_result == null) {
       calculate_family_answers_result = {}
     }
-    
-    // include data from previous visits:
-   //llog( family_questions (LOCAL_STORAGE_KEY, family_id)['previous_visit_questions']);
      
     prev = family_questions (LOCAL_STORAGE_KEY, family_id)['previous_visit_questions'];
      $.each(prev, function (qid, aid) {
@@ -102,6 +99,7 @@ function between (x, a, b) {
 
 function init() {
     LOCAL_STORAGE_KEY = 'la_llave_encantada';
+    
     $('.score_div').hide();
     $('.risk_div').hide();
     $('#contentnav').hide();

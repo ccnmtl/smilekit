@@ -1011,6 +1011,7 @@ h2#your_score_is {text-align: center;}
 
 .score_div
 {
+  display: none;
 	width: 300px;
 	margin: 10px auto;
 	text-align: center;
