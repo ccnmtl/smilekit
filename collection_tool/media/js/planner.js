@@ -2,12 +2,21 @@
 var mode = "all";  // options: food, fluoride, all
 var savingFluoride = false;
 
-function saveState() {
+function saveState(e) {
   // save state to localstorage
-  var testblob = jQuery("#timetable").html();
-  //local_storage_set(LOCAL_STORAGE_KEY, 'planner_data', {'timeline': testblob});
+  var timerows = [];
+  jQuery(".timerowfilled").each(function() {
+    var time = jQuery(".timetext", this).html();
+    var items = jQuery(".activityitems", this);
+    var timerow = {};
+    timerow['id'] = this.id;
+    timerow['items'] = items.html();
+    timerow['risk'] = items.data('risk');
+    timerow['mealorsnack'] = jQuery(".mealorsnack", this).html();
+    timerows.push(timerow);
+  });
 
-  set_planner_data(LOCAL_STORAGE_KEY, family_id,{"timeline": testblob })
+  set_planner_data(LOCAL_STORAGE_KEY, family_id, {"timerows": timerows })
 
   if(mode == "food") {
     /* calculate risk # */
@@ -71,39 +80,22 @@ function loadState() {
   // load state from localstorage
   //var test = local_storage_get(LOCAL_STORAGE_KEY, 'planner_data');
   
-  var test = get_planner_data (LOCAL_STORAGE_KEY, family_id);
+  var planner_data = get_planner_data (LOCAL_STORAGE_KEY, family_id);
   
-  if ((test == null) || (test['timeline'] == "")) {
+  if ((planner_data == null) || (planner_data['timerows'] == "")) {
     return;
   }
   
-  jQuery("#timetable").html(test['timeline']);
-  
-  // reset clicky stuff 'cause it breaks
-  jQuery('.time').click(saveMeal);
-  jQuery('.timeactiondelete').click(deleteMeal);
-  jQuery('.timeactionup').click(moveUp);
-  jQuery('.timeactiondown').click(moveDown);
-  jQuery('.timeactionswap').click(editMeal);
+  var timerows = planner_data['timerows'];
 
-  jQuery('.arrowclose').click(
-    function() {
-      jQuery('.arrowclose').hide();
-      jQuery('.arrowopen').show();
-      jQuery('.timerow').addClass("timerowcollapsed");
-      jQuery('#plannerright').show();
-      jQuery('#plannerleft').width(100);
-    }
-  );
-  jQuery('.arrowopen').click(
-    function() {
-      jQuery('.arrowclose').show();
-      jQuery('.arrowopen').hide();
-      jQuery('.timerow').removeClass("timerowcollapsed");
-      jQuery('#plannerright').hide();
-      jQuery('#plannerleft').width("95%");
-    }
-  );
+  for(var i=0; i<timerows.length; i++) {
+    var timerow = timerows[i];
+    var elem = jQuery("#"+timerow['id'].replace(":", "\\:"));
+    elem.addClass("timerowfilled");
+    jQuery(".activityitems", elem).data("risk", timerow['risk']);
+    jQuery(".mealorsnack", elem).html(timerow['mealorsnack']);
+    jQuery(".activityitems", elem).html(timerow['items']);
+  }
 }
 
 
@@ -199,6 +191,7 @@ function initPlanner() {
   // save and cancel buttons
   loadState();
   jQuery('#right').click(saveState);
+  
   jQuery('#left').click(saveState);
 }
 
