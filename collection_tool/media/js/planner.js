@@ -73,8 +73,7 @@ function loadState() {
   
   var test = get_planner_data (LOCAL_STORAGE_KEY, family_id);
   
-  if (test == null) {
-    alert ('no data.');
+  if ((test == null) || (test['timeline'] == "")) {
     return;
   }
   
