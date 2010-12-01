@@ -1,5 +1,6 @@
 CACHE MANIFEST
-# http://kodos.ccnmtl.columbia.edu:7112/collection_tool/manifest.cache
+# accessible from:
+# /collection_tool/manifest.cache
 
 CACHE:
 
@@ -18,7 +19,7 @@ CACHE:
 #static css
 /collection_tool/media/css/collection_tool.css
 
-#static javascript:
+#static javascript
 /family_info/media/js/dashboard.js
 /family_info/media/js/localstorage.js
 /family_info/media/js/cache.js
@@ -26,20 +27,25 @@ CACHE:
 /collection_tool/media/js/collection_tool.js
 /collection_tool/media/js/planner.js
 /collection_tool/media/js/jquery.js
+/collection_tool/media/js/risk.js
+/collection_tool/media/js/topic.js
+/collection_tool/media/js/topics.js
+/collection_tool/media/js/goal.js
+/collection_tool/media/js/goals.js
 
-#questions:
+#questions
 {% for id in question_ids %}
   /collection_tool/question/{{id}}/language/en
   /collection_tool/question/{{id}}/language/es
 {% endfor %}
 
-#section pages:
+#section pages
 {% for id in nav_section_ids %}
     /collection_tool/section/{{id}}/language/en
     /collection_tool/section/{{id}}/language/es
 {% endfor %}
 
-#question images: 
+#question images
 {% for path in paths_to_question_images%}
     {{path}}
 {% endfor %}
@@ -53,6 +59,22 @@ CACHE:
 {% for label in planner_labels %}
   /collection_tool/media/images/planner/{{label|slugify}}.jpg
 {% endfor %}
+
+#assessment pages:
+/collection_tool/risk/language/en
+/collection_tool/risk/language/es
+
+/collection_tool/topics/language/en
+/collection_tool/topics/language/es
+
+/collection_tool/goals/language/en
+/collection_tool/goals/language/es
+
+{% for goal in goals %}
+  /collection_tool/goal/{{goal.id}}/language/en
+  /collection_tool/goal/{{goal.id}}/language/es
+{% endfor %}
+
 
 FALLBACK:
 
