@@ -195,7 +195,10 @@ div#list_of_questions {
 
 /********/
 
-
+/* Dashboard */
+.go_to_family_button {
+  display: none;
+}
 
 
 

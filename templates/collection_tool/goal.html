@@ -5,7 +5,7 @@
 {% block collection_tool_js %}
 <script src="/collection_tool/media/js/jquery.js" type="text/javascript"></script>
 <script src="/family_info/media/js/localstorage.js" type="text/javascript"></script>
-<script src="/collection_tool/media/js/topics.js" type="text/javascript"></script>
+<script src="/collection_tool/media/js/goal.js" type="text/javascript"></script>
 {% endblock collection_tool_js %}
 
 {% block mainnav %}
@@ -32,41 +32,84 @@
 
 	<div id ="language_code_div">{{language_code}}</div>
 	
-	<h2 align="center">Goal</h2>
-	<p align="center" class="goal_title">
 	{%ifequal language_code 'en'%}
-	  <b> {{goal.english_title}}</b>
+	  <h2 align="center">{{goal.english_title}}.</h2>
 	{%endifequal%}
-	
+				
 	{%ifequal language_code 'es'%}
-	  <b> {{goal.spanish_title}}</b>
+	  <h2 align="center">{{goal.spanish_title}}.</h2>
 	{%endifequal%}
-	</p>
 	
-	<div>
-	What is your goal: <input type="text" id="goal/>
-	</div>
+	<table>
+	    <tr>
+	      <td>
+	        	{%ifequal language_code 'en'%}
+	            What is your goal?
+	          {%endifequal%}
 	
-	<div>
-	What are the four steps it will take to make it happen: <input type="text" />
-	</div>
-	
-	<div>
-	Who is responsible for this success: <input type="text" />
-	</div>
-	
-	<div>
-	When will this happen? <input type="text" />
-	</div>
+	          {%ifequal language_code 'es'%}
+	            Cual e su goal?
+	          {%endifequal%}
+	      </td>
+	      <td>
+        	<input type="text" class="goal_textfield name" id ="{{goal.id}}_name" name ="{{goal.id}}_name" />
+	      </td>
+	    </tr>
+      <tr>
+	      <td>
+	        
+	        	{%ifequal language_code 'en'%}
+	            What are the four steps it will take to make it happen:
+	          {%endifequal%}
+	          {%ifequal language_code 'es'%}
+	            Cuales son los quatro esteps que precisarase para que se realizara?
+	          {%endifequal%}
+	      </td>
+	      <td>
+        	<input type="text" class="goal_textfield resp" id ="{{goal.id}}_resp" name ="{{goal.id}}_resp" />
+	      </td>
+	    </tr>
+		  <tr>
+	      <td>
+	        {%ifequal language_code 'en'%}
+              Who is responsible for this success:	      
+	        {%endifequal%}
+	   
+	        {%ifequal language_code 'es'%}
+	            Quien sera responsable para este suceso?
+	          {%endifequal%}
+	      </td>
+	      <td>
+        	<input type="text" class="goal_textfield stps" id ="{{goal.id}}_stps" name ="{{goal.id}}_stps" />
+	      </td>
+	    </tr>
+	    <tr>
+	      <td>
+	        {%ifequal language_code 'en'%}
+              When will this happen?
+	          {%endifequal%}
+	        {%ifequal language_code 'es'%}
+	            Quando acontecera?
+	          {%endifequal%}
+	      </td>
+	      <td>
+        	<input type="text" class="goal_textfield when" id ="{{goal.id}}_when" name ="{{goal.id}}_when" />
+	      </td>
+	    </tr>
+	</table>
 	
 	<div align="center">
-	<a href = "/collection_tool/goals/language/en">Set Goal</a>
+  {%ifequal language_code 'en'%}
+  <a href = "/collection_tool/goals/language/en">Set Goal</a>
+  {%endifequal%}
+  {%ifequal language_code 'es'%}
+  <a href = "/collection_tool/goals/language/es">Eset Goal</a>
+  {%endifequal%}
+	<!--
 	<a href = "" > Cancel and Start over </a>
+	-->
 	</div>
     
-	<FORM METHOD="LINK" ACTION="page1.htm">
-	  <INPUT TYPE="submit" VALUE="Clickable Button">
-	</FORM>
 
 
 {% endblock collection_tool_content %}
