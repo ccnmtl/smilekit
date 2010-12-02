@@ -16,6 +16,12 @@ CACHE:
 /collection_tool/media/images/icon_offline.jpg
 /collection_tool/media/images/icon_online.jpg
 
+
+#goals and topics:
+/collection_tool/media/images/topics_graphic.png
+/collection_tool/media/images/water_icon.png
+/collection_tool/media/images/fire_icon.png
+
 #static css
 /collection_tool/media/css/collection_tool.css
 

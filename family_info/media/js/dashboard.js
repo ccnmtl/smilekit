@@ -61,6 +61,7 @@ function glog (str) {
 
 
 function head_to (family_id, url) {
+  //this sets (or switches) the current family, and heads to the url given.
   local_storage_set ( LOCAL_STORAGE_KEY, 'current_family_id', family_id);
   window.location = url;
 }

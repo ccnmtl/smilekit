@@ -1,7 +1,17 @@
 
-function llog (a) {
-    console.log(JSON.stringify(a));
+
+function log_wrapper (a) {
+  try {
+    console.log ( a);
+  } catch (e) {
+    //nada.
+  }
 }
+
+function llog (a) {
+    log_wrapper(JSON.stringify(a));
+}
+
 
 function family_questions (key, family_id) {
      family_questions_result = null;
@@ -44,9 +54,6 @@ function min_score_for  (topic_id, config_id, answer_id) {
   return maxmin_scoring_info[topic_id][config_id]['min'][answer_id];
 }
 
-function llog (a) {
-    console.log(JSON.stringify(a));
-}
 
 function calculate_scores (family_id, scoring_info, config_id, answer_array) {
     var result = {'all': {'score': 0, 'max':0, 'min':0}};
@@ -84,11 +91,11 @@ function calculate_friendly_score (max_score, min_score, raw_score) {
  
    
    if (true ) {
-       console.log ( "User's raw score is " + raw_score);
-       console.log ( "Worst possible score is : " + max_score );
-       console.log ( "Best possible score is : " +  min_score );
-       console.log ( "Adjusted score : " +  adjusted_score );
-       console.log ( "Friendly score is " + friendly_score);
+       log_wrapper ( "User's raw score is " + raw_score);
+       log_wrapper ( "Worst possible score is : " + max_score );
+       log_wrapper ( "Best possible score is : " +  min_score );
+       log_wrapper ( "Adjusted score : " +  adjusted_score );
+       log_wrapper ( "Friendly score is " + friendly_score);
    }
    return friendly_score;
 }

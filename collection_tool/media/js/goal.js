@@ -1,4 +1,4 @@
-function calculate_family_answers (family_id) {
+/*function calculate_family_answers (family_id) {
     family_key = family_id + '_answers'
     result = local_storage_get (LOCAL_STORAGE_KEY, family_key);
     if (result == null) {
@@ -126,6 +126,22 @@ function init() {
       $('#low_risk').show();
     }
     
+}
+*/
+
+
+function get_goals_data () {
+  LOCAL_STORAGE_KEY = 'la_llave_encantada';
+  family_id = local_storage_get (LOCAL_STORAGE_KEY, 'current_family_id');
+  return  get_planner_data(LOCAL_STORAGE_KEY, family_id);     
+}
+
+goal_form_fields = ['goal_name','who_is_responsible', 'steps', 'when'];
+
+function init() {
+    LOCAL_STORAGE_KEY = 'la_llave_encantada';
+  //fetch goal info for this family and goal.
+  
 }
 
 $(document).ready(init);

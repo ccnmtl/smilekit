@@ -84,13 +84,18 @@ function show_topic_details (topic_id) {
 }
 
 
+function get_goals_data () {
+   LOCAL_STORAGE_KEY = 'la_llave_encantada';
+    family_id = local_storage_get (LOCAL_STORAGE_KEY, 'current_family_id');
+    return get_planner_data(LOCAL_STORAGE_KEY, family_id);     
+
+}
 
 function init() {
-    LOCAL_STORAGE_KEY = 'la_llave_encantada';
     $('.topic_div').hide();
+    /*
     the_scores = local_storage_get (LOCAL_STORAGE_KEY, 'risk' );
 
-    /*
     
     family_configs = JSON.parse($('#family_configs')[0].innerHTML);
     scoring_info   = JSON.parse($('#scoring_info')[0].innerHTML  );

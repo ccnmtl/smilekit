@@ -195,7 +195,10 @@ div#list_of_questions {
 
 /********/
 
-
+/* Dashboard */
+.go_to_family_button {
+  display: none;
+}
 
 
 
@@ -1356,6 +1359,23 @@ table.interviewdetails td {vertical-align: top; padding: 3px;}
 table.interviewdetails td.toggle {width: 30px;}
 table.interviewdetails td.label {width: 150px; font-weight: bold;}
 table.interviewdetails td ul, table.interviewdetails td ol {margin: 0;} 
+
+
+table#materialstable
+{
+	width: 100%;
+	border-collapse: collapse;
+	-moz-border-radius: 10px; 
+	-webkit-border-radius: 10px;
+}
+
+table#materialstable th,table#materialstable td
+{
+	border: 1px #ccc solid;
+	padding: 10px;
+	text-align: center;
+}
+
 
 /* stop - "family details" table styles */
 

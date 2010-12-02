@@ -24,15 +24,12 @@ answerphotobox .answerthumbnail a
 	display: block !important;
 }
 
-
-
 body
 {
 	padding: 20px;
 	font-family: helvetica, sans-serif;
 	background-color: black;
 }
-
 
 
 
@@ -738,7 +735,7 @@ a.contentbutton
 
 .contentbuttoncomplete:after
 {
-	content: url(http://files.wts.edu/images/icons/checkbox.png);
+	content: url(/collection_tool/media/images/checkbox.png);
 	margin-left: 10px;
 }
 
