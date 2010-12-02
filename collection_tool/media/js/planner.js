@@ -2,7 +2,7 @@
 var mode = "all";  // options: food, fluoride, all
 var savingFluoride = false;
 
-function saveState(e) {
+function saveState() {
   // save state to localstorage
   var timerows = [];
   jQuery(".timerowfilled").each(function() {
@@ -190,9 +190,8 @@ function initPlanner() {
   
   // save and cancel buttons
   loadState();
-  jQuery('#right').click(saveState);
-  
-  jQuery('#left').click(saveState);
+  //jQuery('#right').click(saveState);
+  //jQuery('#left').click(saveState);
 }
 
 function findNearestEmpty(elem) {
@@ -255,6 +254,8 @@ function saveMeal() {
 
   // re-enable any disabled items
   jQuery('.thumbnaildisabled').removeClass('thumbnaildisabled');
+  
+  saveState();
 }
 
 function deleteMeal() {
@@ -262,6 +263,8 @@ function deleteMeal() {
   jQuery('.mealorsnack', jQuery(this).parent()).html("");
   jQuery('.activityitems', jQuery(this).parent()).html("");
   jQuery('.activityitems', jQuery(this).parent()).removeData();
+  
+  saveState();
 }
 
 function moveUp() {
@@ -274,6 +277,8 @@ function moveUp() {
   
     jQuery(this).parent().toggleClass('timerowfilled');
   }
+  
+  saveState();
 }
 
 function moveDown() {
@@ -286,6 +291,8 @@ function moveDown() {
  
     jQuery(this).parent().toggleClass('timerowfilled');
   }
+  
+  saveState();
 }
 
 function editMeal() {
@@ -295,6 +302,8 @@ function editMeal() {
   } else {
     mealorsnack.html("<span id=\"label-meal\">Meal</span>");
   }
+  
+  saveState();
 }
 
 jQuery(document).ready(initPlanner);
