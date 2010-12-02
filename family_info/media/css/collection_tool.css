@@ -738,7 +738,7 @@ a.contentbutton
 
 .contentbuttoncomplete:after
 {
-	content: url(http://files.wts.edu/images/icons/checkbox.png);
+	content: url(/collection_tool/media/images/checkbox.png);
 	margin-left: 10px;
 }
 
