@@ -82,7 +82,7 @@ function loadState() {
   
   var planner_data = get_planner_data (LOCAL_STORAGE_KEY, family_id);
   
-  if ((planner_data == null) || (planner_data['timerows'] == "")) {
+  if ((planner_data == null) || (planner_data['timerows'] == undefined) || (planner_data['timerows'] == "")) {
     return;
   }
   
