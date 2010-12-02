@@ -5,19 +5,21 @@ CACHE MANIFEST
 CACHE:
 
 #static pictures:
-/collection_tool/media/images/icon_planner_up.png
+/collection_tool/media/images/logo_mysmilebuddy.png
+#planner:
 /collection_tool/media/images/icon_planner_up.png
 /collection_tool/media/images/icon_planner_down.png
 /collection_tool/media/images/icon_planner_swap.png
 /collection_tool/media/images/icon_planner_delete.png
 /collection_tool/media/images/toggle_arrow_open.png
 /collection_tool/media/images/toggle_arrow_close.png
-/collection_tool/media/images/logo_mysmilebuddy.png
 /collection_tool/media/images/icon_offline.jpg
 /collection_tool/media/images/icon_online.jpg
+/collection_tool/media/images/checkbox.png
+/collection_tool/media/images/tooth_help.png
 
-
-#goals and topics:
+#risk, goals and topics:
+/collection_tool/media/images/risk_graphic.png
 /collection_tool/media/images/topics_graphic.png
 /collection_tool/media/images/water_icon.png
 /collection_tool/media/images/fire_icon.png
