@@ -47,6 +47,7 @@ CACHE:
 
 #static css
 /collection_tool/media/css/collection_tool.css
+/collection_tool/media/css/planner.css
 
 #static javascript
 /family_info/media/js/dashboard.js

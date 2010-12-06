@@ -365,241 +365,6 @@ h2#contenttitle, #contentsubtitle { text-align: center; }
 
 /********/
 
-#planner
-{
-	background-color: #99e1f0; 
-	/*overflow: auto;*/
-}
-
-#plannerright 
-
-{ 
-	float: right;
-	background-color: #99e1f0;
-}
-
-#plannerleft 
-{ 
-position: relative;
-width: 100px;
-}
-
-/********/
-
-
-
-
-
-/********/
-
-#label-snack{color: red;}
-#label-snack:after {content: "\2192";}/*Hexadecimal for Unicode right arrow (&rarr;)*/
-
-#label-meal {color: green;}
-#label-meal:after {content: "\2192";}/*Hexadecimal for Unicode right arrow (&rarr;)*/
-
-.mealorsnack {display: block; float: left;}
-
-.activityitems
-{ 	
-	text-overflow: ellipsis !important;
-	overflow: hidden;
-	white-space: nowrap;
-	display: block; 
-	float: left;
-	padding: 2px 0px 0px 5px;
-}
-
-
-
-
-div#timetable { width: 100%; }
-
-div#timelinearrow
-{
-	cursor: pointer;
-	position: absolute;
-	top: 20%;
-	height: 220px;
-	width: 20px;
-	-moz-border-radius-topright: 5px;
-	-webkit-border-top-right-radius: 5px;
-	-moz-border-radius-bottomright: 5px;
-	-webkit-border-bottom-right-radius: 5px;
-	background-position: center center;
-	background-repeat: no-repeat;
-}
-
-
-div#timetable .timetext {padding: 10px; display: block; text-align: center;}
-
-div#timetable .timerow 
-{ 
-	position: relative; 
-	background: -webkit-gradient(linear, left top, left bottom, from(#333), to(#666));
-	background: -moz-linear-gradient(top, #333, #666);
-	height: 40px;
-}
-
-div#timetable .timerowfilled 
-{ 
-	position: relative; 
-	background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ccc));
-	background: -moz-linear-gradient(top, #fff, #ccc);
-	height: 40px;
-}
-
-div#timetable .time
-{
-	height: 40px;
-	text-align: center;
-	font-weight: bold;
-	position: absolute;
-	top: 0px;
-	left: 0px;
-	background: -webkit-gradient(linear, left top, left bottom, from(#9ff), to(#9bd));
-	background: -moz-linear-gradient(top, #9ff, #9bd);
-	color: #333;
-}
-
-div#timetable .timerowfilled .time
-{
-	background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ccc)) !important;
-	background: -moz-linear-gradient(top, #fff, #ccc) !important;
-}
-
-div#timetable .timerowfilled .timeactivity
-{
-   display: block;
-	font-weight: bold;
-	position: absolute;
-	top: 0px;
-}
-
-div#timetable .timerowcollapsed {
-  width: 100px;
-}
-
-div#timetable .timerowcollapsed .timeactivity, div#timetable .timerowcollapsed .timebutton {
-  display: none !important;
-}
-
-div#timetable .timebutton, div#timetable .timeactivity {
-  display: none;
-}
-
-div#timetable .timerowfilled .timebutton {
-  display: block;
-}
-
-/*
-div#timetable .timerowfilled .time {
-	background: -moz-linear-gradient(top, #fff, #9bd);
-}
-*/
-
-div#timetable .timerowfilled .timebutton
-{
-	text-align: center;
-	font-weight: bold;
-	display: block;
-	font-size: 10px;
-	height: 40px;
-	color: #000;
-	text-shadow: #fff 1px 1px 1px;
-	text-decoration: none;
-	border-left: 1px solid #333;
-	width: 50px;
-	padding-top: 4px;
-	text-indent: -9999px;
-	cursor: pointer;
-	position: absolute;
-	top: 0px;
-	background-repeat: no-repeat;
-	background-position: 15px 10px;
-}
-
-div#timetable .timerow .time {
-  cursor: pointer;
-}
-
-div#timetable .timerowfilled .timeactionup
-{
-	right: 0px;
-	background-image: url(/collection_tool/media/images/icon_planner_up.png);
-}
-
-div#timetable .timerowfilled .timeactiondown
-{
-	right: 50px;
-	background-image: url(/collection_tool/media/images/icon_planner_down.png);
-}
-
-div#timetable .timerowfilled .timeactionswap
-{
-	right: 100px;
-	background-image: url(/collection_tool/media/images/icon_planner_swap.png);
-}
-
-div#timetable .timerowfilled .timeactiondelete
-{
-	right: 150px;
-	background-image: url(/collection_tool/media/images/icon_planner_delete.png);
-}
-
-/********/
-
-
-
-
-
-/********/
-
-.photobox, .answerphotobox
-{
-	margin: 0px auto;
-	text-align: left;
-}
-
-.photobox .photoboxhideshow {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  width: 20px;
-  text-align: center;
-  font-weight: bold;
-  background: #fff;
-  cursor: pointer;
-  color: #fff;
-  padding: 0px 6px 0px 6px;
-  font-size: 24px;
-	background: -webkit-gradient(linear, left top, left bottom, from(#666), to(#000));
-	background: -moz-linear-gradient(top, #666, #000);
-	text-shadow: #666 1px 1px 1px;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-}
-
-.photoboxcontainer, .answerphotoboxcontainer
-{
-	background-color: #000;
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
-	background: -webkit-gradient(linear, left top, left bottom, from(#000), to(#666));
-	background: -moz-linear-gradient(top, #000, #666);
-	margin:10px;
-	padding: 10px;
-	position: relative;
-}
-
-.photoboxlabel
-{
-	font-weight: bold;
-	text-transform: uppercase;
-	color: #fff;
-	padding: 10px;
-	text-align: center;
-}
 
 
 a.thumbnailimage, a.answerthumbnailimage { text-decoration: none; }
@@ -625,40 +390,13 @@ a.thumbnailimage, a.answerthumbnailimage { text-decoration: none; }
 }
 
 
-.thumbnail img, .answerthumbnail img
+.answerthumbnail img
 {
 	-moz-border-radius: 10px !important;
 	-webkit-border-radius: 10px !important;
 }
 
 
-.thumbnail
-{
-	width: 100px;
-}
-
-
-
-.thumbnailselected { border: 3px solid yellow; }
-
-
-span.thumbnaillabel
-{
-	display: block;
-	color: #fff;
-	background-color: #000;
-	text-align: center;
-	border: 1px solid #000000;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-}
-
-
-span.thumbnaillabel
-{
-	width: 100px;
-}
 
 
 .answerphotobox
@@ -1282,6 +1020,17 @@ td, legend, input {font-size: 16px;}
 	padding-top: 5px;
 }
 
+.answerphotoboxcontainer
+{
+	background-color: #000;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	background: -webkit-gradient(linear, left top, left bottom, from(#000), to(#666));
+	background: -moz-linear-gradient(top, #000, #666);
+	margin:10px;
+	padding: 10px;
+	position: relative;
+}
 
 .horizontalphotocontainer
 {
@@ -1379,91 +1128,15 @@ table#materialstable th,table#materialstable td
 
 /* stop - "family details" table styles */
 
-
-
 /* start - orientation-specific styles */
-
-@media all and (orientation:portrait)
-{
-	/*#planner {height: 850px;}*/
-	div#timetable .time
-	{
-		width: 170px;
-	}
-	.arrowopen
-	{
-		background-image: url(/collection_tool/media/images/toggle_arrow_open.png);
-		left: 170px;
-	}
-	
-	.arrowclose
-	{
-		background-image: url(/collection_tool/media/images/toggle_arrow_close.png);
-		right: -20px;
-	}
-	#plannerright { width: 500px !important; }
-	#plannerleft { margin-right: 20px !important; }
-	/*div#timetable .timerowfilled .timeactivity .timetext
-	{ 	
-		text-overflow: ellipsis !important;
-		overflow: hidden;
-		white-space: nowrap;
-		width: 80px;	
-	}
-	*/
-	.photobox
-	{
-		max-width: 620px;
-	}
-	.activityitems {max-width: 160px;}
-	div#timetable .timerowfilled .timeactivity
-	{
-		left: 180px;
-	}
-	
-	.horizontalphotocontainer
-	{
-		padding-left: 50px;
-		
-	}
-
-}
 
 @media all and (orientation:landscape)
 {
-	/*#planner {height: 600px;}*/
-	div#timetable .time
-	{
-		width: 190px;
-	}
-	.arrowopen
-	{
-		background-image: url(/collection_tool/media/images/toggle_arrow_open.png);
-		left: 190px;
-	}
-	
-	.arrowclose
-	{
-		background-image: url(/collection_tool/media/images/toggle_arrow_close.png);
-		right: -20px;
-	}
-	#plannerright { width: 730px !important; }
-	#plannerleft { margin-right: 20px !important; }
-	.photobox
-	{
-		max-width: 840px;
-	}
-	.activityitems {max-width: 380px;}
-	div#timetable .timerowfilled .timeactivity
-	{
-		left: 200px;
-	}
 	.horizontalphotocontainer
 	{
 		padding-left: 40px;
 		
 	}
-
 }
 
 /* stop - orientation-specific styles */
