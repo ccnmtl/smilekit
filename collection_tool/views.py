@@ -93,9 +93,8 @@ def goal_planner(request, goal_id, language_code):
       'language_code': language_code,
       'goal': get_object_or_404(Goal, pk=goal_id)
   }
-  print stuff
-  stuff.update (get_planner_items());
-  print stuff
+  
+  stuff.update (get_planner_items())
   
   if language_code not in ['en', 'es']:
     raise Http404
