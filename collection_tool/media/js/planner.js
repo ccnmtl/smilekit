@@ -20,7 +20,12 @@ function saveState() {
     timerows.push(timerow);
   });
 
-  set_planner_data(LOCAL_STORAGE_KEY, family_id, {"timerows": timerows })
+  if(mode == "planner") {
+    set_planner_data(LOCAL_STORAGE_KEY, family_id, {"planner": timerows });
+  }
+  else {
+    set_planner_data(LOCAL_STORAGE_KEY, family_id, {"timerows": timerows });
+  }
   
   if(mode == "food") {
     /* calculate risk # */
@@ -88,6 +93,13 @@ function loadState() {
   }
   
   var timerows = planner_data['timerows'];
+
+  if(mode == "planner") {
+    if( (planner_data['planner'] != undefined) && (planner_data['planner'] != "") ) {
+      timerows = planner_data['planner'];
+    }
+    // implicit else: if no planner data, load initial state from assessment data
+  }
 
   for(var i=0; i<timerows.length; i++) {
     var timerow = timerows[i];
