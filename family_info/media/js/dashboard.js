@@ -128,7 +128,7 @@ function show_interview_progress() {
         number = $.keys(their_answers).length;
       }
      span_id =  '#progress_info_for_family_' + family_id;
-     $(span_id)[0].innerHTML =  number + " answers during this interview.";
+     $(span_id)[0].innerHTML =  "<span class='num_answers'>" + number + "</span> answers during this interview.";
 
   });
 }
@@ -155,7 +155,7 @@ download_success_callback = function () {
 function init_family_info() {
   hide_buttons();
   add_keys();
-  
+
   //glog('init family info:');
 
   list_of_questions = local_storage_get(LOCAL_STORAGE_KEY, 'list_of_questions');
@@ -179,12 +179,12 @@ function init_family_info() {
   if (typeof (cache) == "undefined") {
     // this might not actually matter.
     glog ('Cache not found, so can\'t update it.');
-    
+
     show_buttons();
   }
   else {
     error = download_files_into_cache ();
-    
+
     if (error) {
       status_images_error();
       $('#downloading').hide();
