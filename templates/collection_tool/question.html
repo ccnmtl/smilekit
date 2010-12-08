@@ -66,7 +66,7 @@
 	
       {% if displayquestion.question.id in widget_question_ids %}
          {% include "collection_tool/planner.html" %}
-         <!-- set mode (fluoride or feeding) -->
+         <!-- set mode (fluoride or diet) -->
          <script type="text/javascript">
            {% ifequal displayquestion.nav_section.title "Fluoride" %}
              setMode("fluoride");

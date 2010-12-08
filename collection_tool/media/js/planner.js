@@ -1,5 +1,5 @@
 // meal planner widget
-var mode = "all";  // options: food, fluoride, all
+var mode = "planner";  // options: food, fluoride, planner
 var savingFluoride = false;
 
 function saveState() {
@@ -13,15 +13,19 @@ function saveState() {
     timerow['items'] = items.html();
     timerow['risk'] = items.data('risk');
     timerow['mealorsnack'] = jQuery(".mealorsnack", this).html();
+    timerow['fluoride'] = false;
+    if(jQuery(this).hasClass('timerowfluoride')) {
+      timerow['fluoride'] = true;
+    }
     timerows.push(timerow);
   });
 
   set_planner_data(LOCAL_STORAGE_KEY, family_id, {"timerows": timerows })
-
+  
   if(mode == "food") {
     /* calculate risk # */
     var risky_exposures = 0;
-    jQuery(".timerowfilled .activityitems").each(function() {
+    jQuery(".timerowfood .activityitems").each(function() {
       var risk = jQuery(this).data('risk');
       // an average of 3 or higher is 'risky'
       if(risk >= 3) { risky_exposures++; }
@@ -43,7 +47,7 @@ function saveState() {
   if(mode == "fluoride") {
     var fluoride_times = 0;
     var brushing_times = 0;
-    jQuery(".timerowfilled .activityitems").each(function() {
+    jQuery(".timerowfluoride .activityitems").each(function() {
       if(jQuery(this).html().indexOf("brush teeth") != -1) {
         brushing_times++;
       }
@@ -78,10 +82,7 @@ function saveState() {
 
 function loadState() {
   // load state from localstorage
-  //var test = local_storage_get(LOCAL_STORAGE_KEY, 'planner_data');
-  
   var planner_data = get_planner_data (LOCAL_STORAGE_KEY, family_id);
-  
   if ((planner_data == null) || (planner_data['timerows'] == undefined) || (planner_data['timerows'] == "")) {
     return;
   }
@@ -94,6 +95,8 @@ function loadState() {
     elem.addClass("timerowfilled");
     jQuery(".activityitems", elem).data("risk", timerow['risk']);
     jQuery(".mealorsnack", elem).html(timerow['mealorsnack']);
+    if(timerow['fluoride'] == true) { elem.addClass("timerowfluoride"); }
+    else { elem.addClass("timerowfood"); }
     jQuery(".activityitems", elem).html(timerow['items']);
   }
 }
@@ -101,8 +104,8 @@ function loadState() {
 
 function setMode(newMode) {
   mode = newMode;
-  if(mode != "food" && mode != "fluoride" && mode != "all") {
-    mode = "all";
+  if(mode != "food" && mode != "fluoride" && mode != "planner") {
+    mode = "planner";
   }
 }
 
@@ -142,18 +145,33 @@ function initPlanner() {
   jQuery('.timeactionup').click(moveUp);
   jQuery('.timeactiondown').click(moveDown);
   jQuery('.timeactionswap').click(editMeal);
-  
+
+  loadState();
+ 
+  // disable 'swap' and 'meal or snack' span for fluoride items
+  jQuery('.timerowfluoride .timeactionswap').hide();
+  jQuery('.timerowfluoride .mealorsnack').hide();
+  jQuery('.timerowfluoride .timeactiondelete').each(function() {
+    jQuery(this).css('right', '100px');
+  });
+
+  // disable deleting fluoride items in food mode
   if(mode == "food") {
     jQuery('#photobox-fluoride').hide();
-    //jQuery('.timeactiondelete').disable();
+
+    jQuery('.timerowfluoride .timeactiondelete').each(function() {
+      jQuery(this).hide();
+    });
   }
+
+  // disable deleting food items in fluoride mode
   if(mode == "fluoride") {
-    jQuery('.timeactionswap').hide();
-    jQuery('.timeactiondelete').css('right', '100px');
-    //jQuery('.mealorsnack').hide();
     jQuery('#photobox-foods').hide();
     jQuery('#photobox-drinks').hide();
-    //jQuery('.timeactiondelete').disable(); 
+
+    jQuery(' .timerowfood .timeactiondelete').each(function() {
+      jQuery(this).hide();
+    });
   }
   
   // hide/show item boxes
@@ -187,11 +205,6 @@ function initPlanner() {
       jQuery('#plannerleft').width("95%");
     }
   );
-  
-  // save and cancel buttons
-  loadState();
-  //jQuery('#right').click(saveState);
-  //jQuery('#left').click(saveState);
 }
 
 function findNearestEmpty(elem) {
@@ -241,16 +254,22 @@ function saveMeal() {
   var goodrow = findNearestEmpty(jQuery(this).parent());
 
   if(savingFluoride) {
-    jQuery('.mealorsnack', jQuery(goodrow)).hide();
+    goodrow.addClass('timerowfluoride');
+    jQuery('.mealorsnack', goodrow).hide();
+    jQuery('.timeactionswap', goodrow).hide();
+    jQuery('.timeactiondelete', goodrow).css('right', '100px');
     savingFluoride = false;
   }
   else {
-    jQuery('.mealorsnack', jQuery(goodrow)).html("<span id=\"label-snack\">Snack</span>");
+    goodrow.addClass('timerowfood');
+    //jQuery('.mealorsnack', goodrow).html("<span id=\"label-snack\">Snack</span>");
+    jQuery('.label-snack', goodrow).show();
+    //jQuery('.timeactionswap', goodrow).show();
   }
   jQuery('.activityitems', jQuery(goodrow)).html(items);
   jQuery('.activityitems', jQuery(goodrow)).data("risk", avg_risk);
 
-  jQuery(goodrow).toggleClass('timerowfilled');
+  jQuery(goodrow).addClass('timerowfilled');
 
   // re-enable any disabled items
   jQuery('.thumbnaildisabled').removeClass('thumbnaildisabled');
@@ -259,37 +278,49 @@ function saveMeal() {
 }
 
 function deleteMeal() {
-  jQuery(this).parent().toggleClass('timerowfilled');
-  jQuery('.mealorsnack', jQuery(this).parent()).html("");
+  jQuery(this).parent().removeClass('timerowfilled');
+  jQuery(this).parent().removeClass('timerowfood');
+  jQuery(this).parent().removeClass('timerowfluoride');
+  jQuery('.label-snack', this).hide();
+  jQuery('.label-meal', this).hide();
   jQuery('.activityitems', jQuery(this).parent()).html("");
   jQuery('.activityitems', jQuery(this).parent()).removeData();
   
   saveState();
 }
 
-function moveUp() {
-  var items = jQuery('.timeactivity', jQuery(this).parent()).html();
-
-  var prevElement = jQuery(this).parent().prevAll(".timerow:not(.timerowfilled)").first();
-  if(prevElement.length > 0) {
-    jQuery('.timeactivity', prevElement).html(items);
-    jQuery(prevElement).toggleClass('timerowfilled');
+function swapRows(row1, row2) {
+  var copy_from = jQuery(row1).clone(true);
+  var copy_to = jQuery(row2).clone(true);
+  jQuery(row2).replaceWith(copy_from);
+  jQuery(row1).replaceWith(copy_to);
   
-    jQuery(this).parent().toggleClass('timerowfilled');
+  // swap times
+  jQuery(".time span.timetext", copy_to).html(jQuery(".time span.timetext", row1).html());
+  jQuery(".time span.timetext", copy_from).html(jQuery(".time span.timetext", row2).html());
+  
+  // swap IDs
+  copy_from.attr('id', row2.attr('id'));
+  copy_to.attr('id', row1.attr('id')); 
+}
+
+function moveUp() {
+  var thisRow = jQuery(this).parent(".timerow");
+  var prevElement = jQuery(this).parent().prevAll(".timerow:not(.timerowfilled)").first();
+
+  if(prevElement.length > 0) {
+    swapRows(thisRow, prevElement);
   }
   
   saveState();
 }
 
 function moveDown() {
-  var items = jQuery('.timeactivity', jQuery(this).parent()).html();
-
+  var thisRow = jQuery(this).parent(".timerow");
   var nextElement = jQuery(this).parent().nextAll(".timerow:not(.timerowfilled)").first();
+
   if(nextElement.length > 0) {
-    jQuery('.timeactivity', nextElement).html(items);
-    jQuery(nextElement).toggleClass('timerowfilled');
- 
-    jQuery(this).parent().toggleClass('timerowfilled');
+    swapRows(thisRow, nextElement);
   }
   
   saveState();
@@ -297,15 +328,15 @@ function moveDown() {
 
 function editMeal() {
   var mealorsnack = jQuery('.mealorsnack', jQuery(this).parent());
-  if(mealorsnack.html() == "\<span\ id\=\"label-meal\"\>Meal\<\/span\>") {
+  jQuery(".label-meal", mealorsnack).toggle();
+  jQuery(".label-snack", mealorsnack).toggle();
+  /*if(mealorsnack.html() == "\<span\ id\=\"label-meal\"\>Meal\<\/span\>") {
     mealorsnack.html("<span id=\"label-snack\">Snack</span>");
   } else {
     mealorsnack.html("<span id=\"label-meal\">Meal</span>");
-  }
+  }*/
   
   saveState();
 }
 
 jQuery(document).ready(initPlanner);
-
-// TODO: load/save functionality

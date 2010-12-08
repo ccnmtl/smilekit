@@ -44,13 +44,15 @@ width: 100px;
 
 /********/
 
-#label-snack{color: red;}
-#label-snack:after {content: "\2192";}/*Hexadecimal for Unicode right arrow (&rarr;)*/
+.label-snack{color: red;}
+.label-snack:after {content: "\2192";}/*Hexadecimal for Unicode right arrow (&rarr;)*/
 
-#label-meal {color: green;}
-#label-meal:after {content: "\2192";}/*Hexadecimal for Unicode right arrow (&rarr;)*/
+.label-meal {color: green;}
+.label-meal:after {content: "\2192";}/*Hexadecimal for Unicode right arrow (&rarr;)*/
 
 .mealorsnack {display: block; float: left;}
+
+.label-meal { display: none; }
 
 .activityitems
 { 	
