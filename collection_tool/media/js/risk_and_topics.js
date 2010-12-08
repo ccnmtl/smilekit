@@ -159,4 +159,6 @@ function score_data_for_topic_id (LOCAL_STORAGE_KEY, family_id, topic_id) {
         return calculate_friendly_score (score_data['max'], score_data['min'], score_data['score']);
 }
 
+// i'm moving this here and out of the other files that depend on this:
+family_id = local_storage_get (LOCAL_STORAGE_KEY, 'current_family_id');
 

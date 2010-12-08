@@ -15,7 +15,7 @@
 		<a id="introductiontab" class="mainfirsttab" href="/collection_tool/introduction/">Introduction</a>
 		<a id="assessmenttab" class="" href="/collection_tool">Assessment</a>
 		<a id="risktab" class="risktabactive" href="/collection_tool/risk/language/en">Risk</a>
-		<a id="planningtab" class="mainlasttab" href="#">Planning</a>
+		<a id="planningtab" class="mainlasttab" href="/collection_tool/goals/language/en">Planning</a>
 	</div>
 {% endblock %}
 
@@ -74,21 +74,16 @@
 				<ol>
 				{% for g in t.goal_set.all %}
 				<li class="goal_div">
-				
-					{{g.english_title}}.
-					
-					
-					
+					{{g.english_title}}
 					<div class="goal_div_learn">
 					<a href = "/collection_tool/goal/{{g.id}}/language/en">Learn</a>
 					</div>
 					
 					<div class="goal_div_plan">
-					
 					{% if g.show_in_planner %}
-					  <a href = "/collection_tool/goal/{{g.id}}/language/en">Plan (planner)</a>
+					  <a href = "/collection_tool/planner/goal/{{g.id}}/language/{{language_code}}">Plan (planner)</a>
 					{%else %}
-					  <a href = "/collection_tool/goal/{{g.id}}/language/en">Plan</a>
+					  <a href = "/collection_tool/goal/{{g.id}}/language/{{language_code}}">Plan (form)</a>
 					{%endif%}
 					</div>
 				

@@ -38,6 +38,10 @@ CACHE:
 {% for goal in goals %}
   /collection_tool/goal/{{goal.id}}/language/en
   /collection_tool/goal/{{goal.id}}/language/es
+  
+  /collection_tool/planner/goal/{{goal.id}}/language/en
+  /collection_tool/planner/goal/{{goal.id}}/language/es
+    
 {% endfor %}
 
 
