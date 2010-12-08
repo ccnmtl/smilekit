@@ -39,9 +39,12 @@ CACHE:
   /collection_tool/goal/{{goal.id}}/language/en
   /collection_tool/goal/{{goal.id}}/language/es
   
+  
+	{% if goal.show_in_planner %}
   /collection_tool/planner/goal/{{goal.id}}/language/en
   /collection_tool/planner/goal/{{goal.id}}/language/es
-    
+  {%endif%}
+      
 {% endfor %}
 
 
