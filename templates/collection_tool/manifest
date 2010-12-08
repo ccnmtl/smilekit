@@ -1,8 +1,102 @@
 CACHE MANIFEST
+
 # accessible from:
 # /collection_tool/manifest.cache
 
 CACHE:
+
+########
+########
+########
+# PAGES:
+
+#dashboard page (for switching between families and ending the interview):
+/family_info/dashboard
+
+#section pages
+{% for id in nav_section_ids %}
+    /collection_tool/section/{{id}}/language/en
+    /collection_tool/section/{{id}}/language/es
+{% endfor %}
+
+#question pages:
+{% for id in question_ids %}
+  /collection_tool/question/{{id}}/language/en
+  /collection_tool/question/{{id}}/language/es
+{% endfor %}
+
+#risk, goal and topic pages:
+/collection_tool/risk/language/en
+/collection_tool/risk/language/es
+
+/collection_tool/topics/language/en
+/collection_tool/topics/language/es
+
+/collection_tool/goals/language/en
+/collection_tool/goals/language/es
+
+{% for goal in goals %}
+  /collection_tool/goal/{{goal.id}}/language/en
+  /collection_tool/goal/{{goal.id}}/language/es
+  
+  /collection_tool/planner/goal/{{goal.id}}/language/en
+  /collection_tool/planner/goal/{{goal.id}}/language/es
+    
+{% endfor %}
+
+
+########
+########
+########
+# CSS:
+
+#static css
+/collection_tool/media/css/collection_tool.css
+/collection_tool/media/css/planner.css
+
+########
+########
+########
+# JS:
+
+#static javascript
+/site_media/js/smilekit_common.js
+
+/family_info/media/js/dashboard.js
+/family_info/media/js/localstorage.js
+/family_info/media/js/cache.js
+/collection_tool/media/js/collection_tool.js
+/collection_tool/media/js/risk_and_topics.js
+/collection_tool/media/js/planner.js
+/collection_tool/media/js/jquery.js
+/collection_tool/media/js/risk.js
+/collection_tool/media/js/topic.js
+/collection_tool/media/js/topics.js
+/collection_tool/media/js/goal.js
+/collection_tool/media/js/goals.js
+
+
+
+########
+########
+########
+# IMAGES:
+
+#question images
+{% for path in paths_to_question_images%}
+    {{path}}
+{% endfor %}
+
+#answer images
+{% for path in paths_to_answer_images%}
+    {{path}}
+{% endfor %}
+
+# planner images
+{% for label in planner_labels %}
+  /collection_tool/media/images/planner/{{label|slugify}}.jpg
+{% endfor %}
+
 
 #static pictures:
 /collection_tool/media/images/logo_mysmilebuddy.png
@@ -43,67 +137,6 @@ CACHE:
 /collection_tool/media/images/flatpages/mother_and_daughter_eating_at_table.jpg
 /collection_tool/media/images/flatpages/test.jpg
 /collection_tool/media/images/flatpages/toddler-with-sippy-cup.jpg
-
-
-#static css
-/collection_tool/media/css/collection_tool.css
-/collection_tool/media/css/planner.css
-
-#static javascript
-/family_info/media/js/dashboard.js
-/family_info/media/js/localstorage.js
-/family_info/media/js/cache.js
-/family_info/dashboard
-/collection_tool/media/js/collection_tool.js
-/collection_tool/media/js/planner.js
-/collection_tool/media/js/jquery.js
-/collection_tool/media/js/risk.js
-/collection_tool/media/js/topic.js
-/collection_tool/media/js/topics.js
-/collection_tool/media/js/goal.js
-/collection_tool/media/js/goals.js
-
-#questions
-{% for id in question_ids %}
-  /collection_tool/question/{{id}}/language/en
-  /collection_tool/question/{{id}}/language/es
-{% endfor %}
-
-#section pages
-{% for id in nav_section_ids %}
-    /collection_tool/section/{{id}}/language/en
-    /collection_tool/section/{{id}}/language/es
-{% endfor %}
-
-#question images
-{% for path in paths_to_question_images%}
-    {{path}}
-{% endfor %}
-
-#answer images
-{% for path in paths_to_answer_images%}
-    {{path}}
-{% endfor %}
-
-# planner images
-{% for label in planner_labels %}
-  /collection_tool/media/images/planner/{{label|slugify}}.jpg
-{% endfor %}
-
-#assessment pages:
-/collection_tool/risk/language/en
-/collection_tool/risk/language/es
-
-/collection_tool/topics/language/en
-/collection_tool/topics/language/es
-
-/collection_tool/goals/language/en
-/collection_tool/goals/language/es
-
-{% for goal in goals %}
-  /collection_tool/goal/{{goal.id}}/language/en
-  /collection_tool/goal/{{goal.id}}/language/es
-{% endfor %}
 
 
 FALLBACK:

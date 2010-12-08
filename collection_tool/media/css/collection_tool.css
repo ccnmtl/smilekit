@@ -816,16 +816,13 @@ h2#your_score_is {text-align: center;}
 	-webkit-border-radius: 10px;
 	padding: 16px;
 	font-weight: bold;
-	background: -webkit-gradient(linear, left top, left bottom, from(#ffcc66), to(#ff9933));
-	background: -moz-linear-gradient(top, #ffcc66, #ff9933);
-	font-weight: bold;
 	width: 300px;
 	font-size: 14px;
 	background-repeat: no-repeat;
 	margin-top: 10px;
 	position: relative;
 }
-
+/*
 .firebutton .firebuttonicon
 {
 	background-image: url(/collection_tool/media/images/fire_icon.png);
@@ -835,7 +832,12 @@ h2#your_score_is {text-align: center;}
 	left: 5px;
 	top: 5px;
 }
+*/
 
+
+
+
+/*
 .extinguished
 {
 	background: -webkit-gradient(linear, left top, left bottom, from(#33ffff), to(#3399ff)) !important;
@@ -850,6 +852,61 @@ h2#your_score_is {text-align: center;}
 	position: absolute !important;
 	left: 5px !important;
 	top: 5px !important;
+}
+*/
+
+/*background colors : */
+
+
+/* no score */
+.firebutton.topic_no_score {
+	background: -webkit-gradient(linear, left top, left bottom, from(#666666), to(#ffffff)) !important;
+	background: -moz-linear-gradient(top, #ffffff, #666666) !important;
+}
+
+/*ok*/
+.firebutton.topic_score_1, .firebutton.topic_score_2 , .firebutton.topic_score_3  {
+	background: -webkit-gradient(linear, left top, left bottom, from(#33ffff), to(#3399ff)) !important;
+	background: -moz-linear-gradient(top, #33ffff, #3399ff) !important;
+}
+
+/*so-so*/
+.firebutton.topic_score_4, .firebutton.topic_score_5,  .firebutton.topic_score_6  {
+	background: -webkit-gradient(linear, left top, left bottom, from(#ffcc00), to(#ff9900)) !important;
+	background: -moz-linear-gradient(top, #ffcc00, #ff9900) !important;
+}
+
+/*scary*/
+.firebutton.topic_score_7, .firebutton.topic_score_8, .firebutton.topic_score_9 {
+	background: -webkit-gradient(linear, left top, left bottom, from(#33ffff), to(#3399ff)) !important;
+	background: -moz-linear-gradient(top, #ff7575, #ff0101) !important;
+}
+.firebutton.hello_world {
+  background: -webkit-gradient(linear, left top, left bottom, from(#33ffff), to(#3399ff)) !important;
+}
+
+/*fire and water icons : */
+
+/*ok*/
+.topic_score_1 .firebuttonicon,  .topic_score_2 .firebuttonicon, .topic_score_3 .firebuttonicon, .topic_score_4 .firebuttonicon, .topic_score_5 .firebuttonicon
+{
+	background-image: url(/collection_tool/media/images/water_icon.png);
+	width: 26px !important;
+	height: 36px !important;
+	position: absolute !important;
+	left: 5px !important;
+	top: 5px !important;
+}
+
+/*scary*/
+.topic_score_6 .firebuttonicon, .topic_score_7 .firebuttonicon, .topic_score_8 .firebuttonicon, .topic_score_9 .firebuttonicon
+{
+	background-image: url(/collection_tool/media/images/fire_icon.png);
+	width: 26px;
+	height: 36px;
+	position: absolute;
+	left: 5px;
+	top: 5px;
 }
 
 .firebutton .indexpageicon

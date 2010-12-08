@@ -1,111 +1,22 @@
 
 
-function log_wrapper (a) {
-  try {
-    console.log ( a);
-  } catch (e) {
-    //nada.
-  }
+
+
+/*
+TODO: add following goal helper functions:. (Also perhaps move htem to their own JS file??)
+// based on set_goals_data(LOCAL_STORAGE_KEY, family_id, blob) 
+
+function get_goal_data (LOCAL_STORAGE_KEY, family_id, goal_key) {
+        
 }
-
-function llog (a) {
-    log_wrapper(JSON.stringify(a));
+function set_goal_data (LOCAL_STORAGE_KEY, family_id, goal_key, goal_string) {
+        
 }
+*/
 
 
-function family_questions (key, family_id) {
-     family_questions_result = null;
-     $.each(local_storage_get(key, 'list_of_questions') , function(k, fam) { 
-         if (fam['family_id'] == family_id) {
-           family_questions_result = fam;
-           return;
-         }
-    });
-    return family_questions_result;
-}
-
-
-function calculate_family_answers (family_id, scoring_info) {
-    family_key = family_id + '_answers';
-    calculate_family_answers_result = local_storage_get (LOCAL_STORAGE_KEY, family_key);
-    if (calculate_family_answers_result == null) {
-      calculate_family_answers_result = {}
-    }
-     
-    prev = family_questions (LOCAL_STORAGE_KEY, family_id)['previous_visit_questions'];
-     $.each(prev, function (qid, aid) {
-      if (calculate_family_answers_result [qid] == null) {
-          calculate_family_answers_result [qid] = aid;
-        }
-     });
-    
-    return calculate_family_answers_result;
-}
-
-function the_score_for (topic_id, config_id, answer_id) {
-  return scoring_info[topic_id][config_id][answer_id]
-}
-
-function max_score_for  (topic_id, config_id, answer_id) {
-  return maxmin_scoring_info[topic_id][config_id]['max'][answer_id];
-}
-
-function min_score_for  (topic_id, config_id, answer_id) {
-  return maxmin_scoring_info[topic_id][config_id]['min'][answer_id];
-}
-
-
-function calculate_scores (family_id, scoring_info, config_id, answer_array) {
-    var result = {'all': {'score': 0, 'max':0, 'min':0}};
-    $.each(scoring_info, function (tid, bla) {
-        result[tid] = {'score': 0, 'max':0, 'min':0};
-        for (i = 0; i < answer_array.length; i = i + 1) {
-            answer_id = answer_array[i]
-            found_score = the_score_for (tid, config_id, answer_id);
-            if (found_score != null) {
-                result['all']['score'] += found_score;
-                result['all']['min']   += min_score_for  (tid, config_id, answer_id);
-                result['all']['max']   += max_score_for  (tid, config_id, answer_id);
-                result[tid]['score']   += found_score;
-                result[tid]['min']     += min_score_for  (tid, config_id, answer_id);
-                result[tid]['max']     += max_score_for  (tid, config_id, answer_id);
-            }        
-        }
-    }
-  );
-  return result;
-}
-
-function calculate_friendly_score (max_score, min_score, raw_score) {
-   range_of_possible_scores = max_score - min_score;
-   // if your answers are the BEST possible, your adjusted_score is zero:
-   if (range_of_possible_scores == 0) {
-      // you need to answer a question to get a score, sorry.
-      return null;
-   }
-   adjusted_score = raw_score - min_score;
-   // Now make the best score 10 and the worst score 1:
-   //friendly_score =    1 + Math.round ( 9.0 * ( 1.0 - ( adjusted_score /  range_of_possible_scores) ) );
-    // other way around actually:   
-    friendly_score =    1 + Math.round ( 9.0 * adjusted_score /  range_of_possible_scores ) ;
- 
-   
-   if (true ) {
-       log_wrapper ( "User's raw score is " + raw_score);
-       log_wrapper ( "Worst possible score is : " + max_score );
-       log_wrapper ( "Best possible score is : " +  min_score );
-       log_wrapper ( "Adjusted score : " +  adjusted_score );
-       log_wrapper ( "Friendly score is " + friendly_score);
-   }
-   return friendly_score;
-}
-
-function between (x, a, b) {
-  return a < x && x <= b;
-}
-
+///FUNCTIONS USED JUST FOR RISK PAGE:
 function init() {
-    LOCAL_STORAGE_KEY = 'la_llave_encantada';
     
     $('.score_div').hide();
     $('.risk_div').hide();
@@ -137,6 +48,12 @@ function init() {
     });
     the_scores = calculate_scores (family_id, scoring_info, config_id, answer_array);
     overall_score = calculate_friendly_score(the_scores['all']['max'], the_scores['all']['min'], the_scores['all']['score']);
+    
+    
+    //store the scores so the topic page can use them to show scores on individual topics:
+    set_score_data (LOCAL_STORAGE_KEY, family_id, the_scores);
+    
+    
     
     if (overall_score == null) {
       // No questions were answered.

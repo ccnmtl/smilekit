@@ -46,8 +46,7 @@ function init_family_info() {
   if (typeof (local_storage_get) == "undefined") {
     alert ('localstorageget not found.'); 
     return;
-  } 
-  LOCAL_STORAGE_KEY = 'la_llave_encantada';
+  }
   current_family_id = local_storage_get ( LOCAL_STORAGE_KEY, 'current_family_id' );  
   // we can show this now:
   //$('.visit_button').hide();

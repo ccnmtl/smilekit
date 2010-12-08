@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{%ifequal 1 1%}
+{%ifequal 1 0%}
 <html manifest="/collection_tool/manifest.cache">
 {% else %}
 <html>
@@ -7,7 +7,7 @@
 
 <head>
 	<title>mySmileBuddy</title>
-	
+  <script type="text/javascript" src="/site_media/js/smilekit_common.js"></script>
 {% block collection_tool_js %}
 {% endblock collection_tool_js %}
 
@@ -45,10 +45,12 @@
 
 {% block mainnav %}
 	<div id="mainnav">
+    {% block mainnav_introtab %}
 		<a id="introductiontab" class="mainfirsttab" href="/collection_tool/introduction/">Introduction</a>
-		<a id="assessmenttab" class="assessmenttabactive" href="/collection_tool">Assessment</a>
-		<a id="risktab" class="" href="/collection_tool/risk/language/en">Risk</a>
-		<a id="planningtab" class="mainlasttab" href="#">Planning</a>
+    {% endblock %}
+		<a id="assessmenttab" class="assessmenttab" href="/collection_tool/section/1/language/en">Assessment</a>
+		<a id="risktab" class="risktab" href="/collection_tool/risk/language/en">Risk</a>
+		<a id="planningtab" class="mainlasttab" href="/collection_tool/goals/language/en">Planning</a>
 	</div>
 {% endblock %}
 	

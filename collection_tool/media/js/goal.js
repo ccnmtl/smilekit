@@ -77,7 +77,6 @@ function between (x, a, b) {
 }
 
 function init() {
-    LOCAL_STORAGE_KEY = 'la_llave_encantada';
     $('.score_div').hide();
     $('.risk_div').hide();
     $('#contentnav').hide();
@@ -131,7 +130,6 @@ function init() {
 
 
 function get_goals_data () {
-  LOCAL_STORAGE_KEY = 'la_llave_encantada';
   family_id = local_storage_get (LOCAL_STORAGE_KEY, 'current_family_id');
   return  get_planner_data(LOCAL_STORAGE_KEY, family_id);     
 }
@@ -139,7 +137,6 @@ function get_goals_data () {
 goal_form_fields = ['goal_name','who_is_responsible', 'steps', 'when'];
 
 function init() {
-    LOCAL_STORAGE_KEY = 'la_llave_encantada';
   //fetch goal info for this family and goal.
   
 }

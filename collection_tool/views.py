@@ -15,8 +15,6 @@ def risk(request, language_code):
   t = loader.get_template('collection_tool/risk.html')
       
   c = RequestContext(request,{
-      #need this for nav:
-      'all_sections': AssessmentSection.objects.all(),
       'language_code': language_code,
       'all_topics': Topic.objects.all(),
       'all_families': Family.objects.all(),
@@ -33,10 +31,6 @@ def topics(request, language_code):
       'language_code': language_code,
       'all_topics': Topic.objects.all(),
       'all_families': Family.objects.all(),
-      #need this for nav:
-      'all_sections': AssessmentSection.objects.all(),
-      #'all_configs': Configuration.objects.all(),
-      #'all_scores' : all_scores
   })
   return HttpResponse(t.render(c))
 
@@ -49,8 +43,6 @@ description. Get here by clicking 'Learn' on the goals page."""
   t = loader.get_template('collection_tool/topic.html')
       
   c = RequestContext(request,{
-      #need this for nav:
-      'all_sections': AssessmentSection.objects.all(),
       'language_code': language_code,
       'topic': get_object_or_404(Topic, pk=topic_id)
   })
@@ -62,7 +54,7 @@ def goals(request, language_code):
     raise Http404
   t = loader.get_template('collection_tool/goals.html')
   c = RequestContext(request,{
-      'all_goals': Goal.objects.all(),
+      'all_goals': Goal.objects.all()
   })
   return HttpResponse(t.render(c))
 
@@ -75,12 +67,45 @@ def goal(request, goal_id, language_code):
       
   c = RequestContext(request,{
       'language_code': language_code,
-      'goal': get_object_or_404(Goal, pk=goal_id),
-      'all_families': Family.objects.all(),
-      #need this for nav:
-      'all_sections': AssessmentSection.objects.all(),
+      'goal': get_object_or_404(Goal, pk=goal_id)
   })
   return HttpResponse(t.render(c))    
+
+
+
+def get_planner_items():
+  # look up question ids for planner
+  starttime = datetime(1984,1,1,6)
+  planner_times = [(starttime + timedelta(minutes=30) * i).strftime("%I:%M%p")
+           for i in range(36)]
+  planner_items = PlannerItem.objects.all().order_by('type', 'label')
+  
+  return {
+    'planner_times':planner_times,
+    'planner_items':planner_items,
+  }
+
+# planner/goal/(?P<goal_id>\d+)/language/(?P<language_code>\w+)
+def goal_planner(request, goal_id, language_code):
+  """Goal planner form."""
+  
+  stuff = {
+      'language_code': language_code,
+      'goal': get_object_or_404(Goal, pk=goal_id)
+  }
+  print stuff
+  stuff.update (get_planner_items());
+  print stuff
+  
+  if language_code not in ['en', 'es']:
+    raise Http404
+  t = loader.get_template('collection_tool/goal_planner.html')
+      
+  c = RequestContext(request, stuff)
+  return HttpResponse(t.render(c))    
+
+
+
 
 ##########################
 ##########################
@@ -188,9 +213,6 @@ def question(request, displayquestion_id, language_code):
       'planner_times':planner_times,
       'planner_items':planner_items,
       
-      # Kat, i'm changing these numbers to id's; i suspect it was causing a bug because the widget JS was saving
-      # the answers under the number of the questions, rather than the id. I changed the corresponding chunk of
-      # question.html as well. apologies in advance for any confusion!
       'widget_question_ids':[risky_exposures_question.id, brushing_question.id, fluoride_question.id],
       'risky_question_id':risky_exposures_question.id,
       'risky_answers_keys':[str(key) for key in risky_answers.keys()],
@@ -203,7 +225,8 @@ def question(request, displayquestion_id, language_code):
       'brushing_answers_values':brushing_answers.values()
   })
   return HttpResponse(t.render(c))
-    
+
+
 
 def widget_test(request):
   starttime = datetime(1984,1,1,7)
