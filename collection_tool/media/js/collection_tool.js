@@ -142,10 +142,7 @@ function hilite_answered_questions (arr) {
     )
 }
 
-
-
 function init() {
-    LOCAL_STORAGE_KEY = 'la_llave_encantada';
     family_id = local_storage_get (LOCAL_STORAGE_KEY, 'current_family_id');
     update_debug_localstorage();
     answers = family_answers();

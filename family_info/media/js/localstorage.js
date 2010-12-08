@@ -45,17 +45,14 @@ function local_storage_get ( namespace, key) {
   return temp_state[key];
 }
 
-
 //////////////
 
 function get_planner_data(LOCAL_STORAGE_KEY, family_id) {
   var key = 'planner_data';
   return get_state_data(LOCAL_STORAGE_KEY, family_id, key);
 }
-function get_goals_data(LOCAL_STORAGE_KEY, family_id) {
-  var key =  'goals_data';
-  return get_state_data(LOCAL_STORAGE_KEY, family_id, key);
-}
+
+// this is also used by the risk / goals pages:
 function get_state_data(LOCAL_STORAGE_KEY, family_id, key) {
   null_state = null;
   var all_states = local_storage_get(LOCAL_STORAGE_KEY, 'list_of_states');
@@ -78,18 +75,15 @@ function get_state_data(LOCAL_STORAGE_KEY, family_id, key) {
 //////////////
 function set_planner_data(LOCAL_STORAGE_KEY, family_id, blob) {
   var key = 'planner_data';
-  return set_state_data(LOCAL_STORAGE_KEY, family_id, key, blob);
+  set_state_data(LOCAL_STORAGE_KEY, family_id, key, blob);
 }
-function set_goals_data(LOCAL_STORAGE_KEY, family_id, blob) {
-  var key =  'goals_data';
-  return set_state_data(LOCAL_STORAGE_KEY, family_id, key, blob);
-}
+
+// this is also used by the risk / goals pages:
 function set_state_data(LOCAL_STORAGE_KEY, family_id,  key, blob) {
   var all_states = local_storage_get(LOCAL_STORAGE_KEY, 'list_of_states');
   all_states[family_id][key] = blob;
   local_storage_set(LOCAL_STORAGE_KEY, 'list_of_states', all_states);    
 }
-
 
 
 //////////////
@@ -141,5 +135,4 @@ function test_planner_set() {
 
   set_planner_data(LOCAL_STORAGE_KEY, family_id, initial);
 }
-
 

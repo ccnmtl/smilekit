@@ -71,11 +71,6 @@ function set_up_family_links () {
   start_visit_links = "";
   list_of_questions = local_storage_get(LOCAL_STORAGE_KEY, 'list_of_questions');
 
-  if (list_of_questions == null) {
-        alert ('list of questions is null; can\'t start interview.');
-        return;
-  }
-
   $.each(list_of_questions , function(key, value) {
      family_study_id_number = value['family_study_id_number'];
      family_id = value['family_id'];
@@ -93,6 +88,7 @@ function set_up_family_links () {
 function build_end_interview_form () {
   form_contents = "";
   current_interview_questions = local_storage_get(LOCAL_STORAGE_KEY, 'list_of_questions');
+  
   $.each(current_interview_questions , function(key, value) {
         family_id = value['family_id'];
         their_answers = local_storage_get ( LOCAL_STORAGE_KEY, (family_id + '_answers'));
@@ -158,12 +154,17 @@ download_success_callback = function () {
 
 function init_family_info() {
   hide_buttons();
-  LOCAL_STORAGE_KEY = 'la_llave_encantada';
   add_keys();
   
   //glog('init family info:');
 
+  list_of_questions = local_storage_get(LOCAL_STORAGE_KEY, 'list_of_questions');
 
+  if (list_of_questions == null) {
+    alert ('List of questions not found in local storage. Can\'t proceed with interview.');
+    return;
+  }
+  
   //2) BUILD THE END INTERVIEW FORM
   build_end_interview_form ();
 
@@ -172,12 +173,6 @@ function init_family_info() {
 
   if (typeof (local_storage_get) == "undefined") {
     glog ('localstorageget not found.');
-    return;
-  }
-  list_of_questions = local_storage_get(LOCAL_STORAGE_KEY, 'list_of_questions');
-
-  if (list_of_questions == null) {
-    alert ('List of questions not found in local storage. Can\'t proceed with interview.');
     return;
   }
 

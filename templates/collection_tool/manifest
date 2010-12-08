@@ -56,10 +56,13 @@ CACHE:
 # JS:
 
 #static javascript
+/site_media/js/smilekit_common.js
+
 /family_info/media/js/dashboard.js
 /family_info/media/js/localstorage.js
 /family_info/media/js/cache.js
 /collection_tool/media/js/collection_tool.js
+/collection_tool/media/js/risk_and_topics.js
 /collection_tool/media/js/planner.js
 /collection_tool/media/js/jquery.js
 /collection_tool/media/js/risk.js
