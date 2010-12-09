@@ -1,5 +1,15 @@
 // Convenience array of status values
 
+var num_files_downloaded;
+
+function percent_done (done, total) {
+  return Math.floor((done / total) * 100 );
+}
+
+function show_bar (percent) {
+  $("#progressbar").progressBar( percent); 
+}
+
 var cache = window.applicationCache;
 
 var cacheStatusValues = [];
@@ -20,6 +30,8 @@ function error_handler(e) {
 
 }
 
+
+// image helper functions:
 function status_images_none() {
   $('.download_status_image_div').hide();
 }
@@ -31,7 +43,7 @@ function status_images_upload() {
 
 function status_images_download() {
   $('.download_status_image_div').hide()
-  $('#download').show()
+  $('#download').show();
 }
 
 function status_images_error() {
@@ -52,10 +64,21 @@ function on_update_ready (e) {
  }
 
 function logEvent(e) {
+  var num_files_total = 245;
   var online, status, type, message;
   online = (isOnline()) ? 'yes' : 'no';
   status = cacheStatusValues[cache.status];
   type = e.type;
+  if (type == 'progress') {
+    //onsole.log (num_files_downloaded);
+    if (num_files_downloaded == null) {
+      num_files_downloaded = 0;
+    }
+    num_files_downloaded ++;
+    show_bar(percent_done( num_files_downloaded, num_files_total));    
+  }
+  
+  
   message = 'online: ' + online;
   message+= ', event: ' + type;
   message+= ', status: ' + status;     if (type == 'error' && navigator.onLine) {

@@ -200,6 +200,9 @@ div#list_of_questions {
   display: none;
 }
 
+#debug_cache_status {
+  display: none;
+}
 
 
 /********/
@@ -877,7 +880,7 @@ h2#your_score_is {text-align: center;}
 }
 
 /*scary*/
-.firebutton.topic_score_7, .firebutton.topic_score_8, .firebutton.topic_score_9 {
+.firebutton.topic_score_7, .firebutton.topic_score_8, .firebutton.topic_score_9, .firebutton.topic_score_10 {
 	background: -webkit-gradient(linear, left top, left bottom, from(#33ffff), to(#3399ff)) !important;
 	background: -moz-linear-gradient(top, #ff7575, #ff0101) !important;
 }
@@ -899,7 +902,7 @@ h2#your_score_is {text-align: center;}
 }
 
 /*scary*/
-.topic_score_6 .firebuttonicon, .topic_score_7 .firebuttonicon, .topic_score_8 .firebuttonicon, .topic_score_9 .firebuttonicon
+.topic_score_6 .firebuttonicon, .topic_score_7 .firebuttonicon, .topic_score_8 .firebuttonicon, .topic_score_9 .firebuttonicon, .topic_score_10 .firebuttonicon
 {
 	background-image: url(/collection_tool/media/images/fire_icon.png);
 	width: 26px;

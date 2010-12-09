@@ -1,5 +1,3 @@
-var LOCAL_STORAGE_KEY;
-
 function add_keys() {
   $.extend({
      keys: function(obj){
@@ -135,7 +133,6 @@ function show_interview_progress() {
 
 function hide_buttons() {
   $('.go_to_family_button').hide();
-
 }
 
 function show_buttons() {
@@ -150,13 +147,13 @@ function show_buttons() {
 download_success_callback = function () {
   $("#guidance_1").html ("Download was successful. Click one of the 'Visit' buttons below to start.");
   show_buttons();
+  $("#progressbar").progressBar(100);
 }
+
 
 function init_family_info() {
   hide_buttons();
   add_keys();
-
-  //glog('init family info:');
 
   list_of_questions = local_storage_get(LOCAL_STORAGE_KEY, 'list_of_questions');
 
@@ -165,12 +162,17 @@ function init_family_info() {
     return;
   }
   
-  //2) BUILD THE END INTERVIEW FORM
+  //BUILD THE END INTERVIEW FORM
   build_end_interview_form ();
 
-  // 3) SET UP LINKS TO FIRST PAGE OF EACH FAMILY'S INTERVIEW.
+  //SET UP LINKS TO FIRST PAGE OF EACH FAMILY'S INTERVIEW.
   set_up_family_links ();
 
+
+  //SET UP PROGRESSBAR:
+  $("#progressbar").progressBar();
+
+  // TRY AND DOWNLOAD THE FILES NEEDED FOR THE INTERVIEW:
   if (typeof (local_storage_get) == "undefined") {
     glog ('localstorageget not found.');
     return;
@@ -179,12 +181,10 @@ function init_family_info() {
   if (typeof (cache) == "undefined") {
     // this might not actually matter.
     glog ('Cache not found, so can\'t update it.');
-
     show_buttons();
   }
   else {
     error = download_files_into_cache ();
-
     if (error) {
       status_images_error();
       $('#downloading').hide();
@@ -197,6 +197,7 @@ function init_family_info() {
 
   // 4) SHOW INTERVIEW PROGRESS SO FAR:
   show_interview_progress();
+  
 }
 
 ///////////////////
