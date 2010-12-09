@@ -172,10 +172,12 @@ class Visit (models.Model):
   #Optional extra auth, maybe:
   token =  models.TextField(null=True, blank =True)
 
-
+  
   class Meta:
     ordering = ('start_timestamp',)
-  
+
+  def __unicode__(self):
+    return "Visit %s" % self.pk
 
   @property
   def is_happening(self):
@@ -235,10 +237,6 @@ class Response (models.Model):
   question = models.ForeignKey (Question) #can't be null
   answer = models.ForeignKey (Answer) #can't be null
 
-  @property
-  def date_of_response(self):
-    return 'a'
-    
   @property
   def question_english(self):
     #import pdb

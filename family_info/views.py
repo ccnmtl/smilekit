@@ -16,7 +16,8 @@ def families(request, **kwargs):
     c = RequestContext(request, {
       'error_message': kwargs.get ('error_message', ''),
       'families': Family.objects.filter(active = True),
-      'health_workers': User.objects.all()
+      'health_workers': User.objects.all(),
+      'just_finished_visit': kwargs.get("just_finished_visit"),
     })
     
     #pdb.set_trace()
@@ -397,6 +398,7 @@ def end_interview(request, **args):
     my_args = {'error_message' : 'Visit ended.'}
   else:
     my_args = {'error_message' : '%d  answers from your visit were sent back.' % answer_count}
+    my_args['just_finished_visit'] = my_visit
 
   return families (request, **my_args)
   

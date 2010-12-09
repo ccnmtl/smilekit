@@ -58,7 +58,7 @@
 </tr>
 <tr>
         <td>verifyText</td>
-        <td>css=#progress_info_for_family_1 .num_answers
+        <td>css=#progress_info_for_family_1 .num_answers</td>
         <td>0</td>
 </tr>
 <tr>
@@ -123,7 +123,7 @@
 </tr>
 <tr>
         <td>verifyText</td>
-        <td>css=#progress_info_for_family_1 .num_answers
+        <td>css=#progress_info_for_family_1 .num_answers</td>
         <td>3</td>
 </tr>
 <tr>
@@ -132,10 +132,37 @@
 	<td></td>
 </tr>
 <tr>
-	<td>clickAndWait</td>
-	<td>link=Log Out</td>
-	<td></td>
+        <td>storeText</td>
+        <td>css=#just_finished_visit</td>
+        <td>visitId</td>
 </tr>
+<tr>
+        <td>open</td>
+        <td>/admin/family_info/response/</td>
+        <td></td>
+</tr>
+
+<tr>
+        <td>verifyElementPresent</td>
+        <td>//text()["Visit ${visitId}"]/preceding::tr[text()["brusher"] and text()["both"]]</td>
+        <td></td>
+</tr>
+<tr>
+        <td>verifyElementPresent</td>
+        <td>//text()["Visit ${visitId}"]/preceding::tr[text()["water type"] and text()["both"]]</td>
+        <td></td>
+</tr>
+<tr>
+        <td>verifyElementPresent</td>
+        <td>//text()["Visit ${visitId}"]/preceding::tr[text()["Other than yourself, is there someone who helps brush your children's teeth?"] and text()["no"]]</td>
+        <td></td>
+</tr>
+<tr>
+        <td>open</td>
+        <td>/accounts/logout/</td>
+        <td></td>
+</tr>
+
 </tbody></table>
 </body>
 </html>

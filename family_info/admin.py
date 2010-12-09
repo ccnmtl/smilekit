@@ -13,10 +13,10 @@ admin.site.register(Visit, VisitAdmin)
 
 class ResponseAdmin(admin.ModelAdmin):
   #search_fields=[ 'dir', ]
-  list_display=( 'date_of_response', 'interviewer',\
-    'id_of_family', 'question_english', 'answer_english',\
-    'config', 'module', 'module_weight', 'question_weight', \
-    'answer_weight','score', )
+  list_display=( 'date_of_response', 'interviewer', 'during_visit',
+                 'id_of_family', 'question_english', 'answer_english',
+                 'config', 'module', 'module_weight', 'question_weight', 
+                 'answer_weight','score', )
 
 admin.site.register(Response, ResponseAdmin)
 
