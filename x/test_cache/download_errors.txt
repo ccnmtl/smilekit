@@ -1,7 +1,0 @@
-
---10:15:28--  http://kodos.ccnmtl.columbia.edu:7112/collection_tool/manifest.cache
-           => `filelist.txt'
-Resolving kodos.ccnmtl.columbia.edu... 128.59.152.95
-Connecting to kodos.ccnmtl.columbia.edu|128.59.152.95|:7112... connected.
-HTTP request sent, awaiting response... 500 INTERNAL SERVER ERROR
-10:15:29 ERROR 500: INTERNAL SERVER ERROR.

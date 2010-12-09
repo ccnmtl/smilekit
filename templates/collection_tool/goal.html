@@ -32,6 +32,7 @@
 {% block collection_tool_content %}
 
 	<div id ="language_code_div">{{language_code}}</div>
+	<div id ="goal_id_div">{{goal.id}}</div>
 	
 	{%ifequal language_code 'en'%}
 	  <h2 align="center">{{goal.english_title}}.</h2>
@@ -101,10 +102,10 @@
 	
 	<div align="center">
   {%ifequal language_code 'en'%}
-  <a href = "/collection_tool/goals/language/en">Set Goal</a>
+  <a href = "/collection_tool/goals/language/en">Set Goal (en)</a>
   {%endifequal%}
   {%ifequal language_code 'es'%}
-  <a href = "/collection_tool/goals/language/es">Eset Goal</a>
+  <a href = "/collection_tool/goals/language/es">Set Goal (es)</a>
   {%endifequal%}
 	<!--
 	<a href = "" > Cancel and Start over </a>

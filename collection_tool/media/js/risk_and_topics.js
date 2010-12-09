@@ -1,36 +1,44 @@
 
-function get_goals_data(LOCAL_STORAGE_KEY, family_id) {
-  goals_data =  get_state_data(LOCAL_STORAGE_KEY, family_id, 'goals_data');
-  
-  // just set to empty object if nothing is found:
-  if (goals_data == null) {
-    return {}
-  }
-  return goals_data;
-}
-
-function set_goals_data(LOCAL_STORAGE_KEY, family_id, blob) {
-  var key =  'goals_data';
-  set_state_data(LOCAL_STORAGE_KEY, family_id, key, blob);
-}
 
 
 function family_questions (key, family_id) {
-     family_questions_result = null;
-     $.each(local_storage_get(key, 'list_of_questions') , function(k, fam) { 
-         if (fam['family_id'] == family_id) {
-           family_questions_result = fam;
-           return;
-         }
-    });
-    return family_questions_result;
+   family_questions_result = null;
+   $.each(local_storage_get(key, 'list_of_questions') , function(k, fam) { 
+       if (fam['family_id'] == family_id) {
+         family_questions_result = fam;
+         return;
+       }
+  });
+  return family_questions_result;
+}
+
+
+function set_goal_text (LOCAL_STORAGE_KEY, family_id, goal_id, goal_field_code, goal_text ) {
+  tmp = get_goals_data(LOCAL_STORAGE_KEY, family_id);
+  key = goal_id + '_' + goal_field_code;
+  tmp[key] = goal_text;
+  set_goals_data(LOCAL_STORAGE_KEY, family_id, tmp);
+}
+
+
+function get_goal_text (LOCAL_STORAGE_KEY, family_id, goal_id, goal_field_code) {
+  key = goal_id + '_' + goal_field_code;
+  try {
+     goal_text = get_goals_data(LOCAL_STORAGE_KEY, family_id)[key];
+     if (goal_text != null) {
+      return goal_text
+     }
+  } catch (e){
+      // Have a nice day.
+  }
+  return '';
 }
 
 
 function set_score_data (LOCAL_STORAGE_KEY, family_id, score_data) {
-        tmp = get_goals_data(LOCAL_STORAGE_KEY, family_id);
-        tmp['score_data'] = score_data;
-        set_goals_data(LOCAL_STORAGE_KEY, family_id, tmp);
+  tmp = get_goals_data(LOCAL_STORAGE_KEY, family_id);
+  tmp['score_data'] = score_data;
+  set_goals_data(LOCAL_STORAGE_KEY, family_id, tmp);
 }
 
 
@@ -148,15 +156,15 @@ function between (x, a, b) {
 
 
 function score_data_for_topic_id (LOCAL_STORAGE_KEY, family_id, topic_id) {
-        try {
-            score_data = get_goals_data(LOCAL_STORAGE_KEY, family_id)['score_data'][topic_id];
-        } catch (e){
-            return -1
-        } 
-        if (score_data['min'] == score_data['max'] ) {
-            return -1;
-        }
-        return calculate_friendly_score (score_data['max'], score_data['min'], score_data['score']);
+  try {
+      score_data = get_goals_data(LOCAL_STORAGE_KEY, family_id)['score_data'][topic_id];
+  } catch (e){
+      return -1
+  } 
+  if (score_data['min'] == score_data['max'] ) {
+      return -1;
+  }
+  return calculate_friendly_score (score_data['max'], score_data['min'], score_data['score']);
 }
 
 // i'm moving this here and out of the other files that depend on this:

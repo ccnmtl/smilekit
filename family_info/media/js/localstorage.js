@@ -78,6 +78,24 @@ function set_planner_data(LOCAL_STORAGE_KEY, family_id, blob) {
   set_state_data(LOCAL_STORAGE_KEY, family_id, key, blob);
 }
 
+function get_goals_data(LOCAL_STORAGE_KEY, family_id) {
+  // this doesn't work:
+  goals_data =  get_state_data(LOCAL_STORAGE_KEY, family_id, 'goals_data');
+  
+  // just set to empty object if nothing is found:
+  if (goals_data == null) {
+    return {}
+  }
+  return goals_data;
+}
+
+function set_goals_data(LOCAL_STORAGE_KEY, family_id, blob) {
+  var key =  'goals_data';
+  set_state_data(LOCAL_STORAGE_KEY, family_id, key, blob);
+}
+
+
+
 // this is also used by the risk / goals pages:
 function set_state_data(LOCAL_STORAGE_KEY, family_id,  key, blob) {
   var all_states = local_storage_get(LOCAL_STORAGE_KEY, 'list_of_states');
