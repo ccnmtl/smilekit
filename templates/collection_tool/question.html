@@ -112,11 +112,6 @@
       {%if displayquestion.has_answer_pictures%}
         <div class="answerphotobox">
           <div class="answerphotoboxcontainer">
-            <!--
-            <div class="answerphotoboxlabel">
-            Your Choices
-            </div>
-            -->
             <div class="answerthumbnails">
             {%for a in answers%}
               <div class="answerthumbnail">
@@ -130,14 +125,6 @@
         </div>
 	    {%endif%}
 		{% endif %}
-
-			<div id="debugstuff" style="border: 1px solid #000; margin-top: 20px; text-align: center;">
-				<div>Debug Stuff</div>
-				<div id="debug_localstorage"></div>
-				<div id="debug_cache_status"></div>
-				<div><img id="online_or_not" src="/collection_tool/media/images/icon_offline.jpg" ></div>
-			</div>
-			
 		</div>
 	
 	</div>

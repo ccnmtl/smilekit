@@ -44,6 +44,21 @@
 			<img src="/collection_tool/media/images/topics_graphic.png" />
 			
 			
+			<div id = "topics_learn_more_flatpages_div">
+			    {% for fp in flat_pages_we_need %}
+              <!-- content box -->
+              <div class="help_content learn_more_help_content help_box help_box_{{fp.id }}">
+
+                  <!-- this is the same content as on the flatpage: -->
+                  {{fp.content|safe }}
+                  
+                  <!-- close button -->
+                  <a id="help_close" class ="learn_more_close_button" href="javascript:void(0)" onclick="$('.learn_more_help_content.help_box_{{fp.id }}').hide()">X</a>
+
+               </div>
+			    {% endfor %}
+		  </div>
+			
 			{% for t in all_topics%} 
 			    <div class="firebutton" topic_id = "{{t.id}}" >
 			    {%ifequal language_code 'en'%}
@@ -53,14 +68,21 @@
 	        {%ifequal language_code 'es'%}
 		        {{t.spanish_title}}
 		      {%endifequal%}
-			
-				    <div class="firebuttonicon"></div>
+		      
+		      
+			    <div class="firebuttonicon"></div>
+			    
+			    
+			    {% if t.section %}
 				      {%ifequal language_code 'en'%}
-				        <div class="indexpageicon"><a href="/collection_tool/section/3/language/en">?</a></div>
+				        <div class="indexpageicon"><a href="/collection_tool/section/{{t.section.id}}/language/en">?</a></div>
 		          {%endifequal%}
 				      {%ifequal language_code 'es'%}
-				        <div class="indexpageicon"><a href="/collection_tool/section/3/language/es">?</a></div>
+				        <div class="indexpageicon"><a href="/collection_tool/section/{{t.section.id}}/language/es">?</a></div>
 		          {%endifequal%}
+			    {%endif%}
+			    
+			    
 			    </div>
 			{% endfor %}
 
@@ -71,30 +93,38 @@
 				{{t}}:
 				</h3>
 				
+				{% if t.learn_more.url %}
+				  <div class = "topic_div_learn">
+				    <a  href="javascript:void(0)" onclick="$('.learn_more_help_content.help_box_{{t.learn_more.id }}').show()" >Learn More About {{t.learn_more.title}}</a>
+				  </div>
+        {%endif %}
+				
 				<ol>
 				{% for g in t.goal_set.all %}
 				<li class="goal_div">
 					{{g.english_title}}
-					<div class="goal_div_learn">
-					<a href = "/collection_tool/goal/{{g.id}}/language/en">Learn</a>
-					</div>
-					
 					<div class="goal_div_plan">
 					{% if g.show_in_planner %}
-					  <a href = "/collection_tool/planner/goal/{{g.id}}/language/{{language_code}}">Plan (planner)</a>
+					  <a href = "/collection_tool/planner/goal/{{g.id}}/language/{{language_code}}" title = "Goes to planner">plan*</a> <!--  (planner) -->
 					{%else %}
-					  <a href = "/collection_tool/goal/{{g.id}}/language/{{language_code}}">Plan (form)</a>
+					  <a href = "/collection_tool/goal/{{g.id}}/language/{{language_code}}"  title = "Goes to regular goal setting form">plan</a> <!-- (form)  -->
 					{%endif%}
 					</div>
 				
 				</li>
 				{%endfor%}    
 				</ol>
+			<div>* (goes to planner ) </div>
+			
 			</div>
 			{% endfor %}
-			
-		</div>
+      </div>
+      
+      			
 	
 </div>
 
+
+			
+			
 {% endblock collection_tool_content %}

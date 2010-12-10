@@ -26,11 +26,22 @@ def topics(request, language_code):
   if language_code not in ['en', 'es']:
     raise Http404
   t = loader.get_template('collection_tool/topics.html')
-      
+  
+  
+  
+  #collate all the flat pages referred to by the topics so we can easily put them into divs:
+  #import pdb
+  #pdb.set_trace()
+  
+  topic_urls = [the_topic.learn_more['url'] for the_topic in Topic.objects.all() if the_topic.learn_more]
+  flat_pages_we_need = FlatPage.objects.filter(url__in = topic_urls )
+
+  #print dir (FlatPage)
   c = RequestContext(request,{
       'language_code': language_code,
       'all_topics': Topic.objects.all(),
-      'all_families': Family.objects.all(),
+      'flat_pages_we_need' : flat_pages_we_need,
+      #'all_families': Family.objects.all(),
   })
   return HttpResponse(t.render(c))
 

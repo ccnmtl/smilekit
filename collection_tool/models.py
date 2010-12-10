@@ -80,6 +80,13 @@ class HelpDefinition(models.Model):
   @property
   def dir(self):
     return dir(self)
+
+
+def most_frequent_item (alist):
+  frequencies = [(a, alist.count(a)) for a in set(alist)]
+  if frequencies:
+    return sorted(frequencies,  key=lambda x: -x[1])[0][0]
+  return None
     
 class Topic(models.Model):    
   """an aspect of the patient's health that can be improved"""
@@ -95,18 +102,29 @@ class Topic(models.Model):
   class Meta:
     ordering = ('ordering_rank',)
     
+
+  @property
+  def section(self):
+    dquestions = self.displayquestion_set.all()
+    sections = [dq.nav_section for dq in dquestions]
+    if sections:
+      return most_frequent_item (sections)
+    return None
+
   @property
   def dir(self):
     return dir(self)
   
   @property
   def answers(self):
+    """used for scoring the topic"""
     dquestions = self.displayquestion_set.all()
     all_answers = []
     for dq in dquestions:
         all_answers.extend(dq.question.answer_set.all())
     all_answers.sort()
     return all_answers
+
 
   @property
   def scoring_info(self):
@@ -115,7 +133,6 @@ class Topic(models.Model):
   @property
   def scoring_info_object (self):
     return  dict([(config.id, self.config_scoring_info(config)) for config in Configuration.objects.all()])
-
 
   
   def config_scoring_info(self, config):
@@ -165,6 +182,13 @@ class Topic(models.Model):
   @property
   def question_count(self):
     return len(self.displayquestion_set.all())
+  
+  @property
+  def learn_more(self):
+    learn_more_list = [dq.learn_more for dq in self.displayquestion_set.all() if dq.learn_more != None]
+    if learn_more_list:
+      return learn_more_list[0]  
+    return None
      
   @property
   def dir(self):
@@ -477,7 +501,7 @@ class DisplayQuestion(models.Model):
     #throw 404? Consider just failing silently.  
     url = self.resources.all()[0].url
     my_flat_page = get_object_or_404(FlatPage, url=url)
-    return {'url':my_flat_page.url,  'title':my_flat_page.title, 'content':my_flat_page.content}
+    return {'url':my_flat_page.url,  'title':my_flat_page.title, 'content':my_flat_page.content,  'id':my_flat_page.id}
 
   
   def __unicode__(self):
