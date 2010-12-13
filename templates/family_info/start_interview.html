@@ -19,14 +19,13 @@
 
 
 
+
 <div id="list_of_questions"> 
 	[
 	{% for the_family in families %}
-	
 	{
 		"family_id" : {{the_family.id}},
 		"family_study_id_number" : {{the_family.study_id_number}},
-		
 		
 		"previous_visit_questions" :
 		{
@@ -46,8 +45,9 @@
 		
 		],
 		
+	        {% if the_family.config and the_family.config.first_display_question %}
 		"first_question_url" : "/collection_tool/question/{{the_family.config.first_display_question.id}}/language/en"
-		
+		{% endif %}
 	}
 	{% if not forloop.last %},{%endif%}
 	
@@ -55,12 +55,19 @@
 	
 	]
 </div>
-		<!--
-<div class="learnmore">
-<a href="#">Learn More</a>
+
+<div id ="state">
+  {
+    {% for the_family in families %}
+      "{{the_family.id}}" : {{the_family.state}}
+  	  {% if not forloop.last %},{%endif%}
+    {% endfor %}
+  }
 </div>
--->
-<table width="100%" border = "1">
+
+
+
+<table cellspacing="0" id="materialstable">
 	
 	<tr>
 		<th>Family ID</th>
@@ -97,7 +104,7 @@
 
 <script>
 	if (typeof($) == "undefined") {
-		alert ("Oops. We cannot start the interview right now. Message: Unable to load jQuery.");
+		alert ("JQuery library was not found. Please delete your cache and reload the page.");
 	}
 </script>
 

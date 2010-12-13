@@ -77,7 +77,6 @@ function between (x, a, b) {
 }
 
 function init() {
-    LOCAL_STORAGE_KEY = 'la_llave_encantada';
     $('.score_div').hide();
     $('.risk_div').hide();
     $('#contentnav').hide();

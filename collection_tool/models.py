@@ -1,7 +1,9 @@
 from django.db import models
 from django.db.models.signals import post_save
+from django.shortcuts import get_object_or_404
 import simplejson as json
 from equation_balancer.models import ModuleWeight
+from django.contrib.flatpages.models import FlatPage
 
 LANGUAGE_CHOICES = (
     ('en', 'English'),
@@ -21,10 +23,10 @@ class HelpItem(models.Model):
   spanish_title = models.CharField(max_length=1024, null = True, blank = True)
   
   english_script = models.TextField(null=True, blank =True,  help_text = "Basic script to follow")
-  english_script_instructions = models.TextField(null=True, blank =True,  help_text = "More details about this subject")
+  english_script_instructions = models.TextField(null=True, blank =True, verbose_name="English - More Details",  help_text = "More details about this subject")
   
   spanish_script = models.TextField(null=True, blank =True ,  help_text = "Basic script to follow")
-  spanish_script_instructions = models.TextField(null=True, blank =True, help_text = "More details about this question")
+  spanish_script_instructions = models.TextField(null=True, blank =True, verbose_name="Spanish - More Details",  help_text = "More details about this question")
   
   
   def __unicode__(self):
@@ -78,6 +80,13 @@ class HelpDefinition(models.Model):
   @property
   def dir(self):
     return dir(self)
+
+
+def most_frequent_item (alist):
+  frequencies = [(a, alist.count(a)) for a in set(alist)]
+  if frequencies:
+    return sorted(frequencies,  key=lambda x: -x[1])[0][0]
+  return None
     
 class Topic(models.Model):    
   """an aspect of the patient's health that can be improved"""
@@ -93,18 +102,29 @@ class Topic(models.Model):
   class Meta:
     ordering = ('ordering_rank',)
     
+
+  @property
+  def section(self):
+    dquestions = self.displayquestion_set.all()
+    sections = [dq.nav_section for dq in dquestions]
+    if sections:
+      return most_frequent_item (sections)
+    return None
+
   @property
   def dir(self):
     return dir(self)
   
   @property
   def answers(self):
+    """used for scoring the topic"""
     dquestions = self.displayquestion_set.all()
     all_answers = []
     for dq in dquestions:
         all_answers.extend(dq.question.answer_set.all())
     all_answers.sort()
     return all_answers
+
 
   @property
   def scoring_info(self):
@@ -113,7 +133,6 @@ class Topic(models.Model):
   @property
   def scoring_info_object (self):
     return  dict([(config.id, self.config_scoring_info(config)) for config in Configuration.objects.all()])
-
 
   
   def config_scoring_info(self, config):
@@ -163,6 +182,13 @@ class Topic(models.Model):
   @property
   def question_count(self):
     return len(self.displayquestion_set.all())
+  
+  @property
+  def learn_more(self):
+    learn_more_list = [dq.learn_more for dq in self.displayquestion_set.all() if dq.learn_more != None]
+    if learn_more_list:
+      return learn_more_list[0]  
+    return None
      
   @property
   def dir(self):
@@ -202,11 +228,15 @@ class AssessmentSection(models.Model):
   english_title = models.CharField(max_length=1024, null = True, blank = True)
   spanish_title = models.CharField(max_length=1024, null = True, blank = True)
 
+  english_description = models.CharField(max_length=1024, null = True, blank = True, help_text = "a few English sentences that will appear at the top of this index page." )
+  spanish_description = models.CharField(max_length=1024, null = True, blank = True, help_text = "a few Spanish sentences that will appear at the top of this index page." )
+  
+
   ordering_rank = models.IntegerField()
+  
     
   class Meta:
     ordering = ('ordering_rank',)
-
   
   @property
   def dir(self):
@@ -214,7 +244,6 @@ class AssessmentSection(models.Model):
     
   def __unicode__(self):
     return self.title
-
   
   def display_question_ids(self):
     """ used for ordering"""
@@ -319,7 +348,6 @@ class DisplayQuestion(models.Model):
   topics = models.ManyToManyField(Topic, help_text =  "One or more topics this question is associated with.", null=True, blank=True)
 
   resources = models.ManyToManyField(Resource, help_text =  "Links to other pages that are relevant to this question.", null=True, blank=True)
-
 
   image = models.ImageField(upload_to='question_images',blank=True,null=True)
   
@@ -459,6 +487,22 @@ class DisplayQuestion(models.Model):
     
     return "Sorry, no wordings provided in either language. Enter wordings at /admin/collection_tool/displayquestion/%d/" % self.id
   
+  
+  
+  @property
+  def learn_more (self):
+    """the content of some flat pages also need to be accessible from the question page in the collection tool. here's a simple way of doing this:"""
+    #import pdb
+    #pdb.set_trace()
+    if not self.resources.all():
+      return None
+    
+    
+    #throw 404? Consider just failing silently.  
+    url = self.resources.all()[0].url
+    my_flat_page = get_object_or_404(FlatPage, url=url)
+    return {'url':my_flat_page.url,  'title':my_flat_page.title, 'content':my_flat_page.content,  'id':my_flat_page.id}
+
   
   def __unicode__(self):
     """ Just the English."""

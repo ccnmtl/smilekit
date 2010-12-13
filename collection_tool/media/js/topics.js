@@ -84,20 +84,64 @@ function show_topic_details (topic_id) {
 }
 
 
+/*
+
+function blarg (index, my_div) {
+    
+    $(my_div).click(function() {
+
+              show_topic_details ( topic_id )
+
+       }
+
+   );
+}
+
+*/
+var family_id;
+
+function bound_show_topic_details(tid) {
+    return function () {
+        show_topic_details(tid);
+    }
+}
+
+function decorate_firebutton (index, my_div) {
+    tid = my_div.getAttribute('topic_id');
+    $(my_div).click(bound_show_topic_details(tid));
+    try {
+      score = score_data_for_topic_id (LOCAL_STORAGE_KEY, family_id, tid);
+      score_class = 'topic_score_' + score;
+      if (score == -1 ) {
+           $(my_div).addClass( 'topic_no_score' );
+      }
+      else {
+          $(my_div).addClass( score_class );
+      }
+    }
+    catch (e) {
+      // score data for topic id shouldn't throw any errors.
+      log_wrapper ('enh');
+    } 
+     
+    //score = score_data_for_topic_id (LOCAL_STORAGE_KEY, family_id, 1);
+    //alert (score);
+}
 
 function init() {
-    LOCAL_STORAGE_KEY = 'la_llave_encantada';
     $('.topic_div').hide();
-    the_scores = local_storage_get (LOCAL_STORAGE_KEY, 'risk' );
+    family_id = local_storage_get (LOCAL_STORAGE_KEY, 'current_family_id');
+    $('.firebutton').each(decorate_firebutton);
 
     /*
+    the_scores = local_storage_get (LOCAL_STORAGE_KEY, 'risk' );
+
     
     family_configs = JSON.parse($('#family_configs')[0].innerHTML);
     scoring_info   = JSON.parse($('#scoring_info')[0].innerHTML  );
     maxmin_scoring_info = JSON.parse($('#maxmin_scoring_info')[0].innerHTML);
     all_questions = local_storage_get (LOCAL_STORAGE_KEY, 'list_of_questions');
     
-    family_id = local_storage_get (LOCAL_STORAGE_KEY, 'current_family_id');
     config_id = family_configs [family_id];
     
     family_answers =  calculate_family_answers(family_id);

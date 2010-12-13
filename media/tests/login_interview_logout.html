@@ -43,17 +43,27 @@
 </tr>
 <tr>
 	<td>clickAndWait</td>
-	<td>//input[@value='Pull Family Data Down from Server']</td>
+	<td>main_submit_button</td>
 	<td></td>
 </tr>
 <tr>
 	<td>clickAndWait</td>
-	<td>//input[@value='Visit These Families']</td>
+	<td>//input[@value='Get materials for visit']</td>
 	<td></td>
 </tr>
 <tr>
+        <td>waitForElementPresent</td>
+	<td>css=input.go_to_family_button</td>
+	<td></td>
+</tr>
+<tr>
+        <td>verifyText</td>
+        <td>css=#progress_info_for_family_1 .num_answers</td>
+        <td>0</td>
+</tr>
+<tr>
 	<td>clickAndWait</td>
-	<td>//input[@value='Visit Family 1']</td>
+	<td>//input[@value='Visit']</td>
 	<td></td>
 </tr>
 <tr>
@@ -103,19 +113,56 @@
 </tr>
 <tr>
 	<td>clickAndWait</td>
-	<td>link=Interview page</td>
+	<td>interview_link</td>
 	<td></td>
 </tr>
 <tr>
-	<td>clickAndWait</td>
-	<td>//input[@value='Push Family Information Back to Server']</td>
+        <td>waitForElementPresent</td>
+	<td>css=input.go_to_family_button</td>
 	<td></td>
 </tr>
 <tr>
+        <td>verifyText</td>
+        <td>css=#progress_info_for_family_1 .num_answers</td>
+        <td>3</td>
+</tr>
+<tr>
 	<td>clickAndWait</td>
-	<td>link=Log Out</td>
+	<td>//input[@value='End Visit']</td>
 	<td></td>
 </tr>
+<tr>
+        <td>storeText</td>
+        <td>css=#just_finished_visit</td>
+        <td>visitId</td>
+</tr>
+<tr>
+        <td>open</td>
+        <td>/admin/family_info/response/</td>
+        <td></td>
+</tr>
+
+<tr>
+        <td>verifyElementPresent</td>
+        <td>//text()["Visit ${visitId}"]/preceding::tr[text()["brusher"] and text()["both"]]</td>
+        <td></td>
+</tr>
+<tr>
+        <td>verifyElementPresent</td>
+        <td>//text()["Visit ${visitId}"]/preceding::tr[text()["water type"] and text()["both"]]</td>
+        <td></td>
+</tr>
+<tr>
+        <td>verifyElementPresent</td>
+        <td>//text()["Visit ${visitId}"]/preceding::tr[text()["Other than yourself, is there someone who helps brush your children's teeth?"] and text()["no"]]</td>
+        <td></td>
+</tr>
+<tr>
+        <td>open</td>
+        <td>/accounts/logout/</td>
+        <td></td>
+</tr>
+
 </tbody></table>
 </body>
 </html>

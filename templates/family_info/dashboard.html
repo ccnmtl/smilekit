@@ -8,6 +8,7 @@
 
 {% block family_info_js %}
 <script src="/collection_tool/media/js/jquery.js" type="text/javascript"></script>
+<script src="/family_info/media/js/progressbar.js" type="text/javascript"></script>
 <script src="/family_info/media/js/localstorage.js" type="text/javascript"></script>
 <script src="/family_info/media/js/cache.js" type="text/javascript"></script>
 <script src="/family_info/media/js/dashboard.js" type="text/javascript"></script>
@@ -19,9 +20,7 @@
 	Families to Visit
 </h2>
 
-<div class="guidance">
-   When the device is ready to start accepting info, visit buttons should appear below.
-</div>
+<div id = "guidance_1" class="guidance"></div>
 
 <div id="start_visit_links">
 </div>
@@ -29,7 +28,7 @@
 <p id="downloading">
 	<!-- this will be hidden once cache status is happy -->
 	This device is currently downloading these questions, along with their associated images,
-	into its local storage, so you can conduct the interview even if there is no Internet access. This can take some time....
+	into its local storage, so you can conduct the interview even if there is no Internet access. This can take a few minutes, depending the speed of your connection.
 </p>
 
 
@@ -45,9 +44,10 @@
 	  <img src="/collection_tool/media/images/downloading_unsuccessful.png" />
 	</div>
 
+	<div id="progressbar" ></div>
 
 
-<div class="guidance">
+<div id = "guidance_2" class="guidance">
 Click the &nbsp;End Visit&nbsp; button to end the visit and send back the data to the server.
 </div>
 

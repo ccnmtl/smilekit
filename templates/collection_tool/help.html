@@ -10,8 +10,8 @@
 		<h5>Objective:</h5>
 		
 		<p>
-		{%ifequal language_code 'es'%}{{h_i.spanish_title}}{%endifequal %}
-		{%ifequal language_code 'en'%}{{h_i.english_title}}{%endifequal %}
+		{%ifequal language_code 'es'%}{{h_i.english_objective}}{%endifequal %}
+		{%ifequal language_code 'en'%}{{h_i.english_objective}}{%endifequal %}
 		</p> 
 		
 		
@@ -61,7 +61,7 @@
 		
 		
 		
-		<a id="help_close" href="javascript:void(0)" onclick="document.getElementById('helpon').style.display='none';document.getElementById('helpoff').style.display='none'">X</a>
+		<a id="help_close" href="javascript:void(0)" onclick="document.getElementById('helpon').style.display='none';">X</a>
 		
 		{% endwith %}
 		

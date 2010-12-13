@@ -29,10 +29,10 @@
 	<a href="#"  id ="answer_{{a.id}}" class="contentbutton">I disagree</a>
 {% endifequal %}
 {% ifequal a.text 'yes'%}
-	<a href="#"  id ="answer_{{a.id}}" class="contentbutton">Yes</a>
+	<a href="#"  id ="answer_{{a.id}}" class="contentbutton yesbutton">Yes</a>
 {% endifequal %}
 {% ifequal a.text 'no'%}
-	<a href="#"  id ="answer_{{a.id}}" class="contentbutton">No</a>
+	<a href="#"  id ="answer_{{a.id}}" class="contentbutton nobutton">No</a>
 {% endifequal %}
 {% ifequal a.text 'never'%}
 	<a href="#"  id ="answer_{{a.id}}" class="contentbutton">Never</a>

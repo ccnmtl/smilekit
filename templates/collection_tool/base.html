@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{%ifequal 1 1%}
+{%ifequal 1 0%}
 <html manifest="/collection_tool/manifest.cache">
 {% else %}
 <html>
@@ -7,9 +7,10 @@
 
 <head>
 	<title>mySmileBuddy</title>
-	
+  <script type="text/javascript" src="/site_media/js/smilekit_common.js"></script>
 {% block collection_tool_js %}
 {% endblock collection_tool_js %}
+
 	<link type="image/png" rel="apple-touch-icon" href="/collection_tool/media/images/mysmilebuddy_icon.png" />
 	
 	<meta name="apple-mobile-web-app-capable" content="yes" /> 
@@ -24,7 +25,6 @@
 </head>
 
 <body>
-
 <div id="wrapper">
 	<div id="masthead">
 		<h1 id="logo"><a href="#">MySmileBuddy</a></h1>
@@ -33,10 +33,11 @@
 			<a href="">En Espa&#241;ol</a>
 			<a href="">English</a>
     {% endblock %}
-			<a href="/family_info/dashboard">Interview page</a>
+			<a id="interview_link" href="/family_info/dashboard">Interview</a>
 			<a href="/library">Library</a>
 			<a href="/about/">About</a>
-			<a href="javascript:void();" id ="family_id_nav_display">Family ID</a>
+			<a href="javascript:void();" id ="family_id_nav_display">FamilyID</a>
+			<a href="javascript:void();" id ="user_id_nav_display">UserID</a>
 		</div>
 		
 	</div>
@@ -44,10 +45,12 @@
 
 {% block mainnav %}
 	<div id="mainnav">
+    {% block mainnav_introtab %}
 		<a id="introductiontab" class="mainfirsttab" href="/collection_tool/introduction/">Introduction</a>
-		<a id="assessmenttab" class="assessmenttabactive" href="/collection_tool">Assessment</a>
-		<a id="risktab" class="" href="/collection_tool/risk/language/en">Risk</a>
-		<a id="planningtab" class="mainlasttab" href="#">Planning</a>
+    {% endblock %}
+		<a id="assessmenttab" class="assessmenttab" href="/collection_tool/section/1/language/en">Assessment</a>
+		<a id="risktab" class="risktab" href="/collection_tool/risk/language/en">Risk</a>
+		<a id="planningtab" class="mainlasttab" href="/collection_tool/goals/language/en">Planning</a>
 	</div>
 {% endblock %}
 	

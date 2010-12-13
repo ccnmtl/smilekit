@@ -1,0 +1,21 @@
+<!-- button to turn it on: -->
+<div class="learnmore">
+
+      <!--<a href="javascript:void(0)" onclick = "$('.learn_more_help_content').show(); $('.learnmore').hide()">Learn More about {{displayquestion.learn_more.title}}</a>-->
+      <!-- commented code hides button after open -->
+      
+      <a href="javascript:void(0)" onclick = "$('.learn_more_help_content').show()">Learn More about {{displayquestion.learn_more.title}}</a>
+</div>
+
+
+<!-- content box -->
+<div class="help_content learn_more_help_content help_box">
+
+    <!-- this is the same content as on the flatpage: -->
+    {{displayquestion.learn_more.content|safe}}
+    
+    <!-- close button -->
+    <a id="help_close" class ="learn_more_close_button" href="javascript:void(0)" onclick="$('.learn_more_help_content').hide()">X</a>
+
+</div>
+

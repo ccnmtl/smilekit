@@ -1,0 +1,4440 @@
+[
+  {
+    "pk": 3, 
+    "model": "equation_balancer.configuration", 
+    "fields": {
+      "owner": 2, 
+      "name": "test for meeting"
+    }
+  }, 
+  {
+    "pk": 15, 
+    "model": "equation_balancer.configuration", 
+    "fields": {
+      "owner": 5, 
+      "name": "<3 Community Health Worker"
+    }
+  }, 
+  {
+    "pk": 16, 
+    "model": "equation_balancer.configuration", 
+    "fields": {
+      "owner": 5, 
+      "name": "3 or older Community Health Worker"
+    }
+  }, 
+  {
+    "pk": 17, 
+    "model": "equation_balancer.configuration", 
+    "fields": {
+      "owner": 5, 
+      "name": "<3 dental health professional"
+    }
+  }, 
+  {
+    "pk": 20, 
+    "model": "equation_balancer.configuration", 
+    "fields": {
+      "owner": 5, 
+      "name": "3 or older dental health professional"
+    }
+  }, 
+  {
+    "pk": 21, 
+    "model": "equation_balancer.configuration", 
+    "fields": {
+      "owner": 5, 
+      "name": "General"
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "equation_balancer.module", 
+    "fields": {
+      "name": "Fluoride"
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "equation_balancer.module", 
+    "fields": {
+      "name": "Clinical history"
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "equation_balancer.module", 
+    "fields": {
+      "name": "Diet"
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "equation_balancer.module", 
+    "fields": {
+      "name": "Feeding Practices"
+    }
+  }, 
+  {
+    "pk": 5, 
+    "model": "equation_balancer.module", 
+    "fields": {
+      "name": "Maternal Mutans Transmission"
+    }
+  }, 
+  {
+    "pk": 6, 
+    "model": "equation_balancer.module", 
+    "fields": {
+      "name": "Environmental"
+    }
+  }, 
+  {
+    "pk": 23, 
+    "model": "equation_balancer.moduleweight", 
+    "fields": {
+      "config": 3, 
+      "weight": "30.000", 
+      "module": 1
+    }
+  }, 
+  {
+    "pk": 19, 
+    "model": "equation_balancer.moduleweight", 
+    "fields": {
+      "config": 3, 
+      "weight": "50.000", 
+      "module": 3
+    }
+  }, 
+  {
+    "pk": 20, 
+    "model": "equation_balancer.moduleweight", 
+    "fields": {
+      "config": 3, 
+      "weight": "8.000", 
+      "module": 4
+    }
+  }, 
+  {
+    "pk": 100, 
+    "model": "equation_balancer.moduleweight", 
+    "fields": {
+      "config": 16, 
+      "weight": "1.000", 
+      "module": 2
+    }
+  }, 
+  {
+    "pk": 101, 
+    "model": "equation_balancer.moduleweight", 
+    "fields": {
+      "config": 16, 
+      "weight": "1.000", 
+      "module": 1
+    }
+  }, 
+  {
+    "pk": 7, 
+    "model": "equation_balancer.moduleweight", 
+    "fields": {
+      "config": 3, 
+      "weight": "0.000", 
+      "module": 2
+    }
+  }, 
+  {
+    "pk": 11, 
+    "model": "equation_balancer.moduleweight", 
+    "fields": {
+      "config": 3, 
+      "weight": "0.000", 
+      "module": 5
+    }
+  }, 
+  {
+    "pk": 12, 
+    "model": "equation_balancer.moduleweight", 
+    "fields": {
+      "config": 3, 
+      "weight": "0.000", 
+      "module": 6
+    }
+  }, 
+  {
+    "pk": 102, 
+    "model": "equation_balancer.moduleweight", 
+    "fields": {
+      "config": 16, 
+      "weight": "1.000", 
+      "module": 3
+    }
+  }, 
+  {
+    "pk": 103, 
+    "model": "equation_balancer.moduleweight", 
+    "fields": {
+      "config": 16, 
+      "weight": "1.000", 
+      "module": 4
+    }
+  }, 
+  {
+    "pk": 104, 
+    "model": "equation_balancer.moduleweight", 
+    "fields": {
+      "config": 16, 
+      "weight": "0.000", 
+      "module": 5
+    }
+  }, 
+  {
+    "pk": 105, 
+    "model": "equation_balancer.moduleweight", 
+    "fields": {
+      "config": 16, 
+      "weight": "1.000", 
+      "module": 6
+    }
+  }, 
+  {
+    "pk": 112, 
+    "model": "equation_balancer.moduleweight", 
+    "fields": {
+      "config": 20, 
+      "weight": "1.000", 
+      "module": 2
+    }
+  }, 
+  {
+    "pk": 113, 
+    "model": "equation_balancer.moduleweight", 
+    "fields": {
+      "config": 20, 
+      "weight": "1.000", 
+      "module": 1
+    }
+  }, 
+  {
+    "pk": 114, 
+    "model": "equation_balancer.moduleweight", 
+    "fields": {
+      "config": 20, 
+      "weight": "1.000", 
+      "module": 3
+    }
+  }, 
+  {
+    "pk": 115, 
+    "model": "equation_balancer.moduleweight", 
+    "fields": {
+      "config": 20, 
+      "weight": "1.000", 
+      "module": 4
+    }
+  }, 
+  {
+    "pk": 116, 
+    "model": "equation_balancer.moduleweight", 
+    "fields": {
+      "config": 20, 
+      "weight": "0.000", 
+      "module": 5
+    }
+  }, 
+  {
+    "pk": 117, 
+    "model": "equation_balancer.moduleweight", 
+    "fields": {
+      "config": 20, 
+      "weight": "1.000", 
+      "module": 6
+    }
+  }, 
+  {
+    "pk": 106, 
+    "model": "equation_balancer.moduleweight", 
+    "fields": {
+      "config": 17, 
+      "weight": "1.000", 
+      "module": 2
+    }
+  }, 
+  {
+    "pk": 107, 
+    "model": "equation_balancer.moduleweight", 
+    "fields": {
+      "config": 17, 
+      "weight": "1.000", 
+      "module": 1
+    }
+  }, 
+  {
+    "pk": 108, 
+    "model": "equation_balancer.moduleweight", 
+    "fields": {
+      "config": 17, 
+      "weight": "1.000", 
+      "module": 3
+    }
+  }, 
+  {
+    "pk": 109, 
+    "model": "equation_balancer.moduleweight", 
+    "fields": {
+      "config": 17, 
+      "weight": "1.000", 
+      "module": 4
+    }
+  }, 
+  {
+    "pk": 110, 
+    "model": "equation_balancer.moduleweight", 
+    "fields": {
+      "config": 17, 
+      "weight": "1.000", 
+      "module": 5
+    }
+  }, 
+  {
+    "pk": 111, 
+    "model": "equation_balancer.moduleweight", 
+    "fields": {
+      "config": 17, 
+      "weight": "1.000", 
+      "module": 6
+    }
+  }, 
+  {
+    "pk": 118, 
+    "model": "equation_balancer.moduleweight", 
+    "fields": {
+      "config": 21, 
+      "weight": "1.000", 
+      "module": 2
+    }
+  }, 
+  {
+    "pk": 119, 
+    "model": "equation_balancer.moduleweight", 
+    "fields": {
+      "config": 21, 
+      "weight": "1.000", 
+      "module": 1
+    }
+  }, 
+  {
+    "pk": 120, 
+    "model": "equation_balancer.moduleweight", 
+    "fields": {
+      "config": 21, 
+      "weight": "1.000", 
+      "module": 3
+    }
+  }, 
+  {
+    "pk": 121, 
+    "model": "equation_balancer.moduleweight", 
+    "fields": {
+      "config": 21, 
+      "weight": "1.000", 
+      "module": 4
+    }
+  }, 
+  {
+    "pk": 122, 
+    "model": "equation_balancer.moduleweight", 
+    "fields": {
+      "config": 21, 
+      "weight": "1.000", 
+      "module": 5
+    }
+  }, 
+  {
+    "pk": 123, 
+    "model": "equation_balancer.moduleweight", 
+    "fields": {
+      "config": 21, 
+      "weight": "1.000", 
+      "module": 6
+    }
+  }, 
+  {
+    "pk": 94, 
+    "model": "equation_balancer.moduleweight", 
+    "fields": {
+      "config": 15, 
+      "weight": "1.000", 
+      "module": 2
+    }
+  }, 
+  {
+    "pk": 95, 
+    "model": "equation_balancer.moduleweight", 
+    "fields": {
+      "config": 15, 
+      "weight": "1.000", 
+      "module": 1
+    }
+  }, 
+  {
+    "pk": 96, 
+    "model": "equation_balancer.moduleweight", 
+    "fields": {
+      "config": 15, 
+      "weight": "1.000", 
+      "module": 3
+    }
+  }, 
+  {
+    "pk": 97, 
+    "model": "equation_balancer.moduleweight", 
+    "fields": {
+      "config": 15, 
+      "weight": "1.000", 
+      "module": 4
+    }
+  }, 
+  {
+    "pk": 98, 
+    "model": "equation_balancer.moduleweight", 
+    "fields": {
+      "config": 15, 
+      "weight": "1.000", 
+      "module": 5
+    }
+  }, 
+  {
+    "pk": 99, 
+    "model": "equation_balancer.moduleweight", 
+    "fields": {
+      "config": 15, 
+      "weight": "1.000", 
+      "module": 6
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "equation_balancer.question", 
+    "fields": {
+      "text": "number of decayed tooth surfaces", 
+      "type": "", 
+      "number": 2, 
+      "module": 1
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "equation_balancer.question", 
+    "fields": {
+      "text": "water type", 
+      "type": "", 
+      "number": 3, 
+      "module": 2
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "equation_balancer.question", 
+    "fields": {
+      "text": "brusher", 
+      "type": "", 
+      "number": 4, 
+      "module": 2
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "equation_balancer.question", 
+    "fields": {
+      "text": "paste type", 
+      "type": "M", 
+      "number": 5, 
+      "module": 2
+    }
+  }, 
+  {
+    "pk": 5, 
+    "model": "equation_balancer.question", 
+    "fields": {
+      "text": "Fluoride rinse exposures", 
+      "type": "M", 
+      "number": 6, 
+      "module": 2
+    }
+  }, 
+  {
+    "pk": 6, 
+    "model": "equation_balancer.question", 
+    "fields": {
+      "text": "prescription paste exposures", 
+      "type": "M", 
+      "number": 7, 
+      "module": 2
+    }
+  }, 
+  {
+    "pk": 7, 
+    "model": "equation_balancer.question", 
+    "fields": {
+      "text": "Children's daily toothbrushing", 
+      "type": "", 
+      "number": 8, 
+      "module": 2
+    }
+  }, 
+  {
+    "pk": 10, 
+    "model": "equation_balancer.question", 
+    "fields": {
+      "text": "Parental history of cavities", 
+      "type": "", 
+      "number": 11, 
+      "module": 1
+    }
+  }, 
+  {
+    "pk": 11, 
+    "model": "equation_balancer.question", 
+    "fields": {
+      "text": "abcessed tooth (parent)", 
+      "type": "M", 
+      "number": 12, 
+      "module": 1
+    }
+  }, 
+  {
+    "pk": 12, 
+    "model": "equation_balancer.question", 
+    "fields": {
+      "text": "current parent cavity", 
+      "type": "M", 
+      "number": 13, 
+      "module": 1
+    }
+  }, 
+  {
+    "pk": 14, 
+    "model": "equation_balancer.question", 
+    "fields": {
+      "text": "Child cavity in the last 12 months", 
+      "type": "", 
+      "number": 15, 
+      "module": 1
+    }
+  }, 
+  {
+    "pk": 16, 
+    "model": "equation_balancer.question", 
+    "fields": {
+      "text": "Child routine dental checkup in the last 12 months", 
+      "type": "", 
+      "number": 17, 
+      "module": 1
+    }
+  }, 
+  {
+    "pk": 17, 
+    "model": "equation_balancer.question", 
+    "fields": {
+      "text": "Visible plaque on the child's upper four front teeth", 
+      "type": "", 
+      "number": 18, 
+      "module": 1
+    }
+  }, 
+  {
+    "pk": 18, 
+    "model": "equation_balancer.question", 
+    "fields": {
+      "text": "Visible white spots on the child's upper four front teeth", 
+      "type": "", 
+      "number": 19, 
+      "module": 1
+    }
+  }, 
+  {
+    "pk": 65, 
+    "model": "equation_balancer.question", 
+    "fields": {
+      "text": "Hypoplasia", 
+      "type": "M", 
+      "number": 20, 
+      "module": 1
+    }
+  }, 
+  {
+    "pk": 20, 
+    "model": "equation_balancer.question", 
+    "fields": {
+      "text": "mutans level", 
+      "type": "", 
+      "number": 21, 
+      "module": 1
+    }
+  }, 
+  {
+    "pk": 21, 
+    "model": "equation_balancer.question", 
+    "fields": {
+      "text": "number food exposures", 
+      "type": "M", 
+      "number": 22, 
+      "module": 3
+    }
+  }, 
+  {
+    "pk": 22, 
+    "model": "equation_balancer.question", 
+    "fields": {
+      "text": "minutes food exposures", 
+      "type": "M", 
+      "number": 23, 
+      "module": 3
+    }
+  }, 
+  {
+    "pk": 23, 
+    "model": "equation_balancer.question", 
+    "fields": {
+      "text": "number risky exposures", 
+      "type": "M", 
+      "number": 24, 
+      "module": 3
+    }
+  }, 
+  {
+    "pk": 24, 
+    "model": "equation_balancer.question", 
+    "fields": {
+      "text": "minutes risky exposures", 
+      "type": "M", 
+      "number": 25, 
+      "module": 3
+    }
+  }, 
+  {
+    "pk": 25, 
+    "model": "equation_balancer.question", 
+    "fields": {
+      "text": "number of snacks", 
+      "type": "M", 
+      "number": 26, 
+      "module": 3
+    }
+  }, 
+  {
+    "pk": 28, 
+    "model": "equation_balancer.question", 
+    "fields": {
+      "text": "How many times a day with bottle and sugary drink?", 
+      "type": "M", 
+      "number": 29, 
+      "module": 4
+    }
+  }, 
+  {
+    "pk": 29, 
+    "model": "equation_balancer.question", 
+    "fields": {
+      "text": "How often to bed with a bottle or sippy cup with caloric beverage?", 
+      "type": "", 
+      "number": 30, 
+      "module": 4
+    }
+  }, 
+  {
+    "pk": 31, 
+    "model": "equation_balancer.question", 
+    "fields": {
+      "text": "pacifier in honey", 
+      "type": "", 
+      "number": 32, 
+      "module": 4
+    }
+  }, 
+  {
+    "pk": 33, 
+    "model": "equation_balancer.question", 
+    "fields": {
+      "text": "mother shares utensils", 
+      "type": "", 
+      "number": 34, 
+      "module": 5
+    }
+  }, 
+  {
+    "pk": 34, 
+    "model": "equation_balancer.question", 
+    "fields": {
+      "text": "mother prechews food", 
+      "type": "", 
+      "number": 35, 
+      "module": 5
+    }
+  }, 
+  {
+    "pk": 35, 
+    "model": "equation_balancer.question", 
+    "fields": {
+      "text": "mother cleans pacifier with mouth", 
+      "type": "", 
+      "number": 36, 
+      "module": 5
+    }
+  }, 
+  {
+    "pk": 36, 
+    "model": "equation_balancer.question", 
+    "fields": {
+      "text": "I am confident that I can reduce the chances of my child getting tooth decay", 
+      "type": "", 
+      "number": 37, 
+      "module": 6
+    }
+  }, 
+  {
+    "pk": 40, 
+    "model": "equation_balancer.question", 
+    "fields": {
+      "text": "It is often difficult to cut back on the number of sweets my child eats because they get upset", 
+      "type": "", 
+      "number": 41, 
+      "module": 6
+    }
+  }, 
+  {
+    "pk": 41, 
+    "model": "equation_balancer.question", 
+    "fields": {
+      "text": "In general, how much of a problem have you or your other children had with tooth decay?", 
+      "type": "M", 
+      "number": 42, 
+      "module": 6
+    }
+  }, 
+  {
+    "pk": 42, 
+    "model": "equation_balancer.question", 
+    "fields": {
+      "text": "In general, how much of a problem has your child had with tooth decay?", 
+      "type": "M", 
+      "number": 43, 
+      "module": 6
+    }
+  }, 
+  {
+    "pk": 45, 
+    "model": "equation_balancer.question", 
+    "fields": {
+      "text": "Other than yourself, is there someone who helps brush your children's teeth?", 
+      "type": "", 
+      "number": 46, 
+      "module": 6
+    }
+  }, 
+  {
+    "pk": 52, 
+    "model": "equation_balancer.question", 
+    "fields": {
+      "text": "Most of the mothers I know don't let their children drink sugared drinks out of a sippy cup or bottle throughout the day", 
+      "type": "", 
+      "number": 53, 
+      "module": 6
+    }
+  }, 
+  {
+    "pk": 53, 
+    "model": "equation_balancer.question", 
+    "fields": {
+      "text": "Most of the mothers I know brush their children's teeth daily.", 
+      "type": "", 
+      "number": 54, 
+      "module": 6
+    }
+  }, 
+  {
+    "pk": 56, 
+    "model": "equation_balancer.question", 
+    "fields": {
+      "text": "A mother can pass cavity-causing germs to their child", 
+      "type": "M", 
+      "number": 57, 
+      "module": 6
+    }
+  }, 
+  {
+    "pk": 58, 
+    "model": "equation_balancer.question", 
+    "fields": {
+      "text": "Products containing fluoride help to strenghten teeth and prevent cavities", 
+      "type": "M", 
+      "number": 59, 
+      "module": 6
+    }
+  }, 
+  {
+    "pk": 60, 
+    "model": "equation_balancer.question", 
+    "fields": {
+      "text": "Cavities can be prevented", 
+      "type": "", 
+      "number": 61, 
+      "module": 6
+    }
+  }, 
+  {
+    "pk": 61, 
+    "model": "equation_balancer.question", 
+    "fields": {
+      "text": "People in my neighborhood help each other out", 
+      "type": "M", 
+      "number": 62, 
+      "module": 6
+    }
+  }, 
+  {
+    "pk": 62, 
+    "model": "equation_balancer.question", 
+    "fields": {
+      "text": "When does your child wake up in the morning?", 
+      "type": "M", 
+      "number": 63, 
+      "module": 3
+    }
+  }, 
+  {
+    "pk": 63, 
+    "model": "equation_balancer.question", 
+    "fields": {
+      "text": "When does your child go to bed at night?", 
+      "type": "M", 
+      "number": 64, 
+      "module": 3
+    }
+  }, 
+  {
+    "pk": 64, 
+    "model": "equation_balancer.question", 
+    "fields": {
+      "text": "Do you receive WIC?", 
+      "type": "M", 
+      "number": 65, 
+      "module": 3
+    }
+  }, 
+  {
+    "pk": 66, 
+    "model": "equation_balancer.question", 
+    "fields": {
+      "text": "How often do you breast feed your child ad lib during the night?", 
+      "type": "M", 
+      "number": 66, 
+      "module": 4
+    }
+  }, 
+  {
+    "pk": 67, 
+    "model": "equation_balancer.question", 
+    "fields": {
+      "text": "How many times a week are your child's teeth flossed?", 
+      "type": "M", 
+      "number": 67, 
+      "module": 2
+    }
+  }, 
+  {
+    "pk": 68, 
+    "model": "equation_balancer.question", 
+    "fields": {
+      "text": "Where does your child typically eat their meals?", 
+      "type": "M", 
+      "number": 68, 
+      "module": 4
+    }
+  }, 
+  {
+    "pk": 69, 
+    "model": "equation_balancer.question", 
+    "fields": {
+      "text": "Where does your child typically eat their snacks?", 
+      "type": "M", 
+      "number": 69, 
+      "module": 4
+    }
+  }, 
+  {
+    "pk": 70, 
+    "model": "equation_balancer.question", 
+    "fields": {
+      "text": "Was yesterday a typical eating day for your child?", 
+      "type": "M", 
+      "number": 70, 
+      "module": 3
+    }
+  }, 
+  {
+    "pk": 95, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 35, 
+      "config": 3, 
+      "weight": "0.000"
+    }
+  }, 
+  {
+    "pk": 96, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 36, 
+      "config": 3, 
+      "weight": "0.000"
+    }
+  }, 
+  {
+    "pk": 601, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 1, 
+      "config": 15, 
+      "weight": "0.000"
+    }
+  }, 
+  {
+    "pk": 602, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 2, 
+      "config": 15, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 100, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 40, 
+      "config": 3, 
+      "weight": "0.000"
+    }
+  }, 
+  {
+    "pk": 101, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 41, 
+      "config": 3, 
+      "weight": "0.000"
+    }
+  }, 
+  {
+    "pk": 102, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 42, 
+      "config": 3, 
+      "weight": "0.000"
+    }
+  }, 
+  {
+    "pk": 603, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 3, 
+      "config": 15, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 604, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 4, 
+      "config": 15, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 605, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 5, 
+      "config": 15, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 606, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 6, 
+      "config": 15, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 61, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 1, 
+      "config": 3, 
+      "weight": "17.000"
+    }
+  }, 
+  {
+    "pk": 607, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 7, 
+      "config": 15, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 62, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 2, 
+      "config": 3, 
+      "weight": "0.000"
+    }
+  }, 
+  {
+    "pk": 63, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 3, 
+      "config": 3, 
+      "weight": "0.000"
+    }
+  }, 
+  {
+    "pk": 64, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 4, 
+      "config": 3, 
+      "weight": "0.000"
+    }
+  }, 
+  {
+    "pk": 65, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 5, 
+      "config": 3, 
+      "weight": "0.000"
+    }
+  }, 
+  {
+    "pk": 66, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 6, 
+      "config": 3, 
+      "weight": "0.000"
+    }
+  }, 
+  {
+    "pk": 67, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 7, 
+      "config": 3, 
+      "weight": "0.000"
+    }
+  }, 
+  {
+    "pk": 608, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 10, 
+      "config": 15, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 70, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 10, 
+      "config": 3, 
+      "weight": "2.000"
+    }
+  }, 
+  {
+    "pk": 71, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 11, 
+      "config": 3, 
+      "weight": "12.000"
+    }
+  }, 
+  {
+    "pk": 72, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 12, 
+      "config": 3, 
+      "weight": "6.000"
+    }
+  }, 
+  {
+    "pk": 609, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 11, 
+      "config": 15, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 74, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 14, 
+      "config": 3, 
+      "weight": "0.000"
+    }
+  }, 
+  {
+    "pk": 76, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 16, 
+      "config": 3, 
+      "weight": "0.000"
+    }
+  }, 
+  {
+    "pk": 77, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 17, 
+      "config": 3, 
+      "weight": "0.000"
+    }
+  }, 
+  {
+    "pk": 78, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 18, 
+      "config": 3, 
+      "weight": "0.000"
+    }
+  }, 
+  {
+    "pk": 610, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 12, 
+      "config": 15, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 80, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 20, 
+      "config": 3, 
+      "weight": "0.000"
+    }
+  }, 
+  {
+    "pk": 81, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 21, 
+      "config": 3, 
+      "weight": "10.000"
+    }
+  }, 
+  {
+    "pk": 82, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 22, 
+      "config": 3, 
+      "weight": "12.000"
+    }
+  }, 
+  {
+    "pk": 611, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 14, 
+      "config": 15, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 83, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 23, 
+      "config": 3, 
+      "weight": "5.000"
+    }
+  }, 
+  {
+    "pk": 84, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 24, 
+      "config": 3, 
+      "weight": "10.000"
+    }
+  }, 
+  {
+    "pk": 85, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 25, 
+      "config": 3, 
+      "weight": "8.000"
+    }
+  }, 
+  {
+    "pk": 612, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 16, 
+      "config": 15, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 88, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 28, 
+      "config": 3, 
+      "weight": "4.000"
+    }
+  }, 
+  {
+    "pk": 89, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 29, 
+      "config": 3, 
+      "weight": "20.000"
+    }
+  }, 
+  {
+    "pk": 613, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 17, 
+      "config": 15, 
+      "weight": "0.000"
+    }
+  }, 
+  {
+    "pk": 91, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 31, 
+      "config": 3, 
+      "weight": "0.000"
+    }
+  }, 
+  {
+    "pk": 93, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 33, 
+      "config": 3, 
+      "weight": "0.000"
+    }
+  }, 
+  {
+    "pk": 94, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 34, 
+      "config": 3, 
+      "weight": "0.000"
+    }
+  }, 
+  {
+    "pk": 614, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 18, 
+      "config": 15, 
+      "weight": "0.000"
+    }
+  }, 
+  {
+    "pk": 615, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 65, 
+      "config": 15, 
+      "weight": "0.000"
+    }
+  }, 
+  {
+    "pk": 616, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 20, 
+      "config": 15, 
+      "weight": "0.000"
+    }
+  }, 
+  {
+    "pk": 617, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 21, 
+      "config": 15, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 618, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 22, 
+      "config": 15, 
+      "weight": "0.000"
+    }
+  }, 
+  {
+    "pk": 619, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 23, 
+      "config": 15, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 620, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 24, 
+      "config": 15, 
+      "weight": "0.000"
+    }
+  }, 
+  {
+    "pk": 621, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 25, 
+      "config": 15, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 622, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 28, 
+      "config": 15, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 623, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 29, 
+      "config": 15, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 624, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 31, 
+      "config": 15, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 625, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 33, 
+      "config": 15, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 626, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 34, 
+      "config": 15, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 627, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 35, 
+      "config": 15, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 628, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 36, 
+      "config": 15, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 629, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 40, 
+      "config": 15, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 630, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 41, 
+      "config": 15, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 631, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 42, 
+      "config": 15, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 632, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 45, 
+      "config": 15, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 633, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 52, 
+      "config": 15, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 634, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 53, 
+      "config": 15, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 635, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 56, 
+      "config": 15, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 636, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 58, 
+      "config": 15, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 637, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 60, 
+      "config": 15, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 638, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 61, 
+      "config": 15, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 639, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 62, 
+      "config": 15, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 640, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 63, 
+      "config": 15, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 641, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 64, 
+      "config": 15, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 683, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 1, 
+      "config": 17, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 684, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 2, 
+      "config": 17, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 685, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 3, 
+      "config": 17, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 686, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 4, 
+      "config": 17, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 687, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 5, 
+      "config": 17, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 688, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 6, 
+      "config": 17, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 689, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 7, 
+      "config": 17, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 690, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 10, 
+      "config": 17, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 691, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 11, 
+      "config": 17, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 692, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 12, 
+      "config": 17, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 693, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 14, 
+      "config": 17, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 694, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 16, 
+      "config": 17, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 695, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 17, 
+      "config": 17, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 696, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 18, 
+      "config": 17, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 697, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 65, 
+      "config": 17, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 698, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 20, 
+      "config": 17, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 699, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 21, 
+      "config": 17, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 700, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 22, 
+      "config": 17, 
+      "weight": "0.000"
+    }
+  }, 
+  {
+    "pk": 701, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 23, 
+      "config": 17, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 702, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 24, 
+      "config": 17, 
+      "weight": "0.000"
+    }
+  }, 
+  {
+    "pk": 703, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 25, 
+      "config": 17, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 704, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 28, 
+      "config": 17, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 705, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 29, 
+      "config": 17, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 706, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 31, 
+      "config": 17, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 707, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 33, 
+      "config": 17, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 708, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 34, 
+      "config": 17, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 709, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 35, 
+      "config": 17, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 710, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 36, 
+      "config": 17, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 711, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 40, 
+      "config": 17, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 712, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 41, 
+      "config": 17, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 713, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 42, 
+      "config": 17, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 714, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 45, 
+      "config": 17, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 715, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 52, 
+      "config": 17, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 716, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 53, 
+      "config": 17, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 717, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 56, 
+      "config": 17, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 718, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 58, 
+      "config": 17, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 719, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 60, 
+      "config": 17, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 720, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 61, 
+      "config": 17, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 642, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 1, 
+      "config": 16, 
+      "weight": "0.000"
+    }
+  }, 
+  {
+    "pk": 643, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 2, 
+      "config": 16, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 644, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 3, 
+      "config": 16, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 645, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 4, 
+      "config": 16, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 646, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 5, 
+      "config": 16, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 647, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 6, 
+      "config": 16, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 648, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 7, 
+      "config": 16, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 649, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 10, 
+      "config": 16, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 650, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 11, 
+      "config": 16, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 651, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 12, 
+      "config": 16, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 652, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 14, 
+      "config": 16, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 653, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 16, 
+      "config": 16, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 654, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 17, 
+      "config": 16, 
+      "weight": "0.000"
+    }
+  }, 
+  {
+    "pk": 655, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 18, 
+      "config": 16, 
+      "weight": "0.000"
+    }
+  }, 
+  {
+    "pk": 656, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 65, 
+      "config": 16, 
+      "weight": "0.000"
+    }
+  }, 
+  {
+    "pk": 657, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 20, 
+      "config": 16, 
+      "weight": "0.000"
+    }
+  }, 
+  {
+    "pk": 658, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 21, 
+      "config": 16, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 659, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 22, 
+      "config": 16, 
+      "weight": "0.000"
+    }
+  }, 
+  {
+    "pk": 660, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 23, 
+      "config": 16, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 661, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 24, 
+      "config": 16, 
+      "weight": "0.000"
+    }
+  }, 
+  {
+    "pk": 105, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 45, 
+      "config": 3, 
+      "weight": "0.000"
+    }
+  }, 
+  {
+    "pk": 662, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 25, 
+      "config": 16, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 663, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 28, 
+      "config": 16, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 664, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 29, 
+      "config": 16, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 112, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 52, 
+      "config": 3, 
+      "weight": "0.000"
+    }
+  }, 
+  {
+    "pk": 113, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 53, 
+      "config": 3, 
+      "weight": "0.000"
+    }
+  }, 
+  {
+    "pk": 665, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 31, 
+      "config": 16, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 116, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 56, 
+      "config": 3, 
+      "weight": "0.000"
+    }
+  }, 
+  {
+    "pk": 666, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 33, 
+      "config": 16, 
+      "weight": "0.000"
+    }
+  }, 
+  {
+    "pk": 118, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 58, 
+      "config": 3, 
+      "weight": "0.000"
+    }
+  }, 
+  {
+    "pk": 120, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 60, 
+      "config": 3, 
+      "weight": "0.000"
+    }
+  }, 
+  {
+    "pk": 667, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 34, 
+      "config": 16, 
+      "weight": "0.000"
+    }
+  }, 
+  {
+    "pk": 668, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 35, 
+      "config": 16, 
+      "weight": "0.000"
+    }
+  }, 
+  {
+    "pk": 669, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 36, 
+      "config": 16, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 670, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 40, 
+      "config": 16, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 671, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 41, 
+      "config": 16, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 672, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 42, 
+      "config": 16, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 673, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 45, 
+      "config": 16, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 674, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 52, 
+      "config": 16, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 675, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 53, 
+      "config": 16, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 676, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 56, 
+      "config": 16, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 677, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 58, 
+      "config": 16, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 678, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 60, 
+      "config": 16, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 679, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 61, 
+      "config": 16, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 680, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 62, 
+      "config": 16, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 681, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 63, 
+      "config": 16, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 682, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 64, 
+      "config": 16, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 724, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 1, 
+      "config": 20, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 725, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 2, 
+      "config": 20, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 726, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 3, 
+      "config": 20, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 727, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 4, 
+      "config": 20, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 728, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 5, 
+      "config": 20, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 729, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 6, 
+      "config": 20, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 730, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 7, 
+      "config": 20, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 731, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 10, 
+      "config": 20, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 732, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 11, 
+      "config": 20, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 733, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 12, 
+      "config": 20, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 734, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 14, 
+      "config": 20, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 735, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 16, 
+      "config": 20, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 736, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 17, 
+      "config": 20, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 737, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 18, 
+      "config": 20, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 738, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 65, 
+      "config": 20, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 739, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 20, 
+      "config": 20, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 740, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 21, 
+      "config": 20, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 741, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 22, 
+      "config": 20, 
+      "weight": "0.000"
+    }
+  }, 
+  {
+    "pk": 742, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 23, 
+      "config": 20, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 743, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 24, 
+      "config": 20, 
+      "weight": "0.000"
+    }
+  }, 
+  {
+    "pk": 744, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 25, 
+      "config": 20, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 745, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 28, 
+      "config": 20, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 746, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 29, 
+      "config": 20, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 747, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 31, 
+      "config": 20, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 748, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 33, 
+      "config": 20, 
+      "weight": "0.000"
+    }
+  }, 
+  {
+    "pk": 749, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 34, 
+      "config": 20, 
+      "weight": "0.000"
+    }
+  }, 
+  {
+    "pk": 750, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 35, 
+      "config": 20, 
+      "weight": "0.000"
+    }
+  }, 
+  {
+    "pk": 751, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 36, 
+      "config": 20, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 752, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 40, 
+      "config": 20, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 753, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 41, 
+      "config": 20, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 754, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 42, 
+      "config": 20, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 755, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 45, 
+      "config": 20, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 756, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 52, 
+      "config": 20, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 757, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 53, 
+      "config": 20, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 758, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 56, 
+      "config": 20, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 759, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 58, 
+      "config": 20, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 760, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 60, 
+      "config": 20, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 761, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 61, 
+      "config": 20, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 762, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 62, 
+      "config": 20, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 763, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 63, 
+      "config": 20, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 764, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 64, 
+      "config": 20, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 721, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 62, 
+      "config": 17, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 722, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 63, 
+      "config": 17, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 723, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 64, 
+      "config": 17, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 765, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 1, 
+      "config": 21, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 766, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 2, 
+      "config": 21, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 767, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 3, 
+      "config": 21, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 768, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 4, 
+      "config": 21, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 769, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 5, 
+      "config": 21, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 770, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 6, 
+      "config": 21, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 771, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 7, 
+      "config": 21, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 772, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 10, 
+      "config": 21, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 773, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 11, 
+      "config": 21, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 774, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 12, 
+      "config": 21, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 775, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 14, 
+      "config": 21, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 776, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 16, 
+      "config": 21, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 777, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 17, 
+      "config": 21, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 778, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 18, 
+      "config": 21, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 779, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 65, 
+      "config": 21, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 780, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 20, 
+      "config": 21, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 781, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 21, 
+      "config": 21, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 782, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 22, 
+      "config": 21, 
+      "weight": "0.000"
+    }
+  }, 
+  {
+    "pk": 783, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 23, 
+      "config": 21, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 784, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 24, 
+      "config": 21, 
+      "weight": "0.000"
+    }
+  }, 
+  {
+    "pk": 785, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 25, 
+      "config": 21, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 786, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 28, 
+      "config": 21, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 787, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 29, 
+      "config": 21, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 788, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 31, 
+      "config": 21, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 789, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 33, 
+      "config": 21, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 790, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 34, 
+      "config": 21, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 791, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 35, 
+      "config": 21, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 792, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 36, 
+      "config": 21, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 793, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 40, 
+      "config": 21, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 794, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 41, 
+      "config": 21, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 795, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 42, 
+      "config": 21, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 796, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 45, 
+      "config": 21, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 797, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 52, 
+      "config": 21, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 798, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 53, 
+      "config": 21, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 799, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 56, 
+      "config": 21, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 800, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 58, 
+      "config": 21, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 801, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 60, 
+      "config": 21, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 802, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 61, 
+      "config": 21, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 803, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 62, 
+      "config": 21, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 804, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 63, 
+      "config": 21, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 805, 
+    "model": "equation_balancer.weight", 
+    "fields": {
+      "question": 64, 
+      "config": 21, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "0-20", 
+      "question": 1, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "both", 
+      "question": 2, 
+      "weight": "5.000"
+    }
+  }, 
+  {
+    "pk": 5, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "parent", 
+      "question": 3, 
+      "weight": "2.000"
+    }
+  }, 
+  {
+    "pk": 6, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "child", 
+      "question": 3, 
+      "weight": "7.000"
+    }
+  }, 
+  {
+    "pk": 7, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "both", 
+      "question": 3, 
+      "weight": "2.000"
+    }
+  }, 
+  {
+    "pk": 8, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "neither", 
+      "question": 3, 
+      "weight": "9.000"
+    }
+  }, 
+  {
+    "pk": 9, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "fluoride", 
+      "question": 4, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 11, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "both", 
+      "question": 4, 
+      "weight": "3.000"
+    }
+  }, 
+  {
+    "pk": 14, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "none", 
+      "question": 7, 
+      "weight": "9.000"
+    }
+  }, 
+  {
+    "pk": 15, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "once", 
+      "question": 7, 
+      "weight": "3.000"
+    }
+  }, 
+  {
+    "pk": 16, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "twice or more", 
+      "question": 7, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 22, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "yes", 
+      "question": 10, 
+      "weight": "7.000"
+    }
+  }, 
+  {
+    "pk": 23, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "no", 
+      "question": 10, 
+      "weight": "3.000"
+    }
+  }, 
+  {
+    "pk": 24, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "yes", 
+      "question": 11, 
+      "weight": "8.000"
+    }
+  }, 
+  {
+    "pk": 25, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "no", 
+      "question": 11, 
+      "weight": "3.000"
+    }
+  }, 
+  {
+    "pk": 26, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "yes", 
+      "question": 12, 
+      "weight": "2.000"
+    }
+  }, 
+  {
+    "pk": 27, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "no", 
+      "question": 12, 
+      "weight": "7.000"
+    }
+  }, 
+  {
+    "pk": 30, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "yes", 
+      "question": 14, 
+      "weight": "9.000"
+    }
+  }, 
+  {
+    "pk": 31, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "no", 
+      "question": 14, 
+      "weight": "3.000"
+    }
+  }, 
+  {
+    "pk": 34, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "yes", 
+      "question": 16, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 35, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "no", 
+      "question": 16, 
+      "weight": "5.000"
+    }
+  }, 
+  {
+    "pk": 36, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "yes", 
+      "question": 17, 
+      "weight": "8.000"
+    }
+  }, 
+  {
+    "pk": 37, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "no", 
+      "question": 17, 
+      "weight": "2.000"
+    }
+  }, 
+  {
+    "pk": 38, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "yes", 
+      "question": 18, 
+      "weight": "9.000"
+    }
+  }, 
+  {
+    "pk": 39, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "no", 
+      "question": 18, 
+      "weight": "2.000"
+    }
+  }, 
+  {
+    "pk": 42, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "low/moderate", 
+      "question": 20, 
+      "weight": "2.000"
+    }
+  }, 
+  {
+    "pk": 43, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "high", 
+      "question": 20, 
+      "weight": "7.000"
+    }
+  }, 
+  {
+    "pk": 44, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "tntc", 
+      "question": 20, 
+      "weight": "9.000"
+    }
+  }, 
+  {
+    "pk": 53, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "never", 
+      "question": 29, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 54, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "sometimes", 
+      "question": 29, 
+      "weight": "6.000"
+    }
+  }, 
+  {
+    "pk": 55, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "often", 
+      "question": 29, 
+      "weight": "8.000"
+    }
+  }, 
+  {
+    "pk": 56, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "always", 
+      "question": 29, 
+      "weight": "9.000"
+    }
+  }, 
+  {
+    "pk": 61, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "never", 
+      "question": 31, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 62, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "sometimes", 
+      "question": 31, 
+      "weight": "9.000"
+    }
+  }, 
+  {
+    "pk": 63, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "often", 
+      "question": 31, 
+      "weight": "9.000"
+    }
+  }, 
+  {
+    "pk": 64, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "always", 
+      "question": 31, 
+      "weight": "9.000"
+    }
+  }, 
+  {
+    "pk": 69, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "never", 
+      "question": 33, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 70, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "sometimes", 
+      "question": 33, 
+      "weight": "7.000"
+    }
+  }, 
+  {
+    "pk": 71, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "often", 
+      "question": 33, 
+      "weight": "8.000"
+    }
+  }, 
+  {
+    "pk": 72, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "always", 
+      "question": 33, 
+      "weight": "9.000"
+    }
+  }, 
+  {
+    "pk": 73, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "never", 
+      "question": 34, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 74, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "sometimes", 
+      "question": 34, 
+      "weight": "9.000"
+    }
+  }, 
+  {
+    "pk": 75, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "often", 
+      "question": 34, 
+      "weight": "9.000"
+    }
+  }, 
+  {
+    "pk": 76, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "always", 
+      "question": 34, 
+      "weight": "9.000"
+    }
+  }, 
+  {
+    "pk": 77, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "never", 
+      "question": 35, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 78, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "sometimes", 
+      "question": 35, 
+      "weight": "9.000"
+    }
+  }, 
+  {
+    "pk": 79, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "often", 
+      "question": 35, 
+      "weight": "9.000"
+    }
+  }, 
+  {
+    "pk": 80, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "always", 
+      "question": 35, 
+      "weight": "9.000"
+    }
+  }, 
+  {
+    "pk": 81, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "agree", 
+      "question": 36, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 82, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "neutral not sure", 
+      "question": 36, 
+      "weight": "5.000"
+    }
+  }, 
+  {
+    "pk": 83, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "disagree", 
+      "question": 36, 
+      "weight": "9.000"
+    }
+  }, 
+  {
+    "pk": 93, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "agree", 
+      "question": 40, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 94, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "neutral not sure", 
+      "question": 40, 
+      "weight": "5.000"
+    }
+  }, 
+  {
+    "pk": 95, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "disagree", 
+      "question": 40, 
+      "weight": "9.000"
+    }
+  }, 
+  {
+    "pk": 108, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "yes", 
+      "question": 45, 
+      "weight": "2.000"
+    }
+  }, 
+  {
+    "pk": 109, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "no", 
+      "question": 45, 
+      "weight": "6.000"
+    }
+  }, 
+  {
+    "pk": 124, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "agree", 
+      "question": 52, 
+      "weight": "3.000"
+    }
+  }, 
+  {
+    "pk": 125, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "neutral not sure", 
+      "question": 52, 
+      "weight": "5.000"
+    }
+  }, 
+  {
+    "pk": 126, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "disagree", 
+      "question": 52, 
+      "weight": "7.000"
+    }
+  }, 
+  {
+    "pk": 127, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "agree", 
+      "question": 53, 
+      "weight": "3.000"
+    }
+  }, 
+  {
+    "pk": 128, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "neutral not sure", 
+      "question": 53, 
+      "weight": "5.000"
+    }
+  }, 
+  {
+    "pk": 129, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "disagree", 
+      "question": 53, 
+      "weight": "7.000"
+    }
+  }, 
+  {
+    "pk": 135, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "true", 
+      "question": 56, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 136, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "false", 
+      "question": 56, 
+      "weight": "3.000"
+    }
+  }, 
+  {
+    "pk": 137, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "not sure", 
+      "question": 56, 
+      "weight": "5.000"
+    }
+  }, 
+  {
+    "pk": 141, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "true", 
+      "question": 58, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 142, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "false", 
+      "question": 58, 
+      "weight": "3.000"
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "tap", 
+      "question": 2, 
+      "weight": "2.000"
+    }
+  }, 
+  {
+    "pk": 10, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "non-fluoride1", 
+      "question": 4, 
+      "weight": "7.000"
+    }
+  }, 
+  {
+    "pk": 12, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "none", 
+      "question": 5, 
+      "weight": "7.000"
+    }
+  }, 
+  {
+    "pk": 13, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "none", 
+      "question": 6, 
+      "weight": "7.000"
+    }
+  }, 
+  {
+    "pk": 52, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "somtimes", 
+      "question": 28, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 96, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "a lot", 
+      "question": 41, 
+      "weight": "8.000"
+    }
+  }, 
+  {
+    "pk": 100, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "a lot", 
+      "question": 42, 
+      "weight": "9.000"
+    }
+  }, 
+  {
+    "pk": 101, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "some", 
+      "question": 42, 
+      "weight": "8.000"
+    }
+  }, 
+  {
+    "pk": 102, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "few", 
+      "question": 42, 
+      "weight": "4.000"
+    }
+  }, 
+  {
+    "pk": 103, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "none", 
+      "question": 42, 
+      "weight": "2.000"
+    }
+  }, 
+  {
+    "pk": 143, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "not sure", 
+      "question": 58, 
+      "weight": "5.000"
+    }
+  }, 
+  {
+    "pk": 49, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "0", 
+      "question": 25, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 47, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "0", 
+      "question": 23, 
+      "weight": "0.000"
+    }
+  }, 
+  {
+    "pk": 46, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "0-1440", 
+      "question": 22, 
+      "weight": "0.000"
+    }
+  }, 
+  {
+    "pk": 45, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "0-30", 
+      "question": 21, 
+      "weight": "0.000"
+    }
+  }, 
+  {
+    "pk": 48, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "0-1440", 
+      "question": 24, 
+      "weight": "0.000"
+    }
+  }, 
+  {
+    "pk": 149, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "agree", 
+      "question": 60, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 150, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "neutral not sure", 
+      "question": 60, 
+      "weight": "5.000"
+    }
+  }, 
+  {
+    "pk": 151, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "disagree", 
+      "question": 60, 
+      "weight": "9.000"
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "bottled", 
+      "question": 2, 
+      "weight": "7.000"
+    }
+  }, 
+  {
+    "pk": 152, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "non-flouride2", 
+      "question": 4, 
+      "weight": "7.000"
+    }
+  }, 
+  {
+    "pk": 153, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "non-flouride3", 
+      "question": 4, 
+      "weight": "7.000"
+    }
+  }, 
+  {
+    "pk": 154, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "non-flouride4", 
+      "question": 4, 
+      "weight": "7.000"
+    }
+  }, 
+  {
+    "pk": 155, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "once", 
+      "question": 5, 
+      "weight": "3.000"
+    }
+  }, 
+  {
+    "pk": 156, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "twice or more", 
+      "question": 5, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 157, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "once", 
+      "question": 6, 
+      "weight": "3.000"
+    }
+  }, 
+  {
+    "pk": 158, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "twice or more", 
+      "question": 6, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 159, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "never", 
+      "question": 28, 
+      "weight": "3.000"
+    }
+  }, 
+  {
+    "pk": 160, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "often", 
+      "question": 28, 
+      "weight": "7.000"
+    }
+  }, 
+  {
+    "pk": 161, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "always", 
+      "question": 28, 
+      "weight": "9.000"
+    }
+  }, 
+  {
+    "pk": 97, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "some", 
+      "question": 41, 
+      "weight": "6.000"
+    }
+  }, 
+  {
+    "pk": 98, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "few", 
+      "question": 41, 
+      "weight": "4.000"
+    }
+  }, 
+  {
+    "pk": 99, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "none", 
+      "question": 41, 
+      "weight": "2.000"
+    }
+  }, 
+  {
+    "pk": 162, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "definitely agree", 
+      "question": 61, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 163, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "somewhat agree", 
+      "question": 61, 
+      "weight": "3.000"
+    }
+  }, 
+  {
+    "pk": 164, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "somewhat disagree/", 
+      "question": 61, 
+      "weight": "5.000"
+    }
+  }, 
+  {
+    "pk": 165, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "definitely disagree", 
+      "question": 61, 
+      "weight": "9.000"
+    }
+  }, 
+  {
+    "pk": 166, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "5 am", 
+      "question": 62, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 167, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "6 am", 
+      "question": 62, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 168, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "7 am", 
+      "question": 62, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 169, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "8 am", 
+      "question": 62, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 170, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "9 am", 
+      "question": 62, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 171, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "10 am", 
+      "question": 62, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 172, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "11 am", 
+      "question": 62, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 173, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "noon", 
+      "question": 62, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 174, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "6 pm", 
+      "question": 63, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 175, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "7 pm", 
+      "question": 63, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 176, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "8 pm", 
+      "question": 63, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 177, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "9 pm", 
+      "question": 63, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 178, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "10 pm", 
+      "question": 63, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 179, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "11 pm", 
+      "question": 63, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 180, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "midnight", 
+      "question": 63, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 181, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "yes", 
+      "question": 64, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 182, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "no", 
+      "question": 64, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 183, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "1", 
+      "question": 25, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 184, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "2", 
+      "question": 25, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 185, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "3", 
+      "question": 25, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 186, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "4", 
+      "question": 25, 
+      "weight": "2.000"
+    }
+  }, 
+  {
+    "pk": 187, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "5", 
+      "question": 25, 
+      "weight": "2.000"
+    }
+  }, 
+  {
+    "pk": 188, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "6", 
+      "question": 25, 
+      "weight": "3.000"
+    }
+  }, 
+  {
+    "pk": 189, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "7", 
+      "question": 25, 
+      "weight": "5.000"
+    }
+  }, 
+  {
+    "pk": 190, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "8", 
+      "question": 25, 
+      "weight": "5.000"
+    }
+  }, 
+  {
+    "pk": 191, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "9", 
+      "question": 25, 
+      "weight": "5.000"
+    }
+  }, 
+  {
+    "pk": 192, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "10", 
+      "question": 25, 
+      "weight": "7.000"
+    }
+  }, 
+  {
+    "pk": 193, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "11", 
+      "question": 25, 
+      "weight": "7.000"
+    }
+  }, 
+  {
+    "pk": 194, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "12", 
+      "question": 25, 
+      "weight": "7.000"
+    }
+  }, 
+  {
+    "pk": 195, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "13", 
+      "question": 25, 
+      "weight": "9.000"
+    }
+  }, 
+  {
+    "pk": 196, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "14", 
+      "question": 25, 
+      "weight": "9.000"
+    }
+  }, 
+  {
+    "pk": 197, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "15", 
+      "question": 25, 
+      "weight": "9.000"
+    }
+  }, 
+  {
+    "pk": 198, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "yes", 
+      "question": 65, 
+      "weight": "6.000"
+    }
+  }, 
+  {
+    "pk": 199, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "no", 
+      "question": 65, 
+      "weight": "4.000"
+    }
+  }, 
+  {
+    "pk": 200, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "Never", 
+      "question": 66, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 201, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "Sometimes", 
+      "question": 66, 
+      "weight": "6.000"
+    }
+  }, 
+  {
+    "pk": 202, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "Often ", 
+      "question": 66, 
+      "weight": "8.000"
+    }
+  }, 
+  {
+    "pk": 203, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "Always", 
+      "question": 66, 
+      "weight": "9.000"
+    }
+  }, 
+  {
+    "pk": 204, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "None", 
+      "question": 67, 
+      "weight": "8.000"
+    }
+  }, 
+  {
+    "pk": 205, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "Once", 
+      "question": 67, 
+      "weight": "6.000"
+    }
+  }, 
+  {
+    "pk": 206, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "Twice or More", 
+      "question": 67, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 207, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "At a table in front of the television", 
+      "question": 68, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 208, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "At a table not in front of the television", 
+      "question": 68, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 209, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "On the go", 
+      "question": 68, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 210, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "At a table in front of the television", 
+      "question": 69, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 211, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "At a table not in front of the television", 
+      "question": 69, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 212, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "On the go", 
+      "question": 69, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 213, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "1-2", 
+      "question": 23, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 214, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "3 or more", 
+      "question": 23, 
+      "weight": "2.000"
+    }
+  }, 
+  {
+    "pk": 215, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "Yes", 
+      "question": 70, 
+      "weight": "1.000"
+    }
+  }, 
+  {
+    "pk": 216, 
+    "model": "equation_balancer.answer", 
+    "fields": {
+      "text": "No", 
+      "question": 70, 
+      "weight": "1.000"
+    }
+  }
+]

@@ -32,6 +32,8 @@ EDUCATION_LEVEL_CHOICES = (
 class Family(models.Model):
   active = models.BooleanField( help_text = "Uncheck to mostly-delete this family" , default = True)
   
+  
+  
   @property
   def dir(self):
     return dir(self)
@@ -39,10 +41,9 @@ class Family(models.Model):
   def __unicode__(self):
     return "Family # %d" % self.study_id_number
   
-  
   class Meta:
     ordering = ('study_id_number',)
-  
+    verbose_name_plural = "Families"
     
   #study id (used as link. cannot be null.)
   study_id_number =         models.IntegerField(unique=True)
@@ -67,15 +68,32 @@ class Family(models.Model):
     choices=RACE_ETHNICITY_CHOICES,
     default = 'nd'
   )
+  
+  @property
+  def all_visits(self):
+    return [v for v in self.visit_set.all() ]
+  
+  @property
+  def in_a_visit(self):
+    return len (self.visits_happening) > 0
+  
+  @property
+  def visits_happening (self):
+    return [ v for v in self.all_visits  if v.is_happening]
+  
+  @property
+  def has_had_an_interview(self):
+    return len (self.all_visits) > 0
     
-  #any extra interview state aside from basic questions and answers:
-  interview_state = models.TextField(blank=True, default = '{}')
-
+  @property
+  def config_locked(self):
+    """ should we allow this family's configuration to change? Not if they've already had an interview."""
+    return not self.has_had_an_interview
+  
   @property
   def interviewer (self):
-    visits_happening = [ v for v in self.visit_set.all() if v.is_happening]
-    if len (visits_happening) > 0:
-      return visits_happening[0].interviewer
+    if len (self.visits_happening) > 0:
+      return self.visits_happening[0].interviewer
     return None
     
 
@@ -101,29 +119,26 @@ class Family(models.Model):
 
     return result
     
-  def set_interview_state (self, obj):
-      if self.interview_state == "":
-          self.interview_state = '{}'
-      fact_obj = json.loads (self.interview_state)
-      fact_obj.update(json.loads(obj))
-      self.interview_state = json.dumps(fact_obj)
-      self.save()
+  
+    
+  #any extra interview state aside from basic questions and answers:
+  interview_state = models.TextField(blank=True, default = '{}')
+  
+    
+  def set_state (self, obj):
+    """ takes json"""
+    fact_obj = json.loads (self.interview_state)
+    fact_obj.update(json.loads(obj))
+    self.interview_state = json.dumps(fact_obj)
+    self.save()
 
-  def get_interview_state (self, keys):
-      key_list = json.loads(keys)
-      if self.interview_state != "":
-          return dict([(key, json.loads(self.interview_state).get(key, '')) for key in key_list])
-      return dict([(f, '') for f in key_list])
-
-  def interview_state (self):
-      try:
-          return  simplejson.loads(self.interview_state)
-      except:
-          return {'error': 'Error loading interview state info.'}
-
-
-
-
+  @property
+  def state (self):
+    """outputs json"""
+    try:
+      return  self.interview_state
+    except:
+      return JSON.dumps({'error': 'Error loading interview state info.'})
   
   def responses (self):
     return Response.objects.filter (family= self)
@@ -150,19 +165,19 @@ class Visit (models.Model):
    
   families = models.ManyToManyField(Family)
   start_timestamp = models.DateTimeField(auto_now_add=True)
-  end_timestamp = models.DateTimeField(null=True, blank =True)
+  end_timestamp = models.DateTimeField(null=True, blank =True, help_text = "If necessary, you can force this interview to end by setting the date / time to today and now. Results collected during the interview may be lost.")
   interviewer = models.ForeignKey(User)
   analytics_info =  models.TextField(null=True, blank =True)
-  
-  
   
   #Optional extra auth, maybe:
   token =  models.TextField(null=True, blank =True)
 
-
+  
   class Meta:
     ordering = ('start_timestamp',)
-  
+
+  def __unicode__(self):
+    return "Visit %s" % self.pk
 
   @property
   def is_happening(self):
@@ -222,10 +237,6 @@ class Response (models.Model):
   question = models.ForeignKey (Question) #can't be null
   answer = models.ForeignKey (Answer) #can't be null
 
-  @property
-  def date_of_response(self):
-    return 'a'
-    
   @property
   def question_english(self):
     #import pdb

@@ -14,9 +14,14 @@
 			<td colspan = "3" class="error_message">{{error_message}}</td>
 		</tr>
 		{%endif%}
+		{% if just_finished_visit %}
+		<tr style="display:none;">
+		  <td colspan="3"><span id="just_finished_visit">{{just_finished_visit.pk}}</span></td>
+		</tr>
+		{% endif %}
 			
 		  <tr>
-			<td><a href = "/family_info/new_family" >+ Add New Family</a></td>
+			<td><a href = "/family_info/new_family" >+ Add a Family</a></td>
 			<td></td>
 			<td></td>
 			</tr>
@@ -41,23 +46,32 @@
 	                      {%endif%}
 	                    {%endif%}
 	                </td>
-	                <td>Family # {{family.study_id_number}}</td>
-	                <td><a href="/family_info/edit_family/{{family.id}}">Edit Family Details </a></td>
+	                <td>Family # {{family.study_id_number}} 
+	                </td>
+	                <td><a href="/family_info/edit_family/{{family.id}}">Edit Family Details </a>
+	                
+	                {% if user.is_staff%}
+  	                {%if family.in_a_visit %}
+	                  <a href="/admin/family_info/visit/{{family.interviewer.current_visit.id}}/">Visit page</a>
+	                  {%endif%}
+	                {%endif%}                
+	                
+	                </td>
 	              </tr>
 	            {%endfor %}
 	           
 	            
 	            <tr>
 	              <td class="action" colspan = "3">
-	               <input type="submit"
-	               
+	               <input  style="background-color: #063; color: #fff; font-weight: bold" type="submit"
+			      id="main_submit_button"
                 {%if user.current_visit%}
                   value ="Resume your visit with families {%for f in user.current_visit.families.all%}{{f.study_id_number}}{% if forloop.last %}{%else%} and {%endif%}{%endfor%}"
                 {%else %}
 	               value ="Start visit"
 	               {%endif%}
 	               />
-	               <input type="reset" value ="Reset" />
+	               <!--<input type="reset" value ="Reset" />-->
 	              </td>
 	            </tr>
 	        </form>
@@ -77,7 +91,7 @@
 		<table class="users">
 			
 			<tr>
-			<td><a href="/family_info/new_user" >+ Add New Health Worker</a></td>
+			<td><a href="/family_info/new_user" >+ Add a Health Worker</a></td>
 			<td></td>
 			</tr>
 			

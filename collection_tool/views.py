@@ -15,8 +15,6 @@ def risk(request, language_code):
   t = loader.get_template('collection_tool/risk.html')
       
   c = RequestContext(request,{
-      #need this for nav:
-      'all_sections': AssessmentSection.objects.all(),
       'language_code': language_code,
       'all_topics': Topic.objects.all(),
       'all_families': Family.objects.all(),
@@ -28,15 +26,22 @@ def topics(request, language_code):
   if language_code not in ['en', 'es']:
     raise Http404
   t = loader.get_template('collection_tool/topics.html')
-      
+  
+  
+  
+  #collate all the flat pages referred to by the topics so we can easily put them into divs:
+  #import pdb
+  #pdb.set_trace()
+  
+  topic_urls = [the_topic.learn_more['url'] for the_topic in Topic.objects.all() if the_topic.learn_more]
+  flat_pages_we_need = FlatPage.objects.filter(url__in = topic_urls )
+
+  #print dir (FlatPage)
   c = RequestContext(request,{
       'language_code': language_code,
       'all_topics': Topic.objects.all(),
-      'all_families': Family.objects.all(),
-      #need this for nav:
-      'all_sections': AssessmentSection.objects.all(),
-      #'all_configs': Configuration.objects.all(),
-      #'all_scores' : all_scores
+      'flat_pages_we_need' : flat_pages_we_need,
+      #'all_families': Family.objects.all(),
   })
   return HttpResponse(t.render(c))
 
@@ -49,8 +54,6 @@ description. Get here by clicking 'Learn' on the goals page."""
   t = loader.get_template('collection_tool/topic.html')
       
   c = RequestContext(request,{
-      #need this for nav:
-      'all_sections': AssessmentSection.objects.all(),
       'language_code': language_code,
       'topic': get_object_or_404(Topic, pk=topic_id)
   })
@@ -62,7 +65,7 @@ def goals(request, language_code):
     raise Http404
   t = loader.get_template('collection_tool/goals.html')
   c = RequestContext(request,{
-      'all_goals': Goal.objects.all(),
+      'all_goals': Goal.objects.all()
   })
   return HttpResponse(t.render(c))
 
@@ -75,25 +78,50 @@ def goal(request, goal_id, language_code):
       
   c = RequestContext(request,{
       'language_code': language_code,
-      'goal': get_object_or_404(Goal, pk=goal_id),
-      'all_families': Family.objects.all(),
-      #need this for nav:
-      'all_sections': AssessmentSection.objects.all(),
+      'goal': get_object_or_404(Goal, pk=goal_id)
   })
   return HttpResponse(t.render(c))    
 
+
+
+def get_planner_items():
+  # look up question ids for planner
+  starttime = datetime(1984,1,1,6)
+  planner_times = [(starttime + timedelta(minutes=30) * i).strftime("%I:%M%p")
+           for i in range(36)]
+  planner_items = PlannerItem.objects.all().order_by('type', 'label')
+  
+  return {
+    'planner_times':planner_times,
+    'planner_items':planner_items,
+  }
+
+# planner/goal/(?P<goal_id>\d+)/language/(?P<language_code>\w+)
+def goal_planner(request, goal_id, language_code):
+  """Goal planner form."""
+  
+  stuff = {
+      'language_code': language_code,
+      'goal': get_object_or_404(Goal, pk=goal_id)
+  }
+  
+  stuff.update (get_planner_items())
+  
+  if language_code not in ['en', 'es']:
+    raise Http404
+  t = loader.get_template('collection_tool/goal_planner.html')
+      
+  c = RequestContext(request, stuff)
+  return HttpResponse(t.render(c))    
+
+
+
+
 ##########################
 ##########################
 
 
-#(r'help_summary$', 'collection_tool.views.help_summary'), 
-def help_summary(request):
-  section = get_object_or_404(AssessmentSection, pk=section_id)
-  t = loader.get_template('collection_tool/help_summary.html')
-  c = RequestContext(request,{
-      'all_display_questions': DisplayQuestion.objects.all()
-  })
-  return HttpResponse(t.render(c))
+
 
 def section(request, section_id, language_code):
   section = get_object_or_404(AssessmentSection, pk=section_id)
@@ -194,19 +222,21 @@ def question(request, displayquestion_id, language_code):
       'all_sections': AssessmentSection.objects.all(),
       'planner_times':planner_times,
       'planner_items':planner_items,
-      'widget_question_ids':[risky_exposures_question.number, brushing_question.number, fluoride_question.number],
-      'risky_question_id':risky_exposures_question.number,
+      
+      'widget_question_ids':[risky_exposures_question.id, brushing_question.id, fluoride_question.id],
+      'risky_question_id':risky_exposures_question.id,
       'risky_answers_keys':[str(key) for key in risky_answers.keys()],
       'risky_answers_values':risky_answers.values(),
-      'fluoride_question_id':fluoride_question.number,
+      'fluoride_question_id':fluoride_question.id,
       'fluoride_answers_keys':[str(key) for key in fluoride_answers.keys()],
       'fluoride_answers_values':fluoride_answers.values(),
-      'brushing_question_id':brushing_question.number,
+      'brushing_question_id':brushing_question.id,
       'brushing_answers_keys':[str(key) for key in brushing_answers.keys()],
       'brushing_answers_values':brushing_answers.values()
   })
   return HttpResponse(t.render(c))
-    
+
+
 
 def widget_test(request):
   starttime = datetime(1984,1,1,7)
@@ -242,6 +272,7 @@ def manifest(request):
     'paths_to_answer_images' :    paths_to_answer_images,
     'nav_section_ids' :           nav_section_ids,
     'planner_labels' :            planner_labels,
+    'goals' :                     Goal.objects.all(),
     # this was breaking on questions that weren't part of the nav:
     # 'question_ids':              [d.id for d in DisplayQuestion.objects.all()],
     'question_ids':               all_display_question_ids_in_order(),
