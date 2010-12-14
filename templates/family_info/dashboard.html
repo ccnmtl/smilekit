@@ -62,19 +62,11 @@ Click the &nbsp;End Visit&nbsp; button to end the visit and send back the data t
 </div>
     
 <script>
-
-	if (typeof($) == "undefined") {
-	
-	alert ("Sorry, unable to start interview at this time: unable to load jQuery.");
-	
-	document.getElementById('downloading').style.display = 'none';
-	
-	//document.getElementById('done_downloading').style.display = 'none';
-	
-	document.getElementById('debug_cache_status').style.display = 'none';
-	
+	if (typeof($) == "undefined") {	
+	  alert ("Error: unable to load jQuery.");
+	  document.getElementById('downloading').style.display = 'none';
+	  document.getElementById('debug_cache_status').style.display = 'none';
 	}
-  
 </script>
 
 {% endblock family_info_content %}

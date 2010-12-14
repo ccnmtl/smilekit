@@ -32,7 +32,28 @@ EDUCATION_LEVEL_CHOICES = (
 class Family(models.Model):
   active = models.BooleanField( help_text = "Uncheck to mostly-delete this family" , default = True)
   
+  @property
+  def start_interview_info(self):
+    
+    #import pdb
+    #pdb.set_trace()
+    
+    all_questions = [dq.id for dq in self.config.display_questions()]
+    first_url = "/collection_tool/question/%d/language/en" % self.config.first_display_question().id
+    
+    tmp = {
+      "first_question_url" : first_url,
+      "family_id" : self.id,
+      "family_study_id_number" : self.study_id_number,
+      "previous_visit_questions" : self.latest_answers,
+      "all_questions" : all_questions
+    }
+    #double-escape -- this is printed into a string in the template, and passed to the browser's native JSON parser.
+    return_value =  json.dumps(tmp).replace ('\\', '\\\\');
+    return return_value;
   
+
+
   
   @property
   def dir(self):
@@ -134,11 +155,16 @@ class Family(models.Model):
 
   @property
   def state (self):
-    """outputs json"""
+    """outputs a json string"""
     try:
       return  self.interview_state
     except:
       return JSON.dumps({'error': 'Error loading interview state info.'})
+
+  @property
+  def evil_state(self):
+    """outputs an extra replaced json string"""
+    return self.state.replace ('\\', '\\\\');
   
   def responses (self):
     return Response.objects.filter (family= self)

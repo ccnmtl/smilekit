@@ -335,7 +335,13 @@ def start_interview(request, **kwargs):
     else:
         the_families = my_happening_visits[0].families.all()
     
-    c = RequestContext(request, { 'families' : the_families } )
+    testval = '{"a_key": "<span id=\\"hello\\">"}';
+    mytest = json.loads(testval);
+    
+    c = RequestContext(request, {
+      'families' : the_families,
+      'testval':testval
+     } )
     t = loader.get_template('family_info/start_interview.html')
     return HttpResponse(t.render(c))
 

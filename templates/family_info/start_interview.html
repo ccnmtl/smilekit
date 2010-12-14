@@ -19,43 +19,28 @@
 
 
 
+<script  type="text/javascript">
+  
+  var list_of_questions_json = '[ \
+    {% for the_family in families %} \
+	      {{the_family.start_interview_info|safe}}{% if not forloop.last %},{%endif%} \
+    {% endfor %} \
+  ]';
+  	
+  var list_of_states_json = '{ \
+	  {% for the_family in families %} \
+      "{{the_family.id}}" : {{the_family.evil_state|safe}} {% if not forloop.last %},{%endif%} \
+	   {% endfor %} \
+	}';
+		
+</script>
 
 <div id="list_of_questions"> 
-	[
-	{% for the_family in families %}
-	{
-		"family_id" : {{the_family.id}},
-		"family_study_id_number" : {{the_family.study_id_number}},
-		
-		"previous_visit_questions" :
-		{
-		{%for q, a in the_family.latest_answers.iteritems %}
-		"{{q}}":"{{a}}"
-		{% if not forloop.last %},{%endif%}
-		
-		{%endfor%}
-		},
-		
-		"all_questions" :
-		[
-		{%for display_question in the_family.config.display_questions %}
-		{{display_question.id}}
-		{% if not forloop.last %},{%endif%}
-		{%endfor%}
-		
-		],
-		
-	        {% if the_family.config and the_family.config.first_display_question %}
-		"first_question_url" : "/collection_tool/question/{{the_family.config.first_display_question.id}}/language/en"
-		{% endif %}
-	}
-	{% if not forloop.last %},{%endif%}
 	
-	{% endfor %}
-	
-	]
 </div>
 
+
+{%comment%}
 <div id ="state">
   {
     {% for the_family in families %}
@@ -64,7 +49,7 @@
     {% endfor %}
   }
 </div>
-
+{%endcomment %}
 
 
 <table cellspacing="0" id="materialstable">
@@ -72,18 +57,12 @@
 	<tr>
 		<th>Family ID</th>
 		<th>Question List</th> 
-		<!--
-		<th>Database ID</th> 
-	  -->
 	</tr>
 	
 	{% for the_family in families %}
 	<tr >
 		<td title ="Family {{the_family.study_id_number}} has ID {{ the_family.id }} in the database." >{{the_family.study_id_number}}</td>
-		<td>{{ the_family.config }}</td> 
-		<!--
-		<td>{{ the_family.id }}</td> 
-	  -->
+		<td>{{ the_family.config }}</td>
 	</tr>
 	{%endfor %}
 
