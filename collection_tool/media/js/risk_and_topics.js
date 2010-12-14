@@ -13,6 +13,9 @@ function family_questions (key, family_id) {
 }
 
 
+goal_form_fields = ['name','resp', 'stps', 'when'];
+
+
 function set_goal_text (LOCAL_STORAGE_KEY, family_id, goal_id, goal_field_code, goal_text ) {
   tmp = get_goals_data(LOCAL_STORAGE_KEY, family_id);
   key = goal_id + '_' + goal_field_code;
@@ -153,6 +156,7 @@ function calculate_friendly_score (max_score, min_score, raw_score) {
 function between (x, a, b) {
   return a < x && x <= b;
 }
+
 
 
 function score_data_for_topic_id (LOCAL_STORAGE_KEY, family_id, topic_id) {

@@ -943,7 +943,7 @@ li.goal_div
 
 
 /*eddie adding */
-.topic_div_learn a
+.topic_div_learn a,  #set_goal_div a
 {	
 	border: 1px solid 000;
 	width: 300px;
@@ -964,8 +964,14 @@ li.goal_div
 }
 
 
+.goal_textfield {
+  width : 300px;
+}
 
 
+textarea.goal_textfield {
+  height: 100px;
+}
 
 /********/
 

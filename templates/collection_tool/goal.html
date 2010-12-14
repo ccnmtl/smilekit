@@ -41,6 +41,16 @@
 	{%ifequal language_code 'es'%}
 	  <h2 align="center">{{goal.spanish_title}}.</h2>
 	{%endifequal%}
+	<!--
+	
+	Marc has most of this done. This is what needs to be finished: 
+	
+	1. when the user clicks 'learn' the appropriate flat page should open in a box that looks similar to the 'help' box
+	
+	2. on the goal page all the text boxes need to be a bit wider and the one for the four steps needs to be able to be at least 4 lines deep and accept line breaks
+
+	
+	-->
 	
 	<table>
 	    <tr>
@@ -82,7 +92,9 @@
 	          {%endifequal%}
 	      </td>
 	      <td>
-        	<input type="text" class="goal_textfield stps" id ="{{goal.id}}_stps" name ="{{goal.id}}_stps" />
+	      	<textarea class="goal_textfield stps"  id ="{{goal.id}}_stps" name ="{{goal.id}}_stps">
+	      	</textarea>
+	     
 	      </td>
 	    </tr>
 	    <tr>
@@ -100,13 +112,19 @@
 	    </tr>
 	</table>
 	
-	<div align="center">
-  {%ifequal language_code 'en'%}
-  <a href = "/collection_tool/goals/language/en">Set Goal (en)</a>
-  {%endifequal%}
-  {%ifequal language_code 'es'%}
-  <a href = "/collection_tool/goals/language/es">Set Goal (es)</a>
-  {%endifequal%}
+	<div align="center" id = "set_goal_div" >
+    {%ifequal language_code 'en'%}
+    <a href = "/collection_tool/goals/language/en">Set Goal (en)</a>
+    <!--
+    <a href = "/collection_tool/goals/language/en">Cancel (en)</a>
+    -->
+    {%endifequal%}
+    {%ifequal language_code 'es'%}
+    <a href = "/collection_tool/goals/language/es">Set Goal (es)</a>
+    <!--
+    <a href = "/collection_tool/goals/language/es">Cancel (es)</a>
+    -->
+    {%endifequal%}
 	<!--
 	<a href = "" > Cancel and Start over </a>
 	-->

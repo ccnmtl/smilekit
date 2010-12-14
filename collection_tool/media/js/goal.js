@@ -25,10 +25,6 @@ function goal_field_changed( e) {
   set_goal_text (LOCAL_STORAGE_KEY, family_id, goal_id, field_name,goal_text);
 }
 
-goal_form_fields = ['name','resp', 'stps', 'when'];
-
-
-
 function init() {
   goal_id = $('#goal_id_div')[0].innerHTML;
   $.each (goal_form_fields, function (a, field_name) {
