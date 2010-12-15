@@ -14,6 +14,8 @@ CACHE:
 {%url family_info.views.dashboard %}
 
 {%for lc in language_codes%}
+
+
   #section pages
   {% for id in nav_section_ids %}{%url collection_tool.views.section section_id=id language_code=lc %}
   {% endfor %}
@@ -22,15 +24,24 @@ CACHE:
   {% for id in question_ids %}{%url collection_tool.views.question displayquestion_id=id language_code=lc %}
   {% endfor %}
   
+
   #risk, goal and topic pages:
   {% url collection_tool.views.risk language_code=lc %}
+  
+  
   {% url collection_tool.views.topics language_code=lc %}
   {% url collection_tool.views.goals language_code=lc %}
 
-  {% for goal in goals %}{% url collection_tool.views.goal goal_id=goal.id language_code=lc %}
+
+{% for goal in goals %}{% url collection_tool.views.goal goal_id=goal.id language_code=lc %}
     {% if goal.show_in_planner %}{% url collection_tool.views.goal_planner goal_id=goal.id language_code=lc %}
     {%endif%}
   {% endfor %}
+
+
+  #SO FAR OK.
+  
+
 {% endfor %}
 
 
@@ -39,14 +50,19 @@ CACHE:
 ########
 # CSS:
 
+
+
+#THERE IS A BUG IN HERE.
 #static css
 /collection_tool/media/css/collection_tool.css
 /collection_tool/media/css/planner.css
+
 
 ########
 ########
 ########
 # JS:
+
 
 #static javascript
 /site_media/js/smilekit_common.js
@@ -63,6 +79,8 @@ CACHE:
 /collection_tool/media/js/topics.js
 /collection_tool/media/js/goal.js
 /collection_tool/media/js/goals.js
+
+
 
 
 ########
@@ -86,6 +104,9 @@ CACHE:
 {% endfor %}
 
 
+
+
+
 #static pictures:
 /collection_tool/media/images/logo_mysmilebuddy.png
 /family_info/media/images/progressbar/progressbar.gif
@@ -104,11 +125,13 @@ CACHE:
 /collection_tool/media/images/checkbox.png
 /collection_tool/media/images/tooth_help.png
 
+
 #risk, goals and topics:
 /collection_tool/media/images/risk_graphic.png
 /collection_tool/media/images/topics_graphic.png
 /collection_tool/media/images/water_icon.png
 /collection_tool/media/images/fire_icon.png
+
 
 #images for "more info" help pages:
 /collection_tool/media/images/flatpages/baby-sleeping-with-bottle.jpg
@@ -128,6 +151,7 @@ CACHE:
 /collection_tool/media/images/flatpages/mother_and_daughter_eating_at_table.jpg
 /collection_tool/media/images/flatpages/test.jpg
 /collection_tool/media/images/flatpages/toddler-with-sippy-cup.jpg
+
 
 FALLBACK:
 
