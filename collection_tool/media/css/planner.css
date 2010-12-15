@@ -275,11 +275,11 @@ span.thumbnaillabel
 	display: block;
 	color: #fff;
 	text-align: center;
-	border: 1px solid #000;
 	white-space: pre-wrap;
 	width: 100px;
 	height: 30px;
 	font-size: 10px;
+	font-weight: bold;
 }
 
 
