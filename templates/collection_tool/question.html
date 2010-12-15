@@ -103,7 +103,7 @@
                 {% include "collection_tool/stock_answers_es.html" %}
               {% endifequal %}
             {% else %}
-              <a href="#" id="answer_{{a.id}}" class="contentbutton">{{a.wording}}</a>
+              <a href="#" id="answer_{{a.id}}" class="contentbutton">{{a.wording}}</a><br clear="all" />
               {% if a.image %}<img src="/uploads/{{a.image}}"/>{%endif%}
             {%endif%}
           {%endfor%}
