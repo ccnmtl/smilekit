@@ -3,6 +3,10 @@
 #debugstuff {display: none;}
 
 /********/
+input[type="text"], input[type="password"] {
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+}
 
 body
 {
