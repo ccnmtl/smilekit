@@ -13,9 +13,9 @@
 {% block mainnav %}
 	<div id="mainnav">
 		<a id="introductiontab" class="mainfirsttab" href="/collection_tool/introduction/">Introduction</a>
-		<a id="assessmenttab" class="assessmenttab" href="/collection_tool">Assessment</a>
-		<a id="risktab" class="risktab" href="/collection_tool/risk/language/en">Risk</a>
-		<a id="planningtab" class="planningtabactive mainlasttab" href="/collection_tool/goals/language/en">Planning</a>
+		<a id="assessmenttab" class="assessmenttab" href="/collection_tool/">Assessment</a>
+		<a id="risktab" class="risktab" href="/collection_tool/risk/language/en/">Risk</a>
+		<a id="planningtab" class="planningtabactive mainlasttab" href="/collection_tool/goals/language/en/">Planning</a>
 	</div>
 {% endblock %}
 
@@ -32,7 +32,7 @@
 
 {% block collection_tool_content %}
 		<div id="contentnav">
-			  <a id="left" href="/collection_tool/risk/language/en">&#8592; Back</a>
+			  <a id="left" href="/collection_tool/risk/language/en/">&#8592; Back</a>
 		</div>
 		<div id ="language_code_div">{{language_code}}</div>
 		<div align="center">
@@ -75,10 +75,10 @@
 			    
 			    {% if t.section %}
 				      {%ifequal language_code 'en'%}
-				        <div class="indexpageicon"><a href="/collection_tool/section/{{t.section.id}}/language/en">?</a></div>
+				        <div class="indexpageicon"><a href="/collection_tool/section/{{t.section.id}}/language/en/">?</a></div>
 		          {%endifequal%}
 				      {%ifequal language_code 'es'%}
-				        <div class="indexpageicon"><a href="/collection_tool/section/{{t.section.id}}/language/es">?</a></div>
+				        <div class="indexpageicon"><a href="/collection_tool/section/{{t.section.id}}/language/es/">?</a></div>
 		          {%endifequal%}
 			    {%endif%}
 			    
@@ -105,9 +105,9 @@
 					{{g.english_title}}
 					<div class="goal_div_plan">
 					{% if g.show_in_planner %}
-					  <a href = "/collection_tool/planner/goal/{{g.id}}/language/{{language_code}}" title = "Goes to planner">plan*</a> <!--  (planner) -->
+					  <a href = "/collection_tool/planner/goal/{{g.id}}/language/{{language_code}}/" title = "Goes to planner">plan*</a> <!--  (planner) -->
 					{%else %}
-					  <a href = "/collection_tool/goal/{{g.id}}/language/{{language_code}}"  title = "Goes to regular goal setting form">plan</a> <!-- (form)  -->
+					  <a href = "/collection_tool/goal/{{g.id}}/language/{{language_code}}/"  title = "Goes to regular goal setting form">plan</a> <!-- (form)  -->
 					{%endif%}
 					</div>
 				

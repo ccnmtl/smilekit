@@ -11,40 +11,26 @@ CACHE:
 # PAGES:
 
 #dashboard page (for switching between families and ending the interview):
-/family_info/dashboard
+{%url family_info.views.dashboard %}
 
-#section pages
-{% for id in nav_section_ids %}
-    /collection_tool/section/{{id}}/language/en
-    /collection_tool/section/{{id}}/language/es
-{% endfor %}
+{%for lc in language_codes%}
+  #section pages
+  {% for id in nav_section_ids %}{%url collection_tool.views.section section_id=id language_code=lc %}
+  {% endfor %}
 
-#question pages:
-{% for id in question_ids %}
-  /collection_tool/question/{{id}}/language/en
-  /collection_tool/question/{{id}}/language/es
-{% endfor %}
-
-#risk, goal and topic pages:
-/collection_tool/risk/language/en
-/collection_tool/risk/language/es
-
-/collection_tool/topics/language/en
-/collection_tool/topics/language/es
-
-/collection_tool/goals/language/en
-/collection_tool/goals/language/es
-
-{% for goal in goals %}
-  /collection_tool/goal/{{goal.id}}/language/en
-  /collection_tool/goal/{{goal.id}}/language/es
+  #question pages:
+  {% for id in question_ids %}{%url collection_tool.views.question displayquestion_id=id language_code=lc %}
+  {% endfor %}
   
-  
-	{% if goal.show_in_planner %}
-  /collection_tool/planner/goal/{{goal.id}}/language/en
-  /collection_tool/planner/goal/{{goal.id}}/language/es
-  {%endif%}
-      
+  #risk, goal and topic pages:
+  {% url collection_tool.views.risk language_code=lc %}
+  {% url collection_tool.views.topics language_code=lc %}
+  {% url collection_tool.views.goals language_code=lc %}
+
+  {% for goal in goals %}{% url collection_tool.views.goal goal_id=goal.id language_code=lc %}
+    {% if goal.show_in_planner %}{% url collection_tool.views.goal_planner goal_id=goal.id language_code=lc %}
+    {%endif%}
+  {% endfor %}
 {% endfor %}
 
 
@@ -64,7 +50,6 @@ CACHE:
 
 #static javascript
 /site_media/js/smilekit_common.js
-
 /family_info/media/js/dashboard.js
 /family_info/media/js/localstorage.js
 /family_info/media/js/cache.js

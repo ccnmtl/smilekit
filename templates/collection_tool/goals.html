@@ -12,19 +12,19 @@
 {% block mainnav %}
 	<div id="mainnav">
 		<a id="introductiontab" class="mainfirsttab" href="/collection_tool/introduction/">Introduction</a>
-		<a id="assessmenttab" class="" href="/collection_tool">Assessment</a>
-		<a id="risktab" class="" href="/collection_tool/risk/language/en">Risk</a>
+		<a id="assessmenttab" class="" href="/collection_tool/">Assessment</a>
+		<a id="risktab" class="" href="/collection_tool/risk/language/en/">Risk</a>
 		<a id="planningtab" class="planningtabactive mainlasttab" href="#">Planning</a>
 	</div>
 {% endblock %}
 
 {% block language_toggle %}
 	{%ifequal language_code 'en'%}
-		<a href="/collection_tool/question/{{displayquestion.id}}/language/es">espa&#241;ol</a>
+		<a href="/collection_tool/question/{{displayquestion.id}}/language/es/">espa&#241;ol</a>
 	{%endifequal%}
 				
 	{%ifequal language_code 'es'%}
-		<a href="/collection_tool/question/{{displayquestion.id}}/language/en">english</a>
+		<a href="/collection_tool/question/{{displayquestion.id}}/language/en/">english</a>
 	{%endifequal%}
 {% endblock %}
 
@@ -44,9 +44,9 @@
 	<ul>
 	{% for goal in all_goals %}	
 	<li class="goal_title used" id="goal_{{goal.id}}">
-	<a href="/collection_tool/goal/{{goal.id}}/language/en">{{goal.english_title}}</a>
+	<a href="/collection_tool/goal/{{goal.id}}/language/en/">{{goal.english_title}}</a>
 	<!--
-	<a href="/collection_tool/goal/{{goal.id}}/language/es">{{goal.spanish_title}}</a>
+	<a href="/collection_tool/goal/{{goal.id}}/language/es/">{{goal.spanish_title}}</a>
 	-->
 	</li>
 	{%endfor%}
@@ -61,9 +61,9 @@
 	<ul>
 	{% for goal in all_goals %}	
 	<li class="goal_title not_used" id="other_goal_{{goal.id}}">
-	<a href="/collection_tool/goal/{{goal.id}}/language/en">{{goal.english_title}}</a>
+	<a href="/collection_tool/goal/{{goal.id}}/language/en/">{{goal.english_title}}</a>
 	<!--
-	<a href="/collection_tool/goal/{{goal.id}}/language/es">{{goal.spanish_title}}</a>
+	<a href="/collection_tool/goal/{{goal.id}}/language/es/">{{goal.spanish_title}}</a>
 	-->
 	</li>
 	{%endfor%}
