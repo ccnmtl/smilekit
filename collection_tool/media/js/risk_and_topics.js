@@ -158,6 +158,18 @@ function between (x, a, b) {
 }
 
 
+function set_family_id_in_nav ( fam_id) {
+  all_questions = local_storage_get (LOCAL_STORAGE_KEY, 'list_of_questions');
+  for (i = 0; i < all_questions.length; i = i + 1) {
+    if (all_questions[i].family_id == fam_id) {
+      family_study_id =  all_questions[i]['family_study_id_number']
+    }
+  }
+  if ($('#family_id_nav_display')) {
+    $('#family_id_nav_display').html( 'Family #' + family_study_id );
+  }
+
+}
 
 function score_data_for_topic_id (LOCAL_STORAGE_KEY, family_id, topic_id) {
   try {
@@ -171,6 +183,12 @@ function score_data_for_topic_id (LOCAL_STORAGE_KEY, family_id, topic_id) {
   return calculate_friendly_score (score_data['max'], score_data['min'], score_data['score']);
 }
 
-// i'm moving this here and out of the other files that depend on this:
-family_id = local_storage_get (LOCAL_STORAGE_KEY, 'current_family_id');
+var family_id;
+
+function risk_topics_init() {
+  family_id = local_storage_get (LOCAL_STORAGE_KEY, 'current_family_id');
+  set_family_id_in_nav ( family_id);
+}
+
+$(document).ready( risk_topics_init );
 

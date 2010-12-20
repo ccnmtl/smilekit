@@ -39,16 +39,14 @@ function download_files_into_cache () {
 
 function update_debug_localstorage() {
   if ($('#debug_localstorage')[0]) {
-    document.getElementById('debug_localstorage').innerHTML = localStorage [LOCAL_STORAGE_KEY];
+    $('#debug_localstorage').html( localStorage [LOCAL_STORAGE_KEY]);
   }
 }
 
 function function_maker (id) {
   my_new_func = function () {
     local_storage_set ( LOCAL_STORAGE_KEY, 'current_family_id', id);
-    //alert ("Setting current family id to " + id);
   }
-
   return my_new_func
 }
 
@@ -65,9 +63,19 @@ function head_to (family_id, url) {
 }
 
 
+
 function set_up_family_links () {
   start_visit_links = "";
   list_of_questions = local_storage_get(LOCAL_STORAGE_KEY, 'list_of_questions');
+
+   if (local_storage_get (LOCAL_STORAGE_KEY, 'current_family_id') == null ) {
+      $('#interview_link').hide();
+      $('#family_id_nav_display').hide();
+   }
+   else {
+      $('#log_out_link').hide();
+   }
+
 
   $.each(list_of_questions , function(key, value) {
      family_study_id_number = value['family_study_id_number'];
@@ -75,10 +83,25 @@ function set_up_family_links () {
      url = value ['first_question_url']
 
      new_link = "<p> Family " + family_study_id_number + " ( \
-     <span id ='progress_info_for_family_" + family_id + "'> </span> )\
-     <input type='button' id='go_to_family_button_" + family_id + "' class ='go_to_family_button' onclick ='head_to(" + family_id + ", \"" + url + "\")'  value = 'Visit' /> </p>";
+     <span id ='progress_info_for_family_" + family_id + "'> </span> )"
+    
+     if (family_id == local_storage_get (LOCAL_STORAGE_KEY, 'current_family_id')) {
+        // (Point the "Interview" link at the top of the page back to the current intervierw.
+        $('#interview_link')[0].href = "javascript:head_to( " + family_id + ", \"" + url + "\");"
+        $('#interview_link').html('Interview');
+        $('#family_id_nav_display').html ( 'Family #' + family_study_id_number);
+        
+     }
+     else {
+      // link for other families goes here: 
+        new_link += "<a href=\"javascript:head_to(" + family_id + ",'" + url + "')"+ '"> Visit family ' + family_study_id_number + '</a>';
+     }
+     new_link += "</p>"
      start_visit_links += new_link;
+  
   });
+  
+  
   $('#start_visit_links')[0].innerHTML = start_visit_links;
 
 }
@@ -89,9 +112,9 @@ function build_end_interview_form () {
   
   $.each(current_interview_questions , function(key, value) {
         family_id = value['family_id'];
+        
         their_answers = local_storage_get ( LOCAL_STORAGE_KEY, (family_id + '_answers'));
-
-        their_state = local_storage_get(LOCAL_STORAGE_KEY, 'list_of_states')[family_id];
+        their_state   = local_storage_get(LOCAL_STORAGE_KEY, 'list_of_states')[family_id];
 
 
         if (their_answers != null) {

@@ -245,39 +245,35 @@ class AssessmentSection(models.Model):
   def __unicode__(self):
     return self.title
   
-  def display_question_ids(self):
-    """ used for ordering"""
-    return [q.id for q in self.displayquestion_set.all()] 
-  
+  if 1 == 0:
+        def display_question_ids(self):
+          """ used for ordering"""
+          return [q.id for q in self.displayquestion_set.all()] 
+          
+      
     
-  
 
-#TODO comment this out: it should be rendered obsolete by configuration_display_questions
-#if 1 == 0:
-#this is still used for the cache manifest. -- change cache manifest to just use
-#[ dq.id for dq in DisplayQuestion.objects.all()] since order does not matter.
-
-def all_display_question_ids_in_order():
-  result = []
-  #order all questions, first by nav section, then by rank within that section:
-  sections = [a for a in AssessmentSection.objects.all()]
-  for a in [s.display_question_ids() for s in sections]:
-    result.extend (a)
-  return result
-  
+        def all_display_question_ids_in_order():
+            result = []
+            #order all questions, first by nav section, then by rank within that section:
+            sections = [a for a in AssessmentSection.objects.all()]
+            for a in [s.display_question_ids() for s in sections]:
+              result.extend (a)
+            return result
+    
 
 
 
 def configuration_display_questions(self):
   """This is the recipe for determining which display questions will be asked if a configuration is chosen."""
-  
+   
   nonzero_weight_questions = self.questions_with_weights_greater_than_zero()
   result = []
   all_questions = []
   
   #order all questions, first by nav section, then by rank within that section:
   for s in  AssessmentSection.objects.all():
-    all_questions.extend (s.displayquestion_set.all())
+    all_questions.extend ( s.displayquestion_set.all())
   
   
   #now filter out the ones with weight zero, except if they're special.    
@@ -287,6 +283,7 @@ def configuration_display_questions(self):
     else:
       if display_question.question in nonzero_weight_questions:
         result.append(display_question)
+
        
   return result
 
@@ -304,6 +301,27 @@ def configuration_first_display_question(self):
 Configuration.display_questions = configuration_display_questions
 Configuration.first_display_question = configuration_first_display_question
 
+
+
+
+def configuration_url_list(self, language_code):
+  """A list of URLs to visit for each configuration. This will be used for navigation."""
+  from django.core.urlresolvers import reverse
+  from collection_tool.views import question as question_view
+  from collection_tool.views import section as section_view
+  result = []
+  nonzero_weight_questions = self.questions_with_weights_greater_than_zero()
+  for s in  AssessmentSection.objects.all():
+    result.append(reverse(section_view, kwargs = {'section_id': s.id, 'language_code': language_code }))
+    for dq in s.displayquestion_set.all():
+      if dq.display_regardless_of_weight:
+        result.append(reverse(question_view, kwargs={'displayquestion_id': dq.id, 'language_code': language_code}))
+      else:
+        if dq.question in nonzero_weight_questions:
+          result.append(reverse(question_view, kwargs={'displayquestion_id': dq.id, 'language_code': language_code}))
+  return result
+
+Configuration.url_list = configuration_url_list  
 
 
 
@@ -410,50 +428,50 @@ class DisplayQuestion(models.Model):
   def dir(self):
     return dir(self)
   
-  
-  #TODO these next and prev aren't used, except i think in the index pages of the
-  # data collection tool. remove.
-  @property
-  def next(self):
-    """ return the next question in order by nav section, then rank."""
-    all_numbers = all_display_question_ids_in_order()
-    
-    
-    if self.id not in all_numbers:
-      return None
-    
-    next_index = all_numbers.index(self.id) + 1
-    
-    if next_index == len(all_numbers):
-      return None
-    
-    try:
-      return DisplayQuestion.objects.get(id=all_numbers[next_index])
-    except:
-      return None
+  if 1 == 0:
+          #TODO these next and prev aren't used, except i think in the index pages of the
+          # data collection tool. remove.
+          @property
+          def next(self):
+            """ return the next question in order by nav section, then rank."""
+            all_numbers = all_display_question_ids_in_order()
+            
+            
+            if self.id not in all_numbers:
+              return None
+            
+            next_index = all_numbers.index(self.id) + 1
+            
+            if next_index == len(all_numbers):
+              return None
+            
+            try:
+              return DisplayQuestion.objects.get(id=all_numbers[next_index])
+            except:
+              return None
 
-  @property
-  def prev(self):
-    """ return the previous question in order by nav section, then rank."""
-    all_numbers = all_display_question_ids_in_order()
-    #
-    #import pdb
-    #pdb.set_trace()
-    #
-    # if this question hasn't been assigned a section, i can't assign it an order
-    # in the collection tool, so just return none.
-    if self.id not in all_numbers:
-      return None
-    
-    prev_index = all_numbers.index(self.id) - 1
-    
-    
-    if prev_index == -1:
-      return None
-    try:
-      return DisplayQuestion.objects.get(id=all_numbers[prev_index])
-    except:
-      return None
+          @property
+          def prev(self):
+            """ return the previous question in order by nav section, then rank."""
+            all_numbers = all_display_question_ids_in_order()
+            #
+            #import pdb
+            #pdb.set_trace()
+            #
+            # if this question hasn't been assigned a section, i can't assign it an order
+            # in the collection tool, so just return none.
+            if self.id not in all_numbers:
+              return None
+            
+            prev_index = all_numbers.index(self.id) - 1
+            
+            
+            if prev_index == -1:
+              return None
+            try:
+              return DisplayQuestion.objects.get(id=all_numbers[prev_index])
+            except:
+              return None
     
 
 

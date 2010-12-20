@@ -1,43 +1,72 @@
 {% extends "family_info/base.html" %}
 {%load smartif%}
 {% block family_info_content %}
-		
-
 <fieldset>
 
 	<legend>All Families</legend>
 		<table class="users">
 									
-		{% if error_message %}
-		<tr>
-			<td colspan = "3" class="error_message">{{error_message}}</td>
-		</tr>
-		{%endif%}
-		{% if just_finished_visit %}
-		<tr style="display:none;">
-		  <td colspan="3"><span id="just_finished_visit">{{just_finished_visit.pk}}</span></td>
-		</tr>
-		{% endif %}
+		      {% if error_message %}
+		        <tr>
+			        <td colspan = "3" class="error_message">{{error_message}}</td>
+		        </tr>
+		      {%endif%}
+
+		      {% if just_finished_visit %}
+		        <tr style="display:none">
+              <!-- this is used for Ethan's selenium tests. -->
+		          <td colspan="3"><span id="just_finished_visit">{{just_finished_visit.pk}}</span></td>
+		        </tr>
+	          <tr >
+		          <td class = "interview_done" colspan="3"> Visit #{{just_finished_visit.pk}} finished; 
+		          {{just_finished_visit.response_set.all|length}} response{{ just_finished_visit.response_set.all|length|pluralize}}
+		          {{just_finished_visit.response_set.all|length|pluralize:"was,were"}} recorded.</td>
+		        </tr>
+	          <script language ="javascript" >  
+	            localStorage.clear();
+              //alert ("CLEARED LOCAL STORAGE");	         
+	          </script>
+		      {% endif %}
 			
-		  <tr>
-			<td><a href = "/family_info/new_family" >+ Add a Family</a></td>
-			<td></td>
-			<td></td>
-			</tr>
-			    <form action="/family_info/start_interview" method="post" >
+          {%if user.current_visit%}
+		          <tr>
+			          <td>
+                 <a href ="/family_info/dashboard/" class = "green_button"> Resume your visit with famil{{ user.current_visit.families.all|length|pluralize:"y,ies" }} {%for f in user.current_visit.families.all%}
+                 {% if     forloop.last and not forloop.first %}and{%endif%}
+                 {% if not forloop.last and not forloop.first %},{%endif%}
+                 {{f.study_id_number}}
+                 {%endfor%}</a>
+                 </td>
+			          <td></td>
+			          <td></td>
+			          </tr>
+          {%endif %}
+
+			    <form action="/family_info/start_interview/" method="post" >
+			    
+                {%if not user.current_visit%}
+	            <tr>
+	              <td class="action" colspan = "3">
+	               <input  style="background-color: #063; color: #fff; font-weight: bold" type="submit"
+			      id="main_submit_button" value ="Start visit"
+	               />
+	              </td>
+	            </tr>
+	             {%endif%}
+			    
 	            {%for family in families %}
 	              <tr>
+	              
 	                <td>
                       <span title = "currently being visited by: {{family.interviewer.first_name}} {{family.interviewer.last_name}}">
                       
                       {%if family.interviewer%}
-	                
-	                    {% if family.interviewer == user %}
-	                        <img src ='http://icons.iconarchive.com/icons/aha-soft/security/16/lock-icon.png' /> (You)
-	                    {%else %}
-	                        <img src ='http://icons.iconarchive.com/icons/aha-soft/security/16/lock-icon.png' />({{family.interviewer.first_name}})
-                      {%endif %}
-                      
+                       <img src ='/family_info/media/images/lock.png' />
+                          {% if family.interviewer == user %}
+                              (You)
+                          {%else %}
+                             ({{family.interviewer.first_name}})
+                          {%endif %}
                       </span> 
 	                    {%else %}
 	                      {%if not user.current_visit%}
@@ -60,35 +89,25 @@
 	            {%endfor %}
 	           
 	            
-	            <tr>
-	              <td class="action" colspan = "3">
-	               <input  style="background-color: #063; color: #fff; font-weight: bold" type="submit"
-			      id="main_submit_button"
-                {%if user.current_visit%}
-                  value ="Resume your visit with families {%for f in user.current_visit.families.all%}{{f.study_id_number}}{% if forloop.last %}{%else%} and {%endif%}{%endfor%}"
-                {%else %}
-	               value ="Start visit"
-	               {%endif%}
-	               />
-	               <!--<input type="reset" value ="Reset" />-->
-	              </td>
-	            </tr>
 	        </form>
-	  
-	
+	        
+      
+			
+		  <tr>
+			<td><a href = "/family_info/new_family" >+ Add a Family</a></td>
+			<td></td>
+			<td></td>
+			</tr>
+	        
 	</table>
 </fieldset>
 					
 <div>
-
-</div>		
-					
-<fieldset>
-					
-	<legend>Health Workers</legend>
+</div>	
 	
+<fieldset>
+	<legend>Health Workers</legend>
 		<table class="users">
-			
 			<tr>
 			<td><a href="/family_info/new_user" >+ Add a Health Worker</a></td>
 			<td></td>
@@ -100,14 +119,8 @@
 			<td><a href = "/family_info/edit_user/{{worker.id}}">Edit</a></td>
 			</tr>
 			{%endfor%}
-
 		</table>
-					
 </fieldset>
-					
-<script language ="javascript" >
-localStorage.clear();
-</script>
 
 
 {% endblock family_info_content %}

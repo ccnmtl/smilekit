@@ -160,18 +160,18 @@ function init() {
       }
     }
     
-    
-    
-      if (questions == null) {
-        alert ("Can't find list of questions for family " + family_id);
-        $('#left').hide();
-        $('#right').hide();
-        return;
-      }
-    
+  
+  
+    if (questions == null) {
+      alert ("Can't find list of questions for family " + family_id);
+      $('#left').hide();
+      $('#right').hide();
+      return;
+    }
+  
     
     if ($('#family_id_nav_display')) {
-      $('#family_id_nav_display').html( 'Family #' + family_study_id )
+      $('#family_id_nav_display').html( 'Family #' + family_study_id );
     }
       
     

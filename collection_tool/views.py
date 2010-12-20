@@ -276,8 +276,6 @@ def manifest(request):
     'nav_section_ids' :           nav_section_ids,
     'planner_labels' :            planner_labels,
     'goals' :                     Goal.objects.all(),
-    # this was breaking on questions that weren't part of the nav:
-    # 'question_ids':              [d.id for d in DisplayQuestion.objects.all()],
     'question_ids':               all_display_question_ids_in_order(),
     'randomnumber' :              random.randint(0, 9999999999)
   })

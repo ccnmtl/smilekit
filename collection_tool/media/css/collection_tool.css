@@ -946,8 +946,6 @@ li.goal_div
 }
 
 
-
-/*eddie adding */
 .topic_div_learn a,  #set_goal_div a
 {	
 	border: 1px solid 000;
@@ -1178,6 +1176,11 @@ table#materialstable th,table#materialstable td
 	border: 1px #ccc solid;
 	padding: 10px;
 	text-align: center;
+}
+
+.error_message {
+	font-size: 24px;
+  
 }
 
 

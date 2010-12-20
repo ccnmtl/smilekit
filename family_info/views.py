@@ -301,9 +301,7 @@ def edit_family(request, **kwargs):
 @login_required
 def start_interview(request, **kwargs):
     rp = request.POST
-    
     my_happening_visits =     [ v for v in request.user.visit_set.all() if v.is_happening]
-    
     #can't start an interview if i'm already interviewing someone else:
     if len (my_happening_visits) == 0:
     
@@ -313,14 +311,11 @@ def start_interview(request, **kwargs):
         if len(the_families) == 0:
           my_args = {'error_message' : 'Please check at least one family.'}
           return families (request, **my_args)
-
         
         #double-check nobody else started an interview with any of these families since you arrived on the page.
         if [fam for fam in the_families if fam.in_a_visit]:
           my_args = {'error_message' : 'Sorry, one of these families is already being visited.'}
           return families (request, **my_args)
-        
-
 
         interviewer = request.user
         new_visit = Visit(interviewer=request.user)
@@ -354,17 +349,6 @@ def dashboard (request):
   t = loader.get_template('family_info/dashboard.html')
   return HttpResponse(t.render(c))
 
-
-#TODO is this ever used??? Try deleting.      
-#TODO misspelled!! interivew!!
-@login_required
-def wrap_up_interivew(request, **args):
-    """ Show a list of responses for each family, and construct a form that will submit to end_interview_and_go_back_online:"""
-    c = RequestContext(request,  {})
-    t = loader.get_template('family_info/end_interview.html')
-    return HttpResponse(t.render(c))
-    
-    
     
     
 @login_required
@@ -376,8 +360,10 @@ def end_interview(request, **args):
   visits = [ v for v in request.user.visit_set.all() if v.is_happening]
   
   if len(visits) == 0:
-    #back button by mistake after ending an interview:
+    #back button by mistake after ending an interview, or hit refresh.
     #just toss them back to families page.
+    
+    #TODO: actually do a redirect to the families URL so the URL changes.
     return families(request)
   
   assert len (visits) == 1
@@ -398,14 +384,10 @@ def end_interview(request, **args):
         answer_count = answer_count + 1
   
   my_visit.close_now()   
-  assert not my_visit.is_happening
-  
-  if answer_count == 0:
-    my_args = {'error_message' : 'Visit ended.'}
-  else:
-    my_args = {'error_message' : '%d  answers from your visit were sent back.' % answer_count}
-    my_args['just_finished_visit'] = my_visit
 
+  my_args = {}
+  assert not my_visit.is_happening
+  my_args['just_finished_visit'] = my_visit
   return families (request, **my_args)
   
   

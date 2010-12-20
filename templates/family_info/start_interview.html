@@ -3,7 +3,6 @@
 <!-- this file is not cached. -->
 {% block html_element %}{% endblock html_element %}
 
-
 {% block family_info_js %}
 <script src="/collection_tool/media/js/jquery.js" type="text/javascript"></script>
 <script src="/family_info/media/js/cache.js" type="text/javascript"></script>
@@ -17,10 +16,7 @@
 	Families to Visit
 </h2>
 
-
-
-<script  type="text/javascript">
-  
+<script  type="text/javascript">  
   var list_of_questions_json = '[ \
     {% for the_family in families %} \
 	      {{the_family.start_interview_info|safe}}{% if not forloop.last %},{%endif%} \
@@ -32,25 +28,11 @@
       "{{the_family.id}}" : {{the_family.evil_state|safe}} {% if not forloop.last %},{%endif%} \
 	   {% endfor %} \
 	}';
-		
 </script>
 
 <div id="list_of_questions"> 
 	
 </div>
-
-
-{%comment%}
-<div id ="state">
-  {
-    {% for the_family in families %}
-      "{{the_family.id}}" : {{the_family.state}}
-  	  {% if not forloop.last %},{%endif%}
-    {% endfor %}
-  }
-</div>
-{%endcomment %}
-
 
 <table cellspacing="0" id="materialstable">
 	
@@ -70,15 +52,7 @@
 
 		
 <div align="center">
-<br />
-<br />
-<form method="link" action="/family_info/dashboard">
-{%if user.current_visit%}
-<input type="submit" value="Get materials for visit">
-{%endif%}
-
-
-</form>    
+  <a "get_materials_link" href ="{%url family_info.views.dashboard %}">Get materials for visit</a>
 </div>
 
 <script>

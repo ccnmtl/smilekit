@@ -41,15 +41,16 @@ function init_family_info() {
   current_family_id = local_storage_get ( LOCAL_STORAGE_KEY, 'current_family_id' );  
   // we can show this now:
   //$('.visit_button').hide();
-
-  //TODO: remove this. It should be cleared on successful completion of interview on the families page.
-  localStorage.clear();
   
+  //: check to see if local storage is clear
+  if (local_storage_has_data (LOCAL_STORAGE_KEY)) {
+      alert ("Local storage still has data in it. Please visit the Dashboard and end your interview before starting a new one.");
+      disable_interview() ;
+      return;
+  }
   
-  //TODO: check to see if local storage is clear
   // if not, block interview.
-  // get the list of questions from the DATABASE:
-  // STORE IT FOR THE DURATION OF THE INTERVIEW:
+  
   
   try {
     var list_of_questions = JSON.parse(list_of_questions_json);
@@ -87,6 +88,7 @@ function init_family_info() {
 
 function disable_interview() {
   //alert ('bad.');
+  $('#get_materials_link').hide();
 }
 
 

@@ -1,7 +1,13 @@
 from django.db import models
 from django.db.models.signals import post_save
+from django.core.urlresolvers import reverse
+
 import datetime
 import simplejson as json
+
+#from collection_tool.urls import urlpatterns
+#
+
 
 User          = models.get_model('auth','user')
 Configuration = models.get_model('equation_balancer', 'configuration')
@@ -34,12 +40,11 @@ class Family(models.Model):
   
   @property
   def start_interview_info(self):
-    
-    #import pdb
-    #pdb.set_trace()
-    
     all_questions = [dq.id for dq in self.config.display_questions()]
-    first_url = "/collection_tool/question/%d/language/en" % self.config.first_display_question().id
+    first_dq_id = self.config.first_display_question().id
+    
+    from collection_tool.views import question as question_view
+    first_url = reverse(question_view, kwargs={'displayquestion_id': first_dq_id, 'language_code':'en'})
     
     tmp = {
       "first_question_url" : first_url,
@@ -48,7 +53,8 @@ class Family(models.Model):
       "previous_visit_questions" : self.latest_answers,
       "all_questions" : all_questions
     }
-    #double-escape -- this is printed into a string in the template, and passed to the browser's native JSON parser.
+    # double-escape: this is printed into a string in the template, (unescape 1)
+    # which string is passed to the browser's native JSON parser. (unescape 2)
     return_value =  json.dumps(tmp).replace ('\\', '\\\\');
     return return_value;
   
