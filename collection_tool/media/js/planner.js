@@ -112,10 +112,6 @@ function loadState(reset) {
     else { elem.addClass("timerowfood"); }
     jQuery(".activityitems", elem).html(timerow['items']);
   }
-
-  if(reset) {
-    saveState();  // overwrite old planner data
-  }
 }
 
 function setMode(newMode) {
@@ -130,8 +126,9 @@ function resetTimeline(e) {
     jQuery(this).removeClass("timerowfilled");
     var items = jQuery(".activityitems", this);
     items.html("");
-  }
+  });
   loadState(true);
+  saveState();  // overwrite old planner data
   e.preventDefault();
 }
 
