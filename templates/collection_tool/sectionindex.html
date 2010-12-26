@@ -4,7 +4,7 @@
 {% block assessmentnav %}
 	<div id="assessmentnav">
 	{% for s in all_sections %}
-	 <a class="{%if forloop.first%}firsttab{%endif%} {%if forloop.last%}lasttab{%endif%}  {%ifequal section.title s.title %}activetab{%endifequal%}" href="/collection_tool/section/{{s.id}}/language/{{language_code}}">
+	 <a class="{%if forloop.first%}firsttab{%endif%} {%if forloop.last%}lasttab{%endif%}  {%ifequal section.title s.title %}activetab{%endifequal%}" href="/collection_tool/section/{{s.id}}/language/{{language_code}}/">
 	  {%ifequal language_code 'en'%}
 		      {{s.english_title}}
 		{%endifequal%}
@@ -22,11 +22,11 @@
 
 {% block language_toggle %}
 		{%ifequal language_code 'en'%}
-		<a href="/collection_tool/section/{{section.id}}/language/es">espa&#241;ol</a>
+		<a href="/collection_tool/section/{{section.id}}/language/es/">espa&#241;ol</a>
 		{%endifequal%}
 					
 		{%ifequal language_code 'es'%}
-			<a href="/collection_tool/section/{{section.id}}/language/en">english</a>
+			<a href="/collection_tool/section/{{section.id}}/language/en/">english</a>
 		{%endifequal%}
 {% endblock %}
 
@@ -43,21 +43,22 @@
 		<div id="content">
 			
 		
-      <div class="section_description">
-		    {%ifequal language_code 'en'%}
-		          {{section.english_description}}
-		    {%endifequal%}
-		    {%ifequal language_code 'es'%}
-			        {{section.spanish_description}}
-		    {%endifequal%}
-      </div>			
+			 <div class="section_description">
+				    {%ifequal language_code 'en'%}
+						<p><b>{{section.english_description}}</b></p>
+				    {%endifequal%}
+				    {%ifequal language_code 'es'%}
+						<p><b>{{section.spanish_description}}</b></p>
+				    {%endifequal%}
+			 </div>			
 			
-			{% spaceless %}
 			
 			<div class="contentbuttons">
+			{% spaceless %}
+			
 			 {% for q in section.displayquestion_set.all%}
 			   <!--  'contentbuttoncomplete' is added by javascript ... TODO: add info re: scoring here in title-->
-				  <a href="/collection_tool/question/{{q.id}}/language/{{language_code}}" 
+				  <a style="display: block;" href="/collection_tool/question/{{q.id}}/language/{{language_code}}/" 
 				  class="contentbutton display_question_id_{{q.id}} question_id_{{q.question.id}}" 
 				  id = "question_{{q.id}}"
 				  
@@ -65,8 +66,8 @@
 				  {%ifequal language_code 'en'%}{{q.english}}{%endifequal%}
 		      {%ifequal language_code 'es'%}{{q.spanish}}{%endifequal%}
 		      </a>
-				{%endfor %}
-		{% endspaceless %}
+			{%endfor %}
+				
 					
 					
 
@@ -77,7 +78,7 @@
 				<div><img id="online_or_not" src="/collection_tool/media/images/icon_offline.jpg" ></div>
 			</div>
 			
-					
+		{% endspaceless %}
 					
 			</div>
 			

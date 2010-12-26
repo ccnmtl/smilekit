@@ -266,8 +266,11 @@ def manifest(request):
   planner_labels = [i.label for i in PlannerItem.objects.all()]
 
   response = HttpResponse(mimetype='text/cache-manifest')
+  #response = HttpResponse()
+  
   t = loader.get_template('collection_tool/manifest')
   c = RequestContext(request,{
+    'language_codes' : ['en', 'es'],
     'paths_to_question_images' :  paths_to_question_images,
     'paths_to_answer_images' :    paths_to_answer_images,
     'nav_section_ids' :           nav_section_ids,

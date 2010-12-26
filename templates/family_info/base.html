@@ -15,11 +15,18 @@
     <meta name="apple-mobile-web-app-capable" content="yes" /> 
 	  <meta name="apple-mobile-web-app-status-bar-style" content="black" />	
 	  <meta name="viewport" content="width=720, maximum-scale=1.0" />
+	  <style type="text/css">
+input[type="text"], input[type="password"] {
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+}
+</style>
   </head>
   <body>
   <div id="wrapper">
 	  <div id="masthead">
-		  <h1 id="logo"><a href="/">MySmileBuddy</a></h1>
+		<!--<h1 id="logo"><a href="/">MySmileBuddy</a></h1>-->
+		<h1 id="logo">MySmileBuddy</h1>
 		  <div id="mastheadnav">
       {% block language_toggle %}{% endblock %}
 			  <a href="/logout">Log Out</a>

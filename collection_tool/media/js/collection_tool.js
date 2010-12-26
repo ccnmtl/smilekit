@@ -118,7 +118,7 @@ function init_question_nav(questions, display_question_id) {
     $('#left').hide()  
   } else {
     prev_question_id = questions[position_of_prev_question];
-    prev_url = '/collection_tool/question/' + prev_question_id + '/language/' + language_code 
+    prev_url = '/collection_tool/question/' + prev_question_id + '/language/' + language_code  + '/'
     $('#left')[0].href = prev_url
   }
   
@@ -127,7 +127,7 @@ function init_question_nav(questions, display_question_id) {
   }
   else {
     next_question_id = questions[position_of_next_question];
-    next_url = '/collection_tool/question/' + next_question_id + '/language/' + language_code 
+    next_url = '/collection_tool/question/' + next_question_id + '/language/' + language_code + '/'
     $('#right')[0].href = next_url
   }
 

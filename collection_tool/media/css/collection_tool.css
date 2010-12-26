@@ -3,6 +3,10 @@
 #debugstuff {display: none;}
 
 /********/
+input[type="text"], input[type="password"] {
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+}
 
 body
 {
@@ -56,6 +60,7 @@ div#list_of_questions {
 	top: -22px;
 	left: -20px;
 	background-image: url(/collection_tool/media/images/logo_mysmilebuddy.png);
+	text-indent: -2000px;
 }
 
 #masthead h1 a
@@ -943,7 +948,7 @@ li.goal_div
 
 
 /*eddie adding */
-.topic_div_learn a
+.topic_div_learn a,  #set_goal_div a
 {	
 	border: 1px solid 000;
 	width: 300px;
@@ -964,8 +969,14 @@ li.goal_div
 }
 
 
+.goal_textfield {
+  width : 300px;
+}
 
 
+textarea.goal_textfield {
+  height: 100px;
+}
 
 /********/
 
@@ -984,16 +995,12 @@ fieldset, legend {
 
 fieldset {
 	margin: 20px 0px 0px 0px;
-	background: -webkit-gradient(linear, left top, left bottom, from(#eee), to(#fff));
-	background: -moz-linear-gradient(top, #eee, #fff);
 	padding: 20px;
 }
 
 legend {
 	padding: 5px 10px 5px 10px;
 	font-weight: bold;
-	background: -webkit-gradient(linear, left top, left bottom, from(#f5f5f7), to(#c1c4c3));
-	background: -moz-linear-gradient(top, #f5f5f7, #c1c4c3);
 	color: #333;
 	text-shadow: #fff 1px 1px 1px;
 	font-weight: bold;

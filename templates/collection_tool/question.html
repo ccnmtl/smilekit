@@ -16,7 +16,7 @@
 {% block assessmentnav %}
 	<div id="assessmentnav">
 	{% for s in all_sections %}
-	 <a class="{%if forloop.first%}firsttab{%endif%} {%if forloop.last%}lasttab{%endif%}    {%ifequal displayquestion.nav_section.title s.title %}activetab{%endifequal%}" href="/collection_tool/section/{{s.id}}/language/{{language_code}}">
+	 <a class="{%if forloop.first%}firsttab{%endif%} {%if forloop.last%}lasttab{%endif%}    {%ifequal displayquestion.nav_section.title s.title %}activetab{%endifequal%}" href="/collection_tool/section/{{s.id}}/language/{{language_code}}/">
 	  {%ifequal language_code 'en'%}{{s.english_title}}{%endifequal%}
 		{%ifequal language_code 'es'%}{{s.spanish_title}}{%endifequal%}
 		</a>
@@ -27,11 +27,11 @@
 
 {% block language_toggle %}
 		{%ifequal language_code 'en'%}
-		<a href="/collection_tool/question/{{displayquestion.id}}/language/es">espa&#241;ol</a>
+		<a href="/collection_tool/question/{{displayquestion.id}}/language/es/">espa&#241;ol</a>
 		{%endifequal%}
 					
 		{%ifequal language_code 'es'%}
-			<a href="/collection_tool/question/{{displayquestion.id}}/language/en">english</a>
+			<a href="/collection_tool/question/{{displayquestion.id}}/language/en/">english</a>
 		{%endifequal%}
 {% endblock %}
 
@@ -103,7 +103,7 @@
                 {% include "collection_tool/stock_answers_es.html" %}
               {% endifequal %}
             {% else %}
-              <a href="#" id="answer_{{a.id}}" class="contentbutton">{{a.wording}}</a>
+              <a href="#" id="answer_{{a.id}}" class="contentbutton">{{a.wording}}</a><br clear="all" />
               {% if a.image %}<img src="/uploads/{{a.image}}"/>{%endif%}
             {%endif%}
           {%endfor%}
