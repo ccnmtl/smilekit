@@ -16,7 +16,13 @@
 				   {% for item in type.list %}
 		    	   <div class="thumbnail" id="item-{{item.id}}">
 					  <div class="thumbnailimage" id="item-{{item.id}}-image"><img alt="" src="/collection_tool/media/images/planner/{{item.label|slugify}}.jpg" /></div>
+                                            {% ifequal language_code 'en' %}
 					  <span class="thumbnaillabel" id="item-{{item.id}}-label">{{ item.label }}</span>
+                                            {% endifequal %}
+                                            {% ifequal language_code 'es' %}
+					  <span class="thumbnaillabel" id="item-{{item.id}}-label">{{ item.spanish_label }}</span>
+                                            {% endifequal %}
+                                          </span>
 					  <input type="hidden" id="item-{{item.id}}-risk" value="{{item.risk_level}}" />
 				   </div>
 				   {% endfor %}
