@@ -608,9 +608,15 @@ class PlannerItem(models.Model):
     return "%s: %s" % (self.get_type_display(), self.label)
 
   TYPE_CHOICES = ( ('A', 'Fluoride'), ('B', 'Foods'), ('C', 'Drinks'))
+  SPANISH_TYPES = ( ('A', 'Fluoruro'), ('B', 'Los Alimentos'), ('C', 'Bebidas') )
   type = models.CharField(max_length=1, choices=TYPE_CHOICES)
+
+  def get_spanish_type(self):
+    return [label[1] for label in self.SPANISH_TYPES if label[0] == self.type][0]
+
   label = models.TextField()
   spanish_label = models.TextField()
+
   risk_level = models.IntegerField()
   #image = models.ImageField(upload_to='answer_images',blank=True,null=True)
   # for now, image is just assumed to be "slugified_label.jpg"
