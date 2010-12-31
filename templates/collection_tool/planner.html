@@ -14,9 +14,10 @@
         {% endifnotequal %}
 
           {% for type in item_list %}
-
-		    <div class="photobox" id="photobox-{{type.grouper|lower}}">
-			  <div class="photoboxcontainer" id="photoboxcontainer-{{type.grouper|slugify}}">
+             {% with type.list|first as groupname %}
+		    <div class="photobox" id="photobox-{{groupname.get_type_display|slugify }}">
+			  <div class="photoboxcontainer" id="photoboxcontainer-{{groupname.get_type_display|slugify}}">
+             {% endwith %}
   	          <div class="photoboxhideshow">-</div>
 			    <div class="photoboxlabel">{{ type.grouper }}</div>
 
