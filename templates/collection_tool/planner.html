@@ -56,8 +56,22 @@
 				<div class="timeactivity">
 				  <span class="timetext">
 				    <span class="mealorsnack">
-				      <span class="label-snack">Snack</span>
-				      <span class="label-meal">Meal</span>
+				      <span class="label-snack">
+                                        {% ifequal language_code 'es' %}
+                                          Snack
+                                        {% endifequal %}
+                                        {% ifnotequal language_code 'es' %}
+                                          Snack
+                                        {% endifnotequal %}
+                                      </span>
+				      <span class="label-meal">
+                                        {% ifequal language_code 'es' %}
+                                          Comida
+                                        {% endifequal %}
+                                        {% ifnotequal language_code 'es' %}
+                                          Meal
+                                        {% endifnotequal %}
+                                      </span>
 				    </span>
 				    <span class="activityitems"></span>
 				  </span>

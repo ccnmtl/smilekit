@@ -354,11 +354,6 @@ function editMeal() {
   var mealorsnack = jQuery('.mealorsnack', jQuery(this).parent());
   jQuery(".label-meal", mealorsnack).toggle();
   jQuery(".label-snack", mealorsnack).toggle();
-  /*if(mealorsnack.html() == "\<span\ id\=\"label-meal\"\>Meal\<\/span\>") {
-    mealorsnack.html("<span id=\"label-snack\">Snack</span>");
-  } else {
-    mealorsnack.html("<span id=\"label-meal\">Meal</span>");
-  }*/
   
   saveState();
 }
