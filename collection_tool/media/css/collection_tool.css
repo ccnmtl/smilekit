@@ -242,7 +242,6 @@ div#list_of_questions {
 	color: #000;
 	font-weight: bold;
 	padding-bottom: 50px;
-	border-right: 2px solid #fff;
 }
 
 /********/
@@ -282,7 +281,6 @@ div#list_of_questions {
 	color: #000;
 	font-weight: bold;
 	padding-bottom: 50px;
-	border-right: 2px solid #fff;
 }
 
 
@@ -1190,13 +1188,112 @@ table#materialstable th,table#materialstable td
 
 /* start - orientation-specific styles */
 
+@media all and (orientation:portrait)
+{
+	/*#planner {height: 850px;}*/
+	
+	div#timetable .time { width: 170px; }
+	
+	.arrowopen
+	{
+		background-image: url(/collection_tool/media/images/toggle_arrow_open.png);
+		left: 170px;
+	}
+	
+	.arrowclose
+	{
+		background-image: url(/collection_tool/media/images/toggle_arrow_close.png);
+		right: -20px;
+	}
+	
+	#plannerright { width: 500px !important; }
+	
+	#plannerleft { margin-right: 20px !important; }
+	
+	
+	/*div#timetable .timerowfilled .timeactivity .timetext
+	       {       
+	               text-overflow: ellipsis !important;
+	               overflow: hidden;
+	               white-space: nowrap;
+	               width: 80px;    
+	       }
+	       */
+	
+	.photobox { max-width: 620px; }
+	
+	.activityitems { max-width: 160px; }
+	
+	div#timetable .timerowfilled .timeactivity { left: 180px; }
+	
+	.horizontalphotocontainer { padding-left: 50px; }
+}
+
 @media all and (orientation:landscape)
 {
-	.horizontalphotocontainer
+	/*#planner {height: 600px;}*/
+	
+	div#timetable .time { width: 190px; }
+	
+	.arrowopen
 	{
-		padding-left: 40px;
-		
+		background-image: url(/collection_tool/media/images/toggle_arrow_open.png);
+		left: 190px;
 	}
+	
+	.arrowclose
+	{
+		background-image: url(/collection_tool/media/images/toggle_arrow_close.png);
+		right: -20px;
+	}
+	
+	#plannerright { width: 730px !important; }
+	
+	#plannerleft { margin-right: 20px !important; }
+	
+	.photobox { max-width: 840px; }
+	
+	.activityitems { max-width: 380px; }
+	
+	div#timetable .timerowfilled .timeactivity { left: 200px; }
+	
+	.horizontalphotocontainer { padding-left: 40px; }
 }
 
 /* stop - orientation-specific styles */
+
+
+/* start - print-specific flat page styles */
+
+@media print 
+
+{
+
+	body {background-color: #fff;}
+	
+	#mainnav {display: none;}
+	
+	#mastheadnav a {display: none;}
+	
+	#assessmentnav {display: none;}
+	
+	#planningnav {display: none;}
+	
+	#contentnav {display: none;}
+	
+	a#help_close {display: none !important;}
+	
+	a.learn_more_close_button {display: none !important;}
+	
+	.learn_more_help_content {
+	
+		-moz-box-shadow: none;
+		-webkit-box-shadow: none;
+		margin-top: 70px;
+	}
+
+}
+
+/* stop - print-specific flat page styles */
+
+
