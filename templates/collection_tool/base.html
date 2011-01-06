@@ -10,9 +10,7 @@
   <script type="text/javascript" src="/site_media/js/smilekit_common.js"></script>
 {% block collection_tool_js %}
 {% endblock collection_tool_js %}
-
 	<link type="image/png" rel="apple-touch-icon" href="/collection_tool/media/images/mysmilebuddy_icon.png" />
-	
 	<meta name="apple-mobile-web-app-capable" content="yes" /> 
 	<meta name="apple-mobile-web-app-status-bar-style" content="black" />	
 	<meta name="viewport" content="width=720, maximum-scale=1.0" />
@@ -45,17 +43,36 @@
 	</div>
 
 
-{% block mainnav %}
-	<div id="mainnav">
-    {% block mainnav_introtab %}
-		<a id="introductiontab" class="mainfirsttab" href="/collection_tool/introduction/">Introduction</a>
-    {% endblock %}
-		<a id="assessmenttab" class="assessmenttab" href="/collection_tool/section/1/language/en/">Assessment</a>
-		<a id="risktab" class="risktab" href="/collection_tool/risk/language/en/">Risk</a>
-		<a id="planningtab" class="mainlasttab" href="/collection_tool/goals/language/en/">Planning</a>
-	</div>
-{% endblock %}
+<div id="mainnav">
+
+
+	<a id="introductiontab" class="{% block introductiontabactive %}{% endblock %} introductiontab mainfirsttab"
 	
+	href="/collection_tool/intro/language/{{language_code}}/">{%ifequal language_code 'en'%}Introduction{%endifequal%}{%ifequal language_code 'es'%}Introduction (es){%endifequal%}</a>
+	
+	
+  <a id="assessmenttab" class="{% block assessmenttabactive %}{% endblock %} assessmenttab"
+  
+  href="/collection_tool/section/1/language/{{language_code}}/">{%ifequal language_code 'en'%}Assessment{%endifequal%}{%ifequal language_code 'es'%}Assessment (es){%endifequal%}</a>
+  
+  
+  <a id="risktab" class="risktab {% block risktabactive %}{% endblock %}"
+  
+  href="/collection_tool/risk/language/{{language_code}}/">{%ifequal language_code 'en'%}Risk{%endifequal%}{%ifequal language_code 'es'%}Risk (es){%endifequal%}</a>
+  
+  
+  <a id="planningtab" class="{% block planningtabactive %}{% endblock %} planningtab mainlasttab"
+  
+  href="/collection_tool/goals/language/{{language_code}}/">{%ifequal language_code 'en'%}Planning{%endifequal%}{%ifequal language_code 'es'%}Planning (es){%endifequal%}</a>
+
+
+</div>
+	
+
+
+
+
+
 
 
 {% block assessmentnav %}

@@ -1,27 +1,9 @@
 
-
-
-
-/*
-TODO: add following goal helper functions:. (Also perhaps move htem to their own JS file??)
-// based on set_goals_data(LOCAL_STORAGE_KEY, family_id, blob) 
-
-function get_goal_data (LOCAL_STORAGE_KEY, family_id, goal_key) {
-        
-}
-function set_goal_data (LOCAL_STORAGE_KEY, family_id, goal_key, goal_string) {
-        
-}
-*/
-
-
 ///FUNCTIONS USED JUST FOR RISK PAGE:
 function init() {
     
     $('.score_div').hide();
     $('.risk_div').hide();
-    $('#contentnav').hide();
-    
     
     family_configs = JSON.parse($('#family_configs')[0].innerHTML);
     scoring_info   = JSON.parse($('#scoring_info')[0].innerHTML  );
@@ -36,8 +18,11 @@ function init() {
     for (i = 0; i < all_questions.length; i = i + 1) {
         if (all_questions[i].family_id == family_id) {
             questions = all_questions[i].all_questions;
+            family_url_list = all_questions[i]['url_list'];
         }
     }
+    set_nav_urls (prev_next_url (family_url_list));
+    
     if (questions == null) {
       alert ("Can't find list of questions for family " + family_id);
       return;

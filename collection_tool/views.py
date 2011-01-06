@@ -7,6 +7,16 @@ from django.template import RequestContext, loader
 import random
 from datetime import datetime, timedelta
 
+def intro(request, language_code):
+  """ Intro (default first ) page of the collection tool."""
+  if language_code not in ['en', 'es']:
+    raise Http404
+  t = loader.get_template('collection_tool/intro.html')
+  c = RequestContext(request,{
+      'language_code': language_code
+  })
+  return HttpResponse(t.render(c))
+
 
 def risk(request, language_code):
   """ Show risk score."""
@@ -65,6 +75,7 @@ def goals(request, language_code):
     raise Http404
   t = loader.get_template('collection_tool/goals.html')
   c = RequestContext(request,{
+      'language_code': language_code,
       'all_goals': Goal.objects.all()
   })
   return HttpResponse(t.render(c))
@@ -263,6 +274,8 @@ def manifest(request):
   
   nav_section_ids = [p.id for p in AssessmentSection.objects.all()]
   
+  question_ids = [dq.id for dq in DisplayQuestion.objects.all()]
+  
   planner_labels = [i.label for i in PlannerItem.objects.all()]
 
   response = HttpResponse(mimetype='text/cache-manifest')
@@ -276,7 +289,7 @@ def manifest(request):
     'nav_section_ids' :           nav_section_ids,
     'planner_labels' :            planner_labels,
     'goals' :                     Goal.objects.all(),
-    'question_ids':               all_display_question_ids_in_order(),
+    'question_ids':               question_ids,
     'randomnumber' :              random.randint(0, 9999999999)
   })
   response.write(t.render(c))

@@ -14,6 +14,7 @@ urlpatterns = patterns('',
       (r'section/(?P<section_id>\d+)/language/(?P<language_code>\w+)/$', 'collection_tool.views.section'), 
       (r'video/(?P<video_filename>\w+)$', 'collection_tool.views.video'),
       
+      (r'intro/language/(?P<language_code>\w+)/$', 'collection_tool.views.intro'),
       (r'risk/language/(?P<language_code>\w+)/$', 'collection_tool.views.risk'),
       (r'topics/language/(?P<language_code>\w+)/$', 'collection_tool.views.topics'),
       (r'goals/language/(?P<language_code>\w+)/$', 'collection_tool.views.goals'),

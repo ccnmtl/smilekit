@@ -143,7 +143,7 @@ function calculate_friendly_score (max_score, min_score, raw_score) {
    friendly_score =    1 + Math.round ( 9.0 * adjusted_score /  range_of_possible_scores ) ;
  
    
-   if (true ) {
+   if (false ) {
        log_wrapper ( "User's raw score is " + raw_score);
        log_wrapper ( "Worst possible score is : " + max_score );
        log_wrapper ( "Best possible score is : " +  min_score );
@@ -156,7 +156,6 @@ function calculate_friendly_score (max_score, min_score, raw_score) {
 function between (x, a, b) {
   return a < x && x <= b;
 }
-
 
 function set_family_id_in_nav ( fam_id) {
   all_questions = local_storage_get (LOCAL_STORAGE_KEY, 'list_of_questions');

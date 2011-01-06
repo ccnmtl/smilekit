@@ -17,6 +17,10 @@
 </h2>
 
 <script  type="text/javascript">  
+
+    //cc = Configuration.objects.all()[1]
+    //asd = cc.url_list('en')
+
   var list_of_questions_json = '[ \
     {% for the_family in families %} \
 	      {{the_family.start_interview_info|safe}}{% if not forloop.last %},{%endif%} \

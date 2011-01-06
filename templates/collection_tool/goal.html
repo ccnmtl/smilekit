@@ -9,14 +9,7 @@
 <script src="/collection_tool/media/js/goal.js" type="text/javascript"></script>
 {% endblock collection_tool_js %}
 
-{% block mainnav %}
-	<div id="mainnav">
-		<a id="introductiontab" class="mainfirsttab" href="/collection_tool/introduction/">Introduction</a>
-		<a id="assessmenttab" class="" href="/collection_tool/">Assessment</a>
-		<a id="risktab" class="" href="/collection_tool/risk/language/en/">Risk</a>
-		<a id="planningtab" class="planningtabactive mainlasttab" href="#">Planning</a>
-	</div>
-{% endblock %}
+{% block planningtabactive %}planningtabactive{% endblock %}
 
 
 {% block language_toggle %}
@@ -30,7 +23,6 @@
 {% endblock %}
 
 {% block collection_tool_content %}
-
 	<div id ="language_code_div">{{language_code}}</div>
 	<div id ="goal_id_div">{{goal.id}}</div>
 	
@@ -41,16 +33,7 @@
 	{%ifequal language_code 'es'%}
 	  <h2 align="center">{{goal.spanish_title}}.</h2>
 	{%endifequal%}
-	<!--
-	
-	Marc has most of this done. This is what needs to be finished: 
-	
-	1. when the user clicks 'learn' the appropriate flat page should open in a box that looks similar to the 'help' box
-	
-	2. on the goal page all the text boxes need to be a bit wider and the one for the four steps needs to be able to be at least 4 lines deep and accept line breaks
 
-	
-	-->
 	
 	<table>
 	    <tr>
@@ -60,7 +43,7 @@
 	          {%endifequal%}
 	
 	          {%ifequal language_code 'es'%}
-	            Cual e su goal?
+	            What is your goal?(es)
 	          {%endifequal%}
 	      </td>
 	      <td>
@@ -74,7 +57,7 @@
 	            What are the four steps it will take to make it happen:
 	          {%endifequal%}
 	          {%ifequal language_code 'es'%}
-	            Cuales son los quatro esteps que precisarase para que se realizara?
+	            What are the four steps it will take to make it happen: (es)
 	          {%endifequal%}
 	      </td>
 	      <td>
@@ -88,7 +71,7 @@
 	        {%endifequal%}
 	   
 	        {%ifequal language_code 'es'%}
-	            Quien sera responsable para este suceso?
+              Who is responsible for this success:	    (es)
 	          {%endifequal%}
 	      </td>
 	      <td>
@@ -103,7 +86,7 @@
               When will this happen?
 	          {%endifequal%}
 	        {%ifequal language_code 'es'%}
-	            Quando acontecera?
+              When will this happen? (es)
 	          {%endifequal%}
 	      </td>
 	      <td>

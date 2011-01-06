@@ -11,8 +11,7 @@ import datetime, sys, pdb, simplejson as json
 
 @login_required
 def families(request, **kwargs):
-    t = loader.get_template('family_info/families.html')
-   
+    t = loader.get_template('family_info/families.html')   
     c = RequestContext(request, {
       'error_message': kwargs.get ('error_message', ''),
       'families': Family.objects.filter(active = True),
@@ -330,12 +329,8 @@ def start_interview(request, **kwargs):
     else:
         the_families = my_happening_visits[0].families.all()
     
-    testval = '{"a_key": "<span id=\\"hello\\">"}';
-    mytest = json.loads(testval);
-    
     c = RequestContext(request, {
-      'families' : the_families,
-      'testval':testval
+      'families' : the_families
      } )
     t = loader.get_template('family_info/start_interview.html')
     return HttpResponse(t.render(c))
@@ -343,8 +338,8 @@ def start_interview(request, **kwargs):
 
 @login_required
 def dashboard (request):
-  """show the list of families page  -- this is just meant to be downloaded."""
-    
+  """this page allows the user to switch between families."""
+  
   c = RequestContext(request, {} )
   t = loader.get_template('family_info/dashboard.html')
   return HttpResponse(t.render(c))

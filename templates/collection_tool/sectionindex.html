@@ -1,6 +1,9 @@
 {% extends "collection_tool/base.html" %}
 {%load smartif%}
 
+
+{% block assessmenttabactive %}assessmenttabactive{% endblock %}
+
 {% block assessmentnav %}
 	<div id="assessmentnav">
 	{% for s in all_sections %}
@@ -40,6 +43,19 @@
 
 
 		{% block collection_tool_content %}
+		
+				<div id="contentnav">
+			  <a id="left" href="">&#8592;</a>
+  	
+  	{%comment %}	
+			      <a id="help" href="javascript:void(0)" onclick="document.getElementById('helpon').style.display='block';">Help!</a>
+        	  {% include "collection_tool/help.html" %}
+			{%endcomment %}
+			
+			  <a id="right" href="">&#8594;</a>
+		</div>
+		
+		
 		<div id="content">
 			
 		

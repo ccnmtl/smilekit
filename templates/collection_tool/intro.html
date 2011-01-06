@@ -1,0 +1,55 @@
+{% extends "collection_tool/base.html" %}
+{%load smartif%}
+
+{% block introductiontabactive %}introductiontabactive{% endblock %}
+
+
+
+{% block language_toggle %}
+		{%ifequal language_code 'en'%}
+		<a href="/collection_tool/intro/language/es/">espa&#241;ol</a>
+		{%endifequal%}
+					
+		{%ifequal language_code 'es'%}
+			<a href="/collection_tool/intro/language/en/">english</a>
+		{%endifequal%}
+{% endblock %}
+
+
+{% block collection_tool_js %}
+<script src="/collection_tool/media/js/jquery.js" type="text/javascript"></script>
+<script src="/family_info/media/js/localstorage.js" type="text/javascript"></script>
+<script src="/collection_tool/media/js/collection_tool.js" type="text/javascript"></script>
+{% endblock collection_tool_js %}
+
+
+
+		{% block collection_tool_content %}
+		
+		<div id="contentnav">
+			          <a id="left" href="">&#8592;</a>
+          	
+          	{%comment %}	
+			              <a id="help" href="javascript:void(0)" onclick="document.getElementById('helpon').style.display='block';">Help!</a>
+                	  {% include "collection_tool/help.html" %}
+	          {%endcomment %}
+			
+			     <a id="right" href=""> &#8594;</a>
+		</div>
+		
+		
+		<div id="content">
+		
+		      {%ifequal language_code 'en'%}
+			       English content
+		      {%endifequal%}
+					
+		      {%ifequal language_code 'es'%}
+			      Spanish content
+		      {%endifequal%}
+				
+			</div>
+			
+		</div>
+
+{% endblock collection_tool_content %}

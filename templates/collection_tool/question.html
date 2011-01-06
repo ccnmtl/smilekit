@@ -13,6 +13,8 @@
 {% endblock collection_tool_js %}
 
 
+{% block assessmenttabactive %}assessmenttabactive{% endblock %}
+
 {% block assessmentnav %}
 	<div id="assessmentnav">
 	{% for s in all_sections %}
@@ -38,7 +40,7 @@
 		{% block collection_tool_content %}
 	
 		<div id="contentnav">
-			  <a id="left" href="">&#8592; Back</a>
+			  <a id="left" href="">&#8592;</a>
   		{%if displayquestion.help_item %}
   		
 			<a id="help" href="javascript:void(0)" onclick="document.getElementById('helpon').style.display='block';">Help!</a>
@@ -46,7 +48,7 @@
 
 			
 			{% include "collection_tool/help.html" %}
-			  <a id="right" href="">Next &#8594;</a>
+			  <a id="right" href=""> &#8594;</a>
 		</div>
 		<div id ="question_id_div">{{displayquestion.question.id}}</div>
 		<div id ="display_question_id_div">{{displayquestion.id}}</div>

@@ -233,7 +233,6 @@ class AssessmentSection(models.Model):
   
 
   ordering_rank = models.IntegerField()
-  
     
   class Meta:
     ordering = ('ordering_rank',)
@@ -244,25 +243,6 @@ class AssessmentSection(models.Model):
     
   def __unicode__(self):
     return self.title
-  
-  if 1 == 0:
-        def display_question_ids(self):
-          """ used for ordering"""
-          return [q.id for q in self.displayquestion_set.all()] 
-          
-      
-    
-
-        def all_display_question_ids_in_order():
-            result = []
-            #order all questions, first by nav section, then by rank within that section:
-            sections = [a for a in AssessmentSection.objects.all()]
-            for a in [s.display_question_ids() for s in sections]:
-              result.extend (a)
-            return result
-    
-
-
 
 def configuration_display_questions(self):
   """This is the recipe for determining which display questions will be asked if a configuration is chosen."""
@@ -302,23 +282,41 @@ Configuration.display_questions = configuration_display_questions
 Configuration.first_display_question = configuration_first_display_question
 
 
-
-
-def configuration_url_list(self, language_code):
-  """A list of URLs to visit for each configuration. This will be used for navigation."""
+def language_url_dict (language_codes, view,  item_label = None, item_id = None):
+  """ a common pattern: returns something that looks like :
+  {   'en': '/collection_tool/section/2/language/en/',
+      'es': '/collection_tool/section/2/language/es/'  }
+  """
   from django.core.urlresolvers import reverse
+  result = {}
+  for lc in language_codes:
+    if item_label:
+      result [lc] = reverse(view, kwargs = {  item_label: item_id,  'language_code': lc })
+    else:
+      result [lc] = reverse(view, kwargs = { 'language_code': lc })
+  return result
+
+
+
+def configuration_url_list(self):
+  """A list of URLs to visit for each configuration. This will be used for navigation."""
+  from collection_tool.views import intro as intro_view
   from collection_tool.views import question as question_view
   from collection_tool.views import section as section_view
+  from collection_tool.views import risk as risk_view
+  language_codes = ['en', 'es']
   result = []
   nonzero_weight_questions = self.questions_with_weights_greater_than_zero()
+  result.append(language_url_dict (language_codes, intro_view))
   for s in  AssessmentSection.objects.all():
-    result.append(reverse(section_view, kwargs = {'section_id': s.id, 'language_code': language_code }))
+    result.append(language_url_dict (language_codes, section_view, 'section_id',  s.id))
     for dq in s.displayquestion_set.all():
       if dq.display_regardless_of_weight:
-        result.append(reverse(question_view, kwargs={'displayquestion_id': dq.id, 'language_code': language_code}))
+        result.append(language_url_dict (language_codes, question_view, 'displayquestion_id', dq.id))
       else:
         if dq.question in nonzero_weight_questions:
-          result.append(reverse(question_view, kwargs={'displayquestion_id': dq.id, 'language_code': language_code}))
+          result.append(language_url_dict (language_codes, question_view, 'displayquestion_id', dq.id))
+  result.append(language_url_dict (language_codes, risk_view))
   return result
 
 Configuration.url_list = configuration_url_list  

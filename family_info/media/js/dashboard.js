@@ -37,6 +37,17 @@ function download_files_into_cache () {
   }
 }
 
+function recent_url (family_id) {
+  return_value = null
+  try {
+     return_value = local_storage_get(LOCAL_STORAGE_KEY, 'list_of_states')[family_id]['analytics_data']['recent_url'];
+    }
+  catch(err) {
+     
+  }
+  return return_value;
+}
+
 function update_debug_localstorage() {
   if ($('#debug_localstorage')[0]) {
     $('#debug_localstorage').html( localStorage [LOCAL_STORAGE_KEY]);
@@ -80,7 +91,8 @@ function set_up_family_links () {
   $.each(list_of_questions , function(key, value) {
      family_study_id_number = value['family_study_id_number'];
      family_id = value['family_id'];
-     url = value ['first_question_url']
+     
+     url = recent_url(family_id) ||  value ['first_question_url'];
 
      new_link = "<p> Family " + family_study_id_number + " ( \
      <span id ='progress_info_for_family_" + family_id + "'> </span> )"
