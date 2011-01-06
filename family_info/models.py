@@ -41,12 +41,14 @@ class Family(models.Model):
   @property
   def start_interview_info(self):
     all_questions = [dq.id for dq in self.config.display_questions()]
-    first_dq_id = self.config.first_display_question().id
+    #first_dq_id = self.config.first_display_question().id
     
-    from collection_tool.views import question as question_view
-    first_url = reverse(question_view, kwargs={'displayquestion_id': first_dq_id, 'language_code':'en'})
+    #from collection_tool.views import question as question_view
     
-    #TODO: get first_url from the saved state.
+    url_list = self.config.url_list()
+    first_url = url_list[0]
+    #first_url = reverse(question_view, kwargs={'displayquestion_id': first_dq_id, 'language_code':'en'})
+    
     
     tmp = {
       "first_question_url" : first_url,
@@ -54,7 +56,7 @@ class Family(models.Model):
       "family_study_id_number" : self.study_id_number,
       "previous_visit_questions" : self.latest_answers,
       "all_questions" : all_questions,
-      "url_list" : self.config.url_list()
+      "url_list" : url_list
     }
     # double-escape: this is printed into a string in the template, (unescape 1)
     # which string is passed to the browser's native JSON parser. (unescape 2)
