@@ -52,20 +52,21 @@
 	  <h2 align="center">{{goal.spanish_title}}.</h2>
 	{%endifequal%}
 
-	<div>
-          <a id='reset' href=''>Reset</a>
 	  {% include "collection_tool/planner.html" %}
-	</div>
 
 	
-	<div align="center">
-  <!--
-  <a href = "/collection_tool/goals/language/{{language_code}}">{%ifequal language_code 'en'%}Set Goal{%endifequal%}{%ifequal language_code 'es'%}Set Goal{%endifequal%}</a>
-  -->
-
-	<!--
-	<a href = "" > Cancel and Start over </a>
-	-->
+	<div align="center" style="clear: both; padding: 20px;">
+	
+		<!--
+		<a href = "/collection_tool/goals/language/{{language_code}}">{%ifequal language_code 'en'%}Set Goal{%endifequal%}{%ifequal language_code 'es'%}Set Goal{%endifequal%}</a>
+		-->
+		
+		<!--
+		<a href = "" > Cancel and Start over </a>
+		-->
+		
+		<a id='reset' href=''>Restore Default Times</a>
+		
 	</div>
     
 
