@@ -283,16 +283,71 @@ span.thumbnaillabel
 }
 
 
+a#reset 
+{
+	padding: 20px;
+	width: 200px;
+	display: block;
+	text-decoration: none;
+	color: #333;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f5f5f7), to(#c1c4c3));
+	background: -moz-linear-gradient(top, #f5f5f7, #c1c4c3);
+	text-shadow: #fff 1px 1px 1px;
+	font-weight: bold;
+	font-size: 16px;
+}
 
 /* start - orientation-specific styles */
+
+@media all and (orientation:portrait)
+{
+	/*#planner {height: 850px;}*/
+	
+	div#timetable .time { width: 170px; }
+	
+	.arrowopen
+	{
+		background-image: url(/collection_tool/media/images/toggle_arrow_open.png);
+		left: 170px;
+	}
+	
+	.arrowclose
+	{
+		background-image: url(/collection_tool/media/images/toggle_arrow_close.png);
+		right: -20px;
+	}
+	
+	#plannerright { width: 500px !important; }
+	
+	#plannerleft { margin-right: 20px !important; }
+	
+	
+	/*div#timetable .timerowfilled .timeactivity .timetext
+	       {       
+	               text-overflow: ellipsis !important;
+	               overflow: hidden;
+	               white-space: nowrap;
+	               width: 80px;    
+	       }
+	       */
+	
+	.photobox { max-width: 620px; }
+	
+	.activityitems { max-width: 160px; }
+	
+	div#timetable .timerowfilled .timeactivity { left: 180px; }
+	
+	.horizontalphotocontainer { padding-left: 50px; }
+}
 
 @media all and (orientation:landscape)
 {
 	/*#planner {height: 600px;}*/
-	div#timetable .time
-	{
-		width: 190px;
-	}
+	
+	div#timetable .time { width: 190px; }
+	
 	.arrowopen
 	{
 		background-image: url(/collection_tool/media/images/toggle_arrow_open.png);
@@ -304,17 +359,18 @@ span.thumbnaillabel
 		background-image: url(/collection_tool/media/images/toggle_arrow_close.png);
 		right: -20px;
 	}
+	
 	#plannerright { width: 730px !important; }
+	
 	#plannerleft { margin-right: 20px !important; }
-	.photobox
-	{
-		max-width: 840px;
-	}
-	.activityitems {max-width: 380px;}
-	div#timetable .timerowfilled .timeactivity
-	{
-		left: 200px;
-	}
+	
+	.photobox { max-width: 840px; }
+	
+	.activityitems { max-width: 380px; }
+	
+	div#timetable .timerowfilled .timeactivity { left: 200px; }
+	
+	.horizontalphotocontainer { padding-left: 40px; }
 }
 
 /* stop - orientation-specific styles */
