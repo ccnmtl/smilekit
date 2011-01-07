@@ -130,7 +130,16 @@
 			{% for worker in health_workers %}
 			<tr>
 			<td>{{worker }}</td>
-			<td><a href = "/family_info/edit_user/{{worker.id}}">Edit</a></td>
+			<td>
+			{% if user.is_staff %}
+			<a href = "/family_info/edit_user/{{worker.id}}">Edit</a>
+      {%else %}
+        {% ifequal user worker %}
+			    <a href = "/family_info/edit_user/{{worker.id}}">My info</a>
+        {% endifequal %}
+			{%endif %}
+
+			</td>
 			</tr>
 			{%endfor%}
 		</table>

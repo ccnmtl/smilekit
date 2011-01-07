@@ -19,13 +19,13 @@
 	{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 	
 	<div id="contentnav">
-		<a id="left" href = "/family_info/families">&larr; Back</a>
+		<a id="left" href = "/family_info/families/">&larr; Back</a>
 	</div>
 
 	{% if family %}
-	<form id="edit_family" action="/family_info/edit_family/{{family.id}}" method="post">
+	<form id="edit_family" action="/family_info/edit_family/{{family.id}}/" method="post">
 	{% else %}
-	<form id="add_family" action="/family_info/insert_family" method="post">
+	<form id="add_family" action="/family_info/insert_family/" method="post">
 	{% endif %}   
       <fieldset>
       
@@ -94,22 +94,6 @@
 			{%endif%}
 			/></td>
 		</tr>
-
-		{% if family %}
-		<tr>
-			<th>Current Family Visit Status</th>
-			<td>
-			<input type="radio" name="active" value="True"  {% if family.active %}checked{%endif %}>Actively Visiting
-			<input type="radio" name="active" value="False" {% if not family.active%}checked{%endif %}> Not Visiting
-			</td>
-		</tr>
-		<tr>
-			<th></th>
-			<td><span class="prompt">(Check the "inactive" button to "delete" a family.)</span></td>
-		</tr>
-		{% endif %}
-		
-  
 	</table>
 	
       </fieldset>

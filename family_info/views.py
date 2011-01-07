@@ -86,47 +86,46 @@ def edit_user(request, **kwargs):
         new_password = None
         if rp.has_key ('password') and rp['password'] != '':
             if rp['password'] != rp['password_2']:
-                kwargs['error_message'] = 'Please type the new password twice.'
-                return back_to_edit_user  ( request, **kwargs)
+                err = 'Please type the new password twice.'
+                return back_to_edit_user  ( request, the_user = the_user, error_message = err)
             
             elif " " in rp['password']:
-                kwargs['error_message'] = 'Passwords cannot contain spaces.'
-                return back_to_edit_user  ( request, **kwargs)
+                err  = 'Passwords cannot contain spaces.'
+                return back_to_edit_user  ( request, the_user = the_user, error_message = err)
                 
             else:
                 new_password = rp['password']
     
+        if " " in  rp['username']:
+            return back_to_edit_user  ( request, the_user = the_user, error_message= 'User name cannot contain spaces.')
+        
+        if  rp['username'] !=  rp['username'].lower():
+            return back_to_edit_user  ( request, the_user = the_user, error_message='User name cannot contain uppercase letters.')
+        
+        if the_user.username != rp['username'] and len (User.objects.filter(username=rp['username'])) > 0:
+            err =  'Sorry, %s is already in use. Please try another name.' % rp['username']
+            return back_to_edit_user  ( request, the_user = the_user, error_message = err)
+    
+    
         try:
-            if " " in  rp['username']:
-                kwargs['error_message'] = 'User name cannot contain spaces.'
-                return back_to_edit_user  ( request, **kwargs)
-            
-            if  rp['username'] !=  rp['username'].lower():
-                kwargs['error_message'] = 'User name cannot contain uppercase letters.'
-                return back_to_edit_user  ( request, **kwargs)
-            
-            if the_user.username != rp['username'] and len (User.objects.filter(username=rp['username'])) > 0:
-                kwargs['error_message'] = 'Sorry, %s is already in use. Please try another name.' % rp['username']
-                return back_to_edit_user  ( request, **kwargs)
-        
-        
-        
-            the_user.first_name = rp['first_name']
-            the_user.username = rp['username']
-            the_user.last_name = rp['last_name']
-            the_user.is_active = (rp['is_active'] == 'True')
-            if new_password != None:
-              the_user.set_password (new_password)
-            the_user.save()
-            error_message = 'Your changes were saved.'
-            
+          the_user.first_name = rp['first_name']
+          the_user.username = rp['username']
+          the_user.last_name = rp['last_name']
+          if new_password != None:
+            the_user.set_password (new_password)
+          the_user.save()
+          error_message = 'Your changes were saved.'
+          
         except:
-            return back_to_edit_user (request, the_user = the_user, error_message =  "Error: %s" % sys.exc_info()[1])
+          # misc. database errors:
+          return back_to_edit_user (request, the_user = the_user, error_message =  "Error: %s" % sys.exc_info()[1])
+          
+          
     return back_to_edit_user  ( request, the_user = the_user, error_message= error_message)
 
 @login_required
 def back_to_edit_user (request, **kwargs):
-    assert kwargs.has_key ('the_user')
+    #assert kwargs.has_key ('user_id')
     varz ={}
     varz.update(kwargs)
     c = RequestContext(request, varz)
@@ -266,8 +265,6 @@ def edit_family(request, **kwargs):
                 )
                 
                 return back_to_edit_user  ( request, user, error_message)
-        
-            the_family.active                             = (rp['active'] == 'True')
             the_family.mother_born_in_us                  = (rp['mother_born_in_us'] == 'True')
             the_family.food_stamps_in_last_year           = (rp['food_stamps_in_last_year'] == 'True')
             the_family.study_id_number                    = rp['study_id_number']
