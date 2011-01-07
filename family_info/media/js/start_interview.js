@@ -17,14 +17,12 @@ function update_debug_localstorage() {
 function function_maker (id) {
   my_new_func = function () {
     local_storage_set ( LOCAL_STORAGE_KEY, 'current_family_id', id);
-    //alert ("Setting current family id to " + id);
   }
   return my_new_func
 }
 
 function hook_up_form (form) {
   id = form.id
-  //alert ("Hooking up form " + id);
   $('#' + id ).submit(function_maker(id));
 
 }
@@ -32,25 +30,19 @@ function hook_up_form (form) {
 
 function init_family_info() {
   add_keys();
-  //console.log('init family info:');
   $.map( $('.start_visit_form') , hook_up_form); 
   if (typeof (local_storage_get) == "undefined") {
     alert ('localstorageget not found.'); 
     return;
   }
-  current_family_id = local_storage_get ( LOCAL_STORAGE_KEY, 'current_family_id' );  
-  // we can show this now:
-  //$('.visit_button').hide();
-  
-  //: check to see if local storage is clear
+  current_family_id = local_storage_get ( LOCAL_STORAGE_KEY, 'current_family_id' );
   if (local_storage_has_data (LOCAL_STORAGE_KEY)) {
+      // Don't overwrite info from a previous interview.
+      // this may never occur any more as we're preventing this case from the families page already.
       alert ("Local storage still has data in it. Please visit the Dashboard and end your interview before starting a new one.");
       disable_interview() ;
       return;
   }
-  
-  // if not, block interview.
-  
   
   try {
     var list_of_questions = JSON.parse(list_of_questions_json);
@@ -73,21 +65,16 @@ function init_family_info() {
   if (local_storage_get(LOCAL_STORAGE_KEY, 'list_of_questions') == null) {
     alert ("Unable to save the list of questions.");
     disable_interview() ;
-  } else {
-    //alert ("ok");
   }
   
   if (local_storage_get(LOCAL_STORAGE_KEY, 'list_of_states') == null) {
     alert ("Unable to save the list of states.");
     disable_interview() ;
-  } else {
-    //alert ("ok");
   }
   
 }
 
 function disable_interview() {
-  //alert ('bad.');
   $('#get_materials_link').hide();
 }
 

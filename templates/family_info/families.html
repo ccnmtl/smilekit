@@ -6,12 +6,9 @@
 	<legend>All Families</legend>
 		<table class="users">
 									
-		      {% if error_message %}
 		        <tr>
-			        <td colspan = "3" class="error_message">{{error_message}}</td>
+			        <td colspan = "3" class="error_message" id = "error_message">{{error_message}}</td>
 		        </tr>
-		      {%endif%}
-
 		      {% if just_finished_visit %}
 		        <tr style="display:none">
               <!-- this is used for Ethan's selenium tests. -->
@@ -24,39 +21,61 @@
 		        </tr>
 	          <script language ="javascript" >  
 	            localStorage.clear();
-              //alert ("CLEARED LOCAL STORAGE");	         
 	          </script>
 		      {% endif %}
 			
           {%if user.current_visit%}
 		          <tr>
-			          <td>
-                 <a href ="/family_info/dashboard/" class = "green_button"> Resume your visit with famil{{ user.current_visit.families.all|length|pluralize:"y,ies" }} {%for f in user.current_visit.families.all%}
+			          <td >
+                 <div id="resume_button_div">
+                 <!-- This takes you to the dashboard for your current interview. -->
+                 <a id="resume_button" href ="/family_info/dashboard/" class = "green_button"> Resume your visit with famil{{ user.current_visit.families.all|length|pluralize:"y,ies" }} {%for f in user.current_visit.families.all%}
                  {% if     forloop.last and not forloop.first %}and{%endif%}
                  {% if not forloop.last and not forloop.first %},{%endif%}
                  {{f.study_id_number}}
                  {%endfor%}</a>
+                </div>
                  </td>
+			          
 			          <td></td>
 			          <td></td>
 			          </tr>
+			      <script language ="javascript" >  
+			      // If my user does have an interview going, but I don't have anything in local storage pertaining to it, then assume it's because it's on another machine. That interview needs to end  before I start a new one.
+			      
+          if ( !local_storage_has_data (LOCAL_STORAGE_KEY)) {
+              family_string = 'famil{{ user.current_visit.families.all|length|pluralize:"y,ies" }} {%for f in user.current_visit.families.all%}{% if     forloop.last and not forloop.first %} and {%endif%}{% if not forloop.last and not forloop.first %}, {%endif%}{{f.study_id_number}}{%endfor%}'
+              var explanation = 'You are currently visiting ' + family_string + '  using another machine. Please finish that visit before starting a new one.'
+              //$('#resume_button_div').html( explanation);
+              document.getElementById('error_message').innerHTML = explanation;
+              document.getElementById('resume_button_div').innerHTML = '';
+          }
+	          </script>
           {%endif %}
 
 			    <form action="/family_info/start_interview/" method="post" >
 			    
-                {%if not user.current_visit%}
+          {%if not user.current_visit%}
+              <!-- this is the simplest case: just start an interview: -->
 	            <tr>
 	              <td class="action" colspan = "3">
-	               <input  style="background-color: #063; color: #fff; font-weight: bold" type="submit"
-			      id="main_submit_button" value ="Start visit"
-	               />
+	              <div id ="start_interview_div">
+	                   <input  style="background-color: #063; color: #fff; font-weight: bold" type="submit"
+			          id="main_submit_button" value ="Start visit"
+	                   />
+	               </div>
 	              </td>
-	            </tr>
-	             {%endif%}
-			    
-	            {%for family in families %}
+	          </tr>
+			      <script language ="javascript" >  
+	            if (local_storage_has_data (LOCAL_STORAGE_KEY)) {
+	              // This should never occur, but just in case, disable any further interviews until we can get to the local storage data.
+                document.getElementById('start_interview_div').innerHTML = '';
+                document.getElementById('error_message').innerHTML = 'Local storage still has data in it although you have no visit currently stored.';
+              } 
+	          </script>
+			    {%endif %}
+	        {%for family in families %}
 	              <tr>
-	              
 	                <td>
                       <span title = "currently being visited by: {{family.interviewer.first_name}} {{family.interviewer.last_name}}">
                       
@@ -87,12 +106,7 @@
 	                </td>
 	              </tr>
 	            {%endfor %}
-	           
-	            
 	        </form>
-	        
-      
-			
 		  <tr>
 			<td><a href = "/family_info/new_family" >+ Add a Family</a></td>
 			<td></td>

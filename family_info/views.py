@@ -1,5 +1,4 @@
-from django.http import HttpResponse, Http404, HttpResponseNotFound
-from django.shortcuts import render_to_response
+from django.http import HttpResponse, Http404, HttpResponseNotFound, HttpResponseRedirect
 from smilekit.collection_tool.models import *
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext, loader
@@ -8,9 +7,12 @@ from family_info.models import Visit, Family, User, RACE_ETHNICITY_CHOICES, EDUC
 from equation_balancer.models import Configuration as equation_balancer_configuration
 from collection_tool.views import question as collection_tool_question_view
 import datetime, sys, pdb, simplejson as json
+from django.core.urlresolvers import reverse
+
 
 @login_required
 def families(request, **kwargs):
+    #pdb.set_trace()
     t = loader.get_template('family_info/families.html')   
     c = RequestContext(request, {
       'error_message': kwargs.get ('error_message', ''),
@@ -18,8 +20,6 @@ def families(request, **kwargs):
       'health_workers': User.objects.all(),
       'just_finished_visit': kwargs.get("just_finished_visit"),
     })
-    
-    #pdb.set_trace()
     return HttpResponse(t.render(c))
 
 #**************************
@@ -32,9 +32,6 @@ def new_user(request, **kwargs):
     c = RequestContext(request,  varz)
     t = loader.get_template('family_info/add_edit_user.html')
     return HttpResponse(t.render(c))
-
-
-
 
 @login_required
 def back_to_new_user (request, **kwargs):
@@ -327,8 +324,10 @@ def start_interview(request, **kwargs):
 
       
     else:
-        the_families = my_happening_visits[0].families.all()
-    
+        #the_families = my_happening_visits[0].families.all()
+        # no longer allowing this:
+        return HttpResponseRedirect ( reverse (families))
+        
     c = RequestContext(request, {
       'families' : the_families
      } )
@@ -357,13 +356,10 @@ def end_interview(request, **args):
   if len(visits) == 0:
     #back button by mistake after ending an interview, or hit refresh.
     #just toss them back to families page.
-    
-    #TODO: actually do a redirect to the families URL so the URL changes.
-    return families(request)
+    return HttpResponseRedirect ( reverse (families))
   
   assert len (visits) == 1
   my_visit = visits[0]
-  
   for fam in my_visit.families.all():
     family_id = fam.id
     if rp.has_key('state_%d' % family_id):
@@ -384,6 +380,7 @@ def end_interview(request, **args):
   assert not my_visit.is_happening
   my_args['just_finished_visit'] = my_visit
   return families (request, **my_args)
+  #return HttpResponseRedirect ( reverse (families))
   
   
   
