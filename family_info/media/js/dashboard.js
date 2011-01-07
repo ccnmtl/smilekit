@@ -104,7 +104,7 @@ function set_up_family_links () {
      }
      else {
       // link for other families goes here: 
-        new_link += "<a href=\"javascript:head_to(" + family_id + ",'" + url + "')"+ '"> Visit family ' + family_study_id_number + '</a>';
+        new_link += "<a class=\"go_to_family_button\" href=\"javascript:head_to(" + family_id + ",'" + url + "')"+ '"> Visit family ' + family_study_id_number + '</a>';
      }
      new_link += "</p>"
      start_visit_links += new_link;
@@ -178,7 +178,7 @@ function show_buttons() {
 }
 
 download_success_callback = function () {
-  $("#guidance_1").html ("Download was successful. Click one of the 'Visit' buttons below to start.");
+  $("#guidance_1").html ("All the resources you need are now stored on this machine. Click one of the 'Visit' buttons below to start.");
   show_buttons();
   $("#progressbar").progressBar(100);
 }

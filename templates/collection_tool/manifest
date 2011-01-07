@@ -11,6 +11,9 @@ CACHE:
 #bilingual interview pages:
 {%for lc in language_codes%}
 
+  #intro page:
+  {% url collection_tool.views.intro   language_code=lc %}
+
   #section pages:
   {% for id in nav_section_ids %}{%url collection_tool.views.section section_id=id language_code=lc %}
   {% endfor %}
