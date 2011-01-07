@@ -7,10 +7,6 @@ function log_wrapper (a) {
   }
 }
 
-
-//
-
-
 function llog (a) {
     log_wrapper(JSON.stringify(a));
 }
@@ -47,6 +43,11 @@ function set_nav_urls (urls) {
   set_nav_url ('#right', urls ['next']);
 }
 
+function is_part_of_assessment (url) {
+    return url.match ('question') != null || url.match ('section') != null;
+}
+
+
 
 function prev_next_url (family_url_list) {
     var next = null;
@@ -57,7 +58,10 @@ function prev_next_url (family_url_list) {
              if ( k > 0) {
                  prev = family_url_list[k - 1][lan]
              }
-             set_analytics_data (LOCAL_STORAGE_KEY, family_id, { 'recent_url': family_url_list[k ][lan] });
+             
+             if (is_part_of_assessment ( family_url_list[k ][lan])) {
+                set_analytics_data (LOCAL_STORAGE_KEY, family_id, { 'recent_url': family_url_list[k ][lan] });
+             }
              
              if (  k + 1 < family_url_list.length) {
                  next = family_url_list[k + 1][lan]
@@ -67,3 +71,29 @@ function prev_next_url (family_url_list) {
     });
     return {'prev': prev, 'next':next};
 }
+
+
+
+function set_assessment_url () {
+
+    if (  LOCAL_STORAGE_KEY == null) {
+        return;
+    }
+    if (  family_id == null) {
+        return;
+    }
+    if (  get_analytics_data (LOCAL_STORAGE_KEY, family_id) == null ) {
+        return;
+    }
+    if (  get_analytics_data (LOCAL_STORAGE_KEY, family_id)['recent_url'] == null ) {
+        return;
+    }
+    var the_url = get_analytics_data (LOCAL_STORAGE_KEY, family_id)['recent_url'];
+    if ($('#assessmenttab').length == 0) {
+        return;
+    }
+    $('#assessmenttab')[0].href = the_url;
+
+}
+
+

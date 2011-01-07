@@ -187,6 +187,7 @@ var family_id;
 function risk_topics_init() {
   family_id = local_storage_get (LOCAL_STORAGE_KEY, 'current_family_id');
   set_family_id_in_nav ( family_id);
+  set_assessment_url (); // so a click on "assessment" will go back to the most recent question or index page.
 }
 
 $(document).ready( risk_topics_init );

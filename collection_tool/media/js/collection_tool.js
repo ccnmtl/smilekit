@@ -141,6 +141,7 @@ function init() {
     }
     
     set_nav_urls (prev_next_url (family_url_list));
+    set_assessment_url();
     
     if ($('#family_id_nav_display')) {
       $('#family_id_nav_display').html( 'Family #' + family_study_id );
