@@ -70,7 +70,7 @@ function logEvent(e) {
   status = cacheStatusValues[cache.status];
   type = e.type;
   if (type == 'progress') {
-    console.log (num_files_downloaded);
+    //console.log (num_files_downloaded);
     if (num_files_downloaded == null) {
       num_files_downloaded = 0;
     }
