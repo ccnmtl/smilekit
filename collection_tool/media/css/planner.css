@@ -65,8 +65,6 @@ width: 100px;
 }
 
 
-
-
 div#timetable { width: 100%; }
 
 div#timelinearrow
@@ -102,6 +100,7 @@ div#timetable .timerowfilled
 	background: -moz-linear-gradient(top, #fff, #ccc);
 	height: 40px;
 }
+
 
 div#timetable .time
 {
@@ -300,6 +299,7 @@ a#reset
 }
 
 
+/*
 #photoboxcontainer-fluoride 
 {
 	background-color: #000;
@@ -311,6 +311,7 @@ a#reset
 	padding: 10px;
 	position: relative;
 }
+*/
 
 /* start - orientation-specific styles */
 

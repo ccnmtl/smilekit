@@ -442,8 +442,20 @@ a.thumbnailimage, a.answerthumbnailimage { text-decoration: none; }
 .answerphotobox
 {
 	width: 682px;
+	margin:0px auto;
 }
 
+.answerphotoboxcontainer
+{
+	background-color: #000;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	background: -webkit-gradient(linear, left top, left bottom, from(#000), to(#666));
+	background: -moz-linear-gradient(top, #000, #666);
+	margin:10px;
+	padding: 10px;
+	position: relative;
+}
 
 
 .answerthumbnail a img {border: 1px solid black;}
@@ -1106,17 +1118,6 @@ td, legend, input {font-size: 16px;}
 	padding-top: 5px;
 }
 
-.answerphotoboxcontainer
-{
-	background-color: #000;
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
-	background: -webkit-gradient(linear, left top, left bottom, from(#000), to(#666));
-	background: -moz-linear-gradient(top, #000, #666);
-	margin:10px;
-	padding: 10px;
-	position: relative;
-}
 
 .horizontalphotocontainer
 {
