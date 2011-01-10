@@ -55,14 +55,14 @@
 	<div id="progressbar" ></div>
 
 
-<div id = "guidance_2" class="guidance">
-Click the &nbsp;End Visit&nbsp; button to end the visit and send back the data to the server.
+<div id = "guidance_2" class="guidance" style="color: red; font-weight: bold; margin-top: 20px;">
+IMPORTANT: Select the "End Visit" button to send back the data to the server<br />only when you are done visiting all of your families.
 </div>
 
 	<br />
 	<form action="/family_info/end_interview/" method="post" class="end_interview_form" >
 		<span id="end_interview_inputs"></span>
-		<input type="submit" value ="End Visit" />
+		<input id="main_end_button" type="submit" value ="End Visit" />
 	</form>
   <textarea id="debug_cache_status" rows="10" cols="80" ></textarea>
 </div>
