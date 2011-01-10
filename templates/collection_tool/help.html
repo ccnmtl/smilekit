@@ -2,28 +2,28 @@
 
 	<div class="help_content">
 	
-		{% with displayquestion.help_item.help_item as h_i %}
 		
 		<h4>Guide</h4>
 		
-		
-		<h5>Objective:</h5>
+	{%if h_i.english_objective %}
+		<h5>Objective: </h5>
 		
 		<p>
 		{%ifequal language_code 'es'%}{{h_i.english_objective}}{%endifequal %}
 		{%ifequal language_code 'en'%}{{h_i.english_objective}}{%endifequal %}
 		</p> 
+	{%endif %}
 		
-		
-		
+	{% if h_i.english_script %}
 		<h5>Script:</h5>
 		
 		<p>
 		{%ifequal language_code 'es'%}{{h_i.spanish_script}}{%endifequal %}
 		{%ifequal language_code 'en'%}{{h_i.english_script}}{%endifequal %}
 		</p>
+	{%endif %}
 		
-		
+  {%if h_i.helpbulletpoint_set.all %}
 		<h5>Watch for:</h5>
 		
 		<ul>
@@ -34,18 +34,20 @@
 		</li>
 		{% endfor %}
 		</ul>
+	{%endif %}
 		
 		
-		
+  {%if h_i.english_script_instructions %}
 		<h5>More Information:</h5>
 		
 		<p>
 		{%ifequal language_code 'es'%}{{h_i.spanish_script_instructions}}{%endifequal %}
 		{%ifequal language_code 'en'%}{{h_i.english_script_instructions}}{%endifequal %}
 		</p>
+  {%endif%}
 		
 		
-		
+	{%if  h_i.helpdefinition_set.all %}
 		<h5>Definitions:</h5>
 		
 		{% for d in h_i.helpdefinition_set.all %}
@@ -58,12 +60,12 @@
 		{%endifequal %}
 		</p>
 		{% endfor %}
+	{%endif %}
 		
 		
 		
 		<a id="help_close" href="javascript:void(0)" onclick="document.getElementById('helpon').style.display='none';">X</a>
 		
-		{% endwith %}
 		
 	</div>
 	

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{%ifequal 1 1%}
+{%ifequal 1 0%}
 <html manifest="{%url collection_tool.views.manifest %}">
 {% else %}
 <html>
@@ -36,8 +36,8 @@
 			<a href="">English</a>
     {% endblock %}
 			<a id="interview_link" href="/family_info/dashboard/">Dashboard</a>
-			<a href="javascript:void();" >Hi, {{user.username}}!</a>
 			<a href="javascript:void();" id ="family_id_nav_display">FamilyID</a>
+			<a href="javascript:void();" >Hi, {{user.username}}!</a>
 		</div>
 		
 	</div>

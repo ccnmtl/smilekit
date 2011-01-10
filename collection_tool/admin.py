@@ -48,6 +48,8 @@ class TopicAdmin(TinyMceAdmin):
   #list_display=('question', '__unicode__')
   #fields = [ 'question', 'image']
   inlines = [GoalInline]
+  list_display=( 'id', '__unicode__', 'displayquestions',)
+
   
   
 admin.site.register(Topic, TopicAdmin)

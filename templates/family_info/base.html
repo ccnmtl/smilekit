@@ -38,14 +38,13 @@ input[type="text"], input[type="password"] {
           <a id ="log_out_link"    href="/logout">Log Out</a>
 			  {% endif %}
 			  
-			  
-			  {%if user.username%}
-			  <a  >Hi, {{user.username}}!</a>
-	      {%endif%}
 	      
 	      {%if user.current_visit%}
 	  		  <a id ="family_id_nav_display" href="javascript:void();" >FamilyID</a>
         {% endif %}
+			  {%if user.username%}
+			  <a  >Hi, {{user.username}}!</a>
+	      {%endif%}
 		  </div>
 	  </div>
 	  <div id="contentcontainer">

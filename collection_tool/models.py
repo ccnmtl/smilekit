@@ -114,7 +114,11 @@ class Topic(models.Model):
   @property
   def dir(self):
     return dir(self)
-  
+
+  @property
+  def displayquestions(self):
+    return ";".join([ "%d: %s" % (t.id, t.english) for t in self.displayquestion_set.all()])
+
   @property
   def answers(self):
     """used for scoring the topic"""
@@ -217,6 +221,16 @@ class Goal (models.Model):
   @property
   def dir(self):
     return dir(self)
+    
+  @property
+  def help_item(self):
+    try:
+      return HelpUrl.objects.filter (url__contains = 'goal/%d' % self.id )[0]
+    except:
+      return None
+    return None
+    
+    
 ##################END HELP AND TOPICS#######
 
 
@@ -243,6 +257,15 @@ class AssessmentSection(models.Model):
     
   def __unicode__(self):
     return self.title
+
+
+  @property
+  def help_item(self):
+    try:
+      return HelpUrl.objects.filter (url__contains = 'section/%d' % self.id )[0]
+    except:
+      return None
+    return None
 
 def configuration_display_questions(self):
   """This is the recipe for determining which display questions will be asked if a configuration is chosen."""
@@ -378,15 +401,13 @@ class DisplayQuestion(models.Model):
   def question_type(self):
     return self.question.type
   
-  #this violates DRY but I'm fine with that for now.
+  #this violates DRY but guess what? I'm fine with that.
   @property
   def help_item(self):
     try:
       return HelpUrl.objects.filter (url__contains = 'question/%d' % self.id )[0]
     except:
-      #print "exception thrown"
       return None
-    #print "no exception thrown"
     return None
     
   @property
@@ -426,52 +447,6 @@ class DisplayQuestion(models.Model):
   def dir(self):
     return dir(self)
   
-  if 1 == 0:
-          #TODO these next and prev aren't used, except i think in the index pages of the
-          # data collection tool. remove.
-          @property
-          def next(self):
-            """ return the next question in order by nav section, then rank."""
-            all_numbers = all_display_question_ids_in_order()
-            
-            
-            if self.id not in all_numbers:
-              return None
-            
-            next_index = all_numbers.index(self.id) + 1
-            
-            if next_index == len(all_numbers):
-              return None
-            
-            try:
-              return DisplayQuestion.objects.get(id=all_numbers[next_index])
-            except:
-              return None
-
-          @property
-          def prev(self):
-            """ return the previous question in order by nav section, then rank."""
-            all_numbers = all_display_question_ids_in_order()
-            #
-            #import pdb
-            #pdb.set_trace()
-            #
-            # if this question hasn't been assigned a section, i can't assign it an order
-            # in the collection tool, so just return none.
-            if self.id not in all_numbers:
-              return None
-            
-            prev_index = all_numbers.index(self.id) - 1
-            
-            
-            if prev_index == -1:
-              return None
-            try:
-              return DisplayQuestion.objects.get(id=all_numbers[prev_index])
-            except:
-              return None
-    
-
 
   @property
   def english(self):
@@ -624,7 +599,7 @@ class PlannerItem(models.Model):
     return "%s: %s" % (self.get_type_display(), self.label)
 
   TYPE_CHOICES = ( ('A', 'Fluoride'), ('B', 'Foods'), ('C', 'Drinks'))
-  SPANISH_TYPES = ( ('A', 'Fluoruro'), ('B', 'Los Alimentos'), ('C', 'Bebidas') )
+  SPANISH_TYPES = ( ('A', 'Fluoruro'), ('B', 'Alimentos'), ('C', 'Bebidas') )
   type = models.CharField(max_length=1, choices=TYPE_CHOICES)
 
   def get_spanish_type(self):

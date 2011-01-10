@@ -100,7 +100,7 @@ function set_up_family_links () {
         $('#interview_link')[0].href = "javascript:head_to( " + family_id + ", \"" + url + "\");"
         $('#interview_link').html('Interview');
         $('#family_id_nav_display').html ( 'Family #' + family_study_id_number);
-        
+        new_link += "<span class='currently_visiting'>(Currently Visiting)</span>"
      }
      else {
       // link for other families goes here: 
