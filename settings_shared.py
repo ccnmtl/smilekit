@@ -4,9 +4,7 @@ import os.path
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
-ADMINS = (
-    ('CCNMTL', 'ccnmtl-sysadmin@columbia.edu'),
-)
+ADMINS = ()
 
 MANAGERS = ADMINS
 
@@ -72,7 +70,11 @@ INSTALLED_APPS = (
     'family_info',
     'collection_tool',
     'equation_balancer',
+    'sentry.client',
 )
+
+SENTRY_REMOTE_URL = 'http://sentry.ccnmtl.columbia.edu/sentry/store/'
+SENTRY_KEY = 'EWv5EELZnZIrOY'
 
 THUMBNAIL_SUBDIR = "thumbs"
 EMAIL_SUBJECT_PREFIX = "[smilekit] "
