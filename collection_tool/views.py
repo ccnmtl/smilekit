@@ -227,8 +227,7 @@ def question(request, displayquestion_id, language_code):
     for answer in Answer.objects.filter(question=fluoride_question):
       fluoride_answers[answer.text] = answer.id
 
-  print answers
-
+  
   t = loader.get_template('collection_tool/question.html')
   c = RequestContext(request,{
       'displayquestion': displayquestion,
