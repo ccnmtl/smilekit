@@ -1294,3 +1294,30 @@ table#materialstable th,table#materialstable td
 /* stop - print-specific flat page styles */
 
 
+/* start - orientation-specific styles */
+
+@media all and (orientation:portrait)
+{
+
+	#assessmentnav a.activetab, #planningnav a.activetab
+	{
+		border-left: 2px solid white;
+		/*last tab shim*/
+	}
+	
+}
+
+
+@media all and (orientation:landscape)
+{
+
+	#assessmentnav a.activetab, #planningnav a.activetab
+	{
+		border-left: 3px solid white;
+		/*last tab shim*/
+	}
+
+}
+
+/* stop - orientation-specific styles */
+
