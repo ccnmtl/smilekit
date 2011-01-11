@@ -1256,13 +1256,33 @@ table#materialstable th,table#materialstable td
 	text-align: center;
 }
 
-.error_message {
-	font-size: 24px;
-  
-}
+
 
 
 /* stop - "family details" table styles */
+
+
+
+.error_message 
+{
+	color: red; 
+	font-weight: bold;
+	font-size: 18px;
+	background-image: url(/collection_tool/media/images/icon_error.png);
+	background-repeat: no-repeat;
+	padding: 7px 0px 10px 50px;
+}
+
+.success_message 
+{
+	color: green; 
+	font-weight: bold;
+	font-size: 18px;
+	background-image: url(/collection_tool/media/images/icon_success.png);
+	background-repeat: no-repeat;
+	padding: 7px 0px 10px 50px;
+
+}
 
 
 
