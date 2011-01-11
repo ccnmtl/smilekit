@@ -78,7 +78,7 @@ div#list_of_questions {
 	height: 60px;
 	right: 0;
 	top: 0;
-	font-size: 12px;
+	font-size: 11px;
 }
 
 #mastheadnav a
@@ -87,11 +87,18 @@ div#list_of_questions {
 	float: right;
 	border-left: 1px solid #bbb;
 	text-align: center;
-	padding: 22px 9px 22px 9px;
+	padding: 22px 7px 22px 7px;
 	text-decoration: none;
 	color: #3172bb;
 	text-shadow: #fff 1px 1px 1px;
 	font-weight: bold;
+}
+
+#mastheadnav a#family_id_nav_display, #mastheadnav a#user_id_nav_display
+{
+	border-left: 0px !important;
+	color: #333 !important;
+
 }
 
 /********/

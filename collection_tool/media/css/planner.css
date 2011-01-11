@@ -104,8 +104,15 @@ div#timetable .timerowfilled
 
 div#timetable .timerowfluoride
 { 
-	background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#000)) !important;
-	background: -moz-linear-gradient(top, #fff, #000) !important;
+	background: -webkit-gradient(linear, left top, left bottom, from(#0f9), to(#0c9)) !important;
+	background: -moz-linear-gradient(top, #0f9, #0c9) !important;
+}
+
+
+div#timetable .timerowfluoride .time
+{ 
+	background: -webkit-gradient(linear, left top, left bottom, from(#0f9), to(#0c9)) !important;
+	background: -moz-linear-gradient(top, #0f9, #0c9) !important;
 }
 
 
@@ -124,8 +131,8 @@ div#timetable .time
 
 div#timetable .timerowfilled .time
 {
-	background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ccc)) !important;
-	background: -moz-linear-gradient(top, #fff, #ccc) !important;
+	background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ccc));
+	background: -moz-linear-gradient(top, #fff, #ccc);
 }
 
 div#timetable .timerowfilled .timeactivity
