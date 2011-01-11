@@ -62,8 +62,7 @@
 		
 		<div id="content">
 			
-			<h2 id="contenttitle">Section Index Title</h2>
-		
+			<h2 id="contenttitle">{{section.english_title}}</h2>
 			 <div class="section_description">
 				    {%ifequal language_code 'en'%}
 						<p><b>{{section.english_description}}</b></p>
@@ -80,10 +79,10 @@
 			 {% for q in section.displayquestion_set.all%}
 			   <!--  'contentbuttoncomplete' is added by javascript ... TODO: add info re: scoring here in title-->
 				  <a style="display: block;" href="/collection_tool/question/{{q.id}}/language/{{language_code}}/" 
-				  class="contentbutton display_question_id_{{q.id}} question_id_{{q.question.id}}" 
+				  class="contentbutton indexpage display_question_id_{{q.id}} question_id_{{q.question.id}}" 
 				  id = "question_{{q.id}}"
 				  
-				  title = "rank: {{q.ordering_rank}}; prev: {{q.prev}}; next: {{q.next}}">
+				  title = "">
 				  {%ifequal language_code 'en'%}{{q.english}}{%endifequal%}
 		      {%ifequal language_code 'es'%}{{q.spanish}}{%endifequal%}
 		      </a>

@@ -5,14 +5,12 @@
 
 	<legend>All Families</legend>
 		<table class="users">
-									
-		        <tr>
-			        <td colspan = "3">
-					{% if error_message %}
-			        <span class="error_message">{{error_message}}</span>
-					{% endif %}			        
-			        </td>
-		        </tr>
+					  <!-- TODO: re-add this if the span is not empty: class="error_message" -->
+		        <p>
+			        <span  id = "error_message">{{error_message}}</span>
+			      <p>
+
+		        
 		      {% if just_finished_visit %}
 		        <tr style="display:none">
               <!-- this is used for Ethan's selenium tests. -->
@@ -90,9 +88,11 @@
                           {%endif %}
                       </span> 
 	                    {%else %}
-	                      {%if not user.current_visit%}
+	                      {%if not user.current_visit%}	                        
 	                        <input class="familycheckbox" type="checkbox" name="families" value="{{family.id}}" id="family_{{family.id}}">
+
 	                      {%endif%}
+	                      
 	                    {%endif%}
 	                </td>
 	                <td>Family # {{family.study_id_number}} 
@@ -114,23 +114,19 @@
 			<td></td>
 			<td></td>
 			</tr>
-	        
-			
-			{%if user.is_staff %}
-			<tr>
-			<td><a href = "{%url family_info.views.help_summary %}" >Help Summary</a></td>
-			<td></td>
-			<td></td>
-			</tr>
-	        
-			<tr>
-			<td><a href = "{%url family_info.views.summary_table %}" >Summary Table</a></td>
-			<td></td>
-			<td></td>
-			</tr>
+	     {%if user.is_staff %}
+			  <tr>
+			  <td><a href = "{%url family_info.views.help_summary %}" >Help Summary</a></td>
+			  <td></td>
+			  <td></td>
+			  </tr>
+	          
+			  <tr>
+			  <td><a href = "{%url family_info.views.summary_table %}" >Summary Table</a></td>
+			  <td></td>
+			  <td></td>
+			  </tr>
 			{%endif%}
-	           
-			
 	</table>
 </fieldset>
 					
