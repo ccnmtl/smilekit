@@ -15,5 +15,6 @@ urlpatterns = patterns('',
   (r'^start_interview/$',                      'family_info.views.start_interview'),
   (r'^dashboard/$',                            'family_info.views.dashboard'),
   (r'^end_interview/$',                        'family_info.views.end_interview'),
-  (r'^help_summary/$',                         'family_info.views.help_summary'),       
+  (r'^help_summary/$',                         'family_info.views.help_summary'),     
+  (r'^summary_table/$',                        'family_info.views.summary_table'),       
 )

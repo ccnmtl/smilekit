@@ -13,6 +13,8 @@ from django.core.urlresolvers import reverse
 @login_required
 def families(request, **kwargs):
     #pdb.set_trace()
+    
+    
     t = loader.get_template('family_info/families.html')   
     c = RequestContext(request, {
       'error_message': kwargs.get ('error_message', ''),
@@ -379,8 +381,7 @@ def end_interview(request, **args):
   return families (request, **my_args)
   #return HttpResponseRedirect ( reverse (families))
   
-  
-  
+@login_required
 def help_summary(request):
   t = loader.get_template('family_info/help_summary.html')
   c = RequestContext(request,{
@@ -388,3 +389,13 @@ def help_summary(request):
   })
   return HttpResponse(t.render(c))
   
+  
+  
+@login_required
+def summary_table(request):
+  t = loader.get_template('family_info/summary_table.html')
+  c = RequestContext(request,{
+      'all_families':   Family.objects.all(),
+      'all_display_questions': DisplayQuestion.objects.all(),
+  })
+  return HttpResponse(t.render(c))

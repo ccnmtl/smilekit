@@ -113,6 +113,22 @@
 			<td></td>
 			</tr>
 	        
+			
+			{%if user.is_staff %}
+			<tr>
+			<td><a href = "{%url family_info.views.help_summary %}" >Help Summary</a></td>
+			<td></td>
+			<td></td>
+			</tr>
+	        
+			<tr>
+			<td><a href = "{%url family_info.views.summary_table %}" >Summary Table</a></td>
+			<td></td>
+			<td></td>
+			</tr>
+			{%endif%}
+	           
+			
 	</table>
 </fieldset>
 					

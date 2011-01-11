@@ -43,8 +43,6 @@
 	{%ifequal language_code 'es'%}
 	  <h2 align="center">{{goal.spanish_title}}.</h2>
 	{%endifequal%}
-
-	
 	<table>
 	    <tr>
 	      <td>
@@ -62,7 +60,6 @@
 	    </tr>
       <tr>
 	      <td>
-	        
 	        	{%ifequal language_code 'en'%}
 	            What are the four steps it will take to make it happen:
 	          {%endifequal%}
@@ -71,7 +68,7 @@
 	          {%endifequal%}
 	      </td>
 	      <td>
-        	<input type="text" class="goal_textfield resp" id ="{{goal.id}}_resp" name ="{{goal.id}}_resp" />
+	      	<textarea class="goal_textfield stps"  id ="{{goal.id}}_stps" name ="{{goal.id}}_stps"></textarea>
 	      </td>
 	    </tr>
 		  <tr>
@@ -84,10 +81,9 @@
               Who is responsible for this success:	    (es)
 	          {%endifequal%}
 	      </td>
+	      
 	      <td>
-	      	<textarea class="goal_textfield stps"  id ="{{goal.id}}_stps" name ="{{goal.id}}_stps">
-	      	</textarea>
-	     
+        	<input type="text" class="goal_textfield resp" id ="{{goal.id}}_resp" name ="{{goal.id}}_resp" />
 	      </td>
 	    </tr>
 	    <tr>
@@ -112,9 +108,6 @@
     {%ifequal language_code 'es'%}
     <a href = "/collection_tool/goals/language/es/">Set Goal (es)</a>
     {%endifequal%}
-	<!--
-	<a href = "" > Cancel and Start over </a>
-	-->
 	</div>
     
 

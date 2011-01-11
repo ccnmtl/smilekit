@@ -1,0 +1,207 @@
+{% load family_info_template_tags %}
+<html>
+<!--
+the simpler this page is, the better- the aim is to make it super-easy to paste into spreadsheets.
+-->
+<head>
+	  <link type="text/css" rel="stylesheet" href="/collection_tool/media/css/collection_tool.css" />
+</head>
+
+<body>
+{%load smartif%}
+
+<div>
+    <table id = "summary_table">
+    <tr>
+      <th>
+        Study ID #
+      </th>
+      <th>
+        percent complete
+      </th>
+      
+      
+      <th>
+        set of weights
+      </th>
+      <th>
+        risk score
+      </th>
+      <th>
+        year of birth
+      </th>
+      <th>
+        race/ethnicity
+      </th>
+      <th>
+        educational level
+      </th>
+      <th>
+        Use of foodstamps
+      </th>
+      <th>
+        mother born in US
+      </th>
+      
+      {% for dq in all_display_questions %}
+      <th id = "display_question_{{dq.id}}">
+        {{dq.question }}
+      </th>
+      {%endfor %}
+      
+      
+      
+      <th>
+        goal 1
+      </th>
+      <th>
+        goal 1 info
+      </th>
+      <th>
+        goal 1 responsible
+      </th>
+      <th>
+        goal 1 when
+      </th>
+      <th>
+        goal 1 steps
+      </th>
+      
+      
+      <th>
+        goal 2
+      </th>
+      <th>
+        goal 2  info
+      </th>
+      <th>
+        goal 2 responsible
+      </th>
+      <th>
+        goal 2 when
+      </th>
+      <th>
+        goal 2 steps
+      </th>
+      
+      
+      <th>
+        goal 3
+      </th>
+      <th>
+        goal 3 info
+      </th>
+      <th>
+        goal 3responsible
+      </th>
+      <th>
+        goal 3 when
+      </th>
+      <th>
+        goal 3 steps
+      </th>
+    </tr>
+    
+    
+    
+    {%for f in all_families %}
+    <tr>
+      <td>
+        {{f.study_id_number}}
+      </td>
+      <td>
+        {{f.percent_complete|floatformat:0 }} %
+      </td>
+      
+      <td>
+        {{f.config}}
+      </td>
+      <td>
+        {{f.risk_score|floatformat }}
+      </td>
+     
+      <td>
+        {{f.child_year_of_birth}}
+      </td>
+      <td>
+        {{f.get_race_ethnicity_display}}
+      </td>
+      <td>
+        {{f.get_highest_level_of_parent_education_display}}
+      </td>
+      <td>
+        {{f.food_stamps_in_last_year}}
+      </td>
+      <td>
+        {{f.mother_born_in_us}}
+      </td>
+      
+      
+      {% for dq in all_display_questions %}
+      <td id = "{{f.id}}_{{dq.id}}">
+        {% get_answer of_family f.id to_question dq.id as answer %}{{answer.answer_english}}
+      </td>
+      {%endfor %}
+      
+      
+      
+      {% get_goal_info_1 of_family f.id as goal %}
+      <td>
+        {{goal.goal.english_title}}
+      </td>
+      <td>
+        {{goal.name}}
+      </td>
+      <td>
+        {{goal.resp}}
+      </td>
+      <td>
+        {{goal.when}}
+      </td>
+      <td>
+        {{goal.stps}}
+      </td>
+      
+      {% get_goal_info_2 of_family f.id as goal %}
+      <td>
+        {{goal.goal.english_title}}
+      </td>
+      <td>
+        {{goal.name}}
+      </td>
+      <td>
+        {{goal.resp}}
+      </td>
+      <td>
+        {{goal.when}}
+      </td>
+      <td>
+        {{goal.stps}}
+      </td>
+      
+      {% get_goal_info_3 of_family f.id as goal %}
+      <td>
+        {{goal.goal.english_title}}
+      </td>
+      <td>
+        {{goal.name}}
+      </td>
+      <td>
+        {{goal.resp}}
+      </td>
+      <td>
+        {{goal.when}}
+      </td>
+      <td>
+        {{goal.stps}}
+      </td>
+      
+      
+    </tr>
+    {%endfor%}
+    </table>
+</div>
+</body>
+
+</html>
+

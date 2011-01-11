@@ -1199,6 +1199,18 @@ table#materialstable th,table#materialstable td
 
 
 
+table#summary_table {
+  background-color: #fff;
+}
+
+table#summary_table th, table#summary_table td
+{
+	border: 1px #ccc solid;
+	padding: 10px;
+	text-align: center;
+	empty-cells: show;
+}
+
 /* start - print-specific flat page styles */
 
 @media print 
@@ -1232,6 +1244,8 @@ table#materialstable th,table#materialstable td
 	}
 
 }
+
+
 
 /* stop - print-specific flat page styles */
 
