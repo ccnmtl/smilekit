@@ -3,9 +3,15 @@
 #debugstuff {display: none;}
 
 /********/
-input[type="text"], input[type="password"] {
+input[type="text"], input[type="password"], textarea {
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
+	font-size: 16px;
+	border: 1px solid #666;
+	color: #999;
+	font-family: helvetica;
+	padding: 5px;
+	background-color: #eee;
 }
 
 input[type="checkbox"] {
