@@ -95,14 +95,12 @@ div#list_of_questions {
 	color: #3172bb;
 	text-shadow: #fff 1px 1px 1px;
 	font-weight: bold;
-	text-transform: capitalize;
 }
 
 #mastheadnav a#family_id_nav_display, #mastheadnav a#user_id_nav_display
 {
 	border-left: 0px !important;
 	color: #333 !important;
-	text-transform: none !important;
 }
 
 /********/
