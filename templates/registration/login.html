@@ -7,12 +7,17 @@
 		<h2 id="contenttitle">
 			Log In
 		</h2>
-		        {% if form.errors %}
-            <p>Your username and password didn't match. Please try again.</p>
-            {% endif %}
-
-            <p class="errornote">{{ error_message }}</p>
-
+		
+		<p>
+		{% if form.errors %}
+		<span class="error_message">Your username and password didn't match. Please try again.</span>
+		{% endif %}
+		</p>
+		
+		<p>
+		{% if error_message %}<span class="error_message">{{ error_message }}</span>{% endif %}
+		</p>
+		
 
            <form method="post" action="{{ app_path }}">
 	

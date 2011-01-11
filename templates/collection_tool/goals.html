@@ -15,11 +15,11 @@
 
 {% block language_toggle %}
 	{%ifequal language_code 'en'%}
-		<a href="/collection_tool/goals/language/es/">espa&#241;ol</a>
+		<a href="/collection_tool/goals/language/es/">Espa&#241;ol</a>
 	{%endifequal%}
 				
 	{%ifequal language_code 'es'%}
-		<a href="/collection_tool/goals/language/en/">english</a>
+		<a href="/collection_tool/goals/language/en/">eEglish</a>
 	{%endifequal%}
 {% endblock %}
 
@@ -31,9 +31,9 @@
 	  Plan History
 	</h2>
 
-	<p>
+	<h3>
 	 These are some of the goals you've already made progress on:
-	</p>
+	</h3>
 	
 	<!-- JS will hide the ones you haven't visited. -->
 	<ul>
@@ -49,10 +49,9 @@
 	{%endfor%}
 	</ul>
 	
-	<p>
+	<h3>
 	 Here are some other goals to look at:
-	</p>
-	
+	</h3>
 	
 	<!-- JS will hide the ones you have visited. -->
 	<ul>
@@ -64,9 +63,6 @@
 	    {%ifequal language_code 'es'%}
 	    <a href="/collection_tool/goal/{{goal.id}}/language/es/">{{goal.spanish_title}}</a>
 	    {%endifequal%}
-	<!--
-	
-	-->
 	</li>
 	{%endfor%}
 	</ul>
