@@ -25,12 +25,13 @@
 		        </div>
 		        
 		        
-	          <div>
+	          <div style="font-weight: bold;">
 		          Visit #{{just_finished_visit.pk}} finished; 
 		          {{just_finished_visit.response_set.all|length}} response{{ just_finished_visit.response_set.all|length|pluralize}}
 		          {{just_finished_visit.response_set.all|length|pluralize:"was,were"}} recorded.
 		          
 		        </div>
+		        
 	          <script language ="javascript" >  
 	            localStorage.clear();
 	          </script>
