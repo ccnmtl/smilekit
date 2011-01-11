@@ -46,7 +46,7 @@
 		</tr>
 
 		<tr>
-			<th>Set of Weights Used</th>
+			<th valign="top">Set of Weights Used</th>
 			<td>
 			
 				{% if not family.config_locked %}
@@ -59,15 +59,15 @@
 				{% else %}
 				{{family.config.name}}
 				{% endif %}
+				
+				<br />
+				<br />
+				
+				<span class="prompt">(This cannot be changed once someone has started an interview with the family.)</span>
 
 			</td>
 		</tr>
 		
-		<tr>
-			<th></th>
-			<td><span class="prompt">(This cannot be changed once someone has started an interview with the family.)</span></td>
-		</tr>
-      
 		<!--
 		<tr>
 		<td>Family's last name:</td>
