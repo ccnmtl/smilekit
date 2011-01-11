@@ -1,35 +1,41 @@
 {% extends "family_info/base.html" %}
+
 {%load smartif%}
+
 {% block family_info_content %}
+			    <form action="/family_info/start_interview/" method="post" >
+
 <fieldset>
 
 	<legend>All Families</legend>
 		<table class="users">
-					  <!-- TODO: re-add this if the span is not empty: class="error_message" -->
-		        <p>
-			        <span  id = "error_message">{{error_message}}</span>
-			      <p>
+			<!-- TODO: re-add this if the span is not empty: class="error_message" -->
+			<p>
+			<span  id = "error_message">{{error_message}}</span>
+			<p>
 
-		        
 		      {% if just_finished_visit %}
-		        <tr style="display:none">
+		        <div style="display:none">
               <!-- this is used for Ethan's selenium tests. -->
-		          <td colspan="3"><span id="just_finished_visit">{{just_finished_visit.pk}}</span></td>
-		        </tr>
-	          <tr >
-		          <td class = "interview_done" colspan="3"> Visit #{{just_finished_visit.pk}} finished; 
+		          span id="just_finished_visit">{{just_finished_visit.pk}}</span>
+		        </div>
+		        
+		        
+	          <div style="font-weight: bold;">
+		          Visit #{{just_finished_visit.pk}} finished; 
 		          {{just_finished_visit.response_set.all|length}} response{{ just_finished_visit.response_set.all|length|pluralize}}
-		          {{just_finished_visit.response_set.all|length|pluralize:"was,were"}} recorded.</td>
-		        </tr>
+		          {{just_finished_visit.response_set.all|length|pluralize:"was,were"}} recorded.
+		          
+		        </div>
+		        
 	          <script language ="javascript" >  
 	            localStorage.clear();
 	          </script>
 		      {% endif %}
 			
           {%if user.current_visit%}
-		          <tr>
-			          <td >
-                 <div id="resume_button_div">
+
+                 <div id="resume_button_div" align="center">
                  <!-- This takes you to the dashboard for your current interview. -->
                  <a id="resume_button" href ="/family_info/dashboard/" class = "green_button"> Resume your visit with famil{{ user.current_visit.families.all|length|pluralize:"y,ies" }} {%for f in user.current_visit.families.all%}
                  {% if     forloop.last and not forloop.first %}and{%endif%}
@@ -37,11 +43,7 @@
                  {{f.study_id_number}}
                  {%endfor%}</a>
                 </div>
-                 </td>
-			          
-			          <td></td>
-			          <td></td>
-			          </tr>
+
 			      <script language ="javascript" >  
 			      // If my user does have an interview going, but I don't have anything in local storage pertaining to it, then assume it's because it's on another machine. That interview needs to end  before I start a new one.
 			      
@@ -54,18 +56,15 @@
           }
 	          </script>
           {%endif %}
-
-			    <form action="/family_info/start_interview/" method="post" >
+          
 			    
           {%if not user.current_visit%}
               <!-- this is the simplest case: just start an interview: -->
-	            <tr>
-	              <td class="action" colspan = "3">
-	              <div id ="start_interview_div">
+
+	              <div id ="start_interview_div" align="center">
 	                   <input type="submit" id="main_submit_button" value ="Start Visit" />
 	               </div>
-	              </td>
-	          </tr>
+
 			      <script language ="javascript" >  
 	            if (local_storage_has_data (LOCAL_STORAGE_KEY)) {
 	              // This should never occur, but just in case, disable any further interviews until we can get to the local storage data.
@@ -74,6 +73,12 @@
               } 
 	          </script>
 			    {%endif %}
+			    
+			    <br />
+
+
+		<table class="users" cellspacing="0">
+
 	        {%for family in families %}
 	              <tr>
 	                <td>
@@ -101,18 +106,15 @@
 	                
 	                {% if user.is_staff%}
   	                {%if family.in_a_visit %}
-	                  <a href="/admin/family_info/visit/{{family.interviewer.current_visit.id}}/">Visit page</a>
+	                  <a href="/admin/family_info/visit/{{family.interviewer.current_visit.id}}/">Visit Admin Page</a>
 	                  {%endif%}
 	                {%endif%}                
 	                
 	                </td>
 	              </tr>
 	            {%endfor %}
-	        </form>
 		  <tr>
-			<td><a href = "/family_info/new_family" >+ Add a Family</a></td>
-			<td></td>
-			<td></td>
+			<td colspan="3"><a href = "/family_info/new_family" >+ Add a Family</a></td>
 			</tr>
 	     {%if user.is_staff %}
 			  <tr>
@@ -130,23 +132,17 @@
 	</table>
 </fieldset>
 					
-<div>
-</div>	
 	
 <fieldset>
 	<legend>Health Workers</legend>
-		<table class="users">
-			<tr>
-			<td><a href="/family_info/new_user" >+ Add a Health Worker</a></td>
-			<td></td>
-			</tr>
+		<table class="users" cellspacing="0">
 			
 			{% for worker in health_workers %}
 			<tr>
 			<td>{{worker }}</td>
 			<td>
 			{% if user.is_staff %}
-			<a href = "/family_info/edit_user/{{worker.id}}">Edit</a>
+			<a href = "/family_info/edit_user/{{worker.id}}">Edit Worker Details</a>
       {%else %}
         {% ifequal user worker %}
 			    <a href = "/family_info/edit_user/{{worker.id}}">My info</a>
@@ -156,8 +152,12 @@
 			</td>
 			</tr>
 			{%endfor%}
+			<tr>
+			<td colspan="2"><a href="/family_info/new_user" >+ Add a Health Worker</a></td>
+			</tr>
 		</table>
 </fieldset>
 
+	        </form>
 
 {% endblock family_info_content %}
