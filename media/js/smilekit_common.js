@@ -28,6 +28,16 @@ function local_storage_has_data (namespace) {
   }
 }
 
+
+function end_visit_before_logout () {
+  if (local_storage_has_data (LOCAL_STORAGE_KEY)) {
+    alert ("Please end your visit before logging out.");
+    window.location.href = "/family_info/dashboard/";
+  } else {
+    window.location.href = "/logout";
+  }
+}
+
 function set_nav_url (id, url) {
   if (url == null) {
     $(id).hide();
@@ -75,7 +85,6 @@ function prev_next_url (family_url_list) {
 
 
 function set_assessment_url () {
-
     if (  LOCAL_STORAGE_KEY == null) {
         return;
     }

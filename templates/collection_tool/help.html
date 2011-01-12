@@ -9,8 +9,8 @@
 		<h5>Objective: </h5>
 		
 		<p>
-		{%ifequal language_code 'es'%}{{h_i.english_objective}}{%endifequal %}
-		{%ifequal language_code 'en'%}{{h_i.english_objective}}{%endifequal %}
+		{%ifequal language_code 'es'%}{{h_i.spanish_objective|safe}}{%endifequal %}
+		{%ifequal language_code 'en'%}{{h_i.english_objective|safe}}{%endifequal %}
 		</p> 
 	{%endif %}
 		
@@ -18,8 +18,8 @@
 		<h5>Script:</h5>
 		
 		<p>
-		{%ifequal language_code 'es'%}{{h_i.spanish_script}}{%endifequal %}
-		{%ifequal language_code 'en'%}{{h_i.english_script}}{%endifequal %}
+		{%ifequal language_code 'es'%}{{h_i.spanish_script|safe}}{%endifequal %}
+		{%ifequal language_code 'en'%}{{h_i.english_script|safe}}{%endifequal %}
 		</p>
 	{%endif %}
 		

@@ -46,6 +46,7 @@
 
 			      <script language ="javascript" >  
 			      // If my user does have an interview going, but I don't have anything in local storage pertaining to it, then assume it's because it's on another machine. That interview needs to end  before I start a new one.
+			      // TODO: Jonah raises a good point: why can't the same interviewer have two different interviews going at the same time with a nonoverlapping set of families? Maybe refactor the start and end interivew sequence to change that. SOMEDAYMAYBE. For now, just have two users if you need to do that.
 			      
           if ( !local_storage_has_data (LOCAL_STORAGE_KEY)) {
               family_string = 'famil{{ user.current_visit.families.all|length|pluralize:"y,ies" }} {%for f in user.current_visit.families.all%}{% if     forloop.last and not forloop.first %} and {%endif%}{% if not forloop.last and not forloop.first %}, {%endif%}{{f.study_id_number}}{%endfor%}'

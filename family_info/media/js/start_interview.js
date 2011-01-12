@@ -30,6 +30,10 @@ function hook_up_form (form) {
 
 function init_family_info() {
   add_keys();
+  
+  $('#family_id_nav_display').hide()
+  $('#interview_link').hide()
+  
   $.map( $('.start_visit_form') , hook_up_form); 
   if (typeof (local_storage_get) == "undefined") {
     alert ('localstorageget not found.'); 

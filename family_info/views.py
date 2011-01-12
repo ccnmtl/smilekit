@@ -47,11 +47,15 @@ def back_to_new_user (request, **kwargs):
 @login_required
 def insert_user(request, **kwargs):
     """ this validates the user form and inserts the user."""
-    rp = request.POST;
+    rp = request.POST
     
+    
+    #print "AAAA"
+    #import pdb
+    #pdb.set_trace()
     the_new_user = User(\
         username = request.POST['username'], \
-        password= 'testing', \
+        password= '', \
         first_name = rp['first_name'],\
         last_name =  rp['last_name']\
     )

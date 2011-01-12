@@ -1094,11 +1094,7 @@ td, legend, input {font-size: 16px;}
 
 .flatpagecontainer .editpage
 {
-	border-top: 1px solid #ccc;
-	clear: both;
-	margin-top: 30px;
-	text-align: center;
-	padding-top: 20px;
+	display:none;
 }
 
 .flatpagecontainer .articlephotocontainer

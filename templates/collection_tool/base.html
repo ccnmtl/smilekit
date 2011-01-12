@@ -29,15 +29,37 @@
 		<h1 id="logo">MySmileBuddy</h1>
 		<div id="mastheadnav">
 
+    
+   {% if user.current_visit %}
+			    <a id ="log_out_link"    href="javascript:end_visit_before_logout()">Log Out</a>
+			  {%else %}
+          <a id ="log_out_link"    href="/logout">Log Outaaaaa</a>
+	 {% endif %}
+	 
+	 
     <a href="/about/">About</a>
-    <a href="/library/">Library</a>			
-    {% block language_toggle %}
+    <a href="/library/">Library</a>
+    
+	 {% block language_toggle %}
 			<a href="">Espa&#241;ol</a>
 			<a href="">English</a>
-    {% endblock %}
-			<a id="interview_link" href="/family_info/dashboard/">Dashboard</a>
+   {% endblock %}
+			
+	 	
+    
+	  {%if user.current_visit%}
+	  <a id="interview_link" href="/family_info/dashboard/">Dashboard</a>
+    {% endif %}
+    
+	  {%if user.current_visit%}
 			<a id="family_id_nav_display" href="javascript:void();"id ="family_id_nav_display">FamilyID</a>
+    {% endif %}
+			
+		{%if user.username%}
 			<a id="user_id_nav_display" href="javascript:void();">Hi, {{user.username}}!</a>
+	  {%endif%}
+			
+			
 		</div>
 		
 	</div>

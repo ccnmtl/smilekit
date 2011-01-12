@@ -81,10 +81,6 @@ function set_up_family_links () {
       $('#interview_link').hide();
       $('#family_id_nav_display').hide();
    }
-   else {
-      $('#log_out_link').hide();
-   }
-
 
   $.each(list_of_questions , function(key, value) {
      family_study_id_number = value['family_study_id_number'];
@@ -191,7 +187,16 @@ function init_family_info() {
   list_of_questions = local_storage_get(LOCAL_STORAGE_KEY, 'list_of_questions');
 
   if (list_of_questions == null) {
-    alert ('List of questions not found in local storage. Can\'t proceed with interview.');
+    $('#downloading').hide();
+    $('#download').hide();
+    $('#upload').hide();
+    $('#main_end_button').hide();
+    $('#guidance_1').html('Sorry, there is no locally stored information about your visit.');
+    $('#guidance_1').html('<p>Looks like you have a visit currently in progress on another machine. Please end that visit before starting a new one.</p><p><a href="/family_info/families">Back</a></p>');
+    
+    $('#guidance_2').hide();
+    
+    
     return;
   }
   
