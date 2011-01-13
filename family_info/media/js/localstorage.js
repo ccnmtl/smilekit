@@ -147,7 +147,7 @@ function set_state_data(LOCAL_STORAGE_KEY, family_id,  key, blob) {
   
   all_states[family_id][key] = blob;
   
-  alert (JSON.stringify(all_states));
+  //alert (JSON.stringify(all_states));
   local_storage_set(LOCAL_STORAGE_KEY, 'list_of_states', all_states);    
 }
 

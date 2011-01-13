@@ -96,7 +96,7 @@ function prev_next_url (family_url_list) {
              }
              
              if (is_part_of_assessment ( family_url_list[k ][lan])) {
-             
+                set_an_url (family_url_list[k ][lan]);
                 //analytics_data_blob = { recent_url : family_url_list[k ][lan] }
                 //alert (JSON.stringify(analytics_data_blob));
                 /*
@@ -110,13 +110,14 @@ function prev_next_url (family_url_list) {
                 //alert ('noproblem')
                 
                 //analytics_data_blob = { recent_url : '/collection_tool/question/39/language/en/aaa' }
-                
+                /*
                 try { 
                   set_analytics_data (LOCAL_STORAGE_KEY, family_id, analytics_data_blob);
                  } catch(e) {
                     //alert ("setting analytics blob triggered error")
                     //alert (e);
                 }
+                */
                 //alert ('ok');
                 
                 //
