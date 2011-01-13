@@ -50,6 +50,8 @@ class HelpUrl(models.Model):
   def dir(self):
       return dir(self)
 
+
+
 class HelpBulletPoint(models.Model):
   """Displayed as a bullet-point list, these give a summary / what to watch for each page."""
   english_text =  models.TextField(null=True, blank =True)
@@ -104,9 +106,17 @@ class Topic(models.Model):
     
 
   @property
+  def displayquestions_string(self):
+    return ";".join([ "%d: %s" % (t.id, t.english) for t in self.display_questions])
+
+    
+  @property
+  def display_questions(self):
+    return [dq for dq in self.displayquestion_set.all() if dq.nav_section]
+
+  @property
   def section(self):
-    dquestions = self.displayquestion_set.all()
-    sections = [dq.nav_section for dq in dquestions]
+    sections = [dq.nav_section for dq in self.display_questions]
     if sections:
       return most_frequent_item (sections)
     return None
@@ -114,7 +124,8 @@ class Topic(models.Model):
   @property
   def dir(self):
     return dir(self)
-  
+
+
   @property
   def answers(self):
     """used for scoring the topic"""
@@ -195,6 +206,7 @@ class Topic(models.Model):
     return dir(self)
 
 
+
     
   
 class Goal (models.Model):
@@ -217,6 +229,16 @@ class Goal (models.Model):
   @property
   def dir(self):
     return dir(self)
+    
+  @property
+  def help_item(self):
+    try:
+      return HelpUrl.objects.filter (url__contains = 'goal/%d' % self.id )[0]
+    except:
+      return None
+    return None
+    
+    
 ##################END HELP AND TOPICS#######
 
 
@@ -233,7 +255,6 @@ class AssessmentSection(models.Model):
   
 
   ordering_rank = models.IntegerField()
-  
     
   class Meta:
     ordering = ('ordering_rank',)
@@ -244,40 +265,26 @@ class AssessmentSection(models.Model):
     
   def __unicode__(self):
     return self.title
-  
-  def display_question_ids(self):
-    """ used for ordering"""
-    return [q.id for q in self.displayquestion_set.all()] 
-  
-    
-  
-
-#TODO comment this out: it should be rendered obsolete by configuration_display_questions
-#if 1 == 0:
-#this is still used for the cache manifest. -- change cache manifest to just use
-#[ dq.id for dq in DisplayQuestion.objects.all()] since order does not matter.
-
-def all_display_question_ids_in_order():
-  result = []
-  #order all questions, first by nav section, then by rank within that section:
-  sections = [a for a in AssessmentSection.objects.all()]
-  for a in [s.display_question_ids() for s in sections]:
-    result.extend (a)
-  return result
-  
 
 
+  @property
+  def help_item(self):
+    try:
+      return HelpUrl.objects.filter (url__contains = 'section/%d' % self.id )[0]
+    except:
+      return None
+    return None
 
 def configuration_display_questions(self):
   """This is the recipe for determining which display questions will be asked if a configuration is chosen."""
-  
+   
   nonzero_weight_questions = self.questions_with_weights_greater_than_zero()
   result = []
   all_questions = []
   
   #order all questions, first by nav section, then by rank within that section:
   for s in  AssessmentSection.objects.all():
-    all_questions.extend (s.displayquestion_set.all())
+    all_questions.extend ( s.displayquestion_set.all())
   
   
   #now filter out the ones with weight zero, except if they're special.    
@@ -287,6 +294,7 @@ def configuration_display_questions(self):
     else:
       if display_question.question in nonzero_weight_questions:
         result.append(display_question)
+
        
   return result
 
@@ -304,6 +312,45 @@ def configuration_first_display_question(self):
 Configuration.display_questions = configuration_display_questions
 Configuration.first_display_question = configuration_first_display_question
 
+
+def language_url_dict (language_codes, view,  item_label = None, item_id = None):
+  """ a common pattern: returns something that looks like :
+  {   'en': '/collection_tool/section/2/language/en/',
+      'es': '/collection_tool/section/2/language/es/'  }
+  """
+  from django.core.urlresolvers import reverse
+  result = {}
+  for lc in language_codes:
+    if item_label:
+      result [lc] = reverse(view, kwargs = {  item_label: item_id,  'language_code': lc })
+    else:
+      result [lc] = reverse(view, kwargs = { 'language_code': lc })
+  return result
+
+
+
+def configuration_url_list(self):
+  """A list of URLs to visit for each configuration. This will be used for navigation."""
+  from collection_tool.views import intro as intro_view
+  from collection_tool.views import question as question_view
+  from collection_tool.views import section as section_view
+  from collection_tool.views import risk as risk_view
+  language_codes = ['en', 'es']
+  result = []
+  nonzero_weight_questions = self.questions_with_weights_greater_than_zero()
+  result.append(language_url_dict (language_codes, intro_view))
+  for s in  AssessmentSection.objects.all():
+    result.append(language_url_dict (language_codes, section_view, 'section_id',  s.id))
+    for dq in s.displayquestion_set.all():
+      if dq.display_regardless_of_weight:
+        result.append(language_url_dict (language_codes, question_view, 'displayquestion_id', dq.id))
+      else:
+        if dq.question in nonzero_weight_questions:
+          result.append(language_url_dict (language_codes, question_view, 'displayquestion_id', dq.id))
+  result.append(language_url_dict (language_codes, risk_view))
+  return result
+
+Configuration.url_list = configuration_url_list  
 
 
 
@@ -362,15 +409,13 @@ class DisplayQuestion(models.Model):
   def question_type(self):
     return self.question.type
   
-  #this violates DRY but I'm fine with that for now.
+  #this violates DRY but guess what? I'm fine with that.
   @property
   def help_item(self):
     try:
       return HelpUrl.objects.filter (url__contains = 'question/%d' % self.id )[0]
     except:
-      #print "exception thrown"
       return None
-    #print "no exception thrown"
     return None
     
   @property
@@ -410,52 +455,6 @@ class DisplayQuestion(models.Model):
   def dir(self):
     return dir(self)
   
-  
-  #TODO these next and prev aren't used, except i think in the index pages of the
-  # data collection tool. remove.
-  @property
-  def next(self):
-    """ return the next question in order by nav section, then rank."""
-    all_numbers = all_display_question_ids_in_order()
-    
-    
-    if self.id not in all_numbers:
-      return None
-    
-    next_index = all_numbers.index(self.id) + 1
-    
-    if next_index == len(all_numbers):
-      return None
-    
-    try:
-      return DisplayQuestion.objects.get(id=all_numbers[next_index])
-    except:
-      return None
-
-  @property
-  def prev(self):
-    """ return the previous question in order by nav section, then rank."""
-    all_numbers = all_display_question_ids_in_order()
-    #
-    #import pdb
-    #pdb.set_trace()
-    #
-    # if this question hasn't been assigned a section, i can't assign it an order
-    # in the collection tool, so just return none.
-    if self.id not in all_numbers:
-      return None
-    
-    prev_index = all_numbers.index(self.id) - 1
-    
-    
-    if prev_index == -1:
-      return None
-    try:
-      return DisplayQuestion.objects.get(id=all_numbers[prev_index])
-    except:
-      return None
-    
-
 
   @property
   def english(self):
@@ -603,14 +602,20 @@ post_save.connect(post_save_ordering_string_update, sender=AnswerTranslation)
 
   
 # planner widget items
-
 class PlannerItem(models.Model):
   def __unicode__(self):
     return "%s: %s" % (self.get_type_display(), self.label)
 
   TYPE_CHOICES = ( ('A', 'Fluoride'), ('B', 'Foods'), ('C', 'Drinks'))
+  SPANISH_TYPES = ( ('A', 'Fluoruro'), ('B', 'Alimentos'), ('C', 'Bebidas') )
   type = models.CharField(max_length=1, choices=TYPE_CHOICES)
+
+  def get_spanish_type(self):
+    return [label[1] for label in self.SPANISH_TYPES if label[0] == self.type][0]
+
   label = models.TextField()
+  spanish_label = models.TextField()
+
   risk_level = models.IntegerField()
   #image = models.ImageField(upload_to='answer_images',blank=True,null=True)
   # for now, image is just assumed to be "slugified_label.jpg"

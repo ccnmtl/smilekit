@@ -1,10 +1,12 @@
 // meal planner widget
 var mode = "planner";  // options: food, fluoride, planner
 var savingFluoride = false;
+var timerows = [];
 
 function saveState() {
   // save state to localstorage
-  var timerows = [];
+  var original_timerows = timerows;
+  new_timerows = [];
   jQuery(".timerowfilled").each(function() {
     var time = jQuery(".timetext", this).html();
     var items = jQuery(".activityitems", this);
@@ -17,14 +19,15 @@ function saveState() {
     if(jQuery(this).hasClass('timerowfluoride')) {
       timerow['fluoride'] = true;
     }
-    timerows.push(timerow);
+    new_timerows.push(timerow);
   });
 
   if(mode == "planner") {
-    set_planner_data(LOCAL_STORAGE_KEY, family_id, {"planner": timerows });
+    set_planner_data(LOCAL_STORAGE_KEY, family_id,
+        {"timerows": original_timerows, "planner": new_timerows });
   }
   else {
-    set_planner_data(LOCAL_STORAGE_KEY, family_id, {"timerows": timerows });
+    set_planner_data(LOCAL_STORAGE_KEY, family_id, {"timerows": new_timerows });
   }
   
   if(mode == "food") {
@@ -83,18 +86,16 @@ function saveState() {
   }
 }
 
-
-
-function loadState() {
+function loadState(reset) {
   // load state from localstorage
   var planner_data = get_planner_data (LOCAL_STORAGE_KEY, family_id);
   if ((planner_data == null) || (planner_data['timerows'] == undefined) || (planner_data['timerows'] == "")) {
     return;
   }
   
-  var timerows = planner_data['timerows'];
+  timerows = planner_data['timerows'];
 
-  if(mode == "planner") {
+  if((mode == "planner") && (reset != true)) {
     if( (planner_data['planner'] != undefined) && (planner_data['planner'] != "") ) {
       timerows = planner_data['planner'];
     }
@@ -113,12 +114,22 @@ function loadState() {
   }
 }
 
-
 function setMode(newMode) {
   mode = newMode;
   if(mode != "food" && mode != "fluoride" && mode != "planner") {
     mode = "planner";
   }
+}
+
+function resetTimeline(e) {
+  jQuery(".timerowfilled").each(function() {
+    jQuery(this).removeClass("timerowfilled");
+    var items = jQuery(".activityitems", this);
+    items.html("");
+  });
+  loadState(true);
+  saveState();  // overwrite old planner data
+  e.preventDefault();
 }
 
 function initPlanner() {
@@ -157,6 +168,7 @@ function initPlanner() {
   jQuery('.timeactionup').click(moveUp);
   jQuery('.timeactiondown').click(moveDown);
   jQuery('.timeactionswap').click(editMeal);
+  jQuery('#reset').click(resetTimeline);
 
   loadState();
  
@@ -342,11 +354,6 @@ function editMeal() {
   var mealorsnack = jQuery('.mealorsnack', jQuery(this).parent());
   jQuery(".label-meal", mealorsnack).toggle();
   jQuery(".label-snack", mealorsnack).toggle();
-  /*if(mealorsnack.html() == "\<span\ id\=\"label-meal\"\>Meal\<\/span\>") {
-    mealorsnack.html("<span id=\"label-snack\">Snack</span>");
-  } else {
-    mealorsnack.html("<span id=\"label-meal\">Meal</span>");
-  }*/
   
   saveState();
 }

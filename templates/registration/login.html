@@ -7,12 +7,30 @@
 		<h2 id="contenttitle">
 			Log In
 		</h2>
-		        {% if form.has_errors %}
-            <p>Your username and password didn't match. Please try again.</p>
-            {% endif %}
-
-            <p class="errornote">{{ error_message }}</p>
-
+		
+		<p>
+		{% if form.errors %}
+		<span class="error_message">Your username and password didn't match. Please try again.</span>
+		{% endif %}
+		</p>
+		
+		<p id = "login_warning">
+		<p>
+		 
+		<script language ="javascript" >  
+		 {%if user.is_authenticated%}
+			     
+          if (local_storage_has_data (LOCAL_STORAGE_KEY)) {
+              family_string = 'famil{{ user.current_visit.families.all|length|pluralize:"y,ies" }} {%for f in user.current_visit.families.all%}{% if     forloop.last and not forloop.first %} and {%endif%}{% if not forloop.last and not forloop.first %}, {%endif%}{{f.study_id_number}}{%endfor%}'
+          var explanation = 'WARNING: User {{user}} is still logged in, and has interview information stored locally about  ' + family_string + '  on this machine. Please go to the <a href = "/family_info/dashboard/">dashboard</a> and end that visit before logging in here. Otherwise, the information MAY BE LOST.'
+               document.getElementById('login_warning').innerHTML = explanation;
+       }
+		 {%endif  %}
+		 
+	  </script>
+		 
+		
+		
 
            <form method="post" action="{{ app_path }}">
 	

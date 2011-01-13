@@ -9,17 +9,17 @@
 		
 		</h2>
 		
-    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+	<p>{% if error_message %}<span class="success_message">{{ error_message }}</span>{% endif %}</p>
     
 	<div id="contentnav">
-		<a id="left" href = "/family_info/families">&larr; Back</a>
+		<a id="left" href = "/family_info/families/">&larr; Back</a>
 	</div>
 		
 		
     {% if the_user %}
-        <form id="edit_user" action="/family_info/edit_user/{{the_user.id}}" method="post">
+        <form id="edit_user" action="/family_info/edit_user/{{the_user.id}}/" method="post">
     {% else %}
-        <form id="add_user" action="/family_info/insert_user" method="post">
+        <form id="add_user" action="/family_info/insert_user/" method="post">
       {% endif %}   
 
       <fieldset>
@@ -51,29 +51,16 @@
 		<th>Password</th>
 		<td><input type="password"  name="password" value =""></input></td>
 		</tr>
-		<tr>
-		<th></th>
-		<td><span class="prompt">(To keep existing password, just leave blank.)</span></td>
-		</tr>
 		
 		<tr>
-		<th>Re-Type Password</th>
-		<td><input type="password" name="password_2" value = ""></input></td>
+		<th valign="top">Re-Type Password</th>
+		<td>
+		<input type="password" name="password_2" value = ""></input>
+		<br />
+		<br />
+		<span class="prompt">(To keep existing password, just leave blank.)</span>		
+		</td>
 		</tr>
-		
-		<tr>
-		<th></th>
-		<td><span class="prompt">(To keep existing password, just leave blank.)</span></td>
-		</tr>
-		{% if the_user %}
-    <tr>
-      <th>Status:</th>
-        <td>
-          <input type="radio" name="is_active" value="True"  {% if the_user.is_active %}checked{%endif %}>Active
-          <input type="radio" name="is_active" value="False" {% if not the_user.is_active%}checked{%endif %}> Inactive
-        </td>
-    </tr>
-    {% endif %}
 		
 		<tr>
         <td  colspan = "2" class="action">
@@ -82,16 +69,7 @@
               value="{{ the_user|yesno:"Save Changes,Save"}}"
              />
          </td>
-    </tr>	
-    <tr>
-		<td colspan="2">
-		<!--
-		<input type="button" value="Save" onclick="parent.location='http://kodos.ccnmtl.columbia.edu:2010/collection_tool/interview_management_participants'">
-		-->
-		
-		</td>
-		</tr>
-		
+    </tr>
 		</table>
 			</fieldset>
 			</form>

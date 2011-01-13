@@ -4,33 +4,68 @@
 {% endblock html_element %}
   <head>
 	  <title>mySmileBuddy</title>
-	<script type="text/javascript" src="/site_media/js/smilekit_common.js"></script>
+	 <script type="text/javascript" src="/site_media/js/smilekit_common.js"></script>
 	
   {% block family_info_js %}
   {% endblock family_info_js %}
-
 	
 	  <link type="image/png" rel="apple-touch-icon" href="/collection_tool/media/images/mysmilebuddy_icon.png" />
 	  <link type="text/css" rel="stylesheet" href="/collection_tool/media/css/collection_tool.css" />
     <meta name="apple-mobile-web-app-capable" content="yes" /> 
 	  <meta name="apple-mobile-web-app-status-bar-style" content="black" />	
 	  <meta name="viewport" content="width=720, maximum-scale=1.0" />
+	  <style type="text/css">
+input[type="text"], input[type="password"] {
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+}
+</style>
   </head>
   <body>
   <div id="wrapper">
 	  <div id="masthead">
-		  <h1 id="logo"><a href="/">MySmileBuddy</a></h1>
+		<h1 id="logo">MySmileBuddy</h1>
 		  <div id="mastheadnav">
-      {% block language_toggle %}{% endblock %}
-			  <a href="/logout">Log Out</a>
-        <a href = "/family_info/edit_user/{{user.id}}">My info</a>
-			  <a href="/library">Library</a>
-			  <a href="/about">About</a>
+		  
+        
+	      {% if user.current_visit %}
+			    <a id ="log_out_link"    href="javascript:end_visit_before_logout()">Log Out</a>
+			  {%else %}
+          <a id ="log_out_link"    href="/logout">Log Out</a>
+			  {% endif %}
+		  
+        <a href="/about/">About</a>
+	      <a href="/library/">Library</a>
+	      
+        {%if user.current_visit%}
+			  <a id="interview_link" href="/family_info/dashboard/">Dashboard</a>
+        {% endif %}
+        
+        
+	      {%if user.current_visit%}
+	  		  <a id ="family_id_nav_display" href="javascript:void();" >FamilyID</a>
+        {% endif %}
+        
+        
+			  {%if user.username%}
+			  <a id="user_id_nav_display">Hi, {{user.username}}!</a>
+	      {%endif%}
+		  
+		  
 		  </div>
 	  </div>
 	  <div id="contentcontainer">
     {% block family_info_content %}
     {% endblock family_info_content %}
+      
+    <script language="javascript"> 
+      // this shouldn't be necessary; if the user has an interview the log out is disabled.
+      if (local_storage_has_data(LOCAL_STORAGE_KEY) &&  document.getElementById('log_out_link')) {
+          //document.getElementById('log_out_link').style.display = 'none';
+          //document.getElementById('log_out_link').href = 'javascript:alert ("asdasd!!")';
+          // we're now calling end_visit_before_logout in the template.
+      }
+    </script>
   </body>
 
 </html>

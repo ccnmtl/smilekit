@@ -2,6 +2,9 @@
 {% load i18n %}
 {% load smartif %}
 
+{% block extrahead %}
+	 <script type="text/javascript" src="/site_media/js/smilekit_common.js"></script>
+{% endblock %}
 {% block stylesheet %}{% load adminmedia %}{% admin_media_prefix %}css/login.css{% endblock %}
 
 {% block bodyclass %}login{% endblock %}
@@ -14,8 +17,26 @@
 {% if error_message %}
 <p class="errornote">{{ error_message }}</p>
 {% endif %}
+
+<p id = "login_warning">
+<p>
+ 
+<script language ="javascript" >  
+ {%if user.is_authenticated%}
+      if (local_storage_has_data (LOCAL_STORAGE_KEY)) {
+          family_string = 'famil{{ user.current_visit.families.all|length|pluralize:"y,ies" }} {%for f in user.current_visit.families.all%}{% if     forloop.last and not forloop.first %} and {%endif%}{% if not forloop.last and not forloop.first %}, {%endif%}{{f.study_id_number}}{%endfor%}'
+          var explanation = 'WARNING: User {{user}} is still logged in, and has interview information stored locally about  ' + family_string + '  on this machine. Please go to the <a href = "/family_info/dashboard/">dashboard</a> and end that visit before logging in here. Otherwise, the information on this machine MAY BE LOST.'
+           document.getElementById('login_warning').innerHTML = explanation;
+   }
+ {%endif  %}
+ 
+</script>
+		 
+
 <div id="content-main">
-{%ifequal app_path '/admin/' %}
+<!-- note: test should be whether app path CONTAINS 'admin' : -->
+
+{%ifequal '/admin/' app_path%}
     <form method="get" action="https://wind.columbia.edu/login">
     <input type="hidden" name="service" value="cnmtl_full_np" />
     <input type="hidden" name="destination" value="http://{{ request.get_host }}/accounts/windlogin/?next=/admin/&this_is_the_login_form=1" />

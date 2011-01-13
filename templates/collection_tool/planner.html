@@ -1,13 +1,23 @@
 <div id="planner">
 
 	<div id="plannerright">
-	
-        {% regroup planner_items by get_type_display as item_list %}
-        
-          {% for type in item_list %}
+       {% for item in planner_items %}
+         {{ item.get_type }}
+       {% endfor %}
 
-		    <div class="photobox" id="photobox-{{type.grouper|lower}}">
-			  <div class="photoboxcontainer" id="photoboxcontainer-{{type.grouper|slugify}}">
+        {% ifequal language_code 'es' %}
+          {% regroup planner_items by get_spanish_type as item_list %}
+        {% endifequal %}
+        
+        {% ifnotequal language_code 'es' %}
+          {% regroup planner_items by get_type_display as item_list %}
+        {% endifnotequal %}
+
+          {% for type in item_list %}
+             {% with type.list|first as groupname %}
+		    <div class="photobox" id="photobox-{{groupname.get_type_display|slugify }}">
+			  <div class="photoboxcontainer" id="photoboxcontainer-{{groupname.get_type_display|slugify}}">
+             {% endwith %}
   	          <div class="photoboxhideshow">-</div>
 			    <div class="photoboxlabel">{{ type.grouper }}</div>
 
@@ -16,7 +26,13 @@
 				   {% for item in type.list %}
 		    	   <div class="thumbnail" id="item-{{item.id}}">
 					  <div class="thumbnailimage" id="item-{{item.id}}-image"><img alt="" src="/collection_tool/media/images/planner/{{item.label|slugify}}.jpg" /></div>
+                                            {% ifequal language_code 'en' %}
 					  <span class="thumbnaillabel" id="item-{{item.id}}-label">{{ item.label }}</span>
+                                            {% endifequal %}
+                                            {% ifequal language_code 'es' %}
+					  <span class="thumbnaillabel" id="item-{{item.id}}-label">{{ item.spanish_label }}</span>
+                                            {% endifequal %}
+                                          </span>
 					  <input type="hidden" id="item-{{item.id}}-risk" value="{{item.risk_level}}" />
 				   </div>
 				   {% endfor %}
@@ -28,7 +44,6 @@
 		    </div><!-- end photobox -->
 				
 		    {% endfor %}
-
 	</div>
 
 	<div id="plannerleft">
@@ -42,8 +57,22 @@
 				<div class="timeactivity">
 				  <span class="timetext">
 				    <span class="mealorsnack">
-				      <span class="label-snack">Snack</span>
-				      <span class="label-meal">Meal</span>
+				      <span class="label-snack">
+                                        {% ifequal language_code 'es' %}
+                                          Snack
+                                        {% endifequal %}
+                                        {% ifnotequal language_code 'es' %}
+                                          Snack
+                                        {% endifnotequal %}
+                                      </span>
+				      <span class="label-meal">
+                                        {% ifequal language_code 'es' %}
+                                          Comida
+                                        {% endifequal %}
+                                        {% ifnotequal language_code 'es' %}
+                                          Meal
+                                        {% endifnotequal %}
+                                      </span>
 				    </span>
 				    <span class="activityitems"></span>
 				  </span>

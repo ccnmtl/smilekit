@@ -1,12 +1,37 @@
 from django.db import models
 from django.db.models.signals import post_save
+from django.core.urlresolvers import reverse
+from collection_tool.models import Goal
+
+
 import datetime
 import simplejson as json
 
+#from collection_tool.urls import urlpatterns
+#
+
+def friendly_score (min_score, actual_score, max_score):
+    """ One possible version of a weighted score: 1 is good, 10 is a lot of risk:"""
+    range_of_possible_scores = max_score - min_score
+    if range_of_possible_scores == 0:
+      return None
+
+    adjusted_score = actual_score - min_score
+    result =    1.0 + round ( 9.0 * adjusted_score /  range_of_possible_scores )
+    if 1 == 0:
+      print "User's actual score is %f" % actual_score
+      print "Worst possible score is %f " % max_score 
+      print "Best possible score is  %f " %  min_score 
+      print "Adjusted score  %f " %  adjusted_score 
+      print "Friendly score is  %f" % result
+    return result;
+ 
+   
 User          = models.get_model('auth','user')
 Configuration = models.get_model('equation_balancer', 'configuration')
 Question      = models.get_model('equation_balancer', 'question')
 Answer        = models.get_model('equation_balancer', 'answer')
+ModuleWeight  = models.get_model('equation_balancer', 'modueleweight')
 
 DisplayQuestion      = models.get_model('collection_tool', 'displayquestion')
 
@@ -32,7 +57,30 @@ EDUCATION_LEVEL_CHOICES = (
 class Family(models.Model):
   active = models.BooleanField( help_text = "Uncheck to mostly-delete this family" , default = True)
   
-  
+  @property
+  def start_interview_info(self):
+    all_questions = [dq.id for dq in self.config.display_questions()]
+    #first_dq_id = self.config.first_display_question().id
+    
+    #from collection_tool.views import question as question_view
+    
+    url_list = self.config.url_list()
+    first_url = url_list[0]
+    #first_url = reverse(question_view, kwargs={'displayquestion_id': first_dq_id, 'language_code':'en'})
+    
+    
+    tmp = {
+      "first_question_url" : first_url,
+      "family_id" : self.id,
+      "family_study_id_number" : self.study_id_number,
+      "previous_visit_questions" : self.latest_answers,
+      "all_questions" : all_questions,
+      "url_list" : url_list
+    }
+    # double-escape: this is printed into a string in the template, (unescape 1)
+    # which string is passed to the browser's native JSON parser. (unescape 2)
+    return_value =  json.dumps(tmp).replace ('\\', '\\\\');
+    return return_value;
   
   @property
   def dir(self):
@@ -96,18 +144,15 @@ class Family(models.Model):
       return self.visits_happening[0].interviewer
     return None
     
-
   @property
   def latest_answers (self):
     """Answers to previous interviews, for the collection tool to show on repeat visits. If the family has already answered a question more than once, the most recent answer is returned."""
-    #import pdb
-    #pdb.set_trace()
     result = {}
     
     #start with most recent visits: we like fresh answers better than stale answers.
     all_visits = self.visit_set.all().reverse()
     
-    # MEMENTOTE OMNES: THIS DOES NOT WORK.
+    #MEMENTOTE OMNES IN SAECULA SAECULORUM: THIS DOES NOT WORK.
     #all_visits.reverse()
 
     for v in all_visits:
@@ -118,9 +163,78 @@ class Family(models.Model):
             result[q_id] = r.answer.id
 
     return result
+   
+   
     
-  
+  @property
+  def goal_info (self):
+    """A summary of goal info"""
+    try:
+      data = json.loads(self.interview_state)['goals_data']
+    except:
+      return {}
     
+    #separate goal data from score data:
+    temp_array = []
+    for k, value in data.iteritems():
+      try:
+        the_id = int(k.split('_')[0])
+        field_key = k.split('_')[1]
+        if field_key in ['name','resp','stps','when']:
+          the_goal = Goal.objects.get (pk = the_id)
+          temp_array.append ((the_goal, field_key, value))
+      except:
+        pass
+    
+    if len(temp_array) == 0:
+      return {}
+    
+    #ok, we do have goal data.
+    result = {}
+    for the_goal, field_key, val in temp_array:
+      if not result.has_key(the_goal.id):
+        result [the_goal.id] = {'goal': the_goal}
+      result [the_goal.id][field_key] = val
+      
+    return result
+    
+  @property
+  def percent_complete (self):
+    """What percentage of the available questions has this family answered?"""
+    if self.config.weight_set.all().count() == 0:
+      return None
+    return 100.0 * float(len(self.latest_answers)) / float(self.config.weight_set.all().count())
+
+  @property
+  def risk_score (self):
+    """For each answer in a configuration, compute the best and worst possible scores based on all the answer data available. Then return out an easy-to-compare "friendly" score on a scale of 1 to 10. (1 is good, 10 is bad.)"""
+    config = self.config
+    min_score, actual_score, max_score = 0,0,0
+    for answer in Answer.objects.filter (pk__in=self.latest_answers.values()):
+      question = answer.question
+      module = question.module
+      #print answer
+      try:
+        overall_weight = float(config.moduleweight_set.get(module=module).weight)
+      except ModuleWeight.DoesNotExist:
+        overall_weight = 0.0
+      #question_weight:
+      try:
+        question_weight = float(config.weight_set.get(question = question).weight)
+      except:
+        question_weight = 0.0
+      #score:
+      actual_score += float(answer.weight) *  question_weight * overall_weight
+      #min and max scores:
+      min_score += question.min_answer_weight * question_weight * overall_weight
+      max_score += question.max_answer_weight * question_weight * overall_weight
+      
+      
+    if min_score == max_score:
+      return None
+    
+    return round(friendly_score ( min_score, actual_score, max_score))
+
   #any extra interview state aside from basic questions and answers:
   interview_state = models.TextField(blank=True, default = '{}')
   
@@ -134,11 +248,16 @@ class Family(models.Model):
 
   @property
   def state (self):
-    """outputs json"""
+    """outputs a json string"""
     try:
       return  self.interview_state
     except:
-      return JSON.dumps({'error': 'Error loading interview state info.'})
+      return json.dumps({'error': 'Error loading interview state info.'})
+
+  @property
+  def evil_state(self):
+    """outputs an extra replaced json string"""
+    return self.state.replace ('\\', '\\\\');
   
   def responses (self):
     return Response.objects.filter (family= self)
@@ -239,9 +358,6 @@ class Response (models.Model):
 
   @property
   def question_english(self):
-    #import pdb
-    #pdb.set_trace()
-    #return DisplayQuestion.objects.get (question = self.question)
     return self.question.displayquestion_set.all()[0].english
 
   @property

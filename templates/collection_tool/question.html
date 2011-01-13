@@ -13,10 +13,12 @@
 {% endblock collection_tool_js %}
 
 
+{% block assessmenttabactive %}assessmenttabactive{% endblock %}
+
 {% block assessmentnav %}
 	<div id="assessmentnav">
 	{% for s in all_sections %}
-	 <a class="{%if forloop.first%}firsttab{%endif%} {%if forloop.last%}lasttab{%endif%}    {%ifequal displayquestion.nav_section.title s.title %}activetab{%endifequal%}" href="/collection_tool/section/{{s.id}}/language/{{language_code}}">
+	 <a class="{%if forloop.first%}firsttab{%endif%} {%if forloop.last%}lasttab{%endif%}    {%ifequal displayquestion.nav_section.title s.title %}activetab{%endifequal%}" href="/collection_tool/section/{{s.id}}/language/{{language_code}}/">
 	  {%ifequal language_code 'en'%}{{s.english_title}}{%endifequal%}
 		{%ifequal language_code 'es'%}{{s.spanish_title}}{%endifequal%}
 		</a>
@@ -27,26 +29,27 @@
 
 {% block language_toggle %}
 		{%ifequal language_code 'en'%}
-		<a href="/collection_tool/question/{{displayquestion.id}}/language/es">espa&#241;ol</a>
+		<a href="/collection_tool/question/{{displayquestion.id}}/language/es/">espa&#241;ol</a>
 		{%endifequal%}
 					
 		{%ifequal language_code 'es'%}
-			<a href="/collection_tool/question/{{displayquestion.id}}/language/en">english</a>
+			<a href="/collection_tool/question/{{displayquestion.id}}/language/en/">english</a>
 		{%endifequal%}
 {% endblock %}
 
 		{% block collection_tool_content %}
-	
 		<div id="contentnav">
-			  <a id="left" href="">&#8592; Back</a>
-  		{%if displayquestion.help_item %}
-  		
+			  <a id="left" href="">&#8592;</a>
+  		{%if displayquestion.help_item.help_item %}
 			<a id="help" href="javascript:void(0)" onclick="document.getElementById('helpon').style.display='block';">Help!</a>
+  		  {% with displayquestion.help_item.help_item as h_i %}
+          {% include "collection_tool/help.html" %}
+			  {%endwith%}
   		{%endif %}
 
 			
 			{% include "collection_tool/help.html" %}
-			  <a id="right" href="">Next &#8594;</a>
+			  <a id="right" href=""> &#8594;</a>
 		</div>
 		<div id ="question_id_div">{{displayquestion.question.id}}</div>
 		<div id ="display_question_id_div">{{displayquestion.id}}</div>
@@ -103,7 +106,7 @@
                 {% include "collection_tool/stock_answers_es.html" %}
               {% endifequal %}
             {% else %}
-              <a href="#" id="answer_{{a.id}}" class="contentbutton">{{a.wording}}</a>
+              <a href="#" id="answer_{{a.id}}" class="contentbutton">{{a.wording}}</a><br clear="all" />
               {% if a.image %}<img src="/uploads/{{a.image}}"/>{%endif%}
             {%endif%}
           {%endfor%}

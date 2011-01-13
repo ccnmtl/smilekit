@@ -1,49 +1,102 @@
 {% extends "family_info/base.html" %}
+
 {%load smartif%}
+
 {% block family_info_content %}
-		
+			    <form action="/family_info/start_interview/" method="post" >
 
 <fieldset>
 
 	<legend>All Families</legend>
-	
 		<table class="users">
-									
-		{% if error_message %}
-		<tr>
-			<td colspan = "3" class="error_message">{{error_message}}</td>
-		</tr>
-		{%endif%}
-		{% if just_finished_visit %}
-		<tr style="display:none;">
-		  <td colspan="3"><span id="just_finished_visit">{{just_finished_visit.pk}}</span></td>
-		</tr>
-		{% endif %}
+			<!-- TODO: re-add this if the span is not empty: class="error_message" -->
+			<p>
+			<span  id = "error_message">{{error_message}}</span>
+			<p>
+
+		      {% if just_finished_visit %}
+		        <div style="display:none">
+              <!-- this is used for Ethan's selenium tests. -->
+		          span id="just_finished_visit">{{just_finished_visit.pk}}</span>
+		        </div>
+		        
+		        
+	          <div style="font-weight: bold;">
+		          Famil{{ just_finished_visit.families.all|length|pluralize:"y,ies" }} {%for f in just_finished_visit.families.all%}{% if     forloop.last and not forloop.first %} and {%endif%}{% if not forloop.last and not forloop.first %}, {%endif%}{{f.study_id_number}}{%endfor%}  {{ just_finished_visit.families.all|length|pluralize:"is,are" }} checked back in; {{just_finished_visit.response_set.all|length}} response{{ just_finished_visit.response_set.all|length|pluralize}}
+		          {{just_finished_visit.response_set.all|length|pluralize:"was,were"}} recorded during your visit.
+		          
+		        </div>
+		        
+	          <script language ="javascript" >  
+	            localStorage.clear();
+	          </script>
+		      {% endif %}
 			
-		  <tr>
-			<td><a href = "/family_info/new_family" >+ Add a Family</a></td>
-			<td></td>
-			<td></td>
-			</tr>
-			    <form action="/family_info/start_interview" method="post" >
-	            {%for family in families %}
+          {%if user.current_visit%}
+                 <div id="resume_button_div" align="center">
+                 <!-- This takes you to the dashboard for your current interview. -->
+                 <a id="resume_button" href ="/family_info/dashboard/" class = "green_button"> Resume your visit with famil{{ user.current_visit.families.all|length|pluralize:"y,ies" }} {%for f in user.current_visit.families.all%}
+                 {% if     forloop.last and not forloop.first %}and{%endif%}
+                 {% if not forloop.last and not forloop.first %},{%endif%}
+                 {{f.study_id_number}}
+                 {%endfor%}</a>
+                </div>
+
+			      <script language ="javascript" >  
+			      // If my user does have an interview going, but I don't have anything in local storage pertaining to it, then assume it's because it's on another machine. That interview needs to end  before I start a new one.
+			      // TODO: Jonah raises a good point: why can't the same interviewer have two different interviews going at the same time with a nonoverlapping set of families? Maybe refactor the start and end interivew sequence to change that. SOMEDAYMAYBE. For now, just have two users if you need to do that.
+			      
+          if ( !local_storage_has_data (LOCAL_STORAGE_KEY)) {
+              family_string = 'famil{{ user.current_visit.families.all|length|pluralize:"y,ies" }} {%for f in user.current_visit.families.all%}{% if     forloop.last and not forloop.first %} and {%endif%}{% if not forloop.last and not forloop.first %}, {%endif%}{{f.study_id_number}}{%endfor%}'
+              var explanation = 'You are currently visiting ' + family_string + '  using another machine. Please finish that visit before starting a new one.'
+              //$('#resume_button_div').html( explanation);
+              document.getElementById('error_message').innerHTML = explanation;
+              document.getElementById('resume_button_div').innerHTML = '';
+          }
+	          </script>
+          {%endif %}
+          
+			    
+          {%if not user.current_visit%}
+              <!-- this is the simplest case: just start an interview: -->
+
+	              <div id ="start_interview_div" align="center">
+	                   <input type="submit" id="main_submit_button" value ="Start Visit" />
+	               </div>
+
+			      <script language ="javascript" >  
+	            if (local_storage_has_data (LOCAL_STORAGE_KEY)) {
+	              // This should never occur, but just in case, disable any further interviews until we can get to the local storage data.
+                document.getElementById('start_interview_div').innerHTML = '';
+                document.getElementById('error_message').innerHTML = 'Local storage still has data in it although you have no visit currently stored.';
+              } 
+	          </script>
+			    {%endif %}
+			    
+			    <br />
+
+
+		<table class="users" cellspacing="0">
+
+	        {%for family in families %}
 	              <tr>
 	                <td>
                       <span title = "currently being visited by: {{family.interviewer.first_name}} {{family.interviewer.last_name}}">
                       
                       {%if family.interviewer%}
-	                
-	                    {% if family.interviewer == user %}
-	                        <img src ='http://icons.iconarchive.com/icons/aha-soft/security/16/lock-icon.png' /> (You)
-	                    {%else %}
-	                        <img src ='http://icons.iconarchive.com/icons/aha-soft/security/16/lock-icon.png' />({{family.interviewer.first_name}})
-                      {%endif %}
-                      
+                       <img src ='/family_info/media/images/lock.png' />
+                          {% if family.interviewer == user %}
+                              (You)
+                          {%else %}
+                             ({{family.interviewer.first_name}})
+                          {%endif %}
                       </span> 
 	                    {%else %}
-	                      {%if not user.current_visit%}
-	                        <input type="checkbox" name="families" value="{{family.id}}" id="family_{{family.id}}">
+	                      {%if not user.current_visit%}	                        
+	                        <input class="familycheckbox" type="checkbox" name="families" value="{{family.id}}" id="family_{{family.id}}">
+
 	                      {%endif%}
+	                      
 	                    {%endif%}
 	                </td>
 	                <td>Family # {{family.study_id_number}} 
@@ -52,63 +105,58 @@
 	                
 	                {% if user.is_staff%}
   	                {%if family.in_a_visit %}
-	                  <a href="/admin/family_info/visit/{{family.interviewer.current_visit.id}}/">Visit page</a>
+	                  <a href="/admin/family_info/visit/{{family.interviewer.current_visit.id}}/">Visit Admin Page</a>
 	                  {%endif%}
 	                {%endif%}                
 	                
 	                </td>
 	              </tr>
 	            {%endfor %}
-	           
-	            
-	            <tr>
-	              <td class="action" colspan = "3">
-	               <input  style="background-color: #063; color: #fff; font-weight: bold" type="submit"
-			      id="main_submit_button"
-                {%if user.current_visit%}
-                  value ="Resume your visit with families {%for f in user.current_visit.families.all%}{{f.study_id_number}}{% if forloop.last %}{%else%} and {%endif%}{%endfor%}"
-                {%else %}
-	               value ="Start visit"
-	               {%endif%}
-	               />
-	               <!--<input type="reset" value ="Reset" />-->
-	              </td>
-	            </tr>
-	        </form>
-	  
-	
+		  <tr>
+			<td colspan="3"><a href = "/family_info/new_family" >+ Add a Family</a></td>
+			</tr>
+	     {%if user.is_staff %}
+			  <tr>
+			  <td><a href = "{%url family_info.views.help_summary %}" >Help Summary</a></td>
+			  <td></td>
+			  <td></td>
+			  </tr>
+	          
+			  <tr>
+			  <td><a href = "{%url family_info.views.summary_table %}" >Summary Table</a></td>
+			  <td></td>
+			  <td></td>
+			  </tr>
+			{%endif%}
 	</table>
 </fieldset>
 					
-<div>
-
-</div>		
-					
-<fieldset>
-					
-	<legend>Health Workers</legend>
 	
-		<table class="users">
-			
-			<tr>
-			<td><a href="/family_info/new_user" >+ Add a Health Worker</a></td>
-			<td></td>
-			</tr>
+<fieldset>
+	<legend>Health Workers</legend>
+		<table class="users" cellspacing="0">
 			
 			{% for worker in health_workers %}
 			<tr>
 			<td>{{worker }}</td>
-			<td><a href = "/family_info/edit_user/{{worker.id}}">Edit</a></td>
+			<td>
+			{% if user.is_staff %}
+			<a href = "/family_info/edit_user/{{worker.id}}">Edit Worker Details</a>
+      {%else %}
+        {% ifequal user worker %}
+			    <a href = "/family_info/edit_user/{{worker.id}}">My info</a>
+        {% endifequal %}
+			{%endif %}
+
+			</td>
 			</tr>
 			{%endfor%}
-
+			<tr>
+			<td colspan="2"><a href="/family_info/new_user" >+ Add a Health Worker</a></td>
+			</tr>
 		</table>
-					
 </fieldset>
-					
-<script language ="javascript" >
-localStorage.clear();
-</script>
 
+	        </form>
 
 {% endblock family_info_content %}

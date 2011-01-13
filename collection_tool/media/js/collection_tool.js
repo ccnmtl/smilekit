@@ -19,12 +19,6 @@ function family_questions (key, family_id) {
     return result;
 }
 
-function llog (a) {
-    if (console) {
-      console.log (JSON.stringify(a));
-    }
-}
-
 
 
 // TODO refactor check_for_previous_answers to use family_questions (LOCAL_STORAGE_KEY, family_id) to find fam.
@@ -111,28 +105,6 @@ function update_debug_localstorage() {
   }
 }
 
-function init_question_nav(questions, display_question_id) {
-  position_of_next_question = questions.indexOf(display_question_id) + 1;
-  position_of_prev_question = questions.indexOf(display_question_id) -1;
-  if (position_of_prev_question < 0) {
-    $('#left').hide()  
-  } else {
-    prev_question_id = questions[position_of_prev_question];
-    prev_url = '/collection_tool/question/' + prev_question_id + '/language/' + language_code 
-    $('#left')[0].href = prev_url
-  }
-  
-  if (position_of_next_question >= questions.length) {
-    $('#right').hide()  
-  }
-  else {
-    next_question_id = questions[position_of_next_question];
-    next_url = '/collection_tool/question/' + next_question_id + '/language/' + language_code 
-    $('#right')[0].href = next_url
-  }
-
-}
-
 function hilite_answered_questions (arr) {
     $.each(arr,
         function (a, question_id) {
@@ -153,58 +125,49 @@ function init() {
     var family_study_id = null;
     
     for (i = 0; i < all_questions.length; i = i + 1) {
-    
       if (all_questions[i].family_id == family_id) {
         questions = all_questions[i].all_questions;
-        family_study_id =  all_questions[i]['family_study_id_number']
+        family_study_id =  all_questions[i]['family_study_id_number'];
+        family_url_list = all_questions[i]['url_list'];
       }
     }
     
+  
+    if (questions == null) {
+      alert ("Can't find list of questions for family " + family_id);
+      $('#left').hide();
+      $('#right').hide();
+      return;
+    }
     
-    
-      if (questions == null) {
-        alert ("Can't find list of questions for family " + family_id);
-        $('#left').hide();
-        $('#right').hide();
-        return;
-      }
-    
+    set_nav_urls (prev_next_url (family_url_list));
+    set_assessment_url();
     
     if ($('#family_id_nav_display')) {
-      $('#family_id_nav_display').html( 'Family #' + family_study_id )
+      $('#family_id_nav_display').html( 'Family #' + family_study_id );
     }
       
     
     if ( window.location.href.match (/question/)) {
-      // highlight the chosen answer on the question page:    
-      display_question_id = parseInt($('#display_question_id_div')[0].innerHTML);
-      question_id = parseInt($('#question_id_div')[0].innerHTML);
-      
-      // set up next and previous:
-      language_code = $('#language_code_div')[0].innerHTML
-      
-      if (questions == null) {
-        alert ("Can't find list of questions.");
-        $('#left').hide();
-        $('#right').hide();
-        return;
-      }
-      
-      init_question_nav(questions, display_question_id) 
-      init_answer_clicked();
-      
-      if (answers [question_id] != null) {
-        // did this family answer this question in THIS interview?
-        highlight_answer (answers[question_id]);
-      }
-      else {
-        // did this family answer this question in a previous interview?
-        previous_answer = check_for_previous_answers(question_id);
-        if (previous_answer != null) {
-            highlight_answer (previous_answer);
+        ///// QUESTION PAGE
+        // highlight the chosen answer on the question page:    
+        display_question_id = parseInt($('#display_question_id_div')[0].innerHTML);
+        question_id = parseInt($('#question_id_div')[0].innerHTML);
+        init_answer_clicked();
+        
+        if (answers [question_id] != null) {
+          // did this family answer this question in THIS interview?
+          highlight_answer (answers[question_id]);
         }
-      }
+        else {
+          // did this family answer this question in a previous interview?
+          previous_answer = check_for_previous_answers(question_id);
+          if (previous_answer != null) {
+              highlight_answer (previous_answer);
+          }
+        }
       } else {
+        ///// SECTION INDEX PAGE
         /// show all questions that are in the topic for this config:
         $('a.contentbutton').hide()
         if (questions != null) {

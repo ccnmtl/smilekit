@@ -2,8 +2,16 @@
 {%load smartif%}
 
 {% block html_element %}
-<html manifest="/collection_tool/manifest.cache">
+<html manifest="{%url collection_tool.views.manifest %}">
 {% endblock html_element %}
+
+
+{% block family_info_nav %}
+  <a href="/logout">Log Out</a>
+  <a href="/library/">Library</a>
+  <a href="/about/">About</a>
+  <a id = "interview_link" href="">Interview</a>
+{% endblock %}  
 
 
 {% block family_info_js %}
@@ -17,7 +25,7 @@
 {% block family_info_content %}
 
 <h2 id="contenttitle">
-	Families to Visit
+	Dashboard
 </h2>
 
 <div id = "guidance_1" class="guidance"></div>
@@ -47,34 +55,24 @@
 	<div id="progressbar" ></div>
 
 
-<div id = "guidance_2" class="guidance">
-Click the &nbsp;End Visit&nbsp; button to end the visit and send back the data to the server.
+<div id = "guidance_2" class="guidance" style="color: red; font-weight: bold; margin-top: 20px;">
+IMPORTANT: Select the "End Visit" button to send back the data to the server<br />only when you are done visiting all of your families.
 </div>
 
 	<br />
-	<form action="/family_info/end_interview" method="post" class="end_interview_form" >
+	<form action="/family_info/end_interview/" method="post" class="end_interview_form" >
 		<span id="end_interview_inputs"></span>
-		<input type="submit" value ="End Visit" />
+		<input id="main_end_button" type="submit" value ="End Visit" />
 	</form>
-	<br />
-	<br />
   <textarea id="debug_cache_status" rows="10" cols="80" ></textarea>
 </div>
     
 <script>
-
-	if (typeof($) == "undefined") {
-	
-	alert ("Sorry, unable to start interview at this time: unable to load jQuery.");
-	
-	document.getElementById('downloading').style.display = 'none';
-	
-	//document.getElementById('done_downloading').style.display = 'none';
-	
-	document.getElementById('debug_cache_status').style.display = 'none';
-	
+	if (typeof($) == "undefined") {	
+	  alert ("Error: unable to load jQuery.");
+	  document.getElementById('downloading').style.display = 'none';
+	  document.getElementById('debug_cache_status').style.display = 'none';
 	}
-  
 </script>
 
 {% endblock family_info_content %}

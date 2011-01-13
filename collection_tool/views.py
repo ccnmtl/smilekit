@@ -7,15 +7,35 @@ from django.template import RequestContext, loader
 import random
 from datetime import datetime, timedelta
 
+def intro(request, language_code):
+  """ Intro (default first ) page of the collection tool."""
+  if language_code not in ['en', 'es']:
+    raise Http404
+  t = loader.get_template('collection_tool/intro.html')
+  c = RequestContext(request,{
+      'language_code': language_code
+  })
+  return HttpResponse(t.render(c))
+
 
 def risk(request, language_code):
   """ Show risk score."""
   if language_code not in ['en', 'es']:
     raise Http404
   t = loader.get_template('collection_tool/risk.html')
+  
+  #import pdb
+  #pdb.set_trace()
+  help_item = None
+  try:
+    help_item = HelpUrl.objects.filter (url__contains = '/risk')[0]
+    print help_item
+  except:
+    pass
       
   c = RequestContext(request,{
       'language_code': language_code,
+      'help_item': help_item,
       'all_topics': Topic.objects.all(),
       'all_families': Family.objects.all(),
   })
@@ -65,6 +85,7 @@ def goals(request, language_code):
     raise Http404
   t = loader.get_template('collection_tool/goals.html')
   c = RequestContext(request,{
+      'language_code': language_code,
       'all_goals': Goal.objects.all()
   })
   return HttpResponse(t.render(c))
@@ -96,7 +117,6 @@ def get_planner_items():
     'planner_items':planner_items,
   }
 
-# planner/goal/(?P<goal_id>\d+)/language/(?P<language_code>\w+)
 def goal_planner(request, goal_id, language_code):
   """Goal planner form."""
   
@@ -168,6 +188,9 @@ def question(request, displayquestion_id, language_code):
   
   answers = []
   
+  #import pdb
+  #pdb.set_trace()
+  
   if displayquestion.display_answers:
     for d in displayquestion.display_answers:
       answers.append ( {
@@ -213,6 +236,7 @@ def question(request, displayquestion_id, language_code):
     for answer in Answer.objects.filter(question=fluoride_question):
       fluoride_answers[answer.text] = answer.id
 
+  
   t = loader.get_template('collection_tool/question.html')
   c = RequestContext(request,{
       'displayquestion': displayquestion,
@@ -263,19 +287,22 @@ def manifest(request):
   
   nav_section_ids = [p.id for p in AssessmentSection.objects.all()]
   
+  question_ids = [dq.id for dq in DisplayQuestion.objects.all()]
+  
   planner_labels = [i.label for i in PlannerItem.objects.all()]
 
   response = HttpResponse(mimetype='text/cache-manifest')
+  #response = HttpResponse()
+  
   t = loader.get_template('collection_tool/manifest')
   c = RequestContext(request,{
+    'language_codes' : ['en', 'es'],
     'paths_to_question_images' :  paths_to_question_images,
     'paths_to_answer_images' :    paths_to_answer_images,
     'nav_section_ids' :           nav_section_ids,
     'planner_labels' :            planner_labels,
     'goals' :                     Goal.objects.all(),
-    # this was breaking on questions that weren't part of the nav:
-    # 'question_ids':              [d.id for d in DisplayQuestion.objects.all()],
-    'question_ids':               all_display_question_ids_in_order(),
+    'question_ids':               question_ids,
     'randomnumber' :              random.randint(0, 9999999999)
   })
   response.write(t.render(c))

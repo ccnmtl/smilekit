@@ -2,16 +2,7 @@
 
 {%load smartif%}
 
-
-
-{% block mainnav %}
-	<div id="mainnav">
-		<a id="introductiontab" class="mainfirsttab" href="/collection_tool/introduction/">Introduction</a>
-		<a id="assessmenttab" class="" href="/collection_tool">Assessment</a>
-		<a id="risktab" class="risktabactive" href="/collection_tool/risk/language/en">Risk</a>
-		<a id="planningtab" class="mainlasttab" href="#">Planning</a>
-	</div>
-{% endblock %}
+{% block risktabactive %}risktabactive{% endblock %}
 
 {% block collection_tool_js %}
 <script src="/collection_tool/media/js/jquery.js" type="text/javascript"></script>
@@ -23,15 +14,18 @@
 
 {% block language_toggle %}
 	{%ifequal language_code 'en'%}
-		<a href="/collection_tool/question/{{displayquestion.id}}/language/es">espa&#241;ol</a>
+		<a href="/collection_tool/risk/language/es/">espa&#241;ol</a>
 	{%endifequal%}
 				
 	{%ifequal language_code 'es'%}
-		<a href="/collection_tool/question/{{displayquestion.id}}/language/en">english</a>
+		<a href="/collection_tool/risk/language/en/">english</a>
 	{%endifequal%}
 {% endblock %}
 
+
+
 {% block collection_tool_content %}
+
 		<div id ="language_code_div">{{language_code}}</div>
     <div>
     <!-- all the JSON you need to calculate scores: -->
@@ -46,6 +40,18 @@
           {%if not forloop.first%},{%endif%}"{{f.id}}" : {{f.config.id}}
     {%  endfor %}  } </pre>
  <!-- end scoring info -->
+
+		<div id="contentnav">
+			  <a id="left" href="">&#8592;</a>
+			  
+		{%if help_item.help_item %}
+		<a id="help" href="javascript:void(0)" onclick="document.getElementById('helpon').style.display='block';">Help!</a>
+		  {% with help_item.help_item as h_i %}
+          {% include "collection_tool/help.html" %}
+		  {%endwith%}
+		{%endif %}
+			  
+		</div>	  
 
     <h2 id="your_score_is">Your risk score is:</h2>
     
@@ -80,7 +86,7 @@
 	    <img src="/collection_tool/media/images/risk_graphic.png" />
 	    
 	    <div id="risk_next">
-		 <a href = "/collection_tool/topics/language/en">Let's Reduce this Risk!</a>
+		 <a href = "/collection_tool/topics/language/en/">Let's Reduce this Risk!</a>
 	    </div>
     
     </div>

@@ -13,6 +13,9 @@ function family_questions (key, family_id) {
 }
 
 
+goal_form_fields = ['name','resp', 'stps', 'when'];
+
+
 function set_goal_text (LOCAL_STORAGE_KEY, family_id, goal_id, goal_field_code, goal_text ) {
   tmp = get_goals_data(LOCAL_STORAGE_KEY, family_id);
   key = goal_id + '_' + goal_field_code;
@@ -140,7 +143,7 @@ function calculate_friendly_score (max_score, min_score, raw_score) {
    friendly_score =    1 + Math.round ( 9.0 * adjusted_score /  range_of_possible_scores ) ;
  
    
-   if (true ) {
+   if (false ) {
        log_wrapper ( "User's raw score is " + raw_score);
        log_wrapper ( "Worst possible score is : " + max_score );
        log_wrapper ( "Best possible score is : " +  min_score );
@@ -154,6 +157,18 @@ function between (x, a, b) {
   return a < x && x <= b;
 }
 
+function set_family_id_in_nav ( fam_id) {
+  all_questions = local_storage_get (LOCAL_STORAGE_KEY, 'list_of_questions');
+  for (i = 0; i < all_questions.length; i = i + 1) {
+    if (all_questions[i].family_id == fam_id) {
+      family_study_id =  all_questions[i]['family_study_id_number']
+    }
+  }
+  if ($('#family_id_nav_display')) {
+    $('#family_id_nav_display').html( 'Family #' + family_study_id );
+  }
+
+}
 
 function score_data_for_topic_id (LOCAL_STORAGE_KEY, family_id, topic_id) {
   try {
@@ -167,6 +182,13 @@ function score_data_for_topic_id (LOCAL_STORAGE_KEY, family_id, topic_id) {
   return calculate_friendly_score (score_data['max'], score_data['min'], score_data['score']);
 }
 
-// i'm moving this here and out of the other files that depend on this:
-family_id = local_storage_get (LOCAL_STORAGE_KEY, 'current_family_id');
+var family_id;
+
+function risk_topics_init() {
+  family_id = local_storage_get (LOCAL_STORAGE_KEY, 'current_family_id');
+  set_family_id_in_nav ( family_id);
+  set_assessment_url (); // so a click on "assessment" will go back to the most recent question or index page.
+}
+
+$(document).ready( risk_topics_init );
 

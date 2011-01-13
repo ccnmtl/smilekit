@@ -3,6 +3,19 @@
 #debugstuff {display: none;}
 
 /********/
+input[type="text"], input[type="password"], textarea {
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	font-size: 16px;
+	border: 1px solid #666;
+	color: #999;
+	font-family: helvetica;
+	padding: 5px;
+	background-color: #eee;
+}
+
+input[type="checkbox"] {
+}
 
 body
 {
@@ -12,26 +25,26 @@ body
 }
 
 div#list_of_questions {
-  display: none;
+	display: none;
 }
 
 
 /*always hidden: */
 
 #scoring_info, #maxmin_scoring_info, #family_configs, div#state{
- display:none;
+	display:none;
 }
 
 #question_id_div {
- display:none;
+	display:none;
 }
 
 #display_question_id_div {
- display:none;
+	display:none;
 }
 
 #language_code_div {
- display:none;
+	display:none;
 }
 /********/
 
@@ -56,6 +69,7 @@ div#list_of_questions {
 	top: -22px;
 	left: -20px;
 	background-image: url(/collection_tool/media/images/logo_mysmilebuddy.png);
+	text-indent: -2000px;
 }
 
 #masthead h1 a
@@ -73,7 +87,7 @@ div#list_of_questions {
 	height: 60px;
 	right: 0;
 	top: 0;
-	font-size: 12px;
+	font-size: 11px;
 }
 
 #mastheadnav a
@@ -82,11 +96,17 @@ div#list_of_questions {
 	float: right;
 	border-left: 1px solid #bbb;
 	text-align: center;
-	padding: 22px 9px 22px 9px;
+	padding: 22px 7px 22px 7px;
 	text-decoration: none;
 	color: #3172bb;
 	text-shadow: #fff 1px 1px 1px;
 	font-weight: bold;
+}
+
+#mastheadnav a#family_id_nav_display, #mastheadnav a#user_id_nav_display
+{
+	border-left: 0px !important;
+	color: #333 !important;
 }
 
 /********/
@@ -106,6 +126,7 @@ div#list_of_questions {
 	margin-bottom: 10px;
 	background: -webkit-gradient(linear, left top, left bottom, from(#9bdbbb), to(#1eaf65));
 	background: -moz-linear-gradient(top, #9bdbbb, #1eaf65);
+	position: relative;
 }
 
 #mainnav a
@@ -191,6 +212,9 @@ div#list_of_questions {
 	-webkit-border-top-right-radius: 10px;
 	-moz-border-radius-bottomright: 10px;
 	-webkit-border-bottom-right-radius: 10px;
+	position: absolute;
+	right: 0px;
+
 }
 
 /********/
@@ -198,12 +222,45 @@ div#list_of_questions {
 /* Dashboard */
 .go_to_family_button {
   display: none;
+  text-decoration: none;
+	border: 1px solid #ccc; 
+	text-decoration: none; 
+	text-align: center; 
+	-moz-border-radius: 10px; 
+	-webkit-border-radius: 10px;
+	padding: 5px;
+	font-weight: bold;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f5f5f7), to(#c1c4c3));
+	background: -moz-linear-gradient(top, #f5f5f7, #c1c4c3);
+	color: #333;
+	font-weight: bold;
+	font-size: 11px;
+	margin-left: 10px;
+	width: 150px;
+	text-transform: capitalize;
+}
+
+.currently_visiting {
+  color: #888;
 }
 
 #debug_cache_status {
   display: none;
 }
 
+a#get_materials_link, a#end_interview_link  
+{
+	padding: 20px;
+	text-decoration: none;
+	color: #333;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f5f5f7), to(#c1c4c3));
+	background: -moz-linear-gradient(top, #f5f5f7, #c1c4c3);
+	text-shadow: #fff 1px 1px 1px;
+	font-weight: bold;
+	font-size: 16px;
+}
 
 /********/
 
@@ -215,6 +272,7 @@ div#list_of_questions {
 	background: -webkit-gradient(linear, left top, left bottom, from(#1076bc), to(#91bad6));
 	background: -moz-linear-gradient(top, #1076bc, #91bad6);
 	margin-bottom: 10px;
+	position: relative;
 }
 
 #assessmentnav a
@@ -228,7 +286,7 @@ div#list_of_questions {
 	text-decoration: none;
 	color: #000;
 	text-shadow: #fff 1px 1px 1px;
-	font-size: 80%;
+	font-size: 75%;
 }
 
 #assessmentnav a.activetab
@@ -236,6 +294,7 @@ div#list_of_questions {
 	background-color: #fff;
 	color: #000;
 	font-weight: bold;
+	padding-bottom: 50px;
 }
 
 /********/
@@ -253,6 +312,7 @@ div#list_of_questions {
 	background: -webkit-gradient(linear, left top, left bottom, from(#1eaf65), to(#eeeeee));
 	background: -moz-linear-gradient(top, #1eaf65, #eeeeee);
 	margin-bottom: 10px;
+	position: relative;
 }
 
 #planningnav a
@@ -274,6 +334,7 @@ div#list_of_questions {
 	background-color: #fff;
 	color: #000;
 	font-weight: bold;
+	padding-bottom: 50px;
 }
 
 
@@ -293,6 +354,9 @@ div#list_of_questions {
 	-webkit-border-top-right-radius: 10px;
 	-moz-border-radius-bottomright: 10px;
 	-webkit-border-bottom-right-radius: 10px;
+	position: absolute;
+	right: 0px;
+
 }
 
 /********/
@@ -402,8 +466,20 @@ a.thumbnailimage, a.answerthumbnailimage { text-decoration: none; }
 .answerphotobox
 {
 	width: 682px;
+	margin:0px auto;
 }
 
+.answerphotoboxcontainer
+{
+	background-color: #000;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	background: -webkit-gradient(linear, left top, left bottom, from(#000), to(#666));
+	background: -moz-linear-gradient(top, #000, #666);
+	margin:10px;
+	padding: 10px;
+	position: relative;
+}
 
 
 .answerthumbnail a img {border: 1px solid black;}
@@ -519,27 +595,6 @@ input.formbutton
 	width: 49%;
 }
 
-/*
-.red
-{
-	background: -webkit-gradient(linear, left top, left bottom, from(#ff7575), to(#ff0101));
-	background: -moz-linear-gradient(top, #ff7575, #ff0101);
-	color: #fff !important;
-	text-shadow: #000 1px 1px 1px !important;
-	position: absolute;
-	left: 0px;
-	top: 0px;
-}
-
-.green
-{
-	background: -webkit-gradient(linear, left top, left bottom, from(#9bdbbb), to(#1eaf65));
-	background: -moz-linear-gradient(top, #9bdbbb, #1eaf65);
-	position: absolute;
-	left: 51%;
-	top: 0px;
-}
-*/
 
 a.contentbutton, a.riskbutton
 {
@@ -561,32 +616,34 @@ a.riskbutton
 	background: -moz-linear-gradient(top, white, #blue) !important;
 }
 
+
+
+
 a.contentbutton
 {
+	
 	background: -webkit-gradient(linear, left top, left bottom, from(#f5f5f7), to(#c1c4c3));
 	background: -moz-linear-gradient(top, #f5f5f7, #c1c4c3);
+	padding: 15px 30px 15px 30px;
+	display: block;
+	position: relative;	
+}
+
+a.contentbutton.indexpage {
+  background: -webkit-gradient(linear, left top, left bottom, from(#90bad6), to(#5098c9));
+	background: -moz-linear-gradient(top, #90bad6, #5098c9);
 	padding: 15px 30px 15px 30px;
 	display: block;
 	position: relative;
 }
 
-.nobutton
+.yesbutton, .nobutton /*these are both grey when not selected */
 {
-	background: -webkit-gradient(linear, left top, left bottom, from(#ff7575), to(#ff0101)) !important;
-	background: -moz-linear-gradient(top, #ff7575, #ff0101) !important;
-	color: #fff !important;
-	text-shadow: #000 1px 1px 1px !important;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f5f5f7), to(#c1c4c3));
+	background: -moz-linear-gradient(top, #f5f5f7, #c1c4c3);
+	color: #000 !important;
+	text-shadow: #fff 1px 1px 1px !important;
 }
-
-.yesbutton
-{
-	background: -webkit-gradient(linear, left top, left bottom, from(#9bdbbb), to(#1eaf65)) !important;
-	background: -moz-linear-gradient(top, #9bdbbb, #1eaf65) !important;
-	color: #fff !important;
-	text-shadow: #000 1px 1px 1px !important;
-}
-
-
 
 .contentbuttoncomplete
 {
@@ -596,8 +653,7 @@ a.contentbutton
 	color: #666 !important;
 }
 
-
-/* Adding this to denote ' this answer was chosen'. For now, just duplicating the style from contentbuttoncomplete, but we may want it to look different. */
+/* This style is applied to all answer buttons when you choose them, EXCEPT for the yes and no buttons which get their own special red and green styles. See yesbutton.contentbuttonchosen and nobutton.contentbuttonchosen below . */
 .contentbuttonchosen
 {
 	background: -webkit-gradient(linear, left top, left bottom, from(#666), to(#999)) !important;
@@ -607,6 +663,21 @@ a.contentbutton
 }
 
 
+/* if you select a yes or no button, it gets own style which overrides the regular .contenbuttonchosen above. */
+
+.yesbutton.contentbuttonchosen {
+	background: -webkit-gradient(linear, left top, left bottom, from(#1eaf65), to(#9bdbbb)) !important;
+	background: -moz-linear-gradient(top, #1eaf65, #9bdbbb) !important;
+	color: #fff !important;
+	text-shadow: #000 1px 1px 1px !important;
+}
+.nobutton.contentbuttonchosen {
+	background: -webkit-gradient(linear, left top, left bottom, from(#ff0101), to(#ff7575)) !important;
+	background: -moz-linear-gradient(top, #ff0101, #ff7575) !important;
+	color: #fff !important;
+	text-shadow: #000 1px 1px 1px !important;
+}
+
 .contentbuttoncomplete:before
 {
 	content: url(/collection_tool/media/images/checkbox.png);
@@ -614,14 +685,6 @@ a.contentbutton
 	position: absolute;
 	left: 0px;
 }
-
-
-
-/********/
-
-
-
-
 
 /********/
 
@@ -730,8 +793,8 @@ a.contentbutton
 	-webkit-border-radius: 10px;
 	padding: 5px;
 	font-weight: bold;
-	background: -webkit-gradient(linear, left top, left bottom, from(#9bdbbb), to(#1eaf65));
-	background: -moz-linear-gradient(top, #9bdbbb, #1eaf65);
+	background: -webkit-gradient(linear, left top, left bottom, from(#90bad6), to(#1176bc));
+	background: -moz-linear-gradient(top, #90bad6, #1176bc);
 	color: #fff;
 	font-weight: bold;
 	width: 300px;
@@ -739,6 +802,7 @@ a.contentbutton
 	text-shadow: #000 1px 1px 1px;
 	margin:20px auto;
 }
+
 
 
 /********/
@@ -827,24 +891,26 @@ h2#your_score_is {text-align: center;}
 
 /* no score */
 .firebutton.topic_no_score {
-	background: -webkit-gradient(linear, left top, left bottom, from(#666666), to(#ffffff)) !important;
-	background: -moz-linear-gradient(top, #ffffff, #666666) !important;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f5f5f7), to(#c1c4c3));
+	background: -moz-linear-gradient(top, #f5f5f7, #c1c4c3);
+	color: #333;
 }
 
 /*ok*/
-.firebutton.topic_score_1, .firebutton.topic_score_2 , .firebutton.topic_score_3  {
+.firebutton.topic_score_1, .firebutton.topic_score_2 , .firebutton.topic_score_3, .firebutton.topic_score_4,  .firebutton.topic_score_5  {
 	background: -webkit-gradient(linear, left top, left bottom, from(#33ffff), to(#3399ff)) !important;
 	background: -moz-linear-gradient(top, #33ffff, #3399ff) !important;
 }
 
 /*so-so*/
-.firebutton.topic_score_4, .firebutton.topic_score_5,  .firebutton.topic_score_6  {
+/*
+  {
 	background: -webkit-gradient(linear, left top, left bottom, from(#ffcc00), to(#ff9900)) !important;
 	background: -moz-linear-gradient(top, #ffcc00, #ff9900) !important;
 }
-
+*/
 /*scary*/
-.firebutton.topic_score_7, .firebutton.topic_score_8, .firebutton.topic_score_9, .firebutton.topic_score_10 {
+.firebutton.topic_score_6,  .firebutton.topic_score_7, .firebutton.topic_score_8, .firebutton.topic_score_9, .firebutton.topic_score_10 {
 	background: -webkit-gradient(linear, left top, left bottom, from(#33ffff), to(#3399ff)) !important;
 	background: -moz-linear-gradient(top, #ff7575, #ff0101) !important;
 }
@@ -941,9 +1007,7 @@ li.goal_div
 }
 
 
-
-/*eddie adding */
-.topic_div_learn a
+.topic_div_learn a,  #set_goal_div a
 {	
 	border: 1px solid 000;
 	width: 300px;
@@ -964,8 +1028,14 @@ li.goal_div
 }
 
 
+.goal_textfield {
+  width : 300px;
+}
 
 
+textarea.goal_textfield {
+  height: 100px;
+}
 
 /********/
 
@@ -984,16 +1054,12 @@ fieldset, legend {
 
 fieldset {
 	margin: 20px 0px 0px 0px;
-	background: -webkit-gradient(linear, left top, left bottom, from(#eee), to(#fff));
-	background: -moz-linear-gradient(top, #eee, #fff);
 	padding: 20px;
 }
 
 legend {
 	padding: 5px 10px 5px 10px;
 	font-weight: bold;
-	background: -webkit-gradient(linear, left top, left bottom, from(#f5f5f7), to(#c1c4c3));
-	background: -moz-linear-gradient(top, #f5f5f7, #c1c4c3);
 	color: #333;
 	text-shadow: #fff 1px 1px 1px;
 	font-weight: bold;
@@ -1029,11 +1095,7 @@ td, legend, input {font-size: 16px;}
 
 .flatpagecontainer .editpage
 {
-	border-top: 1px solid #ccc;
-	clear: both;
-	margin-top: 30px;
-	text-align: center;
-	padding-top: 20px;
+	display:none;
 }
 
 .flatpagecontainer .articlephotocontainer
@@ -1068,17 +1130,6 @@ td, legend, input {font-size: 16px;}
 	padding-top: 5px;
 }
 
-.answerphotoboxcontainer
-{
-	background-color: #000;
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
-	background: -webkit-gradient(linear, left top, left bottom, from(#000), to(#666));
-	background: -moz-linear-gradient(top, #000, #666);
-	margin:10px;
-	padding: 10px;
-	position: relative;
-}
 
 .horizontalphotocontainer
 {
@@ -1118,9 +1169,36 @@ td, legend, input {font-size: 16px;}
 
 /* start - "family details" table styles */
 
-table.editdetails, table.interviewdetails {width: 100%;}
+input#main_submit_button, input#main_end_button
+{
+	-moz-border-radius: 10px; 
+	-webkit-border-radius: 10px;
+	color: #fff; 
+	font-weight: bold;
+	border: 0px;
+	padding: 20px;
+}
 
-table.editdetails th, table.editdetails td, table.users th, table.users td  {padding: 10px;}
+input#main_submit_button
+{
+	background: -webkit-gradient(linear, left top, left bottom, from(#9bdbbb), to(#1eaf65));
+	background: -moz-linear-gradient(top, #9bdbbb, #1eaf65);
+	color: #fff;
+	text-shadow: #000 1px 1px 1px;
+}
+
+input#main_end_button
+{
+	background: -webkit-gradient(linear, left top, left bottom, from(#ff7575), to(#ff0101));
+	background: -moz-linear-gradient(top, #ff7575, #ff0101);
+	color: #fff;
+	text-shadow: #000 1px 1px 1px;
+}
+
+
+table.editdetails, table.interviewdetails, table.users {width: 100%;}
+
+table.editdetails th, table.editdetails td, table.users th, table.users td  {padding: 10px; border-top: 1px solid #ccc; text-align: center;}
 
 table.editdetails td.action, table.users td.action {text-align: center;}
 
@@ -1174,17 +1252,95 @@ table#materialstable th,table#materialstable td
 }
 
 
+
+
 /* stop - "family details" table styles */
+
+table#summary_table {
+  background-color: #fff;
+}
+
+table#summary_table th, table#summary_table td
+{
+	border: 1px #ccc solid;
+	padding: 10px;
+	text-align: center;
+	empty-cells: show;
+}
+
+.error_message 
+{
+	color: red; 
+	font-weight: bold;
+	font-size: 18px;
+	background-image: url(/collection_tool/media/images/icon_error.png);
+	background-repeat: no-repeat;
+	padding: 7px 0px 10px 50px;
+}
+
+.success_message 
+{
+	color: green; 
+	font-weight: bold;
+	font-size: 18px;
+	background-image: url(/collection_tool/media/images/icon_success.png);
+	background-repeat: no-repeat;
+	padding: 7px 0px 10px 50px;
+
+}
+
+
+/* start - print-specific flat page styles */
+
+@media print 
+
+{
+
+	body {background-color: #fff;}
+	
+	#mainnav {display: none;}
+	
+	#mastheadnav a {display: none;}
+	
+	#assessmentnav {display: none;}
+	
+	#planningnav {display: none;}
+	
+	#contentnav {display: none;}
+	
+	#editpage {display: none;}
+
+	
+	a#help_close {display: none !important;}
+	
+	a.learn_more_close_button {display: none !important;}
+	
+	.learn_more_help_content {
+	
+		-moz-box-shadow: none;
+		-webkit-box-shadow: none;
+		margin-top: 70px;
+	}
+
+}
+
+
+
+/* stop - print-specific flat page styles */
+
 
 /* start - orientation-specific styles */
 
+@media all and (orientation:portrait)
+{
+
+}
+
+
 @media all and (orientation:landscape)
 {
-	.horizontalphotocontainer
-	{
-		padding-left: 40px;
-		
-	}
+
 }
 
 /* stop - orientation-specific styles */
+
