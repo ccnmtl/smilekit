@@ -173,17 +173,21 @@
 		
 	<table class="interviewdetails" cellspacing="0">
 
+
+		{%if family.latest_answers.keys|length%}
 		<tr>
 			<td ></td>
 			<td class="label">Percent complete:</td>
 			<td>About {{family.percent_complete|floatformat:0 }} %</td>
 		</tr>
-		
+    {%endif %}
+		{%if family.risk_score%}
 		<tr>
 			<td>&nbsp;</td>
 			<td class="label">Risk score:</td>
 			<td >{{family.risk_score|floatformat:0}} (1 is low-risk, 10 is high-risk)</td>
 		</tr>
+		{%endif %}
 		<tr>
 			<td>&nbsp;</td>
 			<td class="label">Questions answered:</td>
