@@ -1,4 +1,6 @@
 {% extends "family_info/base.html" %}
+{% load family_info_template_tags %}
+
 
 {%load smartif%}
 
@@ -162,6 +164,63 @@
       </fieldset>
 	</form>	
       
+      
+      <fieldset>
+      
+	<legend>
+	 Summary
+	</legend>
+		
+	<table class="interviewdetails" cellspacing="0">
+
+		<tr>
+			<td ></td>
+			<td class="label">Percent complete:</td>
+			<td>About {{family.percent_complete|floatformat:0 }} %</td>
+		</tr>
+		
+		<tr>
+			<td>&nbsp;</td>
+			<td class="label">Risk score:</td>
+			<td >{{family.risk_score|floatformat:0}} (1 is low-risk, 10 is high-risk)</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td class="label">Questions answered:</td>
+			<td >{{family.latest_answers.keys|length}}</td>
+		</tr>
+		
+    {% get_goal_info_1 of_family family.id as goal %}
+    {% if goal%}
+		  <tr>
+			  <td>&nbsp;</td>
+			  <td class="label">Goal 1:</td>
+			  <td >{{goal.goal.english_title}}</td>
+		  </tr>
+		{%endif%}
+    {% get_goal_info_2 of_family family.id as goal %}
+    {% if goal%}
+		<tr>
+			<td>&nbsp;</td>
+			<td class="label">Goal 2:</td>
+			<td >{{goal.goal.english_title}}</td>
+		</tr>
+		{%endif%}
+    {% get_goal_info_3 of_family family.id as goal %}
+    {% if goal%}
+		<tr>
+			<td>&nbsp;</td>
+			<td class="label">Goal 3:</td>
+			<td >{{goal.goal.english_title}}</td>
+		</tr>
+		{%endif%}
+  </table>
+			<td>
+        
+			
+	</fieldset>
+      
+      
       <fieldset>
       
 	<legend>
@@ -169,51 +228,31 @@
 	</legend>
 		
 	<table class="interviewdetails" cellspacing="0">
-	
-		<tr>
-			<td class="toggle"><a href="#">&darr;</a></td>
-			<td class="label">Date: 01/01/2011</td>
-			<td>Health Worker: Raymond, Marc</td>
-		</tr>
+	  {% for v in family.all_visits reversed %}
+		  {% if v.response_set.all %}
+		        <tr class="{%if v.is_happening %}family_page_visit_open{%endif %}">
+			        <td class="toggle"><a name = "visit_{{v.id}}">&darr;</a></td>
+			        <td class="label">{{v.start_timestamp|date:"D d M Y" }}</td>
+			        <td>{{v.interviewer.first_name}} {{v.interviewer.last_name}}</td>
+		        </tr>
 		
-		<tr>
-			<td>&nbsp;</td>
-			<td class="label">Score</td>
-			<td>100</td>
-		</tr>
+		        <tr>
+			        <td>&nbsp;</td>
+			        <td class="label">Questions answered:</td>
+			        <td>{{v.response_set.count}}</td>
+		        </tr>
+		        {%for r in v.response_set.all %}
 		
-		<tr>
-			<td>&nbsp;</td>
-			<td class="label">Completion</td>
-			<td>100% Completed</td>
-		</tr>
-		
-		<tr>
-			<td>&nbsp;</td>
-			<td class="label">Goals</td>
-			<td>
-			<ol>
-			<li>Strike first.</li>
-			<li>Strike hard.</li>
-			<li>No mercy.</li>
-			<br />
-			</ol>
-			</td>
-		</tr>
-		
-		<tr>
-			<td class="toggle"><a href="#">&rarr;</a></td>
-			<td class="label">Date: 01/01/2011</td>
-			<td>Health Worker: Raymond, Marc</td>
-		</tr>
-		
-		<tr>
-			<td class="toggle"><a href="#">&rarr;</a></td>
-			<td class="label">Date: 01/01/2011</td>
-			<td>Health Worker: Raymond, Marc</td>
-		</tr>
-		
-		  
+		          <tr class="response_to_question {{r.question_id}}">
+			          <td>&nbsp;</td>
+			          <td class="label">{{r.question_english}}</td>
+			          <td class= "response_answer {{r.answer_id}}" >{{r.answer_english}}</td>
+		          </tr>
+		        {%endfor %}
+		  {%else %}
+		      <!-- no responses... not showing visit {{v.id}} -->
+		  {% endif %}
+	{% endfor %}		  
 	</table>
 	
       </fieldset>
