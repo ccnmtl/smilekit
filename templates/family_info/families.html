@@ -51,7 +51,13 @@
               var explanation = 'You are currently visiting ' + family_string + '  using another machine. Please finish that visit before starting a new one.'
               //$('#resume_button_div').html( explanation);
               document.getElementById('error_message').innerHTML = explanation;
-              document.getElementById('resume_button_div').innerHTML = '';
+                            
+              tmp = document.getElementById('interview_link')
+              tmp.parentNode.removeChild(tmp)
+
+              tmp = document.getElementById('resume_button_div')
+              tmp.parentNode.removeChild(tmp)
+                            
           }
 	          </script>
           {%endif %}
@@ -94,12 +100,13 @@
 	                    {%else %}
 	                      {%if not user.current_visit%}	                        
 	                        <input class="familycheckbox" type="checkbox" name="families" value="{{family.id}}" id="family_{{family.id}}">
-
 	                      {%endif%}
-	                      
 	                    {%endif%}
 	                </td>
 	                <td>Family # {{family.study_id_number}} 
+	                </td>
+	                <td>
+	                {{family.percent_complete|floatformat:0 }} % done
 	                </td>
 	                <td><a href="/family_info/edit_family/{{family.id}}">Edit Family Details </a>
 	                
@@ -107,25 +114,22 @@
   	                {%if family.in_a_visit %}
 	                  <a href="/admin/family_info/visit/{{family.interviewer.current_visit.id}}/">Visit Admin Page</a>
 	                  {%endif%}
-	                {%endif%}                
-	                
+	                {%endif%}
 	                </td>
 	              </tr>
 	            {%endfor %}
 		  <tr>
-			<td colspan="3"><a href = "/family_info/new_family" >+ Add a Family</a></td>
+			<td colspan="20"><a href = "/family_info/new_family" >+ Add a Family</a></td>
 			</tr>
 	     {%if user.is_staff %}
 			  <tr>
-			  <td><a href = "{%url family_info.views.help_summary %}" >Help Summary</a></td>
-			  <td></td>
-			  <td></td>
+			  <td colspan="20"><a href = "{%url family_info.views.help_summary %}" >Help Summary</a></td>
+
 			  </tr>
 	          
 			  <tr>
-			  <td><a href = "{%url family_info.views.summary_table %}" >Summary Table</a></td>
-			  <td></td>
-			  <td></td>
+			  <td colspan="20"><a href = "{%url family_info.views.summary_table %}" >Summary Table</a></td>
+
 			  </tr>
 			{%endif%}
 	</table>

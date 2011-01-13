@@ -199,12 +199,30 @@ class Family(models.Model):
     return result
     
   @property
+  def answerable_questions(self):          
+    """questions that actually have a spot in the nav."""
+    result = []
+    for weight in self.config.weight_set.all():
+      if weight.question.displayquestion_set.all().count() > 0:
+        if  weight.question.displayquestion_set.all()[0].nav_section:
+          result.append (weight.question)
+    
+    return result
+    
+    
+  @property
   def percent_complete (self):
-    """What percentage of the available questions has this family answered?"""
-    if self.config.weight_set.all().count() == 0:
+    """What *approximate* percentage of the available questions has this family answered?"""
+    if len(self.answerable_questions) == 0:
       return None
-    return 100.0 * float(len(self.latest_answers)) / float(self.config.weight_set.all().count())
 
+    it = 100.0 * float(len(self.latest_answers)) / float(len(self.answerable_questions))
+    if it > 100.0: #due to the questions that don't have display questions associated with them.
+      return 100.0
+    else:
+      return it
+  
+  
   @property
   def risk_score (self):
     """For each answer in a configuration, compute the best and worst possible scores based on all the answer data available. Then return out an easy-to-compare "friendly" score on a scale of 1 to 10. (1 is good, 10 is bad.)"""
