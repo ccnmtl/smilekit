@@ -50,6 +50,8 @@ class HelpUrl(models.Model):
   def dir(self):
       return dir(self)
 
+
+
 class HelpBulletPoint(models.Model):
   """Displayed as a bullet-point list, these give a summary / what to watch for each page."""
   english_text =  models.TextField(null=True, blank =True)
@@ -104,9 +106,17 @@ class Topic(models.Model):
     
 
   @property
+  def displayquestions_string(self):
+    return ";".join([ "%d: %s" % (t.id, t.english) for t in self.display_questions])
+
+    
+  @property
+  def display_questions(self):
+    return [dq for dq in self.displayquestion_set.all() if dq.nav_section]
+
+  @property
   def section(self):
-    dquestions = self.displayquestion_set.all()
-    sections = [dq.nav_section for dq in dquestions]
+    sections = [dq.nav_section for dq in self.display_questions]
     if sections:
       return most_frequent_item (sections)
     return None
@@ -115,9 +125,6 @@ class Topic(models.Model):
   def dir(self):
     return dir(self)
 
-  @property
-  def displayquestions(self):
-    return ";".join([ "%d: %s" % (t.id, t.english) for t in self.displayquestion_set.all()])
 
   @property
   def answers(self):
@@ -197,6 +204,7 @@ class Topic(models.Model):
   @property
   def dir(self):
     return dir(self)
+
 
 
     

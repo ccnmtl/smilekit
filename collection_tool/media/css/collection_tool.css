@@ -897,19 +897,20 @@ h2#your_score_is {text-align: center;}
 }
 
 /*ok*/
-.firebutton.topic_score_1, .firebutton.topic_score_2 , .firebutton.topic_score_3  {
+.firebutton.topic_score_1, .firebutton.topic_score_2 , .firebutton.topic_score_3, .firebutton.topic_score_4,  .firebutton.topic_score_5  {
 	background: -webkit-gradient(linear, left top, left bottom, from(#33ffff), to(#3399ff)) !important;
 	background: -moz-linear-gradient(top, #33ffff, #3399ff) !important;
 }
 
 /*so-so*/
-.firebutton.topic_score_4, .firebutton.topic_score_5,  .firebutton.topic_score_6  {
+/*
+  {
 	background: -webkit-gradient(linear, left top, left bottom, from(#ffcc00), to(#ff9900)) !important;
 	background: -moz-linear-gradient(top, #ffcc00, #ff9900) !important;
 }
-
+*/
 /*scary*/
-.firebutton.topic_score_7, .firebutton.topic_score_8, .firebutton.topic_score_9, .firebutton.topic_score_10 {
+.firebutton.topic_score_6,  .firebutton.topic_score_7, .firebutton.topic_score_8, .firebutton.topic_score_9, .firebutton.topic_score_10 {
 	background: -webkit-gradient(linear, left top, left bottom, from(#33ffff), to(#3399ff)) !important;
 	background: -moz-linear-gradient(top, #ff7575, #ff0101) !important;
 }

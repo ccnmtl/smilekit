@@ -23,9 +23,19 @@ def risk(request, language_code):
   if language_code not in ['en', 'es']:
     raise Http404
   t = loader.get_template('collection_tool/risk.html')
+  
+  #import pdb
+  #pdb.set_trace()
+  help_item = None
+  try:
+    help_item = HelpUrl.objects.filter (url__contains = '/risk')[0]
+    print help_item
+  except:
+    pass
       
   c = RequestContext(request,{
       'language_code': language_code,
+      'help_item': help_item,
       'all_topics': Topic.objects.all(),
       'all_families': Family.objects.all(),
   })
@@ -107,7 +117,6 @@ def get_planner_items():
     'planner_items':planner_items,
   }
 
-# planner/goal/(?P<goal_id>\d+)/language/(?P<language_code>\w+)
 def goal_planner(request, goal_id, language_code):
   """Goal planner form."""
   

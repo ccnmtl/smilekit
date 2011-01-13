@@ -26,8 +26,6 @@
 
 {% block collection_tool_content %}
 
-
-
 		<div id ="language_code_div">{{language_code}}</div>
     <div>
     <!-- all the JSON you need to calculate scores: -->
@@ -45,6 +43,14 @@
 
 		<div id="contentnav">
 			  <a id="left" href="">&#8592;</a>
+			  
+		{%if help_item.help_item %}
+		<a id="help" href="javascript:void(0)" onclick="document.getElementById('helpon').style.display='block';">Help!</a>
+		  {% with help_item.help_item as h_i %}
+          {% include "collection_tool/help.html" %}
+		  {%endwith%}
+		{%endif %}
+			  
 		</div>	  
 
     <h2 id="your_score_is">Your risk score is:</h2>

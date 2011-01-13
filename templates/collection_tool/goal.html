@@ -24,22 +24,27 @@
 
 {% block collection_tool_content %}
 <div id="contentnav">
+    {% if goal.show_in_planner%}
+	      <a id="left" href="/collection_tool/planner/goal/{{goal.id}}/language/{{language_code}}/">&#8592;</a>
+    {%else %}
+	      <a id="left" href="/collection_tool/topics/language/{{language_code}}/">&#8592;</a>	  
+    {% endif%}
 
-	  <a id="left" href="javascript:history.go(-1)">&#8592; Back</a>
+
+		{%if goal.help_item.help_item %}
+		<a id="help" href="javascript:void(0)" onclick="document.getElementById('helpon').style.display='block';">Help!</a>
+		  {% with goal.help_item.help_item as h_i %}
+          {% include "collection_tool/help.html" %}
+		  {%endwith%}
+		{%endif %}
+
 
 </div>
 	<div id ="language_code_div">{{language_code}}</div>
 	<div id ="goal_id_div">{{goal.id}}</div>
 	
 	
-		{%if goal.help_item.help_item %}
-		<div id="contentnav">
-		<a id="help" href="javascript:void(0)" onclick="document.getElementById('helpon').style.display='block';">Help!</a>
-		  {% with goal.help_item.help_item as h_i %}
-          {% include "collection_tool/help.html" %}
-		  {%endwith%}
-		</div>
-		{%endif %}
+
 	
 	{%ifequal language_code 'en'%}
 	  <h2 align="center">{{goal.english_title}}.</h2>

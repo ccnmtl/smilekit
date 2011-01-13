@@ -36,6 +36,14 @@
 
 {% block collection_tool_content %}
 
+<div id="contentnav">
+	      <a id="left" href="/collection_tool/topics/language/{{language_code}}/">&#8592;</a>
+	      <a id="right" href="/collection_tool/goal/{{goal.id}}/language/{{language_code}}/">&#8594;</a>
+</div>
+
+
+
+
 	<div id ="language_code_div">{{language_code}}</div>
 	
 	{%ifequal language_code 'en'%}
@@ -49,18 +57,8 @@
 	  {% include "collection_tool/planner.html" %}
 
 	
-	<div align="center" style="clear: both; padding: 20px;">
-	
-		<!--
-		<a href = "/collection_tool/goals/language/{{language_code}}">{%ifequal language_code 'en'%}Set Goal{%endifequal%}{%ifequal language_code 'es'%}Set Goal{%endifequal%}</a>
-		-->
-		
-		<!--
-		<a href = "" > Cancel and Start over </a>
-		-->
-		
+	<div align="center" style="clear: both; padding: 20px;">		
 		<a id='reset' href=''>Revert to Assessment Answers</a>
-		
 	</div>
     
 

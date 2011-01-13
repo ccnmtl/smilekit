@@ -41,8 +41,8 @@
 		<h5>More Information:</h5>
 		
 		<p>
-		{%ifequal language_code 'es'%}{{h_i.spanish_script_instructions}}{%endifequal %}
-		{%ifequal language_code 'en'%}{{h_i.english_script_instructions}}{%endifequal %}
+		{%ifequal language_code 'es'%}{{h_i.spanish_script_instructions|safe}}{%endifequal %}
+		{%ifequal language_code 'en'%}{{h_i.english_script_instructions|safe}}{%endifequal %}
 		</p>
   {%endif%}
 		

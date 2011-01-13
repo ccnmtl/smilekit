@@ -12,9 +12,6 @@ from django.core.urlresolvers import reverse
 
 @login_required
 def families(request, **kwargs):
-    #pdb.set_trace()
-    
-    
     t = loader.get_template('family_info/families.html')   
     c = RequestContext(request, {
       'error_message': kwargs.get ('error_message', ''),
@@ -48,11 +45,6 @@ def back_to_new_user (request, **kwargs):
 def insert_user(request, **kwargs):
     """ this validates the user form and inserts the user."""
     rp = request.POST
-    
-    
-    #print "AAAA"
-    #import pdb
-    #pdb.set_trace()
     the_new_user = User(\
         username = request.POST['username'], \
         password= '', \

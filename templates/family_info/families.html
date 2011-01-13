@@ -22,9 +22,8 @@
 		        
 		        
 	          <div style="font-weight: bold;">
-		          Visit #{{just_finished_visit.pk}} finished; 
-		          {{just_finished_visit.response_set.all|length}} response{{ just_finished_visit.response_set.all|length|pluralize}}
-		          {{just_finished_visit.response_set.all|length|pluralize:"was,were"}} recorded.
+		          Famil{{ just_finished_visit.families.all|length|pluralize:"y,ies" }} {%for f in just_finished_visit.families.all%}{% if     forloop.last and not forloop.first %} and {%endif%}{% if not forloop.last and not forloop.first %}, {%endif%}{{f.study_id_number}}{%endfor%}  {{ just_finished_visit.families.all|length|pluralize:"is,are" }} checked back in; {{just_finished_visit.response_set.all|length}} response{{ just_finished_visit.response_set.all|length|pluralize}}
+		          {{just_finished_visit.response_set.all|length|pluralize:"was,were"}} recorded during your visit.
 		          
 		        </div>
 		        
@@ -34,7 +33,6 @@
 		      {% endif %}
 			
           {%if user.current_visit%}
-
                  <div id="resume_button_div" align="center">
                  <!-- This takes you to the dashboard for your current interview. -->
                  <a id="resume_button" href ="/family_info/dashboard/" class = "green_button"> Resume your visit with famil{{ user.current_visit.families.all|length|pluralize:"y,ies" }} {%for f in user.current_visit.families.all%}
