@@ -55,6 +55,7 @@
 				  <select name = "config_id">
 				  {% for config in equation_balancer_configs %}
 				  <option value = "{{config.id}}"
+				  {%ifequal family.config.id config.id %}selected{%endifequal%}
 				  >{{config.name}}</option>
 				  {% endfor %}
 				  </select>

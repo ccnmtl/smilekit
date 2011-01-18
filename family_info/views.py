@@ -263,6 +263,12 @@ def edit_family(request, **kwargs):
                 )
                 
                 return back_to_edit_user  ( request, user, error_message)
+                
+            
+            the_config = equation_balancer_configuration.objects.get(pk = rp['config_id'])
+            assert the_config != None
+            
+            
             the_family.mother_born_in_us                  = (rp['mother_born_in_us'] == 'True')
             the_family.food_stamps_in_last_year           = (rp['food_stamps_in_last_year'] == 'True')
             the_family.study_id_number                    = rp['study_id_number']
@@ -270,7 +276,10 @@ def edit_family(request, **kwargs):
             the_family.child_year_of_birth                = child_year_of_birth
             the_family.race_ethnicity                     = rp['race_ethnicity']
             the_family.highest_level_of_parent_education  = rp['highest_level_of_parent_education']
-            the_family.date_modified = datetime.datetime.now(),
+            the_family.date_modified = datetime.datetime.now()
+            
+            the_family.config_id = the_config.id
+            
             the_family.save()
             
             error_message = 'Your changes were saved.'
