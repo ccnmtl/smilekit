@@ -17,16 +17,6 @@ def intro(request, language_code):
   })
   return HttpResponse(t.render(c))
 
-
-def it ():
-  #import pdb
-  #pdb.set_trace()
-  
-  dqanswered = [Answer.objects.get(pk = a).question.displayquestion_set.all()[0] for a in [3, 217, 155, 158, 14, 143]]
-
-  weird =  [dq for dq in dqanswered][4]
-  print [da.answer_id for da in weird.display_answers]
-  #dq id is 39
   
 
 def risk(request, language_code):
@@ -48,8 +38,6 @@ def risk(request, language_code):
       'all_topics': Topic.objects.all(),
       'all_families': Family.objects.all(),
   })
-  
-  it()
     
   return HttpResponse(t.render(c))
 
