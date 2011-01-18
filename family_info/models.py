@@ -135,9 +135,9 @@ class Family(models.Model):
     
   @property
   def config_locked(self):
-    """ should we allow this family's configuration to change? Not if they've already had an interview."""
-    return not self.has_had_an_interview
-  
+    """ should we allow this family's configuration to change? Not if they've already answered any questions."""
+    return len(self.latest_answers) > 0
+
   @property
   def interviewer (self):
     if len (self.visits_happening) > 0:

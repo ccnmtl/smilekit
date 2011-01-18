@@ -18,18 +18,27 @@ def intro(request, language_code):
   return HttpResponse(t.render(c))
 
 
+def it ():
+  #import pdb
+  #pdb.set_trace()
+  
+  dqanswered = [Answer.objects.get(pk = a).question.displayquestion_set.all()[0] for a in [3, 217, 155, 158, 14, 143]]
+
+  weird =  [dq for dq in dqanswered][4]
+  print [da.answer_id for da in weird.display_answers]
+  #dq id is 39
+  
+
 def risk(request, language_code):
   """ Show risk score."""
   if language_code not in ['en', 'es']:
     raise Http404
   t = loader.get_template('collection_tool/risk.html')
   
-  #import pdb
-  #pdb.set_trace()
   help_item = None
   try:
     help_item = HelpUrl.objects.filter (url__contains = '/risk')[0]
-    print help_item
+    #print help_item
   except:
     pass
       
@@ -39,6 +48,9 @@ def risk(request, language_code):
       'all_topics': Topic.objects.all(),
       'all_families': Family.objects.all(),
   })
+  
+  it()
+    
   return HttpResponse(t.render(c))
 
 
@@ -212,6 +224,10 @@ def question(request, displayquestion_id, language_code):
   planner_times = []
   planner_items = []
 
+
+  # NOTE: question ID 25, "minutes risky exposure" is OBSOLETE.
+  # NOTE: question ID 22, "23: minutes food exposures" is OBSOLETE.
+  
   risky_exposures_question = Question.objects.get(text="number risky exposures")
   risky_answers = {}
 

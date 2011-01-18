@@ -55,13 +55,42 @@ function calculate_family_answers (family_id, scoring_info) {
      
     prev = family_questions (LOCAL_STORAGE_KEY, family_id)['previous_visit_questions'];
      $.each(prev, function (qid, aid) {
-      if (calculate_family_answers_result [qid] == null) {
-          calculate_family_answers_result [qid] = aid;
-        }
+      
+      /// IGNORE TWO OBSOLETE QUESIONS:
+      // TODO: remove this once test families are excised.
+      if (qid != 23 && qid != 22) {
+      
+        
+        if (calculate_family_answers_result [qid] == null) {
+        
+            calculate_family_answers_result [qid] = aid;
+          }
+       }
+     
      });
     
     return calculate_family_answers_result;
 }
+
+// TODO remove no longer used.
+/*
+function question_count (topic_id, config_id) {
+  i = 0;
+  
+  scoring_info[topic_id][config_id]['question_count']
+  //
+  //llog (scoring_info[topic_id][config_id]));
+  
+  //llog(maxmin_scoring_info[topic_id][config_id]['max']);
+  // this is actually answer count. not good.
+  $.each( maxmin_scoring_info[topic_id][config_id]['max'], function () { i++;})
+  return i;
+}
+*/
+
+//"5"
+//{"34":5,"35":5,"30":9,"31":9}
+
 
 function the_score_for (topic_id, config_id, answer_id) {
   return scoring_info[topic_id][config_id][answer_id]
@@ -75,8 +104,13 @@ function min_score_for  (topic_id, config_id, answer_id) {
   return maxmin_scoring_info[topic_id][config_id]['min'][answer_id];
 }
 
+function irrelevant (topic_id, config_id) {
+  return maxmin_scoring_info[topic_id][config_id]['irrelevant'];
+}
+
 
 function calculate_scores (family_id, scoring_info, config_id, answer_array) {
+    llog ("Config id is " + config_id);
 
     // Takes your scoring info and figures out, for each topic and for all topics combined,
     // what the best and possible worst scores you could
@@ -113,22 +147,47 @@ function calculate_scores (family_id, scoring_info, config_id, answer_array) {
     */
     
     var result = {'all': {'score': 0, 'max':0, 'min':0}};
-    $.each(scoring_info, function (tid, bla) {
-        result[tid] = {'score': 0, 'max':0, 'min':0};
+    $.each(scoring_info, function (tid) {
+        // for each topic:
+        //llog ("topic is now " + tid);
+        result[tid] = {'score': 0, 'max':0, 'min':0, 'answered_count':0, 'question_count':0};
+        
+        // how many questions count toward this topic, including unanswered ones?
+        result[tid]['question_count']  = scoring_info[tid][config_id]['question_count'];
+        result[tid]['irrelevant'] = irrelevant (tid, config_id);
+        if (tid == 1) {
+            llog (" question_count " +  result[tid]['question_count']);
+        }
+        
+        
+        //llog (answer_array);
+        
         for (i = 0; i < answer_array.length; i = i + 1) {
+            // for each answer:
             answer_id = answer_array[i]
             found_score = the_score_for (tid, config_id, answer_id);
             if (found_score != null) {
+                // this answer counts towards this topic.
+                //llog (" answer " + answer_id + " counts towards " + tid );
+                // overall score:
                 result['all']['score'] += found_score;
                 result['all']['min']   += min_score_for  (tid, config_id, answer_id);
                 result['all']['max']   += max_score_for  (tid, config_id, answer_id);
+                
+                // score for this topic (used on the Topics screen:
                 result[tid]['score']   += found_score;
                 result[tid]['min']     += min_score_for  (tid, config_id, answer_id);
                 result[tid]['max']     += max_score_for  (tid, config_id, answer_id);
-            }        
+                result[tid]['answered_count']     ++;
+                if (tid == 1) {
+                  llog (" answer " + answer_id);
+                }
+            }
         }
     }
   );
+  //llog (result);
+  
   return result;
 }
 
@@ -173,6 +232,7 @@ function set_family_id_in_nav ( fam_id) {
 function score_data_for_topic_id (LOCAL_STORAGE_KEY, family_id, topic_id) {
   try {
       score_data = get_goals_data(LOCAL_STORAGE_KEY, family_id)['score_data'][topic_id];
+      //llog (score_data);
   } catch (e){
       return -1
   } 
@@ -180,6 +240,30 @@ function score_data_for_topic_id (LOCAL_STORAGE_KEY, family_id, topic_id) {
       return -1;
   }
   return calculate_friendly_score (score_data['max'], score_data['min'], score_data['score']);
+}
+
+
+function topic_is_irrelevant (LOCAL_STORAGE_KEY, family_id, topic_id) {
+  try {
+      score_data = get_goals_data(LOCAL_STORAGE_KEY, family_id)['score_data'][topic_id];
+      return (score_data['irrelevant'] == 'true');
+  } catch (e){
+      return true
+  }
+  return true;
+}
+
+
+
+
+function answered_all_questions (LOCAL_STORAGE_KEY, family_id, topic_id) {
+ try {
+     score_data = get_goals_data(LOCAL_STORAGE_KEY, family_id)['score_data'][topic_id];
+     return (score_data['answered_count'] >= score_data['question_count'])
+ } catch (e){
+      return -1
+ }
+ return false;
 }
 
 var family_id;

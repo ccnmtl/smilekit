@@ -90,6 +90,14 @@ def most_frequent_item (alist):
     return sorted(frequencies,  key=lambda x: -x[1])[0][0]
   return None
     
+    
+def dquestions_for_config_and_topic (config, topic):
+    # don't count the planner questions for now:
+    topic_dquestions = [dq.id  for dq in topic.display_questions if dq.nav_section != None]
+    config_dquestions = [dq.id for dq in config.display_questions()  if dq.nav_section != None]
+    return [ a for a in topic_dquestions if a in config_dquestions]
+    
+    
 class Topic(models.Model):    
   """an aspect of the patient's health that can be improved"""
   def __unicode__(self): return self.english_title  
@@ -145,7 +153,7 @@ class Topic(models.Model):
   def scoring_info_object (self):
     return  dict([(config.id, self.config_scoring_info(config)) for config in Configuration.objects.all()])
 
-  
+  #self is a topic.
   def config_scoring_info(self, config):
     result = {}
     overall_weight = 0
@@ -158,7 +166,10 @@ class Topic(models.Model):
         question_weight = config.weight_set.get(question = the_answer.question).weight
       except:
         question_weight = 0
-      result[the_answer.id] = float(the_answer.weight * question_weight * overall_weight)      
+      result[the_answer.id] = float(the_answer.weight * question_weight * overall_weight)
+    
+
+    result['question_count'] = len(dquestions_for_config_and_topic (config, self))   
     return result
 
   @property
@@ -188,11 +199,26 @@ class Topic(models.Model):
       for answer in dq.question.answer_set.all():
         mins[answer.id] = dq.question.min_answer_weight * question_weight * overall_weight
         maxs[answer.id] = dq.question.max_answer_weight * question_weight * overall_weight
-    return {'min': mins, 'max': maxs }
+    #print sum(mins.values())
+    #print sum(maxs.values())
+    #print sum(mins.values()) ==  sum(maxs.values())
+    return_value = {'min': mins, 'max': maxs }
+    if  sum(mins.values()) ==  sum(maxs.values()):
+      return_value ['irrelevant'] = 'true'
+      #special case: for this topic and this config, no matter how many questions you answer,
+      # you can't obtain a score due to the weighs assigned the questions.
+    else:
+      return_value ['irrelevant'] = 'false'
+    
+
+    return return_value 
 
   @property
   def question_count(self):
-    return len(self.displayquestion_set.all())
+    if self.id == 2:
+      #import pdb
+      #pdb.set_trace()
+      return len(self.displayquestion_set.all())
   
   @property
   def learn_more(self):

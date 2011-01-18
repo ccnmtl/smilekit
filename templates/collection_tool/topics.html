@@ -72,22 +72,20 @@
 		      
 			    <div class="firebuttonicon"></div>
 			    
-			    
+			    <!--
 			    {% if t.section %}
-				      {%ifequal language_code 'en'%}
-				        <div class="indexpageicon"><a href="/collection_tool/section/{{t.section.id}}/language/en/">?</a></div>
-		          {%endifequal%}
-				      {%ifequal language_code 'es'%}
-				        <div class="indexpageicon"><a href="/collection_tool/section/{{t.section.id}}/language/es/">?</a></div>
-		          {%endifequal%}
+				        <div class="indexpageicon"><a href="/collection_tool/section/{{t.section.id}}/language/{{language_code}}/">?</a></div>
 			    {%endif%}
-			    
+			    -->
 			    
 			    
 			    
 			    </div>
 			{% endfor %}
 
+      <div>
+        As you answer our questions, we'll show how you're doing in each area.
+      </div>
 			{% for t in all_topics%}
 			<div class ="topic_div topic_{{t.id}}" id="topicbox">
 			

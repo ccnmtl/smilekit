@@ -29,13 +29,15 @@
 		<div id ="language_code_div">{{language_code}}</div>
     <div>
     <!-- all the JSON you need to calculate scores: -->
+
     <pre id = "scoring_info"> {  {% for t in all_topics%} 
           {%if not forloop.first%},{%endif%}"{{t.id}}" : {{t.scoring_info}}
     {%  endfor %}  }  </pre>
-      <pre id = "maxmin_scoring_info"> { {% for t in all_topics%} 
+
+    <pre id = "maxmin_scoring_info"> { {% for t in all_topics%} 
           {%if not forloop.first%},{%endif%}"{{t.id}}" : {{t.maxmin_scoring_info}}
     {%  endfor %}  } </pre>
-    <!-- Show only families with active interviews?? meh, that's just more debugging. -->
+
     <pre id = "family_configs"> {  {% for f in all_families%} 
           {%if not forloop.first%},{%endif%}"{{f.id}}" : {{f.config.id}}
     {%  endfor %}  } </pre>

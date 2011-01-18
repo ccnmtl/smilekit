@@ -48,24 +48,24 @@
 		</tr>
 
 		<tr>
-			<th valign="top">Set of Weights Used</th>
+			<th valign="top">Set of Questions to Ask</th>
 			<td>
 			
 				{% if not family.config_locked %}
-				<select name = "config_id">
-				{% for config in equation_balancer_configs %}
-				<option value = "{{config.id}}"
-				>{{config.name}}</option>
-				{% endfor %}
-				</select>
+				  <select name = "config_id">
+				  {% for config in equation_balancer_configs %}
+				  <option value = "{{config.id}}"
+				  >{{config.name}}</option>
+				  {% endfor %}
+				  </select>
 				{% else %}
-				{{family.config.name}}
+				  {{family.config.name}}
 				{% endif %}
 				
 				<br />
 				<br />
 				
-				<span class="prompt">(This cannot be changed once someone has started an interview with the family.)</span>
+				<span class="prompt">(After you visit the family and start recording answers, you can no longer change the set of weights.)</span>
 
 			</td>
 		</tr>
