@@ -8,7 +8,7 @@
 <fieldset>
 
 	<legend>All Families</legend>
-		<table class="users">
+		<table class="users" cellspacing="0">
 			<!-- TODO: re-add this if the span is not empty: class="error_message" -->
 			<p>
 			<span  id = "error_message">{{error_message}}</span>
@@ -83,7 +83,7 @@
 
 
 		<table class="users" cellspacing="0">
-
+		<tr><td style="border-top: 1px solid white;"><b>Select family(s) to check out</b></td><td style="border-top: 1px solid white;"colspan="3"></td></tr>
 	        {%for family in families %}
 	              <tr>
 	                <td>
