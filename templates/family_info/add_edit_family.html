@@ -189,12 +189,13 @@
 			<td >{{family.risk_score|floatformat:0}} (1 is low-risk, 10 is high-risk)</td>
 		</tr>
 		{%endif %}
+		
 		<tr>
 			<td>&nbsp;</td>
 			<td class="label">Questions answered:</td>
 			<td >{{family.latest_answers.keys|length}}</td>
 		</tr>
-		
+		{%if family%}
     {% get_goal_info_1 of_family family.id as goal %}
     {% if goal%}
 		  <tr>
@@ -219,6 +220,8 @@
 			<td >{{goal.goal.english_title}}</td>
 		</tr>
 		{%endif%}
+	{%endif%}
+
   </table>
 			<td>
         
