@@ -1202,6 +1202,7 @@ input#main_submit_button, input#main_end_button, a#resume_button
 	font-weight: bold;
 	border: 0px;
 	padding: 20px;
+	text-decoration: none;
 }
 
 input#main_submit_button, a#resume_button
