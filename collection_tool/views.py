@@ -47,13 +47,10 @@ def topics(request, language_code):
     raise Http404
   t = loader.get_template('collection_tool/topics.html')
   
-  
-  
   #collate all the flat pages referred to by the topics so we can easily put them into divs:
-  #import pdb
-  #pdb.set_trace()
   
-  topic_urls = [the_topic.learn_more['url'] for the_topic in Topic.objects.all() if the_topic.learn_more]
+  topic_urls =       [the_topic.learn_more_english['url'] for the_topic in Topic.objects.all() if the_topic.learn_more_english]
+  topic_urls.extend( [the_topic.learn_more_spanish['url'] for the_topic in Topic.objects.all() if the_topic.learn_more_spanish])
   flat_pages_we_need = FlatPage.objects.filter(url__in = topic_urls )
 
   #print dir (FlatPage)
@@ -65,6 +62,9 @@ def topics(request, language_code):
   })
   return HttpResponse(t.render(c))
 
+
+#TODO check:
+#This might be obsolete.
 def topic(request, topic_id, language_code ):
   """Show the topic title and description, goal title and
 description. Get here by clicking 'Learn' on the goals page."""
@@ -211,10 +211,6 @@ def question(request, displayquestion_id, language_code):
   # look up question ids for planner
   planner_times = []
   planner_items = []
-
-
-  # NOTE: question ID 25, "minutes risky exposure" is OBSOLETE.
-  # NOTE: question ID 22, "23: minutes food exposures" is OBSOLETE.
   
   risky_exposures_question = Question.objects.get(text="number risky exposures")
   risky_answers = {}
@@ -252,12 +248,15 @@ def question(request, displayquestion_id, language_code):
       'planner_items':planner_items,
       
       'widget_question_ids':[risky_exposures_question.id, brushing_question.id, fluoride_question.id],
+      
       'risky_question_id':risky_exposures_question.id,
       'risky_answers_keys':[str(key) for key in risky_answers.keys()],
       'risky_answers_values':risky_answers.values(),
+      
       'fluoride_question_id':fluoride_question.id,
       'fluoride_answers_keys':[str(key) for key in fluoride_answers.keys()],
       'fluoride_answers_values':fluoride_answers.values(),
+      
       'brushing_question_id':brushing_question.id,
       'brushing_answers_keys':[str(key) for key in brushing_answers.keys()],
       'brushing_answers_values':brushing_answers.values()

@@ -804,6 +804,11 @@ a.contentbutton.indexpage {
 }
 
 
+.learnmore a.video_link {
+	color: #0F0;
+	font-size: 24px;
+}
+
 
 /********/
 
@@ -887,7 +892,6 @@ h2#your_score_is {text-align: center;}
 	margin-top: 10px;
 	position: relative;
 }
-
 
 /* no score */
 .firebutton.topic_no_score {

@@ -22,8 +22,6 @@
 	{%endifequal%}
 {% endblock %}
 
-
-
 {% block collection_tool_content %}
 
 		<div id ="language_code_div">{{language_code}}</div>
@@ -55,7 +53,15 @@
 			  
 		</div>	  
 
-    <h2 id="your_score_is">Your risk score is:</h2>
+    <h2 id="your_score_is">
+    	  {%ifequal language_code 'en'%}
+		       Your risk score is:
+	      {%endifequal%}
+				
+	      {%ifequal language_code 'es'%}
+		       Your risk score is:(es)
+	      {%endifequal%}
+    </h2>
     
     <!-- one of these gets shown; the others stay hidden. -->
 	<div class="score_div score_1">1</div>
@@ -74,21 +80,44 @@
     <div align="center">
     
 	    <div id="hig_risk" class="risk_div">
-		 There is high risk.
+	      {%ifequal language_code 'en'%}
+		       There is high risk.
+	      {%endifequal%}
+				
+	      {%ifequal language_code 'es'%}
+		       There is high risk.(es)
+	      {%endifequal%}
 	    </div>
 	    
 	    <div id="med_risk" class="risk_div">
-		 There is medium risk.
+	      {%ifequal language_code 'en'%}
+		       There is medium risk.
+	      {%endifequal%}
+				
+	      {%ifequal language_code 'es'%}
+		       There is medium risk.(es)
+	      {%endifequal%}
 	    </div>
 	    
 	    <div id="low_risk" class="risk_div">
-		 There is low risk.
+	      {%ifequal language_code 'en'%}
+		       There is low risk.
+	      {%endifequal%}
+				
+	      {%ifequal language_code 'es'%}
+		       There is medium risk.(es)
+	      {%endifequal%}
 	    </div>
 	    
 	    <img src="/collection_tool/media/images/risk_graphic.png" />
 	    
 	    <div id="risk_next">
-		 <a href = "/collection_tool/topics/language/en/">Let's Reduce this Risk!</a>
+	    	 {%ifequal language_code 'en'%}
+		       <a href = "/collection_tool/topics/language/en/">Let's Reduce this Risk!</a>
+	      {%endifequal%}
+	      {%ifequal language_code 'es'%}
+		      <a href = "/collection_tool/topics/language/es/">Let's Reduce this Risk! (es)</a>
+	      {%endifequal%}
 	    </div>
     
     </div>

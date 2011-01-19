@@ -1,21 +1,33 @@
 <!-- button to turn it on: -->
-<div class="learnmore">
+  <div class="learnmore">
+      {%ifequal language_code 'en'%}
+              {% ifequal displayquestion.learn_more_english.resource_type 'video'%}
+                  <a href="javascript:void(0)" class="video_link" onclick = "$('.learn_more_help_content').show()">VIDEO: {{displayquestion.learn_more_english.title}}</a>
+              {%else %}
+                  <a href="javascript:void(0)" onclick = "$('.learn_more_help_content').show()">{{displayquestion.learn_more_english.title}}</a>
+              {%endifequal %}
+      {%endifequal %}
+      {%ifequal language_code 'es'%}
+              {% ifequal displayquestion.learn_more_spanish.resource_type 'video'%}
+                  <a href="javascript:void(0)" class="video_link" onclick = "$('.learn_more_help_content').show()">VIDEO: {{displayquestion.learn_more_spanish.title}}</a>
+              {%else %}
+                  <a href="javascript:void(0)" onclick = "$('.learn_more_help_content').show()">{{displayquestion.learn_more_spanish.title}}</a> 
+              {%endifequal %}
+      {%endifequal %}
+  </div>
 
-      <!--<a href="javascript:void(0)" onclick = "$('.learn_more_help_content').show(); $('.learnmore').hide()">Learn More about {{displayquestion.learn_more.title}}</a>-->
-      <!-- commented code hides button after open -->
-      
-      <a href="javascript:void(0)" onclick = "$('.learn_more_help_content').show()">Learn More about {{displayquestion.learn_more.title}}</a>
-</div>
 
 
 <!-- content box -->
-<div class="help_content learn_more_help_content help_box">
-
-    <!-- this is the same content as on the flatpage: -->
-    {{displayquestion.learn_more.content|safe}}
-    
-    <!-- close button -->
-    <a id="help_close" class ="learn_more_close_button" href="javascript:void(0)" onclick="$('.learn_more_help_content').hide()">X</a>
-
-</div>
+  <div class="help_content learn_more_help_content help_box">
+      <!-- this is the same content as on the flatpage: -->
+      {%ifequal language_code 'en'%}
+        {{displayquestion.learn_more_english.content|safe}}
+     {%endifequal %}
+      {%ifequal language_code 'es'%}
+        {{displayquestion.learn_more_spanish.content|safe}}
+     {%endifequal %}
+      <!-- close button -->
+      <a id="help_close" class ="learn_more_close_button" href="javascript:void(0)" onclick="$('.learn_more_help_content').hide()">X</a>
+  </div>
 

@@ -215,17 +215,25 @@ class Topic(models.Model):
 
   @property
   def question_count(self):
-    if self.id == 2:
-      #import pdb
-      #pdb.set_trace()
-      return len(self.displayquestion_set.all())
+    return len(self.displayquestion_set.all())
   
   @property
-  def learn_more(self):
+  def learn_more_english(self):
     learn_more_list = [dq.learn_more for dq in self.displayquestion_set.all() if dq.learn_more != None]
     if learn_more_list:
       return learn_more_list[0]  
     return None
+     
+
+     
+  @property
+  def learn_more_spanish(self):
+    learn_more_list = [dq.learn_more_spanish for dq in self.displayquestion_set.all() if dq.learn_more_spanish != None]
+    if learn_more_list:
+      return learn_more_list[0]  
+    return None
+
+     
      
   @property
   def dir(self):
@@ -396,7 +404,7 @@ class Resource(models.Model):
   
   name = models.CharField(max_length=500)
   url = models.CharField(max_length=500)
-  resource_type =  models.CharField(max_length=64, help_text = "Ignore this for now.")
+  resource_type =  models.CharField(max_length=64, help_text = "type 'video' here if this is a video; otherwise just leave blank.")
   
   ordering_rank = models.IntegerField(help_text = "Ignore this for now.")
   class Meta:
@@ -405,6 +413,34 @@ class Resource(models.Model):
   @property
   def dir(self):
     return dir(self)
+
+  @property
+  def summary (self):
+    resource_type = self.resource_type
+    url = self.url
+    my_flat_page = get_object_or_404(FlatPage, url=url)
+    return {
+      'url':my_flat_page.url, 
+      'resource_type': resource_type,
+      'title':my_flat_page.title,
+      'content':my_flat_page.content,
+      'id':my_flat_page.id
+    }
+
+
+  def other_language_version(self, language_code):
+    candidates = Resource.objects.filter(name__contains=self.name).filter(name__contains=language_code)
+    if candidates:
+      return candidates[0]
+    return self
+    
+  @property
+  def spanish_version(self):
+    return self.other_language_version('es')
+    
+  @property
+  def english_version(self):
+    return self.other_language_version('en')
 
   def __unicode__(self):
     return self.name
@@ -515,19 +551,39 @@ class DisplayQuestion(models.Model):
   
   
   @property
-  def learn_more (self):
+  def resource (self):    
     """the content of some flat pages also need to be accessible from the question page in the collection tool. here's a simple way of doing this:"""
-    #import pdb
-    #pdb.set_trace()
     if not self.resources.all():
       return None
+    return self.resources.all()[0]    
+  
+  
+  #TODO: make this obsolete. Shoud use either of the functions below this one.
+  @property
+  def learn_more (self):
+    if self.resource:
+      return self.resource.summary
+    return None
     
+  @property
+  def learn_more_english (self):
+    if self.resource:
+      return self.resource.summary
+    return None
     
-    #throw 404? Consider just failing silently.  
-    url = self.resources.all()[0].url
-    my_flat_page = get_object_or_404(FlatPage, url=url)
-    return {'url':my_flat_page.url,  'title':my_flat_page.title, 'content':my_flat_page.content,  'id':my_flat_page.id}
-
+  @property
+  def learn_more_spanish (self):
+    if self.resource:
+      if self.resource.spanish_version:
+        return self.resource.spanish_version.summary
+      else:
+        return self.resource.summary
+    else:
+      return None
+    
+  
+  
+  
   
   def __unicode__(self):
     """ Just the English."""
