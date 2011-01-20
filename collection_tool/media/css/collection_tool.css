@@ -70,6 +70,7 @@ div#list_of_questions {
 	left: -20px;
 	background-image: url(/collection_tool/media/images/logo_mysmilebuddy.png);
 	text-indent: -2000px;
+	z-index: 1;
 }
 
 #masthead h1 a
@@ -96,11 +97,12 @@ div#list_of_questions {
 	float: right;
 	border-left: 1px solid #bbb;
 	text-align: center;
-	padding: 22px 7px 22px 7px;
+	padding: 22px 5px 22px 5px;
 	text-decoration: none;
 	color: #3172bb;
 	text-shadow: #fff 1px 1px 1px;
 	font-weight: bold;
+	font-size: 10px;
 }
 
 #mastheadnav a#family_id_nav_display, #mastheadnav a#user_id_nav_display
