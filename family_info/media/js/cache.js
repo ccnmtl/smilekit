@@ -64,7 +64,7 @@ function on_update_ready (e) {
  }
 
 function logEvent(e) {
-  var num_files_total = 262;
+  var num_files_total = 263;
   var online, status, type, message;
   online = (isOnline()) ? 'yes' : 'no';
   status = cacheStatusValues[cache.status];

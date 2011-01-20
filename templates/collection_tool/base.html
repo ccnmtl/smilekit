@@ -46,6 +46,7 @@
 			<a href="">English</a>
    {% endblock %}
 			
+			
 	 	
     
 	  {%if user.current_visit%}
@@ -54,6 +55,9 @@
     
 	  {%if user.current_visit%}
 			<a id="family_id_nav_display" href="javascript:void();"id ="family_id_nav_display">FamilyID</a>
+    {%else %}
+      NO CURRENT VISIT
+    
     {% endif %}
 			
 		{%if user.username%}

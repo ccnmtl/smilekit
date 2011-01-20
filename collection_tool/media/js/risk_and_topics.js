@@ -110,7 +110,6 @@ function irrelevant (topic_id, config_id) {
 
 
 function calculate_scores (family_id, scoring_info, config_id, answer_array) {
-    llog ("Config id is " + config_id);
 
     // Takes your scoring info and figures out, for each topic and for all topics combined,
     // what the best and possible worst scores you could
@@ -155,11 +154,7 @@ function calculate_scores (family_id, scoring_info, config_id, answer_array) {
         // how many questions count toward this topic, including unanswered ones?
         result[tid]['question_count']  = scoring_info[tid][config_id]['question_count'];
         result[tid]['irrelevant'] = irrelevant (tid, config_id);
-        if (tid == 1) {
-            llog (" question_count " +  result[tid]['question_count']);
-        }
-        
-        
+
         //llog (answer_array);
         
         for (i = 0; i < answer_array.length; i = i + 1) {
@@ -179,14 +174,10 @@ function calculate_scores (family_id, scoring_info, config_id, answer_array) {
                 result[tid]['min']     += min_score_for  (tid, config_id, answer_id);
                 result[tid]['max']     += max_score_for  (tid, config_id, answer_id);
                 result[tid]['answered_count']     ++;
-                if (tid == 1) {
-                  llog (" answer " + answer_id);
-                }
             }
         }
     }
   );
-  //llog (result);
   
   return result;
 }
