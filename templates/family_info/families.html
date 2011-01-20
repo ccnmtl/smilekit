@@ -105,9 +105,13 @@
 	                </td>
 	                <td>Family # {{family.study_id_number}} 
 	                </td>
-	                <td>
-	                {{family.percent_complete|floatformat:0 }} % done
-	                </td>
+                  {%comment %}
+                  <!-- TODO: garh! this slows everything down too much. Must cache.-->
+	                  <td>
+	                  {{family.percent_complete|floatformat:0 }} % done
+	                  </td>
+	                {%endcomment %}
+	                
 	                <td><a href="/family_info/edit_family/{{family.id}}/">Edit Family Details </a>
 	                
 	                {% if user.is_staff%}
