@@ -55,41 +55,16 @@ function calculate_family_answers (family_id, scoring_info) {
      
     prev = family_questions (LOCAL_STORAGE_KEY, family_id)['previous_visit_questions'];
      $.each(prev, function (qid, aid) {
-      
-      /// IGNORE TWO OBSOLETE QUESIONS:
       // TODO: remove this once test families are excised.
       if (qid != 23 && qid != 22) {
-      
-        
+      /// IGNORE TWO OBSOLETE QUESIONS.
         if (calculate_family_answers_result [qid] == null) {
-        
             calculate_family_answers_result [qid] = aid;
           }
        }
-     
      });
-    
     return calculate_family_answers_result;
 }
-
-// TODO remove no longer used.
-/*
-function question_count (topic_id, config_id) {
-  i = 0;
-  
-  scoring_info[topic_id][config_id]['question_count']
-  //
-  //llog (scoring_info[topic_id][config_id]));
-  
-  //llog(maxmin_scoring_info[topic_id][config_id]['max']);
-  // this is actually answer count. not good.
-  $.each( maxmin_scoring_info[topic_id][config_id]['max'], function () { i++;})
-  return i;
-}
-*/
-
-//"5"
-//{"34":5,"35":5,"30":9,"31":9}
 
 
 function the_score_for (topic_id, config_id, answer_id) {
