@@ -32,7 +32,6 @@ function local_storage_has_data (namespace) {
 function end_visit_before_logout () {
   if (local_storage_has_data (LOCAL_STORAGE_KEY)) {
     alert ("Please end your visit before logging out.");
-    //window.location.href = "/family_info/dashboard/";
   } else {
     window.location.href = "/logout";
   }
@@ -57,33 +56,46 @@ function is_part_of_assessment (url) {
     return url.match ('question') != null || url.match ('section') != null;
 }
 
-
 function set_an_url (url) {
-    //new_url = "aaaaaaaaaaaaaaaaa_" + url
-    //new_url = "/collection_tool/question/39999/language/en/"
     analytics_data_blob = { recent_url :   url }
-    
-    //analytics_data_blob = { a:'b' }
-    //analytics_data_blob = { asdasd: 'asdasdasdasdasdddddddddddddd' }
-    
-    //analytics_data_blob = {'':''}
-    try { 
+    //try { 
       set_analytics_data (LOCAL_STORAGE_KEY, family_id, analytics_data_blob);
-     } catch(e) {
-        //alert ("setting analytics blob triggered error")
-        //alert (e);
-    }
-    
-    //test_analytics_set();
+     //} catch(e) {
+       // alert ("setting analytics blob triggered error")
+       // alert (e.name);
+   // }
 }
 
 function get_an_url () {
   tmp =  get_analytics_data (LOCAL_STORAGE_KEY, family_id)['recent_url'];
-  //return "asdasd_asdasd".split("_")[1]
-  //return '/collection_tool/question/39/language/en/';
   return tmp;
 }
 
+
+function test_setting_url() {
+  //setup:
+  var correct_url = get_an_url();
+  //test:
+  try {
+      var old_url = '/collection_tool/question/2/language/en/'
+      set_an_url (old_url);
+      var new_url = get_an_url();
+  }
+  catch (err) {
+    alert (err.name);
+    //alert ('bad');
+    return;
+  }
+  
+  if (old_url == new_url) { 
+    alert ('good');
+  }
+  else {
+    alert ('bad');  
+  }
+  //teardown:
+  set_an_url (correct_url);
+}
 
 function prev_next_url (family_url_list) {
     var next = null;
@@ -94,50 +106,10 @@ function prev_next_url (family_url_list) {
              if ( k > 0) {
                  prev = family_url_list[k - 1][lan]
              }
-             
              if (is_part_of_assessment ( family_url_list[k ][lan])) {
+                /// store the current page's url.
                 set_an_url (family_url_list[k ][lan]);
-                //analytics_data_blob = { recent_url : family_url_list[k ][lan] }
-                //alert (JSON.stringify(analytics_data_blob));
-                /*
-                try { 
-                  set_analytics_data (LOCAL_STORAGE_KEY, family_id, analytics_data_blob);
-                 } catch(e) {
-                    alert ("setting analytics blob triggered error")
-                    alert (e);
-                }
-                */
-                //alert ('noproblem')
-                
-                //analytics_data_blob = { recent_url : '/collection_tool/question/39/language/en/aaa' }
-                /*
-                try { 
-                  set_analytics_data (LOCAL_STORAGE_KEY, family_id, analytics_data_blob);
-                 } catch(e) {
-                    //alert ("setting analytics blob triggered error")
-                    //alert (e);
-                }
-                */
-                //alert ('ok');
-                
-                //
-                
-                /*
-                tmp = '/collection_tool/question/1/language/en/'
-                analytics_data_blob = { recent_url :  tmp }
-
-                try { 
-                  set_analytics_data (LOCAL_STORAGE_KEY, family_id, analytics_data_blob);
-                 } catch(e) {
-                    alert ("setting analytics blob triggered error")
-                    alert (e);
-                }
-                */
-                //set_an_url (family_url_list[k ][lan]);
-
-
              }
-             
              if (  k + 1 < family_url_list.length) {
                  next = family_url_list[k + 1][lan]
               }
@@ -146,6 +118,7 @@ function prev_next_url (family_url_list) {
     });
     return {'prev': prev, 'next':next};
 }
+
 
 
 
@@ -167,7 +140,4 @@ function set_assessment_url () {
         return;
     }
     $('#assessmenttab')[0].href = the_url;
-
 }
-
-

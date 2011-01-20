@@ -65,8 +65,13 @@
 	    {%if displayquestion.learn_more_english%}
 			  {% include "collection_tool/learn_more.html" %}
 		  {% endif %}
-	
-	
+		  
+		  
+	    {%comment %}
+  	    {% include "collection_tool/test.html" %}
+	    {%endcomment %}
+	    
+	    
       {% if displayquestion.question.id in widget_question_ids %}
          {% include "collection_tool/planner.html" %}
          <!-- set mode (fluoride or diet) -->

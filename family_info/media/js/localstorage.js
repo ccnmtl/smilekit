@@ -2,47 +2,40 @@ var LOCAL_STORAGE_KEY;
 
 //value can be any object that can be turned into a json string.
 function local_storage_set ( namespace, key, value ) {
-
   if (typeof(localStorage ) == "undefined" ) {
     //alert ("localStorage not found.");
     return;
   }
-
   if (typeof(localStorage [namespace]) == "undefined")  {
     //alert ("Nothing found stored in localStorage.");
     localStorage [namespace] = '{}';
   }
-  
   temp_state = JSON.parse(  localStorage [namespace] )
-  
   if (temp_state == null) {
     temp_state = {};
   }
-  
-  
-   //alert (JSON.stringify(temp_state).length) 
-   //alert (JSON.stringify(temp_state).length);
-  
-  
-  
-    temp_state [key] = value;
-    localStorage [namespace] = JSON.stringify(temp_state);
-    temp_state = null;
-  
-    //alert ("LOCALSTORAGE ERROR");
-    //alert(e);
-
-    
+  temp_state [key] = value;
+  json_string = JSON.stringify(temp_state);
+  try {
+    localStorage.setItem(namespace, json_string);
+  }
+  catch (err) {
+    if ( (err.name).toUpperCase() == 'QUOTA_EXCEEDED_ERR') {
+      // eeeeevil ipad-only bug.
+      //http://www.sencha.com/forum/archive/index.php/t-112241.html
+      localStorage.removeItem(namespace);
+      localStorage.setItem(namespace, json_string);
+    }
+  }
+  temp_state = null;
 }
 
 function local_storage_get ( namespace, key) {
   if (typeof(localStorage ) == "undefined" ) {
-    //alert ("localStorage not found.");
     return;
   }
 
   if (typeof(localStorage [namespace]) == "undefined")  {
-    //alert ("Nothing found stored in localStorage.");
     localStorage [namespace] = '{}';
   }
 
@@ -57,14 +50,6 @@ function local_storage_get ( namespace, key) {
 }
 
 //////////////
-
-/*
-function get_analytics_data(LOCAL_STORAGE_KEY, family_id) {
-  var key = 'analytics_data';
-  return get_state_data(LOCAL_STORAGE_KEY, family_id, key);
-}
-
-*/
 
 function get_analytics_data(LOCAL_STORAGE_KEY, family_id) {
   analytics_data =  get_state_data(LOCAL_STORAGE_KEY, family_id, 'analytics_data');
@@ -102,9 +87,6 @@ function get_state_data(LOCAL_STORAGE_KEY, family_id, key) {
 }
 
 //////////////
-
-
-//////////////
 function set_analytics_data(LOCAL_STORAGE_KEY, family_id, blob) {
   var key = 'analytics_data';  
   set_state_data(LOCAL_STORAGE_KEY, family_id, key, blob);
@@ -133,29 +115,25 @@ function get_goals_data(LOCAL_STORAGE_KEY, family_id) {
 
 
 
+
 // this is also used by the risk / goals pages:
 function set_state_data(LOCAL_STORAGE_KEY, family_id,  key, blob) {
   var all_states = local_storage_get(LOCAL_STORAGE_KEY, 'list_of_states');
-  //alert (typeof blob)
-  //alert (JSON.stringify(blob))
-  
-  //alert (all_states[family_id][key])
-  //alert (typeof all_states[family_id][key])
-  //alert (all_states[family_id][key])
-  
-  
-  
   all_states[family_id][key] = blob;
-  
-  //alert (JSON.stringify(all_states));
   local_storage_set(LOCAL_STORAGE_KEY, 'list_of_states', all_states);    
 }
 
 
 //////////////
+function test_state_data() {
+    key = 'analytics_data';
+    old_blob = {a: 'asd'}
+    set_state_data(LOCAL_STORAGE_KEY, family_id,  key, old_blob);
+    new_blob = get_state_data(LOCAL_STORAGE_KEY, family_id,  key);
+}
+
 function test_goals_set() {
   var initial =   get_goals_data(LOCAL_STORAGE_KEY, family_id);
-
   var before = {"aaa":{"bdd":"c<c<c>&&'c"}};
   var after =  {"aaa":{"bdd":"aasd*asõõõd3w'&&"}};
   set_goals_data(LOCAL_STORAGE_KEY, family_id, before)
@@ -169,14 +147,10 @@ function test_goals_set() {
   var should_be_after = get_goals_data(LOCAL_STORAGE_KEY, family_id);
     
   console.log("should be equal:");
-  
   console.log(JSON.stringify(after));
   console.log(JSON.stringify(should_be_after));
-
   set_goals_data(LOCAL_STORAGE_KEY, family_id, initial);
 }
-
-
 
 
 function test_planner_set() {
@@ -203,31 +177,29 @@ function test_planner_set() {
 }
 
 
-
-
-
-
-
 function test_analytics_set() {
+  var passed = true;
   var initial =   get_analytics_data(LOCAL_STORAGE_KEY, family_id);
-
   var before = {"a":{"b":"c<óóóc<c>c"}};
-  var after =  {"d":{"e":"f>&d"}};
-  set_analytics_data(LOCAL_STORAGE_KEY, family_id, before)
-  var should_be_before = get_analytics_data(LOCAL_STORAGE_KEY, family_id);
-  
-  console.log("should be equal:");
-  console.log(JSON.stringify(before));
-  console.log(JSON.stringify(should_be_before));
-
-  set_analytics_data(LOCAL_STORAGE_KEY, family_id, after)
-  var should_be_after = get_analytics_data(LOCAL_STORAGE_KEY, family_id);
-    
-  console.log("should be equal:");
-  
-  console.log(JSON.stringify(after));
-  console.log(JSON.stringify(should_be_after));
-
+    try { 
+        set_analytics_data (LOCAL_STORAGE_KEY, family_id, analytics_data_blob);
+        set_analytics_data(LOCAL_STORAGE_KEY, family_id, before)
+        var should_be_before = get_analytics_data(LOCAL_STORAGE_KEY, family_id);
+        if (JSON.stringify(before) != JSON.stringify(should_be_before)) {
+          passed = false;
+        }
+     } catch(err) {
+        //alert ("setting analytics blob triggered error");
+	      alert(err.name); 
+	      passed = false;
+	      return;
+    }
+  if (passed ) {
+    alert ('passed');
+  }
+  else  {
+    alert ('not passed');
+  }
   set_analytics_data(LOCAL_STORAGE_KEY, family_id, initial);
 }
 

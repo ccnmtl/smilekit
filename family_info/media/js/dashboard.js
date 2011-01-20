@@ -228,7 +228,7 @@ function init_family_info() {
       $('#downloading').hide();
       $('#guidance_1').html ('If you see an "Allow" button at the top of your browser window, please click on it to start the download. If you do not see an "Allow" button, you might have previously told your browser not to accept downloads from this site; you might have to reset your site preferences for this site and try again.)');
       hide_buttons();
-      $('#guidance_2').html ('You can also click the "End Visit" button to cancel this visit and go back to the list of families.');
+      $('#guidance_2').html ('You can click the button below to stop this download and go back to the list of families.');
       return;
     }
   }
