@@ -84,8 +84,9 @@
 
 		<table class="users" cellspacing="0">
 		<tr><td style="border-top: 1px solid white;"><b>Select family(s) to check out</b></td><td style="border-top: 1px solid white;"colspan="3"></td></tr>
+	        <!-- don't remove selenium css classes or you'll break the tests. -->
 	        {%for family in families %}
-	              <tr>
+	              <tr class ="selenium_family_tr {{family.study_id_number}}" >
 	                <td>
                       <span title = "currently being visited by: {{family.interviewer.first_name}} {{family.interviewer.last_name}}">
                       
@@ -135,6 +136,11 @@
 			  <td colspan="20"><a href = "{%url family_info.views.summary_table %}" >Summary Table</a></td>
 
 			  </tr>
+
+			  <tr>
+			  <td colspan="20"><a href = "/site_media/selenium/TestRunner.html?test=..%2Ftests%2FTestSuite.html&resultsUrl=..%2FpostResults" >Selenium Tests</a></td>
+			  </tr>
+
 			{%endif%}
 	</table>
 </fieldset>

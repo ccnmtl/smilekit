@@ -394,7 +394,31 @@ def help_summary(request):
   })
   return HttpResponse(t.render(c))
   
+
+def selenium_teardown(request):
+  Family.objects.filter(study_id_number = 59638).delete()
+  Family.objects.filter(study_id_number = 83695).delete()
+  [v.delete() for v in request.user.visit_set.all()]
+
   
+@login_required
+def selenium(request,task):
+    if not request.user.is_staff:
+      return HttpResponseRedirect ( reverse (families))
+    
+    t = loader.get_template('family_info/selenium.html')
+    
+    if task =='setup':
+        selenium_teardown(request)
+        sel_message = "proceed"
+   
+    if task =='teardown':
+        selenium_teardown(request)
+        sel_message = "success"
+        
+    
+    c = RequestContext(request,dict(task=task, sel_message=sel_message))
+    return HttpResponse(t.render(c))
   
 @login_required
 def summary_table(request):

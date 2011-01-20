@@ -1,0 +1,685 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://kodos.ccnmtl.columbia.edu:7112" />
+<title>create families</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">create families</td></tr>
+</thead><tbody>
+<!--Setup-->
+<tr>
+	<td>open</td>
+	<td>/family_info/selenium/setup/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>proceed</td>
+	<td></td>
+</tr>
+<!--Set timeout to 15 seconds-->
+<tr>
+	<td>setTimeout</td>
+	<td>15000</td>
+	<td></td>
+</tr>
+<!--Families page-->
+<tr>
+	<td>open</td>
+	<td>/family_info/families/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>main_submit_button</td>
+	<td>Check Out Families and Start Visit</td>
+</tr>
+<!--First family-->
+<tr>
+	<td>clickAndWait</td>
+	<td>link=+ Add a Family</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>study_id_number</td>
+	<td>59638</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>config_id</td>
+	<td>label=&lt;3 dental health professional</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>child_year_of_birth</td>
+	<td>1998</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>race_ethnicity</td>
+	<td>label=Caucasian</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>mother_born_in_us</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>highest_level_of_parent_education</td>
+	<td>label=Did not complete high school</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//input[@value='Save']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>left</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//div[@id='contentcontainer']/form/fieldset[1]/table[2]/tbody/tr[21]/td[3]/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>study_id_number</td>
+	<td>59638</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>child_year_of_birth</td>
+	<td>1998</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>mother_born_in_us</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>//input[@name='food_stamps_in_last_year' and @value='False']</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>child_year_of_birth</td>
+	<td>1999</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>race_ethnicity</td>
+	<td>label=Asian</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>food_stamps_in_last_year</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//input[@name='mother_born_in_us' and @value='False']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>highest_level_of_parent_education</td>
+	<td>label=More than a high-school degree.</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//input[@value='Save Changes']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>left</td>
+	<td></td>
+</tr>
+<!--Second family-->
+<tr>
+	<td>clickAndWait</td>
+	<td>link=+ Add a Family</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>study_id_number</td>
+	<td>83695</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>child_year_of_birth</td>
+	<td>83695</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>config_id</td>
+	<td>label=General</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>race_ethnicity</td>
+	<td>label=Hispanic</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>mother_born_in_us</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>food_stamps_in_last_year</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>highest_level_of_parent_education</td>
+	<td>label=Earned a a high-school degree.</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//input[@value='Save']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>left</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Family # 59638</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Family # 83695</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//tr[@class='selenium_family_tr 59638']//input</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//tr[@class='selenium_family_tr 83695']//input</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@class='selenium_family_tr 59638']//input</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@class='selenium_family_tr 83695']//input</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>main_submit_button</td>
+	<td></td>
+</tr>
+<!--set timeout to 5 minutes-->
+<tr>
+	<td>setTimeout</td>
+	<td>300000</td>
+	<td></td>
+</tr>
+<!--start download-->
+<tr>
+	<td>clickAndWait</td>
+	<td>get_materials_link</td>
+	<td></td>
+</tr>
+<!--wait for download to end-->
+<tr>
+	<td>waitForVisible</td>
+	<td>link=Visit family 83695</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForVisible</td>
+	<td>link=Visit family 59638</td>
+	<td></td>
+</tr>
+<!--set timeout back to 15 seconds-->
+<tr>
+	<td>setTimeout</td>
+	<td>15000</td>
+	<td></td>
+</tr>
+<!--start visit with the first family-->
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Visit family 59638</td>
+	<td></td>
+</tr>
+<!--back to dashboard-->
+<tr>
+	<td>clickAndWait</td>
+	<td>interview_link</td>
+	<td></td>
+</tr>
+<!--back to interview-->
+<tr>
+	<td>clickAndWait</td>
+	<td>interview_link</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>right</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>question_38</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='item-5-image']/img</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='item-6-image']/img</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='timerow-06:30AM']/div[1]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='timetable']/div[38]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='timerow-06:30AM']/div[6]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>timelinearrow</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='item-15-image']/img</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='item-14-image']/img</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='item-10-image']/img</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='item-11-image']/img</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='timerow-10:30AM']/div[1]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='timetable']/div[38]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='timerow-10:30AM']/div[3]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='timerow-10:00AM']/div[3]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='timerow-09:30AM']/div[5]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>timelinearrow</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='item-31-image']/img</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='item-20-image']/img</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='item-19-image']/img</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='timerow-12:30PM']/div[1]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>help</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>help_close</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>right</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=exact:VIDEO: The first video</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//a[@id='help_close' and @onclick=&quot;$('.learn_more_help_content').hide()&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>answer_182</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>right</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>question_16</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>answer_161</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>right</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>answer_55</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>right</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>answer_200</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>right</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>answer_74</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Sharing Bacteria</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//a[@id='help_close' and @onclick=&quot;$('.learn_more_help_content').hide()&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>right</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>right</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>right</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>right</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>right</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>right</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>answer_35</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>right</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>answer_30</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>right</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>answer_39</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>right</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>answer_101</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>right</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>answer_25</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>right</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>answer_97</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>right</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>interview_link</td>
+	<td></td>
+</tr>
+<!--Visit second family-->
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Visit family 83695</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>right</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>question_33</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>answer_181</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>right</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>question_14</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>answer_55</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>right</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>answer_203</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Family History</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>interview_link</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>main_end_button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Families 59638 and 83695 are checked back in</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>15 responses were recorded during your visit.</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@class='selenium_family_tr 59638']//a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//tr[@class='response_to_question 66']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//tr[@class='response_to_question 66']//td[@class='response_answer 203']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//tr[@class='response_to_question 29']//td[@class='response_answer 55']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//tr[@class='response_to_question 41']//td[@class='response_answer 97']</td>
+	<td></td>
+</tr>
+<!--Teardown-->
+<tr>
+	<td>open</td>
+	<td>/family_info/selenium/teardown/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>success</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/family_info/families/</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

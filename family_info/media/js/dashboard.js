@@ -32,8 +32,8 @@ function download_files_into_cache () {
     cache.update();
     return null;
   }
-  catch(e) {
-    return e;
+  catch(err) {
+    return err;
   }
 }
 
@@ -193,10 +193,7 @@ function init_family_info() {
     $('#main_end_button').hide();
     $('#guidance_1').html('Sorry, there is no locally stored information about your visit.');
     $('#guidance_1').html('<p>Looks like you have a visit currently in progress on another machine. Please end that visit before starting a new one.</p><p><a href="/family_info/families">Back</a></p>');
-    
     $('#guidance_2').hide();
-    
-    
     return;
   }
   
@@ -224,12 +221,20 @@ function init_family_info() {
   else {
     error = download_files_into_cache ();
     if (error) {
-      status_images_error();
-      $('#downloading').hide();
-      $('#guidance_1').html ('If you see an "Allow" button at the top of your browser window, please click on it to start the download. If you do not see an "Allow" button, you might have previously told your browser not to accept downloads from this site; you might have to reset your site preferences for this site and try again.)');
-      hide_buttons();
-      $('#guidance_2').html ('You can click the button below to stop this download and go back to the list of families.');
-      return;
+      
+      if ( (err.name).toUpperCase() == 'INVALID_STATE_ERR') {
+        // do nothing
+        alert (error.name);
+        alert (error.message);
+      }
+      else {
+          status_images_error();
+          $('#downloading').hide();
+          $('#guidance_1').html ('If you see an "Allow" button at the top of your browser window, please click on it to start the download. If you do not see an "Allow" button, you might have previously told your browser not to accept downloads from this site; you might have to reset your site preferences for this site and try again.)');
+          hide_buttons();
+          $('#guidance_2').html ('You can click the button below to stop this download and go back to the list of families.');
+          return;
+      }
     }
   }
 
