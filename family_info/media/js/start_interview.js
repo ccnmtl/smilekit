@@ -62,9 +62,19 @@ function init_family_info() {
     alert ("List of states is not parsing.");
   }
   
+  
+  try {  
+    var list_of_family_configs = JSON.parse(family_configs_json);
+  }
+  catch (e) {
+    alert ("List of family configs is not parsing.");
+  }
+  
+  
   // take the list of questions from the database and put it into storage:
-  local_storage_set ( LOCAL_STORAGE_KEY, 'list_of_questions', list_of_questions );
-  local_storage_set ( LOCAL_STORAGE_KEY, 'list_of_states', list_of_states );
+  local_storage_set ( LOCAL_STORAGE_KEY, 'list_of_questions',      list_of_questions      );
+  local_storage_set ( LOCAL_STORAGE_KEY, 'list_of_states',         list_of_states         );
+  local_storage_set ( LOCAL_STORAGE_KEY, 'list_of_family_configs', list_of_family_configs );
   
   if (local_storage_get(LOCAL_STORAGE_KEY, 'list_of_questions') == null) {
     alert ("Unable to save the list of questions.");
@@ -73,6 +83,11 @@ function init_family_info() {
   
   if (local_storage_get(LOCAL_STORAGE_KEY, 'list_of_states') == null) {
     alert ("Unable to save the list of states.");
+    disable_interview() ;
+  }
+  
+  if (local_storage_get(LOCAL_STORAGE_KEY, 'list_of_family_configs') == null) {
+    alert ("Unable to save the list of questions.");
     disable_interview() ;
   }
   

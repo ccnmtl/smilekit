@@ -66,7 +66,6 @@ function calculate_family_answers (family_id, scoring_info) {
     return calculate_family_answers_result;
 }
 
-
 function the_score_for (topic_id, config_id, answer_id) {
   return scoring_info[topic_id][config_id][answer_id]
 }
