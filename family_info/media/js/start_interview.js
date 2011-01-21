@@ -48,9 +48,6 @@ function init_family_info() {
       return;
   }
   
-  console.log(list_of_questions_json);
-  console.log(list_of_states_json);
-  console.log(family_configs_json);
   
   try {
     var list_of_questions = JSON.parse(list_of_questions_json);
