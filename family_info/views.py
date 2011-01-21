@@ -378,8 +378,7 @@ def end_interview(request, **args):
         my_visit.store_answer (family_id, int(question_id), int(answer_id))
         answer_count = answer_count + 1
   
-  my_visit.close_now()   
-
+  my_visit.close_now()
   my_args = {}
   assert not my_visit.is_happening
   my_args['just_finished_visit'] = my_visit

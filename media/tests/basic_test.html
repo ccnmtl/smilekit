@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://kodos.ccnmtl.columbia.edu:7112" />
+<title>create families</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">create families</td></tr>
+</thead><tbody>
+<!--setup-->
+<tr>
+	<td>open</td>
+	<td>/family_info/selenium/setup/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>proceed</td>
+	<td></td>
+</tr>
+<!--families page-->
+<tr>
+	<td>open</td>
+	<td>/family_info/families/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>main_submit_button</td>
+	<td>Check Out Families and Start Visit</td>
+</tr>
+<!--first family-->
+<tr>
+	<td>clickAndWait</td>
+	<td>link=+ Add a Family</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>study_id_number</td>
+	<td>59638</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>config_id</td>
+	<td>label=&lt;3 dental health professional</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>child_year_of_birth</td>
+	<td>1998</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>race_ethnicity</td>
+	<td>label=Caucasian</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>mother_born_in_us</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>highest_level_of_parent_education</td>
+	<td>label=Did not complete high school</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//input[@value='Save']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>left</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//tr[@class='selenium_family_tr 59638']//input</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@class='selenium_family_tr 59638']//input</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>main_submit_button</td>
+	<td></td>
+</tr>
+<!--set timeout to 5 minutes-->
+<!--start download-->
+<tr>
+	<td>waitForVisible</td>
+	<td>get_materials_link</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>get_materials_link</td>
+	<td></td>
+</tr>
+<!--set timeout to 5 minutes-->
+<tr>
+	<td>setTimeout</td>
+	<td>300000</td>
+	<td></td>
+</tr>
+<!--wait for download to end-->
+<tr>
+	<td>waitForVisible</td>
+	<td>link=Visit family 59638</td>
+	<td></td>
+</tr>
+<!--set timeout back to 15 seconds-->
+<tr>
+	<td>setTimeout</td>
+	<td>15000</td>
+	<td></td>
+</tr>
+<!--start visit with the first family-->
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Visit family 59638</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>assessmenttab</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>assessmenttab</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Fluoride</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>question_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//a[@id='answer_7']/img</td>
+	<td></td>
+</tr>
+<!--risk /topic/goal pages-->
+<tr>
+	<td>clickAndWait</td>
+	<td>risktab</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Let's Reduce this Risk!</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='contentcontainer']/div[3]/div[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=exact:plan*</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>right</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>3_name</td>
+	<td>no more midnight m&amp;ms</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>3_stps</td>
+	<td>no more m&amp;ms<br />m&amp;ms are bad, mkaay?</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>3_resp</td>
+	<td>me</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>3_when</td>
+	<td>cold turkey</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>3_stps</td>
+	<td>no more m&amp;ms<br />m&amp;ms are bad, mkaay?<br />bad bad bad</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Set Goal</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//li[@id='other_goal_21']/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>21_name</td>
+	<td>goal 21 bla bla bla</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>21_stps</td>
+	<td>one<br />two<br />three<br />four steps ' '' \'''' &amp;&amp;&amp;&nbsp;&nbsp;&nbsp;'' /\\toward goal 21'</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>21_resp</td>
+	<td>me</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>21_when</td>
+	<td>later &amp; \ \ &quot;</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Set Goal</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>interview_link</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>main_end_button</td>
+	<td></td>
+</tr>
+<!--start a second interview...-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//tr[@class='selenium_family_tr 59638']//input</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@class='selenium_family_tr 59638']//input</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>main_submit_button</td>
+	<td></td>
+</tr>
+<!--set timeout to 5 minutes-->
+<tr>
+	<td>setTimeout</td>
+	<td>300000</td>
+	<td></td>
+</tr>
+<!--start download-->
+<tr>
+	<td>clickAndWait</td>
+	<td>get_materials_link</td>
+	<td></td>
+</tr>
+<!--wait for download to end-->
+<tr>
+	<td>waitForVisible</td>
+	<td>link=Visit family 59638</td>
+	<td></td>
+</tr>
+<!--set timeout back to 15 seconds-->
+<tr>
+	<td>setTimeout</td>
+	<td>15000</td>
+	<td></td>
+</tr>
+<!--start visit with the first family-->
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Visit family 59638</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>assessmenttab</td>
+	<td></td>
+</tr>
+<!--back to risk pages-->
+<tr>
+	<td>clickAndWait</td>
+	<td>risktab</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Let's Reduce this Risk!</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='contentcontainer']/div[3]/div[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=exact:plan*</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>right</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Set Goal</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Look at your child's front teeth for white and brown spots</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>interview_link</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>main_end_button</td>
+	<td></td>
+</tr>
+<!--teardown-->
+<tr>
+	<td>open</td>
+	<td>/family_info/selenium/teardown/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>success</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/family_info/families/</td>
+	<td></td>
+</tr>
+<!--end-->
+</tbody></table>
+</body>
+</html>

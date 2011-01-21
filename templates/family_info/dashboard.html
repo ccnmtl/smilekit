@@ -34,9 +34,7 @@
 </div>
 
 <p id="downloading">
-	<!-- this will be hidden once cache status is happy -->
-	This device is currently downloading these questions, along with their associated images,
-	into its local storage, so you can conduct the interview even if there is no Internet access. This can take a few minutes, depending the speed of your connection.
+This device is currently storing the interview questions you need, along with their associated images. That way, you can conduct the interview even if there is no Internet access. This can take a few minutes, depending on the speed of your connection.
 </p>
 
 
@@ -58,12 +56,17 @@
 <div id = "guidance_2" class="guidance" style="color: red; font-weight: bold; margin-top: 20px;">
 </div>
 
-	<br />
-	<form action="/family_info/end_interview/" method="post" class="end_interview_form" >
-		<span id="end_interview_inputs"></span>
-		<input id="main_end_button" type="submit" value ="Check all families back in and end visit" />
-	</form>
-  <textarea id="debug_cache_status" rows="10" cols="80" ></textarea>
+<br />
+
+<form action="/family_info/end_interview/" method="post" class="end_interview_form" >
+
+	<span id="end_interview_inputs"></span>
+	<input id="main_end_button" type="submit" value ="Check all families back in and end visit" />
+
+</form>
+
+<textarea id="debug_cache_status" rows="10" cols="80" ></textarea>
+
 </div>
     
 <script>

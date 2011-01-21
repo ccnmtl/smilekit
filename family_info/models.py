@@ -275,7 +275,7 @@ class Family(models.Model):
   @property
   def evil_state(self):
     """outputs an extra replaced json string"""
-    return self.state.replace ('\\', '\\\\');
+    return self.state.replace ('\\', '\\\\').replace ('\'', '\\\'');
   
   def responses (self):
     return Response.objects.filter (family= self)

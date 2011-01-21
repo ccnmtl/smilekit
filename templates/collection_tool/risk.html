@@ -35,10 +35,6 @@
     <pre id = "maxmin_scoring_info"> { {% for t in all_topics%} 
           {%if not forloop.first%},{%endif%}"{{t.id}}" : {{t.maxmin_scoring_info}}
     {%  endfor %}  } </pre>
-
-    <pre id = "family_configs"> {  {% for f in all_families%} 
-          {%if not forloop.first%},{%endif%}"{{f.id}}" : {{f.config.id}}
-    {%  endfor %}  } </pre>
  <!-- end scoring info -->
 
 		<div id="contentnav">

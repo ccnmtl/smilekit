@@ -11,7 +11,7 @@
 <thead>
 <tr><td rowspan="1" colspan="3">create families</td></tr>
 </thead><tbody>
-<!--Setup-->
+<!--setup-->
 <tr>
 	<td>open</td>
 	<td>/family_info/selenium/setup/</td>
@@ -22,13 +22,13 @@
 	<td>proceed</td>
 	<td></td>
 </tr>
-<!--Set timeout to 15 seconds-->
+<!--set timeout to 15 seconds-->
 <tr>
 	<td>setTimeout</td>
-	<td>15000</td>
+	<td>30000</td>
 	<td></td>
 </tr>
-<!--Families page-->
+<!--families page-->
 <tr>
 	<td>open</td>
 	<td>/family_info/families/</td>
@@ -39,7 +39,7 @@
 	<td>main_submit_button</td>
 	<td>Check Out Families and Start Visit</td>
 </tr>
-<!--First family-->
+<!--first family-->
 <tr>
 	<td>clickAndWait</td>
 	<td>link=+ Add a Family</td>
@@ -145,7 +145,7 @@
 	<td>left</td>
 	<td></td>
 </tr>
-<!--Second family-->
+<!--second family-->
 <tr>
 	<td>clickAndWait</td>
 	<td>link=+ Add a Family</td>
@@ -563,6 +563,132 @@
 	<td>right</td>
 	<td></td>
 </tr>
+<!--risk /topic/goal pages-->
+<tr>
+	<td>clickAndWait</td>
+	<td>risktab</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForVisible</td>
+	<td>//div[@class='score_div score_5']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Let's Reduce this Risk!</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='contentcontainer']/div[3]/div[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=exact:plan*</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='item-1-image']/img</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='timerow-07:00AM']/div[1]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='item-14-image']/img</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='item-15-image']/img</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='item-31-image']/img</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='item-19-image']/img</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='timerow-02:00PM']/div[1]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>right</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>3_name</td>
+	<td>no more midnight m&amp;ms</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>3_stps</td>
+	<td>no more m&amp;ms<br />m&amp;ms are bad, mkaay?</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>3_resp</td>
+	<td>me</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>3_when</td>
+	<td>cold turkey</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>3_stps</td>
+	<td>no more m&amp;ms<br />m&amp;ms are bad, mkaay?<br />bad bad bad</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Set Goal</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//li[@id='other_goal_21']/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>21_name</td>
+	<td>goal 21 bla bla bla</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>21_stps</td>
+	<td>one<br />two<br />three<br />four steps toward goal 21</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>21_resp</td>
+	<td>me</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>21_when</td>
+	<td>later</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Set Goal</td>
+	<td></td>
+</tr>
 <tr>
 	<td>clickAndWait</td>
 	<td>interview_link</td>
@@ -664,7 +790,7 @@
 	<td>//tr[@class='response_to_question 41']//td[@class='response_answer 97']</td>
 	<td></td>
 </tr>
-<!--Teardown-->
+<!--teardown-->
 <tr>
 	<td>open</td>
 	<td>/family_info/selenium/teardown/</td>
@@ -680,6 +806,7 @@
 	<td>/family_info/families/</td>
 	<td></td>
 </tr>
+<!--end-->
 </tbody></table>
 </body>
 </html>

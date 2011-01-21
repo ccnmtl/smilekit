@@ -122,14 +122,22 @@ function build_end_interview_form () {
         their_answers = local_storage_get ( LOCAL_STORAGE_KEY, (family_id + '_answers'));
         their_state   = local_storage_get(LOCAL_STORAGE_KEY, 'list_of_states')[family_id];
 
+        // no need to store score data: it's recalculated every time you visit the score page.
+        // plus it takes up room and makes the important stuff harder to see.
+        if (their_state['goals_data']) {
+          delete their_state['goals_data']['score_data'];
+        }
 
         if (their_answers != null) {
              safe_answers =  JSON.stringify (their_answers);
         } else {
             safe_answers = '{}';
         }
+        
+        
+        // this is going inside a single-quote string, so escape:
+        safe_state = JSON.stringify (their_state).replace(/\'/g,  "&apos;" );
 
-        safe_state = JSON.stringify (their_state)
         form_contents +=  "<input type='hidden' \
               name = '"  + family_id + "' \
               class = '" + family_id + "' \

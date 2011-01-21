@@ -1,6 +1,6 @@
 {% extends "family_info/base.html" %}
 {%load smartif%}
-<!-- this file is not cached. -->
+<!-- this file is NOT cached! -->
 {% block html_element %}{% endblock html_element %}
 
 {% block family_info_js %}
@@ -27,6 +27,13 @@
 	  {% for the_family in families %} \
       "{{the_family.id}}" : {{the_family.evil_state|safe}} {% if not forloop.last %},{%endif%} \
 	   {% endfor %} \
+	}';
+	
+	
+  var family_configs_json = '{ \
+	  {% for f in families %}  \
+          {%if not forloop.first%},{%endif%}"{{f.id}}" : {{f.config.id}} \
+    {%  endfor %}  \
 	}';
 </script>
 

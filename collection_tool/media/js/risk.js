@@ -5,7 +5,15 @@ function init() {
     $('.score_div').hide();
     $('.risk_div').hide();
     
-    family_configs = JSON.parse($('#family_configs')[0].innerHTML);
+    //family_configs = JSON.parse($('#family_configs')[0].innerHTML);
+    // aha! fixes bug #71035
+    family_configs =  local_storage_get(LOCAL_STORAGE_KEY, 'list_of_family_configs') 
+    
+    if (family_configs [family_id] == undefined) {
+        alert ("Can't find the list of weights for this family.");
+    }
+    
+    
     scoring_info   = JSON.parse($('#scoring_info')[0].innerHTML  );
     maxmin_scoring_info = JSON.parse($('#maxmin_scoring_info')[0].innerHTML);
     all_questions = local_storage_get (LOCAL_STORAGE_KEY, 'list_of_questions');
