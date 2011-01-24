@@ -230,11 +230,11 @@ function init_family_info() {
     error = download_files_into_cache ();
     if (error) {
       if  ((error.name).toUpperCase() == 'INVALID_STATE_ERR') {
-            // ipad-only bug.
-            $('#guidance_1').html ('There was a problem ( INVALID_STATE_ERR ) downloading your files; you can still proceed, however.');
-            status_images_error();
-            show_buttons();
-            // if this occurs, just show the buttons. Ipad can
+            // Harmless ipad-only bug.
+            // TODO: attempt to clear this up.
+            hide_buttons();
+            announce_ready_for_interview();
+            
         } else if  ((error.name).toUpperCase() == 'NS_ERROR_DOM_SECURITY_ERR')  {
             hide_buttons();
             status_images_error();
@@ -242,6 +242,7 @@ function init_family_info() {
             $('#guidance_1').html ('If you see an "Allow" button at the top of your browser window, please click on it to start the download. If you do NOT see an "Allow" button,  please reset your site preferences for this site and try again.)');
             $('#guidance_2').html ('You can click the button below to stop this download and go back to the list of families.');
             return;
+            
         } else {        //other error:/
           hide_buttons();
           status_images_error();

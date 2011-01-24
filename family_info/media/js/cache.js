@@ -103,7 +103,10 @@ function slog(a) {
 
 
 function announce_ready_for_interview(e) {
-  logEvent(e);
+  // you can call this without an argument;
+  if (e) {
+    logEvent(e);
+  }
   status_images_none();
   if (typeof (download_success_callback) == 'function' ) {
     download_success_callback();
