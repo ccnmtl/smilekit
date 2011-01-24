@@ -2,7 +2,7 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.core.urlresolvers import reverse
 from collection_tool.models import Goal
-
+from django.core.cache import cache
 
 import datetime
 import simplejson as json
@@ -209,18 +209,49 @@ class Family(models.Model):
     
     return result
     
+  @property
+  def recent_visits(self):
+    from datetime import datetime, timedelta
+    yesterday = datetime.now() - timedelta(hours=1)
+    return [v for v in Visit.objects.filter(end_timestamp__gt=yesterday) if self in v.families.all()]
+
+  @property
+  def has_recent_visits (self):
+    """ did this family have an interview recently? """
+    return len (self.recent_visits) > 0
+    
+  @property
+  def percent_complete_cache_key(self):
+    return "family_percent_done_%d" % self.id
     
   @property
   def percent_complete (self):
     """What *approximate* percentage of the available questions has this family answered?"""
+    #print self
+    if not self.has_recent_visits:
+      #print "no recent visits; looking for cache"
+      cached_value = cache.get(self.percent_complete_cache_key)  
+      if cached_value:
+        #print "found cache"
+        #print "percent done found in cache."
+        return cached_value
+        
+    else:
+      pass
+      #print "has recent visits."
+    
+    #calculate:
     if len(self.answerable_questions) == 0:
       return None
 
     it = 100.0 * float(len(self.latest_answers)) / float(len(self.answerable_questions))
+    
     if it > 100.0: #due to the questions that don't have display questions associated with them.
-      return 100.0
-    else:
-      return it
+      it = 100.0
+    
+    #print "caching"
+    cache.set( self.percent_complete_cache_key ,it, 60*60)
+    return it
   
   
   @property
@@ -312,6 +343,8 @@ class Visit (models.Model):
   
   class Meta:
     ordering = ('start_timestamp',)
+    get_latest_by = 'end_timestamp'
+
 
   def __unicode__(self):
     return "Visit %s" % self.pk

@@ -355,7 +355,12 @@ def end_interview(request, **args):
   rp = request.POST
   answer_count = 0
   
-  visits = [ v for v in request.user.visit_set.all() if v.is_happening]
+  
+  if rp.has_key('force_end'):
+    if rp.has_key('visit_id'):
+      visits = [ Visit.objects.get (pk =  rp['visit_id'])]
+  else:
+    visits = [ v for v in request.user.visit_set.all() if v.is_happening]
   
   if len(visits) == 0:
     #back button by mistake after ending an interview, or hit refresh.
@@ -393,6 +398,7 @@ def help_summary(request):
   })
   return HttpResponse(t.render(c))
   
+  
 
 def selenium_teardown(request):
   Family.objects.filter(study_id_number = 59638).delete()
@@ -427,3 +433,22 @@ def summary_table(request):
       'all_display_questions': DisplayQuestion.objects.all(),
   })
   return HttpResponse(t.render(c))
+  
+  
+  
+  #(r'^kill/visit/(?P<visit_id>\d+)/$',  'family_info.views.kill_visit'),
+@login_required
+def kill_visit(request, visit_id):
+  t = loader.get_template('family_info/kill_visit.html')
+  c = RequestContext(request,{
+     'visit' : Visit.objects.get(pk=visit_id)
+  })
+  return HttpResponse(t.render(c))
+
+#(r'^kill/localstorage/$',  'family_info.views.kill_localstorage'),
+@login_required
+def kill_localstorage(request):
+  t = loader.get_template('family_info/kill_localstorage.html')
+  c = RequestContext(request,{ })
+  return HttpResponse(t.render(c))
+

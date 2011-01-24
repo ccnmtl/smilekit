@@ -19,4 +19,6 @@ urlpatterns = patterns('',
   (r'^help_summary/$',                         'family_info.views.help_summary'),     
   (r'^summary_table/$',                        'family_info.views.summary_table'),     
   (r'^selenium/(?P<task>\w+)/$',               'family_info.views.selenium'),
+  (r'^kill/visit/(?P<visit_id>\d+)/$',         'family_info.views.kill_visit'),
+  (r'^kill/localstorage/$',                    'family_info.views.kill_localstorage'),
 )

@@ -229,26 +229,31 @@ function init_family_info() {
   else {
     error = download_files_into_cache ();
     if (error) {
-      
-      if ( (err.name).toUpperCase() == 'INVALID_STATE_ERR') {
-        // do nothing
-        alert (error.name);
-        alert (error.message);
-      }
-      else {
-          status_images_error();
-          $('#downloading').hide();
-          $('#guidance_1').html ('If you see an "Allow" button at the top of your browser window, please click on it to start the download. If you do not see an "Allow" button, you might have previously told your browser not to accept downloads from this site; you might have to reset your site preferences for this site and try again.)');
+      if  ((error.name).toUpperCase() == 'INVALID_STATE_ERR') {
+            // ipad-only bug.
+            $('#guidance_1').html ('There was a problem ( INVALID_STATE_ERR ) downloading your files; you can still proceed, however.');
+            status_images_error();
+            show_buttons();
+            // if this occurs, just show the buttons. Ipad can
+        } else if  ((error.name).toUpperCase() == 'NS_ERROR_DOM_SECURITY_ERR')  {
+            hide_buttons();
+            status_images_error();
+            $('#downloading').hide();
+            $('#guidance_1').html ('If you see an "Allow" button at the top of your browser window, please click on it to start the download. If you do NOT see an "Allow" button,  please reset your site preferences for this site and try again.)');
+            $('#guidance_2').html ('You can click the button below to stop this download and go back to the list of families.');
+            return;
+        } else {        //other error:/
           hide_buttons();
-          $('#guidance_2').html ('You can click the button below to stop this download and go back to the list of families.');
+          status_images_error();
+          $('#guidance_1').html ('An unrecognized occurred.');
+          $('#guidance_2').html (error.name + " " + error.description);
           return;
       }
-    }
+    } // end if error
+    // normal
   }
-
   // 4) SHOW INTERVIEW PROGRESS SO FAR:
   show_interview_progress();
-  
 }
 
 ///////////////////

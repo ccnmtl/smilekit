@@ -49,6 +49,18 @@ function local_storage_get ( namespace, key) {
   return temp_state[key];
 }
 
+
+function wipe_local_storage() {
+	var answer = confirm("Do you really want to wipe the contents of this machine's local storage? All data shown on this page will be lost.")
+	if (answer){
+    localStorage.clear();
+    $('#local_storage_debug').hide();
+    alert ("Local storage is now empty.");
+		window.location = "/family_info/families/";
+	}
+}
+
+
 //////////////
 
 function get_analytics_data(LOCAL_STORAGE_KEY, family_id) {

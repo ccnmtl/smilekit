@@ -1224,6 +1224,22 @@ input#main_end_button
 }
 
 
+/* used in the localstorage wipe page */
+.scary_button
+{	-moz-border-radius: 10px; 
+	-webkit-border-radius: 10px;
+	color: #fff; 
+	display: inline-block; 
+	font-weight: bold;
+	border: 0px;
+	padding: 20px;
+	text-decoration: none;
+	background: -webkit-gradient(linear, left top, left bottom, from(#ff7575), to(#ff0101));
+	background: -moz-linear-gradient(top, #ff7575, #ff0101);
+	color: #fff;
+	text-shadow: #000 1px 1px 1px;
+}
+
 table.editdetails, table.interviewdetails, table.users {width: 100%;}
 
 table.editdetails th, table.editdetails td, table.users th, table.users td  {padding: 10px; border-top: 1px solid #ccc; text-align: center;}

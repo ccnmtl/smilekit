@@ -1,0 +1,45 @@
+{% extends "family_info/base.html" %}
+{%load smartif%}
+<!-- this file is NOT cached! -->
+{% block html_element %}{% endblock html_element %}
+
+{% block family_info_js %}
+<script src="/collection_tool/media/js/jquery.js" type="text/javascript"></script>
+{% endblock family_info_js %}
+
+{% block family_info_content %}
+
+<h2 id="contenttitle">
+  End visit page
+</h2>
+
+<div>
+  Visit start date: {{visit.start_timestamp }}
+</div>
+
+<div>
+  Families:
+</div>
+
+
+{% for f in visit.families.all%}
+<p>
+{{f}}
+</p>
+{%endfor%}
+  
+
+<div>
+  <div class = "scary_interview_end_warning">
+    WARNING: If you end this visit, any questions stored locally on {{visit.interviewer}}'s machine may be lost.
+  </div>
+  <form action="/family_info/end_interview/" method="post" class="end_interview_form" >
+	  <input type="hidden" name="force_end" value ="true" />
+	  <input type="hidden" name="visit_id" value ="{{visit.id}}" />
+	  <input id="main_end_button" type="submit" value ="End  {{visit.interviewer}}'s visit." />
+  </form>
+</div>
+{% endblock family_info_content %}
+
+
+

@@ -38,14 +38,21 @@
 	<!-- JS will hide the ones you haven't visited. -->
 	<ul>
 	{% for goal in all_goals %}	
-	<li class="goal_title used" id="goal_{{goal.id}}">
-	    {%ifequal language_code 'en'%}
-	    <a href="/collection_tool/goal/{{goal.id}}/language/en/">{{goal.english_title}}</a>
-	    {%endifequal%}
-	    {%ifequal language_code 'es'%}
-	    <a href="/collection_tool/goal/{{goal.id}}/language/es/">{{goal.spanish_title}}</a>
-	    {%endifequal%}
-	</li>
+	                <li class="goal_title used" id="goal_{{goal.id}}">
+	                    {%ifequal language_code 'en'%}
+	                    <a href="/collection_tool/goal/{{goal.id}}/language/en/">{{goal.english_title}}</a>
+	                    {%endifequal%}
+	                    {%ifequal language_code 'es'%}
+	                    <a href="/collection_tool/goal/{{goal.id}}/language/es/">{{goal.spanish_title}}</a>
+	                    {%endifequal%}
+	                </li>
+	
+                {% if goal.show_in_planner %}
+	                <li class="goal_title used  planner_li" id="goal_planner_{{goal.id}}">
+					                  <a href = "/collection_tool/planner/goal/{{goal.id}}/language/{{language_code}}/"">{%ifequal language_code 'en'%} --  plan{%endifequal%}{%ifequal language_code 'es'%}  -- plan(es){%endifequal%}</a>
+	                </li>
+                {%endif %}
+	
 	{%endfor%}
 	</ul>
 	
@@ -65,6 +72,13 @@
 	    <a href="/collection_tool/goal/{{goal.id}}/language/es/">{{goal.spanish_title}}</a>
 	    {%endifequal%}
 	</li>
+	
+        {% if goal.show_in_planner %}
+        <li class="goal_title not_used planner_li" id="goal_planner_{{goal.id}}">
+                  <a href = "/collection_tool/planner/goal/{{goal.id}}/language/{{language_code}}/"">{%ifequal language_code 'en'%} {{goal.english_title}} -- plan{%endifequal%}{%ifequal language_code 'es'%} {{goal.spanish_title}} -- plan(es){%endifequal%}</a>
+        </li>
+      {%endif %}
+	
 	{%endfor%}
 	</ul>
 	

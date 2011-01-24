@@ -21,7 +21,6 @@ function decorate_firebutton (index, my_div) {
     
     try {
       score =  score_data_for_topic_id (LOCAL_STORAGE_KEY, family_id, tid);
-      //if (false) {
       
       if (topic_is_irrelevant (LOCAL_STORAGE_KEY, family_id, tid)) {
       /// no matter how many questions you answered on this topic, your answers are irrelevant.
