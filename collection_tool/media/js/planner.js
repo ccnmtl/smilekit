@@ -359,3 +359,75 @@ function editMeal() {
 }
 
 jQuery(document).ready(initPlanner);
+
+
+/* testing song-and-dance. */
+function AssertException(message) { this.message = message; }
+AssertException.prototype.toString = function () {
+  return 'AssertException: ' + this.message;
+}
+
+function assert(expression, message) {
+  if(!expression) {
+    throw new AssertException(message);
+  }
+}
+
+function mineshaft_canary() {
+  // test modes
+  if(mode == "fluoride") {
+    assert(jQuery("#photobox-fluoride").css("display") == "block", "Fluoride box should be visible.");
+    assert(jQuery("#photobox-foods").css("display") == "none", "Food box should be hidden.");
+  }
+  if(mode == "food") {
+    assert(jQuery("#photobox-fluoride").css("display") == "none", "Fluoride box should be hidden.");
+    assert(jQuery("#photobox-foods").css("display") == "block", "Food box should be visible.");
+  }
+  if(mode == "planner") {
+    assert(jQuery("#photobox-fluoride").css("display") == "block", "Fluoride box should be visible.");
+    assert(jQuery("#photobox-foods").css("display") == "block", "Food box should be visible.");
+  }
+  var originalMode = mode;
+  setMode("planner");
+
+  // NOTE mode: planner will keep it from saving any question data to the database
+  
+  // remove all items from timeline
+  jQuery(".timerowfilled").each(function() {
+    jQuery(this).removeClass("timerowfilled");
+    var items = jQuery(".activityitems", this);
+    items.html("");
+  });
+  
+  // add some items
+  jQuery("#item-23").toggleClass('thumbnailselected');
+  jQuery("#item-3").toggleClass('thumbnailselected');
+  jQuery("#item-8").toggleClass('thumbnailselected');
+  
+  
+  // move item up -- incl. from top row, over other item
+  // move item down -- incl. from bottom row, over other item
+  
+  // toggle item (meal -> snack)
+  
+  // delete item
+  
+  // assert innerHTML = some expected string
+  return;
+  
+  saveState();
+  loadState();
+
+  // assert innerHTML = some expected string
+
+  // put it back the way we found it  
+  setMode(originalMode);
+  jQuery(".timerowfilled").each(function() {
+    jQuery(this).removeClass("timerowfilled");
+    var items = jQuery(".activityitems", this);
+    items.html("");
+  });
+  loadState(true);
+  saveState();  // overwrite old planner data
+  return("All tests passed!");
+}
