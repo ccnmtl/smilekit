@@ -1361,6 +1361,26 @@ ol.goallist li a.plannergoal
 /* stop - "goals" links styles */
 
 
+/* start - "storage" styles */
+
+a.clearstorage 
+{
+background-color:red;
+color:white;
+padding:10px;
+font-weight:bold;
+text-decoration:none;
+background: -webkit-gradient(linear, left top, left bottom, from(#ff7575), to(#ff0101));
+background: -moz-linear-gradient(top, #ff7575, #ff0101);
+	-moz-border-radius: 10px; 
+	-webkit-border-radius: 10px;
+
+}
+
+
+/* stop - "storage" styles */
+
+
 /* start - print-specific flat page styles */
 
 

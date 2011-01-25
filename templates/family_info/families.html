@@ -72,7 +72,7 @@
 	            if (local_storage_has_data (LOCAL_STORAGE_KEY)) {
 	              // This should never occur, but just in case, disable any further interviews until we can get to the local storage data.
                 document.getElementById('start_interview_div').innerHTML = '';
-                document.getElementById('error_message').innerHTML = 'Local storage still has data in it although you have no visit currently stored.';
+                document.getElementById('error_message').innerHTML = '<div align="center">Local storage still has data in it although you have no visit currently stored.<br /><br />{%if user.is_staff %}<a class="clearstorage" href = "{%url family_info.views.kill_localstorage %}">Clear Local Storage</a>{%endif%}</div>';
               } 
 	          </script>
 			    {%endif %}
@@ -139,9 +139,10 @@
 			  <td colspan="20"><a href = "/site_media/selenium/TestRunner.html?test=..%2Ftests%2FTestSuite.html&resultsUrl=..%2FpostResults" >Selenium Tests</a></td>
 			  </tr>
 
-
+				<!--<tr>
 			  <td colspan="20"><a href = "{%url family_info.views.kill_localstorage %}" >View Local Storage</a></td>
 			  </tr>
+			  -->
 
 
 			{%endif%}

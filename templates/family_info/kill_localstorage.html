@@ -12,7 +12,7 @@
 {% block family_info_content %}
 
 <h2 id="contenttitle">
-	Local Storage Debug Page
+	Local Storage Data
 </h2>
 
 <div>
@@ -22,27 +22,27 @@
     </div>
 
 
-    <h3>About local storage:
-    </h3>
-     <div id ="local_storage_help"> 
+    <h3>What Is This?</h3>
+    
+     <p id ="local_storage_help"> 
       <em>Local storage</em> is a temporary storage space on your computer that we use to keep the list of questions in your current visit, the order to ask them in, the family's answers, and information to help us calculate scores for those answers. Only the current visit's answers are stored here.
-     </div>
+     </p>
 
-    <div id="local_storage_is_empty">
+    <p id="local_storage_is_empty">
       Local storage is empty.
-    </div>
+    </p>
 
-    <div>
-      <a class="scary_button" id = "wipe_link" href= "javascript:wipe_local_storage()">Wipe local storage</a>
-    </div>
+    <p>
+      <a class="scary_button" id = "wipe_link" href= "javascript:wipe_local_storage()">Wipe the Local Storage Clean!</a>
+    </p>
 
-    <fieldset>
-    <legend>Current Contents of Local Storage </legend>
-
-        <div id = "local_storage_debug">
-        </div>
-    </fieldset>
-
+	<form action="#" method="post">
+	<fieldset>
+	<legend>Current Contents of Local Storage </legend>
+	<textarea style="width: 100%; height: 300px;" id="local_storage_debug">
+	</textarea>
+	</fieldset>
+	</form>
 
 
     <script language ="javascript">
