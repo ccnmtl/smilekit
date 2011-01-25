@@ -83,8 +83,10 @@ function set_family_id_in_nav ( fam_id) {
   }  
   
   if ($('#user_id_nav_display') && local_storage_get(LOCAL_STORAGE_KEY, 'user_name')) {
-    $('#user_id_nav_display').html(local_storage_get(LOCAL_STORAGE_KEY, 'user_name'));
+    $('#user_id_nav_display').html('Hi, ' + local_storage_get(LOCAL_STORAGE_KEY, 'user_name'));
   }
+  
+  
  // TODO: the family id link is now gone in the risk/topic/goal pages
  // TODO: the dashboard link is now gone  in the risk/topic/goal pages
 }

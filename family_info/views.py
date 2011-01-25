@@ -354,8 +354,7 @@ def dashboard (request):
 def end_interview(request, **args):
   """Attempt to store the responses posted and, on success, redirect to the list of families."""
   rp = request.POST
-  answer_count = 0
-  
+  answer_count = 0;
    
   if rp.has_key('visit_id'):
     try:

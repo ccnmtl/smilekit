@@ -251,7 +251,7 @@ function init_family_info() {
       if  ((error.name).toUpperCase() == 'INVALID_STATE_ERR') {
             // Harmless ipad-only bug:
             announce_ready_for_interview();
-            $('#contenttitle').html('Dashboard *');            
+            $('#contenttitle').html('Dashboard *');
         } else if  ((error.name).toUpperCase() == 'NS_ERROR_DOM_SECURITY_ERR')  {
             hide_go_to_family_buttons();
             status_images_error();
