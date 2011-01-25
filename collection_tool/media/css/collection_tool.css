@@ -1345,8 +1345,17 @@ ol.goallist li
 
 ol.goallist li a
 {
-	color: #000;
 	text-decoration: none;
+}
+
+ol.goallist li a.formgoal
+{
+	color: #666;
+}
+
+ol.goallist li a.plannergoal
+{
+	color: #36c;
 }
 
 /* stop - "goals" links styles */
