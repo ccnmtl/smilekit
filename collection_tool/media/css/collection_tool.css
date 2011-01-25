@@ -1334,7 +1334,27 @@ table#summary_table th, table#summary_table td
 }
 
 
+
+/* start - "goals" links styles */
+
+
+ol.goallist li
+{
+	margin-top: 20px;
+}
+
+ol.goallist li a
+{
+	color: #000;
+	text-decoration: none;
+}
+
+/* stop - "goals" links styles */
+
+
 /* start - print-specific flat page styles */
+
+
 
 @media print 
 

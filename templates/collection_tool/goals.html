@@ -31,56 +31,76 @@
 	  Plan History
 	</h2>
 
-	<p>
+	<p><b>
 	 These are some of the goals you've already made progress on:
-	</p>
+	</b></p>
 	
 	<!-- JS will hide the ones you haven't visited. -->
-	<ul>
+	<ol class="goallist">
 	{% for goal in all_goals %}	
 	                <li class="goal_title used" id="goal_{{goal.id}}">
+	                
 	                    {%ifequal language_code 'en'%}
-	                    <a href="/collection_tool/goal/{{goal.id}}/language/en/">{{goal.english_title}}</a>
+	                	<img src="/collection_tool/media/images/icon_goal_form.png" title="form" />
+	                     <a href="/collection_tool/goal/{{goal.id}}/language/en/">{{goal.english_title}}</a>
 	                    {%endifequal%}
 	                    {%ifequal language_code 'es'%}
-	                    <a href="/collection_tool/goal/{{goal.id}}/language/es/">{{goal.spanish_title}}</a>
+	                	<img src="/collection_tool/media/images/icon_goal_form.png"  title="form (es)" />
+	                     <a href="/collection_tool/goal/{{goal.id}}/language/es/">{{goal.spanish_title}}</a>
 	                    {%endifequal%}
 	                </li>
 	
                 {% if goal.show_in_planner %}
 	                <li class="goal_title used  planner_li" id="goal_planner_{{goal.id}}">
-					                  <a href = "/collection_tool/planner/goal/{{goal.id}}/language/{{language_code}}/"">{%ifequal language_code 'en'%} --  plan{%endifequal%}{%ifequal language_code 'es'%}  -- plan(es){%endifequal%}</a>
+					                  {%ifequal language_code 'en'%} 
+					                  <img src="/collection_tool/media/images/icon_goal_planner.png" title="form" />
+					                  {%endifequal%}
+					                  {%ifequal language_code 'es'%}  
+					                  <img src="/collection_tool/media/images/icon_goal_planner.png" title="form (es)" />
+					                  {%endifequal%}
+					                  <a href = "/collection_tool/planner/goal/{{goal.id}}/language/{{language_code}}/""></a>
 	                </li>
                 {%endif %}
 	
 	{%endfor%}
-	</ul>
+	</ol>
 	
-	<p>
+	<p><b>
 	 Here are some other goals to look at:
-	</p>
+	</b></p>
 	
 	
 	<!-- JS will hide the ones you have visited. -->
-	<ul>
+	<ol class="goallist">
 	{% for goal in all_goals %}	
 	<li class="goal_title not_used" id="other_goal_{{goal.id}}">
 	    {%ifequal language_code 'en'%}
+	                	<img src="/collection_tool/media/images/icon_goal_form.png" title="form" />
 	    <a href="/collection_tool/goal/{{goal.id}}/language/en/">{{goal.english_title}}</a>
 	    {%endifequal%}
 	    {%ifequal language_code 'es'%}
-	    <a href="/collection_tool/goal/{{goal.id}}/language/es/">{{goal.spanish_title}}</a>
+	                	<img src="/collection_tool/media/images/icon_goal_form.png"  title="form (es)" />
+	     <a href="/collection_tool/goal/{{goal.id}}/language/es/">{{goal.spanish_title}}</a>
 	    {%endifequal%}
 	</li>
 	
         {% if goal.show_in_planner %}
         <li class="goal_title not_used planner_li" id="goal_planner_{{goal.id}}">
-                  <a href = "/collection_tool/planner/goal/{{goal.id}}/language/{{language_code}}/"">{%ifequal language_code 'en'%} {{goal.english_title}} -- plan{%endifequal%}{%ifequal language_code 'es'%} {{goal.spanish_title}} -- plan(es){%endifequal%}</a>
+        			{%ifequal language_code 'en'%} 
+					                  <img src="/collection_tool/media/images/icon_goal_planner.png" title="planner" />
+        			{%endifequal%}
+        			{%ifequal language_code 'es'%}
+					                  <img src="/collection_tool/media/images/icon_goal_planner.png" title="planner (es)" />
+        			{%endifequal%}
+                  <a href = "/collection_tool/planner/goal/{{goal.id}}/language/{{language_code}}/"">
+                  {%ifequal language_code 'en'%}{{goal.english_title}}{%endifequal%}{%ifequal language_code 'es'%}{{goal.spanish_title}}{%endifequal%}
+                  </a>
+                  
         </li>
       {%endif %}
 	
 	{%endfor%}
-	</ul>
+	</ol>
 	
 
 {% endblock collection_tool_content %}
