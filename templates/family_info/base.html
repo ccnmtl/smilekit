@@ -4,8 +4,10 @@
 {% endblock html_element %}
   <head>
 	  <title>mySmileBuddy</title>
-	 <script type="text/javascript" src="/site_media/js/smilekit_common.js"></script>
-	
+  <!-- this is unused except for debugging ... -->
+  {% block early_js %}
+  {% endblock early_js %}
+	 <script type="text/javascript" src="/site_media/js/smilekit_common.js"></script>	 
   {% block family_info_js %}
   {% endblock family_info_js %}
 	
@@ -46,7 +48,7 @@ input[type="text"], input[type="password"] {
         
         
 	      {%if user.current_visit%}
-	  		  <a id ="family_id_nav_display" href="javascript:void();" >FamilyID</a>
+	  		  <a id ="family_id_nav_display" >FamilyID</a>
         {% endif %}
         
         

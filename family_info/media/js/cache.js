@@ -1,4 +1,7 @@
 // Convenience array of status values
+var NUMBER_OF_FILES_TO_DOWNLOAD = 278;
+
+var cache = window.applicationCache;
 
 var num_files_downloaded;
 
@@ -10,24 +13,31 @@ function show_bar (percent) {
   $("#progressbar").progressBar( percent); 
 }
 
-var cache = window.applicationCache;
-
 var cacheStatusValues = [];
- cacheStatusValues[0] = 'uncached';
- cacheStatusValues[1] = 'idle';
- cacheStatusValues[2] = 'checking';
- cacheStatusValues[3] = 'downloading';
- cacheStatusValues[4] = 'updateready';
- cacheStatusValues[5] = 'obsolete';
+cacheStatusValues[0] = 'uncached';
+cacheStatusValues[1] = 'idle';
+cacheStatusValues[2] = 'checking';
+cacheStatusValues[3] = 'downloading';
+cacheStatusValues[4] = 'updateready';
+cacheStatusValues[5] = 'obsolete';
 
 function error_handler(e) {
    logEvent(e);
-   status = cacheStatusValues[cache.status];
+   //alert (e.type); //
+   //alert (e); // [object Event]
+   //alert (typeof e); //object
+   //alert (e.name); // undefined
+   //alert (e.description); // undefined
+   //alert (e.target); // [object DOMApplicationCache]]
+   //alert $.keys(e);
+   
+   //alert (cacheStatusValues[cache.status]);
+   
    // warn, but allow to continue.
-   slog ("There was an error downloading one of the files, but you can try starting the interview anyway.");
+   //slog ("There was an error downloading one of the files, but you can try starting the interview anyway.");
    announce_ready_for_interview(e);
-    status_images_error();
-
+   //status_images_error();
+   show_go_to_family_buttons();
 }
 
 
@@ -63,32 +73,50 @@ function on_update_ready (e) {
    announce_ready_for_interview(e);
  }
 
+
+
+
 function logEvent(e) {
-  var num_files_total = 263;
-  var online, status, type, message;
-  online = (isOnline()) ? 'yes' : 'no';
-  status = cacheStatusValues[cache.status];
+  //TODO: rename this?
+  var num_files_total = NUMBER_OF_FILES_TO_DOWNLOAD;
   type = e.type;
+  
+  if (type == 'error') {
+    status_images_error();
+    return; 
+  }
+  
   if (type == 'progress') {
-    //console.log (num_files_downloaded);
+    // slog (num_files_downloaded);
     if (num_files_downloaded == null) {
       num_files_downloaded = 0;
     }
     num_files_downloaded ++;
     show_bar(percent_done( num_files_downloaded, num_files_total));    
+    status_images_download();
+    $('#downloading').show();
+    
+    
+    // hide these during the download; an error or success condition will re-show them.
+    hide_go_to_family_buttons();
   }
-  
-  
-  message = 'online: ' + online;
-  message+= ', event: ' + type;
-  message+= ', status: ' + status;     if (type == 'error' && navigator.onLine) {
-     message+= ' (ERROR)';
-      status_images_error();
+  else  {
+    status_images_none();
+    $('#downloading').hide();
   }
-  slog(''+message);
-  if (type != 'error') {
-  status_images_download();
-  }
+  /*
+   var online, status, type, message;
+   online = (isOnline()) ? 'yes' : 'no';
+   status = cacheStatusValues[cache.status];
+   
+   message = 'online: ' + online;
+   message+= ', event: ' + type;
+   message+= ', status: ' + status;     if (type == 'error' && navigator.onLine) {
+      message+= ' (ERROR)';
+       status_images_error();
+    }
+   slog(''+message);
+  */
 }
 
 function slog(a) {
@@ -100,7 +128,6 @@ function slog(a) {
   }
 
 }
-
 
 function announce_ready_for_interview(e) {
   // you can call this without an argument;

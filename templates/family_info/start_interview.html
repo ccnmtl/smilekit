@@ -5,7 +5,10 @@
 
 {% block family_info_js %}
 <script src="/collection_tool/media/js/jquery.js" type="text/javascript"></script>
+<!-- TODO: remove cache.js; it is unneded by startingerview.js. -->
 <script src="/family_info/media/js/cache.js" type="text/javascript"></script>
+
+
 <script src="/family_info/media/js/localstorage.js" type="text/javascript"></script>
 <script src="/family_info/media/js/start_interview.js" type="text/javascript"></script>
 {% endblock family_info_js %}
@@ -17,6 +20,11 @@
 </h2>
 
 <script  type="text/javascript">
+
+  var visit_id = {{new_visit.id}};
+
+  var user_name  = '{{user.username}}';
+
   var list_of_questions_json = '[ \
     {% for the_family in families %} \
 	      {{the_family.start_interview_info|safe}}{% if not forloop.last %},{%endif%} \

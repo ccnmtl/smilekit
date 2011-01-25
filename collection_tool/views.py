@@ -17,8 +17,6 @@ def intro(request, language_code):
   })
   return HttpResponse(t.render(c))
 
-  
-
 def risk(request, language_code):
   """ Show risk score."""
   if language_code not in ['en', 'es']:

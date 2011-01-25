@@ -31,6 +31,7 @@ CACHE:
   {% for goal in goals %}{% url collection_tool.views.goal goal_id=goal.id language_code=lc %}
       {% if goal.show_in_planner %}{% url collection_tool.views.goal_planner goal_id=goal.id language_code=lc %}{%endif%}
   {% endfor %}  
+  
 {% endfor %}
 
 ########

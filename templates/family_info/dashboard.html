@@ -6,6 +6,9 @@
 {% endblock html_element %}
 
 
+  {% block early_js %}
+  {% endblock early_js %}
+
 {% block family_info_nav %}
   <a href="/logout">Log Out</a>
   <a href="/library/">Library</a>
@@ -69,7 +72,8 @@ This device is currently storing the interview questions you need, along with th
 
 </div>
     
-<script>
+<script language = "javascript">
+  //alert ('prea1');
 	if (typeof($) == "undefined") {	
 	  alert ("Error: unable to load jQuery.");
 	  document.getElementById('downloading').style.display = 'none';

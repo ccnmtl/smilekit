@@ -333,7 +333,8 @@ def start_interview(request, **kwargs):
         return HttpResponseRedirect ( reverse (families))
         
     c = RequestContext(request, {
-      'families' : the_families
+      'families' : the_families,
+      'new_visit' : new_visit
      } )
     t = loader.get_template('family_info/start_interview.html')
     return HttpResponse(t.render(c))
@@ -355,13 +356,28 @@ def end_interview(request, **args):
   rp = request.POST
   answer_count = 0
   
-  
-  if rp.has_key('force_end'):
-    if rp.has_key('visit_id'):
+   
+  if rp.has_key('visit_id'):
+    try:
       visits = [ Visit.objects.get (pk =  rp['visit_id'])]
+    except ValueError: # for old visits where no id is stored:
+      visits = [ v for v in request.user.visit_set.all() if v.is_happening]
+    except Visit.DoesNotExist:
+      visits = [] #this can occasionally happen due to selenium test teardown.
   else:
     visits = [ v for v in request.user.visit_set.all() if v.is_happening]
   
+  
+  if 1 == 0:
+      #old way:
+      if rp.has_key('force_end'):
+        if rp.has_key('visit_id'):
+          visits = [ Visit.objects.get (pk =  rp['visit_id'])]
+      else:
+        visits = [ v for v in request.user.visit_set.all() if v.is_happening]
+       
+       
+      
   if len(visits) == 0:
     #back button by mistake after ending an interview, or hit refresh.
     #just toss them back to families page.
