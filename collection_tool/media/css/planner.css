@@ -36,6 +36,11 @@ position: relative;
 width: 100px;
 }
 
+#selenium_tests_for_planner {
+  display: none;
+}
+
+
 /********/
 
 

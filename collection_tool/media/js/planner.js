@@ -133,6 +133,11 @@ function resetTimeline(e) {
 }
 
 function initPlanner() {
+
+  // ok:
+  jQuery('#language_code_div').click (mineshaft_canary);
+  
+  
   jQuery('.thumbnail').click(function () {
     if(jQuery(this).hasClass('thumbnaildisabled')) { return; }
     jQuery(this).toggleClass('thumbnailselected');
@@ -374,6 +379,9 @@ function assert(expression, message) {
 }
 
 function mineshaft_canary() {
+
+  //var stupid = true;
+
   // test modes
   if(mode == "fluoride") {
     assert(jQuery("#photobox-fluoride").css("display") == "block", "Fluoride box should be visible.");
@@ -413,7 +421,9 @@ function mineshaft_canary() {
   // delete item
   
   // assert innerHTML = some expected string
-  return;
+  
+  // eddie commenting this out:
+  //return;
   
   saveState();
   loadState();
@@ -429,5 +439,5 @@ function mineshaft_canary() {
   });
   loadState(true);
   saveState();  // overwrite old planner data
-  return("All tests passed!");
+  $('#selenium_result').html('All tests passed.')
 }

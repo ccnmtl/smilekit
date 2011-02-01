@@ -1,5 +1,10 @@
 <div id="planner">
 
+  <div id="selenium_tests_for_planner">
+    <a id = "selenium_link" href="javascript:mineshaft_canary()" >Run tests</a>
+    <p id = "selenium_result">Test results go here.</p>
+  </div>
+
 	<div id="plannerright">
        {% for item in planner_items %}
          {{ item.get_type }}
