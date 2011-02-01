@@ -14,7 +14,7 @@
 </h2>
 
 <div>
-  Visit start date: {{visit.start_timestamp }}
+  Visit start date: {{visit.start_timestamp|date:"D d M Y \a\t P" }}
 </div>
 
 <div>
@@ -31,12 +31,18 @@
 
 <div>
   <div class = "scary_interview_end_warning">
-    WARNING: If you end this visit, any questions stored locally on {{visit.interviewer}}'s machine may be lost.
+    WARNING: If you end this visit, any questions stored locally on 
+    
+    {%ifequal visit.interviewer user %} 
+    your
+    {%else %}
+    {{visit.interviewer.first_name}}'s
+    {%endifequal %} machine may be lost.
   </div>
   <form action="/family_info/end_interview/" method="post" class="end_interview_form" >
 	  <input type="hidden" name="force_end" value ="true" />
 	  <input type="hidden" name="visit_id" value ="{{visit.id}}" />
-	  <input id="main_end_button" type="submit" value ="End  {{visit.interviewer}}'s visit." />
+	  <input id="main_end_button" type="submit" value ="End {%ifequal visit.interviewer user %}your{%else %}{{visit.interviewer.first_name}}'s{%endifequal %} visit." />
   </form>
 </div>
 {% endblock family_info_content %}

@@ -32,9 +32,17 @@
       Local storage is empty.
     </p>
 
-    <p>
-      <a class="scary_button" id = "wipe_link" href= "javascript:wipe_local_storage()">Wipe the Local Storage Clean!</a>
-    </p>
+
+    </div>
+
+    <div>
+      <a class="scary_button" id = "dashboard_link" href= "/family_info/dashboard/">Go to dashboard and end this visit.</a>
+    </div>
+    
+    <br/>
+    <div>
+      <a class="scary_button" id = "wipe_link" href= "javascript:wipe_local_storage()">Wipe local storage without ending this visit.</a><br/>
+    </div>
 
 	<form action="#" method="post">
 	<fieldset>
@@ -46,13 +54,15 @@
 
 
     <script language ="javascript">
-      if (localStorage [LOCAL_STORAGE_KEY])  {
+    ls = window.localStorage
+      if (ls [LOCAL_STORAGE_KEY])  {
          document.getElementById('local_storage_is_empty').style.display = 'none';
-         document.getElementById('local_storage_debug').innerHTML = localStorage [LOCAL_STORAGE_KEY];
+         document.getElementById('local_storage_debug').innerHTML = ls [LOCAL_STORAGE_KEY];
       }
       else {
          document.getElementById('local_storage_debug').style.display = 'none';
          document.getElementById('wipe_link').style.display = 'none';
+         document.getElementById('dashboard_link').style.display = 'none';         
       }
     </script>
 

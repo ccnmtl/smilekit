@@ -73,9 +73,15 @@ function init_family_info() {
   
   
   // take the list of questions from the database and put it into storage:
+  ///
+  local_storage_set ( LOCAL_STORAGE_KEY, 'visit_id',               visit_id               ); 
+  local_storage_set ( LOCAL_STORAGE_KEY, 'user_name',              user_name              ); 
   local_storage_set ( LOCAL_STORAGE_KEY, 'list_of_questions',      list_of_questions      );
   local_storage_set ( LOCAL_STORAGE_KEY, 'list_of_states',         list_of_states         );
   local_storage_set ( LOCAL_STORAGE_KEY, 'list_of_family_configs', list_of_family_configs );
+  
+  
+  // this HAS to work; don't start an interview without it.
   
   if (local_storage_get(LOCAL_STORAGE_KEY, 'list_of_questions') == null) {
     alert ("Unable to save the list of questions.");
@@ -89,6 +95,16 @@ function init_family_info() {
   
   if (local_storage_get(LOCAL_STORAGE_KEY, 'list_of_family_configs') == null) {
     alert ("Unable to save the list of questions.");
+    disable_interview() ;
+  }
+  
+  if (local_storage_get(LOCAL_STORAGE_KEY, 'visit_id') == null) {
+    alert ("Unable to save the visit ID.");
+    disable_interview() ;
+  }
+  
+  if (local_storage_get(LOCAL_STORAGE_KEY, 'user_name') == null) {
+    alert ("Unable to save the user name.");
     disable_interview() ;
   }
   

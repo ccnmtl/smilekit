@@ -223,7 +223,8 @@ div#list_of_questions {
 
 /* Dashboard */
 .go_to_family_button {
-  display: none;
+  /* this has been driving me INSANE so I'm turning it back on by default. */
+  /*display: none; */
   text-decoration: none;
 	border: 1px solid #ccc; 
 	text-decoration: none; 

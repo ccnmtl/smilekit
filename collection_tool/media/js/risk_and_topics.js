@@ -181,18 +181,6 @@ function between (x, a, b) {
   return a < x && x <= b;
 }
 
-function set_family_id_in_nav ( fam_id) {
-  all_questions = local_storage_get (LOCAL_STORAGE_KEY, 'list_of_questions');
-  for (i = 0; i < all_questions.length; i = i + 1) {
-    if (all_questions[i].family_id == fam_id) {
-      family_study_id =  all_questions[i]['family_study_id_number']
-    }
-  }
-  if ($('#family_id_nav_display')) {
-    $('#family_id_nav_display').html( 'Family #' + family_study_id );
-  }
-
-}
 
 function score_data_for_topic_id (LOCAL_STORAGE_KEY, family_id, topic_id) {
   try {

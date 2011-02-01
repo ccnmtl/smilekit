@@ -8,9 +8,7 @@ function add_keys() {
   })
 }
 
-function download_files_into_cache () {
-  // successful return value is null;
-  // error returns the error.
+function setup_cache_callbacks() {
   //info messages:
   cache.addEventListener('obsolete',    logEvent, false);
   cache.addEventListener('progress',    logEvent, false);
@@ -27,12 +25,16 @@ function download_files_into_cache () {
 
   // problem:
   cache.addEventListener('error', error_handler, false);
+}
 
+function download_files_into_cache () {
   try  {
     cache.update();
+    // successful return value is null;
     return null;
   }
   catch(err) {
+    // error returns the error.
     return err;
   }
 }
@@ -110,6 +112,7 @@ function set_up_family_links () {
   
   $('#start_visit_links')[0].innerHTML = start_visit_links;
 
+  show_interview_progress();
 }
 
 function build_end_interview_form () {
@@ -150,6 +153,14 @@ function build_end_interview_form () {
               value = '" + safe_state + "' />\
               ";
     });
+    
+    form_contents +=  "<input type='hidden' \
+              name = 'visit_id' \
+              class = 'visit_id' \
+              value = '" + local_storage_get(LOCAL_STORAGE_KEY, 'visit_id') + "' />"
+    
+    
+    
     $('#end_interview_inputs')[0].innerHTML = form_contents;
 }
 
@@ -164,18 +175,17 @@ function show_interview_progress() {
       }
      span_id =  '#progress_info_for_family_' + family_id;
      $(span_id)[0].innerHTML =  "<span class='num_answers'>" + number + "</span> answers during this interview.";
-
   });
 }
 
-function hide_buttons() {
+function hide_go_to_family_buttons() {
   $('.go_to_family_button').hide();
 }
 
-function show_buttons() {
+function show_go_to_family_buttons() {
     $('.go_to_family_button').show();
     $('#downloading').hide();
-  if (list_of_questions == null) {
+    if (list_of_questions == null) {
         alert ('list of questions is null; can\'t start interview.');
         return;
     }
@@ -183,23 +193,29 @@ function show_buttons() {
 
 download_success_callback = function () {
   $("#guidance_1").html ("All the resources you need are now stored on this machine. Click one of the 'Visit' buttons below to start.");
-  show_buttons();
+  show_go_to_family_buttons();
+  //alert ('buttons are shown');
   $("#progressbar").progressBar(100);
 }
 
 
 function init_family_info() {
-  hide_buttons();
-  add_keys();
-
+  add_keys(); // this is needed.
+  
+  
+  
+  //alert ('init beginning.');
+  
+  status_images_none();
+  $('#download').hide();
+  
   list_of_questions = local_storage_get(LOCAL_STORAGE_KEY, 'list_of_questions');
-
   if (list_of_questions == null) {
     $('#downloading').hide();
     $('#download').hide();
     $('#upload').hide();
     $('#main_end_button').hide();
-    $('#guidance_1').html('Sorry, there is no locally stored information about your visit.');
+    //$('#guidance_1').html('Sorry, there is no locally stored information about your visit.');
     $('#guidance_1').html('<p>Looks like you have a visit currently in progress on another machine. Please end that visit before starting a new one.</p><p><a href="/family_info/families">Back</a></p>');
     $('#guidance_2').hide();
     return;
@@ -224,19 +240,20 @@ function init_family_info() {
   if (typeof (cache) == "undefined") {
     // this might not actually matter.
     glog ('Cache not found, so can\'t update it.');
-    show_buttons();
+    show_go_to_family_buttons();
   }
   else {
+    setup_cache_callbacks();
+    
+    // TODO: start download:
     error = download_files_into_cache ();
     if (error) {
       if  ((error.name).toUpperCase() == 'INVALID_STATE_ERR') {
-            // Harmless ipad-only bug.
-            // TODO: attempt to clear this up.
-            hide_buttons();
+            // Harmless ipad-only bug:
             announce_ready_for_interview();
-            
+            $('#contenttitle').html('Dashboard *');
         } else if  ((error.name).toUpperCase() == 'NS_ERROR_DOM_SECURITY_ERR')  {
-            hide_buttons();
+            hide_go_to_family_buttons();
             status_images_error();
             $('#downloading').hide();
             $('#guidance_1').html ('If you see an "Allow" button at the top of your browser window, please click on it to start the download. If you do NOT see an "Allow" button,  please reset your site preferences for this site and try again.)');
@@ -244,17 +261,20 @@ function init_family_info() {
             return;
             
         } else {        //other error:/
-          hide_buttons();
+          hide_go_to_family_buttons();
           status_images_error();
-          $('#guidance_1').html ('An unrecognized occurred.');
+          $('#guidance_1').html ('An unrecognized error occurred.');
           $('#guidance_2').html (error.name + " " + error.description);
           return;
       }
     } // end if error
     // normal
   }
-  // 4) SHOW INTERVIEW PROGRESS SO FAR:
-  show_interview_progress();
+
+  // first time you load the page, these will be immediately re-shown by the cache download callbacks.
+  $('#downloading').hide();
+  $('#download').hide();
+  //interview_in_progress = (local_storage_get (LOCAL_STORAGE_KEY, 'current_family_id') != null);
 }
 
 ///////////////////
