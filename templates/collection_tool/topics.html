@@ -51,7 +51,15 @@ Let's put these fires out! (es)
 			
 			<img src="/collection_tool/media/images/topics_graphic.png" />
 			
-			
+     <p>
+	{%ifequal language_code 'en'%}
+        As you answer our questions, we'll show how you're doing in each area below the buttons.
+	{%endifequal%}
+	{%ifequal language_code 'es'%}
+        As you answer our questions, we'll show how you're doing in each area below the buttons. (es)
+	{%endifequal%}
+      </p>
+
 			<div id = "topics_learn_more_flatpages_div">
 			    {% for fp in flat_pages_we_need %}
               <!-- content box -->
@@ -84,17 +92,7 @@ Let's put these fires out! (es)
 			    </div>
 			{% endfor %}
 
-      <div>
-      
-      
-	{%ifequal language_code 'en'%}
-        As you answer our questions, we'll show how you're doing in each area.
-	{%endifequal%}
-	{%ifequal language_code 'es'%}
-        As you answer our questions, we'll show how you're doing in each area. (es)
-	{%endifequal%}
-      </div>
-			{% for t in all_topics%}
+ 			{% for t in all_topics%}
 			<div class ="topic_div topic_{{t.id}}" id="topicbox">
 			
 				<h3>
