@@ -51,14 +51,39 @@ Let's put these fires out! (es)
 			
 			<img src="/collection_tool/media/images/topics_graphic.png" />
 			
-     <p>
 	{%ifequal language_code 'en'%}
-        As you answer our questions, we'll show how you're doing in each area below the buttons.
+	
+       <p>
+       As you answer our questions we'll show how you're doing in each area. 
+       </p>
+       
+       <p>
+        If a topic is blue, great! If a topic is orange you have some work to do. 
+        
+       </p>
+       
+       <p>
+        Click each topic to learn more about goals you can set for yourself at the bottom.
+        </p>
+        
 	{%endifequal%}
+	
 	{%ifequal language_code 'es'%}
-        As you answer our questions, we'll show how you're doing in each area below the buttons. (es)
+	
+       <p>
+        As you answer our questions we'll show how you're doing in each area.  (es)
+       </p>
+       
+       <p>
+        If a topic is blue, great! If a topic is orange you have some work to do. (es)
+       </p>
+       
+       <p>
+        
+        Click each topic to learn more about goals you can set for yourself at the bottom. (es)
+		</p>
+
 	{%endifequal%}
-      </p>
 
 			<div id = "topics_learn_more_flatpages_div">
 			    {% for fp in flat_pages_we_need %}
