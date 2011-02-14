@@ -161,6 +161,10 @@ class Topic(models.Model):
       overall_weight = config.moduleweight_set.get(module=self).weight
     except ModuleWeight.DoesNotExist:
       pass
+    except ModuleWeight.MultipleObjectsReturned:
+      #Only one weight per module please. This should be enforced by the equation alancer. See bug 72244.
+      assert 1 == 0
+      
     for the_answer in self.answers:
       try:
         question_weight = config.weight_set.get(question = the_answer.question).weight
