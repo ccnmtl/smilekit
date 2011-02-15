@@ -140,7 +140,6 @@ div#list_of_questions {
 	width: 25%;
 	text-decoration: none;
 	color: #000;
-	text-shadow: #ccc 1px 1px 1px;
 	font-size: 75%;
 	font-weight: bold;
 }
@@ -411,16 +410,24 @@ a#get_materials_link, a#end_interview_link
 	margin-left: -69px;
 }
 
+#contentnav a#left, #contentnav a#right
+{
+	top: 0px;
+	background-repeat: no-repeat !important;
+	background-position: center center !important;
+	text-indent: -8000px;
+}
+
 #contentnav a#left
 {
 	left: 0px;
-	top: 0px;
+	background-image: url(/collection_tool/media/images/background_previous.png) !important;
 }
 
 #contentnav a#right
 {
 	right: 0px;
-	top: 0px;
+	background-image: url(/collection_tool/media/images/background_next.png) !important;
 }
 
 h2#contenttitle, #contentsubtitle { text-align: center; }
