@@ -656,7 +656,10 @@ a.contentbutton.indexpage {
 	color: #666 !important;
 }
 
-/* This style is applied to all answer buttons when you choose them, EXCEPT for the yes and no buttons which get their own special red and green styles. See yesbutton.contentbuttonchosen and nobutton.contentbuttonchosen below . */
+/* This style is applied to all answer buttons when you choose them, 
+EXCEPT for the yes and no buttons which get their own special red and green styles. 
+See yesbutton.contentbuttonchosen and nobutton.contentbuttonchosen below . */
+
 .contentbuttonchosen
 {
 	background: -webkit-gradient(linear, left top, left bottom, from(#666), to(#999)) !important;
@@ -1204,7 +1207,7 @@ td, legend, input {font-size: 16px;}
 a#printpage
 {
 	display: block;
-	border: 1px solid #2aa952;
+	border: 1px solid #3172bb;
 	float: right;
 	display: inline;
 	text-decoration: none;
@@ -1212,7 +1215,7 @@ a#printpage
 	background-image: url(/collection_tool/media/images/print_icon.png);
 	background-repeat: no-repeat;
 	background-position: 4px center;
-	color: #2aa952;
+	color: #3172bb;
 	text-decoration: none;
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
