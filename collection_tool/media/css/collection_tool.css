@@ -1201,6 +1201,25 @@ td, legend, input {font-size: 16px;}
 	padding-top: 5px;
 }
 
+a#printpage
+{
+	display: block;
+	border: 1px solid #2aa952;
+	float: right;
+	display: inline;
+	text-decoration: none;
+	padding: 20px 10px 20px 50px;
+	background-image: url(/collection_tool/media/images/print_icon.png);
+	background-repeat: no-repeat;
+	background-position: 4px center;
+	color: #2aa952;
+	text-decoration: none;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	margin-left: 20px;
+	margin-bottom: 20px;
+}
+
 
 /* stop - "flat page" styles */
 
@@ -1253,7 +1272,12 @@ input#main_end_button
 
 table.editdetails, table.interviewdetails, table.users {width: 100%;}
 
-table.editdetails th, table.editdetails td, table.users th, table.users td  {padding: 10px; border-top: 1px solid #ccc; text-align: center;}
+table.editdetails th, table.editdetails td, table.users th, table.users td
+{
+	padding: 10px;
+	border-top: 1px solid #ccc;
+	text-align: center;
+}
 
 table.editdetails td.action, table.users td.action {text-align: center;}
 
@@ -1383,13 +1407,14 @@ font-weight:bold;
 text-decoration:none;
 background: -webkit-gradient(linear, left top, left bottom, from(#ff7575), to(#ff0101));
 background: -moz-linear-gradient(top, #ff7575, #ff0101);
-	-moz-border-radius: 10px; 
-	-webkit-border-radius: 10px;
-
+-moz-border-radius: 10px; 
+-webkit-border-radius: 10px;
 }
 
 
 /* stop - "storage" styles */
+
+
 
 
 /* start - print-specific flat page styles */
@@ -1414,6 +1439,7 @@ background: -moz-linear-gradient(top, #ff7575, #ff0101);
 	
 	#editpage {display: none;}
 
+	a#printpage {display: none;}
 	
 	a#help_close {display: none !important;}
 	
@@ -1425,6 +1451,8 @@ background: -moz-linear-gradient(top, #ff7575, #ff0101);
 		-webkit-box-shadow: none;
 		margin-top: 70px;
 	}
+	
+	.flatpagecontainer h4 {page-break-before: always;}
 
 }
 
@@ -1438,13 +1466,26 @@ background: -moz-linear-gradient(top, #ff7575, #ff0101);
 @media all and (orientation:portrait)
 {
 
+
 }
 
 
 @media all and (orientation:landscape)
 {
 
+
 }
 
 /* stop - orientation-specific styles */
+
+/* start - ipad-specific styles */
+
+@media only screen and (max-device-width: 1024px)
+{
+
+	a#printpage {display: none;}
+
+}
+
+/* stop - ipad-specific styles */
 
