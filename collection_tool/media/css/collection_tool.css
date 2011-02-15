@@ -136,11 +136,11 @@ div#list_of_questions {
 	display: block;
 	float: left;
 	text-align: center;
-	padding: 25px 0px 21px 0px;
+	padding: 25px 0px 22px 0px;
 	width: 25%;
 	text-decoration: none;
 	color: #000;
-	font-size: 75%;
+	font-size: 70%;
 	font-weight: bold;
 }
 
@@ -176,14 +176,14 @@ div#list_of_questions {
 
 #mainnav a#risktab
 {
-	background: -webkit-gradient(linear, left top, left bottom, from(#ff7575), to(#ff0101));
-	background: -moz-linear-gradient(top, #ff7575, #ff0101);
+	background: -webkit-gradient(linear, left top, left bottom, from(#ff7575), to(#ff3636));
+	background: -moz-linear-gradient(top, #ff7575, #ff3636);
 }
 
 #mainnav a.risktabactive
 {
-	background: -webkit-gradient(linear, left top, left bottom, from(#000), to(#ff0101)) !important;
-	background: -moz-linear-gradient(top, #000, #ff0101) !important;
+	background: -webkit-gradient(linear, left top, left bottom, from(#000), to(#ff3636)) !important;
+	background: -moz-linear-gradient(top, #000, #ff3636) !important;
 	font-weight: bold;
 	text-shadow: none;
 	color: #fff;
@@ -289,7 +289,7 @@ a#get_materials_link, a#end_interview_link
 	width: 20%;
 	text-decoration: none;
 	color: #000;
-	font-size: 75%;
+	font-size: 70%;
 	font-weight: bold;
 }
 
@@ -299,7 +299,7 @@ a#get_materials_link, a#end_interview_link
 	color: #000;
 	font-weight: bold;
 	padding-bottom: 50px;
-	border-left: 0px solid #000 !important;
+	border-left: 0px solid #fff !important;
 }
 
 /********/
@@ -585,18 +585,12 @@ input.formbutton, a.contentbutton, a.riskbutton
 	-webkit-border-radius: 10px;
 	font-family: helvetica, sans-serif;
 	color: #333;
-	text-shadow: #fff 1px 1px 1px;
 	font-weight: bold;
 	font-size: 16px;
 }
 
 a.contentbutton, a.riskbutton
 {
-	font-family: helvetica, sans-serif;
-	color: #333;
-	text-shadow: #fff 1px 1px 1px;
-	font-weight: bold;
-	font-size: 16px;
 	margin-top: 10px;
 }
 
@@ -663,7 +657,7 @@ a.contentbutton.indexpage {
 	background: -webkit-gradient(linear, left top, left bottom, from(#666), to(#999)) !important;
 	background: -moz-linear-gradient(top, #666, #999) !important;
 	text-shadow: 0px 0px 0px !important;
-	color: #666 !important;
+	color: #000 !important;
 }
 
 /* This style is applied to all answer buttons when you choose them, 
@@ -697,9 +691,9 @@ See yesbutton.contentbuttonchosen and nobutton.contentbuttonchosen below . */
 .contentbuttoncomplete:before
 {
 	content: url(/collection_tool/media/images/checkbox.png);
-	margin-left: 10px;
+	margin-right: 10px;
 	position: absolute;
-	left: 0px;
+	right: 0px;
 }
 
 /********/
