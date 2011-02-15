@@ -1216,6 +1216,7 @@ input#main_submit_button, input#main_end_button, a#resume_button
 	border: 0px;
 	padding: 20px;
 	text-decoration: none;
+    cursor: pointer;
 }
 
 input#main_submit_button, a#resume_button
@@ -1224,6 +1225,7 @@ input#main_submit_button, a#resume_button
 	background: -moz-linear-gradient(top, #9bdbbb, #1eaf65);
 	color: #fff;
 	text-shadow: #000 1px 1px 1px;
+    cursor: pointer;
 }
 
 input#main_end_button
@@ -1232,6 +1234,7 @@ input#main_end_button
 	background: -moz-linear-gradient(top, #ff7575, #ff0101);
 	color: #fff;
 	text-shadow: #000 1px 1px 1px;
+    cursor: pointer;
 }
 
 
@@ -1249,6 +1252,7 @@ input#main_end_button
 	background: -moz-linear-gradient(top, #ff7575, #ff0101);
 	color: #fff;
 	text-shadow: #000 1px 1px 1px;
+    cursor: pointer;
 }
 
 table.editdetails, table.interviewdetails, table.users {width: 100%;}
