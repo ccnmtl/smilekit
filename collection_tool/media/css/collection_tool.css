@@ -136,11 +136,13 @@ div#list_of_questions {
 	display: block;
 	float: left;
 	text-align: center;
-	padding: 21px 0px 21px 0px;
+	padding: 25px 0px 21px 0px;
 	width: 25%;
 	text-decoration: none;
 	color: #000;
 	text-shadow: #ccc 1px 1px 1px;
+	font-size: 75%;
+	font-weight: bold;
 }
 
 #mainnav a#introductiontab
@@ -282,14 +284,14 @@ a#get_materials_link, a#end_interview_link
 {
 	display: block;
 	float: left;
-	/*border-left: 1px solid #000;*/
+	border-left: 1px solid #000;
 	text-align: center;
-	padding: 22px 0px 22px 0px;
+	padding: 25px 0px 22px 0px;
 	width: 20%;
 	text-decoration: none;
 	color: #000;
-	text-shadow: #fff 1px 1px 1px;
 	font-size: 75%;
+	font-weight: bold;
 }
 
 #assessmentnav a.activetab
@@ -298,6 +300,7 @@ a#get_materials_link, a#end_interview_link
 	color: #000;
 	font-weight: bold;
 	padding-bottom: 50px;
+	border-left: 0px solid #000 !important;
 }
 
 /********/
