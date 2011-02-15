@@ -136,11 +136,11 @@ div#list_of_questions {
 	display: block;
 	float: left;
 	text-align: center;
-	padding: 25px 0px 22px 0px;
+	padding: 22px 0px 22px 0px;
 	width: 25%;
 	text-decoration: none;
 	color: #000;
-	font-size: 70%;
+	font-size: 90%;
 	font-weight: bold;
 }
 
@@ -152,8 +152,12 @@ div#list_of_questions {
 
 #mainnav a.introductiontabactive
 {
+	/*
 	background: -webkit-gradient(linear, left top, left bottom, from(#000), to(#ff6701)) !important;
 	background: -moz-linear-gradient(top, #000, #ff6701) !important;
+	*/
+	background: -moz-linear-gradient(top, #1eaf65 0%, #000000 50%, #ff6701 100%) !important; 
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#000000), color-stop(50%,#000000), color-stop(100%,#ff6701)) !important;
 	font-weight: bold;
 	text-shadow: none;
 	color: #fff;
@@ -167,8 +171,12 @@ div#list_of_questions {
 
 #mainnav a.assessmenttabactive
 {
+	/*
 	background: -webkit-gradient(linear, left top, left bottom, from(#000), to(#1076bc)) !important;
 	background: -moz-linear-gradient(top, #000, #1076bc) !important;
+	*/
+	background: -moz-linear-gradient(top, #1eaf65 0%, #000000 50%, #1076bc 100%) !important; 
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#000000), color-stop(50%,#000000), color-stop(100%,#1076bc)) !important;
 	font-weight: bold;
 	text-shadow: none;
 	color: #fff;
@@ -182,8 +190,12 @@ div#list_of_questions {
 
 #mainnav a.risktabactive
 {
+	/*
 	background: -webkit-gradient(linear, left top, left bottom, from(#000), to(#ff3636)) !important;
 	background: -moz-linear-gradient(top, #000, #ff3636) !important;
+	*/
+	background: -moz-linear-gradient(top, #1eaf65 0%, #000000 50%, #ff3636 100%) !important; 
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#000000), color-stop(50%,#000000), color-stop(100%,#ff3636)) !important;
 	font-weight: bold;
 	text-shadow: none;
 	color: #fff;
@@ -191,8 +203,8 @@ div#list_of_questions {
 
 #mainnav a.planningtabactive
 {
-	background: -webkit-gradient(linear, left top, left bottom, from(#000), to(#1eaf65)) !important;
-	background: -moz-linear-gradient(top, #000, #1eaf65) !important;
+	background: -moz-linear-gradient(top, #1eaf65 0%, #000000 50%, #1eaf65 100%) !important; 
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#000000), color-stop(50%,#000000), color-stop(100%,#1eaf65)) !important;
 	font-weight: bold;
 	text-shadow: none;
 	color: #fff;
@@ -283,13 +295,12 @@ a#get_materials_link, a#end_interview_link
 {
 	display: block;
 	float: left;
-	border-left: 1px solid #000;
 	text-align: center;
 	padding: 25px 0px 22px 0px;
 	width: 20%;
 	text-decoration: none;
 	color: #000;
-	font-size: 70%;
+	font-size: 80%;
 	font-weight: bold;
 }
 
@@ -297,10 +308,17 @@ a#get_materials_link, a#end_interview_link
 {
 	background-color: #fff;
 	color: #000;
+	width: 20%;
 	font-weight: bold;
 	padding-bottom: 50px;
-	border-left: 0px solid #fff !important;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-left: none !important;
+}
 
+a#asstab02, a#asstab03, a#asstab04, a#asstab05
+{
+	border-left: 1px solid #036;
 }
 
 /********/
@@ -417,6 +435,7 @@ a#get_materials_link, a#end_interview_link
 	background-repeat: no-repeat !important;
 	background-position: center center !important;
 	text-indent: -8000px;
+	width: 100px;
 }
 
 #contentnav a#left
@@ -816,8 +835,8 @@ See yesbutton.contentbuttonchosen and nobutton.contentbuttonchosen below . */
 
 
 .learnmore a.video_link {
-	color: #0F0;
-	font-size: 24px;
+	color: #fff;
+	font-size: 75%;
 }
 
 
