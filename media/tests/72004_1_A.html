@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://kodos.ccnmtl.columbia.edu:7112" />
+<title>create families</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">create families</td></tr>
+</thead><tbody>
+<!--setup-->
+<tr>
+	<td>open</td>
+	<td>/family_info/selenium/setup/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>proceed</td>
+	<td></td>
+</tr>
+<!--families page-->
+<tr>
+	<td>open</td>
+	<td>/family_info/families/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForValue</td>
+	<td>main_submit_button</td>
+	<td>Check Out Families and Start Visit</td>
+</tr>
+<!--first family-->
+<tr>
+	<td>clickAndWait</td>
+	<td>link=+ Add a Family</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>study_id_number</td>
+	<td>59638</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>config_id</td>
+	<td>label=&lt;3 dental health professional</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>child_year_of_birth</td>
+	<td>1998</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>race_ethnicity</td>
+	<td>label=Caucasian</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>mother_born_in_us</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>highest_level_of_parent_education</td>
+	<td>label=Did not complete high school</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//input[@value='Save']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>left</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//tr[@class='selenium_family_tr 59638']//input</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@class='selenium_family_tr 59638']//input</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>main_submit_button</td>
+	<td></td>
+</tr>
+<!--set timeout to 5 minutes-->
+<!--start download-->
+<tr>
+	<td>waitForVisible</td>
+	<td>get_materials_link</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>get_materials_link</td>
+	<td></td>
+</tr>
+<!--set timeout to 5 minutes-->
+<tr>
+	<td>setTimeout</td>
+	<td>300000</td>
+	<td></td>
+</tr>
+<!--wait for download to end-->
+<tr>
+	<td>pause</td>
+	<td>2000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForVisible</td>
+	<td>link=Visit family 59638</td>
+	<td></td>
+</tr>
+<!--set timeout back to 30 seconds-->
+<tr>
+	<td>setTimeout</td>
+	<td>30000</td>
+	<td></td>
+</tr>
+<!--start visit with the first family-->
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Visit family 59638</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>assessmenttab</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>assessmenttab</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>question_38</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>right</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>answer_181</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>
