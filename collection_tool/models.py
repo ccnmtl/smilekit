@@ -42,7 +42,7 @@ class HelpItem(models.Model):
 
 class HelpUrl(models.Model):
   """Associates a help item with an arbitrary URL."""
-  url = models.CharField(max_length=1024, null = True, blank = True)
+  url = models.CharField(max_length=1024, null = True, blank = True, help_text = "Include leading and trailing slashes, please.")
   help_item = models.ForeignKey(HelpItem)
   def __unicode__(self): return self.url
     
@@ -271,7 +271,7 @@ class Goal (models.Model):
   @property
   def help_item(self):
     try:
-      return HelpUrl.objects.filter (url__contains = 'goal/%d' % self.id )[0]
+      help_url = HelpUrl.objects.filter (url__contains = 'goal/%d/' % self.id )[0].help_item
     except:
       return None
     return None
@@ -308,7 +308,7 @@ class AssessmentSection(models.Model):
   @property
   def help_item(self):
     try:
-      return HelpUrl.objects.filter (url__contains = 'section/%d' % self.id )[0]
+      return HelpUrl.objects.filter (url__contains = 'section/%d/' % self.id )[0].help_item
     except:
       return None
     return None
@@ -483,7 +483,7 @@ class DisplayQuestion(models.Model):
   @property
   def help_item(self):
     try:
-      return HelpUrl.objects.filter (url__contains = 'question/%d' % self.id )[0]
+      return HelpUrl.objects.filter (url__contains = 'question/%d/' % self.id )[0].help_item
     except:
       return None
     return None
@@ -502,26 +502,34 @@ class DisplayQuestion(models.Model):
       
     return True
     
-
   @property
   def no_pictures(self):
     return self.has_question_picture is False and self.has_answer_pictures is False
-    
     
   @property
   def display_answers (self):
     return DisplayAnswer.objects.filter(answer__in= self.question.answer_set.all())
 
-  
   @property
   def answers(self):
     return self.question.answer_set.all()
+  
+  
+  @property
+  def weight_info(self):
+    my_module = self.question.module
+    results = []
+    for qw in self.question.weight_set.all():
+        module_weight = [mw.weight for mw in qw.config.moduleweight_set.all() if mw.module == my_module][0]
+        results.append ((qw.config.id, qw.config.name, float(qw.weight), float(module_weight),
+        float (qw.weight * module_weight)
+        ))
+    return results
   
   @property
   def dir(self):
     return dir(self)
   
-
   @property
   def english(self):
     try:
@@ -584,10 +592,6 @@ class DisplayQuestion(models.Model):
         return self.resource.summary
     else:
       return None
-    
-  
-  
-  
   
   def __unicode__(self):
     """ Just the English."""

@@ -1,32 +1,29 @@
 {% extends "family_info/base.html" %}
 {%load smartif%}
 {% block html_element %}{% endblock html_element %}
-
-
-
 {% block family_info_content %}
-
-<style type="text/css">
-pre.translation_pre {
-    white-space: -moz-pre-wrap; /* Mozilla, supported since 1999 */
-    white-space: -pre-wrap; /* Opera */
-    white-space: -o-pre-wrap; /* Opera */
-    white-space: pre-wrap; /* CSS3 - Text module (Candidate Recommendation) http://www.w3.org/TR/css3-text/#white-space */
-    word-wrap: break-word; /* IE 5.5+ */
-}
-</style>
-
 
 <h2 id="contenttitle">
 	List of display questions
 </h2>
 
 <div>
+<h3><a name = "top">Contents:</a></h3>
+{%for dq in all_display_questions%}
+    <a href ="#display_question_{{dq.id}}" >{{dq.id}}: {{dq.english}}</a><br/>
+{%endfor%}        
+</div>
+        
+
+<div>
     {%for dq in all_display_questions%}
     <div>
-        <h3>{{dq.id}}: {{dq.english}}</h3>
+        <h2><a name ="display_question_{{dq.id}}" >{{dq.id}}: {{dq.english}}</a></h2>
+        <a href ="#display_question_{{dq.id}}" >[link]</a>
+        <a href ="#top" >[top]</a>
+        <br/>
         Display question admin:<br/>
-        <a href = "/admin/collection_tool/question/{{dq.id}}/" >{{dq.english}}</a><br/>
+        <a href = "/admin/collection_tool/displayquestion/{{dq.id}}/" >{{dq.english}}</a><br/>
         Question admin:<br/>
         <a href = "/admin/equation_balancer/question/{{dq.question.id}}/" >{{dq.question}}</a><br/>
         Answers:<br/>
@@ -34,13 +31,20 @@ pre.translation_pre {
             &nbsp;&nbsp;&nbsp;{{a}}<br/>
         {%endfor%}
         
-        Weight:<br />
+        Nav section:<br/>
+        <a href = "/admin/collection_tool/assessmentsection/{{dq.nav_section.id}}/" >{{dq.nav_section}}</a><br/>
         
-        {%for w in dq.question.weight_set.all%}
-        &nbsp;&nbsp;&nbsp;<a href = "/weights/configuration/{{ w.config.id}}">{{ w.config}}</a>: {{ w.weight}}<br/>
+        Module:<br/>
+        <a href = "/admin/equation_balancer/module/{{dq.question.module.id}}/" >{{dq.question.module}}</a><br/>
+        
+        Weight:<br />
+        {%for a, b, c, d, e in dq.weight_info%}
+        &nbsp;&nbsp;&nbsp;<a href = "/weights/configuration/{{a}} ">{{b}}</a>: {{c|floatformat:"-3"}} x {{d|floatformat:"-3"}} = {{e|floatformat:"-3"}} <br/>
         {%endfor%}
-        </br>
-        </br>
+        <br/>
+        
+        
+        
         Display regardless of weight:<br />
         {%if dq.display_regardless_of_weight%}
             Yes
@@ -53,7 +57,7 @@ pre.translation_pre {
         Spanish front-end page:<br/>
         <a href = "/collection_tool/question/{{dq.id}}/language/es/" >{{dq.spanish}}</a><br/>
         Help Item:<br/>
-        <a href = "/admin/collection_tool/helpitem/{{dq.help_item.help_item.id}}/" >{{dq.help_item.help_item.english_title}}</a><br/>
+        <a href = "/admin/collection_tool/helpitem/{{dq.help_item.id}}/" >{{dq.help_item.english_title}}</a><br/>
         Topic(s):<br/>
         {%for t in dq.topics.all%}
          &nbsp;&nbsp;&nbsp;<a href = "/admin/collection_tool/topic/{{t.id}}/" >{{t.english_title}}</a><br/>
@@ -74,10 +78,6 @@ pre.translation_pre {
             No
         {%endif%}
         <br/>
-        Module:<br/>
-        <a href = "/admin/equation_balancer/module/{{dq.question.module.id}}/" >{{dq.question.module}}</a><br/>
-        Nav section:<br/>
-        <a href = "/admin/collection_tool/assessmentsection/{{dq.nav_section.id}}/" >{{dq.nav_section}}</a><br/>
     </div>
     {%endfor%}
  </div>
