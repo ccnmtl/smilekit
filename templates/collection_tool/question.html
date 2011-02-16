@@ -18,7 +18,7 @@
 {% block assessmentnav %}
 	<div id="assessmentnav">
 	{% for s in all_sections %}
-	 <a class="{%if forloop.first%}firsttab{%endif%} {%if forloop.last%}lasttab{%endif%}    {%ifequal displayquestion.nav_section.title s.title %}activetab{%endifequal%}" href="/collection_tool/section/{{s.id}}/language/{{language_code}}/">
+	 <a id="asstab0{{s.id}}" class="{%if forloop.first%}firsttab{%endif%} {%if forloop.last%}lasttab{%endif%}    {%ifequal displayquestion.nav_section.title s.title %}activetab{%endifequal%}" href="/collection_tool/section/{{s.id}}/language/{{language_code}}/">
 	  {%ifequal language_code 'en'%}{{s.english_title}}{%endifequal%}
 		{%ifequal language_code 'es'%}{{s.spanish_title}}{%endifequal%}
 		</a>

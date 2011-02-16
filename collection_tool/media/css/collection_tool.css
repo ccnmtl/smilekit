@@ -24,6 +24,8 @@ body
 	background-color: black;
 }
 
+p {font-size: 120% !important;}
+
 div#list_of_questions {
 	display: none;
 }
@@ -678,7 +680,7 @@ a.contentbutton
 a.contentbutton.indexpage {
   background: -webkit-gradient(linear, left top, left bottom, from(#90bad6), to(#5098c9));
 	background: -moz-linear-gradient(top, #90bad6, #5098c9);
-	padding: 15px 30px 15px 30px;
+	padding: 20px 50px 20px 50px;
 	display: block;
 	position: relative;
 }
@@ -708,7 +710,7 @@ See yesbutton.contentbuttonchosen and nobutton.contentbuttonchosen below . */
 	background: -webkit-gradient(linear, left top, left bottom, from(#666), to(#999)) !important;
 	background: -moz-linear-gradient(top, #666, #999) !important;
 	text-shadow: 0px 0px 0px !important;
-	color: #666 !important;
+	color: #000 !important;
 }
 
 
@@ -729,10 +731,19 @@ See yesbutton.contentbuttonchosen and nobutton.contentbuttonchosen below . */
 
 .contentbuttoncomplete:before
 {
-	content: url(/collection_tool/media/images/checkbox.png);
+	/*content: url(/collection_tool/media/images/checkbox.png);
 	margin-right: 10px;
 	position: absolute;
 	right: 0px;
+	*/
+  	content: 'Done!';
+  	position: absolute;
+  	top: 10px;
+  	right: 10px;
+  	font-size: 9px; font-weight: normal; font-size: 10px;
+  	background-color: #ffc;
+  	padding: 3px;
+	
 }
 
 /********/
