@@ -476,6 +476,13 @@ class DisplayQuestion(models.Model):
     return '/collection_tool/question/%d/language/en' % self.id
 
   @property
+  def show_planner (self):
+    risky_exposures_question = Question.objects.get(text="number risky exposures")
+    fluoride_question = Question.objects.get(text="Fluoride rinse exposures")
+    brushing_question = Question.objects.get(text="Children's daily toothbrushing")
+    return self.question in [risky_exposures_question, brushing_question, fluoride_question]
+
+  @property
   def question_type(self):
     return self.question.type
   
@@ -697,8 +704,10 @@ class PlannerItem(models.Model):
     return "%s: %s" % (self.get_type_display(), self.label)
 
   TYPE_CHOICES = ( ('A', 'Fluoride'), ('B', 'Foods'), ('C', 'Drinks'))
-  SPANISH_TYPES = ( ('A', 'Fluoruro'), ('B', 'Alimentos'), ('C', 'Bebidas') )
+  SPANISH_TYPES = ( ('A', 'Fluoruro'), ('B', 'Alimentos'), ('C', 'Bebidas'))
   type = models.CharField(max_length=1, choices=TYPE_CHOICES)
+
+  
 
   def get_spanish_type(self):
     return [label[1] for label in self.SPANISH_TYPES if label[0] == self.type][0]
@@ -709,6 +718,17 @@ class PlannerItem(models.Model):
   risk_level = models.IntegerField()
   #image = models.ImageField(upload_to='answer_images',blank=True,null=True)
   # for now, image is just assumed to be "slugified_label.jpg"
+  
+  #let's shake things up a little:
+  ordering_map = {
+    'A' : 0 ,  # fluoride first
+    'C' : 1 ,  # then drinks
+    'B' : 2    # and then food
+  }
+
+  @property
+  def new_ordering(self):
+    return self.ordering_map[self.type]
   
   class Meta:
     ordering = ('type', 'label')

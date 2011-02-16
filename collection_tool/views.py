@@ -83,13 +83,20 @@ def goal(request, goal_id, language_code):
 
 
 
+
 def get_planner_items():
   # look up question ids for planner
   starttime = datetime(1984,1,1,6)
   planner_times = [(starttime + timedelta(minutes=30) * i).strftime("%I:%M%p")
            for i in range(36)]
-  planner_items = PlannerItem.objects.all().order_by('type', 'label')
   
+  #OK, now drinks come before foods.
+  #planner_items = PlannerItem.objects.all().order_by('type', 'label')
+  
+  planner_items = list(PlannerItem.objects.all())
+  planner_items.sort(key = lambda p_i: p_i.label)
+  planner_items.sort(key = lambda p_i: p_i.new_ordering)
+
   return {
     'planner_times':planner_times,
     'planner_items':planner_items,
@@ -187,9 +194,6 @@ def question(request, displayquestion_id, language_code):
   # look up question ids for planner
   planner_question = False
   
-  planner_times = []
-  planner_items = []
-  
   risky_exposures_question = Question.objects.get(text="number risky exposures")
   risky_answers = {}
 
@@ -199,12 +203,8 @@ def question(request, displayquestion_id, language_code):
   brushing_question = Question.objects.get(text="Children's daily toothbrushing")
   brushing_answers = {}
 
-  if displayquestion.question in [risky_exposures_question, brushing_question, fluoride_question]:
+  if displayquestion.show_planner:
     planner_question = True
-    starttime = datetime(1984,1,1,6)
-    planner_times = [(starttime + timedelta(minutes=30) * i).strftime("%I:%M%p")
-             for i in range(36)]
-    planner_items = PlannerItem.objects.all().order_by('type', 'label')
     
     for answer in Answer.objects.filter(question=risky_exposures_question):
       risky_answers[answer.text] = answer.id
@@ -224,9 +224,8 @@ def question(request, displayquestion_id, language_code):
       'language_code': language_code,
       'all_sections': AssessmentSection.objects.all(),
       'planner_question' : planner_question, #is this a planner question?
-      'planner_times':planner_times, # [] if not a planner_question
-      'planner_items':planner_items, # [] if not a planner question
-      
+      'planner_items' : get_planner_items()['planner_items'],
+      'planner_times' : get_planner_items()['planner_times'],
       #TODO to just check the boolean planner_question and remove this variable
       'widget_question_ids':[risky_exposures_question.id, brushing_question.id, fluoride_question.id],
       

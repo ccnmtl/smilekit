@@ -420,12 +420,23 @@ def question_list(request):
   t = loader.get_template('family_info/question_list.html')
   
   
-  all_display_questions = list([dq for dq in DisplayQuestion.objects.all() if dq.nav_section])
-  all_display_questions.sort ( key = lambda dq: dq.ordering_rank )
-  all_display_questions.sort ( key = lambda dq: dq.nav_section.ordering_rank )
+  display_questions = list([dq for dq in DisplayQuestion.objects.all() if dq.nav_section])
+  display_questions.sort ( key = lambda dq: dq.ordering_rank )
+  display_questions.sort ( key = lambda dq: dq.nav_section.ordering_rank )
+  
+  # what?
+  funky_questions = list([dq for dq in DisplayQuestion.objects.all() if not dq.nav_section])
+  funky_questions.sort  ( key = lambda dq: dq.ordering_rank )
+  display_questions.extend ( funky_questions  )
+  
+  
+  #all_display_questions = list([dq for dq in DisplayQuestion.objects.all() if dq.nav_section])
+  #all_display_questions.sort ( key = lambda dq: dq.ordering_rank )
+  #all_display_questions.sort ( key = lambda dq: dq.nav_section.ordering_rank )
+  
   
   c = RequestContext(request,{
-      'all_display_questions': all_display_questions
+      'display_questions': display_questions
   })
   return HttpResponse(t.render(c))
   
