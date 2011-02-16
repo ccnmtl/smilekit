@@ -5,10 +5,10 @@
 # 
 
 #To see output of this script, uncomment the following line:
-#set -x
+set -x
 
 ############
-DB_BACKUPS=~/ecc_backups
+DB_BACKUPS=~/db_backups/ecc_backups
 PREFIX=smilekit_prod_
 DATE=$PREFIX`date +"%F_%R" | sed 's/-/_/g' | sed 's/:/_/g'`
 PROD_SERVER_HOSTNAME=mysmilebuddy.ccnmtl.columbia.edu
@@ -37,3 +37,5 @@ sudo -u postgres psql -Upostgres -d smilekit -f $DB_BACKUPS/$DATE.out
 
 #echo "Other settings files you might want to update are:"
 #locate settings_shared.py | grep worth | grep -v 'pyc\|_in\|~'
+
+

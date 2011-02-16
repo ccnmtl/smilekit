@@ -29,16 +29,13 @@ def risk(request, language_code):
     #print help_item
   except:
     pass
-      
   c = RequestContext(request,{
       'language_code': language_code,
       'help_item': help_item,
       'all_topics': Topic.objects.all(),
       'all_families': Family.objects.all(),
   })
-    
   return HttpResponse(t.render(c))
-
 
 def topics(request, language_code):
   if language_code not in ['en', 'es']:
@@ -59,23 +56,6 @@ def topics(request, language_code):
       #'all_families': Family.objects.all(),
   })
   return HttpResponse(t.render(c))
-
-
-#TODO check:
-#This might be obsolete.
-def topic(request, topic_id, language_code ):
-  """Show the topic title and description, goal title and
-description. Get here by clicking 'Learn' on the goals page."""
-
-  if language_code not in ['en', 'es']:
-    raise Http404
-  t = loader.get_template('collection_tool/topic.html')
-      
-  c = RequestContext(request,{
-      'language_code': language_code,
-      'topic': get_object_or_404(Topic, pk=topic_id)
-  })
-  return HttpResponse(t.render(c))    
   
 def goals(request, language_code):
   """Displays goals we've already made progress on. AKA Plan History."""
@@ -176,6 +156,7 @@ def video (request, video_filename):
   })
   return HttpResponse(t.render(c))
 
+
 def question(request, displayquestion_id, language_code):
   """ Look up a DisplayQuestion object and display it in the data collection tool. Note that question_id refers to a displayquestion object, not a question object."""
   
@@ -185,9 +166,6 @@ def question(request, displayquestion_id, language_code):
   wording = displayquestion.wording(language_code)
   
   answers = []
-  
-  #import pdb
-  #pdb.set_trace()
   
   if displayquestion.display_answers:
     for d in displayquestion.display_answers:
@@ -207,6 +185,8 @@ def question(request, displayquestion_id, language_code):
                       })
 
   # look up question ids for planner
+  planner_question = False
+  
   planner_times = []
   planner_items = []
   
@@ -220,6 +200,7 @@ def question(request, displayquestion_id, language_code):
   brushing_answers = {}
 
   if displayquestion.question in [risky_exposures_question, brushing_question, fluoride_question]:
+    planner_question = True
     starttime = datetime(1984,1,1,6)
     planner_times = [(starttime + timedelta(minutes=30) * i).strftime("%I:%M%p")
              for i in range(36)]
@@ -242,22 +223,24 @@ def question(request, displayquestion_id, language_code):
       'answers': answers,
       'language_code': language_code,
       'all_sections': AssessmentSection.objects.all(),
-      'planner_times':planner_times,
-      'planner_items':planner_items,
+      'planner_question' : planner_question, #is this a planner question?
+      'planner_times':planner_times, # [] if not a planner_question
+      'planner_items':planner_items, # [] if not a planner question
       
+      #TODO to just check the boolean planner_question and remove this variable
       'widget_question_ids':[risky_exposures_question.id, brushing_question.id, fluoride_question.id],
       
       'risky_question_id':risky_exposures_question.id,
-      'risky_answers_keys':[str(key) for key in risky_answers.keys()],
-      'risky_answers_values':risky_answers.values(),
+      'risky_answers_keys':[str(key) for key in risky_answers.keys()],  # these are the TEXT of the display_answers
+      'risky_answers_values':risky_answers.values(), # these are the IDS of the display_answers
       
+      'brushing_question_id':brushing_question.id,
+      'brushing_answers_keys':[str(key) for key in brushing_answers.keys()],
+      'brushing_answers_values':brushing_answers.values(),
       'fluoride_question_id':fluoride_question.id,
       'fluoride_answers_keys':[str(key) for key in fluoride_answers.keys()],
       'fluoride_answers_values':fluoride_answers.values(),
       
-      'brushing_question_id':brushing_question.id,
-      'brushing_answers_keys':[str(key) for key in brushing_answers.keys()],
-      'brushing_answers_values':brushing_answers.values()
   })
   return HttpResponse(t.render(c))
 

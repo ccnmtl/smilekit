@@ -81,7 +81,7 @@
 
 
 		<table class="users" cellspacing="0">
-		<tr><td style="border-top: 1px solid white;"><b>Select family(s) to check out</b></td><td style="border-top: 1px solid white;"colspan="3"></td></tr>
+		<tr><td style="border-top: 1px solid white;" colspan="3"><b>Select family(s) to check out</b></td></tr>
 	        <!-- don't remove selenium css classes or you'll break the tests. -->
 	        {%for family in families %}
 	              <tr class ="selenium_family_tr {{family.study_id_number}}" >
@@ -104,9 +104,11 @@
 	                </td>
 	                <td>Family # {{family.study_id_number}} 
 	                </td>
-                  <td>
-                  {{family.percent_complete|floatformat:0 }} % done
-                  </td>
+	                {%comment %}
+                              <td>
+                              {{family.percent_complete|floatformat:0 }} % done
+                              </td>
+                    {%endcomment %}
 	                <td><a href="/family_info/edit_family/{{family.id}}/">Edit Family Details </a>
 	                
 	                {% if user.is_staff%}
@@ -132,6 +134,12 @@
 	          
 			  <tr>
 			  <td colspan="20"><a href = "{%url family_info.views.summary_table %}" >Summary Table</a></td>
+
+			  </tr>
+
+
+			  <tr>
+			  <td colspan="20"><a href = "{%url family_info.views.question_list %}" >Question List</a></td>
 
 			  </tr>
 
