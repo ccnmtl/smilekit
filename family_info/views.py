@@ -414,6 +414,16 @@ def help_summary(request):
   return HttpResponse(t.render(c))
   
   
+   
+@login_required
+def question_list(request):
+  t = loader.get_template('family_info/question_list.html')
+  c = RequestContext(request,{
+      'all_display_questions': DisplayQuestion.objects.all()
+  })
+  return HttpResponse(t.render(c))
+  
+  
 
 def selenium_teardown(request):
   Family.objects.filter(study_id_number = 59638).delete()
