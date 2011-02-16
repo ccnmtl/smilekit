@@ -121,13 +121,10 @@ div#list_of_questions {
 
 #mainnav
 {
-	background-color: #999;
 	height: 60px;
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
 	margin-bottom: 10px;
-	background: -webkit-gradient(linear, left top, left bottom, from(#9bdbbb), to(#1eaf65));
-	background: -moz-linear-gradient(top, #9bdbbb, #1eaf65);
 	position: relative;
 }
 
@@ -136,7 +133,7 @@ div#list_of_questions {
 	display: block;
 	float: left;
 	text-align: center;
-	padding: 22px 0px 22px 0px;
+	padding: 22px 1px 22px 0px;
 	width: 25%;
 	text-decoration: none;
 	color: #000;
@@ -200,6 +197,13 @@ div#list_of_questions {
 	text-shadow: none;
 	color: #fff;
 }
+
+#mainnav a#planningtab
+{
+	background: -webkit-gradient(linear, left top, left bottom, from(#9bdbbb), to(#1eaf65));
+	background: -moz-linear-gradient(top, #9bdbbb, #1eaf65);
+}
+
 
 #mainnav a.planningtabactive
 {
@@ -285,8 +289,6 @@ a#get_materials_link, a#end_interview_link
 	height: 60px;
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
-	background: -webkit-gradient(linear, left top, left bottom, from(#1076bc), to(#91bad6));
-	background: -moz-linear-gradient(top, #1076bc, #91bad6);
 	margin-bottom: 10px;
 	position: relative;
 }
@@ -296,29 +298,32 @@ a#get_materials_link, a#end_interview_link
 	display: block;
 	float: left;
 	text-align: center;
-	padding: 25px 0px 22px 0px;
+	padding: 23px 0px 23px 0px;
 	width: 20%;
 	text-decoration: none;
 	color: #000;
-	font-size: 80%;
+	font-size: 70%;
 	font-weight: bold;
+	background: -webkit-gradient(linear, left top, left bottom, from(#1076bc), to(#91bad6));
+	background: -moz-linear-gradient(top, #1076bc, #91bad6);
+	
+}
+
+#assessmentnav #asstab01, #assessmentnav #asstab02, #assessmentnav #asstab03, #assessmentnav #asstab05
+{
+	margin-right: 1px !important;
 }
 
 #assessmentnav a.activetab
 {
-	background-color: #fff;
-	color: #000;
-	width: 20%;
-	font-weight: bold;
-	padding-bottom: 50px;
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
-	border-left: none !important;
-}
-
-a#asstab02, a#asstab03, a#asstab04, a#asstab05
-{
-	border-left: 1px solid #036;
+	background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#ffffff));
+	background: -moz-linear-gradient(top, #ffffff, #ffffff);
+	-moz-border-radius-topright: 10px;
+	-webkit-border-top-right-radius: 10px;
+	-moz-border-radius-top-left: 10px;
+	-webkit-border-top-left-radius: 10px;
+	border-right: 0px !important;
+	border-bottom: 30px solid #fff;
 }
 
 /********/
@@ -328,6 +333,7 @@ a#asstab02, a#asstab03, a#asstab04, a#asstab05
 
 
 /********/
+/*
 #planningnav
 {
 	height: 60px;
@@ -338,12 +344,14 @@ a#asstab02, a#asstab03, a#asstab04, a#asstab05
 	margin-bottom: 10px;
 	position: relative;
 }
+*/
 
+/*
 #planningnav a
 {
 	display: block;
 	float: left;
-	/*border-left: 1px solid #000;*/
+	border-left: 1px solid #000;
 	text-align: center;
 	padding: 22px 0px 22px 0px;
 	width: 25%;
@@ -352,7 +360,9 @@ a#asstab02, a#asstab03, a#asstab04, a#asstab05
 	text-shadow: #fff 1px 1px 1px;
 	font-size: 80%;
 }
+*/
 
+/*
 #planningnav a.activetab
 {
 	background-color: #fff;
@@ -360,23 +370,21 @@ a#asstab02, a#asstab03, a#asstab04, a#asstab05
 	font-weight: bold;
 	padding-bottom: 50px;
 }
-
+*/
 
 
 .firsttab
 {
-	border-left: 0px !important;
 	-moz-border-radius-topleft: 10px;
 	-webkit-border-top-left-radius: 10px;
-	-moz-border-radius-bottomleft: 10px;
+	-moz-border-radius-bottom-left: 10px;
 	-webkit-border-bottom-left-radius: 10px;
 }
-
 .lasttab
 {
 	-moz-border-radius-topright: 10px;
 	-webkit-border-top-right-radius: 10px;
-	-moz-border-radius-bottomright: 10px;
+	-moz-border-radius-bottom-right: 10px;
 	-webkit-border-bottom-right-radius: 10px;
 	position: absolute;
 	right: 0px;
@@ -436,6 +444,16 @@ a#asstab02, a#asstab03, a#asstab04, a#asstab05
 	background-position: center center !important;
 	text-indent: -8000px;
 	width: 40px !important;
+}
+
+#contentnav a#left
+{
+	background-position: center center !important;
+}
+
+#contentnav a#right
+{
+	background-position: center center !important;
 }
 
 #contentnav a#left
