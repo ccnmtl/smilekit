@@ -166,8 +166,13 @@ def save_config(request):
     new_value = request.POST['moduleweight-%s' % module.id]
     if new_value == "": new_value = 0 # set to 0 if cleared
     # TODO handle NaN
-    weight, created = ModuleWeight.objects.get_or_create(module=module, config=config, weight=new_value)
-    weight.save()
+    the_new_weight, created = ModuleWeight.objects.get_or_create(module=module, config=config, weight=new_value)
+    if created:
+        #delete all existing weights for this module and config, leaving only the new one. Otherwise, mayhem ensues.
+        old_weights = [mw for mw in ModuleWeight.objects.filter(module=module, config=config) if mw != the_new_weight]
+        for ow in old_weights:
+            ow.delete()
+    the_new_weight.save()
   
   # save question weights
   for question in Question.objects.all():
