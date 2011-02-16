@@ -31,9 +31,9 @@
     {% endif%}
 
 
-		{%if goal.help_item.help_item %}
+		{%if goal.help_item %}
 		<a id="help" href="javascript:void(0)" onclick="document.getElementById('helpon').style.display='block';">Help!</a>
-		  {% with goal.help_item.help_item as h_i %}
+		  {% with goal.help_item as h_i %}
           {% include "collection_tool/help.html" %}
 		  {%endwith%}
 		{%endif %}

@@ -47,13 +47,12 @@
 				<div id="contentnav">
 			  <a id="left" href="">&#8592;</a>
   	
-  		  {%if section.help_item.help_item %}
-        		      <a id="help" href="javascript:void(0)" onclick="document.getElementById('helpon').style.display='block';">Help!</a>
-          {% with section.help_item.help_item as h_i %}
-              	  {% include "collection_tool/help.html" %}
-		      {% endwith %}	
-			  {%endif%}
-			  
+	{%if section.help_item %}
+	<a id="help" href="javascript:void(0)" onclick="document.getElementById('helpon').style.display='block';">Help!</a>
+	{% with section.help_item as h_i %}
+	{% include "collection_tool/help.html" %}
+	{% endwith %}	
+	{%endif%}
 			  <a id="right" href="">&#8594;</a>
 			  
 			  

@@ -40,9 +40,9 @@
 		{% block collection_tool_content %}
 		<div id="contentnav">
 			  <a id="left" href="">&#8592;</a>
-  		{%if displayquestion.help_item.help_item %}
+  		{%if displayquestion.help_item %}
 			<a id="help" href="javascript:void(0)" onclick="document.getElementById('helpon').style.display='block';">Help!</a>
-  		  {% with displayquestion.help_item.help_item as h_i %}
+  		  {% with displayquestion.help_item as h_i %}
           {% include "collection_tool/help.html" %}
 			  {%endwith%}
   		{%endif %}
