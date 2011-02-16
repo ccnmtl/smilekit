@@ -56,26 +56,6 @@ def topics(request, language_code):
       #'all_families': Family.objects.all(),
   })
   return HttpResponse(t.render(c))
-
-
-if 1 == 0:
-            #TODO remove:
-            #There is no "topic" ppge.
-            def topic(request, topic_id, language_code ):
-              """Show the topic title and description, goal title and
-            description. Get here by clicking 'Learn' on the goals page."""
-
-              if language_code not in ['en', 'es']:
-                raise Http404
-              t = loader.get_template('collection_tool/topic.html')
-                  
-              c = RequestContext(request,{
-                  'language_code': language_code,
-                  'topic': get_object_or_404(Topic, pk=topic_id)
-              })
-              return HttpResponse(t.render(c))    
-  
-  
   
 def goals(request, language_code):
   """Displays goals we've already made progress on. AKA Plan History."""

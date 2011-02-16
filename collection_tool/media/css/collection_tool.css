@@ -121,13 +121,10 @@ div#list_of_questions {
 
 #mainnav
 {
-	background-color: #999;
 	height: 60px;
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
 	margin-bottom: 10px;
-	background: -webkit-gradient(linear, left top, left bottom, from(#9bdbbb), to(#1eaf65));
-	background: -moz-linear-gradient(top, #9bdbbb, #1eaf65);
 	position: relative;
 }
 
@@ -136,11 +133,12 @@ div#list_of_questions {
 	display: block;
 	float: left;
 	text-align: center;
-	padding: 21px 0px 21px 0px;
+	padding: 22px 1px 22px 0px;
 	width: 25%;
 	text-decoration: none;
 	color: #000;
-	text-shadow: #ccc 1px 1px 1px;
+	font-size: 90%;
+	font-weight: bold;
 }
 
 #mainnav a#introductiontab
@@ -151,8 +149,12 @@ div#list_of_questions {
 
 #mainnav a.introductiontabactive
 {
+	/*
 	background: -webkit-gradient(linear, left top, left bottom, from(#000), to(#ff6701)) !important;
 	background: -moz-linear-gradient(top, #000, #ff6701) !important;
+	*/
+	background: -moz-linear-gradient(top, #1eaf65 0%, #000000 50%, #ff6701 100%) !important; 
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#000000), color-stop(50%,#000000), color-stop(100%,#ff6701)) !important;
 	font-weight: bold;
 	text-shadow: none;
 	color: #fff;
@@ -166,8 +168,12 @@ div#list_of_questions {
 
 #mainnav a.assessmenttabactive
 {
+	/*
 	background: -webkit-gradient(linear, left top, left bottom, from(#000), to(#1076bc)) !important;
 	background: -moz-linear-gradient(top, #000, #1076bc) !important;
+	*/
+	background: -moz-linear-gradient(top, #1eaf65 0%, #000000 50%, #1076bc 100%) !important; 
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#000000), color-stop(50%,#000000), color-stop(100%,#1076bc)) !important;
 	font-weight: bold;
 	text-shadow: none;
 	color: #fff;
@@ -175,23 +181,34 @@ div#list_of_questions {
 
 #mainnav a#risktab
 {
-	background: -webkit-gradient(linear, left top, left bottom, from(#ff7575), to(#ff0101));
-	background: -moz-linear-gradient(top, #ff7575, #ff0101);
+	background: -webkit-gradient(linear, left top, left bottom, from(#ff7575), to(#ff3636));
+	background: -moz-linear-gradient(top, #ff7575, #ff3636);
 }
 
 #mainnav a.risktabactive
 {
-	background: -webkit-gradient(linear, left top, left bottom, from(#000), to(#ff0101)) !important;
-	background: -moz-linear-gradient(top, #000, #ff0101) !important;
+	/*
+	background: -webkit-gradient(linear, left top, left bottom, from(#000), to(#ff3636)) !important;
+	background: -moz-linear-gradient(top, #000, #ff3636) !important;
+	*/
+	background: -moz-linear-gradient(top, #1eaf65 0%, #000000 50%, #ff3636 100%) !important; 
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#000000), color-stop(50%,#000000), color-stop(100%,#ff3636)) !important;
 	font-weight: bold;
 	text-shadow: none;
 	color: #fff;
 }
 
+#mainnav a#planningtab
+{
+	background: -webkit-gradient(linear, left top, left bottom, from(#9bdbbb), to(#1eaf65));
+	background: -moz-linear-gradient(top, #9bdbbb, #1eaf65);
+}
+
+
 #mainnav a.planningtabactive
 {
-	background: -webkit-gradient(linear, left top, left bottom, from(#000), to(#1eaf65)) !important;
-	background: -moz-linear-gradient(top, #000, #1eaf65) !important;
+	background: -moz-linear-gradient(top, #1eaf65 0%, #000000 50%, #1eaf65 100%) !important; 
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#000000), color-stop(50%,#000000), color-stop(100%,#1eaf65)) !important;
 	font-weight: bold;
 	text-shadow: none;
 	color: #fff;
@@ -272,32 +289,42 @@ a#get_materials_link, a#end_interview_link
 	height: 60px;
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
-	background: -webkit-gradient(linear, left top, left bottom, from(#1076bc), to(#91bad6));
-	background: -moz-linear-gradient(top, #1076bc, #91bad6);
 	margin-bottom: 10px;
 	position: relative;
+	background-color: #036;
 }
 
 #assessmentnav a
 {
 	display: block;
 	float: left;
-	/*border-left: 1px solid #000;*/
 	text-align: center;
-	padding: 22px 0px 22px 0px;
+	padding: 23px 0px 23px 0px;
 	width: 20%;
 	text-decoration: none;
 	color: #000;
-	text-shadow: #fff 1px 1px 1px;
-	font-size: 75%;
+	font-size: 70%;
+	font-weight: bold;
+	background: -webkit-gradient(linear, left top, left bottom, from(#1076bc), to(#91bad6));
+	background: -moz-linear-gradient(top, #1076bc, #91bad6);
+	
 }
+
+a#asstab02, a#asstab03, a#asstab05
+{
+	margin-left: 1px !important;
+}
+
 
 #assessmentnav a.activetab
 {
-	background-color: #fff;
-	color: #000;
-	font-weight: bold;
-	padding-bottom: 50px;
+	background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#ffffff));
+	background: -moz-linear-gradient(top, #ffffff, #ffffff);
+	-moz-border-radius-topright: 10px;
+	-webkit-border-top-right-radius: 10px;
+	-moz-border-radius-top-left: 10px;
+	-webkit-border-top-left-radius: 10px;
+	border-bottom: 30px solid #fff;
 }
 
 /********/
@@ -307,6 +334,7 @@ a#get_materials_link, a#end_interview_link
 
 
 /********/
+/*
 #planningnav
 {
 	height: 60px;
@@ -317,12 +345,14 @@ a#get_materials_link, a#end_interview_link
 	margin-bottom: 10px;
 	position: relative;
 }
+*/
 
+/*
 #planningnav a
 {
 	display: block;
 	float: left;
-	/*border-left: 1px solid #000;*/
+	border-left: 1px solid #000;
 	text-align: center;
 	padding: 22px 0px 22px 0px;
 	width: 25%;
@@ -331,7 +361,9 @@ a#get_materials_link, a#end_interview_link
 	text-shadow: #fff 1px 1px 1px;
 	font-size: 80%;
 }
+*/
 
+/*
 #planningnav a.activetab
 {
 	background-color: #fff;
@@ -339,23 +371,21 @@ a#get_materials_link, a#end_interview_link
 	font-weight: bold;
 	padding-bottom: 50px;
 }
-
+*/
 
 
 .firsttab
 {
-	border-left: 0px !important;
 	-moz-border-radius-topleft: 10px;
 	-webkit-border-top-left-radius: 10px;
-	-moz-border-radius-bottomleft: 10px;
+	-moz-border-radius-bottom-left: 10px;
 	-webkit-border-bottom-left-radius: 10px;
 }
-
 .lasttab
 {
 	-moz-border-radius-topright: 10px;
 	-webkit-border-top-right-radius: 10px;
-	-moz-border-radius-bottomright: 10px;
+	-moz-border-radius-bottom-right: 10px;
 	-webkit-border-bottom-right-radius: 10px;
 	position: absolute;
 	right: 0px;
@@ -408,16 +438,35 @@ a#get_materials_link, a#end_interview_link
 	margin-left: -69px;
 }
 
+#contentnav a#left, #contentnav a#right
+{
+	top: 0px;
+	background-repeat: no-repeat !important;
+	background-position: center center !important;
+	text-indent: -8000px;
+	width: 40px !important;
+}
+
+#contentnav a#left
+{
+	background-position: center center !important;
+}
+
+#contentnav a#right
+{
+	background-position: center center !important;
+}
+
 #contentnav a#left
 {
 	left: 0px;
-	top: 0px;
+	background-image: url(/collection_tool/media/images/background_previous.png) !important;
 }
 
 #contentnav a#right
 {
 	right: 0px;
-	top: 0px;
+	background-image: url(/collection_tool/media/images/background_next.png) !important;
 }
 
 h2#contenttitle, #contentsubtitle { text-align: center; }
@@ -575,18 +624,12 @@ input.formbutton, a.contentbutton, a.riskbutton
 	-webkit-border-radius: 10px;
 	font-family: helvetica, sans-serif;
 	color: #333;
-	text-shadow: #fff 1px 1px 1px;
 	font-weight: bold;
 	font-size: 16px;
 }
 
 a.contentbutton, a.riskbutton
 {
-	font-family: helvetica, sans-serif;
-	color: #333;
-	text-shadow: #fff 1px 1px 1px;
-	font-weight: bold;
-	font-size: 16px;
 	margin-top: 10px;
 }
 
@@ -653,10 +696,13 @@ a.contentbutton.indexpage {
 	background: -webkit-gradient(linear, left top, left bottom, from(#666), to(#999)) !important;
 	background: -moz-linear-gradient(top, #666, #999) !important;
 	text-shadow: 0px 0px 0px !important;
-	color: #666 !important;
+	color: #000 !important;
 }
 
-/* This style is applied to all answer buttons when you choose them, EXCEPT for the yes and no buttons which get their own special red and green styles. See yesbutton.contentbuttonchosen and nobutton.contentbuttonchosen below . */
+/* This style is applied to all answer buttons when you choose them, 
+EXCEPT for the yes and no buttons which get their own special red and green styles. 
+See yesbutton.contentbuttonchosen and nobutton.contentbuttonchosen below . */
+
 .contentbuttonchosen
 {
 	background: -webkit-gradient(linear, left top, left bottom, from(#666), to(#999)) !important;
@@ -684,9 +730,9 @@ a.contentbutton.indexpage {
 .contentbuttoncomplete:before
 {
 	content: url(/collection_tool/media/images/checkbox.png);
-	margin-left: 10px;
+	margin-right: 10px;
 	position: absolute;
-	left: 0px;
+	right: 0px;
 }
 
 /********/
@@ -808,8 +854,8 @@ a.contentbutton.indexpage {
 
 
 .learnmore a.video_link {
-	color: #0F0;
-	font-size: 24px;
+	color: #fff;
+	font-size: 75%;
 }
 
 
@@ -1201,6 +1247,25 @@ td, legend, input {font-size: 16px;}
 	padding-top: 5px;
 }
 
+a#printpage
+{
+	display: block;
+	border: 1px solid #3172bb;
+	float: right;
+	display: inline;
+	text-decoration: none;
+	padding: 20px 10px 20px 50px;
+	background-image: url(/collection_tool/media/images/print_icon.png);
+	background-repeat: no-repeat;
+	background-position: 4px center;
+	color: #3172bb;
+	text-decoration: none;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	margin-left: 20px;
+	margin-bottom: 20px;
+}
+
 
 /* stop - "flat page" styles */
 
@@ -1257,7 +1322,12 @@ input#main_end_button
 
 table.editdetails, table.interviewdetails, table.users {width: 100%;}
 
-table.editdetails th, table.editdetails td, table.users th, table.users td  {padding: 10px; border-top: 1px solid #ccc; text-align: center;}
+table.editdetails th, table.editdetails td, table.users th, table.users td
+{
+	padding: 10px;
+	border-top: 1px solid #ccc;
+	text-align: center;
+}
 
 table.editdetails td.action, table.users td.action {text-align: center;}
 
@@ -1387,13 +1457,14 @@ font-weight:bold;
 text-decoration:none;
 background: -webkit-gradient(linear, left top, left bottom, from(#ff7575), to(#ff0101));
 background: -moz-linear-gradient(top, #ff7575, #ff0101);
-	-moz-border-radius: 10px; 
-	-webkit-border-radius: 10px;
-
+-moz-border-radius: 10px; 
+-webkit-border-radius: 10px;
 }
 
 
 /* stop - "storage" styles */
+
+
 
 
 /* start - print-specific flat page styles */
@@ -1418,6 +1489,7 @@ background: -moz-linear-gradient(top, #ff7575, #ff0101);
 	
 	#editpage {display: none;}
 
+	a#printpage {display: none;}
 	
 	a#help_close {display: none !important;}
 	
@@ -1429,6 +1501,8 @@ background: -moz-linear-gradient(top, #ff7575, #ff0101);
 		-webkit-box-shadow: none;
 		margin-top: 70px;
 	}
+	
+	.flatpagecontainer h4 {page-break-before: always;}
 
 }
 
@@ -1441,14 +1515,35 @@ background: -moz-linear-gradient(top, #ff7575, #ff0101);
 
 @media all and (orientation:portrait)
 {
+a#asstab04
+{
+	width: 19.8% !important;
+}
+
 
 }
 
 
 @media all and (orientation:landscape)
 {
+a#asstab04
+{
+	width: 19.9% !important;
+}
+
 
 }
 
 /* stop - orientation-specific styles */
+
+/* start - ipad-specific styles */
+
+@media only screen and (max-device-width: 1024px)
+{
+
+	a#printpage {display: none;}
+
+}
+
+/* stop - ipad-specific styles */
 

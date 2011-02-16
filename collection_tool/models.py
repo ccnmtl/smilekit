@@ -402,17 +402,21 @@ def has_image(image_field_file):
     return False
   return False
 
-
 class Resource(models.Model):
   """just a wrapper for a URL (e.g. video, internal or external link)"""
-  
   name = models.CharField(max_length=500)
   url = models.CharField(max_length=500)
   resource_type =  models.CharField(max_length=64, help_text = "type 'video' here if this is a video; otherwise just leave blank.")
-  
   ordering_rank = models.IntegerField(help_text = "Ignore this for now.")
   class Meta:
     ordering = ('ordering_rank',)
+  
+  @property
+  def flat_page(self):
+    try:
+      return FlatPage.objects.get (url =self.url)
+    except:
+      return None
     
   @property
   def dir(self):
@@ -490,8 +494,6 @@ class DisplayQuestion(models.Model):
     
   @property
   def has_answer_pictures(self):
-    #import pdb
-    #pdb.set_trace()
     if len (self.display_answers) == 0:
       return False
     
@@ -500,8 +502,6 @@ class DisplayQuestion(models.Model):
       
     return True
     
-
-  #http://kodos.ccnmtl.columbia.edu:7112/collection_tool/question/2/language/en/
 
   @property
   def no_pictures(self):

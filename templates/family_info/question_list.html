@@ -1,0 +1,90 @@
+{% extends "family_info/base.html" %}
+{%load smartif%}
+{% block html_element %}{% endblock html_element %}
+
+
+
+{% block family_info_content %}
+
+<style type="text/css">
+pre.translation_pre {
+    white-space: -moz-pre-wrap; /* Mozilla, supported since 1999 */
+    white-space: -pre-wrap; /* Opera */
+    white-space: -o-pre-wrap; /* Opera */
+    white-space: pre-wrap; /* CSS3 - Text module (Candidate Recommendation) http://www.w3.org/TR/css3-text/#white-space */
+    word-wrap: break-word; /* IE 5.5+ */
+}
+</style>
+
+
+<h2 id="contenttitle">
+	List of display questions
+</h2>
+
+<div>
+    {%for dq in all_display_questions%}
+    <div>
+        <h3>{{dq.id}}: {{dq.english}}</h3>
+        Display question admin:<br/>
+        <a href = "/admin/collection_tool/question/{{dq.id}}/" >{{dq.english}}</a><br/>
+        Question admin:<br/>
+        <a href = "/admin/equation_balancer/question/{{dq.question.id}}/" >{{dq.question}}</a><br/>
+        Answers:<br/>
+        {%for a in dq.answers%}
+            &nbsp;&nbsp;&nbsp;{{a}}<br/>
+        {%endfor%}
+        
+        Weight:<br />
+        
+        {%for w in dq.question.weight_set.all%}
+        &nbsp;&nbsp;&nbsp;<a href = "/weights/configuration/{{ w.config.id}}">{{ w.config}}</a>: {{ w.weight}}<br/>
+        {%endfor%}
+        </br>
+        </br>
+        Display regardless of weight:<br />
+        {%if dq.display_regardless_of_weight%}
+            Yes
+        {%else %}
+            No
+        {%endif%}
+        <br/>
+        English front-end page:<br/>
+        <a href = "/collection_tool/question/{{dq.id}}/language/en/" >{{dq.english}}</a><br/>
+        Spanish front-end page:<br/>
+        <a href = "/collection_tool/question/{{dq.id}}/language/es/" >{{dq.spanish}}</a><br/>
+        Help Item:<br/>
+        <a href = "/admin/collection_tool/helpitem/{{dq.help_item.help_item.id}}/" >{{dq.help_item.help_item.english_title}}</a><br/>
+        Topic(s):<br/>
+        {%for t in dq.topics.all%}
+         &nbsp;&nbsp;&nbsp;<a href = "/admin/collection_tool/topic/{{t.id}}/" >{{t.english_title}}</a><br/>
+        {%endfor%}
+        Learn More (en):<br/>
+        <a href = "{{dq.learn_more_english.url}}" >{{dq.learn_more_english.title}}</a><br/>
+        Learn More (es):<br/>
+        <a href = "{{dq.learn_more_spanish.url}}" >{{dq.learn_more_spanish.title}}</a><br/>
+        Image: <br />
+        {% if dq.image %}
+            <a href="/uploads/{{dq.image}}" >View</a>
+        {%endif%}
+        <br/>
+        Answers have images:<br/>
+        {%if dq.has_answer_pictures%}
+            Yes
+        {%else %}
+            No
+        {%endif%}
+        <br/>
+        Module:<br/>
+        <a href = "/admin/equation_balancer/module/{{dq.question.module.id}}/" >{{dq.question.module}}</a><br/>
+        Nav section:<br/>
+        <a href = "/admin/collection_tool/assessmentsection/{{dq.nav_section.id}}/" >{{dq.nav_section}}</a><br/>
+    </div>
+    {%endfor%}
+ </div>
+
+
+
+{% endblock family_info_content %}
+
+
+
