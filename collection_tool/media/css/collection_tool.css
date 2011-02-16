@@ -435,7 +435,7 @@ a#asstab02, a#asstab03, a#asstab04, a#asstab05
 	background-repeat: no-repeat !important;
 	background-position: center center !important;
 	text-indent: -8000px;
-	width: 100px;
+	width: 40px !important;
 }
 
 #contentnav a#left
