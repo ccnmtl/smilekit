@@ -11,171 +11,169 @@
 
 
 {% block mainnav %}
+
 	<div id="mainnav">
-		<a id="introductiontab" class="mainfirsttab" href="/collection_tool/introduction/">Introduction</a>
-		<a id="assessmenttab" class="assessmenttab" href="/collection_tool/">Assessment</a>
-		<a id="risktab" class="risktab" href="/collection_tool/risk/language/en/">Risk</a>
-		<a id="planningtab" class="planningtabactive mainlasttab" href="/collection_tool/goals/language/en/">Planning</a>
-	</div>
+<a id="introductiontab" class="mainfirsttab" href="/collection_tool/introduction/">Introduction</a>
+<a id="assessmenttab" class="assessmenttab" href="/collection_tool/">Assessment</a>
+<a id="risktab" class="risktab" href="/collection_tool/risk/language/en/">Risk</a>
+<a id="planningtab" class="planningtabactive mainlasttab" href="/collection_tool/goals/language/en/">Planning</a>
+</div>
+
 {% endblock %}
 
-
 {% block language_toggle %}
-	{%ifequal language_code 'en'%}
-		<a href="/collection_tool/topics/language/es">Espa&#241;ol</a>
-	{%endifequal%}
-				
-	{%ifequal language_code 'es'%}
-		<a href="/collection_tool/topics/language/en">English</a>
-	{%endifequal%}
+{%ifequal language_code 'en'%}
+
+	<a href="/collection_tool/topics/language/es">Espa&#241;ol</a>
+	
+{%endifequal%}
+
+{%ifequal language_code 'es'%}
+
+	<a href="/collection_tool/topics/language/en">English</a>
+	
+{%endifequal%}
 {% endblock %}
 
 {% block collection_tool_content %}
-		<div id="contentnav">
-			  <a id="left" href="/collection_tool/risk/language/{{language_code}}/">&#8592;</a>
-		</div>
-		<div id ="language_code_div">{{language_code}}</div>
-		<div align="center">
+
+	<div id="contentnav">
+	<a id="left" href="/collection_tool/risk/language/{{language_code}}/">&#8592;</a>
+	</div>
+	<div id ="language_code_div">{{language_code}}</div>
+	<div align="center">
+	
 		
-			<h2>
-			
-			
-	{%ifequal language_code 'en'%}
-Let's put these fires out!
-	{%endifequal%}
-	{%ifequal language_code 'es'%}
-Let's put these fires out! (es)
-	{%endifequal%}
-			
-			</h2>    
-			
-			<img src="/collection_tool/media/images/topics_graphic.png" />
-			
-	{%ifequal language_code 'en'%}
-	
-       <p>
-       As you answer our questions we'll show how you're doing in each area.
-       <br />
-        If a topic is blue, great! If a topic is orange you have some work to do. 
-        
-       </p>
-       
-       <p>
-        Click each topic to learn more about goals you can set for yourself at the bottom.
-        </p>
-        
-	{%endifequal%}
-	
-	{%ifequal language_code 'es'%}
-	
-       <p>
-        As you answer our questions we'll show how you're doing in each area.  (es)
-       <br />
-         If a topic is blue, great! If a topic is orange you have some work to do. (es)
-       </p>
-       
-       <p>
-        
-        Click each topic to learn more about goals you can set for yourself at the bottom. (es)
+		
+		<h2>
+		
+		
+		{%ifequal language_code 'en'%}
+		Let's put these fires out!
+		{%endifequal%}
+		{%ifequal language_code 'es'%}
+		Let's put these fires out! (es)
+		{%endifequal%}
+		
+		</h2>    
+		
+		<img src="/collection_tool/media/images/topics_graphic.png" />
+		
+		{%ifequal language_code 'en'%}
+		
+		<p>
+		As you answer our questions we'll show how you're doing in each area.
+		<br />
+		If a topic is blue, great! If a topic is orange you have some work to do. 
+		
 		</p>
-
-	{%endifequal%}
-
-			<div id = "topics_learn_more_flatpages_div">
-			    {% for fp in flat_pages_we_need %}
-              <!-- content box -->
-              <div class="help_content learn_more_help_content help_box help_box_{{fp.id }}">
-
-                  <!-- this is the same content as on the flatpage: -->
-                  {{fp.content|safe }}
-                  
-                  <!-- close button -->
-                  <a id="help_close" class ="learn_more_close_button" href="javascript:void(0)" onclick="$('.learn_more_help_content.help_box_{{fp.id }}').hide()">X</a>
-
-               </div>
-			    {% endfor %}
-		  </div>
-			
-			{% for t in all_topics%} 
-			    <div class="firebutton" topic_id = "{{t.id}}" >
-			    {%ifequal language_code 'en'%}
-		        {{t.english_title}}
-		      {%endifequal%}
-				
-	        {%ifequal language_code 'es'%}
-		        {{t.spanish_title}}
-		      {%endifequal%}
-		      
-		      
-			    <div class="firebuttonicon"></div>
-
-			    
-			    </div>
-			{% endfor %}
-
- 			{% for t in all_topics%}
-			<div class ="topic_div topic_{{t.id}}" id="topicbox">
-			
-				<h3>
-  {%ifequal language_code 'en'%}
-				{{t.english_title}}:
-  {%endifequal%}
-	{%ifequal language_code 'es'%}
-				{{t.spanish_title}}:
-	{%endifequal%}
-				</h3>
-				
-				
-				  
-				  
-				  
-  {%ifequal language_code 'en'%}
-	    {% if t.learn_more_english.url %}
-				  <div class = "topic_div_learn">
-				    <a  href="javascript:void(0)" 
-				    onclick="$('.learn_more_help_content.help_box_{{t.learn_more_english.id }}').show()" >{{t.learn_more_english.title}}</a>
-				  </div>
-       {%endif %}
-  {%endifequal%}
-	{%ifequal language_code 'es'%}
-		  {% if t.learn_more_spanish.url %}
-				  <div class = "topic_div_learn">
-				    <a  href="javascript:void(0)" 
-				    onclick="$('.learn_more_help_content.help_box_{{t.learn_more_spanish.id }}').show()" >{{t.learn_more_spanish.title}}</a>
-				  </div>
-      {%endif %}
-	{%endifequal%}
-				
-				<ol>
-				{% for g in t.goal_set.all %}
-				<li class="goal_div">
-				{%ifequal language_code 'en'%}{{g.english_title}}{%endifequal%}{%ifequal language_code 'es'%}{{g.spanish_title}}{%endifequal%}
-					
-				
-				
-				
-					<div class="goal_div_plan">
-					{% if g.show_in_planner %}
-					  <a href = "/collection_tool/planner/goal/{{g.id}}/language/{{language_code}}/" title="Goes to planner">{%ifequal language_code 'en'%}plan{%endifequal%}{%ifequal language_code 'es'%}plan(es){%endifequal%}*</a>
-					  <!--  (planner) -->
-					{%else %}
-					  <a href = "/collection_tool/goal/{{g.id}}/language/{{language_code}}/"  title="Goes to regular goal setting form">{%ifequal language_code 'en'%}plan{%endifequal%}{%ifequal language_code 'es'%}plan(es){%endifequal%}</a>          
-					  <!-- (form)  -->
-					{%endif%}
-					</div>
-				
-				</li>
-				{%endfor%}    
-				</ol>
-			</div>
-			{% endfor %}
-      </div>
-      
-      			
+		
+		<p>
+		Click each topic to learn more about goals you can set for yourself at the bottom.
+		</p>
+		
+		{%endifequal%}
+		
+		{%ifequal language_code 'es'%}
+		
+		<p>
+		As you answer our questions we'll show how you're doing in each area.  (es)
+		<br />
+		If a topic is blue, great! If a topic is orange you have some work to do. (es)
+		</p>
+		
+		<p>
+		
+		Click each topic to learn more about goals you can set for yourself at the bottom. (es)
+		</p>
+		
+		{%endifequal%}
+		
+		<div id = "topics_learn_more_flatpages_div">
+		{% for fp in flat_pages_we_need %}
+		<!-- content box -->
+		<div class="help_content learn_more_help_content help_box help_box_{{fp.id }}">
+		
+		<!-- this is the same content as on the flatpage: -->
+		{{fp.content|safe }}
+		
+		<!-- close button -->
+		<a id="help_close" class ="learn_more_close_button" href="javascript:void(0)" onclick="$('.learn_more_help_content.help_box_{{fp.id }}').hide()">X</a>
+		
+		</div>
+		{% endfor %}
+		</div>
+		
+		{% for t in all_topics%} 
+		<div class="firebutton" topic_id = "{{t.id}}" >
+		{%ifequal language_code 'en'%}
+		{{t.english_title}}
+		{%endifequal%}
+		
+		{%ifequal language_code 'es'%}
+		{{t.spanish_title}}
+		{%endifequal%}
+		
+		
+		<div class="firebuttonicon"></div>
+		
+		
+		</div>
+		{% endfor %}
+		
+		{% for t in all_topics%}
+		<div class ="topic_div topic_{{t.id}}" id="topicbox">
+		
+		<h3>
+		{%ifequal language_code 'en'%}
+		{{t.english_title}}:
+		{%endifequal%}
+		{%ifequal language_code 'es'%}
+		{{t.spanish_title}}:
+		{%endifequal%}
+		</h3>
 	
-</div>
-
-
-			
-			
+		{%ifequal language_code 'en'%}
+		{% if t.learn_more_english.url %}
+		<div class = "topic_div_learn">
+		<a  href="javascript:void(0)" 
+		onclick="$('.learn_more_help_content.help_box_{{t.learn_more_english.id }}').show()" >{{t.learn_more_english.title}}</a>
+		</div>
+		{%endif %}
+		{%endifequal%}
+		{%ifequal language_code 'es'%}
+		{% if t.learn_more_spanish.url %}
+		
+		
+		<div class = "topic_div_learn">
+		<a  href="javascript:void(0)" 
+		onclick="$('.learn_more_help_content.help_box_{{t.learn_more_spanish.id }}').show()" >{{t.learn_more_spanish.title}}</a>
+		</div>
+		{%endif %}
+		{%endifequal%}
+		
+		<ol>
+		{% for g in t.goal_set.all %}
+		<li class="goal_div">
+		{%ifequal language_code 'en'%}{{g.english_title}}{%endifequal%}{%ifequal language_code 'es'%}{{g.spanish_title}}{%endifequal%}
+		
+		<div class="goal_div_plan">
+		{% if g.show_in_planner %}
+		<a href = "/collection_tool/planner/goal/{{g.id}}/language/{{language_code}}/" title="Goes to planner">{%ifequal language_code 'en'%}plan{%endifequal%}{%ifequal language_code 'es'%}plan(es){%endifequal%}*</a>
+		<!--  (planner) -->
+		{%else %}
+		<a href = "/collection_tool/goal/{{g.id}}/language/{{language_code}}/"  title="Goes to regular goal setting form">{%ifequal language_code 'en'%}plan{%endifequal%}{%ifequal language_code 'es'%}plan(es){%endifequal%}</a>          
+		<!-- (form)  -->
+		{%endif%}
+		</div>
+		
+		</li>
+		{%endfor%}    
+		</ol>
+		</div>
+		{% endfor %}
+		
+	
+	</div>
+	
 {% endblock collection_tool_content %}
