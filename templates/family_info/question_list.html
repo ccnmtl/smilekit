@@ -9,16 +9,19 @@
 
 <div>
 <h3><a name = "top">Contents:</a></h3>
-{%for dq in all_display_questions%}
-    <a href ="#display_question_{{dq.id}}" >{{dq.id}}: {{dq.english}}</a><br/>
+{%for dq in display_questions%}
+    <a href ="#display_question_{{dq.id}}" >{{dq.id}}: {{dq.english}}</a> {% if not dq.nav_section.id %}*{%endif%} {% if dq.show_planner %}(planner){%endif%}<br/>
 {%endfor%}        
 </div>
+<p>
+* Not displayed on the front end because not associated with any navigation section.
+</p>
         
 
 <div>
-    {%for dq in all_display_questions%}
+    {%for dq in display_questions%}
     <div>
-        <h2><a name ="display_question_{{dq.id}}" >{{dq.id}}: {{dq.english}}</a></h2>
+        <h2><a name ="display_question_{{dq.id}}" >{{dq.id}}: {{dq.english}} {% if not dq.nav_section.id %}(not in navigation){%endif%}</a></h2>
         <a href ="#display_question_{{dq.id}}" >[link]</a>
         <a href ="#top" >[top]</a>
         <br/>
@@ -31,8 +34,11 @@
             &nbsp;&nbsp;&nbsp;{{a}}<br/>
         {%endfor%}
         
+        {% if dq.nav_section.id %}
         Nav section:<br/>
-        <a href = "/admin/collection_tool/assessmentsection/{{dq.nav_section.id}}/" >{{dq.nav_section}}</a><br/>
+            <a href = "/admin/collection_tool/assessmentsection/{{dq.nav_section.id}}/" >{{dq.nav_section}}</a><br/>
+        {%endif %}        
+        
         
         Module:<br/>
         <a href = "/admin/equation_balancer/module/{{dq.question.module.id}}/" >{{dq.question.module}}</a><br/>
@@ -42,8 +48,6 @@
         &nbsp;&nbsp;&nbsp;<a href = "/weights/configuration/{{a}} ">{{b}}</a>: {{c|floatformat:"-3"}} x {{d|floatformat:"-3"}} = {{e|floatformat:"-3"}} <br/>
         {%endfor%}
         <br/>
-        
-        
         
         Display regardless of weight:<br />
         {%if dq.display_regardless_of_weight%}

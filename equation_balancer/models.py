@@ -119,27 +119,5 @@ class Answer(models.Model):
   weight = models.DecimalField(decimal_places=3, max_digits=10)
   
   #Note: ordering is done via the display questions.
-
-
-  #NB not used:
-  @property
-  def good(self):
-    """ This is used at the end of the interview,
-    to determine which areas of dental health are of particular concern for a given family.
-    This is arbitrary, but pretty darn effective.
-    """
-    all_weights = [a.weight for a in self.question.answer_set.all()]
-    
-    #one idea:
-    average_weight = float(sum(all_weights)) / len(all_weights)
-    
-    #another idea: this yields 6 out of 21 good answers.
-    #average_weight = (float(max(all_weights)) - float (min (all_weights))) / 2
-    
-    #note: low weights good, high weights bad.
-    return ( float(self.weight) < average_weight )
-
-
-
   
 
