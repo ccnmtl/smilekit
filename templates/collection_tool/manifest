@@ -66,6 +66,7 @@ CACHE:
     {{path}}
 {% endfor %}
 
+
 #answer images
 {% for path in paths_to_answer_images%}
     {{path}}
@@ -94,6 +95,9 @@ CACHE:
 /collection_tool/media/images/icon_online.jpg
 /collection_tool/media/images/checkbox.png
 /collection_tool/media/images/tooth_help.png
+/collection_tool/media/images/background_next.png
+/collection_tool/media/images/background_previous.png
+
 
 #intro, risk, goals and topics:
 /collection_tool/media/images/smiling_baby.jpeg
