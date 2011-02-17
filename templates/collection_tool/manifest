@@ -81,8 +81,10 @@ CACHE:
 #/favicon.ico
 /site_media/images/favicon.ico
 /collection_tool/media/images/logo_mysmilebuddy.png
+/collection_tool/media/images/downloading_inprogress.png
 /family_info/media/images/progressbar/progressbar.gif
 /family_info/media/images/progressbar/progressbg_green.gif
+
 
 #planner:
 /collection_tool/media/images/icon_planner_up.png
