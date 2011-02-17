@@ -105,6 +105,8 @@ CACHE:
 /collection_tool/media/images/topics_graphic.png
 /collection_tool/media/images/water_icon.png
 /collection_tool/media/images/fire_icon.png
+/collection_tool/media/images/icon_goal_form.png
+/collection_tool/media/images/icon_goal_planner.png
 
 #images for "more info" help pages:
 /collection_tool/media/images/flatpages/baby-sleeping-with-bottle.jpg
@@ -124,6 +126,15 @@ CACHE:
 /collection_tool/media/images/flatpages/mother_and_daughter_eating_at_table.jpg
 /collection_tool/media/images/flatpages/test.jpg
 /collection_tool/media/images/flatpages/toddler-with-sippy-cup.jpg
+/collection_tool/media/images/flatpages/paste_no_fluoride_sharp.jpg
+/collection_tool/media/images/flatpages/paste_kids_fluoride.jpg
+/collection_tool/media/images/flatpages/paste_major_brands.jpg
+/collection_tool/media/images/flatpages/boy_drinking_water.jpg
+/collection_tool/media/images/flatpages/bottles_with_juice03.jpg
+/collection_tool/media/images/flatpages/veggies2.jpg
+/collection_tool/media/images/flatpages/honey_on_pacifier08.jpg
+/collection_tool/media/images/flatpages/Ibrushchildsteeth.jpg
+
 
 FALLBACK:
 
