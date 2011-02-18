@@ -2,92 +2,194 @@
 {%load smartif%}
 {% block html_element %}{% endblock html_element %}
 {% block family_info_content %}
-
-<h2 id="contenttitle">
-	List of display questions
-</h2>
-
+<div id="contentnav">
+<a id="left" href="/family_info/families/">← Back</a>
+<h1 id="contenttitle">
+	<a name = "top">List of display questions</a>
+</h1>
+</div>
 <div>
-<h3><a name = "top">Contents:</a></h3>
 {%for dq in display_questions%}
-    <a href ="#display_question_{{dq.id}}" >{{dq.id}}: {{dq.english}}</a> {% if not dq.nav_section.id %}*{%endif%} {% if dq.show_planner %}(planner){%endif%}<br/>
+    {% ifchanged %}<h4>
+    {%if dq.nav_section %}{{dq.nav_section }}{%else%}Not shown{%endif%}:</h4>{% endifchanged %}
+    {% if dq.show_planner %}<img  title="planner" src="/collection_tool/media/images/icon_goal_planner.png" />{%endif%} <a href ="#display_question_{{dq.id}}" >{{dq.id}}: {{dq.english}}</a><br/>
 {%endfor%}        
 </div>
-<p>
-* Not displayed on the front end because not associated with any navigation section.
-</p>
-        
 
-<div>
+<p><a href= "#unused">Appendix: Unused questions</p>
+<h2>Details:</h2>
+    <table id = "summary_table">
     {%for dq in display_questions%}
-    <div>
-        <h2><a name ="display_question_{{dq.id}}" >{{dq.id}}: {{dq.english}} {% if not dq.nav_section.id %}(not in navigation){%endif%}</a></h2>
-        <a href ="#display_question_{{dq.id}}" >[link]</a>
-        <a href ="#top" >[top]</a>
-        <br/>
-        Display question admin:<br/>
-        <a href = "/admin/collection_tool/displayquestion/{{dq.id}}/" >{{dq.english}}</a><br/>
-        Question admin:<br/>
-        <a href = "/admin/equation_balancer/question/{{dq.question.id}}/" >{{dq.question}}</a><br/>
-        Answers:<br/>
+        <tr>
+            <td colspan = "4">
+            <h3><a name ="display_question_{{dq.id}}" >{{dq.id}}: {{dq.english}} {% if not dq.nav_section.id %}(not in navigation){%endif%}</a><a href ="#display_question_{{dq.id}}" >[link]</a>
+            <a href ="#top" >[top]</a></h3>
+            </td>
+        </tr>
+        <tr>
+            <td>  English front-end page:</td>
+            <td colspan ="3">
+                <a href = "/collection_tool/question/{{dq.id}}/language/en/" >{{dq.english}}</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+            Spanish front-end page:</td>
+            <td colspan ="3">
+            <a href = "/collection_tool/question/{{dq.id}}/language/es/" > {% if dq.spanish %}{{dq.spanish}}{%else %}No spanish wording for this question{%endif %}</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+            Display question admin:</td>
+            <td colspan ="3">
+             {% if dq.show_planner %}<img  title="planner" src="/collection_tool/media/images/icon_goal_planner.png" />{%endif%} <a href = "/admin/collection_tool/displayquestion/{{dq.id}}/" >{{dq.english}}</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+            Question admin:</td>
+            <td colspan ="3">
+            <a href = "/admin/equation_balancer/question/{{dq.question.id}}/" >{{dq.question}}</a>
+            </td>
+        </tr>
         {%for a in dq.answers%}
-            &nbsp;&nbsp;&nbsp;{{a}}<br/>
-        {%endfor%}
-        
-        {% if dq.nav_section.id %}
-        Nav section:<br/>
-            <a href = "/admin/collection_tool/assessmentsection/{{dq.nav_section.id}}/" >{{dq.nav_section}}</a><br/>
-        {%endif %}        
-        
-        
-        Module:<br/>
-        <a href = "/admin/equation_balancer/module/{{dq.question.module.id}}/" >{{dq.question.module}}</a><br/>
-        
-        Weight:<br />
+            <tr>
+                {% if forloop.first %}
+                <td rowspan = "{{dq.answers.count}}"> Answers {%if dq.has_answer_pictures%} (these have images) {%endif%}: </td>
+                {%endif%}
+                <td >{{a.text}} {% if not a.displayanswer_set.all %}(stock answer){%endif%}</td>
+                {% if a.displayanswer_set.all %}
+                        <td > {{a.weight|floatformat:"-3"}} </td >
+                        <td > 
+                            <a href = "/admin/collection_tool/displayanswer/{{a.displayanswer_set.all.0.id}}/" >{{a.displayanswer_set.all.0.english}} /
+                            {%if a.displayanswer_set.all.0.spanish%} 
+                                {{a.displayanswer_set.all.0.spanish}}
+                            {%else %}
+                                (no spanish wording)
+                            {%endif %}
+                            </a>
+                        </td>
+                {%else %}
+                        <td colspan ="2">{{a.weight|floatformat:"-3"}} </td >
+                {%endif%}
+            </tr>
+        {%endfor%}     
         {%for a, b, c, d, e in dq.weight_info%}
-        &nbsp;&nbsp;&nbsp;<a href = "/weights/configuration/{{a}} ">{{b}}</a>: {{c|floatformat:"-3"}} x {{d|floatformat:"-3"}} = {{e|floatformat:"-3"}} <br/>
+        <tr>
+            {% if forloop.first %}
+            <td rowspan = "{{ forloop.revcounter}}">Weight {%if dq.display_regardless_of_weight%}(this question displays in all configs, regardless of weight){%endif%}: </td>
+            {%endif%}
+       
+            <td >
+                <a href = "/weights/configuration/{{a}} ">{{b}}</a>
+            </td>
+            <td>                         
+                  {{e|floatformat:"-3"}}
+            </td>
+            <td>
+                 {{c|floatformat:"-3"}} (question) x {{d|floatformat:"-3"}} (module)
+            </td>
+        </tr>
         {%endfor%}
-        <br/>
-        
-        Display regardless of weight:<br />
-        {%if dq.display_regardless_of_weight%}
-            Yes
-        {%else %}
-            No
+        <tr>
+            <td>Nav section:</td>
+            <td colspan ="3">
+                {% if dq.nav_section %}
+                    <a href = "/admin/collection_tool/assessmentsection/{{dq.nav_section.id}}/" >{{dq.nav_section}}</a>
+                {%else %}
+                    None.
+                {%endif %}
+            </td>
+        </tr>
+        <tr>
+            <td>Module:</td>
+            <td colspan = "3" >
+                <a href = "/admin/equation_balancer/module/{{dq.question.module.id}}/" >{{dq.question.module}}</a>
+            </td>
+        </tr>
+        {%if dq.help_item %}
+        <tr>
+            <td>
+            Help Item:</td>
+                    <td colspan ="3">
+            <a href = "/admin/collection_tool/helpitem/{{dq.help_item.id}}/" >{{dq.help_item.english_title}}</a>
+            </td>
+        </tr>
+        {%endif%}                
+        {% if dq.topics.all%} 
+        <tr>
+            <td>
+                Topic(s):</td>
+                <td colspan ="3">
+                {%for t in dq.topics.all%}
+                <a href = "/admin/collection_tool/topic/{{t.id}}/" >{{t.english_title}}</a>
+                {%endfor%}
+            </td>
+        </tr>
         {%endif%}
-        <br/>
-        English front-end page:<br/>
-        <a href = "/collection_tool/question/{{dq.id}}/language/en/" >{{dq.english}}</a><br/>
-        Spanish front-end page:<br/>
-        <a href = "/collection_tool/question/{{dq.id}}/language/es/" >{{dq.spanish}}</a><br/>
-        Help Item:<br/>
-        <a href = "/admin/collection_tool/helpitem/{{dq.help_item.id}}/" >{{dq.help_item.english_title}}</a><br/>
-        Topic(s):<br/>
-        {%for t in dq.topics.all%}
-         &nbsp;&nbsp;&nbsp;<a href = "/admin/collection_tool/topic/{{t.id}}/" >{{t.english_title}}</a><br/>
-        {%endfor%}
-        Learn More (en):<br/>
-        <a href = "{{dq.learn_more_english.url}}" >{{dq.learn_more_english.title}}</a><br/>
-        Learn More (es):<br/>
-        <a href = "{{dq.learn_more_spanish.url}}" >{{dq.learn_more_spanish.title}}</a><br/>
-        Image: <br />
-        {% if dq.image %}
-            <a href="/uploads/{{dq.image}}" >View</a>
+        {% if dq.learn_more_english %}
+        <tr>
+            <td>
+                Learn More (en):</td>
+                <td colspan ="3">
+                <a href = "{{dq.learn_more_english.url}}" >{{dq.learn_more_english.title}}</a>
+            </td>
+        </tr>
+        {% endif%}
+        {% if dq.learn_more_spanish %}
+        <tr>
+            <td>
+                Learn More (es):</td>
+                <td colspan ="3">
+                <a href = "{{dq.learn_more_spanish.url}}" >{{dq.learn_more_spanish.title}}</a>
+            </td>
+        </tr>
         {%endif%}
-        <br/>
-        Answers have images:<br/>
-        {%if dq.has_answer_pictures%}
-            Yes
-        {%else %}
-            No
-        {%endif%}
-        <br/>
-    </div>
     {%endfor%}
- </div>
-
-
-
+</table>
+    
+    
+<h2><a name = "unused">Unused questions:</a></h2>
+<p>
+    These questions they are not visible on the front end, since they don't have a display question associated with them.
+</p>
+<p>
+    <a href ="#unused" >[link]</a> <a href ="#top" >[top]</a>
+</p>
+<table id = "summary_table">
+    {%for q in unused_questions%}
+         <tr>
+            <td colspan = "4">
+            <h3>{{q}}</h3>
+        </tr>
+        <tr>
+            <td>
+            Question admin:</td>
+            <td colspan ="3">
+                <a href = "/admin/equation_balancer/question/{{q.id}}/" >{{q}}</a>
+            </td>
+        </tr>
+        <tr>
+            <td>Module:</td>
+            <td colspan = "3" >
+                <a href = "/admin/equation_balancer/module/{{q.module.id}}/" >{{q.module}}</a>
+            </td>
+        </tr>
+        {%for a in q.answer_set.all%}
+        <tr>
+            <td>Answer:</td>
+            <td colspan = "2" >
+                {{a.text}}
+            </td>
+            <td colspan = "1" >
+                {{a.weight|floatformat:"-3"}} 
+            </td>
+        </tr>
+        {%endfor %}
+    {%endfor %}
+</table>
+    
 {% endblock family_info_content %}
 
 

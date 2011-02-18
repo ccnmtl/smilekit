@@ -365,17 +365,6 @@ def end_interview(request, **args):
       visits = [] #this can occasionally happen due to selenium test teardown.
   else:
     visits = [ v for v in request.user.visit_set.all() if v.is_happening]
-  
-  
-  if 1 == 0:
-      #old way:
-      if rp.has_key('force_end'):
-        if rp.has_key('visit_id'):
-          visits = [ Visit.objects.get (pk =  rp['visit_id'])]
-      else:
-        visits = [ v for v in request.user.visit_set.all() if v.is_happening]
-       
-       
       
   if len(visits) == 0:
     #back button by mistake after ending an interview, or hit refresh.
@@ -412,61 +401,67 @@ def help_summary(request):
       'all_help_items': HelpItem.objects.all()
   })
   return HttpResponse(t.render(c))
-  
-  
-   
+
 @login_required
 def question_list(request):
   t = loader.get_template('family_info/question_list.html')
-  
-  
   display_questions = list([dq for dq in DisplayQuestion.objects.all() if dq.nav_section])
   display_questions.sort ( key = lambda dq: dq.ordering_rank )
   display_questions.sort ( key = lambda dq: dq.nav_section.ordering_rank )
   
-  # what?
-  funky_questions = list([dq for dq in DisplayQuestion.objects.all() if not dq.nav_section])
-  funky_questions.sort  ( key = lambda dq: dq.ordering_rank )
-  display_questions.extend ( funky_questions  )
+  no_section_questions = list([dq for dq in DisplayQuestion.objects.all() if not dq.nav_section])
+  no_section_questions.sort  ( key = lambda dq: dq.ordering_rank )
+  display_questions.extend ( no_section_questions  )
   
-  
-  #all_display_questions = list([dq for dq in DisplayQuestion.objects.all() if dq.nav_section])
-  #all_display_questions.sort ( key = lambda dq: dq.ordering_rank )
-  #all_display_questions.sort ( key = lambda dq: dq.nav_section.ordering_rank )
-  
+  unused_questions = [q for q in Question.objects.all() if len(q.displayquestion_set.all()) == 0 and not q.show_planner ]
   
   c = RequestContext(request,{
-      'display_questions': display_questions
+      'display_questions': display_questions,
+      'unused_questions' : unused_questions
   })
   return HttpResponse(t.render(c))
-  
-  
 
-def selenium_teardown(request):
-  Family.objects.filter(study_id_number = 59638).delete()
-  Family.objects.filter(study_id_number = 83695).delete()
-  [v.delete() for v in request.user.visit_set.all()]
-
+def selenium_teardown():
+  """ axe responses, visits. families."""
+  families_to_delete, visits_to_delete, responses_to_delete  = [], [], []
+  
+  families_to_delete.extend (Family.objects.filter(study_id_number = 59638))
+  families_to_delete.extend (Family.objects.filter(study_id_number = 83695))
+  for f in families_to_delete:
+    visits_to_delete.extend (f.visit_set.all())
+  for v in visits_to_delete:
+    responses_to_delete.extend (v.response_set.all())
+  
+  for r in responses_to_delete:
+    r.delete()
+  for v in visits_to_delete:
+    v.delete()
+  for f in families_to_delete:
+    f.delete()  
+  
   
 @login_required
 def selenium(request,task):
+    t = loader.get_template('family_info/selenium.html')
+    
     if not request.user.is_staff:
       return HttpResponseRedirect ( reverse (families))
     
-    t = loader.get_template('family_info/selenium.html')
+    
+    selenium_teardown()
     
     if task =='setup':
-        selenium_teardown(request)
-        sel_message = "proceed"
-   
+      sel_message = "proceed"
+      if request.user.current_visit():
+        c = RequestContext(request,dict(task=task, sel_message="Please end your current visit before running any tests."))
+        return HttpResponse(t.render(c))
+    
     if task =='teardown':
-        selenium_teardown(request)
-        sel_message = "success"
-        
+      sel_message = "success"
     
     c = RequestContext(request,dict(task=task, sel_message=sel_message))
     return HttpResponse(t.render(c))
-  
+
 @login_required
 def summary_table(request):
   t = loader.get_template('family_info/summary_table.html')
@@ -476,9 +471,6 @@ def summary_table(request):
   })
   return HttpResponse(t.render(c))
   
-  
-  
-  #(r'^kill/visit/(?P<visit_id>\d+)/$',  'family_info.views.kill_visit'),
 @login_required
 def kill_visit(request, visit_id):
   t = loader.get_template('family_info/kill_visit.html')
@@ -487,7 +479,6 @@ def kill_visit(request, visit_id):
   })
   return HttpResponse(t.render(c))
 
-#(r'^kill/localstorage/$',  'family_info.views.kill_localstorage'),
 @login_required
 def kill_localstorage(request):
   t = loader.get_template('family_info/kill_localstorage.html')

@@ -125,9 +125,6 @@ def goal_planner(request, goal_id, language_code):
 ##########################
 ##########################
 
-
-
-
 def section(request, section_id, language_code):
   section = get_object_or_404(AssessmentSection, pk=section_id)
   if language_code not in ['en', 'es']:
@@ -229,13 +226,15 @@ def question(request, displayquestion_id, language_code):
       #TODO to just check the boolean planner_question and remove this variable
       'widget_question_ids':[risky_exposures_question.id, brushing_question.id, fluoride_question.id],
       
+      
       'risky_question_id':risky_exposures_question.id,
-      'risky_answers_keys':[str(key) for key in risky_answers.keys()],  # these are the TEXT of the display_answers
-      'risky_answers_values':risky_answers.values(), # these are the IDS of the display_answers
+      'risky_answers_keys':[str(key) for key in risky_answers.keys()],  # these are the TEXT of the answers
+      'risky_answers_values':risky_answers.values(), # these are the IDS of the answers
       
       'brushing_question_id':brushing_question.id,
       'brushing_answers_keys':[str(key) for key in brushing_answers.keys()],
       'brushing_answers_values':brushing_answers.values(),
+      
       'fluoride_question_id':fluoride_question.id,
       'fluoride_answers_keys':[str(key) for key in fluoride_answers.keys()],
       'fluoride_answers_values':fluoride_answers.values(),
