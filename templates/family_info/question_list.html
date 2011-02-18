@@ -12,7 +12,6 @@
 {%for dq in display_questions%}
     {% ifchanged %}<h4>
     {%if dq.nav_section %}{{dq.nav_section }}{%else%}Not shown{%endif%}:</h4>{% endifchanged %}
-    
     {% if dq.show_planner %}<img  title="planner" src="/collection_tool/media/images/icon_goal_planner.png" />{%endif%} <a href ="#display_question_{{dq.id}}" >{{dq.id}}: {{dq.english}}</a><br/>
 {%endfor%}        
 </div>

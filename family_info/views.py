@@ -421,7 +421,7 @@ def question_list(request):
   })
   return HttpResponse(t.render(c))
 
-def selenium_teardown(request):
+def selenium_teardown():
   """ axe responses, visits. families."""
   families_to_delete, visits_to_delete, responses_to_delete  = [], [], []
   
@@ -442,15 +442,23 @@ def selenium_teardown(request):
   
 @login_required
 def selenium(request,task):
+    t = loader.get_template('family_info/selenium.html')
+    
     if not request.user.is_staff:
       return HttpResponseRedirect ( reverse (families))
-    t = loader.get_template('family_info/selenium.html')
+    
+    
+    selenium_teardown()
+    
     if task =='setup':
-        selenium_teardown(request)
-        sel_message = "proceed"
+      sel_message = "proceed"
+      if request.user.current_visit():
+        c = RequestContext(request,dict(task=task, sel_message="Please end your current visit before running any tests."))
+        return HttpResponse(t.render(c))
+    
     if task =='teardown':
-        selenium_teardown(request)
-        sel_message = "success"
+      sel_message = "success"
+    
     c = RequestContext(request,dict(task=task, sel_message=sel_message))
     return HttpResponse(t.render(c))
 
