@@ -449,15 +449,11 @@ a#asstab02, a#asstab03, a#asstab05
 	width: 40px !important;
 }
 
-#contentnav a#left
+#contentnav a#left, #contentnav a#right
 {
 	background-position: center center !important;
 }
 
-#contentnav a#right
-{
-	background-position: center center !important;
-}
 
 #contentnav a#left
 {
@@ -731,19 +727,11 @@ See yesbutton.contentbuttonchosen and nobutton.contentbuttonchosen below . */
 
 .contentbuttoncomplete:before
 {
-	/*content: url(/collection_tool/media/images/checkbox.png);
+	content: url(/collection_tool/media/images/checkbox.png);
 	margin-right: 10px;
 	position: absolute;
+	top: 5px;
 	right: 0px;
-	*/
-  	content: 'Done!';
-  	position: absolute;
-  	top: 10px;
-  	right: 10px;
-  	font-size: 9px; font-weight: normal; font-size: 10px;
-  	background-color: #ffc;
-  	padding: 3px;
-	
 }
 
 /********/
@@ -1032,13 +1020,11 @@ h2#your_score_is {text-align: center;}
 }
 
 .firebutton.topic_completed:after, .firebutton.topic_irrelevant:after {
-  	content: 'Done!';
-  	position: absolute;
-  	top: 10px;
-  	right: 10px;
-  	font-size: 9px; font-weight: normal; font-size: 10px;
-  	background-color: #ffc;
-  	padding: 3px;
+	content: url(/collection_tool/media/images/checkbox.png);
+	margin-right: 10px;
+	position: absolute;
+	right: 0px;
+	top: 5px;
 }
 
 
