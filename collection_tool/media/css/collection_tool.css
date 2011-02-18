@@ -449,15 +449,11 @@ a#asstab02, a#asstab03, a#asstab05
 	width: 40px !important;
 }
 
-#contentnav a#left
+#contentnav a#left, #contentnav a#right
 {
 	background-position: center center !important;
 }
 
-#contentnav a#right
-{
-	background-position: center center !important;
-}
 
 #contentnav a#left
 {
