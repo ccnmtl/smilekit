@@ -40,13 +40,16 @@ function saveState() {
     });
 
     // store answer to "risky exposures" question
-    // 3 bins - 0 risky events, 1-2 risky events, 3 or more risky events
-    var key = '3 or more';
+    // 4 bins:
+    var key = '5 or more';
     if(risky_exposures == 0) {
       key = '0';
     }
     else if(risky_exposures < 3) {
       key = '1-2';
+    }
+    else if(risky_exposures < 5) {
+      key = '3-4';
     }
     var answer_id = risky_answers_values[risky_answers_keys.indexOf(key)];
     store_answer(risky_question_id, answer_id);

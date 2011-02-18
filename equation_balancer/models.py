@@ -64,7 +64,6 @@ class Question(models.Model):
   )
   type = models.CharField(max_length=2, choices=TYPE_CHOICES)
   module = models.ForeignKey(Module)
-
   number = models.IntegerField()
   text = models.CharField(max_length=500)
   
@@ -79,6 +78,10 @@ class Question(models.Model):
   @property
   def min_answer_weight (self):
     return float(min (self.all_answer_weights))
+  
+  @property
+  def show_planner (self):
+    return self.text.lower() in ["number risky exposures", "fluoride rinse exposures", "children's daily toothbrushing"]
   
   class Meta:
     ordering = ['number']
