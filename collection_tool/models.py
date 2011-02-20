@@ -452,7 +452,6 @@ class Resource(models.Model):
 
   def __unicode__(self):
     return self.name
-
   
 class DisplayQuestion(models.Model):
   """associates questions with translations, images, help topics, etc."""
@@ -474,14 +473,12 @@ class DisplayQuestion(models.Model):
 
   def get_absolute_url(self):
     return '/collection_tool/question/%d/language/en' % self.id
-
+    
   @property
   def show_planner (self):
-    risky_exposures_question = Question.objects.get(text="number risky exposures")
-    fluoride_question = Question.objects.get(text="Fluoride rinse exposures")
-    brushing_question = Question.objects.get(text="Children's daily toothbrushing")
-    return self.question in [risky_exposures_question, brushing_question, fluoride_question]
+    return self.question.show_planner
 
+  #not actually used:
   @property
   def question_type(self):
     return self.question.type
@@ -521,7 +518,6 @@ class DisplayQuestion(models.Model):
   def answers(self):
     return self.question.answer_set.all()
   
-  
   @property
   def weight_info(self):
     my_module = self.question.module
@@ -554,28 +550,24 @@ class DisplayQuestion(models.Model):
   
   def wording(self, preferred_language_code):
     """attempts to provide a wording in preferred language; otherwise return a language in an arbitrary language; otherwise returns a fixed string."""
+    
     try:
       return Translation.objects.get(question=self, language=preferred_language_code).text
     except:
       pass
     
-    
     try:
       return self.translation_set.all()[0].text
     except:
       pass    
-    
     return "Sorry, no wordings provided in either language. Enter wordings at /admin/collection_tool/displayquestion/%d/" % self.id
-  
-  
   
   @property
   def resource (self):    
     """the content of some flat pages also need to be accessible from the question page in the collection tool. here's a simple way of doing this:"""
     if not self.resources.all():
       return None
-    return self.resources.all()[0]    
-  
+    return self.resources.all()[0]
   
   #TODO: make this obsolete. Shoud use either of the functions below this one.
   @property
@@ -607,17 +599,11 @@ class DisplayQuestion(models.Model):
     except:   
       return None
 
-
-
-
 class Translation(models.Model):
   """ a question wording in a particular language"""
   question = models.ForeignKey(DisplayQuestion)
   language = models.CharField(max_length=2, choices=LANGUAGE_CHOICES, null=False)  # code for language (i.e. "EN", "ES")
   text =  models.TextField(null=True, blank =True)
-  
-  
-  
   
 class DisplayAnswer(models.Model):
   """associates answers with images, help topics, etc."""
@@ -630,7 +616,6 @@ class DisplayAnswer(models.Model):
   ordering_rank = models.IntegerField()
   class Meta:
     ordering = ('ordering_rank',)
-  
   
   def question_text (self):
     return self.answer.question.text
@@ -652,14 +637,12 @@ class DisplayAnswer(models.Model):
     except:
       return None
   
-  
   def wording(self, preferred_language_code):
     """attempts to provide a wording in preferred language; otherwise falls back on the other language; otherwise returns a fixed string."""
     try:
       return AnswerTranslation.objects.get(answer=self, language=preferred_language_code).text
     except:
       pass
-    
     
     try:
       return self.answer_translation_set.all()[0].text
@@ -678,17 +661,14 @@ class AnswerTranslation(models.Model):
   answer = models.ForeignKey(DisplayAnswer)
   language = models.CharField(max_length=2,  choices=LANGUAGE_CHOICES, null=False)
   text =  models.TextField(null=True, blank =True)
-  
   ordering_string =  models.TextField(null=True, blank =True)
 
   class Meta:
     ordering = ['ordering_string']
 
-
   @property
   def dir(self):
     return dir(self)
-    
     
 def post_save_ordering_string_update(sender, **kwargs):
   answer_translation = kwargs['instance']
@@ -697,8 +677,7 @@ def post_save_ordering_string_update(sender, **kwargs):
 
 post_save.connect(post_save_ordering_string_update, sender=AnswerTranslation)
 
-  
-# planner widget items
+
 class PlannerItem(models.Model):
   def __unicode__(self):
     return "%s: %s" % (self.get_type_display(), self.label)
@@ -707,8 +686,6 @@ class PlannerItem(models.Model):
   SPANISH_TYPES = ( ('A', 'Fluoruro'), ('B', 'Alimentos'), ('C', 'Bebidas'))
   type = models.CharField(max_length=1, choices=TYPE_CHOICES)
 
-  
-
   def get_spanish_type(self):
     return [label[1] for label in self.SPANISH_TYPES if label[0] == self.type][0]
 
@@ -716,10 +693,10 @@ class PlannerItem(models.Model):
   spanish_label = models.TextField()
 
   risk_level = models.IntegerField()
-  #image = models.ImageField(upload_to='answer_images',blank=True,null=True)
-  # for now, image is just assumed to be "slugified_label.jpg"
   
-  #let's shake things up a little:
+  #Image is just assumed to be "slugified_label.jpg"
+  
+  #reordering for Jess:
   ordering_map = {
     'A' : 0 ,  # fluoride first
     'C' : 1 ,  # then drinks
