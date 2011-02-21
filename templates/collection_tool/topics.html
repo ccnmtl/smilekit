@@ -10,16 +10,7 @@
 {% endblock collection_tool_js %}
 
 
-{% block mainnav %}
-
-	<div id="mainnav">
-<a id="introductiontab" class="mainfirsttab" href="/collection_tool/introduction/">Introduction</a>
-<a id="assessmenttab" class="assessmenttab" href="/collection_tool/">Assessment</a>
-<a id="risktab" class="risktab" href="/collection_tool/risk/language/en/">Risk</a>
-<a id="planningtab" class="planningtabactive foo mainlasttab" href="/collection_tool/goals/language/en/">Planning</a>
-</div>
-
-{% endblock %}
+{% block risktabactive %}risktabactive{% endblock %}
 
 {% block language_toggle %}
 {%ifequal language_code 'en'%}
