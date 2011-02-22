@@ -157,22 +157,31 @@ class Topic(models.Model):
   def config_scoring_info(self, config):
     result = {}
     overall_weight = 0
-    try:
-      overall_weight = config.moduleweight_set.get(module=self).weight
-    except ModuleWeight.DoesNotExist:
-      pass
-    except ModuleWeight.MultipleObjectsReturned:
-      #Only one weight per module please. This should be enforced by the equation alancer. See bug 72244.
-      assert 1 == 0
-      
-    for the_answer in self.answers:
-      try:
-        question_weight = config.weight_set.get(question = the_answer.question).weight
-      except:
-        question_weight = 0
-      result[the_answer.id] = float(the_answer.weight * question_weight * overall_weight)
+    old_weighting_system = False
     
-
+    #Changing the weighting system for topics, per action item #72345
+    if old_weighting_system:
+      try:
+        overall_weight = config.moduleweight_set.get(module=self).weight
+      except ModuleWeight.DoesNotExist:
+        pass
+      except ModuleWeight.MultipleObjectsReturned:
+        # Only one weight per module please.
+        # This should be enforced by the equation balancer. See bug 72244.
+        # I want this to fail loudly and immediately.
+        assert 1 == 0
+        
+      for the_answer in self.answers:
+        try:
+          question_weight = config.weight_set.get(question = the_answer.question).weight
+        except:
+          question_weight = 0
+        result[the_answer.id] = float(the_answer.weight * question_weight * overall_weight)
+    
+    else: #new weighting system ignores question and config weights.
+      for the_answer in self.answers:
+        result[the_answer.id] = float(the_answer.weight )
+    
     result['question_count'] = len(dquestions_for_config_and_topic (config, self))   
     return result
 
@@ -189,32 +198,38 @@ class Topic(models.Model):
 
   def config_maxmin_scores (self, config):
     """for each answer in a configuration, show the best and worst possible scores."""
+    #Changing the weighting system for topics, per action item #72345
+    old_weighting_system = False
     mins = {}
     maxs = {}
-    try:
-      overall_weight = float(config.moduleweight_set.get(module=self).weight)
-    except ModuleWeight.DoesNotExist:
-      overall_weight = 0.0
-    for dq in self.displayquestion_set.all():
+    
+    if old_weighting_system:
       try:
-        question_weight = float(config.weight_set.get(question = dq.question).weight)
-      except:
-        question_weight = 0.0
+        overall_weight = float(config.moduleweight_set.get(module=self).weight)
+      except ModuleWeight.DoesNotExist:
+        overall_weight = 0.0
+      for dq in self.displayquestion_set.all():
+        try:
+          question_weight = float(config.weight_set.get(question = dq.question).weight)
+        except:
+          question_weight = 0.0
+        for answer in dq.question.answer_set.all():
+          mins[answer.id] = dq.question.min_answer_weight * question_weight * overall_weight
+          maxs[answer.id] = dq.question.max_answer_weight * question_weight * overall_weight
+    else:  #new weighting system ignores question and config weights.
       for answer in dq.question.answer_set.all():
-        mins[answer.id] = dq.question.min_answer_weight * question_weight * overall_weight
-        maxs[answer.id] = dq.question.max_answer_weight * question_weight * overall_weight
-    #print sum(mins.values())
-    #print sum(maxs.values())
-    #print sum(mins.values()) ==  sum(maxs.values())
+        mins[answer.id] = dq.question.min_answer_weight
+        maxs[answer.id] = dq.question.max_answer_weight
+    
     return_value = {'min': mins, 'max': maxs }
-    if  sum(mins.values()) ==  sum(maxs.values()):
+    
+    if sum(mins.values()) ==  sum(maxs.values()):
       return_value ['irrelevant'] = 'true'
       #special case: for this topic and this config, no matter how many questions you answer,
-      # you can't obtain a score due to the weighs assigned the questions.
+      # you can't obtain a score due to the weights assigned the questions.
     else:
       return_value ['irrelevant'] = 'false'
     
-
     return return_value 
 
   @property
