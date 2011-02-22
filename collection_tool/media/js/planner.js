@@ -31,13 +31,28 @@ function saveState() {
   }
   
   if(mode == "food") {
+    /*
+    
+    the widget is supposed to look at each time block and average the risk number
+    of the foods in that time block.  foods are rated 0-4.  a risk number average 
+    or one time block of 3 or higher = one risky exposure.
+
+    this was something Kat was supposed to do, but if you look at the code and find
+    that she didn't, we need to do it now.
+
+    */
+
+    
     /* calculate risk # */
     var risky_exposures = 0;
+    // for each food anywhere in the planner:
     jQuery(".timerowfood .activityitems").each(function() {
       var risk = jQuery(this).data('risk');
       // an average of 3 or higher is 'risky'
       if(risk >= 3) { risky_exposures++; }
     });
+
+    
 
     // store answer to "risky exposures" question
     // 4 bins:

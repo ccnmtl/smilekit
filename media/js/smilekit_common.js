@@ -71,6 +71,12 @@ function get_an_url () {
   return tmp;
 }
 
+function set_user_name_in_nav() {
+    if ($('#user_id_nav_display') && local_storage_get(LOCAL_STORAGE_KEY, 'user_name')) {
+        $('#user_id_nav_display').html('Hi, ' + local_storage_get(LOCAL_STORAGE_KEY, 'user_name'));
+    }  
+}
+
 function set_family_id_in_nav ( fam_id) {
   all_questions = local_storage_get (LOCAL_STORAGE_KEY, 'list_of_questions');
   for (i = 0; i < all_questions.length; i = i + 1) {
@@ -80,15 +86,8 @@ function set_family_id_in_nav ( fam_id) {
   }
   if ($('#family_id_nav_display')) {
     $('#family_id_nav_display').html( 'Family #' + family_study_id );
-  }  
-  
-  if ($('#user_id_nav_display') && local_storage_get(LOCAL_STORAGE_KEY, 'user_name')) {
-    $('#user_id_nav_display').html('Hi, ' + local_storage_get(LOCAL_STORAGE_KEY, 'user_name'));
-  }
-  
-  
- // TODO: the family id link is now gone in the risk/topic/goal pages
- // TODO: the dashboard link is now gone  in the risk/topic/goal pages
+  }    
+  set_user_name_in_nav();
 }
 
 function test_setting_url() {
