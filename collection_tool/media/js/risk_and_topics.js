@@ -55,13 +55,9 @@ function calculate_family_answers (family_id, scoring_info) {
      
     prev = family_questions (LOCAL_STORAGE_KEY, family_id)['previous_visit_questions'];
      $.each(prev, function (qid, aid) {
-      // TODO: remove this once test families are excised.
-      if (qid != 23 && qid != 22) {
-      /// IGNORE TWO OBSOLETE QUESIONS.
         if (calculate_family_answers_result [qid] == null) {
             calculate_family_answers_result [qid] = aid;
           }
-       }
      });
     return calculate_family_answers_result;
 }
@@ -122,22 +118,20 @@ function calculate_scores (family_id, scoring_info, config_id, answer_array) {
     var result = {'all': {'score': 0, 'max':0, 'min':0}};
     $.each(scoring_info, function (tid) {
         // for each topic:
-        //llog ("topic is now " + tid);
         result[tid] = {'score': 0, 'max':0, 'min':0, 'answered_count':0, 'question_count':0};
         
         // how many questions count toward this topic, including unanswered ones?
         result[tid]['question_count']  = scoring_info[tid][config_id]['question_count'];
         result[tid]['irrelevant'] = irrelevant (tid, config_id);
-
-        //llog (answer_array);
         
         for (i = 0; i < answer_array.length; i = i + 1) {
             // for each answer:
             answer_id = answer_array[i]
             found_score = the_score_for (tid, config_id, answer_id);
+
             if (found_score != null) {
                 // this answer counts towards this topic.
-                //llog (" answer " + answer_id + " counts towards " + tid );
+
                 // overall score:
                 result['all']['score'] += found_score;
                 result['all']['min']   += min_score_for  (tid, config_id, answer_id);
@@ -185,7 +179,6 @@ function between (x, a, b) {
 function score_data_for_topic_id (LOCAL_STORAGE_KEY, family_id, topic_id) {
   try {
       score_data = get_goals_data(LOCAL_STORAGE_KEY, family_id)['score_data'][topic_id];
-      //llog (score_data);
   } catch (e){
       return -1
   } 
