@@ -217,9 +217,10 @@ class Topic(models.Model):
           mins[answer.id] = dq.question.min_answer_weight * question_weight * overall_weight
           maxs[answer.id] = dq.question.max_answer_weight * question_weight * overall_weight
     else:  #new weighting system ignores question and config weights.
-      for answer in dq.question.answer_set.all():
-        mins[answer.id] = dq.question.min_answer_weight
-        maxs[answer.id] = dq.question.max_answer_weight
+      for dq in self.displayquestion_set.all():
+        for answer in dq.question.answer_set.all():
+          mins[answer.id] = dq.question.min_answer_weight
+          maxs[answer.id] = dq.question.max_answer_weight
     
     return_value = {'min': mins, 'max': maxs }
     
