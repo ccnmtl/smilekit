@@ -32,8 +32,7 @@ div#list_of_questions {
 
 
 /*always hidden: */
-
-#scoring_info, #maxmin_scoring_info, #family_configs, div#state{
+#scoring_info, #maxmin_scoring_info, #overall_scoring_info,  #family_configs, div#state{
 	display:none;
 }
 
@@ -795,7 +794,10 @@ See yesbutton.contentbuttonchosen and nobutton.contentbuttonchosen below . */
 
 /********/
 
-/*.learnmore 
+/* OLD SYSTEM */
+
+
+.learnmore 
 {
 }
 
@@ -823,10 +825,12 @@ See yesbutton.contentbuttonchosen and nobutton.contentbuttonchosen below . */
 	color: #fff;
 	font-size: 75%;
 }
-*/
 
 
 
+/* NEW SYSTEM */
+
+/*
 .learnmore, .learnmorebrowseonly {
 	margin:0px auto;
 	height: 50px;
@@ -858,6 +862,7 @@ See yesbutton.contentbuttonchosen and nobutton.contentbuttonchosen below . */
 	font-size: 11px;
 	text-shadow: #000 1px 1px 1px;
 }
+*/
 
 .learnmore a#this 
 {

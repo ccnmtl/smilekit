@@ -116,6 +116,32 @@ function calculate_scores (family_id, scoring_info, config_id, answer_array) {
     */
     
     var result = {'all': {'score': 0, 'max':0, 'min':0}};
+
+
+
+    llog ("ok starting with overall score");
+    /// First do overall score:
+    for (i = 0; i < answer_array.length; i = i + 1) {
+       
+       //llog (overall_scoring_info);
+       
+       answer_id = answer_array[i]
+       //llog (answer_id);
+       
+       
+       // what's the score for this answer?
+        result['all']['score'] += overall_scoring_info[config_id]['score'][answer_id];;
+       
+       // what's the maximum score for this answer in this config ?
+        result['all']['min']   += overall_scoring_info[config_id]['min'][answer_id];
+       
+       // what's the minimum score for this answer in this config ?
+        result['all']['max']   += overall_scoring_info[config_id]['max'][answer_id];
+
+    }
+    llog ("ok done with overall score");
+    
+    // Then go through each topic to score just that topic.
     $.each(scoring_info, function (tid) {
         // for each topic:
         result[tid] = {'score': 0, 'max':0, 'min':0, 'answered_count':0, 'question_count':0};
@@ -124,20 +150,12 @@ function calculate_scores (family_id, scoring_info, config_id, answer_array) {
         result[tid]['question_count']  = scoring_info[tid][config_id]['question_count'];
         result[tid]['irrelevant'] = irrelevant (tid, config_id);
         
+        // for each topic, run through all the answers:
         for (i = 0; i < answer_array.length; i = i + 1) {
-            // for each answer:
             answer_id = answer_array[i]
             found_score = the_score_for (tid, config_id, answer_id);
-
+            // if this answer counts towards this topic, add it to the score.
             if (found_score != null) {
-                // this answer counts towards this topic.
-
-                // overall score:
-                result['all']['score'] += found_score;
-                result['all']['min']   += min_score_for  (tid, config_id, answer_id);
-                result['all']['max']   += max_score_for  (tid, config_id, answer_id);
-                
-                // score for this topic (used on the Topics screen:
                 result[tid]['score']   += found_score;
                 result[tid]['min']     += min_score_for  (tid, config_id, answer_id);
                 result[tid]['max']     += max_score_for  (tid, config_id, answer_id);

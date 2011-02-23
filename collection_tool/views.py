@@ -33,6 +33,7 @@ def risk(request, language_code):
       'language_code': language_code,
       'help_item': help_item,
       'all_topics': Topic.objects.all(),
+      'all_configs': Configuration.objects.all(),
       'all_families': Family.objects.all(),
   })
   return HttpResponse(t.render(c))

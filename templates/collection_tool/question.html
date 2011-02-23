@@ -64,13 +64,15 @@
 		
 	    {%if displayquestion.learn_more_english%}
 			  {% include "collection_tool/learn_more.html" %}
-            {% else %}
-			  {% include "collection_tool/learn_more_browse_only.html" %}
-		  {% endif %}
+        {% else %}
+            {%comment %}
+			      {% include "collection_tool/learn_more_browse_only.html" %}
+		    {%comment %}
+		{% endif %}
 		  
 		  
 	    {%comment %}
-  	    {% include "collection_tool/test.html" %}
+  	        {% include "collection_tool/test.html" %}
 	    {%endcomment %}
 	    
 	    

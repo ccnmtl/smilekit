@@ -24,17 +24,26 @@
 
 {% block collection_tool_content %}
 
-		<div id ="language_code_div">{{language_code}}</div>
+	<div id ="language_code_div">{{language_code}}</div>
     <div>
     <!-- all the JSON you need to calculate scores: -->
 
+    <! scoring info by topic  (this is used to calculate the topic risk scores)-->
     <pre id = "scoring_info"> {  {% for t in all_topics%} 
           {%if not forloop.first%},{%endif%}"{{t.id}}" : {{t.scoring_info}}
     {%  endfor %}  }  </pre>
 
+    <! max and min scores by topic (this is used to calculate the topic risk scores)-->
     <pre id = "maxmin_scoring_info"> { {% for t in all_topics%} 
           {%if not forloop.first%},{%endif%}"{{t.id}}" : {{t.maxmin_scoring_info}}
     {%  endfor %}  } </pre>
+
+    <! overall scoring, max and min scores (this is used to calculate the main risk score.-->    
+    <pre id = "overall_scoring_info"> { {% for c in all_configs%} 
+         {%if not forloop.first%},{%endif%}"{{c.id}}" : {{c.scores_for_all_questions}}
+    {%  endfor %}  } </pre>
+    
+    
  <!-- end scoring info -->
 
 		<div id="contentnav">

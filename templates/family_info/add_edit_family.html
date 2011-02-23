@@ -235,6 +235,12 @@
 	Family Visits
 	</legend>
 		
+		<div>
+		
+		            
+		</div>
+		  {%with family.config.scores_for_all_questions_raw.score as score %}
+        		
 	<table class="interviewdetails" cellspacing="0">
 	  {% for v in family.all_visits reversed %}
 		  {% if v.response_set.all %}
@@ -250,18 +256,40 @@
 			        <td>{{v.response_set.count}}</td>
 		        </tr>
 		        {%for r in v.response_set.all %}
-		
+	     <!--{{r.question_id}}: 
+		 {{r.answer_id}}
+		  -->
 		          <tr class="response_to_question {{r.question_id}}">
 			          <td>&nbsp;</td>
-			          <td class="label">{{r.question_english}}</td>
-			          <td class= "response_answer {{r.answer_id}}" >{{r.answer_english}}</td>
-		          </tr>
+			          <td class="label">
+			          
+			          
+			          {{r.question_english}}  (scores {{r.question.min_answer_weight|floatformat:"-3"}} to {{r.question.max_answer_weight|floatformat:"-3"}} ):
+			          {% for a, s in score.iteritems %}
+	                    {%ifequal a r.answer.id%}
+	                        {%if s >= 1 %}
+	                            <span style="color:#f00">*</span>
+	                        {%endif%}
+	                    {%endifequal %}
+			          {% endfor%}
+			          
+			          
+			          </td>
+			          <td class= "response_answer {{r.answer_id}}" >
+			          
+			          {{r.answer_english}} (score {{r.answer.weight|floatformat:"-3"}} )
+			          
+			          </td>
+			          <td  >
+			          </td>
+			     </tr>
 		        {%endfor %}
 		  {%else %}
 		      <!-- no responses... not showing visit {{v.id}} -->
 		  {% endif %}
 	{% endfor %}		  
 	</table>
+                  {%endwith %}
 	
       </fieldset>
 {% endblock family_info_content %}
