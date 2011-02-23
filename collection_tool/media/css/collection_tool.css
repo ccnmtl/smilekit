@@ -794,7 +794,10 @@ See yesbutton.contentbuttonchosen and nobutton.contentbuttonchosen below . */
 
 /********/
 
-/*.learnmore 
+/* OLD SYSTEM */
+
+
+.learnmore 
 {
 }
 
@@ -822,10 +825,12 @@ See yesbutton.contentbuttonchosen and nobutton.contentbuttonchosen below . */
 	color: #fff;
 	font-size: 75%;
 }
-*/
 
 
 
+/* NEW SYSTEM */
+
+/*
 .learnmore, .learnmorebrowseonly {
 	margin:0px auto;
 	height: 50px;
@@ -857,6 +862,7 @@ See yesbutton.contentbuttonchosen and nobutton.contentbuttonchosen below . */
 	font-size: 11px;
 	text-shadow: #000 1px 1px 1px;
 }
+*/
 
 .learnmore a#this 
 {
