@@ -202,9 +202,7 @@ download_success_callback = function () {
 function init_family_info() {
   add_keys(); // this is needed.
   
-  
-  
-  //alert ('init beginning.');
+  set_user_name_in_nav();
   
   status_images_none();
   $('#download').hide();

@@ -32,29 +32,33 @@ input[type="text"], input[type="password"] {
 		<h1 id="logo">MySmileBuddy</h1>
 		  <div id="mastheadnav">
 		  
-        
-	      {% if user.current_visit %}
-			    <a id ="log_out_link"    href="javascript:end_visit_before_logout()">Log Out</a>
-			  {%else %}
-          <a id ="log_out_link"    href="/logout">Log Out</a>
-			  {% endif %}
-		  
-        <a href="/about/">About</a>
-	      <a href="/library/">Library</a>
-	      
-        {%if user.current_visit%}
-			  <a id="interview_link" href="/family_info/dashboard/">Dashboard</a>
-        {% endif %}
-        
-        
-	      {%if user.current_visit%}
-	  		  <a id ="family_id_nav_display" >FamilyID</a>
-        {% endif %}
-        
-        
-			  {%if user.username%}
-			  <a id="user_id_nav_display">Hi, {{user.username}}!</a>
-	      {%endif%}
+            
+	        {% if user.current_visit %}
+			        <a id ="log_out_link"    href="javascript:end_visit_before_logout()">Log Out</a>
+		    {%else %}
+                    <a id ="log_out_link"    href="/logout">Log Out</a>
+		    {% endif %}
+		    
+		    
+		    <a href="/about/">About</a>
+		    
+		    
+	        <a href="/library/">Library</a>
+	        
+	        
+	        {%if user.current_visit%}
+			      <a id="interview_link" href="/family_info/dashboard/">Dashboard</a>
+            {% endif %}
+            
+            
+            {%if user.current_visit%}
+              <a id ="family_id_nav_display" >FamilyID</a>
+            {% endif %}
+            
+            
+            {%if user.username%}
+                <a id="user_id_nav_display">Hi, {{user.username}}!</a>
+            {%endif%}
 		  
 		  
 		  </div>

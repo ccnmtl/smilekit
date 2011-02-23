@@ -111,31 +111,46 @@ CACHE:
 /collection_tool/media/images/icon_goal_planner.png
 
 #images for "more info" help pages:
+/collection_tool/media/images/flatpages/adult-at-dentist.JPG
+/collection_tool/media/images/flatpages/adult-flossing.JPG
+/collection_tool/media/images/flatpages/adult-flossing.jpg
 /collection_tool/media/images/flatpages/baby-sleeping-with-bottle.jpg
 /collection_tool/media/images/flatpages/baby-teeth.jpg
 /collection_tool/media/images/flatpages/baby_with_fruit.jpg
 /collection_tool/media/images/flatpages/bottle_milk_juice.jpg
+/collection_tool/media/images/flatpages/bottles_with_juice03.jpg
 /collection_tool/media/images/flatpages/bottles_with_juice.jpg
+/collection_tool/media/images/flatpages/boy_drinking_water.jpg
 /collection_tool/media/images/flatpages/brushes250.jpg
+/collection_tool/media/images/flatpages/brushing-mom-child.jpg
+/collection_tool/media/images/flatpages/brushing-shot.jpg
+/collection_tool/media/images/flatpages/child_with_tooth_pain.jpg
+/collection_tool/media/images/flatpages/clinic-childonlap.jpg
 /collection_tool/media/images/flatpages/clinic-handinmouth.jpg
 /collection_tool/media/images/flatpages/clinic-indoorway.jpg
 /collection_tool/media/images/flatpages/clinic-smilingatgeorge.jpg
 /collection_tool/media/images/flatpages/clinic-worriedforgeorge.jpg
 /collection_tool/media/images/flatpages/clinic-yellingatgeorge.jpg
 /collection_tool/media/images/flatpages/cloth-cleaner250.jpg
+/collection_tool/media/images/flatpages/grandma_tasting_with-baby.jpg
+/collection_tool/media/images/flatpages/honey_on_pacifier08.jpg
 /collection_tool/media/images/flatpages/i_brush_childs_teeth.jpg
+/collection_tool/media/images/flatpages/Ibrushchildsteeth.jpg
+/collection_tool/media/images/flatpages/intro-shot.jpg
 /collection_tool/media/images/flatpages/kids_eating_chips.jpg
+/collection_tool/media/images/flatpages/mom_and_child_hands_in_mouth.jpg
+/collection_tool/media/images/flatpages/mother_and_child_sharing_food250.jpg
+/collection_tool/media/images/flatpages/mother_and_child_sharing_food.jpg
 /collection_tool/media/images/flatpages/mother_and_daughter_eating_at_table.jpg
-/collection_tool/media/images/flatpages/test.jpg
-/collection_tool/media/images/flatpages/toddler-with-sippy-cup.jpg
-/collection_tool/media/images/flatpages/paste_no_fluoride_sharp.jpg
+/collection_tool/media/images/flatpages/nutrition-shot.jpg
+/collection_tool/media/images/flatpages/pacifier_moms_mouth.jpg
 /collection_tool/media/images/flatpages/paste_kids_fluoride.jpg
 /collection_tool/media/images/flatpages/paste_major_brands.jpg
-/collection_tool/media/images/flatpages/boy_drinking_water.jpg
-/collection_tool/media/images/flatpages/bottles_with_juice03.jpg
+/collection_tool/media/images/flatpages/paste_no_fluoride_sharp.jpg
+/collection_tool/media/images/flatpages/pregnant.jpg
+/collection_tool/media/images/flatpages/test.jpg
+/collection_tool/media/images/flatpages/toddler-with-sippy-cup.jpg
 /collection_tool/media/images/flatpages/veggies2.jpg
-/collection_tool/media/images/flatpages/honey_on_pacifier08.jpg
-/collection_tool/media/images/flatpages/Ibrushchildsteeth.jpg
 
 
 FALLBACK:
