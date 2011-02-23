@@ -1,0 +1,617 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://kodos.ccnmtl.columbia.edu:7112" />
+<title>create families</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">create families</td></tr>
+</thead><tbody>
+<!--setup-->
+<tr>
+	<td>open</td>
+	<td>/family_info/selenium/setup/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>proceed</td>
+	<td></td>
+</tr>
+<!--families page-->
+<tr>
+	<td>open</td>
+	<td>/family_info/families/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForValue</td>
+	<td>main_submit_button</td>
+	<td>Check Out Families and Start Visit</td>
+</tr>
+<!--first family-->
+<tr>
+	<td>clickAndWait</td>
+	<td>link=+ Add a Family</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>study_id_number</td>
+	<td>59638</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>config_id</td>
+	<td>label=&lt;3 Community Health Worker</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>child_year_of_birth</td>
+	<td>1998</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>race_ethnicity</td>
+	<td>label=Caucasian</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>mother_born_in_us</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>highest_level_of_parent_education</td>
+	<td>label=Did not complete high school</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//input[@value='Save']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>left</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//tr[@class='selenium_family_tr 59638']//input</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@class='selenium_family_tr 59638']//input</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>main_submit_button</td>
+	<td></td>
+</tr>
+<!--set timeout to 5 minutes-->
+<!--start download-->
+<tr>
+	<td>waitForVisible</td>
+	<td>get_materials_link</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>get_materials_link</td>
+	<td></td>
+</tr>
+<!--set timeout to 5 minutes-->
+<tr>
+	<td>setTimeout</td>
+	<td>300000</td>
+	<td></td>
+</tr>
+<!--wait for download to end-->
+<tr>
+	<td>pause</td>
+	<td>2000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForVisible</td>
+	<td>link=Visit family 59638</td>
+	<td></td>
+</tr>
+<!--set timeout back to 30 seconds-->
+<tr>
+	<td>setTimeout</td>
+	<td>60000</td>
+	<td></td>
+</tr>
+<!--start visit with the first family-->
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Visit family 59638</td>
+	<td></td>
+</tr>
+<!--all questions with weight of 1: high-risk answers.-->
+<tr>
+	<td>open</td>
+	<td>/collection_tool/question/33/language/en/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>answer_181</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/collection_tool/question/38/language/en/</td>
+	<td></td>
+</tr>
+<!--Meals: only mineral water.-->
+<tr>
+	<td>click</td>
+	<td>//div[@id='item-34-image']/img</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='timerow-09:00AM']/div[1]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/collection_tool/question/40/language/en/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>answer_215</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/collection_tool/question/14/language/en/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>answer_53</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/collection_tool/question/16/language/en/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>answer_159</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/collection_tool/question/34/language/en/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>answer_203</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/collection_tool/question/18/language/en/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>answer_76</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/collection_tool/question/36/language/en/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>answer_209</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/collection_tool/question/37/language/en/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>answer_212</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/collection_tool/question/19/language/en/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>answer_77</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/collection_tool/question/17/language/en/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>answer_72</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/collection_tool/question/6/language/en/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>answer_34</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/collection_tool/question/10/language/en/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>answer_30</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/collection_tool/question/23/language/en/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>answer_100</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/collection_tool/question/8/language/en/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>answer_25</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/collection_tool/question/22/language/en/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>answer_96</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/collection_tool/question/30/language/en/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>answer_164</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/collection_tool/question/26/language/en/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>answer_129</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/collection_tool/question/25/language/en/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>answer_126</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/collection_tool/question/21/language/en/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>answer_93</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/collection_tool/question/28/language/en/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>answer_143</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/collection_tool/question/29/language/en/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>answer_151</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/collection_tool/question/27/language/en/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>answer_137</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/collection_tool/question/20/language/en/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>answer_81</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/collection_tool/question/1/language/en/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>answer_6</td>
+	<td></td>
+</tr>
+<!--fluoride: lots of brushing.-->
+<tr>
+	<td>open</td>
+	<td>/collection_tool/question/39/language/en/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='item-1-image']/img</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='timerow-07:00AM']/div[1]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='item-1-image']/img</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='timerow-07:30AM']/div[1]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='item-1-image']/img</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='timerow-08:00AM']/div[1]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='item-1-image']/img</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='timerow-08:30AM']/div[1]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='item-2-image']/img</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='timerow-06:00AM']/div[1]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='item-2-image']/img</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='timerow-06:30AM']/div[1]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='item-2-image']/img</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='timerow-07:00AM']/div[1]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='item-2-image']/img</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='timerow-07:30AM']/div[1]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='item-2-image']/img</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='timerow-08:00AM']/div[1]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='item-2-image']/img</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='timerow-08:30AM']/div[1]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='item-2-image']/img</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='timerow-09:30AM']/div[1]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='item-2-image']/img</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='timerow-10:30AM']/div[1]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/collection_tool/question/3/language/en/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>answer_217</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/collection_tool/question/5/language/en/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>answer_13</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/collection_tool/question/24/language/en/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>answer_109</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/collection_tool/question/35/language/en/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>answer_204</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/collection_tool/question/2/language/en/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>answer_2</td>
+	<td></td>
+</tr>
+<!--all questions with weight of 0.01: low-risk answers.-->
+<!--risk-->
+<tr>
+	<td>clickAndWait</td>
+	<td>risktab</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForVisible</td>
+	<td>link=Let's Reduce this Risk!</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Let's Reduce this Risk!</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>interview_link</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>main_end_button</td>
+	<td></td>
+</tr>
+<!--teardown-->
+<tr>
+	<td>open</td>
+	<td>/family_info/selenium/teardown/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>success</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/family_info/families/</td>
+	<td></td>
+</tr>
+<!--end-->
+</tbody></table>
+</body>
+</html>
