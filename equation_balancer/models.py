@@ -1,4 +1,5 @@
 from django.db import models
+import simplejson as json
 
 User = models.get_model('auth','user')
 
@@ -21,10 +22,34 @@ class Configuration(models.Model):
   def questions_with_weights_greater_than_zero(self):
     return [w.question for w in self.weights_greater_than_zero()]
   
-  #high_risk = models.IntegerField()
-  #medium_risk = models.IntegerField()
-  #low_risk = models.IntegerField()
+  @property
+  def scores_for_all_questions(self):
+    """A helper function used on the risk page to calculate scores."""
+    return json.dumps( self.scores_for_all_questions_raw )
 
+  @property
+  def scores_for_all_questions_raw(self):    
+    """A helper function used on the risk page to calculate scores."""
+    mins  = {}
+    maxs  = {}
+    scores = {}
+    for w in self.weight_set.all():
+      q = w.question
+      module = q.module
+      # get weight of this module for this config:
+      try:
+        module_weight = float(self.moduleweight_set.get(module=module).weight)
+      except ModuleWeight.DoesNotExist:
+        module_weight = 0.0
+      question_weight =  float(w.weight) * float (module_weight)
+      qmin = q.min_answer_weight
+      qmax = q.max_answer_weight
+      for answer in q.answer_set.all():
+        scores [answer.id] = round (float(answer.weight) * question_weight, 3)
+        mins   [answer.id] = round (qmin                 * question_weight, 3)
+        maxs   [answer.id] = round (qmax                 * question_weight, 3)
+    return_value = {'min': mins, 'max': maxs, 'score': scores }
+    return return_value
 
 class Module(models.Model):
   """ A set of questions that can be weighted as a group for a given configuration."""

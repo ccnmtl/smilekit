@@ -58,7 +58,7 @@
                 {% if forloop.first %}
                 <td rowspan = "{{dq.answers.count}}"> Answers {%if dq.has_answer_pictures%} (these have images) {%endif%}: </td>
                 {%endif%}
-                <td >{{a.text}} {% if not a.displayanswer_set.all %}(stock answer){%endif%}</td>
+                <td >{{a.id}}: {{a.text}} {% if not a.displayanswer_set.all %}(stock answer){%endif%}</td>
                 {% if a.displayanswer_set.all %}
                         <td > {{a.weight|floatformat:"-3"}} </td >
                         <td > 
@@ -84,10 +84,11 @@
             <td >
                 <a href = "/weights/configuration/{{a}} ">{{b}}</a>
             </td>
-            <td>                         
+            <td color="#FFF" {%if  e == 0.001 and b == "<3 Community Health Worker"%} bgcolor = "red"{%endif %}
+            {%if  e == 1 and  b == "<3 Community Health Worker"%} bgcolor = "blue"{%endif %}>                         
                   {{e|floatformat:"-3"}}
             </td>
-            <td>
+            <td >
                  {{c|floatformat:"-3"}} (question) x {{d|floatformat:"-3"}} (module)
             </td>
         </tr>

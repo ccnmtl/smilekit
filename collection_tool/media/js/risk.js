@@ -5,6 +5,7 @@ function init() {
     $('.score_div').hide();
     $('.risk_div').hide();
     
+    //alert ('hi');
     //family_configs = JSON.parse($('#family_configs')[0].innerHTML);
     // aha! fixes bug #71035
     family_configs =  local_storage_get(LOCAL_STORAGE_KEY, 'list_of_family_configs') 
@@ -16,6 +17,9 @@ function init() {
     
     scoring_info   = JSON.parse($('#scoring_info')[0].innerHTML  );
     maxmin_scoring_info = JSON.parse($('#maxmin_scoring_info')[0].innerHTML);
+    overall_scoring_info =  JSON.parse($('#overall_scoring_info')[0].innerHTML);
+    
+    
     all_questions = local_storage_get (LOCAL_STORAGE_KEY, 'list_of_questions');
     
     family_id = local_storage_get (LOCAL_STORAGE_KEY, 'current_family_id');
@@ -46,11 +50,9 @@ function init() {
     //store the scores so the topic page can use them to show scores on individual topics:
     set_score_data (LOCAL_STORAGE_KEY, family_id, the_scores);
     
-    
-    
     if (overall_score == null) {
       // No questions were answered.
-      alert ('Can\'t calculate a score; no questions were answered yet.');
+      alert ('Please answer more questions.');
       return;
     }
     
