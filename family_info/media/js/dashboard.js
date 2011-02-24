@@ -87,12 +87,12 @@ function set_up_family_links () {
   $.each(list_of_questions , function(key, value) {
      family_study_id_number = value['family_study_id_number'];
      family_id = value['family_id'];
-     
+
      url = recent_url(family_id) ||  value ['first_question_url']['en'];
 
      new_link = "<p> Family " + family_study_id_number + " ( \
      <span id ='progress_info_for_family_" + family_id + "'> </span> )"
-    
+
      if (family_id == local_storage_get (LOCAL_STORAGE_KEY, 'current_family_id')) {
         // (Point the "Interview" link at the top of the page back to the current intervierw.
         $('#interview_link')[0].href = "javascript:head_to( " + family_id + ", \"" + url + "\");"
@@ -101,15 +101,15 @@ function set_up_family_links () {
         new_link += "<span class='currently_visiting'>(Currently Visiting)</span>"
      }
      else {
-      // link for other families goes here: 
+      // link for other families goes here:
         new_link += "<a class=\"go_to_family_button\" href=\"javascript:head_to(" + family_id + ",'" + url + "')"+ '"> Visit family ' + family_study_id_number + '</a>';
      }
      new_link += "</p>"
      start_visit_links += new_link;
-  
+
   });
-  
-  
+
+
   $('#start_visit_links')[0].innerHTML = start_visit_links;
 
   show_interview_progress();
@@ -118,10 +118,10 @@ function set_up_family_links () {
 function build_end_interview_form () {
   form_contents = "";
   current_interview_questions = local_storage_get(LOCAL_STORAGE_KEY, 'list_of_questions');
-  
+
   $.each(current_interview_questions , function(key, value) {
         family_id = value['family_id'];
-        
+
         their_answers = local_storage_get ( LOCAL_STORAGE_KEY, (family_id + '_answers'));
         their_state   = local_storage_get(LOCAL_STORAGE_KEY, 'list_of_states')[family_id];
 
@@ -136,8 +136,8 @@ function build_end_interview_form () {
         } else {
             safe_answers = '{}';
         }
-        
-        
+
+
         // this is going inside a single-quote string, so escape:
         safe_state = JSON.stringify (their_state).replace(/\'/g,  "&apos;" );
 
@@ -153,14 +153,14 @@ function build_end_interview_form () {
               value = '" + safe_state + "' />\
               ";
     });
-    
+
     form_contents +=  "<input type='hidden' \
               name = 'visit_id' \
               class = 'visit_id' \
               value = '" + local_storage_get(LOCAL_STORAGE_KEY, 'visit_id') + "' />"
-    
-    
-    
+
+
+
     $('#end_interview_inputs')[0].innerHTML = form_contents;
 }
 
@@ -201,12 +201,12 @@ download_success_callback = function () {
 
 function init_family_info() {
   add_keys(); // this is needed.
-  
+
   set_user_name_in_nav();
-  
+
   status_images_none();
   $('#download').hide();
-  
+
   list_of_questions = local_storage_get(LOCAL_STORAGE_KEY, 'list_of_questions');
   if (list_of_questions == null) {
     $('#downloading').hide();
@@ -218,7 +218,7 @@ function init_family_info() {
     $('#guidance_2').hide();
     return;
   }
-  
+
   //BUILD THE END INTERVIEW FORM
   build_end_interview_form ();
 
@@ -242,13 +242,14 @@ function init_family_info() {
   }
   else {
     setup_cache_callbacks();
-    
+
     // TODO: start download:
     error = download_files_into_cache ();
     if (error) {
       if  ((error.name).toUpperCase() == 'INVALID_STATE_ERR') {
             // Harmless ipad-only bug:
-            announce_ready_for_interview();
+    	    console.log("invalid state err");
+//            announce_ready_for_interview();
             $('#contenttitle').html('Dashboard *');
         } else if  ((error.name).toUpperCase() == 'NS_ERROR_DOM_SECURITY_ERR')  {
             hide_go_to_family_buttons();
@@ -257,7 +258,7 @@ function init_family_info() {
             $('#guidance_1').html ('If you see an "Allow" button at the top of your browser window, please click on it to start the download. If you do NOT see an "Allow" button,  please reset your site preferences for this site and try again.)');
             $('#guidance_2').html ('You can click the button below to stop this download and go back to the list of families.');
             return;
-            
+
         } else {        //other error:/
           hide_go_to_family_buttons();
           status_images_error();

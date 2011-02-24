@@ -10,7 +10,7 @@ function percent_done (done, total) {
 }
 
 function show_bar (percent) {
-  $("#progressbar").progressBar( percent); 
+  $("#progressbar").progressBar( percent);
 }
 
 var cacheStatusValues = [];
@@ -30,9 +30,9 @@ function error_handler(e) {
    //alert (e.description); // undefined
    //alert (e.target); // [object DOMApplicationCache]]
    //alert $.keys(e);
-   
+
    //alert (cacheStatusValues[cache.status]);
-   
+
    // warn, but allow to continue.
    //slog ("There was an error downloading one of the files, but you can try starting the interview anyway.");
    announce_ready_for_interview(e);
@@ -80,23 +80,23 @@ function logEvent(e) {
   //TODO: rename this?
   var num_files_total = NUMBER_OF_FILES_TO_DOWNLOAD;
   type = e.type;
-  
+
   if (type == 'error') {
     status_images_error();
-    return; 
+    return;
   }
-  
+
   if (type == 'progress') {
     // slog (num_files_downloaded);
     if (num_files_downloaded == null) {
       num_files_downloaded = 0;
     }
     num_files_downloaded ++;
-    show_bar(percent_done( num_files_downloaded, num_files_total));    
+    show_bar(percent_done( num_files_downloaded, num_files_total));
     status_images_download();
     $('#downloading').show();
-    
-    
+
+
     // hide these during the download; an error or success condition will re-show them.
     hide_go_to_family_buttons();
   }
@@ -108,7 +108,7 @@ function logEvent(e) {
    var online, status, type, message;
    online = (isOnline()) ? 'yes' : 'no';
    status = cacheStatusValues[cache.status];
-   
+
    message = 'online: ' + online;
    message+= ', event: ' + type;
    message+= ', status: ' + status;     if (type == 'error' && navigator.onLine) {
