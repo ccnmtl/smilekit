@@ -97,7 +97,7 @@ function risk_for_this_food (food) {
 
 function average_risk (foods) {
     food_count = foods.contents().length;
-    if (food_count = 0) {
+    if (food_count == 0) {
         return 0;        
     }
     var total_risk_for_this_time = 0;
@@ -397,7 +397,7 @@ jQuery(document).ready(initPlanner);
 /* testing song-and-dance. */
 function AssertException(message) { this.message = message; }
 AssertException.prototype.toString = function () {
-  return 'AssertException: ' + this.message;
+  alert ( 'AssertException: ' + this.message );
 }
 
 function assert(expression, message) {
@@ -450,7 +450,7 @@ function mineshaft_canary() {
   drink_soda(5);
   drink_soda(6);
   
-    assert(how_many_risky_exposures()  == 6, "You drank six sodas. Risky exposures should be 6.");
+   assert(how_many_risky_exposures()  == 6, "You drank six sodas. Risky exposures should be 6.");
   // move item up -- incl. from top row, over other item
   // move item down -- incl. from bottom row, over other item
   
