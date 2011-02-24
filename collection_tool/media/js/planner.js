@@ -88,41 +88,35 @@ function how_many_risky_exposures () {
 */
 
 function foods_for_this_time(when) {
-    the_time = jQuery (".timerow")[when]
-    return jQuery (the_time).find(".activityitems")
+    the_time = jQuery (".timerow")[when];
+    return jQuery (the_time).find(".activityitems");
 }
 
 function risk_for_this_food (food) {
     return jQuery(food).data('risk');
 }
 
-function how_many_risky_exposures () {
-    var new_risky_exposures = 0;
-    // for each time:
-    jQuery (".timerow").each(function(a) {
-        //console.log( foods_for_this_time(a));
-        foods = foods_for_this_time(a);
-        food_count = foods.contents().length
-            if (food_count > 0) {
-                // add up the risk of all the foods at this time:
-                var total_risk_for_this_time = 0;
-                foods.each(function (b, the_food) {
-                     total_risk_for_this_time +=   risk_for_this_food (the_food);
-                   }
-               );
-               average_risk = total_risk_for_this_time / food_count;
-               if (average_risk >= 3.0 ) {
-                    // bad.
-                    new_risky_exposures ++;
-                }
-            }
-        }
-    )
-    return new_risky_exposures;
+function average_risk (foods) {
+    food_count = foods.contents().length;
+    if (food_count = 0) {
+        return 0;        
+    }
+    var total_risk_for_this_time = 0;
+    foods.each(function (b, the_food) {
+         total_risk_for_this_time +=   risk_for_this_food (the_food);
+    });
+    return  total_risk_for_this_time / food_count;
 }
 
-
-how_many_risky_exposures ()
+function how_many_risky_exposures () {
+    var new_risky_exposures = 0;
+    jQuery (".timerow").each(function(a) {
+       if (average_risk (foods_for_this_time(a)) >= 3.0 ) {
+            new_risky_exposures ++;
+        }
+    });
+    return new_risky_exposures;
+}
 
 function loadState(reset) {
   // load state from localstorage
@@ -171,10 +165,7 @@ function resetTimeline(e) {
 }
 
 function initPlanner() {
-
-  // ok:
   jQuery('#language_code_div').click (mineshaft_canary);
-  
   
   jQuery('.thumbnail').click(function () {
     if(jQuery(this).hasClass('thumbnaildisabled')) { return; }
@@ -460,8 +451,6 @@ function mineshaft_canary() {
   drink_soda(5);
   drink_soda(6);
   
-  
-  
     assert(how_many_risky_exposures()  == 6, "You drank six sodas. Risky exposures should be 6.");
   // move item up -- incl. from top row, over other item
   // move item down -- incl. from bottom row, over other item
@@ -471,9 +460,6 @@ function mineshaft_canary() {
   // delete item
   
   // assert innerHTML = some expected string
-  
-  // eddie commenting this out:
-  //return;
   
   saveState();
   loadState();
