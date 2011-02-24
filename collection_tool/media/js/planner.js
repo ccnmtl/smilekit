@@ -31,41 +31,11 @@ function saveState() {
   }
   
   if(mode == "food") {
-    /*
-    
-    the widget is supposed to look at each time block and average the risk number
-    of the foods in that time block.  foods are rated 0-4.  a risk number average 
-    or one time block of 3 or higher = one risky exposure.
-
-    this was something Kat was supposed to do, but if you look at the code and find
-    that she didn't, we need to do it now.
-
-    */
-
-    
     /* calculate risk # */
-    var risky_exposures = 0;
-    // for each food anywhere in the planner:
-    jQuery(".timerowfood .activityitems").each(function() {
-      var risk = jQuery(this).data('risk');
-      // an average of 3 or higher is 'risky'
-      if(risk >= 3) { risky_exposures++; }
-    });
-
-    
-
-    // store answer to "risky exposures" question
-    // 4 bins:
-    var key = '5 or more';
-    if(risky_exposures == 0) {
-      key = '0';
-    }
-    else if(risky_exposures < 3) {
-      key = '1-2';
-    }
-    else if(risky_exposures < 5) {
-      key = '3-4';
-    }
+    var risky_exposures = how_many_risky_exposures();
+    var key = null;
+    key_map = { 0: '0', 1: '1-2', 2: '1-2', 3: '3-4', 4: '3-4' }
+    key = key_map [how_many_risky_exposures] ||  '5 or more';
     var answer_id = risky_answers_values[risky_answers_keys.indexOf(key)];
     store_answer(risky_question_id, answer_id);
   }
@@ -103,6 +73,56 @@ function saveState() {
     store_answer(brushing_question_id, brushing_answer_id);
   }
 }
+
+/*
+function how_many_risky_exposures () {
+    var risky_exposures = 0;
+    // for each food anywhere in the planner:
+    jQuery(".timerowfood .activityitems").each(function() {
+      var risk = jQuery(this).data('risk');
+      // an average of 3 or higher is 'risky'
+      if(risk >= 3) { risky_exposures++; }
+    });
+    return risky_exposures;
+}
+*/
+
+function foods_for_this_time(when) {
+    the_time = jQuery (".timerow")[when]
+    return jQuery (the_time).find(".activityitems")
+}
+
+function risk_for_this_food (food) {
+    return jQuery(food).data('risk');
+}
+
+function how_many_risky_exposures () {
+    var new_risky_exposures = 0;
+    // for each time:
+    jQuery (".timerow").each(function(a) {
+        //console.log( foods_for_this_time(a));
+        foods = foods_for_this_time(a);
+        food_count = foods.contents().length
+            if (food_count > 0) {
+                // add up the risk of all the foods at this time:
+                var total_risk_for_this_time = 0;
+                foods.each(function (b, the_food) {
+                     total_risk_for_this_time +=   risk_for_this_food (the_food);
+                   }
+               );
+               average_risk = total_risk_for_this_time / food_count;
+               if (average_risk >= 3.0 ) {
+                    // bad.
+                    new_risky_exposures ++;
+                }
+            }
+        }
+    )
+    return new_risky_exposures;
+}
+
+
+how_many_risky_exposures ()
 
 function loadState(reset) {
   // load state from localstorage
@@ -396,10 +416,17 @@ function assert(expression, message) {
   }
 }
 
+function drink_soda (when) {
+    jQuery("#item-21").toggleClass('thumbnailselected');
+    jQuery(jQuery('.time')[when]).trigger('click');
+}
+
 function mineshaft_canary() {
 
   //var stupid = true;
 
+  alert ('hi');
+  return;
   // test modes
   if(mode == "fluoride") {
     assert(jQuery("#photobox-fluoride").css("display") == "block", "Fluoride box should be visible.");
@@ -426,11 +453,18 @@ function mineshaft_canary() {
   });
   
   // add some items
-  jQuery("#item-23").toggleClass('thumbnailselected');
-  jQuery("#item-3").toggleClass('thumbnailselected');
-  jQuery("#item-8").toggleClass('thumbnailselected');
+  
+  // Bad kid!
+  drink_soda(1);
+  drink_soda(2);
+  drink_soda(3);
+  drink_soda(4);
+  drink_soda(5);
+  drink_soda(6);
   
   
+  
+    assert(how_many_risky_exposures()  == 6, "You drank six sodas. Risky exposures should be 6.");
   // move item up -- incl. from top row, over other item
   // move item down -- incl. from bottom row, over other item
   
