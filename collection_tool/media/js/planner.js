@@ -425,8 +425,6 @@ function mineshaft_canary() {
 
   //var stupid = true;
 
-  alert ('hi');
-  return;
   // test modes
   if(mode == "fluoride") {
     assert(jQuery("#photobox-fluoride").css("display") == "block", "Fluoride box should be visible.");
