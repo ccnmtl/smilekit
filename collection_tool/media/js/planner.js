@@ -32,10 +32,9 @@ function saveState() {
   
   if(mode == "food") {
     /* calculate risk # */
-    var risky_exposures = how_many_risky_exposures();
     var key = null;
     key_map = { 0: '0', 1: '1-2', 2: '1-2', 3: '3-4', 4: '3-4' }
-    key = key_map [how_many_risky_exposures] ||  '5 or more';
+    key = key_map [how_many_risky_exposures()] ||  '5 or more';
     var answer_id = risky_answers_values[risky_answers_keys.indexOf(key)];
     store_answer(risky_question_id, answer_id);
   }
