@@ -14,15 +14,11 @@
 
 {% block language_toggle %}
 {%ifequal language_code 'en'%}
-
 	<a href="/collection_tool/topics/language/es">Espa&#241;ol</a>
-	
 {%endifequal%}
 
 {%ifequal language_code 'es'%}
-
 	<a href="/collection_tool/topics/language/en">English</a>
-	
 {%endifequal%}
 {% endblock %}
 
@@ -64,7 +60,7 @@
 		<br />
 		<span style="font-weight: bold; color: gray;">Gray Topics</span> = These topics haven't been assessed at all.
 		<br />
-		Topics with <span style="font-weight: bold; color: green;">Green Checkboxes</span> = Everything here has been assesed.
+		Topics with <span style="font-weight: bold; color: green;">Green Checkboxes</span> = Everything here has been assessed.
 		</p>
 		
 		<p>
@@ -87,7 +83,7 @@
 		<br />
 		<span style="font-weight: bold; color: gray;">Gray Topics</span> = These topics haven't been assessed at all.(es)
 		<br />
-		Topics with <span style="font-weight: bold; color: green;">Green Checkboxes</span> = Everything here has been assesed.(es)
+		Topics with <span style="font-weight: bold; color: green;">Green Checkboxes</span> = Everything here has been assessed.(es)
 		</p>
 		
 		<p>
@@ -167,11 +163,9 @@
 		
 		<div class="goal_div_plan">
 		{% if g.show_in_planner %}
-		<a href = "/collection_tool/planner/goal/{{g.id}}/language/{{language_code}}/" title="Goes to planner">{%ifequal language_code 'en'%}plan{%endifequal%}{%ifequal language_code 'es'%}plan(es){%endifequal%}*</a>
-		<!--  (planner) -->
+		<a href = "/collection_tool/planner/goal/{{g.id}}/language/{{language_code}}/" title="Goes to planner">{%ifequal language_code 'en'%}plan{%endifequal%}{%ifequal language_code 'es'%}planificar{%endifequal%}*</a>
 		{%else %}
-		<a href = "/collection_tool/goal/{{g.id}}/language/{{language_code}}/"  title="Goes to regular goal setting form">{%ifequal language_code 'en'%}plan{%endifequal%}{%ifequal language_code 'es'%}plan(es){%endifequal%}</a>          
-		<!-- (form)  -->
+		<a href = "/collection_tool/goal/{{g.id}}/language/{{language_code}}/"  title="Goes to regular goal setting form">{%ifequal language_code 'en'%}plan{%endifequal%}{%ifequal language_code 'es'%}planificar{%endifequal%}</a> 
 		{%endif%}
 		</div>
 		

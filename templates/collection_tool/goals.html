@@ -45,8 +45,8 @@
 	                     <a class="formgoal" href="/collection_tool/goal/{{goal.id}}/language/en/"><b>Form</b> &raquo; {{goal.english_title}}.</a>
 	                    {%endifequal%}
 	                    {%ifequal language_code 'es'%}
-	                	<img src="/collection_tool/media/images/icon_goal_form.png"  title="form (es)" /> 
-	                     <a class="formgoal" href="/collection_tool/goal/{{goal.id}}/language/es/"><b>Form</b> &raquo; {{goal.spanish_title}}.</a>
+	                	<img src="/collection_tool/media/images/icon_goal_form.png"  title="formulario" /> 
+	                     <a class="formgoal" href="/collection_tool/goal/{{goal.id}}/language/es/"><b>Formulario</b> &raquo; {{goal.spanish_title}}.</a>
 	                    {%endifequal%}
 	                </li>
 	
@@ -56,9 +56,17 @@
 					                  <img src="/collection_tool/media/images/icon_goal_planner.png" title="form" /> 
 					                  {%endifequal%}
 					                  {%ifequal language_code 'es'%}  
-					                  <img src="/collection_tool/media/images/icon_goal_planner.png" title="form (es)" />
+					                  <img src="/collection_tool/media/images/icon_goal_planner.png" title=" formulario" />
 					                  {%endifequal%}
-					                  <a class="plannergoal" href = "/collection_tool/planner/goal/{{goal.id}}/language/{{language_code}}/""><b>Planner</b> &raquo;.</a>
+					                  
+					                  
+					                  {%ifequal language_code 'en'%} 
+    					                  <a class="plannergoal" href = "/collection_tool/planner/goal/{{goal.id}}/language/en/"><b>Planner</b> &raquo;.</a>
+					                  {%endifequal%}
+					                  {%ifequal language_code 'es'%}  
+	    				                  <a class="plannergoal" href = "/collection_tool/planner/goal/{{goal.id}}/language/es/"><b>Agenda</b> &raquo;.</a>
+					                  {%endifequal%}
+					                  
 	                </li>
                 {%endif %}
 	
@@ -79,8 +87,8 @@
 	    <a class="formgoal" href="/collection_tool/goal/{{goal.id}}/language/en/"><b>Form</b> &raquo; {{goal.english_title}}.</a>
 	    {%endifequal%}
 	    {%ifequal language_code 'es'%}
-	                	<img src="/collection_tool/media/images/icon_goal_form.png"  title="form (es)" /> 
-	     <a class="formgoal" href="/collection_tool/goal/{{goal.id}}/language/es/"><b>Form</b> &raquo; {{goal.spanish_title}}.</a>
+	                	<img src="/collection_tool/media/images/icon_goal_form.png"  title="formulario" /> 
+	     <a class="formgoal" href="/collection_tool/goal/{{goal.id}}/language/es/"><b>Formulario</b> &raquo; {{goal.spanish_title}}.</a>
 	    {%endifequal%}
 	</li>
 	
@@ -90,9 +98,17 @@
 					                  <img src="/collection_tool/media/images/icon_goal_planner.png" title="planner" /> 
         			{%endifequal%}
         			{%ifequal language_code 'es'%}
-					                  <img src="/collection_tool/media/images/icon_goal_planner.png" title="planner (es)" />
+					                  <img src="/collection_tool/media/images/icon_goal_planner.png" title="agenda" />
         			{%endifequal%}
-                  <a class="plannergoal" href = "/collection_tool/planner/goal/{{goal.id}}/language/{{language_code}}/""><b>Planner</b> &raquo;
+
+                    {%ifequal language_code 'en'%} 
+				        <a class="plannergoal" href = "/collection_tool/planner/goal/{{goal.id}}/language/en/"><b>Planner</b> 
+                    {%endifequal%}
+        			{%ifequal language_code 'es'%}
+				        <a class="plannergoal" href = "/collection_tool/planner/goal/{{goal.id}}/language/es/"><b>Agenda</b>
+                    {%endifequal%}
+
+                  &raquo;
                   {%ifequal language_code 'en'%}{{goal.english_title}}{%endifequal%}{%ifequal language_code 'es'%}{{goal.spanish_title}}{%endifequal%}
                   .</a>
                   
