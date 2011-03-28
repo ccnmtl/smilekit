@@ -1,69 +1,34 @@
 <!-- button to turn it on: -->
-
   <div class="learnmore">
-  
-      {%ifequal language_code 'en'%}
-      
+        {%ifequal language_code 'en'%}
               {% ifequal displayquestion.learn_more_english.resource_type 'video'%}
-              
                   <a id="this" href="javascript:void(0)" class="video_link" onclick = "$('.learn_more_help_content').show()">Video: {{displayquestion.learn_more_english.title}}</a>
-                  
               {%else %}
-              
                   <a id="this" href="javascript:void(0)" onclick = "$('.learn_more_help_content').show()">More About {{displayquestion.learn_more_english.title}}</a>
-                  
               {%endifequal %}
-              
-              {% comment %}
-			<a id="all" href="#">Browse Library</a>
-              {%endcomment %}
      {%endifequal %}
-      
-      
       {%ifequal language_code 'es'%}
-      
               {% ifequal displayquestion.learn_more_spanish.resource_type 'video'%}
-              
                   <a id="this" href="javascript:void(0)" class="video_link" onclick = "$('.learn_more_help_content').show()">Video: {{displayquestion.learn_more_spanish.title}}</a>
-                  
               {%else %}
-              
-                  <a id="this" href="javascript:void(0)" onclick = "$('.learn_more_help_content').show()">More About {{displayquestion.learn_more_spanish.title}}</a> 
-                  
+                  <a id="this" href="javascript:void(0)" onclick = "$('.learn_more_help_content').show()">Más información sobre  {{displayquestion.learn_more_spanish.title}}</a>
               {%endifequal %}
-              
-              {% comment %}
-			<a id="all" href="#">Browse Library (es)</a>
-              {%endcomment %}
-
-              
-     {%endifequal %}
+    {%endifequal %}
       
 
   </div>
-
-
 
 <!-- content box -->
   <div class="help_content learn_more_help_content help_box">
-  
-      <!-- this is the same content as on the flatpage: -->
-      
+        <!-- this is the same content as on the flatpage: -->
       {%ifequal language_code 'en'%}
-      
         {{displayquestion.learn_more_english.content|safe}}
-        
      {%endifequal %}
-     
-      {%ifequal language_code 'es'%}
-      
+     {%ifequal language_code 'es'%}
         {{displayquestion.learn_more_spanish.content|safe}}
-        
      {%endifequal %}
-     
-      <!-- close button -->
+     <!-- close button -->
+     <a id="help_close" class ="learn_more_close_button" href="javascript:void(0)" onclick="$('.learn_more_help_content').hide()">X</a>
       
-      <a id="help_close" class ="learn_more_close_button" href="javascript:void(0)" onclick="$('.learn_more_help_content').hide()">X</a>
-      
-  </div>
+</div>
 

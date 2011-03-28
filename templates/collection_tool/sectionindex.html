@@ -12,7 +12,7 @@
 		      {{s.english_title}}
 		{%endifequal%}
 		{%ifequal language_code 'es'%}
-			    {{s.spanish_title}}
+			   {{s.spanish_title}}
 		{%endifequal%}
 		</a>
 	{% endfor %}
@@ -61,7 +61,15 @@
 		
 		<div id="content">
 			
-			<h2 id="contenttitle">{{section.english_title}}</h2>
+		{%ifequal language_code 'en'%}
+		      <h2 id="contenttitle">{{section.english_title}}</h2>
+		{%endifequal%}
+		{%ifequal language_code 'es'%}
+			   <h2 id="contenttitle">{{section.spanish_title}}</h2>
+		{%endifequal%}
+			
+			
+			
 			 <div class="section_description">
 				    {%ifequal language_code 'en'%}
 						<p>{{section.english_description}}</p>
