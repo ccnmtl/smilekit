@@ -25,8 +25,7 @@ def risk(request, language_code):
   
   help_item = None
   try:
-    help_item = HelpUrl.objects.filter (url__contains = '/risk')[0]
-    #print help_item
+    help_item = HelpUrl.objects.filter (url__contains = '/risk')[0].help_item
   except:
     pass
   c = RequestContext(request,{
@@ -43,8 +42,13 @@ def topics(request, language_code):
     raise Http404
   t = loader.get_template('collection_tool/topics.html')
   
+  help_item = None
+  try:
+    help_item = HelpUrl.objects.filter (url__contains = '/topics/')[0].help_item
+  except:
+    pass
+    
   #collate all the flat pages referred to by the topics so we can easily put them into divs:
-  
   topic_urls =       [the_topic.learn_more_english['url'] for the_topic in Topic.objects.all() if the_topic.learn_more_english]
   topic_urls.extend( [the_topic.learn_more_spanish['url'] for the_topic in Topic.objects.all() if the_topic.learn_more_spanish])
   flat_pages_we_need = FlatPage.objects.filter(url__in = topic_urls )
@@ -54,7 +58,7 @@ def topics(request, language_code):
       'language_code': language_code,
       'all_topics': Topic.objects.all(),
       'flat_pages_we_need' : flat_pages_we_need,
-      #'all_families': Family.objects.all(),
+      'help_item': help_item,
   })
   return HttpResponse(t.render(c))
   

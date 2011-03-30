@@ -288,6 +288,7 @@ class Goal (models.Model):
   def help_item(self):
     try:
       help_url = HelpUrl.objects.filter (url__contains = 'goal/%d/' % self.id )[0].help_item
+      return help_url
     except:
       return None
     return None

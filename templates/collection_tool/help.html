@@ -3,10 +3,17 @@
 	<div class="help_content">
 	
 		
-		<h4>Guide</h4>
+		{%ifequal language_code 'en'%}<h4>Guide:</h4>{%endifequal %}
+		{%ifequal language_code 'es'%}<h4>Guía:</h4>{%endifequal %}
+		
 		
 	{%if h_i.english_objective %}
-		<h5>Objective: </h5>
+		<h5>
+		{%ifequal language_code 'en'%}Objective:{%endifequal %}
+		{%ifequal language_code 'es'%}Objetivo:{%endifequal %}
+		
+		
+		</h5>
 		
 		<p>
 		{%ifequal language_code 'es'%}{{h_i.spanish_objective|safe}}{%endifequal %}
@@ -15,7 +22,8 @@
 	{%endif %}
 		
 	{% if h_i.english_script %}
-		<h5>Script:</h5>
+		{%ifequal language_code 'en'%}<h5>Script:</h5>{%endifequal %}
+		{%ifequal language_code 'es'%}<h5>Guión:</h5>{%endifequal %}
 		
 		<p>
 		{%ifequal language_code 'es'%}{{h_i.spanish_script|safe}}{%endifequal %}
@@ -24,7 +32,10 @@
 	{%endif %}
 		
   {%if h_i.helpbulletpoint_set.all %}
-		<h5>Watch for:</h5>
+		
+		{%ifequal language_code 'en'%}<h5>Watch for:</h5>{%endifequal %}
+		{%ifequal language_code 'es'%}<h5>Prestar atención:</h5>{%endifequal %}
+		
 		
 		<ul>
 		{% for b in h_i.helpbulletpoint_set.all %}
@@ -38,8 +49,8 @@
 		
 		
   {%if h_i.english_script_instructions %}
-		<h5>More Information:</h5>
-		
+		{%ifequal language_code 'en'%}<h5>More Information:</h5>{%endifequal %}
+		{%ifequal language_code 'es'%}<h5>Más información:</h5>{%endifequal %}
 		<p>
 		{%ifequal language_code 'es'%}{{h_i.spanish_script_instructions|safe}}{%endifequal %}
 		{%ifequal language_code 'en'%}{{h_i.english_script_instructions|safe}}{%endifequal %}
@@ -48,16 +59,17 @@
 		
 		
 	{%if  h_i.helpdefinition_set.all %}
-		<h5>Definitions:</h5>
+		{%ifequal language_code 'en'%}<h5>Definitions:</h5>{%endifequal %}
+		{%ifequal language_code 'es'%}<h5>Definiciones:</h5>{%endifequal %}
 		
 		{% for d in h_i.helpdefinition_set.all %}
 		<p>
-		{%ifequal language_code 'es'%}
-		<b>{{d.spanish_title}}</b> - {{d.spanish_body}}
-		{%endifequal %}
-		{%ifequal language_code 'en'%}
-		<b>{{d.english_title}}</b> - {{d.english_body}}
-		{%endifequal %}
+		    {%ifequal language_code 'es'%}
+		    <b>{{d.spanish_title}}</b> - {{d.spanish_body}}
+		    {%endifequal %}
+		    {%ifequal language_code 'en'%}
+		    <b>{{d.english_title}}</b> - {{d.english_body}}
+		    {%endifequal %}
 		</p>
 		{% endfor %}
 	{%endif %}

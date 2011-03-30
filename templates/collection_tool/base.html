@@ -34,13 +34,16 @@
     
    {% if user.current_visit %}
 			    <a id ="log_out_link"    href="javascript:end_visit_before_logout()">Log Out</a>
-			  {%else %}
+   {%else %}
           <a id ="log_out_link"    href="/logout">Log Out</a>
-	 {% endif %}
+   {% endif %}
 	 
 	 
     <a href="/about/">About</a>
-    <a href="/library/">Library</a>
+    
+    {%ifequal language_code 'en'%}<a href="/library/">Library</a>{%endifequal%}
+    {%ifequal language_code 'es'%}<a href="/library_es/">Biblioteca</a>{%endifequal%}
+    
     
 	 {% block language_toggle %}
 			<a href="">Espa&#241;ol</a>

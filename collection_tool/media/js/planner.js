@@ -335,13 +335,19 @@ function saveMeal() {
 }
 
 function deleteMeal() {
-  jQuery(this).parent().removeClass('timerowfilled');
-  jQuery(this).parent().removeClass('timerowfood');
-  jQuery(this).parent().removeClass('timerowfluoride');
-  jQuery('.label-snack', this).hide();
-  jQuery('.label-meal', this).hide();
-  jQuery('.activityitems', jQuery(this).parent()).html("");
-  jQuery('.activityitems', jQuery(this).parent()).removeData();
+  
+  parent_element = jQuery(this).parent();
+  
+  parent_element.removeClass('timerowfilled');
+  parent_element.removeClass('timerowfood');
+  parent_element.removeClass('timerowfluoride');
+  
+  var mealorsnack = jQuery('.mealorsnack', parent_element);
+  jQuery(".label-meal", mealorsnack).hide();
+  jQuery(".label-snack", mealorsnack).hide();
+  
+  jQuery('.activityitems', parent_element ).html("");
+  jQuery('.activityitems', parent_element ).removeData();
   
   saveState();
 }
