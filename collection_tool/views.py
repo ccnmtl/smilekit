@@ -7,13 +7,25 @@ from django.template import RequestContext, loader
 import random
 from datetime import datetime, timedelta
 
+
+def get_help_item (url_string):
+  """ fetch a help item for a particular URL"""
+  help_item = None
+  try:
+    help_item = HelpUrl.objects.filter (url__contains = url_string)[0].help_item
+  except:
+    pass
+  return help_item
+
 def intro(request, language_code):
   """ Intro (default first ) page of the collection tool."""
   if language_code not in ['en', 'es']:
     raise Http404
+     
   t = loader.get_template('collection_tool/intro.html')
   c = RequestContext(request,{
-      'language_code': language_code
+      'language_code': language_code,
+      'help_item': get_help_item ('/intro/')
   })
   return HttpResponse(t.render(c))
 
@@ -22,15 +34,9 @@ def risk(request, language_code):
   if language_code not in ['en', 'es']:
     raise Http404
   t = loader.get_template('collection_tool/risk.html')
-  
-  help_item = None
-  try:
-    help_item = HelpUrl.objects.filter (url__contains = '/risk')[0].help_item
-  except:
-    pass
   c = RequestContext(request,{
       'language_code': language_code,
-      'help_item': help_item,
+      'help_item': get_help_item ('/risk/'),
       'all_topics': Topic.objects.all(),
       'all_configs': Configuration.objects.all(),
       'all_families': Family.objects.all(),
@@ -41,12 +47,6 @@ def topics(request, language_code):
   if language_code not in ['en', 'es']:
     raise Http404
   t = loader.get_template('collection_tool/topics.html')
-  
-  help_item = None
-  try:
-    help_item = HelpUrl.objects.filter (url__contains = '/topics/')[0].help_item
-  except:
-    pass
     
   #collate all the flat pages referred to by the topics so we can easily put them into divs:
   topic_urls =       [the_topic.learn_more_english['url'] for the_topic in Topic.objects.all() if the_topic.learn_more_english]
@@ -58,7 +58,7 @@ def topics(request, language_code):
       'language_code': language_code,
       'all_topics': Topic.objects.all(),
       'flat_pages_we_need' : flat_pages_we_need,
-      'help_item': help_item,
+      'help_item': get_help_item ('/topics/'),
   })
   return HttpResponse(t.render(c))
   
@@ -69,7 +69,8 @@ def goals(request, language_code):
   t = loader.get_template('collection_tool/goals.html')
   c = RequestContext(request,{
       'language_code': language_code,
-      'all_goals': Goal.objects.all()
+      'all_goals': Goal.objects.all(),
+      'help_item': get_help_item ('/goals/'),
   })
   return HttpResponse(t.render(c))
 
@@ -156,15 +157,6 @@ def section(request, section_id, language_code):
       'all_sections': AssessmentSection.objects.all()
   })
   return HttpResponse(t.render(c))
-  
-def video (request, video_filename):
-  """Show a video."""
-  t = loader.get_template('collection_tool/video.html')
-  c = RequestContext(request,{
-      'video_filename' : video_filename
-  })
-  return HttpResponse(t.render(c))
-
 
 def question(request, displayquestion_id, language_code):
   """ Look up a DisplayQuestion object and display it in the data collection tool. Note that question_id refers to a displayquestion object, not a question object."""
@@ -248,13 +240,13 @@ def question(request, displayquestion_id, language_code):
   return HttpResponse(t.render(c))
 
 
-
-def widget_test(request):
-  starttime = datetime(1984,1,1,7)
-  times = [(starttime + timedelta(minutes=30) * i).strftime("%I:%M%p")
-           for i in range(34)]
-  items = PlannerItem.objects.all().order_by('type')
-  return render_to_response("collection_tool/widget_test.html", {"times":times, "items":items})
+if 1 == 0:
+    def widget_test(request):
+      starttime = datetime(1984,1,1,7)
+      times = [(starttime + timedelta(minutes=30) * i).strftime("%I:%M%p")
+               for i in range(34)]
+      items = PlannerItem.objects.all().order_by('type')
+      return render_to_response("collection_tool/widget_test.html", {"times":times, "items":items})
 
 
 

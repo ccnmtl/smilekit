@@ -28,11 +28,22 @@
 	<div id ="language_code_div">{{language_code}}</div>
 	
 	<h2 align="center">
+	
+	{%ifequal language_code 'en'%}
 	  Plan History
+	{%endifequal%}
+	{%ifequal language_code 'es'%}
+	    Historia de planificación
+	{%endifequal%}
 	</h2>
 
 	<p><b>
-	 These are some of the goals you've already made progress on:
+	{%ifequal language_code 'en'%}
+    	 These are some of the goals you've already made progress on:
+	{%endifequal%}
+	{%ifequal language_code 'es'%}
+	    Éstos son algunos de los objetivos en los cuales ya ha progresado:
+	{%endifequal%}
 	</b></p>
 	
 	<!-- JS will hide the ones you haven't visited. -->
@@ -74,7 +85,12 @@
 	</ol>
 	
 	<p><b>
-	 Here are some other goals to look at:
+	{%ifequal language_code 'en'%}
+	    Here are some other goals to look at:
+	{%endifequal%}
+	{%ifequal language_code 'es'%}
+	    Éstos son otros objetivos a tener en cuenta:
+	{%endifequal%}
 	</b></p>
 	
 	
