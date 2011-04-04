@@ -1,3 +1,4 @@
+
 <div id="planner">
   <div id="selenium_tests_for_planner">
     <a id = "selenium_link" href="javascript:mineshaft_canary()" >Run tests</a>
@@ -50,6 +51,9 @@
 				
 		    {% endfor %}
 	</div>
+	
+	    
+
 
 	<div id="plannerleft">
 		
@@ -60,26 +64,38 @@
 			<div class="timerow timerowcollapsed" id="timerow-{{time}}">
 				<div class="time"><span class="timetext">{{ time }}</span></div>
 				<div class="timeactivity">
+
 				  <span class="timetext">
 				    <span class="mealorsnack">
+
+
+
 				      <span class="label-snack">
-                                        {% ifequal language_code 'es' %}
+                                        {% ifequal language_code 'en' %}
                                           Snack
                                         {% endifequal %}
-                                        {% ifnotequal language_code 'es' %}
-                                          Snack
-                                        {% endifnotequal %}
+                                        {% ifequal language_code 'es' %}
+                                          Refrigerio
+                                        {% endifequal %}
                                       </span>
 				      <span class="label-meal">
+                                        {% ifequal language_code 'en' %}
+                                          Meal
+                                        {% endifequal %}
                                         {% ifequal language_code 'es' %}
                                           Comida
                                         {% endifequal %}
-                                        {% ifnotequal language_code 'es' %}
-                                          Meal
-                                        {% endifnotequal %}
                                       </span>
 				    </span>
-				    <span class="activityitems"></span>
+				    <span class="activityitems">
+				                
+                            <!-- does NOT work here -->
+				            
+				    </span>
+
+
+				    
+				    
 				  </span>
 				</div>
 				<div title="Move Up" class="timebutton timeactionup"><span class="timetext">Up</span></div>
