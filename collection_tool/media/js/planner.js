@@ -6,15 +6,6 @@ var timerows = [];
 var items_2 = ""; //  holds pending items. we add them after the timerows are visible. and all existing carousels are initialized.
 var goodrow_2 = null;
 
-
-function init_carousel_2() {
-    /// use this the first time on new meals
-    jQuery(this).jcarousel({
-            scroll: 1,
-    });
-}
-
-
 function reinit_carousels() {
     jQuery('.jcarousel-skin-ie7').each (function() {
           jQuery(this.parentNode).jcarousel({
@@ -22,8 +13,6 @@ function reinit_carousels() {
           });
      });
 }
-
-
 
 // generate UL html that can be inserted at the right time.
 function generate_items_for_row () {
@@ -44,6 +33,13 @@ function add_items_to_row (items_2, goodrow) {
       // initialize the carousel
       jQuery('.jcarousel-skin-ie7', jQuery(goodrow)).each (init_carousel_2);
   }
+}
+
+function init_carousel_2() {
+    /// use this the first time on new meals
+    jQuery(this).jcarousel({
+            scroll: 1,
+    });
 }
 
 
@@ -200,23 +196,16 @@ function resetTimeline(e) {
 function initPlanner() {
   jQuery('#language_code_div').click (mineshaft_canary);
  
- 
- 
   jQuery('.jcarousel-skin-ie7').each (init_carousel_2);
   
-    
-   //jQuery('.jcarousel-container').hide();
-    //doesn't work:
-   //jQuery('div#timetable .timerowcollapsed .timeactivity').hide()
-   //jQuery('div#timetable .timeactivity').hide()
-
-  
   jQuery('.thumbnail').click(function () {
-    if(jQuery(this).hasClass('thumbnaildisabled')) { return; }
-    jQuery(this).toggleClass('thumbnailselected');
+  if(jQuery(this).hasClass('thumbnaildisabled')) { return; }
+  jQuery(this).toggleClass('thumbnailselected');
 
-    var id= jQuery(this).parent().parent('.photoboxcontainer').attr('id');
-    if(jQuery(this).hasClass('thumbnailselected')) {
+  var id= jQuery(this).parent().parent('.photoboxcontainer').attr('id');
+  if(jQuery(this).hasClass('thumbnailselected')) {
+  
+  
       if(id == "photoboxcontainer-fluoride") {
         // disable all non-fluoride items
         jQuery('.photoboxcontainer').not('#photoboxcontainer-fluoride').children().children('.thumbnail').each(function() {
