@@ -3,46 +3,6 @@ var mode = "planner";  // options: food, fluoride, planner
 var savingFluoride = false;
 var timerows = [];
 
-var items_2 = ""; //  holds pending items. we add them after the timerows are visible. and all existing carousels are initialized.
-var goodrow_2 = null;
-
-function reinit_carousels() {
-    jQuery('.jcarousel-skin-ie7').each (function() {
-          jQuery(this.parentNode).jcarousel({
-                  scroll: 1,
-          });
-     });
-}
-
-// generate UL html that can be inserted at the right time.
-function generate_items_for_row () {
-  var retval = '<ul id = "mycarousel" class = "jcarousel-skin-ie7">';
-  jQuery('.thumbnailselected').each(function() {
-    var label = jQuery('#'+this.id+'-label').html();
-    retval += '<li>' + label + '</li>';
-  });
-  retval += "</ul>";
-  return retval;
-}
-
-// actually insert the UL.
-function add_items_to_row (items_2, goodrow) {
-  if (items_2 != "") {
-      // add the items to the activityitems
-      jQuery('.activityitems', jQuery(goodrow)).html(items_2);
-      // initialize the carousel
-      jQuery('.jcarousel-skin-ie7', jQuery(goodrow)).each (init_carousel_2);
-  }
-}
-
-function init_carousel_2() {
-    /// use this the first time on new meals
-    jQuery(this).jcarousel({
-            scroll: 1,
-    });
-}
-
-
 function saveState() {
   // save state to localstorage
   var original_timerows = timerows;
@@ -113,6 +73,18 @@ function saveState() {
   }
 }
 
+/*
+function how_many_risky_exposures () {
+    var risky_exposures = 0;
+    // for each food anywhere in the planner:
+    jQuery(".timerowfood .activityitems").each(function() {
+      var risk = jQuery(this).data('risk');
+      // an average of 3 or higher is 'risky'
+      if(risk >= 3) { risky_exposures++; }
+    });
+    return risky_exposures;
+}
+*/
 
 function foods_for_this_time(when) {
     the_time = jQuery (".timerow")[when];
@@ -171,7 +143,6 @@ function loadState(reset) {
     else { elem.addClass("timerowfood"); }
     jQuery(".activityitems", elem).html(timerow['items']);
   }
-  
 }
 
 function setMode(newMode) {
@@ -192,20 +163,15 @@ function resetTimeline(e) {
   e.preventDefault();
 }
 
-
 function initPlanner() {
   jQuery('#language_code_div').click (mineshaft_canary);
- 
-  jQuery('.jcarousel-skin-ie7').each (init_carousel_2);
   
   jQuery('.thumbnail').click(function () {
-  if(jQuery(this).hasClass('thumbnaildisabled')) { return; }
-  jQuery(this).toggleClass('thumbnailselected');
+    if(jQuery(this).hasClass('thumbnaildisabled')) { return; }
+    jQuery(this).toggleClass('thumbnailselected');
 
-  var id= jQuery(this).parent().parent('.photoboxcontainer').attr('id');
-  if(jQuery(this).hasClass('thumbnailselected')) {
-  
-  
+    var id= jQuery(this).parent().parent('.photoboxcontainer').attr('id');
+    if(jQuery(this).hasClass('thumbnailselected')) {
       if(id == "photoboxcontainer-fluoride") {
         // disable all non-fluoride items
         jQuery('.photoboxcontainer').not('#photoboxcontainer-fluoride').children().children('.thumbnail').each(function() {
@@ -280,8 +246,6 @@ function initPlanner() {
   // collapse/expand timeline
   jQuery('.arrowclose').click(
     function() {
-    
-      jQuery('.jcarousel-container').hide();
       jQuery('.arrowclose').hide();
       jQuery('.arrowopen').show();
       jQuery('.timerow').addClass("timerowcollapsed");
@@ -291,26 +255,13 @@ function initPlanner() {
   );
   jQuery('.arrowopen').click(
     function() {
-       
-      jQuery('.jcarousel-container').show();
       jQuery('.arrowclose').show();
       jQuery('.arrowopen').hide();
       jQuery('.timerow').removeClass("timerowcollapsed");
       jQuery('#plannerright').hide();
       jQuery('#plannerleft').width("95%");
-      jQuery('.timeactivity').show();
-      
-      
-      reinit_carousels();
-
-      add_items_to_row (items_2, goodrow_2)
-      
-      items_2 = "";
-      goodrow_2 = null;
     }
   );
-  
-  
 }
 
 function findNearestEmpty(elem) {
@@ -339,29 +290,25 @@ function findNearestEmpty(elem) {
 }
 
 function saveMeal() {
-  
-  // skip to the next valid row if this one is already full
-  var goodrow = findNearestEmpty(jQuery(this).parent());
-  
-  // take all the selected thumbnails and make a UL. (stored for later)
-  items_2 = generate_items_for_row ();
-  goodrow_2 = goodrow;
-  
-  
+  var items = "";
   var total_risk = 0;
   var num_items = 0;
   jQuery('.thumbnailselected').each(function() {
     var label = jQuery('#'+this.id+'-label').html();
+    items += label + ", ";
     var risk = parseInt(jQuery('#'+this.id+'-risk').val());
     total_risk += risk;
     num_items++;
     jQuery(this).removeClass('thumbnailselected');
   });
-  
   if(num_items == 0) { return; }  // nothing was selected
 
   var avg_risk = total_risk / num_items;
+
+  items = items.slice(0, -2); // take off the final ", "
   
+  // skip to the next valid row if this one is already full
+  var goodrow = findNearestEmpty(jQuery(this).parent());
 
   if(savingFluoride) {
     goodrow.addClass('timerowfluoride');
@@ -376,10 +323,14 @@ function saveMeal() {
     jQuery('.label-snack', goodrow).show();
     //jQuery('.timeactionswap', goodrow).show();
   }
+  jQuery('.activityitems', jQuery(goodrow)).html(items);
   jQuery('.activityitems', jQuery(goodrow)).data("risk", avg_risk);
+
   jQuery(goodrow).addClass('timerowfilled');
+
   // re-enable any disabled items
   jQuery('.thumbnaildisabled').removeClass('thumbnaildisabled');
+  
   saveState();
 }
 
@@ -414,8 +365,6 @@ function swapRows(row1, row2) {
   // swap IDs
   copy_from.attr('id', row2.attr('id'));
   copy_to.attr('id', row1.attr('id')); 
-  
-  reinit_carousels();
 }
 
 function moveUp() {
