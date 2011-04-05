@@ -3,8 +3,49 @@ var mode = "planner";  // options: food, fluoride, planner
 var savingFluoride = false;
 var timerows = [];
 
-var items_2 = ""; //  holds pending items. we add them after the timerows are visible. 
+var items_2 = ""; //  holds pending items. we add them after the timerows are visible. and all existing carousels are initialized.
 var goodrow_2 = null;
+
+
+function init_carousel_2() {
+    /// use this the first time on new meals
+    jQuery(this).jcarousel({
+            scroll: 1,
+    });
+}
+
+
+function reinit_carousels() {
+    jQuery('.jcarousel-skin-ie7').each (function() {
+          jQuery(this.parentNode).jcarousel({
+                  scroll: 1,
+          });
+     });
+}
+
+
+
+// generate UL html that can be inserted at the right time.
+function generate_items_for_row () {
+  var retval = '<ul id = "mycarousel" class = "jcarousel-skin-ie7">';
+  jQuery('.thumbnailselected').each(function() {
+    var label = jQuery('#'+this.id+'-label').html();
+    retval += '<li>' + label + '</li>';
+  });
+  retval += "</ul>";
+  return retval;
+}
+
+// actually insert the UL.
+function add_items_to_row (items_2, goodrow) {
+  if (items_2 != "") {
+      // add the items to the activityitems
+      jQuery('.activityitems', jQuery(goodrow)).html(items_2);
+      // initialize the carousel
+      jQuery('.jcarousel-skin-ie7', jQuery(goodrow)).each (init_carousel_2);
+  }
+}
+
 
 function saveState() {
   // save state to localstorage
@@ -156,12 +197,6 @@ function resetTimeline(e) {
 }
 
 
-function init_carousel_2() {
-    jQuery(this).jcarousel({
-            scroll: 1,
-    });
-}
-
 function initPlanner() {
   jQuery('#language_code_div').click (mineshaft_canary);
  
@@ -276,17 +311,13 @@ function initPlanner() {
       jQuery('#plannerleft').width("95%");
       jQuery('.timeactivity').show();
       
+      
+      reinit_carousels();
 
       add_items_to_row (items_2, goodrow_2)
       
       items_2 = "";
       goodrow_2 = null;
-      
-      if (1 == 0) {
-          // this makes old carousels work on reload.
-          // this also breaks new carousels on reopen timeline
-          reinit_carousels();
-      }
     }
   );
   
@@ -361,34 +392,6 @@ function saveMeal() {
   // re-enable any disabled items
   jQuery('.thumbnaildisabled').removeClass('thumbnaildisabled');
   saveState();
-}
-// generate UL html that can be inserted at the right time.
-function generate_items_for_row () {
-  var retval = '<ul id = "mycarousel" class = "jcarousel-skin-ie7">';
-  jQuery('.thumbnailselected').each(function() {
-    var label = jQuery('#'+this.id+'-label').html();
-    retval += '<li>' + label + '</li>';
-  });
-  retval += "</ul>";
-  return retval;
-}
-
-// actually insert the UL.
-function add_items_to_row (items_2, goodrow) {
-  if (items_2 != "") {
-      // add the items to the activityitems
-      jQuery('.activityitems', jQuery(goodrow)).html(items_2);
-      // initialize the carousel
-      jQuery('.jcarousel-skin-ie7', jQuery(goodrow)).each (init_carousel_2);
-  }
-}
-
-function reinit_carousels() {
-    jQuery('.jcarousel-skin-ie7').each (function() {
-          jQuery(this.parentNode).jcarousel({
-                  scroll: 1,
-          });
-     });
 }
 
 function deleteMeal() {
