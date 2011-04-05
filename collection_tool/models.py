@@ -454,7 +454,8 @@ class Resource(models.Model):
 
 
   def other_language_version(self, language_code):
-    candidates = Resource.objects.filter(name__contains=self.name).filter(name__contains=language_code)
+    language_code_in_parentheses = '(%s)' % language_code
+    candidates = Resource.objects.filter(name__contains=self.name).filter(name__contains=language_code_in_parentheses)
     if candidates:
       return candidates[0]
     return self
