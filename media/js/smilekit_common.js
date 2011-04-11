@@ -124,10 +124,19 @@ function prev_next_url (family_url_list) {
              if ( k > 0) {
                  prev = family_url_list[k - 1][lan]
              }
+             
+             // store the assessment page:
              if (is_part_of_assessment ( family_url_list[k ][lan])) {
                 /// store the current page's url.
                 set_an_url (family_url_list[k ][lan]);
              }
+             // store the interview page:
+            if (1 == 0 ) {
+            
+                // store the page
+                // 
+            }
+             
              if (  k + 1 < family_url_list.length) {
                  next = family_url_list[k + 1][lan]
               }
@@ -138,6 +147,32 @@ function prev_next_url (family_url_list) {
 }
 
 
+function set_last_interview_page () {
+
+
+}
+
+function get_last_interview_page () {
+
+
+}
+
+function return_to_last_interview_page() {
+    alert ('a');
+
+}
+
+function is_part_of_interview (url) {
+    return   url.match ('collection_tool/intro'       ) != null   \
+     ||      url.match ('collection_tool/question'    ) != null   \
+     ||      url.match ('collection_tool/section'     ) != null   \
+     ||      url.match ('collection_tool/risk'        ) != null   \
+     ||      url.match ('collection_tool/topics'      ) != null   \
+     ||      url.match ('collection_tool/goal'        ) != null   \
+     ||      url.match ('collection_tool/planner/goal') != null   \
+     ||      url.match ('collection_tool/goals'       ) != null   \
+     ;
+}
 
 
 function set_assessment_url () {

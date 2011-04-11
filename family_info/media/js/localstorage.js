@@ -201,7 +201,6 @@ function test_analytics_set() {
           passed = false;
         }
      } catch(err) {
-        //alert ("setting analytics blob triggered error");
 	      alert(err.name); 
 	      passed = false;
 	      return;
