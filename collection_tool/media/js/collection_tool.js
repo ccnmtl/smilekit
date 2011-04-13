@@ -39,9 +39,9 @@ function check_for_previous_answers (my_question_id) {
 }
 
 function family_answers () {
-    family_id = local_storage_get (LOCAL_STORAGE_KEY, 'current_family_id');
-    family_key = family_id + '_answers'
-    result = local_storage_get (LOCAL_STORAGE_KEY, family_key);
+    var family_id = local_storage_get (LOCAL_STORAGE_KEY, 'current_family_id');
+    var family_key = family_id + '_answers';
+    var result = local_storage_get (LOCAL_STORAGE_KEY, family_key);
     if (result == null) {
       result = {}
     }
@@ -50,6 +50,8 @@ function family_answers () {
 
 function store_answer(question_id, answer_id) {
     answers = family_answers ();
+    var family_id = local_storage_get (LOCAL_STORAGE_KEY, 'current_family_id');
+    var family_key = family_id + '_answers';
     answers [question_id] = answer_id;
     local_storage_set (LOCAL_STORAGE_KEY, family_key, answers);
     update_debug_localstorage(); 
@@ -115,6 +117,10 @@ function hilite_answered_questions (arr) {
 }
 
 function init() {
+
+
+
+           
     family_id = local_storage_get (LOCAL_STORAGE_KEY, 'current_family_id');
     update_debug_localstorage();
     answers = family_answers();
@@ -177,6 +183,7 @@ function init() {
         hilite_answered_questions(new_answered_questions);
         
     }
+    set_last_interview_url ();
 }
 $(document).ready(init);
 

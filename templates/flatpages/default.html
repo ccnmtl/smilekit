@@ -1,12 +1,38 @@
 {% extends "family_info/base.html" %}
+{% block family_info_js %}
+<script src="/collection_tool/media/js/jquery.js" type="text/javascript"></script>
+<script type="text/javascript" src="/family_info/media/js/localstorage.js"></script>	
+
+<script type="text/javascript" >
+    var family_id;
+    function init_flatpages() {
+        // fetch family id ; needed for return_to_last_interview_url below ...
+        family_id = local_storage_get (LOCAL_STORAGE_KEY, 'current_family_id');    
+        // and also for nav:
+        
+        if (family_id != null) {
+            set_family_id_in_nav ( family_id)
+        } else {
+            jQuery('#family_id_nav_display').hide();
+            jQuery('#contentnav').hide();
+        }
+    }
+    jQuery(document).ready(init_flatpages);
+</script>
+{% endblock family_info_js %}
 
 {% block title %}{{ flatpage.title }}{% endblock %}
 {% block masthead %}{{ flatpage.title }}{% endblock %}
 {% block bodyclass %}{{ flatpage.title }}{% endblock %}
 
+
+
+
+
 {% block family_info_content %}
+<div id="contentnav">
+	  <a id="left" class="library_back_button" href="javascript:return_to_last_interview_url()">&#8592;</a>
+</div>
 
 {{ flatpage.content}}
-
-
 {% endblock %}
