@@ -82,13 +82,19 @@ function set_user_name_in_nav() {
     }  
 }
 
-function set_family_id_in_nav ( fam_id) {
+
+function study_id_number ( fam_id ) {
   all_questions = local_storage_get (LOCAL_STORAGE_KEY, 'list_of_questions');
   for (i = 0; i < all_questions.length; i = i + 1) {
     if (all_questions[i].family_id == fam_id) {
-      family_study_id =  all_questions[i]['family_study_id_number']
+      return all_questions[i]['family_study_id_number']
     }
   }
+  return null;
+}
+
+function set_family_id_in_nav ( fam_id) {
+  var family_study_id = study_id_number (fam_id);
   if ($('#family_id_nav_display')) {
     $('#family_id_nav_display').html( 'Family #' + family_study_id );
   }    

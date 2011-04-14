@@ -396,7 +396,19 @@ a#asstab02, a#asstab03, a#asstab05
 /********/
 
 
-
+#library_contentnav a {
+	padding: 7px;
+	width: 150px;
+	text-decoration: none;
+	color: #333;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f5f5f7), to(#c1c4c3));
+	background: -moz-linear-gradient(top, #f5f5f7, #c1c4c3);
+	text-shadow: #fff 1px 1px 1px;
+	font-weight: bold;
+	font-size: 16px;
+}
 
 
 /********/
