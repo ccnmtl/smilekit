@@ -49,7 +49,6 @@ function local_storage_get ( namespace, key) {
   return temp_state[key];
 }
 
-
 function wipe_local_storage() {
 	var answer = confirm("Do you really want to wipe the contents of this machine's local storage? All data shown on this page will be lost.")
 	if (answer){
@@ -201,7 +200,6 @@ function test_analytics_set() {
           passed = false;
         }
      } catch(err) {
-        //alert ("setting analytics blob triggered error");
 	      alert(err.name); 
 	      passed = false;
 	      return;

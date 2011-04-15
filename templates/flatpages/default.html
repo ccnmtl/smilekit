@@ -1,12 +1,60 @@
 {% extends "family_info/base.html" %}
+{% block family_info_js %}
+<script src="/collection_tool/media/js/jquery.js" type="text/javascript"></script>
+<script type="text/javascript" src="/family_info/media/js/localstorage.js"></script>	
+
+<script type="text/javascript" >
+    var family_id;
+    
+    function translate () {
+        spanish = (window.location.pathname.match ('_es/') != null);
+        if (spanish) {
+         jQuery ('#back_to_interview_link_en').hide()
+         jQuery ('#back_to_library_link_en').hide()
+         jQuery('#library_link').html('Biblioteca');
+        } else {
+         jQuery ('#back_to_interview_link_es').hide()
+         jQuery ('#back_to_library_link_es').hide()
+        }
+    }
+    
+    function init_flatpages() {
+        translate();
+        jQuery('#family_id_nav_display').hide()
+        already_at_library = (window.location.pathname.match ('library') != null);
+        if (already_at_library) {
+            jQuery ('.library_back_button').hide()    
+        }
+        family_id = local_storage_get (LOCAL_STORAGE_KEY, 'current_family_id');    
+        if (family_id != null) {
+            var family_study_id = study_id_number (family_id);
+            $('#user_id_nav_display').before('<a id="family_id_nav_display">Family #' + family_study_id + '</a>');
+        } else {
+            // if there's no interivew, no need to go back to it.
+            jQuery('.interview_back_button').hide();
+        }
+    }
+    jQuery(document).ready(init_flatpages);
+</script>
+{% endblock family_info_js %}
 
 {% block title %}{{ flatpage.title }}{% endblock %}
 {% block masthead %}{{ flatpage.title }}{% endblock %}
 {% block bodyclass %}{{ flatpage.title }}{% endblock %}
 
+
+
+
+
 {% block family_info_content %}
+<div id="library_contentnav">
+    <a id="back_to_interview_link_en" class="interview_back_button" href="javascript:return_to_last_interview_url()">Back to Interview</a>
+   
+    <a id="back_to_interview_link_es" class="interview_back_button" href="javascript:return_to_last_interview_url()">Regresar a la entrevista</a>
+    <a id="back_to_library_link_en" class="library_back_button" href="/library/">Back to library</a>
+    <a id="back_to_library_link_es" class="library_back_button" href="/library_es/">Regresar a la biblioteca</a>
+
+</div>
 
 {{ flatpage.content}}
-
-
-{% endblock %}
+{% endblock %}"{"constructor":{},"href":"http://kodos.ccnmtl.columbia.edu:7112/library_es/","protocol":"http:","hash":"","host":"kodos.ccnmtl.columbia.edu:7112","hostname":"kodos.ccnmtl.columbia.edu","pathname":"/library_es/","port":"7112","search":""}"

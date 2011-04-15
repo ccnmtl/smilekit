@@ -56,20 +56,25 @@ function is_part_of_assessment (url) {
     return url.match ('question') != null || url.match ('section') != null;
 }
 
+/*
 function set_an_url (url) {
+    // THIS OVERWRITES THE BLOB:
     analytics_data_blob = { recent_url :   url }
-    //try { 
-      set_analytics_data (LOCAL_STORAGE_KEY, family_id, analytics_data_blob);
-     //} catch(e) {
-       // alert ("setting analytics blob triggered error")
-       // alert (e.name);
-   // }
+    set_analytics_data (LOCAL_STORAGE_KEY, family_id, analytics_data_blob);
+    
+}
+*/
+//CORRECTING THIS:
+function set_an_url (url) {
+    recent_url_key = 'recent_url';
+    // do not overwrite existing data:
+    analytics_data_blob = get_analytics_data (LOCAL_STORAGE_KEY, family_id)
+    analytics_data_blob [recent_url_key] = url;
+    set_analytics_data (LOCAL_STORAGE_KEY, family_id, analytics_data_blob);
 }
 
-function get_an_url () {
-  tmp =  get_analytics_data (LOCAL_STORAGE_KEY, family_id)['recent_url'];
-  return tmp;
-}
+
+
 
 function set_user_name_in_nav() {
     if ($('#user_id_nav_display') && local_storage_get(LOCAL_STORAGE_KEY, 'user_name')) {
@@ -77,13 +82,19 @@ function set_user_name_in_nav() {
     }  
 }
 
-function set_family_id_in_nav ( fam_id) {
+
+function study_id_number ( fam_id ) {
   all_questions = local_storage_get (LOCAL_STORAGE_KEY, 'list_of_questions');
   for (i = 0; i < all_questions.length; i = i + 1) {
     if (all_questions[i].family_id == fam_id) {
-      family_study_id =  all_questions[i]['family_study_id_number']
+      return all_questions[i]['family_study_id_number']
     }
   }
+  return null;
+}
+
+function set_family_id_in_nav ( fam_id) {
+  var family_study_id = study_id_number (fam_id);
   if ($('#family_id_nav_display')) {
     $('#family_id_nav_display').html( 'Family #' + family_study_id );
   }    
@@ -101,7 +112,6 @@ function test_setting_url() {
   }
   catch (err) {
     alert (err.name);
-    //alert ('bad');
     return;
   }
   
@@ -121,16 +131,19 @@ function prev_next_url (family_url_list) {
     $.each(['en','es'], function(i, lan){
       $.each(family_url_list, function(k, v){
           if ( window.location.href.match (v[lan]) != null) {
-             if ( k > 0) {
-                 prev = family_url_list[k - 1][lan]
-             }
-             if (is_part_of_assessment ( family_url_list[k ][lan])) {
-                /// store the current page's url.
-                set_an_url (family_url_list[k ][lan]);
-             }
-             if (  k + 1 < family_url_list.length) {
+            if ( k > 0) {
+                prev = family_url_list[k - 1][lan]
+            }
+            // store the assessment page:
+            var our_current_url =  family_url_list[k ][lan];
+            if (is_part_of_assessment ( our_current_url)) {
+               /// store the current page's url.
+               set_an_url (our_current_url);
+            }
+            
+            if (  k + 1 < family_url_list.length) {
                  next = family_url_list[k + 1][lan]
-              }
+            }
           }
       });
     });
@@ -138,6 +151,77 @@ function prev_next_url (family_url_list) {
 }
 
 
+
+
+function get_an_url () {
+  // TODO: return null if undefined.
+  tmp =  get_analytics_data (LOCAL_STORAGE_KEY, family_id)['recent_url'];
+  return tmp;
+}
+
+
+function get_last_interview_url () {
+  var  last_interview_url_key = 'last_interview_url';
+  if (get_analytics_data (LOCAL_STORAGE_KEY, family_id)[last_interview_url_key] == undefined) {
+    return null;
+  }
+  return get_analytics_data (LOCAL_STORAGE_KEY, family_id)[last_interview_url_key];
+}
+
+
+function set_last_interview_url () {
+  our_current_url = window.location.pathname
+  if (is_part_of_interview( our_current_url )) {
+    last_interview_url_key = 'last_interview_url';
+    // do not overwrite existing data:
+    analytics_data_blob = get_analytics_data (LOCAL_STORAGE_KEY, family_id)
+    analytics_data_blob [last_interview_url_key] = our_current_url;
+    set_analytics_data (LOCAL_STORAGE_KEY, family_id, analytics_data_blob); 
+  }
+}
+
+
+function test_last_interview_url() {
+    old_url = get_last_interview_url ();
+
+
+    new_url = "/collection_tool/question/5/language/es/";    
+    set_last_interview_url (new_url) 
+    alert (get_last_interview_url ());
+
+    new_url = "/collection_tool/question/6/language/es/";
+    set_last_interview_url (new_url) 
+    alert (get_last_interview_url ());
+
+
+    set_an_url ('/collection_tool/question/6/language/es/');
+    alert (JSON.stringify( get_analytics_data (LOCAL_STORAGE_KEY, family_id)  ));
+
+
+    set_last_interview_url (old_url) 
+}
+
+//test_last_interview_url();
+
+
+function return_to_last_interview_url() {
+    there = get_last_interview_url ()
+    if (there != null) {
+        window.location = there;
+    }
+}
+
+function is_part_of_interview (url) {
+    return   url.match ('collection_tool/intro'       ) != null
+     ||      url.match ('collection_tool/question'    ) != null
+     ||      url.match ('collection_tool/section'     ) != null
+     ||      url.match ('collection_tool/risk'        ) != null
+     ||      url.match ('collection_tool/topics'      ) != null
+     ||      url.match ('collection_tool/goal'        ) != null
+     ||      url.match ('collection_tool/planner/goal') != null
+     ||      url.match ('collection_tool/goals'       ) != null
+     ;
+}
 
 
 function set_assessment_url () {

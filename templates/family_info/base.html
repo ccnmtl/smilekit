@@ -31,8 +31,6 @@ input[type="text"], input[type="password"] {
 	  <div id="masthead">
 		<h1 id="logo">MySmileBuddy</h1>
 		  <div id="mastheadnav">
-		  
-            
 	        {% if user.current_visit %}
 			        <a id ="log_out_link"    href="javascript:end_visit_before_logout()">Log Out</a>
 		    {%else %}
@@ -43,7 +41,7 @@ input[type="text"], input[type="password"] {
 		    <a href="/about/">About</a>
 		    
 		    
-	        <a href="/library/">Library</a>
+	        <a id="library_link" href="/library/">Library</a>
 	        
 	        
 	        {%if user.current_visit%}
@@ -66,15 +64,6 @@ input[type="text"], input[type="password"] {
 	  <div id="contentcontainer">
     {% block family_info_content %}
     {% endblock family_info_content %}
-      
-    <script language="javascript"> 
-      // this shouldn't be necessary; if the user has an interview the log out is disabled.
-      if (local_storage_has_data(LOCAL_STORAGE_KEY) &&  document.getElementById('log_out_link')) {
-          //document.getElementById('log_out_link').style.display = 'none';
-          //document.getElementById('log_out_link').href = 'javascript:alert ("asdasd!!")';
-          // we're now calling end_visit_before_logout in the template.
-      }
-    </script>
   </body>
 
 </html>
