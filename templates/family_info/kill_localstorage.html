@@ -36,14 +36,13 @@
     </div>
 
     <div>
-      <a class="scary_button" id = "dashboard_link" href= "/family_info/dashboard/">Go to dashboard and end this visit.</a>
+      <a class="scary_button" id = "dashboard_link" href= "/family_info/dashboard/">Send information on this machine to the database.</a>
     </div>
     
     <br/>
     <div>
-      <a class="scary_button" id = "wipe_link" href= "javascript:wipe_local_storage()">Wipe local storage without ending this visit.</a><br/>
+      <a class="scary_button" id = "wipe_link" href= "javascript:wipe_local_storage()">Delete information on this machine without sending it to the database.</a><br/>
     </div>
-
 	<form action="#" method="post">
 	<fieldset>
 	<legend>Current Contents of Local Storage </legend>
@@ -51,8 +50,6 @@
 	</textarea>
 	</fieldset>
 	</form>
-
-
     <script language ="javascript">
     ls = window.localStorage
       if (ls [LOCAL_STORAGE_KEY])  {
