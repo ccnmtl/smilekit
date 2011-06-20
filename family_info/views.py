@@ -471,6 +471,23 @@ def summary_table(request):
   })
   return HttpResponse(t.render(c))
   
+  
+  
+@login_required
+def food_table(request):
+  """Could this be in a spread sheet with family number as one column, time block as the next column, and foods (all foods from one block in one cell) in the third column?
+"""
+  t = loader.get_template('family_info/food_table.html')
+  # pdb.set_trace()
+  #all_families = Family.objects.all()
+  #all_families =  Family.objects.filter(study_id_number__in=(1, 2, 3, 4, 5))
+  c = RequestContext(request,{
+      'all_families':   Family.objects.all(),
+      #'all_families':  Family.objects.filter(study_id_number__in=(1, 2, 3, 4, 5)),
+      #'all_families':  Family.objects.filter(study_id_number__in=(1,)),
+  })
+  return HttpResponse(t.render(c))
+  
 @login_required
 def kill_visit(request, visit_id):
   t = loader.get_template('family_info/kill_visit.html')

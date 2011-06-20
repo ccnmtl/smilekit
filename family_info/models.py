@@ -4,7 +4,8 @@ from django.core.urlresolvers import reverse
 from collection_tool.models import Goal
 from django.core.cache import cache
 
-import datetime
+
+import datetime, re
 import simplejson as json
 
 #from collection_tool.urls import urlpatterns
@@ -116,6 +117,50 @@ class Family(models.Model):
     choices=RACE_ETHNICITY_CHOICES,
     default = 'nd'
   )
+  
+  #@property
+  def planner_data_summary(self):
+    temp = {}
+    result = []
+    
+    starttime = datetime.datetime(1984,1,1,6)
+    planner_times = [(starttime + datetime.timedelta(minutes=30) * i).strftime("%I:%M%p")
+      for i in range(36)]
+    
+    
+    if json.loads(self.interview_state).has_key('planner_data'):
+    
+        for row in json.loads(self.interview_state)['planner_data']['timerows']:
+            
+            items = row['items'].split(',')
+            
+            if row['fluoride']:
+                fluoride = "True"
+            else:
+                fluoride = "False"
+            
+            meal_or_snack = 'n/a'
+            if 'Meal' in row['mealorsnack']:
+                meal_or_snack = 'Meal'
+            if 'Snack' in row['mealorsnack']:
+                meal_or_snack = 'Snack'
+            
+            risk = row['risk']
+            
+            time_of_day =  re.findall ('\d\d:\d\d[A\|P]M', row['id'])[0]
+            
+            temp[time_of_day] = {
+                'items' : items,
+                'fluoride' : fluoride,
+                'meal_or_snack' : meal_or_snack,
+                'risk' : risk,
+            }
+            
+        for t in planner_times:
+            result.append ((t,temp.get(t)))
+        
+    return result
+  
   
   @property
   def all_visits(self):
