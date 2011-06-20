@@ -1,0 +1,83 @@
+{% load family_info_template_tags %}
+<html>
+<!--
+the simpler this page is, the better- the aim is to make it super-easy to paste into spreadsheets.
+-->
+<head>
+	  <link type="text/css" rel="stylesheet" href="/collection_tool/media/css/collection_tool.css" />
+</head>
+
+<body>
+{%load smartif%}
+
+<div>
+    <table id = "summary_table">
+    <tr>
+      <th>
+        Study ID #
+      </th>
+      <th>
+        Time
+      </th>
+      <th>
+        Foods
+      </th>
+      <th>
+        Risk
+      </th>
+    </tr>
+    {%for f in all_families %}
+        {%with  f.planner_data_summary  as summary %}
+            {%if summary %}
+                {%for time, what in summary %}
+                    {%if what%}
+                       <tr>
+                         {%ifchanged%}
+                         <td rowspan = "{{what.items.count}}">
+                            {{f.study_id_number}}
+                         </td>
+                         {%else%}
+                         <td>
+                            &nbsp;
+                         </td>
+                         {%endifchanged%}
+                       <td>{{time}}</td> 
+                       <td>
+                       {%for item in what.items %}
+                            {%if item == "brush teeth"%}
+                                brush teeth
+                                {% if what.fluoride == "True"%}
+                                    (fluoride)
+                                {%else %}
+                                    (non-fluoride)
+                                {%endif %}
+                            {%else %}
+                                {{item}}{%if not forloop.last %},{%endif%}
+                            {%endif %}
+                        {%endfor %}
+                       </td>
+                       <td>
+                        {{what.risk|floatformat:"-2"}}
+                       </td>
+                       </tr>
+                    {%endif%}
+                {%endfor %}
+            {%else %}
+                   <tr>
+                     <td>
+                        {{f.study_id_number}}
+                     </td>
+                     <td colspan = "3">
+                        &nbsp;
+                     </td>
+                   </tr>
+            {%endif%}    
+        {%endwith%}
+     
+    {%endfor%}
+    </table>
+</div>
+</body>
+
+</html>
+
