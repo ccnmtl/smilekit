@@ -118,47 +118,35 @@ class Family(models.Model):
     default = 'nd'
   )
   
-  #@property
+  @property
   def planner_data_summary(self):
     temp = {}
     result = []
-    
     starttime = datetime.datetime(1984,1,1,6)
     planner_times = [(starttime + datetime.timedelta(minutes=30) * i).strftime("%I:%M%p")
       for i in range(36)]
-    
-    
     if json.loads(self.interview_state).has_key('planner_data'):
-    
         for row in json.loads(self.interview_state)['planner_data']['timerows']:
-            
             items = row['items'].split(',')
-            
             if row['fluoride']:
                 fluoride = "True"
             else:
                 fluoride = "False"
-            
             meal_or_snack = 'n/a'
             if 'Meal' in row['mealorsnack']:
                 meal_or_snack = 'Meal'
             if 'Snack' in row['mealorsnack']:
                 meal_or_snack = 'Snack'
-            
             risk = row['risk']
-            
             time_of_day =  re.findall ('\d\d:\d\d[A\|P]M', row['id'])[0]
-            
             temp[time_of_day] = {
-                'items' : items,
-                'fluoride' : fluoride,
+                'items' :         items,
+                'fluoride' :      fluoride,
                 'meal_or_snack' : meal_or_snack,
-                'risk' : risk,
+                'risk' :          risk,
             }
-            
         for t in planner_times:
             result.append ((t,temp.get(t)))
-        
     return result
   
   
