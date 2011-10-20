@@ -4,9 +4,11 @@
 
 
 {% block family_info_content %}		
+		<!--
 		<h2 id="contenttitle">
 			Log In
 		</h2>
+		-->
 		
 		<p>
 		{% if form.errors %}
@@ -34,9 +36,9 @@
 
            <form method="post" action="{{ app_path }}">
 	
-	              <fieldset>
+	              <fieldset style="width: 310px; float: right; margin: 0px 0px 20px 20px;">
 	
-		              <legend>User Information</legend>
+		              <legend>Log In</legend>
 	
 			              <table>
 			
@@ -57,12 +59,28 @@
 			              </table>
 	
 	              </fieldset>
-  <input type="hidden" name="next" value="{{ next }}" />     
-</form>
+				<input type="hidden" name="next" value="{{ next }}" />     
+		</form>
+		
+		<p>
+		MySmileBuddy is a mobile application to guide health workers assessing a child's risk for early childhood caries (ECC or severe tooth decay) and counseling that child's family on preventative lifestyle changes. CCNMTL partnered with Dr. Burton Edelstein of the College of Dental Medicine to propose an improved risk assessment for ECC, and to develop and test the MySmileBuddy tool. Development of the tool and subsequent pilot with families was funded by the National Institutes of Health.
+		</p>
+		
+		<p>
+		Health workers and families using MySmileBuddy supplement their face-to-face interaction with the use of MySmileBuddy's mobile application on a tablet computer. MySmileBuddy calculates risk for ECC and assists health workers in providing educational and motivational activities about oral health. The application features assessment questions, interactive day/diet planner, videos and animation, as well as researcher tools including an online equation weighting tool for developing appropriate risk scores and an administrative area for viewing family data.
+		</p>
+		
+		<p>
+		MySmileBuddy represents a novel approach to improving dental health through emphasizing prevention rather than repair, exploring ways to move dental education and care into a community health worker context, and helping dentists learn to deliver counseling messages about behavior change.		
+		</p>
+		
+        <div id="promo" style="text-align: center; margin-top: 20px;">
+        <iframe width="560" height="315" src="http://www.youtube.com/embed/GXifvfQHpc4" frameborder="0" allowfullscreen></iframe>
+        </div>
         
             
-            <script type="text/javascript">
-              document.getElementById('id_username').focus()
-            </script>
+	  <script type="text/javascript">
+	    document.getElementById('id_username').focus()
+	  </script>
 
 {% endblock family_info_content %}
