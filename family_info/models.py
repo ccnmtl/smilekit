@@ -104,8 +104,8 @@ class Family(models.Model):
   date_modified =           models.DateTimeField(auto_now=True, auto_now_add=True)
   
   #demographic info:
-  mother_born_in_us = models.BooleanField( help_text = "Was the mother born in the United States?", null=True, blank = True)
-  food_stamps_in_last_year = models.BooleanField( help_text = "Has the family used food stamps in the past year?" , null=True, blank = True)
+  mother_born_in_us = models.NullBooleanField( help_text = "Was the mother born in the United States?", null=True, blank = True)
+  food_stamps_in_last_year = models.NullBooleanField( help_text = "Has the family used food stamps in the past year?" , null=True, blank = True)
   highest_level_of_parent_education = models.CharField(
     max_length=2,
     choices=EDUCATION_LEVEL_CHOICES, 
