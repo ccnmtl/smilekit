@@ -2,7 +2,7 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.shortcuts import get_object_or_404
 import simplejson as json
-from equation_balancer.models import ModuleWeight
+from equation_balancer.models import ModuleWeight, Question, Answer, Configuration
 from django.contrib.flatpages.models import FlatPage
 
 LANGUAGE_CHOICES = (
@@ -10,9 +10,9 @@ LANGUAGE_CHOICES = (
     ('es', 'Spanish'),
 )
 
-Question = models.get_model('equation_balancer', 'question')
-Answer = models.get_model('equation_balancer', 'answer')
-Configuration = models.get_model('equation_balancer', 'configuration')
+#Question = models.get_model('equation_balancer', 'question')
+#Answer = models.get_model('equation_balancer', 'answer')
+#Configuration = models.get_model('equation_balancer', 'configuration')
 
 ##################HELP AND TOPICS####
 

@@ -1,7 +1,8 @@
 from django.db import models
 import simplejson as json
 
-User = models.get_model('auth','user')
+from django.contrib.auth.models import User
+#User = models.get_model('auth','user')
 
 
 # configurations
