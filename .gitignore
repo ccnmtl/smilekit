@@ -3,3 +3,4 @@
 *.pyc
 ve
 temp.csv
+.coverage
