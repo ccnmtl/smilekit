@@ -12,7 +12,7 @@ urlpatterns = patterns(
   (r'^favicon\.ico$', 'django.views.generic.simple.redirect_to', {'url': '/site_media/images/favicon.ico'}),
   (r'^logout/$', 'django.contrib.auth.views.logout', {'template_name': 'logged_out.html'}),
   ('^accounts/',include('djangowind.urls')),
-  (r'^admin/(.*)', admin.site.root),
+  url(r'^admin/', include(admin.site.urls)),
   (r'^tinymce/', include('tinymce.urls')),
   (r'^site_media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': site_media_root}),
   (r'^uploads/(?P<path>.*)$','django.views.static.serve',{'document_root' : settings.MEDIA_ROOT}),

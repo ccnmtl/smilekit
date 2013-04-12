@@ -23,6 +23,9 @@ the simpler this page is, the better- the aim is to make it super-easy to paste 
         Foods
       </th>
       <th>
+        Snack vs. meal
+      </th>
+      <th>
         Risk
       </th>
     </tr>
@@ -55,7 +58,10 @@ the simpler this page is, the better- the aim is to make it super-easy to paste 
                                 {{item}}{%if not forloop.last %},{%endif%}
                             {%endif %}
                         {%endfor %}
-                       </td>
+                       </td>     
+                      <td>
+                        {{what.meal_or_snack}}
+                      </td>
                        <td>
                         {{what.risk|floatformat:"-2"}}
                        </td>

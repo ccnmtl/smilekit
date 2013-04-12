@@ -132,7 +132,59 @@ class Family(models.Model):
                 fluoride = "True"
             else:
                 fluoride = "False"
-            meal_or_snack = 'n/a'
+            #print row['mealorsnack'].strip(' \n\t')
+            import re
+            tmp = re.sub('\s+','',row['mealorsnack'])
+            #print tmp
+            
+            
+            
+            meal_or_snack = None
+            both_on = [
+                '<spanclass="label-snack">Snack</span><spanclass="label-meal">Meal</span>',
+                '<spanclass="label-snack">Refrigerio</span><spanclass="label-meal">Comida</span>',
+                '<spanclass="label-snack"style="">Snack</span><spanclass="label-meal">Meal</span>'
+            ]
+            
+            meal_on = [
+                '<spanstyle="display:none;"class="label-snack">Snack</span><spanstyle="display:inline;"class="label-meal">Meal</span>',
+                '<spanclass="label-snack"style="display:none;">Snack</span><spanclass="label-meal"style="display:inline;">Meal</span>',
+                '<spanclass="label-snack"style="display:none;">Refrigerio</span><spanclass="label-meal"style="display:inline;">Comida</span>',
+                '<spanstyle="display:none;"class="label-snack">Refrigerio</span><spanstyle="display:inline;"class="label-meal">Comida</span>',
+            ]
+            
+            snack_on = [
+                '<spanstyle="display:inline;"class="label-snack">Snack</span><spanstyle="display:none;"class="label-meal">Meal</span>',
+                '<spanstyle="display:inline;"class="label-snack">Snack</span><spanstyle="display:none;"class="label-meal">Meal</span>',
+                '<spanclass="label-snack"style="display:inline;">Snack</span><spanclass="label-meal"style="display:none;">Meal</span>',
+                '<spanstyle="display:inline;"class="label-snack">Refrigerio</span><spanstyle="display:none;"class="label-meal">Comida</span>',
+                '<spanclass="label-snack"style="">Refrigerio</span><spanclass="label-meal"style="display:none;">Comida</span>',
+                '<spanclass="label-snack"style="display:inline;">Refrigerio</span><spanclass="label-meal"style="display:none;">Comida</span>',
+            ]
+            
+            neither_on = [
+                '<spanclass="label-snack"style="display:none;">Refrigerio</span><spanclass="label-meal"style="display:none;">Comida</span>',
+                '<spanclass="label-snack"style="display:none;">Refrigerio</span><spanclass="label-meal"style="display:none;">Comida</span>',
+            ]
+            
+            if tmp in neither_on:
+                meal_or_snack = 'n/a'
+                
+            if tmp in both_on:
+                meal_or_snack = 'Blank'
+                
+            if tmp in meal_on:
+                meal_or_snack = 'Meal'
+                
+            if tmp in snack_on:
+                meal_or_snack = 'Snack'
+            
+            if meal_or_snack == None:
+                print tmp
+                
+                
+            
+            
             if 'Meal' in row['mealorsnack']:
                 meal_or_snack = 'Meal'
             if 'Snack' in row['mealorsnack']:
