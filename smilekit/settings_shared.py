@@ -85,7 +85,7 @@ TEMPLATE_DIRS = (
     os.path.join(os.path.dirname(__file__), "templates"),
 )
 
-INSTALLED_APPS = (
+INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -103,13 +103,9 @@ INSTALLED_APPS = (
     'smilekit.family_info',
     'smilekit.collection_tool',
     'smilekit.equation_balancer',
-    'sentry.client',
     'django_nose',
     'django_jenkins',
-)
-
-SENTRY_REMOTE_URL = 'http://sentry.ccnmtl.columbia.edu/sentry/store/'
-SENTRY_KEY = 'EWv5EELZnZIrOY'
+]
 
 THUMBNAIL_SUBDIR = "thumbs"
 EMAIL_SUBJECT_PREFIX = "[smilekit] "
