@@ -1,7 +1,7 @@
 from django.db import models
 from django.db.models.signals import post_save
 from django.core.urlresolvers import reverse
-from collection_tool.models import Goal
+from smilekit.collection_tool.models import Goal
 from django.core.cache import cache
 
 

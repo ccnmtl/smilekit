@@ -22,15 +22,23 @@ DATABASES = {
 
 CACHE_BACKEND = 'locmem://'
 
-if 'test' in sys.argv:
-    DATABASE_ENGINE = 'sqlite3'
-    DATABASE_NAME = ':memory:'
+if 'test' in sys.argv or 'jenkins' in sys.argv:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': ':memory:',
+            'HOST': '',
+            'PORT': '',
+            'USER': '',
+            'PASSWORD': '',
+        }
+    }
 
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
 NOSE_ARGS = [
     '--with-coverage',
-    '--cover-package=equation_balancer,collection_tool,family_info',
+    '--cover-package=smilekit.equation_balancer,smilekit.collection_tool,smilekit.family_info',
 ]
 
 
@@ -86,9 +94,9 @@ INSTALLED_APPS = (
     'typogrify',
     'survey',
     'tinymce',
-    'family_info',
-    'collection_tool',
-    'equation_balancer',
+    'smilekit.family_info',
+    'smilekit.collection_tool',
+    'smilekit.equation_balancer',
     'sentry.client',
     'django_nose',
 )
