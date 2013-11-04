@@ -1,5 +1,7 @@
 from smilekit.family_info.models import friendly_score, Family, Visit
-from smilekit.equation_balancer.models import Configuration
+from smilekit.family_info.models import Response
+from smilekit.equation_balancer.models import Configuration, Question, Answer
+from smilekit.equation_balancer.models import Module
 from django.contrib.auth.models import User
 from django.test import TestCase
 
@@ -132,3 +134,51 @@ class VisitTest(TestCase):
         self.assertTrue(v.is_happening)
         v.close_now()
         self.assertFalse(v.is_happening)
+
+
+def response_factory():
+    f = family_factory()
+    v = visit_factory()
+    m = Module.objects.create(name="module 1")
+    q = Question.objects.create(module=m, number=1)
+    a = Answer.objects.create(question=q, weight=0)
+    return Response.objects.create(
+        during_visit=v,
+        family=f,
+        question=q,
+        answer=a,
+    )
+
+
+class ResponseTest(TestCase):
+    def test_dir(self):
+        r = response_factory()
+        self.assertEqual(r.dir, dir(r))
+
+    def test_answer_english(self):
+        r = response_factory()
+        self.assertEqual(r.answer_english, "")
+
+    def test_interviewer(self):
+        r = response_factory()
+        self.assertEqual(r.interviewer, "")
+
+    def test_module(self):
+        r = response_factory()
+        self.assertEqual(r.module, "module 1")
+
+    def test_answer_weight(self):
+        r = response_factory()
+        self.assertEqual(r.answer_weight, 0)
+
+    def id_of_question(self):
+        r = response_factory()
+        self.assertEqual(r.id_of_question, r.question.id)
+
+    def id_of_answer(self):
+        r = response_factory()
+        self.assertEqual(r.id_of_answer, r.answer.id)
+
+    def id_of_family(self):
+        r = response_factory()
+        self.assertEqual(r.id_of_family, 1)
