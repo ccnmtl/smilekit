@@ -171,14 +171,14 @@ class ResponseTest(TestCase):
         r = response_factory()
         self.assertEqual(r.answer_weight, 0)
 
-    def id_of_question(self):
+    def test_id_of_question(self):
         r = response_factory()
         self.assertEqual(r.id_of_question, r.question.id)
 
-    def id_of_answer(self):
+    def test_id_of_answer(self):
         r = response_factory()
         self.assertEqual(r.id_of_answer, r.answer.id)
 
-    def id_of_family(self):
+    def test_id_of_family(self):
         r = response_factory()
         self.assertEqual(r.id_of_family, 1)
