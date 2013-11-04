@@ -1,4 +1,4 @@
-from smilekit.family_info.models import friendly_score, Family
+from smilekit.family_info.models import friendly_score, Family, Visit
 from smilekit.equation_balancer.models import Configuration
 from django.contrib.auth.models import User
 from django.test import TestCase
@@ -111,3 +111,24 @@ class FamilyTest(TestCase):
     def test_responses(self):
         f = family_factory()
         self.assertEqual(f.responses().count(), 0)
+
+
+def visit_factory():
+    i = User.objects.create(username="interviewer")
+    return Visit.objects.create(interviewer=i)
+
+
+class VisitTest(TestCase):
+    def test_dir(self):
+        v = visit_factory()
+        self.assertEqual(v.dir, dir(v))
+
+    def test_unicode(self):
+        v = visit_factory()
+        self.assertTrue(str(v).startswith("Visit "))
+
+    def test_is_happening(self):
+        v = visit_factory()
+        self.assertTrue(v.is_happening)
+        v.close_now()
+        self.assertFalse(v.is_happening)
