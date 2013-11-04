@@ -1,11 +1,11 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from smilekit.collection_tool.models import (
-    the_family, user, HelpItem, DisplayQuestion,
+    HelpItem, DisplayQuestion,
     Question)
 from django.shortcuts import get_object_or_404
 from django.template import RequestContext, loader
 from django.contrib.auth.decorators import login_required
-from family_info.models import (
+from smilekit.family_info.models import (
     Visit, Family, User, RACE_ETHNICITY_CHOICES, EDUCATION_LEVEL_CHOICES)
 from smilekit.equation_balancer.models \
     import Configuration as equation_balancer_configuration
@@ -255,11 +255,11 @@ def insert_family(request, **kwargs):
 
     # not collected at the moment due to HIPAA concerns
     if 'child_first_name' in rp:
-        the_family.child_first_name = rp['child_first_name']
+        the_new_family.child_first_name = rp['child_first_name']
     if 'child_last_name' in rp:
-        the_family.child_last_name = rp['child_last_name']
+        the_new_family.child_last_name = rp['child_last_name']
     if 'family_last_name' in rp:
-        the_family.family_last_name = rp['family_last_name']
+        the_new_family.family_last_name = rp['family_last_name']
 
     the_new_family.mother_born_in_us = (
         rp['mother_born_in_us'] == 'True')
@@ -339,7 +339,7 @@ def edit_family(request, **kwargs):
                     error_message=error_message
                 )
 
-                return back_to_edit_user(request, user, error_message)
+                return back_to_edit_user(request, request.user, error_message)
 
             the_config = equation_balancer_configuration.objects.get(
                 pk=rp['config_id'])
