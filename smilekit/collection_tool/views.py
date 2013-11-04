@@ -257,20 +257,6 @@ def question(request, displayquestion_id, language_code):
     return HttpResponse(t.render(c))
 
 
-if 1 == 0:
-    def widget_test(request):
-        starttime = datetime(1984, 1, 1, 7)
-        times = [(starttime + timedelta(minutes=30) * i).strftime("%I:%M%p")
-                 for i in range(34)]
-        items = PlannerItem.objects.all().order_by('type')
-        return (
-            render_to_response(
-                "collection_tool/widget_test.html",
-                {"times": times,
-                 "items": items})
-        )
-
-
 def manifest(request):
     """ This is the list of files that Smilekit needs to save locally
     on the ipad, so that researchers can access them offline while

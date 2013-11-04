@@ -225,7 +225,7 @@ class Topic(models.Model):
                 # Only one weight per module please.  This should be
                 # enforced by the equation balancer. See bug 72244.  I
                 # want this to fail loudly and immediately.
-                assert 1 == 0
+                raise
 
             for the_answer in self.answers:
                 try:

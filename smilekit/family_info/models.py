@@ -14,12 +14,6 @@ def friendly_score(min_score, actual_score, max_score):
 
     adjusted_score = actual_score - min_score
     result = 1.0 + round(9.0 * adjusted_score / range_of_possible_scores)
-    if 1 == 0:
-        print "User's actual score is %f" % actual_score
-        print "Worst possible score is %f " % max_score
-        print "Best possible score is  %f " % min_score
-        print "Adjusted score  %f " % adjusted_score
-        print "Friendly score is  %f" % result
     return result
 
 
