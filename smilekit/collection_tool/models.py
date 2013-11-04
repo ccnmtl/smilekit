@@ -233,8 +233,7 @@ class Topic(models.Model):
                         question=the_answer.question).weight
                 except:
                     question_weight = 0
-                result[
-                    the_answer.id] = float(
+                result[the_answer.id] = float(
                     the_answer.weight *
                     question_weight *
                     overall_weight)
@@ -579,7 +578,8 @@ class Resource(models.Model):
     def other_language_version(self, language_code):
         language_code_in_parentheses = '(%s)' % language_code
         candidates = Resource.objects.filter(
-            name__contains=self.name).filter(
+            name__contains=self.name
+        ).filter(
             name__contains=language_code_in_parentheses)
         if candidates:
             return candidates[0]
@@ -699,8 +699,7 @@ class DisplayQuestion(models.Model):
         for qw in self.question.weight_set.all():
             module_weight = [
                 mw.weight for mw in qw.config.moduleweight_set.all(
-                ) if mw.module == my_module][
-                0]
+                ) if mw.module == my_module][0]
             results.append(
                 (qw.config.id, qw.config.name, float(qw.weight),
                  float(module_weight),

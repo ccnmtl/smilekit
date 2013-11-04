@@ -236,9 +236,8 @@ def insert_family(request, **kwargs):
         try:
             child_year_of_birth = int(rp['child_year_of_birth'])
         except ValueError:
-            kwargs[
-                'error_message'] = "Sorry, %s is not a valid year." % rp[
-                'child_year_of_birth']
+            kwargs['error_message'] = (
+                "Sorry, %s is not a valid year." % rp['child_year_of_birth'])
             return new_family(request, **kwargs)
 
     the_config = equation_balancer_configuration.objects.get(
@@ -370,7 +369,7 @@ def edit_family(request, **kwargs):
                 request,
                 family=the_family,
                 error_message="Error: %s" % sys.exc_info()[1]
-                )
+            )
 
     return back_to_edit_family(
         request,

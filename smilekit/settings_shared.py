@@ -41,6 +41,15 @@ NOSE_ARGS = [
     ('--cover-package=smilekit.equation_balancer,smilekit.collection_tool'
      ',smilekit.family_info'),
 ]
+JENKINS_TASKS = (
+    'django_jenkins.tasks.with_coverage',
+    'django_jenkins.tasks.django_tests',
+    'django_jenkins.tasks.run_pep8',
+)
+PROJECT_APPS = [
+    'smilekit.family_info', 'smilekit.equation_balancer',
+    'smilekit.collection_tool',
+]
 
 
 TIME_ZONE = 'America/New_York'
@@ -60,7 +69,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
     'django.core.context_processors.debug',
     'django.core.context_processors.request',
-    )
+)
 
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
@@ -96,6 +105,7 @@ INSTALLED_APPS = (
     'smilekit.equation_balancer',
     'sentry.client',
     'django_nose',
+    'django_jenkins',
 )
 
 SENTRY_REMOTE_URL = 'http://sentry.ccnmtl.columbia.edu/sentry/store/'
