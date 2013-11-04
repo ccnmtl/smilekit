@@ -1,5 +1,4 @@
 from django.http import HttpResponse, Http404
-from django.shortcuts import render_to_response
 from .models import (
     HelpUrl, Topic, Goal, PlannerItem, AssessmentSection, DisplayQuestion,
     DisplayAnswer, has_image)
