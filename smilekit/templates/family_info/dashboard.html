@@ -1,8 +1,8 @@
 {% extends "family_info/base.html" %}
-{%load smartif%}
+{% load smartif %}
 
 {% block html_element %}
-<html manifest="{%url collection_tool.views.manifest %}">
+<html manifest="{% url 'collection_tool.views.manifest' %}">
 {% endblock html_element %}
 
 

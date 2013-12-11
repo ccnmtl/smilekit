@@ -1,6 +1,6 @@
 {% extends "family_info/base.html" %}
 
-{%load smartif%}
+{% load smartif %}
 
 {% block family_info_content %}
 <form action="/family_info/start_interview/" method="post" >
@@ -72,7 +72,11 @@
 	            if (local_storage_has_data (LOCAL_STORAGE_KEY)) {
 	              // This should never occur, but just in case, disable any further interviews until we can get to the local storage data.
                 document.getElementById('start_interview_div').innerHTML = '';
-                document.getElementById('error_message').innerHTML = '<div align="center">Local storage still has data in it although you have no visit currently stored.<br /><br />{%if user.is_staff %}<a class="clearstorage" href = "{%url family_info.views.kill_localstorage %}">Visit local storage resolution page</a>{%endif%}</div>';
+                document.getElementById('error_message').innerHTML =
+	            '<div align="center">Local storage still has data in it
+	            although you have no visit currently
+	            stored.<br /><br />{%if user.is_staff
+	            %}<a class="clearstorage" href = "{% url 'family_info.views.kill_localstorage' %}">Visit local storage resolution page</a>{%endif%}</div>';
               } 
 	          </script>
 			    {%endif %}
@@ -128,22 +132,22 @@
 			</tr>
 	     {%if user.is_staff %}
 			  <tr>
-			  <td colspan="20"><a href = "{%url family_info.views.help_summary %}" >Help Summary</a></td>
+			  <td colspan="20"><a href = "{% url 'family_info.views.help_summary' %}" >Help Summary</a></td>
 
 			  </tr>
 	          
 			  <tr>
-			  <td colspan="20"><a href = "{%url family_info.views.summary_table %}" >Summary Table</a></td>
+			  <td colspan="20"><a href = "{% url 'family_info.views.summary_table' %}" >Summary Table</a></td>
 
 			  </tr>
 	          
 			  <tr>
-			  <td colspan="20"><a href = "{%url family_info.views.food_table %}" >Food Summary Table</a></td>
+			  <td colspan="20"><a href = "{% url 'family_info.views.food_table' %}" >Food Summary Table</a></td>
 
 			  </tr>
 
 			  <tr>
-			  <td colspan="20"><a href = "{%url family_info.views.question_list %}" >Question List</a></td>
+			  <td colspan="20"><a href = "{% url 'family_info.views.question_list' %}" >Question List</a></td>
 
 			  </tr>
 
@@ -151,15 +155,6 @@
 			  <td colspan="20"><a href = "/site_media/selenium/TestRunner.html?test=..%2Ftests%2FTestSuite.html&resultsUrl=..%2FpostResults" >Selenium Tests</a></td>
 			  </tr>
 			{%endif%}
-
-				<!--<tr>
-
-
-			  <tr>
-
-			  <td colspan="20"><a href = "{%url family_info.views.kill_localstorage %}" >View Local Storage</a></td>
-			  </tr>
-			  -->
 
 
 	</table>
