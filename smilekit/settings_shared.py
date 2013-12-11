@@ -98,7 +98,6 @@ INSTALLED_APPS = [
     'smartif',
     'template_utils',
     'typogrify',
-    'survey',
     'tinymce',
     'smilekit.family_info',
     'smilekit.collection_tool',
