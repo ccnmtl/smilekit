@@ -138,3 +138,5 @@ TINYMCE_DEFAULT_CONFIG = {'cols': 80,
                           'plugins': 'table,spellchecker,paste,searchreplace',
                           'theme': 'simple',
                           }
+
+ALLOWED_HOSTS = ['.ccnmtl.columbia.edu', 'localhost']
