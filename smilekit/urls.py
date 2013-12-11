@@ -29,4 +29,5 @@ urlpatterns = patterns(
          'template_name': 'family_info/logged_out.html',
          'next_page': '/?next=/'
      }),
+    ('^smoketest/$', include('smoketest.urls')),
 )

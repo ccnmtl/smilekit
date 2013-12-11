@@ -106,6 +106,7 @@ INSTALLED_APPS = [
     'django_nose',
     'django_jenkins',
     'south',
+    'smoketest',
 ]
 
 THUMBNAIL_SUBDIR = "thumbs"
