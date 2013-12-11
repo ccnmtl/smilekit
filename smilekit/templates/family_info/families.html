@@ -75,8 +75,7 @@
                 document.getElementById('error_message').innerHTML =
 	            '<div align="center">Local storage still has data in it
 	            although you have no visit currently
-	            stored.<br /><br />{%if user.is_staff
-	            %}<a class="clearstorage" href = "{% url 'family_info.views.kill_localstorage' %}">Visit local storage resolution page</a>{%endif%}</div>';
+	            stored.<br /><br />{%if user.is_staff %}<a class="clearstorage" href = "{% url 'family_info.views.kill_localstorage' %}">Visit local storage resolution page</a>{%endif%}</div>';
               } 
 	          </script>
 			    {%endif %}
@@ -188,4 +187,4 @@
 
 	        </form>
 
-{% endblock family_info_content %}
+{% endblock %}
