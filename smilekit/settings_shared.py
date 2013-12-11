@@ -34,6 +34,7 @@ if 'test' in sys.argv or 'jenkins' in sys.argv:
         }
     }
 
+SOUTH_TESTS_MIGRATE = False
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
 NOSE_ARGS = [
@@ -104,6 +105,7 @@ INSTALLED_APPS = [
     'smilekit.equation_balancer',
     'django_nose',
     'django_jenkins',
+    'south',
 ]
 
 THUMBNAIL_SUBDIR = "thumbs"
