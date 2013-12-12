@@ -78,6 +78,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
     'django.middleware.transaction.TransactionMiddleware',
+    'waffle.middleware.WaffleMiddleware',
 )
 
 ROOT_URLCONF = 'smilekit.urls'
@@ -107,6 +108,7 @@ INSTALLED_APPS = [
     'django_jenkins',
     'south',
     'smoketest',
+    'waffle',
 ]
 
 THUMBNAIL_SUBDIR = "thumbs"
