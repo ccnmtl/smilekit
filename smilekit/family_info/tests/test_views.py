@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.test.client import Client
 from smilekit.family_info.views import default_family_form_vars
-from .factories import UserFactory, ConfigurationFactory
+from .factories import UserFactory, ConfigurationFactory, FamilyFactory
 
 
 class DefaultFamilyFormVarsTest(TestCase):
@@ -92,3 +92,23 @@ class LoggedInViewsTests(TestCase):
         self.u.save()
         r = self.c.get("/family_info/selenium/setup/")
         self.assertEqual(r.status_code, 200)
+
+    def test_selenium_teardown(self):
+        self.u.is_staff = True
+        self.u.save()
+        r = self.c.get("/family_info/selenium/teardown/")
+        self.assertEqual(r.status_code, 200)
+
+    def test_edit_family(self):
+        f = FamilyFactory()
+        r = self.c.post("/family_info/edit_family/%d/" % f.id,
+                        dict(family_id=f.id))
+        self.assertEqual(r.status_code, 200)
+
+    def test_start_visit(self):
+        r = self.c.post("/family_info/start_interview/", dict())
+        self.assertEqual(r.status_code, 200)
+
+    def test_end_interview(self):
+        r = self.c.post("/family_info/end_interview/", dict())
+        self.assertEqual(r.status_code, 302)
