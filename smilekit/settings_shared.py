@@ -78,6 +78,8 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
     'django.middleware.transaction.TransactionMiddleware',
+    'django_statsd.middleware.GraphiteRequestTimingMiddleware',
+    'django_statsd.middleware.GraphiteMiddleware',
     'waffle.middleware.WaffleMiddleware',
 )
 
@@ -109,12 +111,19 @@ INSTALLED_APPS = [
     'south',
     'smoketest',
     'waffle',
+    'django_statsd',
 ]
 
 THUMBNAIL_SUBDIR = "thumbs"
 EMAIL_SUBJECT_PREFIX = "[smilekit] "
 EMAIL_HOST = 'localhost'
 SERVER_EMAIL = "smilekit@ccnmtl.columbia.edu"
+
+STATSD_CLIENT = 'statsd.client'
+STATSD_PREFIX = 'smilekit'
+STATSD_HOST = '127.0.0.1'
+STATSD_PORT = 8125
+STATSD_PATCHES = ['django_statsd.patches.db', ]
 
 # WIND settings
 
