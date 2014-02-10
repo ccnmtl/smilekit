@@ -28,25 +28,13 @@ TEMPLATE_DEBUG = DEBUG
 STAGING_ENV = True
 
 STATSD_PREFIX = 'smilekit-staging'
-SENTRY_SITE = 'smilekit-staging'
-SENTRY_SERVERS = ['http://sentry.ccnmtl.columbia.edu/sentry/store/']
 
 STATIC_ROOT = os.path.join(os.path.dirname(__file__), "../media")
 STATICFILES_DIRS = ()
 STATSD_PREFIX = 'smilekit-staging'
 
 if 'migrate' not in sys.argv:
-    INSTALLED_APPS.append('raven.contrib.django')
-
-    import logging
-    from raven.contrib.django.handlers import SentryHandler
-    logger = logging.getLogger()
-    # ensure we havent already registered the handler
-    if SentryHandler not in map(type, logger.handlers):
-        logger.addHandler(SentryHandler())
-        logger = logging.getLogger('sentry.errors')
-        logger.propagate = False
-        logger.addHandler(logging.StreamHandler())
+    INSTALLED_APPS.append('raven.contrib.django.raven_compat')
 
 try:
     from local_settings import *
