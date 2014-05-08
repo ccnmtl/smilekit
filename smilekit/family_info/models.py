@@ -114,6 +114,60 @@ class Family(models.Model):
         default='nd'
     )
 
+    both_on = [
+        ('<spanclass="label-snack">Snack</span>'
+         '<spanclass="label-meal">Meal</span>'),
+        ('<spanclass="label-snack">Refrigerio</span>'
+         '<spanclass="label-meal">Comida</span>'),
+        ('<spanclass="label-snack"style="">Snack</span>'
+         '<spanclass="label-meal">Meal</span>')
+    ]
+
+    meal_on = [
+        ('<spanstyle="display:none;"class="label-snack">'
+         'Snack</span><spanstyle="display:inline;"class='
+         '"label-meal">Meal</span>'),
+        ('<spanclass="label-snack"style="display:none;">Snack'
+         '</span><spanclass="label-meal"style="display:inline;'
+         '">Meal</span>'),
+        ('<spanclass="label-snack"style="display:none;">'
+         'Refrigerio</span><spanclass="label-meal"style='
+         '"display:inline;">Comida</span>'),
+        ('<spanstyle="display:none;"class="label-snack">'
+         'Refrigerio</span><spanstyle="display:inline;"'
+         'class="label-meal">Comida</span>'),
+    ]
+
+    snack_on = [
+        ('<spanstyle="display:inline;"class="label-snack">'
+         'Snack</span><spanstyle="display:none;"class="'
+         'label-meal">Meal</span>'),
+        ('<spanstyle="display:inline;"class="label-snack">'
+         'Snack</span><spanstyle="display:none;"class='
+         '"label-meal">Meal</span>'),
+        ('<spanclass="label-snack"style="display:inline;">'
+         'Snack</span><spanclass="label-meal"style="display:'
+         'none;">Meal</span>'),
+        ('<spanstyle="display:inline;"class="label-snack">'
+         'Refrigerio</span><spanstyle="display:none;"class='
+         '"label-meal">Comida</span>'),
+        ('<spanclass="label-snack"style="">Refrigerio</span>'
+         '<spanclass="label-meal"style="display:none;">Comida'
+         '</span>'),
+        ('<spanclass="label-snack"style="display:inline;">'
+         'Refrigerio</span><spanclass="label-meal"style="'
+         'display:none;">Comida</span>'),
+    ]
+
+    neither_on = [
+        ('<spanclass="label-snack"style="display:none;">'
+         'Refrigerio</span><spanclass="label-meal"style="'
+         'display:none;">Comida</span>'),
+        ('<spanclass="label-snack"style="display:none;">'
+         'Refrigerio</span><spanclass="label-meal"style="'
+         'display:none;">Comida</span>'),
+    ]
+
     @property
     def planner_data_summary(self):
         temp = {}
@@ -134,93 +188,34 @@ class Family(models.Model):
                 # print row['mealorsnack'].strip(' \n\t')
                 import re
                 tmp = re.sub('\s+', '', row['mealorsnack'])
-                # print tmp
 
-                meal_or_snack = None
-                both_on = [
-                    ('<spanclass="label-snack">Snack</span>'
-                     '<spanclass="label-meal">Meal</span>'),
-                    ('<spanclass="label-snack">Refrigerio</span>'
-                     '<spanclass="label-meal">Comida</span>'),
-                    ('<spanclass="label-snack"style="">Snack</span>'
-                     '<spanclass="label-meal">Meal</span>')
-                ]
-
-                meal_on = [
-                    ('<spanstyle="display:none;"class="label-snack">'
-                     'Snack</span><spanstyle="display:inline;"class='
-                     '"label-meal">Meal</span>'),
-                    ('<spanclass="label-snack"style="display:none;">Snack'
-                     '</span><spanclass="label-meal"style="display:inline;'
-                     '">Meal</span>'),
-                    ('<spanclass="label-snack"style="display:none;">'
-                     'Refrigerio</span><spanclass="label-meal"style='
-                     '"display:inline;">Comida</span>'),
-                    ('<spanstyle="display:none;"class="label-snack">'
-                     'Refrigerio</span><spanstyle="display:inline;"'
-                     'class="label-meal">Comida</span>'),
-                ]
-
-                snack_on = [
-                    ('<spanstyle="display:inline;"class="label-snack">'
-                     'Snack</span><spanstyle="display:none;"class="'
-                     'label-meal">Meal</span>'),
-                    ('<spanstyle="display:inline;"class="label-snack">'
-                     'Snack</span><spanstyle="display:none;"class='
-                     '"label-meal">Meal</span>'),
-                    ('<spanclass="label-snack"style="display:inline;">'
-                     'Snack</span><spanclass="label-meal"style="display:'
-                     'none;">Meal</span>'),
-                    ('<spanstyle="display:inline;"class="label-snack">'
-                     'Refrigerio</span><spanstyle="display:none;"class='
-                     '"label-meal">Comida</span>'),
-                    ('<spanclass="label-snack"style="">Refrigerio</span>'
-                     '<spanclass="label-meal"style="display:none;">Comida'
-                     '</span>'),
-                    ('<spanclass="label-snack"style="display:inline;">'
-                     'Refrigerio</span><spanclass="label-meal"style="'
-                     'display:none;">Comida</span>'),
-                ]
-
-                neither_on = [
-                    ('<spanclass="label-snack"style="display:none;">'
-                     'Refrigerio</span><spanclass="label-meal"style="'
-                     'display:none;">Comida</span>'),
-                    ('<spanclass="label-snack"style="display:none;">'
-                     'Refrigerio</span><spanclass="label-meal"style="'
-                     'display:none;">Comida</span>'),
-                ]
-
-                if tmp in neither_on:
-                    meal_or_snack = 'n/a'
-
-                if tmp in both_on:
-                    meal_or_snack = 'Blank'
-
-                if tmp in meal_on:
-                    meal_or_snack = 'Meal'
-
-                if tmp in snack_on:
-                    meal_or_snack = 'Snack'
-
-                if meal_or_snack is None:
-                    print tmp
-
-                if 'Meal' in row['mealorsnack']:
-                    meal_or_snack = 'Meal'
-                if 'Snack' in row['mealorsnack']:
-                    meal_or_snack = 'Snack'
                 risk = row['risk']
                 time_of_day = re.findall('\d\d:\d\d[A\|P]M', row['id'])[0]
                 temp[time_of_day] = {
                     'items': items,
                     'fluoride': fluoride,
-                    'meal_or_snack': meal_or_snack,
+                    'meal_or_snack': self.meal_or_snack(tmp, row),
                     'risk': risk,
                 }
             for t in planner_times:
                 result.append((t, temp.get(t)))
         return result
+
+    def meal_or_snack(self, tmp, row):
+        meal_or_snack = None
+        if tmp in self.neither_on:
+            meal_or_snack = 'n/a'
+        if tmp in self.both_on:
+            meal_or_snack = 'Blank'
+        if tmp in self.meal_on:
+            meal_or_snack = 'Meal'
+        if tmp in self.snack_on:
+            meal_or_snack = 'Snack'
+        if 'Meal' in row['mealorsnack']:
+            meal_or_snack = 'Meal'
+        if 'Snack' in row['mealorsnack']:
+            meal_or_snack = 'Snack'
+        return meal_or_snack
 
     @property
     def all_visits(self):

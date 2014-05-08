@@ -164,17 +164,7 @@ def section(request, section_id, language_code):
     return HttpResponse(t.render(c))
 
 
-@login_required()
-def question(request, displayquestion_id, language_code):
-    """ Look up a DisplayQuestion object and display it in the data
-    collection tool. Note that question_id refers to a displayquestion
-    object, not a question object."""
-
-    displayquestion = get_object_or_404(DisplayQuestion, pk=displayquestion_id)
-    if language_code not in ['en', 'es']:
-        raise Http404
-    wording = displayquestion.wording(language_code)
-
+def get_answers(displayquestion, language_code):
     answers = []
 
     if displayquestion.display_answers:
@@ -193,7 +183,21 @@ def question(request, displayquestion_id, language_code):
                 'text': a.text,
                 'id': a.id
             })
+    return answers
 
+
+@login_required()
+def question(request, displayquestion_id, language_code):
+    """ Look up a DisplayQuestion object and display it in the data
+    collection tool. Note that question_id refers to a displayquestion
+    object, not a question object."""
+
+    displayquestion = get_object_or_404(DisplayQuestion, pk=displayquestion_id)
+    if language_code not in ['en', 'es']:
+        raise Http404
+    wording = displayquestion.wording(language_code)
+
+    answers = get_answers(displayquestion, language_code)
     # look up question ids for planner
     planner_question = False
 

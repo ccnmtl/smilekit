@@ -88,6 +88,79 @@ def insert_user(request, **kwargs):
     )
 
 
+def passwords_dont_match(request, the_user):
+    err = 'Please type the new password twice.'
+    return (
+        back_to_edit_user(
+            request,
+            the_user=the_user,
+            error_message=err)
+    )
+
+
+def password_has_spaces(request, the_user):
+    err = 'Passwords cannot contain spaces.'
+    return (
+        back_to_edit_user(
+            request,
+            the_user=the_user,
+            error_message=err)
+    )
+
+
+def username_has_spaces(request, the_user):
+    return (
+        back_to_edit_user(
+            request,
+            the_user=the_user,
+            error_message='User name cannot contain spaces.')
+    )
+
+
+def username_has_uppercase(request, the_user):
+    return (
+        back_to_edit_user(
+            request,
+            the_user=the_user,
+            error_message=('User name cannot contain uppercase '
+                           'letters.'))
+    )
+
+
+def username_already_taken(request, the_user, username):
+    err = 'Sorry, %s is already in use. Please try another name.' % username
+    return (
+        back_to_edit_user(
+            request,
+            the_user=the_user,
+            error_message=err)
+    )
+
+
+def validate_password(request, the_user, rp):
+    # password prep:
+    new_password = None
+    if 'password' in rp and rp['password'] != '':
+        if rp['password'] != rp['password_2']:
+            return (None, passwords_dont_match(request, the_user))
+        elif " " in rp['password']:
+            return (None, password_has_spaces(request, the_user))
+        else:
+            new_password = rp['password']
+    return (new_password, None)
+
+
+def validate_username(request, the_user, rp):
+    if " " in rp['username']:
+        return username_has_spaces(request, the_user)
+    if rp['username'] != rp['username'].lower():
+        return username_has_uppercase(request, the_user)
+    if (the_user.username != rp['username']
+            and len(User.objects.filter(username=rp['username'])) > 0):
+        return username_already_taken(request, the_user, rp['username'])
+    return None
+
+
 @login_required
 def edit_user(request, **kwargs):
     rp = request.POST
@@ -96,59 +169,12 @@ def edit_user(request, **kwargs):
     error_message = ''
     the_user = get_object_or_404(User, pk=user_id)
     if request.POST != {}:
-
-        # password prep:
-        new_password = None
-        if 'password' in rp and rp['password'] != '':
-            if rp['password'] != rp['password_2']:
-                err = 'Please type the new password twice.'
-                return (
-                    back_to_edit_user(
-                        request,
-                        the_user=the_user,
-                        error_message=err)
-                )
-
-            elif " " in rp['password']:
-                err = 'Passwords cannot contain spaces.'
-                return (
-                    back_to_edit_user(
-                        request,
-                        the_user=the_user,
-                        error_message=err)
-                )
-
-            else:
-                new_password = rp['password']
-
-        if " " in rp['username']:
-            return (
-                back_to_edit_user(
-                    request,
-                    the_user=the_user,
-                    error_message='User name cannot contain spaces.')
-            )
-
-        if rp['username'] != rp['username'].lower():
-            return (
-                back_to_edit_user(
-                    request,
-                    the_user=the_user,
-                    error_message=('User name cannot contain uppercase '
-                                   'letters.'))
-            )
-
-        if (the_user.username != rp['username']
-                and len(User.objects.filter(username=rp['username'])) > 0):
-            err = 'Sorry, %s is already in use. Please try another name.' % rp[
-                'username']
-            return (
-                back_to_edit_user(
-                    request,
-                    the_user=the_user,
-                    error_message=err)
-            )
-
+        (new_password, r) = validate_password(request, the_user, rp)
+        if r:
+            return r
+        r = validate_username(request, the_user, rp)
+        if r:
+            return r
         try:
             the_user.first_name = rp['first_name']
             the_user.username = rp['username']

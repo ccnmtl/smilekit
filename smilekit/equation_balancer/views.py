@@ -223,6 +223,12 @@ def load_questions(request):
 
     headers = questions.pop(0)
 
+    process_questions(questions, headers)
+
+    return HttpResponseRedirect("/admin/equation_balancer/question/")
+
+
+def process_questions(questions, headers):
     # parse headers (so they can be in any order)
     for i in range(len(headers)):
         header = headers[i]
@@ -239,6 +245,12 @@ def load_questions(request):
         # else: print "invalid header detected: %s" % header
 
     for question in questions:
+        process_question(question, id_module, id_number,
+                         id_text, id_answers, id_weights)
+
+
+def process_question(question, id_module, id_number,
+                     id_text, id_answers, id_weights):
         (m, created) = Module.objects.get_or_create(name=question[id_module])
         m.save()
         q = Question(number=question[id_number],
@@ -255,7 +267,12 @@ def load_questions(request):
                        weight=wt.strip() or 1)
             a.save()
 
-    return HttpResponseRedirect("/admin/equation_balancer/question/")
+
+def write_csv_tmp_file(fh):
+    destination = open('temp.csv', 'wb')
+    for chunk in fh.chunks():
+        destination.write(chunk)
+    destination.close()
 
 
 def load_patient_data(request):
@@ -271,16 +288,11 @@ def load_patient_data(request):
             return HttpResponseRedirect("/weights/")
 
     # save to disk and re-open to fix line ending bug
-    destination = open('temp.csv', 'wb')
-    for chunk in fh.chunks():
-        destination.write(chunk)
-    destination.close()
+    write_csv_tmp_file(fh)
 
     # for debugging row by row:
     patient_number_min = None
     patient_number_max = None
-    #patient_number_min = 12350
-    #patient_number_max = 12355
 
     destination = open('temp.csv', 'rU')
 
@@ -289,19 +301,21 @@ def load_patient_data(request):
 
     # get current set of weights from webpage (not database, in case they have
     # modified but not saved yet)
-    weights = {}
-    for question in Question.objects.all():
-        weights[question.number] = Decimal(
-            request.POST['weight-%s' %
-                         question.number])
+    weights = question_weights(request)
+    moduleweights = module_weights(request)
+    patients, scores, order = process_table(
+        table, moduleweights, weights,
+        patient_number_min, patient_number_max, headers)
 
-    moduleweights = {}
-    for module in Module.objects.all():
-        moduleweights[module.id] = Decimal(
-            request.POST['moduleweight-%s' %
-                         module.id])
-    #import pdb
-    # pdb.set_trace()
+    result = {}
+    result['data'] = patients
+    result['scores'] = scores
+    result['order'] = order
+    return HttpResponse(json.dumps(result), mimetype="application/javascript")
+
+
+def process_table(table, moduleweights, weights,
+                  patient_number_min, patient_number_max, headers):
     patients = {}
     scores = {}
     order = []
@@ -331,12 +345,25 @@ def load_patient_data(request):
         patients[patient_number] = patient_data
         patient_score = calculate_score(moduleweights, weights, patient_data)
         scores[patient_number] = patient_score
+    return patients, scores, order
 
-    result = {}
-    result['data'] = patients
-    result['scores'] = scores
-    result['order'] = order
-    return HttpResponse(json.dumps(result), mimetype="application/javascript")
+
+def question_weights(request):
+    weights = {}
+    for question in Question.objects.all():
+        weights[question.number] = Decimal(
+            request.POST['weight-%s' %
+                         question.number])
+    return weights
+
+
+def module_weights(request):
+    moduleweights = {}
+    for module in Module.objects.all():
+        moduleweights[module.id] = Decimal(
+            request.POST['moduleweight-%s' %
+                         module.id])
+    return moduleweights
 
 
 def recalculate(request):
