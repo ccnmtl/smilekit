@@ -1,8 +1,9 @@
 from django.db import models
 from smilekit.collection_tool.models import Goal
 from django.core.cache import cache
-import datetime
 import simplejson as json
+import re
+from datetime import datetime, timedelta
 
 
 def friendly_score(min_score, actual_score, max_score):
@@ -172,9 +173,9 @@ class Family(models.Model):
     def planner_data_summary(self):
         temp = {}
         result = []
-        starttime = datetime.datetime(1984, 1, 1, 6)
+        starttime = datetime(1984, 1, 1, 6)
         planner_times = [
-            (starttime + datetime.timedelta(
+            (starttime + timedelta(
                 minutes=30) * i).strftime("%I:%M%p")
             for i in range(36)]
         if 'planner_data' in json.loads(self.interview_state):
@@ -185,8 +186,6 @@ class Family(models.Model):
                     fluoride = "True"
                 else:
                     fluoride = "False"
-                # print row['mealorsnack'].strip(' \n\t')
-                import re
                 tmp = re.sub('\s+', '', row['mealorsnack'])
 
                 risk = row['risk']
@@ -314,7 +313,6 @@ class Family(models.Model):
 
     @property
     def recent_visits(self):
-        from datetime import datetime, timedelta
         yesterday = datetime.now() - timedelta(hours=1)
         return (
             [v for v in Visit.objects.filter(
@@ -489,7 +487,7 @@ class Visit (models.Model):
         return True
 
     def close_now(self):
-        self.end_timestamp = datetime.datetime.now()
+        self.end_timestamp = datetime.now()
         self.save()
 
     def store_answer(self, family_id, question_id, answer_id):
