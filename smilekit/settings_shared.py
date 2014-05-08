@@ -44,7 +44,6 @@ NOSE_ARGS = [
 ]
 JENKINS_TASKS = (
     'django_jenkins.tasks.with_coverage',
-    'django_jenkins.tasks.django_tests',
     'django_jenkins.tasks.run_pep8',
 )
 PROJECT_APPS = [
@@ -68,6 +67,7 @@ TEMPLATE_LOADERS = (
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.static',
     'django.core.context_processors.debug',
     'django.core.context_processors.request',
 )
@@ -89,13 +89,22 @@ TEMPLATE_DIRS = (
     os.path.join(os.path.dirname(__file__), "templates"),
 )
 
+STATIC_URL = "/media/"
+STATICFILES_DIRS = (
+    os.path.abspath(os.path.join(os.path.dirname(__file__), "../media/")),
+)
+STATIC_ROOT = ""
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+)
+
 INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.flatpages',
-    'django.contrib.markup',
     'sorl.thumbnail',
     'django.contrib.admin',
     'tagging',
@@ -112,6 +121,8 @@ INSTALLED_APPS = [
     'smoketest',
     'waffle',
     'django_statsd',
+    'django_markwhat',
+    'django.contrib.staticfiles',
 ]
 
 THUMBNAIL_SUBDIR = "thumbs"
@@ -123,7 +134,7 @@ STATSD_CLIENT = 'statsd.client'
 STATSD_PREFIX = 'smilekit'
 STATSD_HOST = '127.0.0.1'
 STATSD_PORT = 8125
-STATSD_PATCHES = ['django_statsd.patches.db', ]
+#STATSD_PATCHES = ['django_statsd.patches.db', ]
 
 # WIND settings
 
@@ -139,7 +150,7 @@ WIND_STAFF_MAPPER_GROUPS = ['tlc.cunix.local:columbia.edu']
 WIND_SUPERUSER_MAPPER_GROUPS = ['anp8', 'jb2410', 'zm4', 'sbd12', 'egr2107',
                                 'sld2131', 'amm8', 'mar227', 'ed2198']
 
-TINYMCE_JS_URL = '/site_media/js/tiny_mce/tiny_mce.js'
+TINYMCE_JS_URL = '/media/js/tiny_mce/tiny_mce.js'
 TINYMCE_JS_ROOT = 'media/js/tiny_mce'
 
 TINYMCE_COMPRESSOR = False

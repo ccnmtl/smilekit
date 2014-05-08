@@ -43,7 +43,7 @@ CACHE:
 ########
 # JS:
 
-/site_media/js/smilekit_common.js
+{{STATIC_URL}}js/smilekit_common.js
 /family_info/media/js/dashboard.js
 /family_info/media/js/localstorage.js
 /family_info/media/js/cache.js
@@ -79,7 +79,7 @@ CACHE:
 
 #static pictures:
 #/favicon.ico
-/site_media/images/favicon.ico
+{{STATIC_URL}}images/favicon.ico
 /collection_tool/media/images/logo_mysmilebuddy.png
 /collection_tool/media/images/downloading_inprogress.png
 /family_info/media/images/progressbar/progressbar.gif

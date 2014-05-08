@@ -9,8 +9,8 @@ from django.contrib import admin
 class TinyMceAdmin(admin.ModelAdmin):
     class Media:
         js = (
-            '/site_media/js/tinymce/jscripts/tiny_mce/tiny_mce.js',
-            '/site_media/js/simple_tinymce.js',
+            '/media/js/tinymce/jscripts/tiny_mce/tiny_mce.js',
+            '/media/js/simple_tinymce.js',
         )
 
 
