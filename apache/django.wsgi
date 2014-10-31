@@ -11,5 +11,6 @@ sys.path.append('/var/www/smilekit/smilekit/')
 os.environ['DJANGO_SETTINGS_MODULE'] = 'smilekit.settings_production'
 
 import django.core.handlers.wsgi
-
+import django
+django.setup()
 application = django.core.handlers.wsgi.WSGIHandler()

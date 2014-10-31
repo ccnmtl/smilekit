@@ -120,7 +120,6 @@ INSTALLED_APPS = [
     'django_statsd',
     'django_markwhat',
     'django.contrib.staticfiles',
-    'south',
 ]
 
 THUMBNAIL_SUBDIR = "thumbs"

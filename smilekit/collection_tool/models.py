@@ -349,6 +349,7 @@ class Goal (models.Model):
     topic = models.ForeignKey(Topic)
 
     show_in_planner = models.BooleanField(
+        default=False,
         help_text=("i.e. does picking this goal mean the next "
                    "button takes you to the planner JS game?"))
 
