@@ -108,7 +108,6 @@ INSTALLED_APPS = [
     'django.contrib.flatpages',
     'sorl.thumbnail',
     'django.contrib.admin',
-    'tagging',
     'smartif',
     'template_utils',
     'typogrify',
