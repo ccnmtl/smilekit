@@ -4,6 +4,10 @@ from django.core.cache import cache
 import simplejson as json
 import re
 from datetime import datetime, timedelta
+from smilekit.equation_balancer.models import (
+    Configuration, Question, Answer, ModuleWeight,
+)
+from django.contrib.auth.models import User
 
 
 def friendly_score(min_score, actual_score, max_score):
@@ -16,15 +20,6 @@ def friendly_score(min_score, actual_score, max_score):
     adjusted_score = actual_score - min_score
     result = 1.0 + round(9.0 * adjusted_score / range_of_possible_scores)
     return result
-
-
-User = models.get_model('auth', 'user')
-Configuration = models.get_model('equation_balancer', 'configuration')
-Question = models.get_model('equation_balancer', 'question')
-Answer = models.get_model('equation_balancer', 'answer')
-ModuleWeight = models.get_model('equation_balancer', 'modueleweight')
-
-DisplayQuestion = models.get_model('collection_tool', 'displayquestion')
 
 
 RACE_ETHNICITY_CHOICES = (
