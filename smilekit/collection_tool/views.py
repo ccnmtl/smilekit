@@ -291,7 +291,7 @@ def manifest(request):
 
     planner_labels = [i.label for i in PlannerItem.objects.all()]
 
-    response = HttpResponse(mimetype='text/cache-manifest')
+    response = HttpResponse(content_type='text/cache-manifest')
     #response = HttpResponse()
 
     t = loader.get_template('collection_tool/manifest')

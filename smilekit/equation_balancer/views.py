@@ -58,7 +58,7 @@ def delete_config(request, config_id):
 def export_config(request, config_id):
     config = Configuration.objects.get(id=config_id)
 
-    response = HttpResponse(mimetype='text/csv')
+    response = HttpResponse(content_type='text/csv')
     response[
         'Content-Disposition'] = 'attachment; filename="%s.csv"' % config.name
     writer = csv.writer(response)
@@ -311,7 +311,9 @@ def load_patient_data(request):
     result['data'] = patients
     result['scores'] = scores
     result['order'] = order
-    return HttpResponse(json.dumps(result), mimetype="application/javascript")
+    return HttpResponse(
+        json.dumps(result),
+        content_type="application/javascript")
 
 
 def process_table(table, moduleweights, weights,
@@ -400,7 +402,9 @@ def recalculate(request):
             weights,
             answers[patient])
 
-    return HttpResponse(json.dumps(scores), mimetype="application/javascript")
+    return HttpResponse(
+        json.dumps(scores),
+        content_type="application/javascript")
 
 
 def calculate_patient_score(request):
