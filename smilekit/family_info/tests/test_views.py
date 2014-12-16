@@ -4,6 +4,12 @@ from smilekit.family_info.views import default_family_form_vars
 from .factories import UserFactory, ConfigurationFactory, FamilyFactory
 
 
+class SimpleTest(TestCase):
+    def test_smoketest(self):
+        r = self.client.get("/smoketest/")
+        self.assertEqual(r.status_code, 200)
+
+
 class DefaultFamilyFormVarsTest(TestCase):
     def test_basics(self):
         r = default_family_form_vars()
