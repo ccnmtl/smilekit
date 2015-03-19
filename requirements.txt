@@ -20,7 +20,7 @@ statsd==3.0.1
 factory_boy==2.1.1
 sqlparse==0.1.11
 
-django-statsd-mozilla==0.3.11
+django-statsd-mozilla==0.3.14
 django-smartif==0.1
 djangowind==0.13.2
 sorl==3.1
