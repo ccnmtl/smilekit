@@ -266,34 +266,13 @@ class Topic(models.Model):
     def config_maxmin_scores(self, config):
         """for each answer in a configuration, show the best and worst
         possible scores."""
-        # Changing the weighting system for topics, per action item #72345
-        old_weighting_system = False
         mins = {}
         maxs = {}
 
-        if old_weighting_system:
-            try:
-                overall_weight = float(
-                    config.moduleweight_set.get(module=self).weight)
-            except ModuleWeight.DoesNotExist:
-                overall_weight = 0.0
-            for dq in self.displayquestion_set.all():
-                try:
-                    question_weight = float(
-                        config.weight_set.get(
-                            question=dq.question).weight)
-                except:
-                    question_weight = 0.0
-                for answer in dq.question.answer_set.all():
-                    mins[answer.id] = dq.question.min_answer_weight * \
-                        question_weight * overall_weight
-                    maxs[answer.id] = dq.question.max_answer_weight * \
-                        question_weight * overall_weight
-        else:  # new weighting system ignores question and config weights.
-            for dq in self.displayquestion_set.all():
-                for answer in dq.question.answer_set.all():
-                    mins[answer.id] = dq.question.min_answer_weight
-                    maxs[answer.id] = dq.question.max_answer_weight
+        for dq in self.displayquestion_set.all():
+            for answer in dq.question.answer_set.all():
+                mins[answer.id] = dq.question.min_answer_weight
+                maxs[answer.id] = dq.question.max_answer_weight
 
         return_value = {'min': mins, 'max': maxs}
 

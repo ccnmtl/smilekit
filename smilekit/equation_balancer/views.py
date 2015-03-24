@@ -46,7 +46,6 @@ def new_config(request):
 
 @login_required
 def delete_config(request, config_id):
-    #config_id = request.POST['config']
     try:
         Configuration.objects.get(id=config_id).delete()
     except:
@@ -145,15 +144,16 @@ def import_config(request):
     return HttpResponseRedirect("/weights/")
 
 
+def delete_old_weights(old_weights):
+    for ow in old_weights:
+        ow.delete()
+
+
 @login_required
 def save_config(request):
     config_id = request.POST['config']
 
-    ajax_submitted = False
-    try:
-        ajax_submitted = request.POST['ajax']
-    except:
-        pass
+    ajax_submitted = request.POST.get('ajax', False)
 
     config = Configuration.objects.get(id=config_id)
     # save module weights
@@ -171,13 +171,11 @@ def save_config(request):
                 mw for mw in ModuleWeight.objects.filter(
                     module=module,
                     config=config) if mw != the_new_weight]
-            for ow in old_weights:
-                ow.delete()
+            delete_old_weights(old_weights)
         the_new_weight.save()
 
     # save question weights
     for question in Question.objects.all():
-    #  try:
         new_value = request.POST['weight-%s' % question.number]
         if new_value == "":
             new_value = 0  # set to 0 if cleared
@@ -188,8 +186,6 @@ def save_config(request):
             weight, created = Weight.objects.get_or_create(
                 question=question, config=config, weight=new_value)
         weight.save()
-    #  except:
-    # pass  # question not in the form -- this probably won't happen?
     if ajax_submitted:
         return HttpResponse("")
     return HttpResponseRedirect("/weights/configuration/%s" % config_id)
@@ -329,10 +325,8 @@ def process_table(table, moduleweights, weights,
         patient_number = row[0]
         order.append(patient_number)
         if patient_number_min and int(patient_number) < patient_number_min:
-            # print "skipping because smaller than %d " % patient_number_min
             continue
         if patient_number_max and int(patient_number) > patient_number_max:
-            # print "skipping because greater than %d " % patient_number_max
             continue
 
         patient_data = {}
@@ -343,7 +337,6 @@ def process_table(table, moduleweights, weights,
                 patient_data[int(headers[i])] = row[i]
             except ValueError:
                 pass
-        #patients[patient_number]["answers"] = patient_data
         patients[patient_number] = patient_data
         patient_score = calculate_score(moduleweights, weights, patient_data)
         scores[patient_number] = patient_score

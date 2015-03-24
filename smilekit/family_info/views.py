@@ -26,7 +26,6 @@ def families(request, **kwargs):
     })
     return HttpResponse(t.render(c))
 
-#**************************
 # USER CRUD:
 
 
@@ -202,7 +201,6 @@ def edit_user(request, **kwargs):
 
 @login_required
 def back_to_edit_user(request, **kwargs):
-    #assert kwargs.has_key ('user_id')
     varz = {}
     varz.update(kwargs)
     c = RequestContext(request, varz)
@@ -210,7 +208,7 @@ def back_to_edit_user(request, **kwargs):
     return HttpResponse(t.render(c))
 
 
-#**************************
+# **************************
 # FAMILY CRUD:
 
 def default_family_form_vars():
@@ -404,8 +402,6 @@ def edit_family(request, **kwargs):
     )
 
 
-#**************************
-#**************************
 @login_required
 def start_interview(request, **kwargs):
     rp = request.POST
@@ -438,7 +434,6 @@ def start_interview(request, **kwargs):
         assert len(my_happening_visits) < 2
 
     else:
-        #the_families = my_happening_visits[0].families.all()
         # no longer allowing this:
         return HttpResponseRedirect(reverse(families))
 
@@ -459,6 +454,20 @@ def dashboard(request):
     return HttpResponse(t.render(c))
 
 
+def get_visits(rp, request):
+    if 'visit_id' in rp:
+        try:
+            return [Visit.objects.get(pk=rp['visit_id'])]
+        except ValueError:  # for old visits where no id is stored:
+            return [
+                v for v in request.user.visit_set.all() if v.is_happening]
+        except Visit.DoesNotExist:
+            # this can occasionally happen due to selenium test teardown.
+            return []
+    else:
+        return [v for v in request.user.visit_set.all() if v.is_happening]
+
+
 @login_required
 def end_interview(request, **args):
     """Attempt to store the responses posted and, on success, redirect
@@ -466,17 +475,7 @@ def end_interview(request, **args):
     rp = request.POST
     answer_count = 0
 
-    if 'visit_id' in rp:
-        try:
-            visits = [Visit.objects.get(pk=rp['visit_id'])]
-        except ValueError:  # for old visits where no id is stored:
-            visits = [
-                v for v in request.user.visit_set.all() if v.is_happening]
-        except Visit.DoesNotExist:
-            # this can occasionally happen due to selenium test teardown.
-            visits = []
-    else:
-        visits = [v for v in request.user.visit_set.all() if v.is_happening]
+    visits = get_visits(rp, request)
 
     if len(visits) == 0:
         # back button by mistake after ending an interview, or hit refresh.
@@ -507,7 +506,6 @@ def end_interview(request, **args):
     assert not my_visit.is_happening
     my_args['just_finished_visit'] = my_visit
     return families(request, **my_args)
-    # return HttpResponseRedirect ( reverse (families))
 
 
 @login_required

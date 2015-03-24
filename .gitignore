@@ -5,3 +5,4 @@ ve
 temp.csv
 .coverage
 reports/
+pip-log.txt
