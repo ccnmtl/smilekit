@@ -6,8 +6,8 @@ media_root = os.path.join(os.path.dirname(__file__), "../media")
 urlpatterns = patterns(
     '',
     (r'manifest\.cache$', 'smilekit.collection_tool.views.manifest'),
-    #Leave this without a trailing slash. No need for every jpg to end
-    #in a slash.
+    # Leave this without a trailing slash. No need for every jpg to end
+    # in a slash.
     (r'media/(?P<path>.*)$',
      'django.views.static.serve', {'document_root': media_root}),
     (r'question/(?P<displayquestion_id>\d+)/language/(?P<language_code>\w+)/$',

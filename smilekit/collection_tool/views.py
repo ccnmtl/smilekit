@@ -117,7 +117,6 @@ def get_planner_items():
         for i in range(36)]
 
     # OK, now drinks come before foods.
-    #planner_items = PlannerItem.objects.all().order_by('type', 'label')
 
     planner_items = list(PlannerItem.objects.all())
     planner_items.sort(key=lambda p_i: p_i.label)
@@ -292,7 +291,6 @@ def manifest(request):
     planner_labels = [i.label for i in PlannerItem.objects.all()]
 
     response = HttpResponse(content_type='text/cache-manifest')
-    #response = HttpResponse()
 
     t = loader.get_template('collection_tool/manifest')
     c = RequestContext(request, {
