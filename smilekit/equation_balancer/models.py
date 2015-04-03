@@ -2,6 +2,7 @@ from django.db import models
 import simplejson as json
 
 from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse
 
 import smilekit.collection_tool as ct
 
@@ -137,7 +138,6 @@ def language_url_dict(
     {   'en': '/collection_tool/section/2/language/en/',
         'es': '/collection_tool/section/2/language/es/'  }
     """
-    from django.core.urlresolvers import reverse
     result = {}
     for lc in language_codes:
         if item_label:
