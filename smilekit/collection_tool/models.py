@@ -3,7 +3,7 @@ from django.db.models.signals import post_save
 from django.shortcuts import get_object_or_404
 import simplejson as json
 from smilekit.equation_balancer.models import (
-    ModuleWeight, Question, Answer, Configuration)
+    Question, Answer, Configuration)
 from django.contrib.flatpages.models import FlatPage
 
 
@@ -211,36 +211,9 @@ class Topic(models.Model):
     # self is a topic.
     def config_scoring_info(self, config):
         result = {}
-        overall_weight = 0
-        old_weighting_system = False
 
-        # Changing the weighting system for topics, per action item #72345
-        if old_weighting_system:
-            try:
-                overall_weight = config.moduleweight_set.get(
-                    module=self).weight
-            except ModuleWeight.DoesNotExist:
-                pass
-            except ModuleWeight.MultipleObjectsReturned:
-                # Only one weight per module please.  This should be
-                # enforced by the equation balancer. See bug 72244.  I
-                # want this to fail loudly and immediately.
-                raise
-
-            for the_answer in self.answers:
-                try:
-                    question_weight = config.weight_set.get(
-                        question=the_answer.question).weight
-                except:
-                    question_weight = 0
-                result[the_answer.id] = float(
-                    the_answer.weight *
-                    question_weight *
-                    overall_weight)
-
-        else:  # new weighting system ignores question and config weights.
-            for the_answer in self.answers:
-                result[the_answer.id] = float(the_answer.weight)
+        for the_answer in self.answers:
+            result[the_answer.id] = float(the_answer.weight)
 
         result['question_count'] = len(
             dquestions_for_config_and_topic(config, self))
