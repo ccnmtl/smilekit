@@ -3,7 +3,7 @@ from django.db.models.signals import post_save
 from django.shortcuts import get_object_or_404
 import simplejson as json
 from smilekit.equation_balancer.models import (
-    ModuleWeight, Question, Answer, Configuration)
+    Question, Answer, Configuration)
 from django.contrib.flatpages.models import FlatPage
 
 
@@ -211,36 +211,9 @@ class Topic(models.Model):
     # self is a topic.
     def config_scoring_info(self, config):
         result = {}
-        overall_weight = 0
-        old_weighting_system = False
 
-        # Changing the weighting system for topics, per action item #72345
-        if old_weighting_system:
-            try:
-                overall_weight = config.moduleweight_set.get(
-                    module=self).weight
-            except ModuleWeight.DoesNotExist:
-                pass
-            except ModuleWeight.MultipleObjectsReturned:
-                # Only one weight per module please.  This should be
-                # enforced by the equation balancer. See bug 72244.  I
-                # want this to fail loudly and immediately.
-                raise
-
-            for the_answer in self.answers:
-                try:
-                    question_weight = config.weight_set.get(
-                        question=the_answer.question).weight
-                except:
-                    question_weight = 0
-                result[the_answer.id] = float(
-                    the_answer.weight *
-                    question_weight *
-                    overall_weight)
-
-        else:  # new weighting system ignores question and config weights.
-            for the_answer in self.answers:
-                result[the_answer.id] = float(the_answer.weight)
+        for the_answer in self.answers:
+            result[the_answer.id] = float(the_answer.weight)
 
         result['question_count'] = len(
             dquestions_for_config_and_topic(config, self))
@@ -406,104 +379,6 @@ class AssessmentSection(models.Model):
         except:
             return None
         return None
-
-
-def configuration_display_questions(self):
-    """This is the recipe for determining which display questions will
-    be asked if a configuration is chosen."""
-
-    nonzero_weight_questions = self.questions_with_weights_greater_than_zero()
-    result = []
-    all_questions = []
-
-    # order all questions, first by nav section, then by rank within that
-    # section:
-    for s in AssessmentSection.objects.all():
-        all_questions.extend(s.displayquestion_set.all())
-
-    # now filter out the ones with weight zero, except if they're special.
-    for display_question in all_questions:
-        if display_question.display_regardless_of_weight:
-            result.append(display_question)
-        else:
-            if display_question.question in nonzero_weight_questions:
-                result.append(display_question)
-
-    return result
-
-# Duck-tape this method into the configuration model;
-# although the method belongs that model,
-# the code itself has more to do with display questions than with
-# equation balancing, so it belongs here.
-
-
-def configuration_first_display_question(self):
-    them = self.display_questions()
-    return them[0]
-
-
-Configuration.display_questions = configuration_display_questions
-Configuration.first_display_question = configuration_first_display_question
-
-
-def language_url_dict(
-        language_codes, view, item_label=None, item_id=None):
-    """ a common pattern: returns something that looks like :
-    {   'en': '/collection_tool/section/2/language/en/',
-        'es': '/collection_tool/section/2/language/es/'  }
-    """
-    from django.core.urlresolvers import reverse
-    result = {}
-    for lc in language_codes:
-        if item_label:
-            result[lc] = reverse(
-                view,
-                kwargs={item_label: item_id,
-                        'language_code': lc})
-        else:
-            result[lc] = reverse(view, kwargs={'language_code': lc})
-    return result
-
-
-def configuration_url_list(self):
-    """A list of URLs to visit for each configuration. This will be
-    used for navigation."""
-    from .views import intro as intro_view
-    from .views import question as question_view
-    from .views import section as section_view
-    from .views import risk as risk_view
-
-    language_codes = ['en', 'es']
-    result = []
-    nonzero_weight_questions = self.questions_with_weights_greater_than_zero()
-    result.append(language_url_dict(language_codes, intro_view))
-    for s in AssessmentSection.objects.all():
-        result.append(
-            language_url_dict(
-                language_codes,
-                section_view,
-                'section_id',
-                s.id))
-        for dq in s.displayquestion_set.all():
-            if dq.display_regardless_of_weight:
-                result.append(
-                    language_url_dict(
-                        language_codes,
-                        question_view,
-                        'displayquestion_id',
-                        dq.id))
-            else:
-                if dq.question in nonzero_weight_questions:
-                    result.append(
-                        language_url_dict(
-                            language_codes,
-                            question_view,
-                            'displayquestion_id',
-                            dq.id))
-    result.append(language_url_dict(language_codes, risk_view))
-    return result
-
-Configuration.url_list = configuration_url_list
 
 
 def has_image(image_field_file):
