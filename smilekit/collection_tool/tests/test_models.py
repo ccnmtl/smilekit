@@ -2,7 +2,7 @@ from smilekit.collection_tool.models import most_frequent_item, HelpItem
 from smilekit.collection_tool.models import HelpUrl, HelpBulletPoint
 from smilekit.collection_tool.models import HelpDefinition
 from django.test import TestCase
-from .factories import TopicFactory
+from .factories import TopicFactory, GoalFactory
 
 
 class TestMostFrequentItem(TestCase):
@@ -125,3 +125,13 @@ class TopicTest(TestCase):
     def test_learn_more_spanish(self):
         t = TopicFactory()
         self.assertIsNone(t.learn_more_spanish)
+
+
+class GoalTest(TestCase):
+    def test_dir(self):
+        g = GoalFactory()
+        self.assertTrue('dir' in g.dir)
+
+    def test_help_item(self):
+        g = GoalFactory()
+        self.assertIsNone(g.help_item)
