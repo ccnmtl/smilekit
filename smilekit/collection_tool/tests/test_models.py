@@ -2,6 +2,7 @@ from smilekit.collection_tool.models import most_frequent_item, HelpItem
 from smilekit.collection_tool.models import HelpUrl, HelpBulletPoint
 from smilekit.collection_tool.models import HelpDefinition
 from django.test import TestCase
+from .factories import TopicFactory
 
 
 class TestMostFrequentItem(TestCase):
@@ -70,3 +71,57 @@ class HelpDefinitionTest(TestCase):
     def test_dir(self):
         hd = helpdefinition_factory()
         self.assertEqual(hd.dir, dir(hd))
+
+
+class TopicTest(TestCase):
+    def test_unicode(self):
+        t = TopicFactory()
+        self.assertEqual(str(t), "hello")
+
+    def test_display_questions(self):
+        t = TopicFactory()
+        self.assertEqual(t.display_questions, [])
+
+    def test_displayquestions_string(self):
+        t = TopicFactory()
+        self.assertEqual(t.displayquestions_string, "")
+
+    def test_section(self):
+        t = TopicFactory()
+        self.assertIsNone(t.section)
+
+    def test_dir(self):
+        t = TopicFactory()
+        self.assertTrue('dir' in t.dir)
+
+    def test_answers(self):
+        t = TopicFactory()
+        self.assertEqual(t.answers, [])
+
+    def test_scoring_info(self):
+        t = TopicFactory()
+        self.assertEqual(t.scoring_info, "{}")
+
+    def test_scoring_info_object(self):
+        t = TopicFactory()
+        self.assertEqual(t.scoring_info_object, {})
+
+    def test_maxmin_scoring_info(self):
+        t = TopicFactory()
+        self.assertEqual(t.maxmin_scoring_info, "{}")
+
+    def test_maxmin_scoring_info_object(self):
+        t = TopicFactory()
+        self.assertEqual(t.maxmin_scoring_info_object, {})
+
+    def test_question_count(self):
+        t = TopicFactory()
+        self.assertEqual(t.question_count, 0)
+
+    def test_learn_more_english(self):
+        t = TopicFactory()
+        self.assertIsNone(t.learn_more_english)
+
+    def test_learn_more_spanish(self):
+        t = TopicFactory()
+        self.assertIsNone(t.learn_more_spanish)
