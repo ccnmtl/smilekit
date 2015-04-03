@@ -1,5 +1,5 @@
 import factory
-from smilekit.collection_tool.models import Topic, Goal
+from smilekit.collection_tool.models import Topic, Goal, AssessmentSection
 
 
 class TopicFactory(factory.DjangoModelFactory):
@@ -18,4 +18,14 @@ class GoalFactory(factory.DjangoModelFactory):
     english_description = "english description"
     spanish_description = "spanish description"
     topic = factory.SubFactory(TopicFactory)
+    ordering_rank = 1
+
+
+class AssessmentSectionFactory(factory.DjangoModelFactory):
+    FACTORY_FOR = AssessmentSection
+    title = "assessmentsection"
+    english_title = "english title"
+    spanish_title = "spanish title"
+    english_description = "english description"
+    spanish_description = "spanish description"
     ordering_rank = 1
