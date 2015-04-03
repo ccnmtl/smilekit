@@ -1,6 +1,6 @@
-from smilekit.collection_tool.models import most_frequent_item, HelpItem
-from smilekit.collection_tool.models import HelpUrl, HelpBulletPoint
-from smilekit.collection_tool.models import HelpDefinition
+from smilekit.collection_tool.models import (
+    most_frequent_item, HelpItem, HelpUrl, HelpBulletPoint,
+    HelpDefinition, has_image)
 from django.test import TestCase
 from .factories import TopicFactory, GoalFactory, AssessmentSectionFactory
 
@@ -149,3 +149,18 @@ class AssessmentSectionTest(TestCase):
     def test_help_item(self):
         a = AssessmentSectionFactory()
         self.assertIsNone(a.help_item)
+
+
+class HasImageTest(TestCase):
+    def test_none(self):
+        self.assertFalse(has_image(None))
+
+    def test_positive(self):
+        class Dummy(object):
+            url = "something"
+        self.assertTrue(has_image(Dummy()))
+
+    def test_negative(self):
+        class Dummy(object):
+            url = ""
+        self.assertFalse(has_image(Dummy()))
