@@ -2,7 +2,8 @@ from smilekit.collection_tool.models import (
     most_frequent_item, HelpItem, HelpUrl, HelpBulletPoint,
     HelpDefinition, has_image)
 from django.test import TestCase
-from .factories import TopicFactory, GoalFactory, AssessmentSectionFactory
+from .factories import (
+    TopicFactory, GoalFactory, AssessmentSectionFactory, ResourceFactory)
 
 
 class TestMostFrequentItem(TestCase):
@@ -164,3 +165,29 @@ class HasImageTest(TestCase):
         class Dummy(object):
             url = ""
         self.assertFalse(has_image(Dummy()))
+
+
+class ResourceTest(TestCase):
+    def test_flat_page(self):
+        r = ResourceFactory()
+        self.assertIsNone(r.flat_page)
+
+    def test_dir(self):
+        r = ResourceFactory()
+        self.assertTrue('dir' in r.dir)
+
+    def test_other_language_version(self):
+        r = ResourceFactory()
+        self.assertEqual(r.other_language_version('en'), r)
+
+    def test_spanish_version(self):
+        r = ResourceFactory()
+        self.assertEqual(r.spanish_version, r)
+
+    def test_english_version(self):
+        r = ResourceFactory()
+        self.assertEqual(r.english_version, r)
+
+    def test_unicode(self):
+        r = ResourceFactory()
+        self.assertEqual(str(r), "resource")

@@ -1,5 +1,6 @@
 import factory
-from smilekit.collection_tool.models import Topic, Goal, AssessmentSection
+from smilekit.collection_tool.models import (
+    Topic, Goal, AssessmentSection, Resource)
 
 
 class TopicFactory(factory.DjangoModelFactory):
@@ -28,4 +29,12 @@ class AssessmentSectionFactory(factory.DjangoModelFactory):
     spanish_title = "spanish title"
     english_description = "english description"
     spanish_description = "spanish description"
+    ordering_rank = 1
+
+
+class ResourceFactory(factory.DjangoModelFactory):
+    FACTORY_FOR = Resource
+    name = "resource"
+    url = "/resource/"
+    resource_type = ""
     ordering_rank = 1
