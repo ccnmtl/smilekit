@@ -3,7 +3,9 @@ from smilekit.collection_tool.models import (
     HelpDefinition, has_image)
 from django.test import TestCase
 from .factories import (
-    TopicFactory, GoalFactory, AssessmentSectionFactory, ResourceFactory)
+    TopicFactory, GoalFactory, AssessmentSectionFactory, ResourceFactory,
+    PlannerItemFactory,
+)
 
 
 class TestMostFrequentItem(TestCase):
@@ -191,3 +193,17 @@ class ResourceTest(TestCase):
     def test_unicode(self):
         r = ResourceFactory()
         self.assertEqual(str(r), "resource")
+
+
+class PlannerItemTest(TestCase):
+    def test_unicode(self):
+        p = PlannerItemFactory()
+        self.assertEqual(str(p), "Fluoride: planner item")
+
+    def test_get_spanish_type(self):
+        p = PlannerItemFactory()
+        self.assertEqual(p.get_spanish_type(), "Fluoruro")
+
+    def test_new_ordering(self):
+        p = PlannerItemFactory()
+        self.assertEqual(p.new_ordering, 0)
