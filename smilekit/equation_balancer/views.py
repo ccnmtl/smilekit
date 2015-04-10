@@ -400,25 +400,6 @@ def recalculate(request):
         content_type="application/javascript")
 
 
-def calculate_patient_score(request):
-    patient = request.POST['patient']
-    moduleweights = {}
-    weights = {}
-    answers = {}
-
-    for module in Module.objects.all():
-        moduleweights[module.id] = request.POST['moduleweight-%s' % module.id]
-
-    for question in Question.objects.all():
-        weights[question.number] = request.POST['weight-%s' % question.number]
-        answers[question.number] = request.POST[
-            'patient-%s-answer-%s' % (patient, question.number)]
-
-    scores = calculate_score(moduleweights, weights, answers)
-    json = '{"data": %s}' % scores
-    return HttpResponse(json, mimetype="application/javascript")
-
-
 def calculate_score(moduleweights, weights, answers):
     scores = {}
     totalscore = 0

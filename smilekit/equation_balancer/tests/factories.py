@@ -1,6 +1,13 @@
 import factory
+from smilekit.family_info.tests.factories import UserFactory
 from smilekit.equation_balancer.models import (
-    Module, Question)
+    Configuration, Module, Question)
+
+
+class ConfigurationFactory(factory.DjangoModelFactory):
+    FACTORY_FOR = Configuration
+    owner = factory.SubFactory(UserFactory)
+    name = factory.Sequence(lambda n: "configuration %d" % n)
 
 
 class ModuleFactory(factory.DjangoModelFactory):
