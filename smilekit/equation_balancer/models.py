@@ -1,5 +1,5 @@
 from django.db import models
-import simplejson as json
+import json
 
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse

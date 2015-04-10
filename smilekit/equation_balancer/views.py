@@ -8,7 +8,7 @@ from smilekit.equation_balancer.models import (
     Configuration, ModuleWeight, Weight)
 
 import csv
-import simplejson as json
+import json
 
 from decimal import Decimal
 
