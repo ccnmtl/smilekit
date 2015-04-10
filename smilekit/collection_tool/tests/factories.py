@@ -1,6 +1,8 @@
 import factory
 from smilekit.collection_tool.models import (
-    Topic, Goal, AssessmentSection, Resource, PlannerItem)
+    Topic, Goal, AssessmentSection, Resource, PlannerItem,
+    DisplayQuestion,
+)
 
 
 class TopicFactory(factory.DjangoModelFactory):
@@ -46,3 +48,8 @@ class PlannerItemFactory(factory.DjangoModelFactory):
     label = "planner item"
     spanish_label = "spanish planner item"
     risk_level = 1
+
+
+class DisplayQuestionFactory(factory.DjangoModelFactory):
+    FACTORY_FOR = DisplayQuestion
+    ordering_rank = 1
