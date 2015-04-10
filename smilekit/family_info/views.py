@@ -11,7 +11,7 @@ from smilekit.equation_balancer.models \
     import Configuration as equation_balancer_configuration
 import datetime
 import sys
-import simplejson as json
+import json
 from django.core.urlresolvers import reverse
 
 

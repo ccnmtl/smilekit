@@ -1,7 +1,7 @@
 from django.db import models
 from smilekit.collection_tool.models import Goal
 from django.core.cache import cache
-import simplejson as json
+import json
 import re
 from datetime import datetime, timedelta
 from smilekit.equation_balancer.models import (

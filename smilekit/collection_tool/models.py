@@ -1,7 +1,7 @@
 from django.db import models
 from django.db.models.signals import post_save
 from django.shortcuts import get_object_or_404
-import simplejson as json
+import json
 from smilekit.equation_balancer.models import (
     Question, Answer, Configuration)
 from django.contrib.flatpages.models import FlatPage
