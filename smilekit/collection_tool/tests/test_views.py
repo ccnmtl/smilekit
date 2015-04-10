@@ -1,9 +1,15 @@
 from django.test import TestCase, RequestFactory
-from smilekit.collection_tool.views import (
-    get_help_item, intro, risk, topics, goals)
-from smilekit.family_info.tests.factories import UserFactory
 from django.contrib.auth.models import AnonymousUser
 from django.http import Http404
+from smilekit.collection_tool.views import (
+    get_help_item, intro, risk, topics, goals, manifest, goal,
+    goal_planner, section, question
+)
+from smilekit.family_info.tests.factories import UserFactory
+from smilekit.equation_balancer.tests.factories import QuestionFactory
+from .factories import (
+    GoalFactory, AssessmentSectionFactory, DisplayQuestionFactory
+)
 
 
 class TestGetHelpItem(TestCase):
@@ -110,3 +116,98 @@ class TestGoals(TestCase):
         self.assertEqual(response.status_code, 200)
         response = goals(request, 'es')
         self.assertEqual(response.status_code, 200)
+
+
+class TestGoal(TestCase):
+    def setUp(self):
+        self.factory = RequestFactory()
+
+    def test_invalid_language(self):
+        request = self.factory.get('/collection_tool/goal/00/language/nl/')
+        request.user = UserFactory()
+        with self.assertRaises(Http404):
+            goal(request, 0, 'nl')
+
+    def test_goal(self):
+        g = GoalFactory()
+        request = self.factory.get(
+            '/collection_tool/goal/%d/language/en/' % g.pk)
+        request.user = UserFactory()
+        response = goal(request, g.pk, 'en')
+        self.assertEqual(response.status_code, 200)
+
+
+class TestGoalPlanner(TestCase):
+    def setUp(self):
+        self.factory = RequestFactory()
+
+    def test_invalid_language(self):
+        request = self.factory.get(
+            '/collection_tool/planner/goal/00/language/nl/')
+        request.user = UserFactory()
+        with self.assertRaises(Http404):
+            goal_planner(request, 0, 'nl')
+
+    def test_goal_planner(self):
+        g = GoalFactory()
+        request = self.factory.get(
+            '/collection_tool/planner/goal/%d/language/en/' % g.pk)
+        request.user = UserFactory()
+        response = goal_planner(request, g.pk, 'en')
+        self.assertEqual(response.status_code, 200)
+
+
+class TestSection(TestCase):
+    def setUp(self):
+        self.factory = RequestFactory()
+
+    def test_invalid_language(self):
+        request = self.factory.get(
+            '/collection_tool/section/00/language/nl/')
+        request.user = UserFactory()
+        with self.assertRaises(Http404):
+            section(request, 0, 'nl')
+
+    def test_section(self):
+        s = AssessmentSectionFactory()
+        request = self.factory.get(
+            '/collection_tool/section/%d/language/en/' % s.pk)
+        request.user = UserFactory()
+        response = section(request, s.pk, 'en')
+        self.assertEqual(response.status_code, 200)
+
+
+class TestQuestion(TestCase):
+    def setUp(self):
+        self.factory = RequestFactory()
+
+    def test_invalid_language(self):
+        request = self.factory.get(
+            '/collection_tool/question/00/language/nl/')
+        request.user = UserFactory()
+        with self.assertRaises(Http404):
+            question(request, 0, 'nl')
+
+    def test_section(self):
+        QuestionFactory(text="number risky exposures")
+        QuestionFactory(text="Fluoride rinse exposures")
+        QuestionFactory(text="Children's daily toothbrushing")
+        q = DisplayQuestionFactory(question=QuestionFactory())
+        request = self.factory.get(
+            '/collection_tool/question/%d/language/en/' % q.pk)
+        request.user = UserFactory()
+        response = question(request, q.pk, 'en')
+        self.assertEqual(response.status_code, 200)
+
+
+class TestManifest(TestCase):
+    def setUp(self):
+        self.factory = RequestFactory()
+
+    def test_manifest(self):
+        request = self.factory.get('/collection_tool/manifest.cache')
+        request.user = AnonymousUser()
+        response = manifest(request)
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue(response.has_header('content-type'))
+        self.assertEqual(response['content-type'], 'text/cache-manifest')
