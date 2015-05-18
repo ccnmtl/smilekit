@@ -34,13 +34,8 @@ if 'test' in sys.argv or 'jenkins' in sys.argv:
         }
     }
 
-TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 
-NOSE_ARGS = [
-    '--with-coverage',
-    ('--cover-package=smilekit.equation_balancer,smilekit.collection_tool'
-     ',smilekit.family_info'),
-]
 JENKINS_TASKS = (
     'django_jenkins.tasks.run_pep8',
 )
@@ -113,7 +108,6 @@ INSTALLED_APPS = [
     'smilekit.family_info',
     'smilekit.collection_tool',
     'smilekit.equation_balancer',
-    'django_nose',
     'django_jenkins',
     'smoketest',
     'waffle',
