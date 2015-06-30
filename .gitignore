@@ -6,3 +6,6 @@ temp.csv
 .coverage
 reports/
 pip-log.txt
+.project
+.pydevproject
+smilekit/local_settings.py
