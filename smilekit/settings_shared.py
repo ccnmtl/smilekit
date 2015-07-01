@@ -74,6 +74,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.transaction.TransactionMiddleware',
     'django_statsd.middleware.GraphiteRequestTimingMiddleware',
     'django_statsd.middleware.GraphiteMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
     'waffle.middleware.WaffleMiddleware',
 )
 
