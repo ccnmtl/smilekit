@@ -104,7 +104,6 @@ INSTALLED_APPS = [
     'django.contrib.admin',
     'smartif',
     'template_utils',
-    'typogrify',
     'tinymce',
     'smilekit.family_info',
     'smilekit.collection_tool',
