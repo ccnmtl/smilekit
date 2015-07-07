@@ -28,7 +28,6 @@ template_utils==0.4p2
 typogrify==2.0.7
 django-tinymce==1.5.3
 djangohelpers==0.18.1
-django-templatetag-sugar==0.1
 django-indexer==0.3.0
 django-paging==0.2.5
 django-jenkins==0.17.0
