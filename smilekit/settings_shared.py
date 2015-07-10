@@ -102,7 +102,6 @@ INSTALLED_APPS = [
     'django.contrib.flatpages',
     'django.contrib.admin',
     'smartif',
-    'typogrify',
     'tinymce',
     'smilekit.family_info',
     'smilekit.collection_tool',
